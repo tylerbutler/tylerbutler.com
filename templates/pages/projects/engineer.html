@@ -1,0 +1,24 @@
+{% extends 'theme/template_page_simple.html' %}
+
+{% block page_title %}Engineer{% endblock %}
+
+{% block content %}
+    <article>
+        {% filter markdown %}
+            ## Overview
+
+            At its core, Engineer is a static website generator. In other words,
+            Engineer let's you build a website from a bunch of files - articles written
+            in [Markdown][], templates, and other stuff - and outputs *another* bunch
+            of files - HTML, mostly - that you can then copy wherever you want.
+
+            But Engineer has some pretty nifty features that you might find
+            enticing, and you'll be able to learn all about them as soon as I finish
+            writing it all down!
+
+            Licensed under the MIT license.
+
+            [Markdown]: http://daringfireball.net/projects/markdown/
+        {% endfilter %}
+    </article>
+{% endblock %}

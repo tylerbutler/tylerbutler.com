@@ -1,0 +1,10 @@
+SUPER: base.yaml
+
+SITE_URL: 'http://localhost:8000'
+POST_DIR: 'C:\Users\Tyler\Drop Box\Engineer\tylerbutler.com'
+
+DEBUG: yes
+
+SERVER_TIMEZONE: 'America/Los_Angeles'
+COMPRESSOR_ENABLED: no
+PREPROCESS_LESS: no

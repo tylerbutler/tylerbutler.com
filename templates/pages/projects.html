@@ -1,0 +1,21 @@
+{% extends 'theme/template_page_simple.html' %}
+
+{% block page_title %}Projects{% endblock %}
+
+{#{% block nav_secondary_content %}#}
+{#    <ul>#}
+{#        <li><a href="{{ urlname('projects/engineer') }}">Engineer</a></li>#}
+{#    </ul>#}
+{#{% endblock %}#}
+
+{% block content %}
+    <article>
+        {% filter markdown %}
+            ##[Engineer][]
+
+            A static blog engine written in Python. tylerbutler.com was built using Engineer, and your site can be too!
+
+            [Engineer]: {{ urlname('projects/engineer') }}
+        {% endfilter %}
+    </article>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% from 'core/_macros.html' import navigation_link with context %}
+
+<ul>
+    {{ navigation_link('articles', urlname('home'), ['post', 'listpage']) }}
+    {{ navigation_link('projects', urlname('projects'), ['projects', 'projects/engineer']) }}
+    {#    {{ navigation_link('professional', urlname('professional'), ['professional']) }}#}
+</ul>
+
+{#<ul>#}
+{#    {{ navigation_link('Home', urlname('home'), ['listpage']) }}#}
+{#    {{ navigation_link('Articles', urlname('home'), ['post']) }}#}
+{#    {{ navigation_link('Projects', urlname('projects'), ['projects', 'projects/engineer']) }}#}
+{#</ul>#}

@@ -35,4 +35,4 @@ pip-log.txt
 /logs/
 _cache/
 *.cache
-_emma_secret.pvt
+*_emma_secret.pvt

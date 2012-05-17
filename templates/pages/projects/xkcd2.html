@@ -1,0 +1,21 @@
+{% extends 'theme/template_page_simple.html' %}
+
+{% block page_title %}tylerbutler.com{% endblock %}
+
+{% block content %}
+    <article>
+        {% filter markdown %}
+            ## Overview
+
+            xkcd 2 is a slightly different presentation of [xkcd][] comics. You can read more about why I made it
+            at [http://www.tylerbutler.com/2012/05/17/xkcd-2/][2] and check out the code [on github][1].
+
+            Licensed under the MIT license.
+
+            [xkcd]: http://xkcd.com
+            [1]: https://github.com/tylerbutler/tylerbutler.com
+            [2]: /2012/05/17/xkcd-2/
+
+        {% endfilter %}
+    </article>
+{% endblock %}

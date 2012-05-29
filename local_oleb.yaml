@@ -6,3 +6,6 @@ THEME_SETTINGS:
   typekit_id: lvr3vky
 
 PREPROCESS_LESS: yes
+
+OUTPUT_DIR: 'output/oleb'
+HOME_URL: '/'

@@ -1,19 +1,17 @@
-{% extends 'theme/template_page_simple.html' %}
+{% extends 'custom/project_page.html' %}
 
-{% block page_title %}ReadyCheck{% endblock %}
+{% block name %}ReadyCheck{% endblock %}
 
-{% block content %}
-    <article>
-        {% filter markdown %}
-            ## Overview
+{% block details %}
+    {% filter markdown %}
+        ## Overview
 
-            ReadyCheck is a [Django][]-based web application designed to make managing raids in
-            World of Warcraft easier -- and prettier. I got sick of the crappy PHP-based raid managers out there,
-            so I decided I could do better.
+        ReadyCheck is a [Django][]-based web application designed to make managing raids in
+        World of Warcraft easier -- and prettier. I got sick of the crappy PHP-based raid managers out there,
+        so I decided I could do better.
 
-            Will be licensed under the MIT license, but source code isn't yet available.
+        Will be licensed under the MIT license, but source code isn't yet available.
 
-            [Django]: https://www.djangoproject.com/
-        {% endfilter %}
-    </article>
+        [Django]: https://www.djangoproject.com/
+    {% endfilter %}
 {% endblock %}

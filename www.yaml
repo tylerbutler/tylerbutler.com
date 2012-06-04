@@ -4,6 +4,10 @@ SITE_URL: 'http://www.tylerbutler.com'
 OUTPUT_DIR: '/home/tylerbutler/webapps/static_tylerbutler_com'
 
 DEBUG: no
+PUBLISH_DRAFTS: no
+PUBLISH_REVIEW: no
+PUBLISH_PENDING: no
+
 EMMA_PREFIX: '_emma'
 
 SERVER_TIMEZONE: 'America/Chicago'

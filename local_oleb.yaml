@@ -7,5 +7,5 @@ THEME_SETTINGS:
 
 PREPROCESS_LESS: yes
 
-OUTPUT_DIR: 'output/oleb'
-HOME_URL: '/'
+#OUTPUT_DIR: 'output/oleb'
+#HOME_URL: '/'

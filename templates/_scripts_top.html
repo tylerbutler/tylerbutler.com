@@ -2,6 +2,10 @@
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-26061862-1']);
     _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
     _gaq.push(['_trackPageview']);
 
     (function() {

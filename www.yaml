@@ -1,5 +1,7 @@
 SUPER: local.yaml
-POST_DIR: '/home/tylerbutler/Dropbox/Engineer/tylerbutler.com'
+POST_DIR:
+- '/home/tylerbutler/Dropbox/Engineer/tylerbutler.com'
+- '/home/tylerbutler/Dropbox/Engineer/tylerbutler.com/Published'
 SITE_URL: 'http://www.tylerbutler.com'
 OUTPUT_DIR: '/home/tylerbutler/webapps/static_tylerbutler_com'
 

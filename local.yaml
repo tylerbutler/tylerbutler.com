@@ -1,7 +1,9 @@
 SUPER: base.yaml
 
 SITE_URL: 'http://localhost:8000'
-POST_DIR: 'C:\Users\Tyler\Drop Box\Engineer\tylerbutler.com'
+POST_DIR:
+- 'C:\Users\Tyler\Drop Box\Engineer\tylerbutler.com'
+- 'C:\Users\Tyler\Drop Box\Engineer\tylerbutler.com\Published'
 
 DEBUG: yes
 PUBLISH_DRAFTS: no

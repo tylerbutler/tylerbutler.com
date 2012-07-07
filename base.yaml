@@ -2,6 +2,8 @@ SITE_TITLE: Tyler Butler
 SITE_AUTHOR: Tyler Butler
 HOME_URL: '/'
 
+FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'
+
 THEME_SETTINGS:
   typekit_id: vty2qol
   twitter_id: tylerbutler

@@ -5,5 +5,3 @@ OUTPUT_DIR: '/home/tylerbutler/webapps/www2_tylerbutler_com'
 DEBUG: yes
 PUBLISH_REVIEW: yes
 PUBLISH_PENDING: yes
-
-NORMALIZE_INPUT_FILES: no

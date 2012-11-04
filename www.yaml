@@ -16,4 +16,5 @@ SERVER_TIMEZONE: 'America/Chicago'
 PREPROCESS_LESS: yes
 COMPRESSOR_ENABLED: yes
 
-NORMALIZE_INPUT_FILES: yes
+# still using fulldate in production for the time being
+PERMALINK_STYLE: fulldate

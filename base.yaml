@@ -4,6 +4,7 @@ HOME_URL: '/'
 PERMALINK_STYLE: pretty
 
 FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'
+FEED_FULL_CONTENT: yes
 
 THEME_SETTINGS:
   typekit_id: vty2qol

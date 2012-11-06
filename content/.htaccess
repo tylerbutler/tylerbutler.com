@@ -4,3 +4,4 @@
 </Files>
 
 RedirectMatch permanent (.*)/(\d*)/(\d*)/(\d*)/(.*)/(index.html?) $1/$2/$3/$5/
+RedirectMatch permanent (.*)/(\d*)/(\d*)/(\d*)/(.*)/ $1/$2/$3/$5/

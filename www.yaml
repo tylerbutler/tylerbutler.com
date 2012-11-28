@@ -17,4 +17,4 @@ PREPROCESS_LESS: yes
 COMPRESSOR_ENABLED: yes
 
 # still using fulldate in production for the time being
-PERMALINK_STYLE: fulldate
+#PERMALINK_STYLE: fulldate

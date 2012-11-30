@@ -17,3 +17,4 @@ POST_TIMEZONE: 'America/Los_Angeles'
 
 POST_RENAME_CONFIG:
   draft: '{slug} [{status}].md'
+  review: '({status}) {slug}.md'

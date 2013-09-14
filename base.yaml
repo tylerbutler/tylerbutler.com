@@ -8,8 +8,6 @@ FEED_FULL_CONTENT: yes
 
 THEME_SETTINGS:
   typekit_id: vty2qol
-  twitter_id: tylerbutler
-  tweet_count: 4
   comments: disqus
   comments_account: tylerbutlercom
 

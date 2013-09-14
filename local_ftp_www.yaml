@@ -1,0 +1,23 @@
+SUPER: local.yaml
+SITE_URL: 'http://www.tylerbutler.com'
+
+OUTPUT_DIR: 'output/local_www'
+
+DEBUG: no
+PUBLISH_DRAFTS: no
+PUBLISH_REVIEW: no
+PUBLISH_PENDING: no
+
+EMMA_PREFIX: '_emma'
+
+#SERVER_TIMEZONE: 'America/Chicago'
+PREPROCESS_LESS: yes
+COMPRESSOR_ENABLED: yes
+
+# still using fulldate in production for the time being
+PERMALINK_STYLE: pretty
+
+FTP_PUBLISH: yes
+FTP_URL: tylerbutler.webfactional.com
+FTP_USERNAME: tylerbutler
+FTP_REMOTE_DIR: webapps/static_tylerbutler_com

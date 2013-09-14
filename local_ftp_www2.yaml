@@ -1,0 +1,9 @@
+SUPER: local_ftp_www.yaml
+
+OUTPUT_DIR: 'output/local_www2'
+
+DEBUG: yes
+PUBLISH_REVIEW: yes
+PUBLISH_PENDING: yes
+
+FTP_REMOTE_DIR: webapps/www2_tylerbutler_com

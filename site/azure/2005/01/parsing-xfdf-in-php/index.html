@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>    Parsing XFDF in PHP    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/rss+xml"
+          title="Tyler Butler RSS Feed"
+          href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
+
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.com/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+            </script>    
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            
+<ul>
+                    <li class="current">
+        <a href="/">articles</a></li>
+                    <li>
+        <a href="/projects">projects</a></li>
+    </ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">JAN</div>
+                    <div class="day">24</div>
+                    <div class="year">2005</div>
+                    <div class="permalink">
+                        <a href="/2005/01/parsing-xfdf-in-php/"
+                           title="Permanent link to 'Parsing XFDF in PHP'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/snippets">snippets</a>
+                        </li>
+                                            <li><a href="/tag/php">php</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2005-01-24 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2005/01/parsing-xfdf-in-php/">Parsing <span class="caps">XFDF</span> in <span class="caps">PHP</span></a>
+                                            </h1>
+                </header>
+                                    <p>This past week at work I have been working on using Adobe Acrobat to submit
+form data. The value of this is that the form data can be reimported into the
+<span class="caps">PDF</span> form then printed all purty-lookin&#8217;. Anyway, Acrobat allows you to submit
+your form data in several different formats. One, <span class="caps">FDF</span>, is usable in <span class="caps">PHP</span>
+provided you load this module thingy. Unfortunately, the server I want to run
+the <span class="caps">PHP</span> script on uses Irix and the module is unavailable for Irix.&nbsp;Poo.</p>
+<p>I then turned to <span class="caps">XFDF</span>, which is essentially <span class="caps">FDF</span> data all <span class="caps">XML</span>-ified. <span class="caps">PHP</span> has an
+<span class="caps">XML</span> parser built in, so I don&#8217;t have to load any crazy modules to parse the
+data. Unfortunately, <span class="caps">PHP</span>&#8217;s parser is <span class="caps">SAX</span>-based rather than <span class="caps">DOM</span>-based, so it
+took me a rather long time to figure out how to get it working right. Anyway,
+here&#8217;s the <span class="caps">PHP</span> code that essentially takes <span class="caps">XFDF</span> data (declare <code>$file</code> as a
+string pointing to the location of your <span class="caps">XFDF</span> file) and parses it into an
+associative array (<code>$values</code>). The array is indexed by the <span class="caps">XFDF</span> field names.
+The code below is not entirely complete since I snipped it out of a larger
+file, but if you look at it, I think you&#8217;ll get the idea. It&#8217;s pretty simple
+once you figure out the way <span class="caps">PHP</span> does <span class="caps">XML</span>&nbsp;processing.</p>
+<div class="codehilite"><pre><span class="cm">/* <span class="caps">BEGIN</span> <span class="caps">VARIABLE</span> <span class="caps">DECLARATIONS</span> */</span>
+<span class="c1">//global variables for <span class="caps">XML</span> parsing</span>
+<span class="err">$</span><span class="n">values</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">array</span><span class="p">();</span>
+<span class="err">$</span><span class="n">field</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">curTag</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+
+
+<span class="cm">/* <span class="caps">BEGIN</span> <span class="caps">XML</span> <span class="caps">PROCESSING</span> */</span>
+<span class="c1">// <span class="caps">XML</span> Parser element start function</span>
+<span class="k">function</span><span class="err"> </span><span class="n">startElement</span><span class="p">(</span><span class="err">$</span><span class="n">parser</span><span class="p">,</span><span class="err"> $</span><span class="n">name</span><span class="p">,</span><span class="err"> $</span><span class="n">attrs</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="err">    </span><span class="k">global</span><span class="err"> $</span><span class="n">curTag</span><span class="p">,</span><span class="err"> $</span><span class="n">field</span><span class="p">;</span>
+
+
+<span class="err">    </span><span class="c1">//track the tag we&#39;re currently in</span>
+<span class="err">    $</span><span class="n">curTag</span><span class="err"> </span><span class="p">.</span><span class="o">=</span><span class="err"> </span><span class="s">&quot;^$name&quot;</span><span class="p">;</span>
+
+<span class="err">    </span><span class="k">if</span><span class="p">(</span><span class="err"> $</span><span class="n">curTag</span><span class="err"> </span><span class="o">==</span><span class="err"> </span><span class="s">&quot;^<span class="caps">XFDF</span>^<span class="caps">FIELDS</span>^<span class="caps">FIELD</span>&quot;</span><span class="err"> </span><span class="p">)</span>
+<span class="err">    </span><span class="p">{</span>
+<span class="err">        </span><span class="c1">//save the name of the field in a global var</span>
+<span class="err">        $</span><span class="n">field</span><span class="err"> </span><span class="o">=</span><span class="err"> $</span><span class="n">attrs</span><span class="p">[&#39;</span><span class="no"><span class="caps">NAME</span></span><span class="p">&#39;];</span>
+<span class="err">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">// <span class="caps">XML</span> Parser element end function</span>
+<span class="k">function</span><span class="err"> </span><span class="n">endElement</span><span class="p">(</span><span class="err">$</span><span class="n">parser</span><span class="p">,</span><span class="err"> $</span><span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="err">    </span><span class="k">global</span><span class="err"> $</span><span class="n">curTag</span><span class="p">;</span>
+
+<span class="err"> </span> <span class="err">  </span><span class="c1">// remove the tag we&#39;re ending from the &quot;tag tracker&quot;</span>
+<span class="err">    $</span><span class="n">caret_pos</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">[</span><span class="n">strrpos</span><span class="p">][</span><span class="mh">1</span><span class="p">](</span><span class="err">$</span><span class="n">curTag</span><span class="p">,</span><span class="sc">&#39;^&#39;</span><span class="p">);</span>
+<span class="err">    $</span><span class="n">curTag</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">[</span><span class="n">substr</span><span class="p">][</span><span class="mh">2</span><span class="p">](</span><span class="err">$</span><span class="n">curTag</span><span class="p">,</span><span class="err"> </span><span class="mh">0</span><span class="p">,</span><span class="err"> $</span><span class="n">caret_pos</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="c1">// <span class="caps">XML</span> Parser characterData function</span>
+<span class="k">function</span><span class="err"> </span><span class="n">characterData</span><span class="p">(</span><span class="err"> $</span><span class="n">parser</span><span class="p">,</span><span class="err"> $</span><span class="n">data</span><span class="err"> </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="err">    </span><span class="k">global</span><span class="err"> $</span><span class="n">curTag</span><span class="p">,</span><span class="err"> $</span><span class="n">values</span><span class="p">,</span><span class="err"> $</span><span class="n">field</span><span class="p">;</span>
+<span class="err">    $</span><span class="n">valueTag</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;^<span class="caps">XFDF</span>^<span class="caps">FIELDS</span>^<span class="caps">FIELD</span>^<span class="caps">VALUE</span>&quot;</span><span class="p">;</span>
+
+<span class="err">    </span><span class="k">if</span><span class="p">(</span><span class="err"> $</span><span class="n">curTag</span><span class="err"> </span><span class="o">==</span><span class="err"> $</span><span class="n">valueTag</span><span class="err"> </span><span class="p">)</span>
+<span class="err">    </span><span class="p">{</span>
+<span class="err">        </span><span class="c1">// we&#39;re in the value tag, so put the value in the array</span>
+<span class="err">        $</span><span class="n">values</span><span class="p">[</span><span class="err">$</span><span class="n">field</span><span class="p">]</span><span class="err"> </span><span class="o">=</span><span class="err"> $</span><span class="n">data</span><span class="p">;</span>
+<span class="err">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Create the parser and parse the file</span>
+<span class="err">$</span><span class="n">xml_parser</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">xml_parser_create</span><span class="p">();</span>
+<span class="n">xml_set_element_handler</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">,</span><span class="err"> </span><span class="s">&quot;startElement&quot;</span><span class="p">,</span><span class="err"> </span><span class="s">&quot;endElement&quot;</span><span class="p">);</span>
+<span class="n">xml_set_character_data_handler</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">,</span><span class="err"> </span><span class="s">&quot;characterData&quot;</span><span class="p">);</span>
+
+<span class="k">if</span><span class="err"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="err">$</span><span class="n">fp</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">fopen</span><span class="p">(</span><span class="err">$</span><span class="n">file</span><span class="p">,</span><span class="s">&quot;r&quot;</span><span class="p">)))</span>
+<span class="p">{</span>
+<span class="err">    </span><span class="n">die</span><span class="err"> </span><span class="p">(</span><span class="s">&quot;could not open <span class="caps">XML</span> for input&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">while</span><span class="err"> </span><span class="p">(</span><span class="err">$</span><span class="n">data</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">fread</span><span class="p">(</span><span class="err">$</span><span class="n">fp</span><span class="p">,</span><span class="err"> </span><span class="mh">4096</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="err"> </span><span class="p">(</span><span class="o">!</span><span class="n">xml_parse</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">,</span><span class="err"> $</span><span class="n">data</span><span class="p">,</span><span class="err"> </span><span class="n">feof</span><span class="p">(</span><span class="err">$</span><span class="n">fp</span><span class="p">)))</span>
+
+<span class="err">    </span><span class="p">{</span>
+
+<span class="err">        </span><span class="n">die</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&quot;<span class="caps">XML</span> error: %s at line %d&quot;</span><span class="p">,</span>
+                    <span class="n">xml_error_string</span><span class="p">(</span><span class="n">xml_get_error_code</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">)),</span>
+                    <span class="n">xml_get_current_line_number</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">)));</span>
+<span class="err">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">xml_parser_free</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">);</span>
+<span class="n">flclose</span><span class="p">(</span><span class="err">$</span><span class="n">fp</span><span class="p">);</span>
+
+<span class="cm">/* <span class="caps">END</span> <span class="caps">XML</span> <span class="caps">PROCESSING</span> */</span>
+</pre></div>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2005/01/c-messagebox-strangeness/">← C# MessageBox Strangeness</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2005/02/title-droppers/">Title Droppers →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                                    <section id="comments">
+                                                    <header>
+                                <h1>Comments</h1>
+                            </header>
+                                                    <div id="disqus_thread"></div>
+    <!-- DISQUS -->
+    <script type="text/javascript">
+        var disqus_shortname = 'tylerbutlercom';
+        var disqus_identifier = '/2005/01/parsing-xfdf-in-php/';
+        var disqus_url = 'http://tylerbutler.azurewebsites.net/2005/01/parsing-xfdf-in-php/';
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments
+        powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+            class="logo-disqus">Disqus</span></a>
+                    </section>
+                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2012 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

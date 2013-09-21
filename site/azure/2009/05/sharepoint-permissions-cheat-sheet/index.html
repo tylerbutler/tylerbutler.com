@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>    SharePoint Permissions &ldquo;Cheat Sheet&rdquo;    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/rss+xml"
+          title="Tyler Butler RSS Feed"
+          href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
+
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.com/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+            </script>    
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            
+<ul>
+                    <li class="current">
+        <a href="/">articles</a></li>
+                    <li>
+        <a href="/projects">projects</a></li>
+    </ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">MAY</div>
+                    <div class="day">05</div>
+                    <div class="year">2009</div>
+                    <div class="permalink">
+                        <a href="/2009/05/sharepoint-permissions-cheat-sheet/"
+                           title="Permanent link to 'SharePoint Permissions &ldquo;Cheat Sheet&rdquo;'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/sharepoint">sharepoint</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2009-05-05 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2009/05/sharepoint-permissions-cheat-sheet/">SharePoint Permissions &ldquo;Cheat Sheet&rdquo;</a>
+                                            </h1>
+                </header>
+                                    <p>Back when we were building SharePoint 2007, a member of our Program Management
+team left Microsoft, and I inherited the permissions-related features for the
+then Content Management Server team, which was responsible for all of the web
+publishing features in SharePoint. Essentially, this meant that I has to
+figure out what the correct set of permission levels were for our features,
+and what lists/libraries should have unique (non-inherited)&nbsp;permissions.</p>
+<p>Now, if you&#8217;ve used SharePoint for any length of time, you&#8217;ve no doubt been
+frustrated with permissions management. It&#8217;s definitely a sore point.
+Unfortunately, I don&#8217;t have any magic bullets or golden hammers. When I
+started trying to figure everything out so that I could make educated
+decisions for our designs, I realized that I needed to write stuff down.
+People always asked questions like, “What rights do Designers have by
+default?” Sure, you can find out by going to the site itself and checking, but
+the <span class="caps">UI</span> isn&#8217;t the easiest to navigate, and oftentimes what you really want to
+do is compare multiple permissions levels. “What rights do Designers have that
+Contributors don&#8217;t?”, for example. To help keep it all straight in my mind
+(and so I could point people to the info rather than answer 100 emails a day
+with the same question!), the SharePoint Permissions “Cheat Sheet” was&nbsp;born.</p>
+<p>It&#8217;s nothing fancy, and it&#8217;s certainly not anything that no one else could
+have created. But still, it has proven useful over the past few years. I still
+keep a copy of it pinned to my office wall. It&#8217;s pretty self-explanatory. The
+first sheet has a table of the default publishing permission levels and what
+fine-grain permissions each of them has. The second sheet is just the
+descriptions of each of the fine-grain permissions so I didn&#8217;t have to go
+hunting through the <span class="caps">UI</span> to find them whenever I was wondering what the
+differences were. Finally, the third sheet is a list of “securable objects”
+(which what I decided to call a list/library that had broken away permissions
+inheritance and was independently secured) and what default groups had what
+rights to those locations by default. This was particularly important since in
+general, you want to avoid breaking permissions inheritance if you can, and we
+wanted to be very deliberate about where we did, and also track them to ensure
+they made sense over&nbsp;time.</p>
+<p>So how exactly do you use this? Well, it can be a
+handy reference as-is, but chances are that you have your own permissions
+level or have modified the existing ones to suit your needs, so you can modify
+this sheet to reflect your own custom permissions and keep track of
+everything. It really is helpful to have a centralized reference of all of the
+various permissions levels. If you go through and put in your own levels, you
+might realize that there&#8217;s a lot of needless duplication in the custom
+permission level you might have created. When it comes to SharePoint
+permissions, less is better, so this can be a helpful auditing tool as well as
+a&nbsp;reference.</p>
+<p><strong>A couple of disclaimers&#8230;</strong> This was created based on the <span class="caps">RTM</span>
+version. As far as I know, nothing has been changed in <span class="caps">SP1</span> or <span class="caps">SP2</span> that would
+impact it, but I haven&#8217;t been checking to keep it up to date. If you do notice
+errors you can let me know and I&#8217;ll try to correct it. Also, this obviously
+won&#8217;t take into account any customizations that you may do that would alter
+the default permission levels. If you use this for any of the purposes listed
+or for additional things, leave a comment! I&#8217;d love to hear how it&#8217;s working
+for you and if it&#8217;s been&nbsp;helpful.</p>
+<iframe width="100%" height="800" frameborder="0" scrolling="no" src="https://skydrive.live.com/embed?cid=016388EDBC1188FA&resid=16388EDBC1188FA%211657&authkey=AO9sXmDvE0c07ZA&em=2&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True"></iframe>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2009/04/quick-and-nimble-not-in-the-app-store/">← Quick and Nimble? Not In the App Store...</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2009/05/cmon-iphone-be-serious/">C'mon iPhone, be serious... →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                                    <section id="comments">
+                                                    <header>
+                                <h1>Comments</h1>
+                            </header>
+                                                    <div id="disqus_thread"></div>
+    <!-- DISQUS -->
+    <script type="text/javascript">
+        var disqus_shortname = 'tylerbutlercom';
+        var disqus_identifier = '/2009/05/sharepoint-permissions-cheat-sheet/';
+        var disqus_url = 'http://tylerbutler.azurewebsites.net/2009/05/sharepoint-permissions-cheat-sheet/';
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments
+        powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+            class="logo-disqus">Disqus</span></a>
+                    </section>
+                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2012 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

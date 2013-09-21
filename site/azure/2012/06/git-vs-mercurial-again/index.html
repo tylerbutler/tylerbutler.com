@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>    Git vs. Mercurial (Again)    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/rss+xml"
+          title="Tyler Butler RSS Feed"
+          href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
+
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.com/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+            </script>    
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            
+<ul>
+                    <li class="current">
+        <a href="/">articles</a></li>
+                    <li>
+        <a href="/projects">projects</a></li>
+    </ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">JUN</div>
+                    <div class="day">10</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/06/git-vs-mercurial-again/"
+                           title="Permanent link to 'Git vs. Mercurial (Again)'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/git">git</a>
+                        </li>
+                                            <li><a href="/tag/mercurial">mercurial</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-06-10 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2012/06/git-vs-mercurial-again/">Git vs. Mercurial (Again)</a>
+                                            </h1>
+                </header>
+                                    <p><em>Note: I&#8217;ve actually had this sitting in my drafts folder for awhile but with the recent release of <a href="https://github.com/blog/1127-github-for-windows">GitHub for Windows</a> it seemed like a good time to get my act together and post&nbsp;it.</em></p>
+<h2>The&nbsp;Beginning</h2>
+<p>My first experience with true source code management was with <span class="caps">CVS</span>. I was in college, and the HawkTour project was going into its second semester. It was becoming clear that with a new batch of undergraduate students coming in the next semester we needed a solution to keep everyone from Hulk-smashing their way through the code wreaking havoc and bringing general&nbsp;chaos.</p>
+<p>The Unix server we used had <span class="caps">CVS</span> installed, so I learned the ropes then gave new students a crash-course in using it, as well as how to check things in and out using the Eclipse addins. This was the first time almost every student I encountered had used any source code management software, which in retrospect is a travesty. I <em>really</em> hope college courses include source code management tools these&nbsp;days.</p>
+<!-- more -->
+
+<p>Fast forward a couple of years&#8230; I got out of college, started my career as a <span class="caps">PM</span>, and promptly stopped worrying about source code management. I mean, I had to worry about it insofar as I needed to understand what core developers were talking about (&#8220;<em>This</em> branch&#8221; and &#8220;<em>That</em> branch&#8221; and &#8220;No we can&#8217;t merge yet because of the children. Think of the children!&#8221; and&#8230; well, you get the idea) but it wasn&#8217;t part of my daily&nbsp;routine.</p>
+<h2>Git: Attempt&nbsp;1</h2>
+<p>Then in 2008 <a href="https://github.com">GitHub</a> popped onto my radar, so I meandered over to see what the new hotness was and wound up poking around with Git (or is it git? I can find no firm consensus about whether it&#8217;s supposed to be capitalized) for awhile. I had a bunch of old code from long-forgotten projects that I resurrected to test it out. At this time, Git on Windows was a horrid experience (and given the current crappy state of affairs you can imagine just how bad it was), but I braved it anyway. I created my Git cheatsheets and memorized arcane command line craziness and <em>used it</em>. And it was fun. And powerful. And very much better than&nbsp;<span class="caps">CVS</span>.</p>
+<p>Now, <a href="http://www.youtube.com/watch?v=4XpnKHJAok8">Linus might consider me an idiot</a>, and I no doubt am by his standards, but look people, <em>Git is not easy.</em> Say it with me again: <em>Git is not easy.</em> And Git on Windows is even harder &#8211; this is still true&nbsp;today.</p>
+<p>Hardcore Git zealots strike me as sort of like your neighbor who&#8217;s always trying to get you to drive a standard (or manual for the true Yanks) transmission car and change your own oil. &#8220;You&#8217;ll save so much cash, man!&#8221; &#8220;You have so much more control on the road, dude!&#8221; I get that it&#8217;s good to know how things work, and that a high degree of control has a lot of benefits, but frankly, sometimes I just need to <em>drive somewhere</em>.<sup id="fnref:git1"><a class="footnote-ref" href="#fn:git1" rel="footnote">1</a></sup></p>
+<p>This attitude is why many Git guides and tutorials start with stuff like how the index and the reflog work and what garbage collection is etc. etc. For example, see this <a href="http://www.sbf5.com/~cduan/technical/git/">humorously titled guide by Charles Duan</a>. Tommi Virtanen&#8217;s <a href="http://eagain.net/articles/git-for-computer-scientists/">Git for Computer Scientists</a> is a similar example, though I give Virtanen a pass since the guide&#8217;s explicit goal is to explain how Git works internally, not how to <em>use</em>&nbsp;Git.</p>
+<p>I get why that stuff is important &#8211; and useful, potentially<sup id="fnref:git2"><a class="footnote-ref" href="#fn:git2" rel="footnote">2</a></sup> &#8211; but that approach is sort of like teaching someone to drive by first explaining how the engine works. It&#8217;s simply not necessary to use the&nbsp;car.</p>
+<p>I think part of the problem I have with Git, though, is that is often <em>does</em> feel necessary to understand how it works. Remember this notion; I&#8217;ll come back to it&nbsp;later.</p>
+<h2>Mercurial To the Rescue! (Or&nbsp;Not)</h2>
+<p>After quite a long break from coding, I started up in earnest again at the end of 2010 when I started teaching high school web design as part of the <a href="http://tealsk12.org"><span class="caps">TEALS</span></a> pilot program. I had a bunch of sample <span class="caps">HTML</span> and <span class="caps">CSS</span> and lesson plan stuff and it made sense to get it all in source&nbsp;control.</p>
+<p>So I checked in on Git, and Git on Windows was still painful. Or, I should say, too painful for my tastes. Anything that calls Cygwin a prerequisite is not set up for success in my book. That, in short, was what prompted me to try Mercurial for the first time. Well, that and the fact that Mercurial is written in Python, and the fact that <a href="http://www.fogcreek.com/kiln/">Kiln</a> had just come out so I felt like I could rely on there being a solid GitHub alternative for remote&nbsp;repositories.</p>
+<p>And Mercurial was fun. And powerful. And very much better than <span class="caps">CVS</span>. And TortoiseHG was (is!) a relatively elegant tool that works well in Windows. Life was good. I discovered the beauty of <span class="caps">MQ</span> and patch queues. I started using BitBucket because, well, it was just like GitHub, right? (And at the time Kiln didn&#8217;t have public&nbsp;repositories.)</p>
+<p>But something never quite &#8216;clicked&#8217; for me about Mercurial &#8211; branches. Or, to be more exact in Mercurial terminology &#8211;  <em>named</em> branches. Mercurial has them, but they&#8217;re not like Git&#8217;s. In fact, they&#8217;re such different concepts that most articles comparing the two systems actually use different names for them. So it&#8217;s a bit unfair to compare them directly. Mercurial&#8217;s bookmarks are a better counterpart to Git&#8217;s branches, but I&nbsp;digress&#8230;</p>
+<p>Anyway, the guidance from Mercurial-land is that named branches are meant for long-lived things like a dev branch or a release branch. Steve Losh has a great overview of all of the <a href="http://stevelosh.com/blog/2009/08/a-guide-to-branching-in-mercurial/">branching options in Mercurial</a>, including bookmarks that I just mentioned, but if you want to just play around for awhile on a new idea then save it for later you do not create a named branch. You might create a bookmark, you might use a separate clone, but you don&#8217;t use a named branch. <em>So sayeth the powers that be.</em> In reality, you <em>can</em> create named branches (as Steve points out), and you can close them when you&#8217;re done with them, but in Mercurial those branches stay as an indelible part of the source history (or the metadata at least), which feels messy to&nbsp;me.</p>
+<p>Now, there&#8217;s absolutely nothing wrong with this model. It works wonderfully for many people. It is arguably simpler, though I do not personally believe that to be the&nbsp;case.</p>
+<p>I think that depending on which branching model you wrap your head around first, the Mercurial way either feels right or feels wrong. In my case it feels wrong. It doesn&#8217;t work well with the way that I work. I am <em>all over the place</em> when I code. While I believe that source history should be the <em>&#8216;truth,&#8217;</em> I also think that above all, it should be as easy to follow as possible. Commit messages are an important part of this, of course, but cleaning up your local history before you share it is critical too. You can go back through and tie up loose ends, remove unnecessary code changes you made,<sup id="fnref:git3"><a class="footnote-ref" href="#fn:git3" rel="footnote">3</a></sup> etc. Keeping your changes separated is critical in making this &#8216;clean up&#8217;&nbsp;possible.</p>
+<h3>Anonymous&nbsp;Branches</h3>
+<p>In my attempt to have multiple in-flight changesets, I first tried the anonymous branching approach, which isn&#8217;t possible in Git but works well in Mercurial. But then when I&#8217;d try to push I&#8217;d get warnings that I was pushing new heads. Well, yeah, of course. And while I know that I can do that safely when I&#8217;m just pushing to a remote repository for myself (to work on in-flight changes on multiple computers, for example), it creates a huge hassle when I am finally ready to push to a shared repository. &#8220;Oh, oops, I have some unmerged changes from failed-but-not-quite-ready-to-give-up-on-experiment #37 that everyone&#8217;s going to get if I push in this state.&#8221;&nbsp;Yuck.</p>
+<h3>Patch&nbsp;Queues</h3>
+<p>The next approach I tried was a patch queue. Yeah, I&#8217;d just manage every change as a patch. It worked for the kernel guys for years, right? Except that <em>really</em> turned out terribly. If you only want to have a single patch queue, then everything needs to be &#8216;in order.&#8217; It&#8217;s a queue, so each patch applies successively. And that works <span class="caps">OK</span> for awhile, but eventually I wanted to work on two totally divergent things at the same time and switch back and forth&nbsp;periodically.</p>
+<p>So <em>then</em> you start thinking that you just need <em>multiple patch queues</em>, one for each feature. This is getting ridiculous, but whatever&#8230; I&#8217;ll try it. You know what? It <em>is</em> ridiculous. You know those great tools I mentioned earlier, like TortoiseHG? Yeah, they don&#8217;t work so well at managing multiple patch queues. Thus, one of the major reasons I switched to Mercurial &#8211; superior Windows tools &#8211; was eroded. Also, this complexity has a nasty side-effect: it discourages the very thing that <span class="caps">DVC</span> systems are meant to help with, namely not committing your changes often&nbsp;enough.</p>
+<p>In the single patch queue world, you tend to just update the same patch all the time, so you don&#8217;t get the benefits of true source history. If you don&#8217;t take that approach, then you have to remember which patches in the queue &#8216;go together&#8217; so you can apply them up to the right point. (And do not think for second of using a versioned patch queue. Yes, it can potentially alleviate this problem. But it&#8217;s a mind-bender to keep remembering how everything fits together: I first need to refresh my patch, then commit <em>on the patch queue repository</em> to save my changes for posterity. The level of indirection is too high to be truly useful in my opinion.) If you use the multiple patch queue option the switching costs of changing between the feature &#8216;branches&#8217; you&#8217;re working on cause different, but equally bothersome, problems. All in all, these workflows just didn&#8217;t work for&nbsp;me.</p>
+<p>That <em>&#8216;for me&#8217;</em> is very important. <em>You</em> should definitely try Mercurial, especially if you&#8217;re struggling with Git. I definitely miss some things about it (<span class="caps">MQ</span> in particular, though <code>rebase</code> works pretty well for most things), and you no doubt work and think completely differently than I do. It might &#8216;click&#8217; for you in a way that it doesn&#8217;t for me, and if Git&#8217;s complexity or something is preventing you from using source control, then please please <em>please</em> try Mercurial. You absolutely should be using source&nbsp;control.</p>
+<h2>Git&nbsp;Back</h2>
+<p>So&#8230; right now I&#8217;m back on the Git bandwagon. And, truth be told, the Git on Windows world has gotten a lot better recently. In fact there&#8217;s even a <a href="https://code.google.com/p/msysgit/downloads/list?can=3&amp;q=official+Git">portable version</a> that you can install on your <span class="caps">USB</span> key. And (yay!) Cygwin isn&#8217;t&nbsp;necessary.</p>
+<p>But it&#8217;s not all sunshine and daisies. Git still has a crazy command line interface. It&#8217;s confusing. There are all kinds of posts online like <a href="http://www.zorched.net/2008/04/14/start-a-new-branch-on-your-remote-git-repository/">this one</a> that illustrate how even seasoned Git users forget commands for <em>basic tasks</em>. Deleting a remote branch is a perfect illustration in &#8216;<span class="caps">WAT</span>?&#8217; Yeah, it makes sense once you think about it, but that doesn&#8217;t mean it&#8217;s good or right.<sup id="fnref:git4"><a class="footnote-ref" href="#fn:git4" rel="footnote">4</a></sup> I have a browser window open whenever I am using the Git command line just to look up the right command to do what I want to do. Do. Not.&nbsp;Like.</p>
+<p>A lot of the <a href="https://github.com/ddollar/git-utils">helpful scripts</a> you can find to ease the command complexity are depedendent on bash or some other *nix shell. Git for Windows does have a bash shell and even includes a handy batch file for starting it, but most of my life is lived in PowerShell, and I find I miss some of the commands when using bash. That said, you can configure Console2 to host the Git bash shell so I just open one up, use it <em>only</em> for git, and use other PowerShell tabs for most of my other work. (Note: if you take this approach, you can copy your scripts into the <code>/bin</code> directory in your Git folder and they&#8217;ll be available at your Git prompts. You can also try <a href="https://github.com/dahlbyk/posh-git">posh-git</a>, but again, those helpful bash scripts you downloaded won&#8217;t be&nbsp;useable.)</p>
+<h2>Adjustments</h2>
+<p>So now, having switched from Git to Mercurial and back, here are some of the differences that affect me&nbsp;personally.</p>
+<ul>
+<li>Pull and Fetch mean different things. In fact, they&#8217;re kind of the opposite. This one has driven me nuts a few times, especially since I do still use Mercurial on at least one major&nbsp;project.</li>
+<li>I miss <code>hg incoming</code> and <code>hg outgoing</code>. Yes, there are corresponding Git scripts you can get but they aren&#8217;t as nice&nbsp;<span class="caps">IMO</span>.</li>
+<li>I miss being able to use a substring of the command I want. For example, in Mercurial I could type <code>hg inc</code> instead of <code>hg incoming</code>. This does not appear to work in Git, at least not on Windows. Yes, I can create aliases. No, they&#8217;re not as&nbsp;convenient.</li>
+<li><code>git rebase</code> is very cool, and very powerful. Thus, it is dangerous, but a working knowledge of how to use it properly has led me to a multi-machine workflow that is quite good, and much better than my insane attempts as using <span class="caps">MQ</span> for the same purpose. I&#8217;ve since gone back and tried Mercurial&#8217;s <code>rebase</code> command, and while it does let you do the basic rebase action of &#8216;transplanting&#8217; a branch to be based on another branch, the interactive rebase isn&#8217;t possible. For that you can use another Mercurial extension called <a href="http://mercurial.selenic.com/wiki/HisteditExtension">histedit</a>, but again, it just doesn&#8217;t seem as polished as the Git counterpart. Wow, I can honestly say I never expected to write that something in Git feels &#8216;polished&#8217; but <code>rebase</code> does.</li>
+<li>Creating named branches for everything is bliss. Pure bliss. This just completely &#8216;clicks&#8217; for me. I create little branches for everything. Coupled with a repository viewer that visualizes the whole tree (<a href="http://www.jetbrains.com/pycharm/">PyCharm</a> actually has this built-in, but other tools such as <a href="http://code.google.com/p/gitextensions/">Git Extensions</a> or even <code>gitk</code> have it as well) the branch names serve as little sign-posts about what I&#8217;m working&nbsp;on.</li>
+<li>Branches are awesome, but managing them is a bit of a pain just because the tools available can&#8217;t do <em>everything</em>. Luckily, even when you think you&#8217;ve destroyed things beyond all repair and your work is gone <em>for good</em>, it usually isn&#8217;t. Almost everything is recoverable. Git is nothing if not careful. I think it&#8217;s situations like this that have caused people writing &#8216;Guides to Git&#8217; to start by explaining the index and the reflog and the hashes and <em>how Git works</em>, because if you <em>do</em> understand that stuff, you can generally get yourself out of trouble &#8211; or stay out of it altogether. But I think in the end that type of teaching leads to more confusion than clarity and causes more problems than it&nbsp;solves.</li>
+<li>I do not understand the allure of the stage. Given how easy Git makes branching, and how straightforward it is to commit, ammend the commit, <code>rebase</code> branches, rewrite history with interactive <code>rebase</code>, etc. what exactly is the advantage of the stage? Most tools don&#8217;t even expose it &#8211; it&#8217;s just there behind the scenes &#8211; so I&#8217;m not sure why people make such a big deal about it all the&nbsp;time.</li>
+<li>In Mercurial, you can have anonymous branches since your whole history is always &#8216;visible.&#8217; In Git this is not true. If there&#8217;s no name pointing to a head, it effectively doesn&#8217;t exist. Now, this technically isn&#8217;t true, but orphaned heads don&#8217;t show up in any tools I&#8217;ve seen, and they&#8217;re not easily accessed unless you happen to know their hash. And <em>eventually</em> they will disappear for good. The lesson here is just to be nervous about not having a branch pointing to something important. Until you feel comfortable with what you&#8217;re doing, if you&#8217;re messing with <code>rebase</code> or something, create some dummy branches pointing to your important commits so you&#8217;ll have something to get back to if you really screw something up. Again, this is never truly necessary &#8211; it&#8217;s just for peace of mind and ease of recovery if you&#8217;re new to&nbsp;Git.</li>
+</ul>
+<p>This post is already incredibly long, so I&#8217;ll save the rant about Git <span class="caps">GUI</span> tools for another time, but the <code>TL;DR</code> version is that they still <strike>suck</strike> leave a lot to be desired, at least on Windows. I was incredibly excited when <a href="https://github.com/blog/1127-github-for-windows">GitHub for Windows</a> was announced, but I find it completely, mind-bogglingly, useless. It&#8217;s a v1, so I have hopes it&#8217;ll get better, but right now I&#8217;d have a hard time recommending anyone use it, even Git noobs. I think it has the potential to create a bunch of bad habits or, even worse, really messy histories simply because of weird merges and whatnot. I find it hard to believe it doesn&#8217;t have a visualization of the whole Git tree. I mean, <em>that</em> is what makes Git understandable for a mere mortal like me. I&#8217;ll have to give it some more time and try it out again to see if I can puzzle out what they&#8217;re trying to do with the <span class="caps">UI</span>, but it seems a little <em>too</em> simple right now. But&#8230; like I said, that&#8217;s a whole other post. <code>/sigh</code></p>
+<p>For now, I&#8217;m happy with the workflow and toolset I have (I&#8217;ll share more details another time), though it&#8217;s a bit rough around the edges and I have to pay a few too many visits to Stack Overflow just to get basic things done. But it works, it&#8217;s fun, it&#8217;s <em>very</em> powerful, and did I mention it&#8217;s a lot better than&nbsp;<span class="caps">CVS</span>?</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:git1">
+<p>This analogy is somewhat flawed since I drive a standard-transmission car and firmly believe it is a skill every driver should have.&#160;<a class="footnote-backref" href="#fnref:git1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:git2">
+<p>To be fair, the Git reflog has saved me from at least one very dangerous botched rebase. I wound up in a situation where the commit tree I really cared about was &#8216;gone.&#8217; Really, what had happened is that all the <em>visible references</em> to it were gone. I managed to save the situation by digging through the reflog and getting out the relevant commits.&#160;<a class="footnote-backref" href="#fnref:git2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:git3">
+<p>Come on, you&#8217;ve all seen a commit from <em>that guy</em> who always does some code formatting/style cleanup along with his changes you&#8217;re trying to review. You can&#8217;t tell without some effort what is really part of the meaningful change and what isn&#8217;t since the cleanup changes obscure everything.&#160;<a class="footnote-backref" href="#fnref:git3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:git4">
+<p>In case you&#8217;ve found your way here via a search engine and are in dire need of the actual command to delete a remote branch, here it is: <code>git push origin :branch-to-delete</code>. Oh, don&#8217;t feel bad; I&#8217;m sure you would have figured it out on your own.&#160;<a class="footnote-backref" href="#fnref:git4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2012/06/ruthless/">← Ruthless</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2012/07/the-right-woman/">The Right Woman →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                                    <section id="comments">
+                                                    <header>
+                                <h1>Comments</h1>
+                            </header>
+                                                    <div id="disqus_thread"></div>
+    <!-- DISQUS -->
+    <script type="text/javascript">
+        var disqus_shortname = 'tylerbutlercom';
+        var disqus_identifier = '/2012/06/git-vs-mercurial-again/';
+        var disqus_url = 'http://tylerbutler.azurewebsites.net/2012/06/git-vs-mercurial-again/';
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments
+        powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+            class="logo-disqus">Disqus</span></a>
+                    </section>
+                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2012 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

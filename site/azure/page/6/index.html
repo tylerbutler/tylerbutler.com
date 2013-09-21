@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>        Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/rss+xml"
+          title="Tyler Butler RSS Feed"
+          href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
+
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.com/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+            </script>    
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            
+<ul>
+                    <li class="current">
+        <a href="/">articles</a></li>
+                    <li>
+        <a href="/projects">projects</a></li>
+    </ul>
+
+                        </nav>
+                </header>
+            <div class="row">                <section id="main" class="nine columns"
+                         role="main">    <div class="posts">
+                                    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">MAY</div>
+                    <div class="day">17</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/05/xkcd-2/"
+                           title="Permanent link to 'xkcd 2'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/project">project</a>
+                        </li>
+                                            <li><a href="/tag/xkcd2">xkcd2</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-05-17 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2012/05/xkcd-2/">xkcd 2</a>
+                                            </h1>
+                </header>
+                                    <p>I&#8217;ve just put up a small side project I whipped together over the last day or so called <a href="http://xkcd2.com/">xkcd 2</a>. It might not make much sense why I built this thing, so bear with me while I try to&nbsp;explain.</p>
+<h2>Why</h2>
+<p>I&#8217;ve been reading <a href="http://xkcd.com/">xkcd</a> for years, but it wasn&#8217;t until fairly recently that I discovered most of the comics actually have a caption.<sup id="fnref:xkcd1"><a class="footnote-ref" href="#fn:xkcd1" rel="footnote">1</a></sup> It&#8217;s tucked away in the <code>title</code> attribute on the <code>img</code> tag, and in most browsers you really only see it if you hover your mouse over the image for a few&nbsp;seconds.</p>
+<p>Discovering this was a total accident. I read most xkcd comics via the <span class="caps">RSS</span> feed in <a href="http://reederapp.com/">Reeder</a>. If you zoom-pinch on an image in Reeder, it opens up a view like&nbsp;this:</p>
+<div class="image caption center">
+    <a href="http://www.flickr.com/photos/76037594@N06/7206331966/">
+        <img src="http://farm8.staticflickr.com/7241/7206331966_66d2e5e577.jpg" width="500" height="375" alt="An xkcd.com comic in Reeder">
+    </a>
+    <p>An xkcd.com comic in&nbsp;Reeder</p>
+</div>
+
+<p>That panel at the bottom displays the <code>title</code> attribute, but it only shows up if you tap once on the image. Anyway, after coming across this in Reeder, I started looking at all the captions every time a new comic would come out. It turns out that in many cases the caption is funnier than the comic itself. Case in point: <a href="http://xkcd2.com/1049/">comic 1049</a>, the one featured in the picture above, is my most recent favorite. The caption perfectly mirrors my own experience with Ayn Rand, and in my opinion makes the comic that much more interesting as a&nbsp;whole.</p>
+                    <div>
+                        <a href="/2012/05/xkcd-2/" class="button">Read more →</a>
+                    </div>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">APR</div>
+                    <div class="day">30</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/04/convergence/"
+                           title="Permanent link to 'Convergence'">∞</a>
+                    </div>
+                            </div>
+                            <div class="attribution">
+                                            via <a href="http://www.therussiansusedapencil.com/post/21738046940/anything-can-be-forced-to-converge-but-the">Dan Provost</a>
+                                    </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/quote">quote</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-04-30 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2012/04/convergence/">Convergence</a>
+                                            </h1>
+                </header>
+                                    <p>Love this quote from <a href="http://www.macstories.net/news/apple-q2-2012-results-39-2-billion-revenue-35-1-million-iphones-11-8-million-ipads-sold/">Tim Cook</a>:</p>
+<blockquote>
+<p>Anything can be forced to converge, but the problem is about trade-offs, and you end up with trade-offs that don&#8217;t please anyone. You can converge a toaster and refrigerator, but the end result won&#8217;t be pleasing to the&nbsp;user.</p>
+</blockquote>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">APR</div>
+                    <div class="day">23</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/04/lukas-mathis/"
+                           title="Permanent link to 'Lukas Mathis'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-04-23 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://ignorethecode.net">Lukas Mathis</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p>I just linked to a piece that I got via <a href="http://ignorethecode.net">Lukas Mathis</a>, but I wanted to explicitly encourage you to read his stuff. In my opinion, <a href="http://ignorethecode.net">ignorethecode.net</a> should be required reading for anyone doing user experience design today. Very smart, very insightful, very well-reasoned. Solid&nbsp;work.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">APR</div>
+                    <div class="day">23</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/04/the-monochrome-trend/"
+                           title="Permanent link to 'The Monochrome Trend'">∞</a>
+                    </div>
+                            </div>
+                            <div class="attribution">
+                                            via <a href="http://ignorethecode.net/blog/2012/04/05/the_monochrome_trend/">Lukas Mathis</a>
+                                    </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-04-23 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://www.literatureandlatte.com/blog/?p=271">The Monochrome Trend</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p><a href="http://www.literatureandlatte.com/blog/?p=271">Keith Blount on color</a>, or lack thereof, in user&nbsp;interfaces:</p>
+<blockquote>
+<p>I learned something about the way my brain works that I hadn’t hitherto ever had to think about: my brain is an awful lot faster at processing colours than it is at processing&nbsp;shapes.</p>
+</blockquote>
+<p>I&#8217;ve felt this way for awhile about modern <span class="caps">UI</span> design trend to &#8220;drain the color&#8221; from <span class="caps">UI</span>, to borrow Blount&#8217;s phrase. I really like color and when used tastefully and correctly I find it to be a wonderful usability aid.<sup id="fnref:color1"><a class="footnote-ref" href="#fn:color1" rel="footnote">1</a></sup> It&#8217;s nice to hear I&#8217;m not the only one that feels this&nbsp;way.</p>
+<p>In Mathis&#8217; link to Blount, he pulls a quote from <a href="http://pragprog.com/book/lmuse/designed-for-use">his own book</a>, which in turn quotes Colin Ware (I&#8217;m dangerously close to <a href="http://www.inception-explained.com/">Inception</a>-level quote recursion at this&nbsp;point!):</p>
+<blockquote>
+<p>In [his book] Information Visualization, Colin Ware notes that color is &#8220;preattentively processed,&#8221; meaning that we identify color before we give it conscious attention. In other words, when we look at a user interface, we can find and identify user interface elements with a specific color really quickly and&nbsp;easily.</p>
+</blockquote>
+<p>On a related note, I have noticed I also have trouble with <span class="caps">UI</span> elements that are text-only with no color or icon hint. For example, the bookmarks bar in Safari, which eschews displaying favicons in favor of text alone, is maddening to me because I naturally look for an icon or color of some kind when looking through the links. There are probably differences in the psychology of this compared to color, but I wonder if there is experimental evidence that supports this notion that icons, color, or shape are easier to recognize quickly than words. <a href="https://www.microsoft.com/typography/ctfonts/WordRecognition.aspx">This paper from Microsoft typography</a> seems to indicate that we do indeed recognize words by their shape, though the prevailing scientific beliefs around the exact mechanics of that recognition have undergone some changes over the years. Interesting&nbsp;stuff.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:color1">
+<p>The fact that my current site design arguably does not use color &#8216;tastefully&#8217; or &#8216;correctly&#8217; is not lost on me. I realize that the current &#8216;unicorn vomit&#8217; color explosion is probably overkill and needs some adjustment.&#160;<a class="footnote-backref" href="#fnref:color1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">MAR</div>
+                    <div class="day">27</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/03/mies/"
+                           title="Permanent link to 'Mies'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-03-27 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2012/03/mies/">Mies</a>
+                                            </h1>
+                </header>
+                                    <p>I rarely go to the Google homepage, but I wound up there today and was surprised to see a <a href="http://www.google.com/doodles/mies-van-der-rohes-126th-birthday">Doodle</a> very reminiscent of <a href="http://en.wikipedia.org/wiki/S.R._Crown_Hall">Crown Hall</a>. Sure enough, it&#8217;s an homage to <a href="http://en.wikipedia.org/wiki/Ludwig_Mies_van_der_Rohe">Ludwig Mies van der Rohe</a> &#8211; or simply <em>Mies</em> as he was always referred to on campus while I was there<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> &#8211; whose birthday was today in 1886. Very&nbsp;cool.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>If Wikipedia is to be trusted, referring to him simply as <em>Mies</em> is widespread. I had always assumed this was an <span class="caps">IIT</span>-only thing given his importance to the campus and College of Architecture there.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                                                            </article>
+            </div>                        </div>
+    <div class="row archives">
+        <div class="twelve columns post-links">
+            <ul class="block-grid three-up">
+                <li>
+                                            <a href="/page/7">← older posts</a>
+                                    </li>
+                <li style="text-align: center;">
+                    <a href="/archives"> &ndash; archives &ndash; </a>
+                </li>
+                <li>
+                                            <a href="/page/5">newer posts →</a>
+                                    </li>
+            </ul>
+        </div>
+    </div>
+</section>
+                            <section id="sidebar" class="three columns">                        <section>
+    <div>
+        <p>I'm <a href="/about">Tyler Butler</a>: a big man with small dogs.</p>
+        <hr/>
+        <nav>
+            <ul>
+                <li><a href="http://feeds.feedburner.com/TylerButlerAllPosts">feed</a></li>
+                <li><a href="/archives">archives</a></li>
+                <li><a href="/colophon">colophon</a></li>
+            </ul>
+        </nav>
+        <hr/>
+        <h2>you might remember me from</h2>
+        <ul>
+            <li><a href="http://twitter.com/tylerbutler">twitter</a></li>
+            <li><a href="http://github.com/tylerbutler">github</a></li>
+        </ul>
+    </div>
+</section>
+
+    <section id="search">
+        <div>
+            <form action="http://google.com/search" method="get">
+                <fieldset role="search">
+                    <input type="hidden" name="q" value="site:http://tylerbutler.azurewebsites.net">
+                    <input class="search" type="text" name="q" results="0" placeholder="Search...">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+                    </section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2012 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

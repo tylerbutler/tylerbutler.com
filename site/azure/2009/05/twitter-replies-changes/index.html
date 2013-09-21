@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>    Twitter @replies Changes    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/rss+xml"
+          title="Tyler Butler RSS Feed"
+          href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
+
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.com/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+            </script>    
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            
+<ul>
+                    <li class="current">
+        <a href="/">articles</a></li>
+                    <li>
+        <a href="/projects">projects</a></li>
+    </ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">MAY</div>
+                    <div class="day">13</div>
+                    <div class="year">2009</div>
+                    <div class="permalink">
+                        <a href="/2009/05/twitter-replies-changes/"
+                           title="Permanent link to 'Twitter @replies Changes'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/twitter">twitter</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2009-05-13 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2009/05/twitter-replies-changes/">Twitter @replies Changes</a>
+                                            </h1>
+                </header>
+                                    <p>There&#8217;s been some hoopla on Twitter today after a <a href="http://blog.twitter.com/2009/05/small-settings-update.html">poorly handled
+announcement</a> that the option to control whether replies from people you
+follow to people you don&#8217;t follow show up in your feed. This was an option in
+the Notices section of the Twitter settings that was off by default. The
+original post from <a href="http://twitter.com/Biz">@biz</a> made it sound like they were trying to reduce
+confusion and that it was no big deal. That&#8217;s a bit naive - they should have
+seen the backlash coming a mile away&#8230; Dave Winer has <a href="http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html">a good summary</a> of
+problems with how they messaged&nbsp;things.</p>
+<p>@biz later posted that they had heard the feedback, claiming it was a
+scalability problem with the implementation. I initially didn&#8217;t buy that
+argument, but the <a href="http://www.readwriteweb.com/archives/is_this_why_twitter_changed_its_replies_policy.php">description over at ReadWriteWeb</a> clarifies things
+somewhat. <a href="http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html#comment-9291130">This comment</a> over at Winer&#8217;s post clarifies it further. I think
+I understand now, given their architecture, why this would be a beneficial
+change for them to&nbsp;make.</p>
+<p>But that&#8217;s not what I&#8217;m ultimately writing about. Much of the complaining from
+people opposed to the change has been that it makes it harder to meet new
+people on Twitter. If you see a reply to someone else from a person you follow
+then you might also be interested in following them. <span class="caps">OK</span>, fine, I buy that, but
+for me, I simply want to see <strong>everything</strong> people I follow say, regardless of
+who they say it to. With clients like <a href="http://www.atebits.com/tweetie-mac/">Tweetie</a> and <a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284540316&amp;mt=8">Twitterrific 2.0
+(iTunes link)</a> able to browse through conversations effortlessly, I can use
+the tweets from my timeline as a jumping-off point to see the whole
+conversation which someone I <strong>am</strong> interested in is involved in. My goal is
+not to find new people to follow (though that does happen occasionally), but
+rather, just to see what interesting things people I follow are saying. I
+don&#8217;t care who they&#8217;re talking to. It&#8217;s not like everything <a href="http://twitter.com/Lincolnator">@Lincolnator</a>
+says to <a href="http://twitter.com/MajorLB">@MajorLB</a> is completely uninteresting to me just because I don&#8217;t
+follow&nbsp;her.</p>
+<p><a href="http://blog.twitter.com/2009/05/we-learned-lot.html">The proposed changes</a> as they stand right now don&#8217;t solve my complaint.
+But it&#8217;s early; the smart people at Twitter will figure something out, and
+hopefully, it&#8217;ll solve my scenario and world hunger at the same time. One can
+hope and&nbsp;dream.</p>
+<p>You can see the protests/commentary onTwitter itself by 
+<a href="http://search.twitter.com/search?q=%23Fixreplies">searching for #fixreplies</a>. It&#8217;s still the top trending search term as of 
+this&nbsp;writing.</p>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2009/05/cmon-iphone-be-serious/">← C'mon iPhone, be serious...</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2009/05/mark-pilgrim-on-web-fonts/">Mark Pilgrim on Web Fonts →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                                    <section id="comments">
+                                                    <header>
+                                <h1>Comments</h1>
+                            </header>
+                                                    <div id="disqus_thread"></div>
+    <!-- DISQUS -->
+    <script type="text/javascript">
+        var disqus_shortname = 'tylerbutlercom';
+        var disqus_identifier = '/2009/05/twitter-replies-changes/';
+        var disqus_url = 'http://tylerbutler.azurewebsites.net/2009/05/twitter-replies-changes/';
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments
+        powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+            class="logo-disqus">Disqus</span></a>
+                    </section>
+                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2012 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

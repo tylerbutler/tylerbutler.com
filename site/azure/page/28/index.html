@@ -1,0 +1,792 @@
+﻿<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>        Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/rss+xml"
+          title="Tyler Butler RSS Feed"
+          href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
+
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.com/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+            </script>    
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            
+<ul>
+                    <li class="current">
+        <a href="/">articles</a></li>
+                    <li>
+        <a href="/projects">projects</a></li>
+    </ul>
+
+                        </nav>
+                </header>
+            <div class="row">                <section id="main" class="nine columns"
+                         role="main">    <div class="posts">
+                                    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">DEC</div>
+                    <div class="day">13</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/12/the-internet-is-down/"
+                           title="Permanent link to 'The Internet is Down!'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-12-13 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2004/12/the-internet-is-down/">The Internet is Down!</a>
+                                            </h1>
+                </header>
+                                    <p>If you&#8217;ve been at <a href="http://www.iit.edu" title="The Illinois Institute of Technology homepage, the virtual home of the distinguished learning institution I call my own.">Illinois Tech</a> this week, you&#8217;ve had the absolutely
+wonderful opportunity to see what carnage a Denial of Service attack against a
+core <span class="caps">DNS</span> server can create. Now, I honestly don&#8217;t know much about network
+infrastructure or the mechanics behind a Denial of Service attack; frankly, my
+passion is software, not hardware, so I&#8217;ve never sought out the knowledge.
+(Unfortunately, <a href="http://www.howstuffworks.com" title="Find out how stuff works!  Go on, learn a little!">HowStuffWorks.com</a> doesn&#8217;t have anything specific on DoS.
+They do, however, have articles on <a href="http://computer.howstuffworks.com/router.htm" title="How routers work.">routers</a>, <a href="http://computer.howstuffworks.com/firewall.htm" title="How firewalls work.">firewalls</a>, and
+&#8220;<a href="http://computer.howstuffworks.com/internet-infrastructure.htm" title="How the internet works.">Internet Infrastructure,</a>&#8221; for those that want to learn more about the
+hardware that makes the Internet work.) But despite my lack of knowledge, this
+past week has been an excellent chance to experience the effects a DoS can&nbsp;cause.</p>
+<p>A DoS <strong>destroys</strong> your ability to use the network &#8211; much moreso than I ever
+thought possible. For my own sake, I am going to write a little bit about what
+I&#8217;ve seen and make some conclusions about what went wrong, and even try to
+suggest possible solutions that we can implement to solve things in the
+future. But before we start, a little disclaimer. The network people here at
+<span class="caps">IIT</span> are not the most apt people in the world, but they&#8217;re not the most inept
+either. We do have some truly brilliant people around here, but frankly, they
+don&#8217;t get recognized or listened to nearly enough. So before you start railing
+on the fact that if <strong>you</strong> were a network engineer here, this never would
+have happened, let me say this: the main problem I have seen this past week is
+not a lack of technical experience, knowledge, or anything like that; the
+problem is a <strong>lack of communication.</strong> I cannot stress that enough. So let&#8217;s
+get&nbsp;started.</p>
+<p>On Sunday evening, Felix, one of our network engineers, noticed an inordinate
+amount of traffic to random ports and stuff, and suspected a worm or virus had
+made its way onto the network. In an effort to contain the attack, he blocked
+the <span class="caps">MAC</span> addresses of 160 computers with the highest traffic on the network at
+the time, effectively banning <strong>all</strong> network traffic from those people. The
+thought was that this would diagnose the problem &#8211; block the addresses, watch
+things go back to normal, then go through the <span class="caps">PC</span>&#8217;s that were blocked and
+figure out what worm or virus had caused the problem, fix it, and reopen the&nbsp;network.</p>
+<p>Problem was &#8211; blocking the addresses didn&#8217;t fix the problem. In fact, it got
+worse. The <span class="caps">DNS</span> server started going down, and then finally went kaput
+altogether. This effectively knocked out internet access for all of campus.
+The internal network still worked, and some cached <span class="caps">DNS</span> entries still resolved
+all right, but most people were locked out. Here at the Support Desk we got
+back up and running for awhile by switching to an external <span class="caps">DNS</span>, but we
+couldn&#8217;t exactly tell the whole campus to do that, because it wouldn&#8217;t have
+solved the root of the problem. Eventually, because of the bogus traffic that
+was being spit out from our network and our <span class="caps">DNS</span> server, our own <span class="caps">ISP</span> blocked
+our <span class="caps">DNS</span>&nbsp;server.</p>
+<p>This is where things started to go downhill &#8211; fast. Felix provided us with the
+list of blocked <span class="caps">MAC</span> addresses initially, but by the time the <span class="caps">DNS</span> went down,
+which was late Monday afternoon, that list was out of date. On top of that,
+because of the rampant random network issues, we couldn&#8217;t tell a customer what
+was wrong when they called. They might be blocked, they might not. It might
+just be the random <span class="caps">DNS</span> problems, it might not. We had still not been provided
+with a process through which people could get checked and unblocked if
+necessary. Thus, problem number&nbsp;one:</p>
+<p><strong>1) We at the Support Desk were not provided with information, sketchy or
+otherwise, to tell people when they&nbsp;called.</strong></p>
+<p>So we started telling people whatever we knew &#8211; there were network issues,
+there were some people with blocked <span class="caps">MAC</span>&#8217;s, we didn&#8217;t know when things would be
+back up. It is useful to remember that at this point, <span class="caps">OTS</span> had no idea what the
+problem was (the <span class="caps">DNS</span> server was the <em>problem</em>, but it had been brought down by
+the DoS attack, which hadn&#8217;t been identified yet), and no information had been
+sent out to the <span class="caps">IIT</span> community. Hence, problem number&nbsp;two:</p>
+<p><strong>2) <span class="caps">OTS</span> was extremely slow at getting public information out to the <span class="caps">IIT</span>
+community, and when they did, provided it via unreliable methods (email,&nbsp;mainly).</strong></p>
+<p>Yup, most information went out in the form of emails, which is certainly a
+valid form of communication, but it shouldn&#8217;t be the only one. But more on
+suggestions&nbsp;later&#8230;</p>
+<p>As the week dragged on, and more and more customers became agitated from a
+lack of information and a seeming lack of action on our part, things just got
+worse. Apparently, there was much debate about the actual cause of the problem
+was. Virus scans and other searches had revealed nothing on many of the
+blocked <span class="caps">PC</span>&#8217;s, except a small <span class="caps">VBS</span> worm that remained under most virus scanner&#8217;s
+radar. One camp held that there was just a problem with the <span class="caps">DNS</span> server -
+something was wrong with it. The other camp held that we were under an attack.
+One &#8211; it&#8217;s our fault, two &#8211; it&#8217;s not our fault (at least, not&nbsp;directly).</p>
+<p>It was suggested at this point that we remove the <span class="caps">DNS</span> server and replace it
+with a fresh one, which would make the choice between the two theories simple.
+But, for some unknown reason, this was resisted for quite some time.
+Eventually, a new <span class="caps">DNS</span> server was put in. It lasted 30 minutes. It was clear we
+were under attack. Thus, point number&nbsp;three:</p>
+<p><strong>3) When <span class="caps">DNS</span> went down, it should have been replaced immediately. That
+would have made it clear from the beginning that we were under&nbsp;attack.</strong></p>
+<p>During all of this hullabaloo, we at the Support Desk remained ignorant of any
+information regarding the problem, its causes, and what <span class="caps">OTS</span> was doing to
+resolve it. The calls we received were getting angrier and angrier as final&#8217;s
+week loomed closer and they still couldn&#8217;t get to their course websites, or do
+research, or browse the net to relax, or anything. In addition, we didn&#8217;t have
+an updated <span class="caps">MAC</span> block list, which had been changed (at one point it got to 400
+<span class="caps">MAC</span>&#8217;s) several times at this point. Points numbers four and&nbsp;five:</p>
+<p><strong>4) The Support Desk was not provided with up-to-date information (such as
+updated <span class="caps">MAC</span> block lists) that would have assisted them in diagnosing the
+problem(s), and cut down the workload on other <span class="caps">OTS</span> divisions, and maybe, just
+maybe, would have left customers feeling a little happier about the state of&nbsp;things.</strong></p>
+<p><strong>5) When <span class="caps">OTS</span> Communications went out, they were overly vague and seemed to
+take forever to write. Communications went out with information that seemed
+out of date as a&nbsp;result.</strong></p>
+<p>Well, those are the main points. The core problem was a lack of communication
+and information-sharing amongst departments. If the Support Desk is a voice
+for <span class="caps">OTS</span>, then we have to know what to say, and we simply weren&#8217;t provided with
+any information. Also, (and this really bugs me) the <span class="caps">OTS</span> communications just
+told people to call the Support Desk if they had a problem, presumably to get
+more information, but we didn&#8217;t have anything to tell them. So these were the
+problems, now what about solutions? Here are my thoughts, for what they&#8217;re&nbsp;worth.</p>
+<p><strong>Provide the Support Desk access to information such as <span class="caps">MAC</span> block lists.
+The info has to be <em>up-to-date</em>, otherwise it&#8217;s not really&nbsp;useful.</strong></p>
+<p>This seems to be a no-brainer to me. If we&#8217;re going to be sending out emails
+that say, &#8220;Call the <span class="caps">OTS</span> Support Desk for assistance in troubleshooting your
+network access,&#8221; then the Support Desk has to have up-to-date information
+about it. If people are going to be calling with their <span class="caps">MAC</span>&#8217;s, we can&#8217;t be
+looking at a list over a week old. In fact, it was just this morning that we
+finally got the updated list, <em>after</em> it had grown to over 400 people and
+shrunk back down to about&nbsp;25.</p>
+<p><strong>Make one person responsible for communicating with the&nbsp;students.</strong></p>
+<p>By this, I don&#8217;t mean that one person should be taking calls with problems.
+That&#8217;s the Support Desk&#8217;s job. What I mean is that one person should write the
+communication emails, and should be responsible for getting accurate
+information from the appropriate people to send out. The process would be as
+follows: Network goes down&#8230; Communicator calls Networks, finds out problem X
+is the cause, gets an <span class="caps">ETA</span>&#8230; Communicator sends out email information, and
+makes arrangements to notify via other means. See below. The more I think
+about this, someone at the Support Desk should have this responsibility. But
+it should only be one&nbsp;person.</p>
+<p><strong>Communication should be done through a variety of&nbsp;means.</strong></p>
+<p>In this instance, email was, and usually is, the primary form of
+communication. But we need to send out voice mail to faculty, put up flyers in
+<span class="caps">MSV</span> and <span class="caps">SSV</span>, and, dare I say it, <strong>hold a press conference</strong>. This isn&#8217;t
+always necessary, but in this case, it would have been nice if students could
+have gone to a public meeting one evening in the <span class="caps">MTCC</span> auditorium or something,
+heard a brief statement about what the problem was and what action we were
+taking, and had a chance to ask questions and get some straight answers.
+People who aren&#8217;t in the dark are less likely to make up their own
+explanations for why something went wrong. Ending speculation can help end
+angry customer&nbsp;calls.</p>
+<p>I guess that&#8217;s really all I have. This week has been trying for all of us here
+at <span class="caps">OTS</span>, but I hope that maybe the staff here will learn from this experience
+and make it better the next time this happens. But of course, I am just a
+lowly peon here, so what do I&nbsp;know?</p>
+<p>By the way, for anyone that cares: <strong>The problem was caused by some (like
+8-10) PCs on campus getting hacked (externally, internally, who knows) and
+participating in a DoS attack against the <span class="caps">DNS</span> server. The problem now seems to
+have been contained, and about 25 people still remain blocked.</strong> Yeah, DoS
+sucks, but it is kinda cool to realize that 8-10 machines can destroy a
+network connection serving a university of 3000 people. <em>Kinda</em>&nbsp;cool.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">DEC</div>
+                    <div class="day">10</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/12/then-vs-than/"
+                           title="Permanent link to '"Then" Vs. "Than"'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/words">words</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-12-10 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2004/12/then-vs-than/"><span class="dquo">&#8220;</span>Then&#8221; Vs. &#8220;Than&#8221;</a>
+                                            </h1>
+                </header>
+                                    <p>I started looking at some open-source software and came across Blender, a
+cool-looking 3D modeling program. On <a href="http://www.blender3d.org/" title="Blender looks pretty cool.  Too bad I don't have any artistic skills...">their homepage</a>, I noticed this image
+(it may no longer be on their&nbsp;page):</p>
+<p><img alt="" src="/SiteCollectionImages/Post%20Images/then%20than.jpg" /></p>
+<p>Now what&#8217;s wrong with this picture? Well, the designer of the image was not
+very careful when selecting the words to use. The words &#8220;than&#8221; and &#8220;then,&#8221;
+while differing only by one letter, are vastly different in meaning. <a href="http://dictionary.reference.com/search?q=then" title="Check the meaning of then at dictionary.com.">Then</a>
+is most commonly an adverb, but can sometimes be a noun or adjective (time-
+related). <a href="http://dictionary.reference.com/search?q=than" title="Check the meaning of than at dictionary.com.">Than</a>, on the other hand, is a conjunction, used to compare
+things. <em>I am better at English <strong>than</strong> you are</em>, for example. So when you
+want to compare things, as the person making this advertisement image
+apparently wanted to, you want to use&nbsp;than.</p>
+<p>I think the confusion regarding this stems from the use of &#8220;then&#8221; as a time-
+related adjective or noun. For example, &#8220;I was there then,&#8221; or &#8220;the then
+director of <span class="caps">OTS</span>&#8221; are valid uses of the word, which confuses people when they
+want to compare things, especially in time-related constructs, such as &#8220;more
+than before.&#8221; Then implies a previous state of being, so previously &#8211; then -
+there were less than there are now. This, I think, is the root of the
+confusion. If you really want to get your head spinning, try this: &#8220;There were
+more employers there then than previously.&#8221; I <em>think</em> that&#8217;s grammatically
+correct, but many people seem to get this confused. It could also be that they
+are often pronounced similarly if not exactly the same, so drill yourself on
+it if you&#8217;re having problems&nbsp;remembering.</p>
+<p>Since I have noticed some common grammatical and language-related mistakes at
+work, in the <span class="caps">IPRO</span>, and just on blogs and websites in general, I think I might
+start a regular column on here with common problems people have with similar
+sounding, yet different meaning words. After all, I am the master of all that
+is English. And I <a href="/tag/novel" title="Check out Knot, the novel I wrote as part of NaNoWriMo">wrote a novel</a>.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">DEC</div>
+                    <div class="day">02</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/12/official-comments/"
+                           title="Permanent link to 'Official Comments'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/novel">novel</a>
+                        </li>
+                                            <li><a href="/tag/nanowrimo">NaNoWriMo</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-12-02 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2004/12/official-comments/">Official Comments</a>
+                                            </h1>
+                </header>
+                                    <p>In case you haven&#8217;t noticed, <a href="/tag/novel/" title="Yup, it's finished! You should read it!">my novel is done</a>. Well, at least the 50,000
+words are done, so I am a <a href="http://www.nanowrimo.org/" title="National Novel Writing Month">NaNoWriMo</a> winner. I still need to edit it, and
+with some artistic help from Joe Parry, I will add some illustrations and lay
+it out in InDesign or something to make a nice <span class="caps">PDF</span> booklet. I am also going to
+write up an essay on the experience of NaNoWriMo and my influences for the
+book. But that&#8217;s in the future. I know at least one or two people have been
+following along throughout the month, so now is the time for you to let me
+have it&#8230; I will be putting some polls up soon for people that have read the
+novel, but if you want to compliment me or criticize me for anything in the
+book, comment in this post or send me an email. I really want feedback&#8230;
+seriously. It&#8217;s the only way to&nbsp;improve.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">NOV</div>
+                    <div class="day">30</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/11/november-29th/"
+                           title="Permanent link to 'November 29th'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/novel">novel</a>
+                        </li>
+                                            <li><a href="/tag/nanowrimo">nanowrimo</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-11-30 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2004/11/november-29th/">November 29th</a>
+                                            </h1>
+                </header>
+                                    <p>Well, here&#8217;s the last of it. I added some new material to previous chapters,
+so the additions are listed here along with the chapter in which they go. The
+<span class="caps">PDF</span> has been updated with all the new&nbsp;material.</p>
+<p><strong>Chapter 29:&nbsp;Epilogue</strong></p>
+<p>Angela was bobbing up and down in her chair almost uncontrollably as Melissa
+came down the stairs into the kitchen. Lawrence , of course, sat reading a
+paper next to her, ignoring her completely as she knocked plates, cups, and
+other random items on the table to the floor with her&nbsp;movement.</p>
+<p>“Angela, settle down and eat your brea kfast!” Melissa knew it wouldn&#8217;t
+happen. The five-year-old looked down in disgust at the strange mixture of
+foodstuffs on her plate. The toast was now soggy from spilled apple juice, and
+the remaining bits of egg swam in a pool of juice as well. Angela turned her
+nose up at the plate primly and crossed her arms across her&nbsp;chest.</p>
+<p>She was pouting at the reprimand. Melissa rolled her eyes at her daughter&#8217;s
+silliness and flipped on the small television in the room, pushing down two
+slices of brea d in the toaster as the picture faded&nbsp;in.</p>
+<p>“Can we watch cartoons,&nbsp;mommy?”</p>
+<p>“No, we cannot,” Melissa responded fla tly. The question was asked each
+morning, and the answer always remained the same. But Angela nev er gave up;
+one day her mother would relent, and she would get to watch cartoons while she
+ate breakfast&#8230; <em>But today is not that day</em>, Melissa thought to&nbsp;herself.</p>
+<p>Lawrence had his morning paper and cup of coffee, Melissa had her morning
+newscast and toast. It was their routine; the sole moment in the day that she
+would not vary &#8211; it was her tether to the world and to her own sanity. No
+matter what mischief Angela would cause throughout the day, it was all
+bearable if she&#8217;d had her toast and caught up with the&nbsp;world.</p>
+<p>She sat down on the chair to Lawrence &#8216;s right, ignoring her daughter&#8217;s
+continued pleas for cartoons. “Angela, I said no! Settle down and <em>be quiet</em>!” 
+Angela resumed her sulking, but at least it got&nbsp;quiet.</p>
+<p>She had just missed the weather report, but she was in time for the morning
+headlines. The newscaster droned on with little emotion through the long list
+of headlines, and Melissa listened only passively until something caught her&nbsp;attention.</p>
+<p>“ Twenty-three-year-old McAllister Park resident Joel Mendocino is dead this
+morning, the victim of a car accident at the Franklin-Niles intersection late
+last night. Mendocino, who had recently returned from an overseas trip, had
+left the Elston Memorial hospital where he was being treated for a near-fatal
+gunshot wound he received earlier in the day. His father was the vehicle&#8217;s
+driver, and is listed in stable condition at Elston&nbsp;Memorial.”</p>
+<p>“ Lawrence , listen to this! This poor kid lived around here!” Lawrence
+looked over his paper and murmured an acknowledgement, then resumed reading
+his paper. Melissa focused intently on the television as the news anchor&nbsp;continued.</p>
+<p>“In related news, police were able to discover an illegal “fight club” of
+sorts that is believed to be the source of a rash of unexplained abductions
+and beatings of homeless individuals that has been plaguing the city of&nbsp;late.</p>
+<p>“In a statement released early this morning, Detective Angus Cobb credited
+Mr. Mendocino&#8217;s identification of his attackers as the crucial clue that led
+the detectives to a supposedly abandoned warehouse in the ind ustrial area of
+the&nbsp;city.</p>
+<p>“Several participants in the “fight club” were apprehended by city police
+officers, and it is expected that the ringleader will soon be&nbsp;located.”</p>
+<p>The news anchor seemed to be enthralled by the story as it continued&nbsp;on.</p>
+<p>“But the story doesn&#8217;t end there, folks. Mike Turner, a former Copeland
+Advertising executive, was shot and killed by detectives on the scene when he
+refused to discontinue his beating of a mentally-challenged homeless man, and
+instead charged towards police&nbsp;officers.</p>
+<p>“It is believed that Mr. Turner was also responsible for the brutal beating
+and death of his wife&#8217;s lover, Brandon Lloyd, a story that we brought to you
+yesterday on the 6 o&#8217;clock&nbsp;newscast.</p>
+<p>“Police are confident that the criminal&#8217;s behind these recent activities
+will soon be rounded up, but remind all city residents to report any
+suspicious activity immediately and exercise common sense when moving around
+the city at&nbsp;night.”</p>
+<p>Melissa was almost sad to realize that the story had come to an end. It was
+more interesting than the plot to one of the afternoon soap opera&#8217;s that
+Lawrence berated her for watching. Who knew so much could happen one day in
+their&nbsp;city?</p>
+<p>“Makes you wonder sometimes, doesn&#8217;t it&nbsp;honey?”</p>
+<p>“Hmmm?” Lawrence murmured, looking over his newspaper&nbsp;again.</p>
+<p>“Makes you wonder how many people you see and interact with each day will be
+dead tomorrow. It&#8217;s kind of sad,&nbsp;really.”</p>
+<p>Lawrence looked back at his paper. “I suppose. But I don&#8217;t worry too much
+about it. After all, what do they have to do with&nbsp;us?”</p>
+<p>Melissa stood and ran her dishes under the warm water at the kitchen sink.
+She wouldn&#8217;t think about Joel much after that. Lawrence was right, after all;
+what did it all have to with&nbsp;her?</p>
+<p><strong>Chapter&nbsp;3</strong></p>
+<p><em>Joel shrugged as she moved as quickly as she could to the opposite side of
+the train, sat down, and eyed him warily.&nbsp;Whatever.</em></p>
+<p>While he had traveled in Asia , he&#8217;d been amazed at the hospitality and
+friendliness of nearly everyone he met, including the tourists with which he&#8217;d
+had the opportunity to converse. All travelers there seemed to be inexplicably
+linked; they al shared that undeniable experience that was Asia , and that
+experience drew them together. That experience, combined with the basic human
+need to communicate, at least occasionally, with people from similar
+backgrounds and worldviews, produced a level of camaraderie with some of his
+new acquaintances that Joel had seldom had with friends from&nbsp;home.</p>
+<p>Two, in particular, Sean and Pang, had become very close to him during the
+three days he&#8217;d known them. They had met outside a market while he was staying
+in Thailand for a week. Sean had been excited at spotting someone with the
+same color skin as his own, and Pang, who&#8217;d spent a year studying at a
+university in the States, was glad to have a Westerner with which she could
+converse. Pang and Joel hit it off immediately; they both had an affinity for
+analytical thought, much to Sean&#8217;s dismay, and spent many of their nights
+chatting about philosophy, art, literature and even mathematics, late into the&nbsp;night.</p>
+<p>Sean played the dumb oaf, but behind his goofy exterior was a curious, sharp
+young man with a razor sharp wit. Together, the three of them had traveled the
+city high and low, seeking out coffee shops, bars and pubs, and sampling every
+piece of the Thai nightlife that Pang could think to show them. It was hard
+for Joel to believe that they&#8217;d only been together for three days before
+they&#8217;d split paths. He looked forward to calling them when he got the chance;
+their ongoing relationship was an opportunity to relive their past experience
+vicariously through each other, and it was an opportunity that Joel was
+thankful&nbsp;for.</p>
+<p>But it didn&#8217;t stop there. The Asian people he&#8217;d met, from Sumatra to
+Thailand , were friendly, eager to please, and very rarely had any desire for
+profit, monetary or otherwise. On several occasions, while he&#8217;d carried his
+bags to and from a taxi, a random man off the street would run up to assist
+him, and many times, refused payment. Their payment was his smile and
+gratitude, and in the wake of their unabashed kindness, Joel felt obligated to
+at least attempt to repay them by spreading that kindness. It was just too bad
+no one could believe he was just trying to be&nbsp;helpful.</p>
+<p><em>As the train began to move towards its downtown destination, Joel found an
+empty seat and sat down, peering out the window at the cars passing on the
+highway alongside&nbsp;him.</em></p>
+<p><strong>Chapter&nbsp;8</strong></p>
+<p><em>The path along State Avenue to the tower was relatively clear; it was so
+late in the morning, a majority of people had already made it to their jobs.</em>
+He eyed the homeless men on the corner warily. Why the hell didn&#8217;t they get
+jobs? They were always standing there, begging for change, occasionally
+offering a useless trinket or piece of shoddy journalism up in&nbsp;exchange.</p>
+<p>But even worse than the beggars were the ones with the squeegees. They
+attacked his car every single time he drove to work, splashing his windshield
+with their vile liquid and doing a piss-poor job of cleaning it off. They
+always left his car in worse shape than when they started, and they expected
+to get paid! Bull <em>shit</em>! The mere thought of them soured his entire mood
+considerably, if it were even possible for him to be more pissed off at this&nbsp;point.</p>
+<p>His previous physical activity had left his body reeling, and he was unable
+to move faster than a brisk walk towards the tower. He was interrupted several
+times by beggars along the way, huddling against the looming stone buildings
+for shelter from the wind. He ignored than each time, yelling whatever
+obscenities surfaced to his mind first, until finally he slapped at the hands
+of the last one, knocking the small collection of nickels and dimes from the
+man&#8217;s hand. He smiled cruelly as the man cried out and dropped to his knees to
+reclaim the coins that would serve as his dinner for the day. That would show
+the&nbsp;bastard.</p>
+<p>He continued as fast as he could along State Avenue, ding his best to ignore
+the legs&#8217; increasing cries of anguish as they suffocated, until the doors of
+the Tower stood before him, peering down at him with a foreboding gaze. <em>He
+pushed his way through the revolving doors and ignored the pleasant greetings
+of the security guard as he headed straight to the&nbsp;elevator.</em></p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">NOV</div>
+                    <div class="day">29</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/11/november-28th/"
+                           title="Permanent link to 'November 28th'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/novel">novel</a>
+                        </li>
+                                            <li><a href="/tag/nanowrimo">nanowrimo</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-11-29 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2004/11/november-28th/">November 28th</a>
+                                            </h1>
+                </header>
+                                    <p><strong>Chapter 28:&nbsp;Goodbye</strong></p>
+<p>Holly and Ned sat together in Ned&#8217;s dining room starling listlessly at the
+broken Walkman sitting in the center of the table. The discovery of the
+Walkman on the street had filled them with a sense of elation at having made
+<em>some</em> progress in their search, but it had been short-lived when they
+realized that its discovery ind icated Ernie was ind eed&nbsp;missing.</p>
+<p>Holly ran her hand against the worn buttons and the faint scrawls in the
+back that spelled out Ernie&#8217;s name. She hoped he was&nbsp;okay.</p>
+<p>Lavina bustled into the room with a fresh pot of coffee and a platter of
+pastries. She had not been pleased initially with Ned bringing Holly back with
+him, but he had taken her to the kitchen and shared with her the story Holly
+had told him outside St.&nbsp;Ives.</p>
+<p>Even Lavina&#8217;s insecure jealousy was overcome by the sadness of the story,
+and she had set about making them all comfortable in the best way she knew how
+– by cooking for them. There had been no end to the del icious sweets produced
+in the kitchen, and the coffee seemed to be in infinite supply as&nbsp;well.</p>
+<p>The silence was broken by the sudden stentorian ring of the telephone,
+sending Holly bolting upright in her chair in surprise at the sound. Ned
+picked up the&nbsp;call.</p>
+<p>“Hello? Oh, hi Rhonda.” Holly craned her neck anxiously. Did she have news
+about&nbsp;Ernie?</p>
+<p>“Really? Is he <span class="caps">OK</span>? Hmmmm. <span class="caps">OK</span>, Elston you say? Yeah, we&#8217;ll be over in a few
+minutes.” He slowly put down the phone. Holly asked impatiently, “Well, what
+did she&nbsp;say?”</p>
+<p>“They found Ernie. He&#8217;s in pretty bad shape. They&#8217;ve got him up at Elston
+Memorial. The doctors aren&#8217;t sure if he&#8217;s gonna pull&nbsp;through.”</p>
+<p>Holly&#8217;s eyes moistened again. “Well, we have to go see him.” She stood up
+purposefully and grabbed her coat from the rack in the corner. Ned pushed the
+front door open for her and smiled wryly at his wife as they stepped out into
+the cold&nbsp;again.</p>
+<hr />
+<p>Ames and Cobb both brea thed a long sigh of relief as they sat down in their
+car and started the engine, waiting for the heater to kick in. Once their
+backup had arrived, the warehouse was a non-stop circus of detectives, beat-
+cops, and forensics experts. It seemed like Foster had called in the entire
+force to the&nbsp;scene.</p>
+<p>Ambulances had arrived at the scene shortly after Ames had called them in,
+but were now all gone, hurtling towards hospitals as fast as they could go.
+The man that was shot, identified as Mike Turner by the license in his wallet,
+was declared dead on arrival by the paramedics, but the victim, whose name was
+still unknown, was barely clinging to life and had been sped away in an
+ambulance&nbsp;quickly.</p>
+<p>Turner&#8217;s death came as no surprise &#8211; few men could survive five bullets to
+the chest from moderate range. The other man&#8217;s survival came as a surprise to
+both Ames and Cobb. He had been beaten badly, and both detectives had their
+doubts as to whether he&#8217;d make it through the night. Only time would&nbsp;tell.</p>
+<p>Cobb and Ames had answered hundreds of questions already, and there were
+going to be plenty more tomorrow, especially about the shooting and their
+abandonment of the car accident. Questions would have to wait for now, though;
+both of them had agreed that they needed to go and check on the victims of the
+car accident. It was the least they could do after abandoning the&nbsp;scene.</p>
+<p>“So did you hear about that guy, Turner?” Ames asked as he leaned back
+wearily against the&nbsp;headrest.</p>
+<p>“No, what about him?” Cobb&nbsp;replied.</p>
+<p>“Apparently, he killed his wife&#8217;s boyfriend earlier today after he found
+them in bed together. Beat him to a pulp with a baseball bat, and did a fair
+number on his wife,&nbsp;too.”</p>
+<p>Cobb shook his head. “Well, I can&#8217;t say I&#8217;m sad to see him gone, then.
+Especially after seeing what he did to that poor&nbsp;guy.”</p>
+<p>Ames nodded in agreement. “So where we heading? Were you able to find out
+where they took the car wreck&nbsp;people?”</p>
+<p>Cobb replied as he looked over his shoulder to back out into the street,
+“Yeah, they all got taken to Elston&nbsp;Memorial.”</p>
+<p>“Elston?” Ames exclaimed. “Wasn&#8217;t Schumann&nbsp;closer?”</p>
+<p>“Yeah, but apparently some nut took a shotgun into the mall on Franklin and
+went crazy, so Schumann was full of gunshot&nbsp;victims.”</p>
+<p>Ames chuckled wryly. “Well, nev er a dull day around here,&nbsp;huh?”</p>
+<p>“No kidding. Well, they took the guy here to Elston as well, so we can check
+up on both of them, and let that Mendocino kid know what&#8217;s going on, all at
+the same&nbsp;time.</p>
+<p>“Nothing like killing three birds with one stone,” Ames commented as they
+careened down the&nbsp;road.</p>
+<hr />
+<p>Joel opened his eyes and noticed immediately that he was back in the strange
+room of his dreams. Directly in front of him was the old man, roll of cloth
+beside him, still looking intently at the mass of threads in his lap. He
+continued to ignore&nbsp;Joel.</p>
+<p>Joel looked around slowly. The room was exactly as it had been the last time
+he had been here. The candle flickering on a low table, the infinitely long
+dark room stretching out behind him, light peeking in through a solitary
+window in the distance. Yes, this was definitely the room in which he&#8217;d found
+himself a few hours ago. What was he doing back&nbsp;here?</p>
+<p>“Joel.” He started at the sound and stepped back as the speaker strode out
+from the shadows behind the old&nbsp;man.</p>
+<p>“Don&#8217;t worry,” the man smiled warmly. “I&#8217;m not here to hurt&nbsp;you.”</p>
+<p>Joel looked the man up and down. He was dressed in a long thin robe, a rich
+dark brown in color. His features were nothing special &#8211; he appeared to be an
+average middle-aged man in every respect. A thin black cord lined his neck,
+and his robe hung loosel over his broad&nbsp;shoulders.</p>
+<p>His skin was dark, but seemed to shine strangely as well, and the air was
+filled with a pleasant freshness as he strode towards Joel and extended his
+hand towards him. Joel glanced in confusion at the old man, who sat,
+unperturbed by the strange&nbsp;man.</p>
+<p>The man laughed. “Oh, don&#8217;t mind Qismah, he&#8217;s married to his work. He
+doesn&#8217;t pay attention to anything except those threads. Come, I have plenty to
+show you. I&#8217;m sure you have questions, and hopefully I can answer some of them
+for you. I am&nbsp;Hospes.”</p>
+<p>Joel took his hand, marveling at the warmness exuded by it on his own
+chilled limb. Hospes led him beyond Qismah, to the back of the impossibly long
+room, talking as the went&nbsp;slowly.</p>
+<p>“Well, Joel, you were supposed to have been here some time ago, but Qismah
+had to improvise a little when things didn&#8217;t go as planned with Mr.&nbsp;Turner.”</p>
+<p>What was he talking&nbsp;about?</p>
+<p>Hospes laughed again. “I suppose you&#8217;re a little confused, aren&#8217;t you? Well,
+welcome to the afterlife, Joel &#8211; or the gateway to it,&nbsp;anyway.”</p>
+<p>Joel gaspe d in surprise. “You mean&#8230;&nbsp;I&#8217;m&#8230;”</p>
+<p>“Dead? Yes&#8230; Or truly alive, depending on how you look at&nbsp;it.”</p>
+<p>Joel was taken aback by his guide&#8217;s flippant attitude. If he really was
+dead, he didn&#8217;t think Hospes should be laughing about&nbsp;it.</p>
+<p>“Oh, I&#8217;m sorry, Joel, but I think you&#8217;ll find that there are worse things
+than dying.” Hospes continued along past Qismah&#8217;s&nbsp;position.</p>
+<p>“Like I said before, Joel, the last time you were here, I was supposed to
+greet you and give you ‘the talk,&#8217; as we call it, but Qismah ended up putting
+you back out there, due to an unexpected development with Mr. Turner.” Hospes
+motioned to his right, and Joel saw, to his amazement, another bewildered man
+following another robed figure, just beyond a mysterious glass&nbsp;partition.</p>
+<p>“We do our best to keep track of things around here, and Qismah does a fine
+job of keeping things running smoothly, but we&#8217;re far from fortune tellers, so
+every once in awhile something slips through that has to be dealt with, like
+what happened tonight. It makes things harder, for you especially, but I think
+you can handle it.” He stopped abruptly and turned to face&nbsp;Joel.</p>
+<p>“Well here I am, prattling on&#8230; What about you? Do you have any&nbsp;questions?”</p>
+<p>Joel had plenty. He was still unclear about where he was and what was going
+on. But where to&nbsp;begin?</p>
+<p>“Ummm, well, what exactly does &#8211; Qismah &#8211;&nbsp;do?”</p>
+<p>Hospes smiled. “Qismah is the weaver. You see, Joel, you interact with lots
+of different people. Your choices and your actions affect a lot of different
+things, even if you don&#8217;t see those effects first hand. Qismah is responsible
+for keeping the system sane, for making sure the knots get tied properly&#8230;”
+Hospes could tell he was losing&nbsp;Joel.</p>
+<p>“Here, it might make more sense if you could see some things.” He motioned
+to the left wall, where Joel saw a window that he hadn&#8217;t noticed before. He
+peered out, looking over the lush jungle, but then it faded, replaced by a
+beaten man in a hospital&nbsp;bed.</p>
+<p>“Joel, meet Ernie. You saved his life, but you didn&#8217;t even know it until
+now. In fact, that man you tried to save today when you were shot was a good
+friend of Ernie&#8217;s. But that&#8217;s beside the point right&nbsp;now.</p>
+<p>“When Qismah retied your knot, you went and got in that car accident, but if
+you hadn&#8217;t, a police car carrying two detectives would have been hit by the
+speeding car instead, and Ernie would have died in the meantime. But now,
+thanks to you, he has a&nbsp;chance.”</p>
+<p>“But will he be&nbsp;<span class="caps">OK</span>?”</p>
+<p>“I don&#8217;t know. Like I said, we&#8217;re not fortune-tellers. But I do know if you
+hadn&#8217;t done what you did, he would have died. And here&#8217;s another interesting
+fact,” Hospes continued as the hospital scene faded, replaced by a scene that
+Joel recognized. He was standing on the train, holding the door for a man
+running towards the&nbsp;train.</p>
+<p>“You held the train for Mike this morning, a man who would later kill his
+wife&#8217;s boyfriend and would try to kill Ernie, the man you ended up&nbsp;saving.”</p>
+<p>“So I&#8217;m actually responsible for Ernie&#8217;s almost-death?” Joel&nbsp;asked.</p>
+<p>Hospes nodded. “Sort of, but not really&#8230; It&#8217;s complicated. That&#8217;s the
+point. Your entire life s one big complicated knot of events and interactions.
+Most people don&#8217;t realize that, but I think you do, to some extent at&nbsp;least.”</p>
+<p>Joel remembered some of the late-night conversations he&#8217;d had while in Asia
+. What Hospes was saying made sense in a lot of&nbsp;ways.</p>
+<p>“So now I&#8217;m&nbsp;dead?”</p>
+<p>“Yes. But your time had come anyway. You were supposed to die from an
+unexpected heart failure, which is what brought you here in the first place,
+but then, like I said, Qismah retied your knot. But he tied it in such a way
+that would bring you back here while fixing things. It&#8217;s not yet Ernie&#8217;s time
+– at least, we don&#8217;t think it is. Like I said before, this isn&#8217;t fortune-&nbsp;telling.”</p>
+<p>“What is going to happen to that guy, Mike?” Joel motioned beyond the
+transparent partition to his right. Hospes shook his&nbsp;head.</p>
+<p>“I don&#8217;t know, really. That&#8217;s all up to the judge. My job is to answer your
+questions. Do you have any&nbsp;more?”</p>
+<p>Joel remembered suddenly that he was <em>dead</em>. What about his father? His&nbsp;mother?</p>
+<p>“Can I see my&nbsp;parents?”</p>
+<p>In response, an image of his mother, huddled by his father&#8217;s side in a
+hospital room, faded in the&nbsp;window.</p>
+<p>“Your dad&#8217;s going to be all right. And your parents will grieve, to be sure,
+but they&#8217;ll move on eventually. And someday they&#8217;ll be having the exact same
+conversation we&#8217;re having&nbsp;now.”</p>
+<p>Tears came to Joel&#8217;s eyes as he considered the finality of everything Hospes
+had told him. He was so young! He had so many things he had wanted to do, but
+now he wouldn&#8217;t get that&nbsp;chance!</p>
+<p>Hospes wrapped his arm around Joel&#8217;s shoulder and walked him towards the
+door at the end of the&nbsp;room.</p>
+<p>“It&#8217;s not so bad, Joel. I think you&#8217;ll like the eternal&nbsp;afterlife.”</p>
+<p>“Am I going to heaven or hell?” Joel asked. It seemed the logical question.
+If he was going to be spending eternity somewhere, he wanted to know whether
+his tears were&nbsp;warranted.</p>
+<p>Hospes chuckled. “I was waiting for that one. It&#8217;s a good question, but I
+don&#8217;t have the answer. It&#8217;s up to the judge. But if you want my opinion&#8230;” He
+opened the door and motioned for Joel to walk toward the streaming light the
+poured from the&nbsp;opening.</p>
+<p>“I think your chances are pretty&nbsp;good.”</p>
+<hr />
+<p>Three rooms from where Mr. and Mrs. Mendocino cried together over the loss
+of their son, tears of a different kind were being shed. Both Rhonda and Holly
+hugged Ernie close as he came to and uttered a few indecipherable words. He
+was going to be&nbsp;okay.</p>
+<p>Out in the hall, Ames and Cobb listened incredulously as Heather explained
+that Joel Mendocino had been killed in the accident. It was a lot for two
+tired cops to take in, after all that had already occurred that day. Without
+Joel&#8217;s help with the tattoo, they&#8217;d never have found out about the fight club,
+and the poor other guy would probably be&nbsp;dead&#8230;</p>
+<p>Ames and Cobb stopped by the Mendocino&#8217;s hospital room to express their
+condolences, then walked out to their cold car. It had been a long&nbsp;day.</p>
+                                                            </article>
+            </div>                        </div>
+    <div class="row archives">
+        <div class="twelve columns post-links">
+            <ul class="block-grid three-up">
+                <li>
+                                            <a href="/page/29">← older posts</a>
+                                    </li>
+                <li style="text-align: center;">
+                    <a href="/archives"> &ndash; archives &ndash; </a>
+                </li>
+                <li>
+                                            <a href="/page/27">newer posts →</a>
+                                    </li>
+            </ul>
+        </div>
+    </div>
+</section>
+                            <section id="sidebar" class="three columns">                        <section>
+    <div>
+        <p>I'm <a href="/about">Tyler Butler</a>: a big man with small dogs.</p>
+        <hr/>
+        <nav>
+            <ul>
+                <li><a href="http://feeds.feedburner.com/TylerButlerAllPosts">feed</a></li>
+                <li><a href="/archives">archives</a></li>
+                <li><a href="/colophon">colophon</a></li>
+            </ul>
+        </nav>
+        <hr/>
+        <h2>you might remember me from</h2>
+        <ul>
+            <li><a href="http://twitter.com/tylerbutler">twitter</a></li>
+            <li><a href="http://github.com/tylerbutler">github</a></li>
+        </ul>
+    </div>
+</section>
+
+    <section id="search">
+        <div>
+            <form action="http://google.com/search" method="get">
+                <fieldset role="search">
+                    <input type="hidden" name="q" value="site:http://tylerbutler.azurewebsites.net">
+                    <input class="search" type="text" name="q" results="0" placeholder="Search...">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+                    </section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2012 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

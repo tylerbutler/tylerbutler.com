@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>    Hiding vs. Disabling    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/rss+xml"
+          title="Tyler Butler RSS Feed"
+          href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
+
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.com/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+            </script>    
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            
+<ul>
+                    <li class="current">
+        <a href="/">articles</a></li>
+                    <li>
+        <a href="/projects">projects</a></li>
+    </ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">JAN</div>
+                    <div class="day">23</div>
+                    <div class="year">2007</div>
+                    <div class="permalink">
+                        <a href="/2007/01/hiding-vs-disabling/"
+                           title="Permanent link to 'Hiding vs. Disabling'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/design">design</a>
+                        </li>
+                                            <li><a href="/tag/sharepoint">sharepoint</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2007-01-23 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2007/01/hiding-vs-disabling/">Hiding vs. Disabling</a>
+                                            </h1>
+                </header>
+                                    <p>Someone came by my office today and asked me if I could show him how to make a
+column on a SharePoint list required. No problem! While this isn&#8217;t as simple
+as it could be, it&#8217;s pretty straightforward. Go into the list you want to
+change, select <strong>List Settings</strong> from the <strong>Settings</strong> drop down, then click
+the column you want to change in the <strong>List Settings</strong> page. You should see an
+option called &#8220;Require that this column contains information.&#8221; By default,
+this is off, but turning it on will make the column&nbsp;required.</p>
+<p>However, in this case, that option wasn&#8217;t showing in the <span class="caps">UI</span>. The reason was
+that the column was a <strong>Yes/No (check box)</strong> field. Now, if you think about
+it, this makes sense. A checkbox <em>always</em> has state, either checked or
+unchecked, so it&#8217;s by nature required. A user always has to fill in a checkbox
+with some data, either by checking it or unchecking it. It all comes down to
+the default state, which <em>is</em> settable in the SharePoint&nbsp;<span class="caps">UI</span>.</p>
+<p>The interesting thing here, though, is that the user didn&#8217;t stop to think
+about this. And that makes sense. He just wanted to make a column required; he
+didn&#8217;t think about what type of column it was. SharePoint totally removes the
+required field setting from the <span class="caps">UI</span> for Yes/No fields because it doesn&#8217;t make
+sense. However, the user got confused. He wasn&#8217;t sure if the <span class="caps">UI</span> was missing by
+design or if he wasn&#8217;t looking in the right spot for the setting. If you have
+a task to accomplish using relatively unfamiliar <span class="caps">UI</span>, you go to the place that
+makes sense to you, but you&#8217;re never sure you&#8217;re in the right place. In this
+case, the user poked around other parts of the <span class="caps">UI</span> before coming to me, because
+he thought he was looking in the wrong&nbsp;place.</p>
+<p>This might be alleviated by disabling (i.e. graying out) the part of the <span class="caps">UI</span>
+that is not applicable. This is somewhat clearer, because it says, &#8220;Yes, this
+is where you would change this setting, but it doesn&#8217;t make sense here or is
+not allowed.&#8221; This isn&#8217;t a hard rule. You can&#8217;t <em>always</em> display <em>all</em>
+possible settings in one piece of <span class="caps">UI</span> because if there are a large number of
+settings, things can get confusing and distracting. Some hiding does make
+sense in many cases. But it is worth some dedicated thought about your <span class="caps">UI</span> and
+what your users are trying to accomplish when deciding whether to hide a piece
+of <span class="caps">UI</span> or simply gray it&nbsp;out.</p>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2007/01/site-problems/">← Site Problems</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2007/02/building-moss-master-pages/">Building MOSS Master Pages →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                                    <section id="comments">
+                                                    <header>
+                                <h1>Comments</h1>
+                            </header>
+                                                    <div id="disqus_thread"></div>
+    <!-- DISQUS -->
+    <script type="text/javascript">
+        var disqus_shortname = 'tylerbutlercom';
+        var disqus_identifier = '/2007/01/hiding-vs-disabling/';
+        var disqus_url = 'http://tylerbutler.azurewebsites.net/2007/01/hiding-vs-disabling/';
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments
+        powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+            class="logo-disqus">Disqus</span></a>
+                    </section>
+                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2012 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

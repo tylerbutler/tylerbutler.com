@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>    Blog Portability    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/rss+xml"
+          title="Tyler Butler RSS Feed"
+          href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
+
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.com/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+            </script>    
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            
+<ul>
+                    <li class="current">
+        <a href="/">articles</a></li>
+                    <li>
+        <a href="/projects">projects</a></li>
+    </ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">AUG</div>
+                    <div class="day">18</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/08/blog-portability/"
+                           title="Permanent link to 'Blog Portability'">∞</a>
+                    </div>
+                            </div>
+                            <div class="attribution">
+                                            via <a href="http://collindonnell.com/2012/07/31/macdrifter-on-blog-portability/">Collin Donnell</a>
+                                    </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/engineer">engineer</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-08-18 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://www.macdrifter.com/2012/07/things-i-have-learned-about-blog-portability.html">Blog Portability</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p>MacDrifter on blog&nbsp;portability:</p>
+<blockquote>
+<p>In my continuing efforts to migrate off of WordPress, I now understand some of my biggest mistakes and&nbsp;flaws.</p>
+</blockquote>
+<p>I&#8217;m proud to point out that <a href="/projects/engineer/">Engineer</a> helps avoid a number of these. Let&#8217;s examine&nbsp;them.</p>
+<!-- more -->
+
+<p><strong>1. Always save the original Markdown in text&nbsp;files.</strong></p>
+<p>Check. Engineer always keeps your raw post around &#8211; the formatting is done during build&nbsp;time.</p>
+<p><strong>2. Avoid plugins that appear to make life easier by reformatting content for&nbsp;viewing.</strong></p>
+<p>Engineer doesn&#8217;t require you to use any such plugins, but it doesn&#8217;t prevent you either; it&#8217;s your&nbsp;choice.</p>
+<p><strong>3. Footnotes are hard to convert from <span class="caps">HTML</span> to&nbsp;MultiMarkdown.</strong></p>
+<p>This simply isn&#8217;t a problem in Engineer because the raw Markdown is stored, not just the <span class="caps">HTML</span> (see&nbsp;#1).</p>
+<p><strong>4. Use <span class="caps">HTML</span> character codes for non-<span class="caps">ASCII</span>&nbsp;characters.</strong></p>
+<p>Again, your call here. Engineer will happily handle unicode characters, but other systems might not, so the advice is&nbsp;sound.</p>
+<p><strong>5. Choose a good <span class="caps">URL</span> structure up&nbsp;front.</strong></p>
+<p>Engineer uses a date-based one (<code>.../2012/08/05/post_title.html</code>) by default, but it&#8217;s not currently customizable. I&#8217;m considering adding that in a future&nbsp;version.</p>
+<p><strong>6. Relative links are better than absolute&nbsp;links.</strong></p>
+<p>Ummm, yeah. This shouldn&#8217;t ever be a problem in Engineer. With the exception of the <span class="caps">RSS</span> feed, all links in Engineer are relative unless you specifically hard-code&nbsp;them.</p>
+<p><strong>7. Don&#8217;t go ape-shit with tags and&nbsp;categories.</strong></p>
+<p>Because Engineer doesn&#8217;t use tags for any primary navigation or organization, there&#8217;s no pressure to add a bunch of tags. I always felt like I needed categories, and to a lesser extent, tags, in WordPress. Categories may eventually make their way into Engineer, but if they do, you should definitely follow this&nbsp;advice.</p>
+<p><strong>8. Code should go in code&nbsp;blocks.</strong></p>
+<p>When I wrote this originally, my response for this tip was simply, &#8220;There are systems that don&#8217;t do this? <span class="caps">WTF</span>?&#8221; Before I hit &#8216;publish,&#8217; though, I decided to double-check my assumption that <a href="http://pygments.org/">Pygments</a> already did this. Unfortunately, I was&nbsp;wrong.</p>
+<p>It looks like Pygments&#8217; <a href="http://pygments.org/docs/formatters/">default <span class="caps">HTML</span> formatter</a> outputs <code>&lt;pre&gt;</code> tags with <code>&lt;span&gt;</code> tags inside &#8211; not <code>&lt;pre&gt;&lt;code&gt;</code> like I thought. However, on the bright side, there&#8217;s a relatively simple way to write a customized formatter (there&#8217;s even an example on the Pygments site), so assuming I can get it wired up properly to <a href="http://packages.python.org/Markdown/index.html">Python-Markdown</a>, I should be able to add it. I&#8217;ve <a href="https://trello.com/c/QeelOqyG">put it on the (ever-growing) list</a>.</p>
+<p><strong>9. Don&#8217;t hard-code formatting into a&nbsp;post.</strong></p>
+<p>This is another one of those &#8220;you&#8217;re on your own&#8221; things. Often the formatting you might need in a post within Engineer is related to images, so there are some standard styles available for handling those common cases. But I have and will continue to generally try and avoid this. Themes should define the styles, not the post&nbsp;itself.</p>
+<p><strong>10. Keep the comments in the&nbsp;comments.</strong></p>
+<p>Since Engineer doesn&#8217;t support comments, this doesn&#8217;t really apply. If you add your own comments system, like Disqus, then the onus is on&nbsp;you.</p>
+<p>All in all not too bad! Engineer sites should be very portable, and with some more compatibility work, you should be able to switch pretty easily to and from Jekyll if you want. Consider giving Engineer a try&#8230; you might like what you&nbsp;see!</p>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2012/08/engineer-0-3-1-released/">← Engineer 0.3.1 Released</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2012/09/malarious/">Malarious →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                                    <section id="comments">
+                                                    <header>
+                                <h1>Comments</h1>
+                            </header>
+                                                    <div id="disqus_thread"></div>
+    <!-- DISQUS -->
+    <script type="text/javascript">
+        var disqus_shortname = 'tylerbutlercom';
+        var disqus_identifier = '/2012/08/blog-portability/';
+        var disqus_url = 'http://tylerbutler.azurewebsites.net/2012/08/blog-portability/';
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments
+        powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+            class="logo-disqus">Disqus</span></a>
+                    </section>
+                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2012 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

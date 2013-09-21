@@ -2,6 +2,10 @@ SUPER: local_ftp_www.yaml
 
 OUTPUT_DIR: 'output/local_www2'
 
+# Disable comments
+THEME_SETTINGS:
+  comments: ~
+
 DEBUG: yes
 PUBLISH_REVIEW: yes
 PUBLISH_PENDING: yes

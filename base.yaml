@@ -12,8 +12,21 @@ THEME_SETTINGS:
 
 POST_TIMEZONE: 'America/Los_Angeles'
 
+POST_DIR:
+- '~/Dropbox/Engineer/tylerbutler.com'
+- '~/Dropbox/Engineer/tylerbutler.com\Published'
+- './posts'
+
 POST_RENAME_ENABLED: yes
 POST_RENAME_CONFIG:
   draft: '{slug} [{status}].md'
   review: '({status}) {slug}.md'
 METADATA_FORMAT: fenced
+
+DEBUG: no
+PUBLISH_DRAFTS: no
+PUBLISH_PENDING: no
+PUBLISH_REVIEW: no
+
+COMPRESSOR_ENABLED: yes
+PREPROCESS_LESS: yes

@@ -12,7 +12,10 @@ POST_RENAME_CONFIG:
 METADATA_FORMAT: fenced
 
 SITE_URL: 'http://tylerbutler.azurewebsites.net'
-OUTPUT_DIR: './site/azure'
+OUTPUT_DIR: './output/azure'
+#LOG_DIR: '../logs'
+#CONTENT_DIR: '../content'
+#TEMPLATE_DIR: '../templates'
 POST_DIR:
 - 'C:\Users\Tyler\Dropbox\Engineer\tylerbutler.com'
 - 'C:\Users\Tyler\Dropbox\Engineer\tylerbutler.com\Published'

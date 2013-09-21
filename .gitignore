@@ -31,8 +31,9 @@ pip-log.txt
 #Translations
 *.mo
 
-/output/
 /logs/
+/output/*
+!/output/azure/
 _cache/
 *.cache
 *_emma_secret.pvt

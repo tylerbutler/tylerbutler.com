@@ -8,6 +8,8 @@ PUBLISH_DRAFTS: no
 PUBLISH_REVIEW: no
 PUBLISH_PENDING: no
 
+FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'
+
 EMMA_PREFIX: '_emma'
 
 #SERVER_TIMEZONE: 'America/Chicago'

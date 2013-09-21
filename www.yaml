@@ -5,6 +5,8 @@ POST_DIR:
 SITE_URL: 'http://www.tylerbutler.com'
 OUTPUT_DIR: '/home/tylerbutler/webapps/static_tylerbutler_com'
 
+FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'
+
 DEBUG: no
 PUBLISH_DRAFTS: no
 PUBLISH_REVIEW: no

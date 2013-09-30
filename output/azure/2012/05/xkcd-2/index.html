@@ -119,7 +119,7 @@
 <p>Discovering this was a total accident. I read most xkcd comics via the <span class="caps">RSS</span> feed in <a href="http://reederapp.com/">Reeder</a>. If you zoom-pinch on an image in Reeder, it opens up a view like&nbsp;this:</p>
 <div class="image caption center">
     <a href="http://www.flickr.com/photos/76037594@N06/7206331966/">
-        <img src="http://farm8.staticflickr.com/7241/7206331966_66d2e5e577.jpg" width="500" height="375" alt="An xkcd.com comic in Reeder">
+        <img src="http://farm8.staticflickr.com/7241/7206331966_c6419e544e.jpg" width="500" height="375" alt="An xkcd.com comic in Reeder">
     </a>
     <p>An xkcd.com comic in&nbsp;Reeder</p>
 </div>
@@ -130,7 +130,7 @@
 <p>Anyway, I find it frustrating that the comic captions are not a more visible part of the xkcd site itself, so I decided to put together a separate site that loads the comics from xkcd and simply displays them in a slightly different way &#8211; and includes the comic captions directly. The same comic shown above looks like this on&nbsp;xkcd2.com:</p>
 <div class="image caption center">
     <a href="http://www.flickr.com/photos/76037594@N06/7213096382/">
-        <img src="http://farm9.staticflickr.com/8151/7213096382_d033e235a0.jpg" width="500" height="361" alt="xkcd2" class="center"/>
+        <img src="http://farm9.staticflickr.com/8151/7213096382_db69df1d70.jpg" width="500" height="361" alt="xkcd2" class="center"/>
     </a>
     <p>An xkcd comic as shown on&nbsp;xkcd2.com</p>
 </div>
@@ -139,7 +139,7 @@
 <p>Now that you know the <em>why</em> of xkcd2.com, let&#8217;s talk about the <em>how</em>.</p>
 <p>xkcd 2 is an exceedingly simple <a href="http://flask.pocoo.org/">Flask</a> app. It&#8217;s ~100 lines of Python (not including empty lines of course). A majority of the time was spent messing with the <span class="caps">HTML</span> and <span class="caps">CSS</span>, not on the Python&nbsp;itself.</p>
 <p>Each time a comic is requested, I use the excellent <a href="http://code.google.com/p/httplib2/">httplib2</a> library to retrieve the corresponding page directly from xkcd.com. httplib2 behaves more like a browser than a typical <span class="caps">HTTP</span> library; it handles caching the page content and everything for me, so if the same comic is requested many times httplib2 will return the page content from its local file cache instead of bouncing the request to xkcd.com every time.<sup id="fnref:xkcd2"><a class="footnote-ref" href="#fn:xkcd2" rel="footnote">2</a></sup></p>
-<p>Once I get the response and page content from xkcd.com, I parse the page into a <span class="caps">DOM</span> object using <a href="http://code.google.com/p/html5lib/">html5lib</a>. Then I use some rather inefficient list comprehensions to find the right elements in the <span class="caps">DOM</span> and extract the relevant information. There are probably more efficient means of doing this, but the page structure is simple enough that it&#8217;s not too bad performance-wise. I did find myself desperately wanting server-side jQuery&#8230;<sup id="fnref:xkcd3"><a class="footnote-ref" href="#fn:xkcd3" rel="footnote">3</a></sup></p>
+<p>Once I get the response and page content from xkcd.com, I parse the page into a <span class="caps">DOM</span> object using <a href="https://github.com/html5lib">html5lib</a>. Then I use some rather inefficient list comprehensions to find the right elements in the <span class="caps">DOM</span> and extract the relevant information. There are probably more efficient means of doing this, but the page structure is simple enough that it&#8217;s not too bad performance-wise. I did find myself desperately wanting server-side jQuery&#8230;<sup id="fnref:xkcd3"><a class="footnote-ref" href="#fn:xkcd3" rel="footnote">3</a></sup></p>
 <p>Once I have all the comic details from the page, I store it all in a pickle file so I can load it from the local disk rather than parsing the <span class="caps">HTML</span> on each request. Thus, if httplib2 reports that it used its cached version rather than retrieving a fresh page (via the <code>response.fromcache</code> property), I discard httplib2&#8217;s response entirely and simply load the comic metadata from the pickle&nbsp;file.</p>
 <p>Once I have the metadata, I just pass it to the page template and render the&nbsp;page.</p>
 <h2>But&#8230;&nbsp;but&#8230;</h2>
@@ -179,7 +179,7 @@
                                             </article>
             </div></section>
             </div>
-        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2012 Tyler Butler. All rights reserved.</p>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
 
 <p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
             </div>

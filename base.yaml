@@ -14,7 +14,7 @@ POST_TIMEZONE: 'America/Los_Angeles'
 
 POST_DIR:
 - '~/Dropbox/Engineer/tylerbutler.com'
-- '~/Dropbox/Engineer/tylerbutler.com\Published'
+- '~/Dropbox/Engineer/tylerbutler.com/Published'
 - './posts'
 
 POST_RENAME_ENABLED: yes

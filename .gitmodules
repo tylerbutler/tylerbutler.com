@@ -1,0 +1,4 @@
+[submodule "output/github"]
+	path = output/github
+	url = https://github.com/tylerbutler/tylerbutler.com.git
+	branch = gh-pages

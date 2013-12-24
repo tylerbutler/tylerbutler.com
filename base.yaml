@@ -7,8 +7,6 @@ FEED_FULL_CONTENT: yes
 
 THEME_SETTINGS:
   typekit_id: vty2qol
-  comments: disqus
-  comments_account: tylerbutlercom
 
 POST_TIMEZONE: 'America/Los_Angeles'
 

@@ -3,4 +3,9 @@ SUPER: base.yaml
 SITE_URL: 'http://www.tylerbutler.com'
 OUTPUT_DIR: './output/azure'
 
+# enable comments
+THEME_SETTINGS:
+  comments: disqus
+  comments_account: tylerbutlercom
+
 FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'

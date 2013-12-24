@@ -1,13 +1,7 @@
-SUPER: www.yaml
+SUPER: base.yaml
 SITE_URL: 'http://www2.tylerbutler.com'
 OUTPUT_DIR: '/home/tylerbutler/webapps/www2_tylerbutler_com'
-
-# Disable comments
-THEME_SETTINGS:
-  comments: ~
 
 DEBUG: yes
 PUBLISH_REVIEW: yes
 PUBLISH_PENDING: yes
-
-PERMALINK_STYLE: pretty

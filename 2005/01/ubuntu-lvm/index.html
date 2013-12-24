@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>    Ubuntu + LVM    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
+          href="/feeds/atom.xml"/>
+
+                
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.net/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
+            </script>    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
+        <a href="/">articles</a></li>
+                <li>
+        <a href="/projects">projects</a></li>
+</ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">JAN</div>
+                    <div class="day">20</div>
+                    <div class="year">2005</div>
+                    <div class="permalink">
+                        <a href="/2005/01/ubuntu-lvm/"
+                           title="Permanent link to 'Ubuntu + LVM'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/ubuntu">ubuntu</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2005-01-20 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2005/01/ubuntu-lvm/">Ubuntu + <span class="caps">LVM</span></a>
+                                            </h1>
+                </header>
+                                    <p>I spent this past weekend hacking away at my Media Box, which serves as my
+personal free <span class="caps">PVR</span>. I wanted to get <a href="http://www.ubuntu-linux.org" title="Ubuntu, a Debian distro for the masses.  All the cool people do it.">Ubuntu</a> on it with <span class="caps">LVM</span> so I could use
+all four of my hard drives as one for <a href="http://mythtv.org" title="MythTV, the best PVR there is... if you can get it running...">MythTV</a>. I borrowed one of Vlad&#8217;s
+Ubuntu <span class="caps">CD</span>&#8217;s (mine haven&#8217;t arrived yet and I couldn&#8217;t find the one I burnt) and
+got the installer running. During the partitioning section of the install, I
+set everything up for an <span class="caps">LVM</span> volume group and thought I had everything
+working. Apparently I didn&#8217;t. Silly me for not having a clue how <span class="caps">LVM</span> works
+(always read the directions,&nbsp;kids).</p>
+<p>Anyway, my installation was b0rked so I figured I&#8217;d just reboot and start from
+scratch. No. My <span class="caps">LVM</span> data was still present every time I tried to install
+Ubuntu. I would try to remove the volume groups and it would fail, reporting
+the drives were still in use. I was getting manifest errors up the wazoo. So I
+thought, &#8216;<span class="caps">OK</span>, I just need to wipe the drives with something else and I&#8217;ll be
+fine.&#8217; So I tried booting off an <span class="caps">XP</span> <span class="caps">CD</span> into rescue mode and formatting the
+drives there. No dice. I downloaded a few <span class="caps">CD</span>-based disk formatting tools that
+<strong>said</strong> they cleared things out but apparently they didn&#8217;t. <a href="http://www.google.com" title="Google, I still love you...">Google</a>
+searches were returning a whole bunch of information about how to remove
+volume groups, but <strong>nothing</strong> about how to forcefully wipe <span class="caps">LVM</span> volumes.
+Funny&#8230; most people that use <span class="caps">LVM</span> and software <span class="caps">RAID</span> are concerned about
+keeping their data safe.&nbsp;Whatever.</p>
+<p><strong>Finally</strong>, I came across <a href="http://lists.suse.com/archive/suse-linux-e/2001-Nov/1413.html" title="Too bad I didn't come across this about 6 hours earlier...">this forum post</a>, which has the necesarry command. In retrospect it makes sense - just write zeroes to the first part of the disk. But I would have never figured it out. For posterity, here&#8217;s the command you need to run on a device to remove all previous <span class="caps">LVM</span>&nbsp;info:</p>
+<div class="codehilite"><pre><span class="n">dd</span> <span class="k">if</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">zero</span> <span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span> <span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">k</span> <span class="n">count</span><span class="o">=</span><span class="mi">10</span>
+</pre></div>
+
+
+<p>Then of course, I had to figure out how the Ubuntu installer was mounting all
+my drives&#8230; but that&#8217;s another story. And by the way&#8230; after all of this,
+MythTV just wasn&#8217;t liking my remote, and I was suffering <span class="caps">PVR</span> withdrawal pretty
+bad, so I&#8217;m back to <span class="caps">MCE2005</span>. Looks like I&#8217;ll have to keep fast-forwarding
+through the commercials manually. Such is&nbsp;life.</p>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2004/12/merry-christmas/">← Merry Christmas!</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2005/01/c-messagebox-strangeness/">C# MessageBox Strangeness →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

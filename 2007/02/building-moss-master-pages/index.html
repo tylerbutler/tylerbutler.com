@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>    Building MOSS Master Pages    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
+          href="/feeds/atom.xml"/>
+
+                
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.net/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
+            </script>    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
+        <a href="/">articles</a></li>
+                <li>
+        <a href="/projects">projects</a></li>
+</ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">FEB</div>
+                    <div class="day">02</div>
+                    <div class="year">2007</div>
+                    <div class="permalink">
+                        <a href="/2007/02/building-moss-master-pages/"
+                           title="Permanent link to 'Building MOSS Master Pages'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/sharepoint">sharepoint</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2007-02-02 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2007/02/building-moss-master-pages/">Building <span class="caps">MOSS</span> Master Pages</a>
+                                            </h1>
+                </header>
+                                    <p>Now that <span class="caps">MOSS</span> is available to lots of people, and people are building lots of
+sites that <a href="http://www.fifteen.net">don&#8217;t</a> <a href="http://www.shareview.co.uk/">look</a> <a href="http://www.hedkandi.com/">like</a> SharePoint, a lot of you might be
+wondering how you should get started in building your own custom master page
+for your site. I talked a little bit about this in my first post on building
+tylerbutler.com, but I think it might be valuable to post some info about the
+minimal master page and its role in helping you build a custom master page for
+your site. But first, some&nbsp;background…</p>
+<p>During the early betas, people heard that you could make SharePoint &#8220;not look
+like SharePoint,&#8221; and so they set off to do just that. People started cracking
+open default.master and trying to understand it. The problem many people
+reported was that the markup in default.master was ridiculously complicated,
+and it wasn&#8217;t clear what could be removed and what couldn&#8217;t. The complexity is
+somewhat necessary for that master page because of all the delegate controls
+we have to put in place to support a bunch of different back-end SharePoint
+stuff (I do believe, however, that there&#8217;s plenty of things we could/can do in
+that master page to make it clearer and easier to customize without removing
+functionality, so this is not meant to be an&nbsp;excuse).</p>
+<p>Anyway, there were customers that were trying to build internet facing sites
+on top of SharePoint, because <strong>a)</strong> we told them that they could/should and
+<strong>b)</strong> we rolled up a lot of web content management functionality from Content
+Management Server 2002, and customers that were using that product were
+investigating how they would move to <span class="caps">MOSS</span>. These customers did not want their
+site to look anything like SharePoint. These customers also often had a site
+design template that was coming from their design team, either in <span class="caps">HTML</span> or as
+image mock-ups. Trying to fit that design into default.master was exceedingly
+difficult because of all the unclear markup in that master page.
+Default.master is designed for a SharePoint site – one that looks and acts
+like SharePoint. But people who wanted to build non-SharePoint looking sites
+were getting tripped up by using it as a starting&nbsp;point.</p>
+<p>We do have several master pages that we built that are much simpler than
+default.master. When you provision a Publishing Portal site collection, for
+example, we default to BlueBand.master, which has customized <span class="caps">CSS</span> and <span class="caps">MOSS</span>
+navigation out of the box. It&#8217;s a cleaner starting point, so we initially told
+people to start there rather than with default.master. We still had problems,
+though, because you never knew if a placeholder was absolutely necessary in
+your master page. What would happen is you&#8217;d remove a seemingly innocuous
+placeholder and your page would work fine until you browsed to some specific
+page that was overriding that placeholder, then things would&nbsp;break.</p>
+<p>What we needed was a sample master page that included only the markup that was
+<em>absolutely necessary to get your pages to render.</em> Thus, the <a href="http://msdn2.microsoft.com/en-us/library/aa660698.aspx">minimal master
+page</a> was born. This master page is purposely bare. It&#8217;s just a bunch of
+placeholders – those placeholders are necessary for things in your site to
+work properly. With this master page, you can take your markup from your
+designer, paste it into SharePoint Designer, and move markups into the
+appropriate placeholders. If there&#8217;s some pieces you need/want from
+default.master or another page, you can always open them up and copy/paste the
+appropriate&nbsp;markup.</p>
+<p>So, should you start with <code>default.master</code>, <code>blueband.master</code>, or the minimal
+master page example when building your own custom master page? Well, the
+answer depends on what you&#8217;re trying to do. If you&#8217;re building out a site that
+really should look and work like vanilla SharePoint, then maybe <code>default.master</code>
+makes sense. If you&#8217;re trying to do something more exotic, <code>blueband.master</code> and
+its siblings have examples of different navigational structures and color
+schemes, so maybe it makes sense to start from one of those that is close to
+the navigation/color you&#8217;re aiming for. But my personal recommendation is to
+start with the minimal page and copy/paste the appropriate controls/markup
+from other master pages as necessary. This ensures you get only what you need
+and want in your page, rather than having to weed through a bunch of markup to
+get rid of stuff that doesn&#8217;t <em>look</em> like it&#8217;s needed. If you do want to go
+the default.master route, then Heather Solomon has <a href="http://heathersolomon.com/blog/archive/2007/01/26/6153.aspx">a custom master page</a>
+that she&#8217;s tweaked from <code>default.master</code> to make things cleaner and more&nbsp;straightforward.</p>
+<p>I hope this helps you figure out how to get started building out your site
+look and feel. There is a growing number of live custom sites on top of <span class="caps">MOSS</span>,
+and it&#8217;s exciting to see what people are able to build with this&nbsp;product!</p>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2007/01/hiding-vs-disabling/">← Hiding vs. Disabling</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2007/02/corrections-on-nav-samples-in-my-ecm-blog-posts/">Corrections on Nav Samples in my ECM Blog Posts →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

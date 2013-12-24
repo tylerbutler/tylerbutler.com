@@ -1,0 +1,44 @@
+<Files .htaccess>
+    order allow,deny
+    deny from all
+</Files>
+
+Options +FollowSymLinks All
+RewriteEngine On
+RewriteOptions Inherit
+RewriteBase /
+#RewriteCond %{HTTP_HOST} ^www2.tylerbutler.com$ [NC]
+#RewriteRule ^(.*)$ http://www.tylerbutler.com/$1 [R=301,L]
+
+# /index.php?page=# ===> /page/#
+RewriteCond %{REQUEST_URI}  ^/index\.php$
+RewriteCond %{QUERY_STRING} ^page=(\d*)$
+RewriteRule ^(.*)$ /page/%1/? [R=301,L]
+
+# /index.php?topic=TOPIC ===> /tag/TOPIC/
+RewriteCond %{REQUEST_URI}  ^/index\.php$
+RewriteCond %{QUERY_STRING} ^topic=(.*)$
+RewriteRule ^(.*)$ /tag/%1/? [R=301,L]
+
+# /index.php ===> /
+RewriteCond %{REQUEST_URI}  ^/index\.php$
+RewriteRule ^(.*)$ / [R=301,L]
+
+# /article.php?story=20050214154454315 ===> /2005/02/microsoft-program-manager-interview-the-breakdown/
+RewriteCond %{REQUEST_URI}  ^/article\.php$
+RewriteCond %{QUERY_STRING} ^story=20050214154454315$
+RewriteRule ^(.*)$ /2005/02/microsoft-program-manager-interview-the-breakdown/? [R=301,L]
+
+# /Pages/Forms/AllItems.aspx ===> /
+RedirectMatch permanent (.*)/Pages/Forms/AllItems.aspx $1/
+
+# /topics/projects/<foobar> ===> /tag/project/
+RedirectMatch permanent (.*)/topics/projects/ $1/tag/project/
+
+# /topics/TOPIC/<foobar> ===> /tag/TOPIC/
+# /tags/TAG/<foobar> ===> /tag/TAG/
+RedirectMatch permanent (.*)/(topics|tags)/(.*?)/(.*) $1/tag/$3/
+
+
+RedirectMatch permanent (.*)/(\d*)/(\d*)/(\d*)/(.*)(/?)(index.html?) $1/$2/$3/$5/$6
+RedirectMatch permanent (.*)/(\d*)/(\d*)/(\d*)/(.*)(/?) $1/$2/$3/$5/$6

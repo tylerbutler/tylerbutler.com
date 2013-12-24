@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>    Accessibility Insanity    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
+          href="/feeds/atom.xml"/>
+
+                
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.net/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
+            </script>    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
+        <a href="/">articles</a></li>
+                <li>
+        <a href="/projects">projects</a></li>
+</ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">MAR</div>
+                    <div class="day">23</div>
+                    <div class="year">2009</div>
+                    <div class="permalink">
+                        <a href="/2009/03/accessibility-insanity/"
+                           title="Permanent link to 'Accessibility Insanity'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2009-03-23 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2009/03/accessibility-insanity/">Accessibility Insanity</a>
+                                            </h1>
+                </header>
+                                    <p>Part of my responsibilities for SharePoint these days involves markup
+cleanliness and accessibility, so over the last couple of years I have
+educated myself on the ins and outs of these issues, and have managed to learn
+a lot about browser behavior, the history of markup, etc. I am far from an
+expert, but I know a heck of a lot more than I did when I&nbsp;started.</p>
+<p>One school of thought I come across quite frequently is that web content whose
+markup is not well-formed or is missing required attributes or something just
+fail to render completely, in order to ensure that all content on the web is
+gorgeous, standards-compliant markup. This ridiculously draconian viewpoint
+loses sight of the fact that the ultimate goal of delivering content over the
+web is just that &#8211; delivering content. It seems bad form for a browser to just
+“give up” when markup is badly formed, because the end-goal of the person
+building the page &#8211; and the person consuming it &#8211; is to deliver content. Much
+of this debate has been chronicled by the <span class="caps">IE</span> team; they have a tough job –
+bring the standards compliance of <span class="caps">IE</span> into this century without breaking their
+customers/users pages. Hence compatibility mode, legacy rendering, etc.&nbsp;etc.</p>
+<p>In the past, I&#8217;ve always heard this argument from the standards-compliance
+standpoint. For example, if a page claims to be <span class="caps">XHTML</span> but isn&#8217;t fully
+compliant, it should fail to render in a browser. No “best-effort” rendering,
+just fail. This of course ignores the fact that even the <span class="caps">W3C</span> <a href="http://validator.w3.org/docs/help.html#validandconform">can&#8217;t create a
+parser</a> that can completely validate a page against the spec, but that&#8217;s a
+rant for another time… Assuming the browser can detect that a page is non-
+compliant, it should just <strong>stop</strong>.</p>
+<p>Anyway, this is a long and winding intro to <a href="http://diveintomark.org/archives/2009/03/18/if-it-fails-for-some">a post</a> Mark Pilgrim wrote
+talking about this viewpoint as it applies to accessibility. I had never heard
+these arguments before, but apparently they&#8217;re out there. A choice quote from
+Mark&#8217;s rebuttal (emphasis&nbsp;mine):</p>
+<blockquote>
+<p>I think it would be wise for people who truly care about accessibility to
+take a closer look at the so-called “experts” who are participating on their
+behalf, and to understand exactly what these people are proposing. <strong>It&#8217;s true
+that some of their proposals have not been adopted, but it&#8217;s not because some
+cartoonishly monocled villain enjoys being mean to them. It&#8217;s because the
+proposals are&nbsp;insane.</strong></p>
+</blockquote>
+<p>Agreed.</p>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2009/03/finding-meaning-in-ui/">← Finding Meaning in UI</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2009/03/more-accessibility/">More Accessibility →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

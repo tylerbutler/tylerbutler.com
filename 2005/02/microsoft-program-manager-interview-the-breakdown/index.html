@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>    Microsoft Program Manager Interview: The Breakdown    : Tyler Butler
+</title>
+
+                    
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
+          href="/feeds/atom.xml"/>
+
+                
+                                                        <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
+                <link rel="stylesheet"
+                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+
+                <!--[if lt IE 9]>
+                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
+                <![endif]-->
+                        
+                    
+                    
+                    <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+        
+                
+                                    
+            <script type="text/javascript"
+            src="http://use.typekit.net/vty2qol.js"></script>
+    <script type="text/javascript">
+        try {
+            Typekit.load();
+        }
+        catch (e) {
+        }
+    </script>
+    
+            <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26061862-1']);
+    _gaq.push(['_setDomainName', 'tylerbutler.com']);
+
+    // track speed for all users; traffic is low enough this shouldn't be a problem
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
+            </script>    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+                            <a href="/">                                    tyler
+                                    <span class="highlight">butler</span>
+                                </a>
+                        </h1>
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
+        <a href="/">articles</a></li>
+                <li>
+        <a href="/projects">projects</a></li>
+</ul>
+
+                        </nav>
+                </header>
+        <div class="row">                <section id="main" class="twelve columns"
+                         role="main">    <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">FEB</div>
+                    <div class="day">14</div>
+                    <div class="year">2005</div>
+                    <div class="permalink">
+                        <a href="/2005/02/microsoft-program-manager-interview-the-breakdown/"
+                           title="Permanent link to 'Microsoft Program Manager Interview: The Breakdown'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2005-02-14 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2005/02/microsoft-program-manager-interview-the-breakdown/">Microsoft Program Manager Interview: The Breakdown</a>
+                                            </h1>
+                </header>
+                                    <p>Early last week I went through a <a href="http://www.microsoft.com/college/ft_pm.mspx">Program Manager</a> interview at Microsoft. I am happy to say that it went reasonably well, since I did get an offer. This has been a long time coming&#8230; Since I did a fair amount of research before going into the interview, and was helped out a lot by the written experiences of others, I want to add my own experience to the mix. Also, while Googling for information on the interview process and what to expect, I found a lot on the Dev/Test side of things, but very little about the Program Manager interviews. There were significant differences (though I have never had a Dev/Test interview, so perhaps I&#8217;m off-base here), so my hope is that I can shed a little light on the <span class="caps">PM</span> interviewing process&nbsp;itself.</p>
+<p>Before I go into more details about the actual interviews themselves, here&#8217;s a brief overview of the entire&nbsp;day:</p>
+<ul>
+<li>Total number of interviews: <strong>7 +&nbsp;debrief</strong></li>
+<li>Total number of teams with which I interviewed: <strong>3</strong></li>
+<li>Length of day: <strong>8:30am &#8212;&nbsp;5:30pm</strong></li>
+</ul>
+<h2>Interview&nbsp;Breakdown:</h2>
+<ul>
+<li><a href="#hr">Human Resources (Ron&nbsp;Honcoop)</a></li>
+<li><a href="#pub1">Publisher Team (Jeff&nbsp;Bell)</a></li>
+<li><a href="#pub2">Publisher Team (Tara&nbsp;Kraft)</a></li>
+<li><a href="#cms1">Content Management Server &#8212; Lunch (Dave&nbsp;Quick)</a></li>
+<li><a href="#cms2">Content Management Server (Dan&nbsp;Kogan)</a></li>
+<li><a href="#cms3">Content Management Server (Jim&nbsp;Masson)</a></li>
+<li><a href="#project">Project (Dieter &#8212; didn&#8217;t catch last&nbsp;name)</a></li>
+<li><a href="#debrief">Debrief (Ron&nbsp;Honcoop) </a></li>
+</ul>
+<p>Being the conscientious young man that I am, I took notes on each interview and wrote down most of the questions I was asked, so I will share those. Please note that I honestly don&#8217;t know exactly what they&#8217;re looking for, but I did get an offer, so I must have done something right. I did do some preparation work for the&nbsp;interview.</p>
+<h2>Pre-interview&nbsp;Preparation</h2>
+<h3>Blog&nbsp;reading</h3>
+<p>I did a simple Google search for &#8220;Microsoft interview questions&#8221; and wound up with quite a few blogs from people that had had interviews. The search process to uncover really useful information took me a couple of days. Here&#8217;s a few of the ones that proved most&nbsp;helpful:</p>
+<ul>
+<li><a href="http://www.sellsbrothers.com/fun/msiview/">http://www.sellsbrothers.com/fun/msiview/</a></li>
+<li><a href="http://blog.mattgoyer.com/stories/ftjobintinseattle.html">http://blog.mattgoyer.com/stories/ftjobintinseattle.html</a></li>
+<li><a href="http://blogs.msdn.com/adamu/archive/2004/06/18/159130.aspx">http://blogs.msdn.com/adamu/archive/2004/06/18/159130.aspx</a></li>
+<li><a href="http://blogs.msdn.com/jobsblog">http://blogs.msdn.com/jobsblog</a></li>
+</ul>
+<h3>Brain&nbsp;teasers</h3>
+<p>I had heard the Microsoft was fond of asking brain teaser questions, so I looked around for a few of those as well. Even though I had been told that they really no longer asked these questions, I was interested in trying to solve them anyway. They proved to be very stimulating bar conversation on my weekly Thursday-night outing to John Barleycorn&#8217;s with the guys. Also, they helped to focus my nervous energy into something mentally stimulating, and provided hours of amusement at work. Here are a couple of the sites that had a lot of interesting&nbsp;problems:</p>
+<ul>
+<li><a href="http://halcyon.usc.edu/~kiran/msqs.html">http://halcyon.usc.edu/~kiran/msqs.html</a></li>
+<li><a href="http://www.cut-the-knot.org/algebra.shtml">http://www.cut-the-knot.org/algebra.shtml</a></li>
+</ul>
+<p>It should be noted that these brain-teasers provided me <strong>absolutely no useful information for my interview!</strong> I was not asked any of these questions, nor any others that were similar. Their only value was in keeping my mind off of my nervousness and making me the life of the party at&nbsp;Barleycorn&#8217;s.</p>
+<h3>Phone&nbsp;conversation</h3>
+<p>My friend Matt&#8217;s sister had an interview with Microsoft a few months ago and got an offer (which she accepted), so Matt got us in touch and she provided me a lot of useful information. She had some tips for the actual day (scope out the location the night before, be ready for it to last the whole day, etc.), and she helped to calm me down a bit, since at that point I was pretty nervous. She did not interview for a <span class="caps">PM</span> position, though, so there were differences in my experience. If you know someone or can find a friend of a friend that interviewed for the specific position you&#8217;re interviewing for, it would be the most&nbsp;useful.</p>
+<h3>Important&nbsp;points</h3>
+<p>I also made a mental list of major points I wanted to be sure to mention during the interview. This basically reflected the major points I hit in my resume&#8217;s professional summary. I wanted to be sure I hit a lot about <a href="http://www.hawktour.net">HawkTour</a>, since my experience there directly relates to the <span class="caps">PM</span> position. I also wanted to stress my multi-cultural background (lots of teamwork benefits there) and communication skills. These were the things that set me apart from other people &#8212; I wanted to make sure I talked about them. I wrote out a list of questions that I wanted to ask each interviewer (things like &#8220;what are your core responsibilities?&#8221; and &#8220;how many people are on your team?&#8221;). This list gave me a baseline for every interview. I knew they would ask if I had any questions, so I always looked back and my list to make sure we&#8217;d covered everything I wanted to go&nbsp;over. </p>
+<p>So with all of that background out of the way, let&#8217;s get into the guts of every interview. I will go in chronological order. Please hold your questions until the end of the&nbsp;lecture.</p>
+<p>Oh, one other thing &#8212; I got four basic flavors of questions during the&nbsp;day:</p>
+<dl>
+<dt>Background</dt>
+<dd>Questions about projects I have worked on, what my interests are, why I am interested in Microsoft, how I solved past technical problems, etc. These are pretty easy if you anything about&nbsp;yourself.</dd>
+<dt>Greenlight/Ideas</dt>
+<dd>These are questions where you&#8217;re given a scenario and you need to formulate ideas about usage. I got an equal number of these and design questions. This type of question seems to be all about formulating creative ideas quickly. I had some good ideas, some horrible ones for every question. The interviewer would often ask &#8220;What else?&#8221; after every idea, prompting me to frantically analyze the problem again to come up with something else. These are a lot of fun and pretty easy if you&#8217;re creative and keep a cool&nbsp;head.</dd>
+<dt>Design</dt>
+<dd>These were the meat of my interview. Basically, they give you a new feature or new product idea and ask you to design a solution. I was clear about any assumptions I made and tried to ask questions to really understand the goal of the product/feature before I started designing. Design can and probably should be done on the ubiquitous office whiteboard. That&#8217;s what I did. Design problems were tons of fun as well, and I had several good ideas throughout the day (and a few bad ones), which I was pretty proud&nbsp;of.</dd>
+<dt>Technical</dt>
+<dd>These are the hardest problems for me. Luckily, I only got one or two. These questions have to do with algorithms, computer architecture, etc. These are tough for me because they require complex thinking about details and optimizations which I don&#8217;t do quickly. I am a big-picture sort of&nbsp;guy.</dd>
+</dl>
+<p>My day began at 6:30am <span class="caps">PST</span>. I was supposed to be at Building 19 at 8:30 to report in. I had driven out to the campus from my hotel the night before, so I knew approximately how long it was going to take me to get there. I had intended to eat some breakfast, and in retrospect I probably should have, but I just didn&#8217;t feel very hungry, so I filled up my water bottle, left the hotel about 7:15, and headed straight for Building&nbsp;19.</p>
+<p>I arrived at 7:30. Traffic was kind of bad, but it certainly wasn&#8217;t as bad as I had anticipated. The hotel was literally within walking distance of the building anyway, so leaving an hour early was not necessary by any means. I didn&#8217;t really want to sit in a lobby for an hour, so I decided to just drive around the area for awhile and listen to the radio. The area is quite hilly and very beautiful, so I drove around in circles and through some rather affluent-looking neighborhoods for awhile. This helped to clear my head and allowed me to kind of mentally prepare for the day. As is typical of me, I wasn&#8217;t nervous at this point (it always passes just before the big day), but I was a little worried because I didn&#8217;t know what to expect. I consoled myself by remembering that after that day, whether I got an offer or not, it would be over. One of the hardest things for me during this whole job-hunting process has been uncertainty. At least after the interview I would have a better idea of my plans for the next few&nbsp;years.</p>
+<p>I got back to Building 19 at around 8:05. I parked and checked in with the receptionist, who gave a me a couple of forms to fill out, and pointed me to a rather nice sunlit lobby to sit and wait. I was soon joined by a Stanford sophomore who was there for a internship interview. He could not stop yawning. I inquired about how much sleep he had gotten, and he had actually gotten more than I had. And here I was, bouncing off the walls&#8230; Anyway, Rondell Honcoop, my <span class="caps">HR</span> contact, came to get me at about&nbsp;8:45.</p>
+<h2><a name="hr"></a>Human Resources &#8212; Rondell Honcoop &#8212; 8:45 am&nbsp;<span class="caps">PST</span></h2>
+<p>Ron began by explaining briefly how the day would go. I would not know the identity of my next interviewer until after each interview (I had been told this before). He also explained a little about the teams I&#8217;d be interviewing with (Authoring and <span class="caps">CMS</span>). He didn&#8217;t know much about <span class="caps">CMS</span> (indeed, no one seemed to have much info on it), but he told me that Authoring was Office-related. He asked me if there were other companies I was looking at. I told him Google and Lexmark. He asked me to rate them in order of interest, and I put Google at the top and Microsoft second. He asked me specifically what I liked about Google and what it would take to get Microsoft to the top of that list. I was very honest through this process and also made sure to let him know that I was not as far along at Lexmark or Google (I do not have interviews at either of them yet) as with Microsoft. He encouraged me to keep an open mind during the interview and try to figure out how Microsoft dealt with the things that excite me about&nbsp;Google.</p>
+<p>Somehow we eventually segued into a deep discussion about HawkTour. I gave him the entire story, from the summer <span class="caps">NSF</span> work to the <span class="caps">IPRO</span> to the current state of things. I was extremely thorough and he wrote <strong>everything</strong> down. At several points I had to stop so that he could catch up. I finally realized just how complex the project is, but I think I did a good job of describing everything and specifically my role. I discussed the design process, the reasons behind our decisions, and my far-reaching responsibilities. I didn&#8217;t really focus on it, but I&#8217;m pretty sure I came across as being passionate, which I know is a huge thing for them. I did not have to fake this, though, because I really am passionate about HawkTour. Otherwise I wouldn&#8217;t have stayed on for two and a half years. They&#8217;re certainly not paying me <strong>that</strong>&nbsp;well.</p>
+<p>I was pretty verbose in my discussion, so I ran over time with Ron. We stopped at 9:45 and he said he&#8217;d call over to Jeff Bell to let him know we&#8217;d gone late. I made more of an effort to trim down my discussion in future interviews, but when they kept asking questions, I kept giving&nbsp;answers.</p>
+<p>Ron walked me outside and made sure I got on the recruiting shuttle to the next building. He is a really nice guy &#8212; it is easy to see why he works in recruiting. He is friendly, easy to talk to, and comes across as genuinely concerned about you. He asked me pointed questions about what I wanted and what my concerns were, and went to extra lengths to make sure the questions got answered or that my needs were met. He&#8217;s the kind of guy I could see myself chilling out with on the weekends &#8212; all in all, he&#8217;s good at his&nbsp;job.</p>
+<p>I arrived at the next building and checked in with the receptionist. Jeff came to get me just before&nbsp;10am.</p>
+<h2><a name="pub1"></a>Publisher Team &#8212; Jeff Bell &#8212; 10:00am&nbsp;<span class="caps">PST</span></h2>
+<p>Jeff, like all the people I met with, was very friendly. He talked to me about the basic role of the <span class="caps">PM</span> (manages features, not people; influence without authority), then asked me about the HawkTour project. I talked about the design architecture and our use of <span class="caps">SOAP</span>. He asked me about other solutions we had considered, and I mentioned <span class="caps">XML</span>-<span class="caps">RPC</span>. He asked me if there were any benefits to using it over <span class="caps">SOAP</span> other than it was more lightweight. He posed the question in an interesting way: &#8220;If someone else were to enter the market with a similar product, but that used <span class="caps">XML</span>-<span class="caps">RPC</span>, would they have any advantages over your&nbsp;product?&#8221;</p>
+<p>He then posed my first greenlight question. He briefly talked about <a href="http://www.microsoft.com/office/onenote/prodinfo/default.mspx">OneNote</a> and what it aims to do. Then he asked me how I would extend the note-taking functionality and possibly tie it into HawkTour. I discussed location-based notes, which makes a lot of sense in a tour application, and I talked about the importance of analyzing the needs of the customer to determine additional uses that they would like. All in all, it was a pretty weak answer, but I think I made a good case, and my approach to the problem was&nbsp;sound.</p>
+<p>We then switched gears and got into a design problem. He basically framed it like this (not direct&nbsp;quotes):</p>
+<blockquote>
+<p>I have a large digital audio collection. It works great in my computer room, but I want to pump the music to other rooms in my house without buying a lot of expensive equipment. Design a&nbsp;solution.</p>
+</blockquote>
+<p>I started by restating the problem, making sure I understood it fully. I asked a little about the customer and target price range. Then I started drawing on the board. I basically assumed that the user had a simple home network (I stated <strong>all</strong> of my assumptions &#8212; if they were invalid assumptions, then the interviewer would tell me). My solution was a simple hardware device that was networked and had a simple web-based interface for configuration. I missed quite a few things initially (like volume, a way to connect speakers, a way to start playing the music, etc.), but I caught most of them with a little prompting from Jeff. He added a network constraint as well in the form of network&nbsp;cards.</p>
+<blockquote>
+<p>Lets say that my <span class="caps">OEM</span> can provide me with cheap network cards that only run at 10MBps. They&#8217;re slower, but they&#8217;re cheap. Is it worth&nbsp;it?</p>
+</blockquote>
+<p>I asked for information about the cost difference and made a decision based on that, and also disclosed the assumption that 10 MBps would be enough bandwidth to support streaming the audio. He then changed the scenario&nbsp;again.</p>
+<blockquote>
+<p>Someone has entered the market with a $60 device that does what you just described. We have research that indicates customers would be willing to pay $200 for a very full-featured solution. What features can you add that might push it into that price range and make it desirable to the target&nbsp;customer(s)?</p>
+</blockquote>
+<p>At this point it became a green light question, so I talked a little about adding video capabilities to it, and possibly higher fidelity audio. Again, pretty weak stuff, but my forte is designing software, not hardware, so I didn&#8217;t let it get me down too&nbsp;much.</p>
+<p>Jeff led me to a waiting room after our interview, and I continued thinking through the problems he&#8217;d posed, sketching on the whiteboard that was there in the room. Tara came and got me in a few&nbsp;minutes.</p>
+<h2><a name="pub2"> </a>Publisher Team &#8212; Tara Kraft &#8212; 11:00 am&nbsp;<span class="caps">PST</span></h2>
+<p>Tara talked to me a little about her role in the Publisher team and the overall <span class="caps">PM</span> position. She then asked me about HawkTour and asked for clarification when I said I was the &#8220;go-to&#8221; guy for the project. She then posed a question related directly to Publisher. It was about an email sharing feature. She treated it as a greenlight question initially, then transitioned into design after I had a few ideas. We proed and conned the solutions, then made a decision based on the simplicity of the solution. I made all my assumptions clear, as per usual. I really enjoyed this interview, even though it was kind of short, because Tara actually got up and worked on the whiteboard with me, which made it seem more teamwork oriented, rather than&nbsp;observational. </p>
+<p>At this point I was kind of hungry, so I was glad that lunch was coming up. I had been told that the interviewers shared notes between meetings and stuff, but I don&#8217;t know if they did it for me, because I got a lot of questions about HawkTour, even though I went into great detail with nearly every interviewer. Perhaps they just wanted me to talk about it each time. I&#8217;m not sure. But by the end of the day, I was talking less and less about it because I was sick of defining context awareness and pervasive computing and explaining the architecture of the&nbsp;application.</p>
+<p>I had to take the shuttle to a different building for the next interview, and when I arrived, the receptionist informed me I would be meeting with Dave Quick instead of Dan Kogan, who I was scheduled to meet with. Dave came down in a couple of minutes and asked if I wanted to eat in the cafeteria or go out somewhere. It really didn&#8217;t matter to me, so we went to a teriyaki place at his&nbsp;suggestion.</p>
+<h2><a name="cms1"></a>Content Management Server Team &#8212; Dave Quick &#8212; 12:30 pm&nbsp;<span class="caps">PST</span></h2>
+<p>The beginning of the meeting was pretty informal, since we went to lunch. Dave talked a lot about his hobbies and interests, and we discussed technologies. He was Greek at <a href="http://www.rpi.edu/"><span class="caps">RPI</span></a>, and knew some of the Delts from the chapter there, which was cool. It was nice to talk to someone who knew about the Greek system and didn&#8217;t find it strange that I was in a fraternity. I had a good time with him and enjoyed talking about blogging, movies, photography, cars,&nbsp;etc.</p>
+<p>When we got back to his office, we talked about the <span class="caps">CMS</span> product, since no one up to that point had really been able to tell me what it was, and he went over the <span class="caps">PM</span> position as it related to the <span class="caps">CMS</span> team. He then posed my first technical&nbsp;question:</p>
+<blockquote>
+<p>You have an array of positive and negative numbers. Find the largest consecutive sum of numbers. The summation can start and end at any array index and can be of any&nbsp;length.</p>
+</blockquote>
+<p>I told him I would start with the brute force approach and mapped out a dual for-loop solution that works, but is certainly the least efficient (<code>O(n^2)</code>). He asked me if I knew Big-O notation, which I do, but my brain was sizzling and I couldn&#8217;t think of it. I offered to analyze the algorithm and try to optimize it, but he seemed satisfied with the solution. I&#8217;m sure if I was interviewing for a Dev/Test position my solution would <strong>not</strong> have been sufficient. But then, I knew going in that I wanted a <span class="caps">PM</span> position because it&#8217;s what I am best at, and I explained that to Dave as&nbsp;well.</p>
+<p>He then asked me about integrating the <span class="caps">LCS</span> into Excel. How could we do it? What makes the most sense? This was more of a design question. I developed a customizable bar based on the auto-sum feature that Excel already provides. I tried to keep it simple. When I suggested we make the bar customizable, Dave asked me to draw the user interface on the board. This was actually a recurring theme throughout the day: <em>&#8220;What does the <span class="caps">UI</span> look like?&#8221;</em> I discovered that the <span class="caps">PM</span> does a lot of interface designing, even though they may not have any design training or&nbsp;experience. </p>
+<p>Dave led me back down to the lobby and chatted with me a bit before heading back upstairs. Dan Kogan would be my next&nbsp;interviewer.</p>
+<h2><a name="cms2"></a>Content Management Server Team &#8212; Dan Kogan &#8212; 2:00 pm&nbsp;<span class="caps">PST</span></h2>
+<p>This interview was my worst, I think. Dan and I didn&#8217;t really hit it off and he mentioned that I was his third interview, so he was probably as tired as I was. I felt my brain slow down tangibly towards the end of my interview with Dave, and it pretty much stayed checked out for the entire interview with Dan. Dan asked me some questions about the HawkTour survey <span class="caps">UI</span>, and seemed to be checking that I knew what <span class="caps">UI</span> components made the most sense in certain&nbsp;situations.</p>
+<p>He then drew two boxes on the board, one labeled &#8220;<span class="caps">IIS</span>&#8221; and the other labeled &#8220;browser.&#8221; He wanted me to tell him what happens when someone requests a website in their browser. I wasn&#8217;t really clear what he wanted, but couldn&#8217;t get any clarification from him (though I just might have been asking the wrong questions. My brain was pretty fried at this point), so I just explained the basic request-response architecture. I skipped the network architecture part of things initially, like <span class="caps">DNS</span>, but came back to it later when he asked more pointed&nbsp;questions.</p>
+<p>Then he asked several localization questions. Things&nbsp;like:</p>
+<blockquote>
+<p>I have one page that I want displayed in three different languages. How do I do it? What changes are necessary on the server and client side? What does the site administrator see when he wants to add new languages? How do we determine what language to display by default? How to we make this setting persistent if the user changes&nbsp;it?</p>
+</blockquote>
+<p>I think I may have gotten a little too defensive in this interview. Dan made some good points about flaws in my solution(s), but I took it as an attack on my solution, so I immediately became defensive. Anyway, this interview could have gone better, but I suppose it could have gone worse as&nbsp;well.</p>
+<p>After the interview, Dan was unsure of who I&#8217;d be meeting with next, so he took me to the lobby and said he&#8217;d check for me. A few minutes later, Jim Masson came out and led me to his&nbsp;office.</p>
+<h2><a name="cms3"></a>Content Management Server Team &#8212; Jim Masson &#8212; 3:15 pm&nbsp;<span class="caps">PST</span></h2>
+<p>Jim got right down to business, I think because I was an unexpected interview for him, and he didn&#8217;t have much time. He told me a little about himself, then set up the following&nbsp;scenario:</p>
+<blockquote>
+<p>My grandmother and I both have lots of digital photos. I am a conscientious computer user and I regularly back up, but my grandmother doesn&#8217;t. However, we&#8217;d both be equally heartbroken if we lost our photos because of some sort of computer failure. How do we make it easy for my grandmother to back up her&nbsp;photos?</p>
+</blockquote>
+<p>I did the typical clarify the problem approach, then started writing on the board. I tried to fit it in to a format that Microsoft is fond of: the wizard. So I designed the &#8220;Photo Migration Wizard.&#8221; I divided the entire process into four major steps, then defined each step clearly. One thing I did not explain was that this was intended to be an iterative process &#8212; after the initial run of the wizard, it should be a quick and painless process to run it again and update the backup. Some highlights from the design I came up with were that it should be able to export to multiple volumes (ie, multiple <span class="caps">CD</span>&#8217;s), then import from just a subset of those <span class="caps">CD</span>&#8217;s (in case you lose one), robust import options, scheduled running, tying in with online backup service of some kind, etc. Jim asked me to go into greater detail, including the <span class="caps">UI</span> screen shots, of the importing process, and also asked to consider other usage options for the feature. This led to me brainstorming about photo recovery options if you accidentally delete a photo, and simple comparison functions to compare existing photos to the version in the backup&nbsp;archive.</p>
+<p>I came away from the interview refreshed because I felt like I had offered a robust solution, and a couple of times I mentioned features that seemed to surprise Jim, so this served to re-energize&nbsp;me.</p>
+<p>Next up was Dieter from the Project Team. I never got fully introduced to him, so I don&#8217;t know his last name. This was my final interview&nbsp;on-site.</p>
+<h2><a name="project"></a>Project Team &#8212; Dieter &#8212; 4:00 pm&nbsp;<span class="caps">PST</span></h2>
+<p>My interview with Dieter consisted of a lot of questions and answers (I&#8217;d actually had a chance throughout the day to think of a couple of new ones) and a greenlight session that was interestingly related to pervasive&nbsp;computing:</p>
+<blockquote>
+<p>I want to integrate a <span class="caps">PC</span> into a refrigerator. Brainstorm possible uses and/or&nbsp;features.</p>
+</blockquote>
+<p>I went right to work. I&#8217;d actually had some experience with this particular problem because it is an application of pervasive computing. I talked about getting the information of the contents of the fridge into the computer and using it to create shopping lists, and integrating recipes into the computer to make shopping lists based on what you need and what you have. Also, I talked about providing web access using the fridge computer, then mentioned that we would probably have to redesign the browser <span class="caps">UI</span> specifically for a touch screen. I discussed possible ways to let the fridge know what was inside it, and went into limitations and such for each of&nbsp;them.</p>
+<p>Dieter walked me to Building 19, I checked out with the receptionist, then headed back to my hotel room. I was pretty tired, but desperately needed food. I browsed the web for a bit and found a nice-looking steakhouse, and was almost ready to go when Ron gave me a call to&nbsp;debrief.</p>
+<h2><a name="debrief"></a>Debrief &#8212; Rondell Honcoop &#8212; 5:45 pm&nbsp;<span class="caps">PST</span></h2>
+<p>Ron basically wanted to go over the day and how I felt things went. He asked me if I had gotten answers for my questions, and wanted to know how Microsoft stacked up against Google post-interview. Honestly, I was pretty impressed with the whole interview process and the people I had met, so I told him honestly that they were at the front now. He encouraged me to let him know if I had questions, and I got permission from him to follow-up if I hadn&#8217;t heard anything from him by Friday (which ended up being overkill, because I got an offer the next&nbsp;day). </p>
+<p>I came out of the interview pretty confident that I would get an offer. I felt that I had done a very good job during the whole process, and was excited to hear what they would say. In the end they have made a very generous offer and I am happy to say that I accepted. Anyway, I hope that the information contained here will be of some use to you as you pursue employment at&nbsp;Microsoft.</p>
+                                                                                                                
+                    <div class="row">
+                        <div class="twelve columns post-links">
+                            <ul class="block-grid two-up">
+                                <li>
+                                                                            <a href="/2005/02/iit-student-sued/">← IIT Student Sued</a>
+                                                                    </li>
+                                <li>
+                                                                            <a href="/2005/02/print-copy/">Print Copy →</a>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                                            </article>
+            </div></section>
+            </div>
+        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+
+<p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
+            </div>
+    </div>
+                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+        
+    
+    
+</body>
+</html>

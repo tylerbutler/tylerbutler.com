@@ -1,8 +1,6 @@
 SUPER: base.yaml
 
-# Disable comments
-THEME_SETTINGS:
-  comments: ~
-
-SITE_URL: 'http://tylerbutler.azurewebsites.net'
+SITE_URL: 'http://www.tylerbutler.com'
 OUTPUT_DIR: './output/azure'
+
+FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'

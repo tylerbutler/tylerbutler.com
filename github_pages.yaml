@@ -2,3 +2,5 @@ SUPER: base.yaml
 
 SITE_URL: 'http://tylerbutler.github.io/tylerbutler.com'
 OUTPUT_DIR: './output/github/'
+
+HOME_URL: '/tylerbutler.com'

@@ -2,3 +2,6 @@
 	path = output/github
 	url = https://github.com/tylerbutler/tylerbutler.com.git
 	branch = gh-pages
+[submodule "output/github.io"]
+	path = output/github.io
+	url = https://github.com/tylerbutler/tylerbutler.github.io.git

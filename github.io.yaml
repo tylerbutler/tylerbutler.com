@@ -1,0 +1,4 @@
+SUPER: base.yaml
+
+SITE_URL: 'http://tylerbutler.github.io'
+OUTPUT_DIR: './output/github.io/'

@@ -34,6 +34,7 @@ pip-log.txt
 /logs/
 /output/*
 !/output/azure/
+!/output/github.io/
 _cache/
 *.cache
 *_emma_secret.pvt

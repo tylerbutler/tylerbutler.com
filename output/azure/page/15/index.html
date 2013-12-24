@@ -1,24 +1,25 @@
 ﻿<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>        Tyler Butler
 </title>
 
                     
-    <link rel="alternate" type="application/rss+xml"
-          title="Tyler Butler RSS Feed"
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
           href="/feeds/atom.xml"/>
 
+                
                                                         <link rel="stylesheet"
                       href="/static/engineer/lib/foundation/stylesheets/grid.css">
                 <link rel="stylesheet"
@@ -60,35 +61,74 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
             </script>    
-    <!-- IE Fix for HTML5 Tags -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            
-<ul>
-                    <li class="current">
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
         <a href="/">articles</a></li>
-                    <li>
+                <li>
         <a href="/projects">projects</a></li>
-    </ul>
+</ul>
 
                         </nav>
                 </header>
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">OCT</div>
+                    <div class="day">01</div>
+                    <div class="year">2008</div>
+                    <div class="permalink">
+                        <a href="/2008/10/sharepoint-updates/"
+                           title="Permanent link to 'SharePoint Updates'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/sharepoint">sharepoint</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2008-10-01 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2008/10/sharepoint-updates/">SharePoint Updates</a>
+                                            </h1>
+                </header>
+                                    <p>We&#8217;ve changed the way we&#8217;re managing and releasing updates here in the
+SharePoint team. This is all very good news. It makes things more manageable
+internally for us, which translates into quicker, more effective turnaround on
+issues, but it also means that updates and patches will be much more
+predictable, so you can plan around those dates more effectively. There is
+still recourse for you if you have an absolutely critical issue that needs to
+be resolved&nbsp;<span class="caps">ASAP</span>.</p>
+<p>More details on this <a href="http://blogs.msdn.com/sharepoint/archive/2008/09/29/announcing-august-cumulative-update-for-office-sharepoint-server-2007-and-windows-sharepoint-services-3-0.aspx">SharePoint blog post</a> and <a href="http://support.microsoft.com/kb/953878"><span class="caps">KB</span> article 953878</a>.</p>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">SEP</div>
@@ -305,62 +345,6 @@ the topic (courtesy <a href="http://en.wikipedia.org/wiki/The_Simpsons:">The Sim
 relationship is as straightforward as observing a correlation. It&#8217;s&nbsp;not.</p>
 <p><strong>Note:</strong> I know the <code>!=</code> operator is not equivalent to &#8220;does not imply.&#8221; But I am 
 too lazy right now to see if there&#8217;s even a Unicode character for the right&nbsp;symbol.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">AUG</div>
-                    <div class="day">21</div>
-                    <div class="year">2007</div>
-                    <div class="permalink">
-                        <a href="/2007/08/lessons-from-a-street-performer/"
-                           title="Permanent link to 'Lessons from a Street Performer'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/travel">travel</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
-                <time datetime="2007-08-21 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2007/08/lessons-from-a-street-performer/">Lessons from a Street Performer</a>
-                                            </h1>
-                </header>
-                                    <p>Should you ever find yourself watching a street performer&#8217;s act, and you end
-up volunteering, either willingly or unwillingly, to be a part of said act,
-here&#8217;s a piece of advice: don&#8217;t run away when the performer&#8217;s not looking. If
-you do, you might find out later that you&#8217;re missing something that might be
-important to you. This is what happened to Emily, a rather skittish young
-German woman who happens to be visiting Brisbane this week, and is now missing
-her&nbsp;watch.</p>
-<p>While I was walking back to the Kookaburra this afternoon, I passed through
-the Queen Street Mall and stopped to view a street magician. Shortly after I
-started watching, he approached a girl in the audience to act as his second
-&#8220;assistant.&#8221; The girl didn&#8217;t look particularly happy to have been chosen, but
-rather than protest she joined the performer in front of the audience. Soon
-she was introduced s Emily from Germany, to much enthusiastic adulation from
-the&nbsp;crowd.</p>
-<p>The performer continued on with his act, which primarily involved his first
-assistant, another young woman named Charlie. While he turned to face Charlie
-and continued on, Emily turned and left, running swiftly into the swelling
-crowd at the mall. It took a few seconds for both the audience and the
-performer to figure out what was happening. The crowd started laughing at her
-departure, but the performer yelled after her, &#8220;Wait! You&#8217;re missing
-something!&#8221; With that, he pulled a hand watch from his pocket and waved it
-above his head. Alas, Emily ran on, and was soon lost in the crowd. The
-performer looked a bit baffled, jokingly offered the watch to anyone who would
-buy it, then continued on with his act (with a new second&nbsp;assistant).</p>
-<p>My first thought was that Emily was in on it, but after the act a few people
-approached the performer and asked if it was scripted. He explained that it
-wasn&#8217;t. He had removed her watch surreptitiously as part of his act and was
-planning to reveal it to her later on. His intention was by no means to steal
-her watch, but when she ran off so unexpectedly he didn&#8217;t know what to&nbsp;do.</p>
-<p>So people, if you wind up in a street performer&#8217;s act, please just be good-
-natured about it and participate. It&#8217;s really not that&nbsp;hard.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

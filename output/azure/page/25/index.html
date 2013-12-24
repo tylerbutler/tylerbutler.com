@@ -1,24 +1,25 @@
 ﻿<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>        Tyler Butler
 </title>
 
                     
-    <link rel="alternate" type="application/rss+xml"
-          title="Tyler Butler RSS Feed"
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
           href="/feeds/atom.xml"/>
 
+                
                                                         <link rel="stylesheet"
                       href="/static/engineer/lib/foundation/stylesheets/grid.css">
                 <link rel="stylesheet"
@@ -60,35 +61,67 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
             </script>    
-    <!-- IE Fix for HTML5 Tags -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            
-<ul>
-                    <li class="current">
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
         <a href="/">articles</a></li>
-                    <li>
+                <li>
         <a href="/projects">projects</a></li>
-    </ul>
+</ul>
 
                         </nav>
                 </header>
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">JUN</div>
+                    <div class="day">15</div>
+                    <div class="year">2005</div>
+                    <div class="permalink">
+                        <a href="/2005/06/interview-with-a-search-engine/"
+                           title="Permanent link to 'Interview with a Search Engine'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2005-06-15 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://www.satirewire.com/features/satire-jeevesinterview.shtml">Interview with a Search Engine</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p><a href="http://www.the-underdogs.org/game.php?id=330">Dr. Sbaitso</a> was a psychiatrist program that I first played with as part
+of my Sound Blaster 16 (my first sound card!) Friends and I actually made some
+prank phone calls using it. Hysterical! Anyway, here is a funny article
+outlining a &#8220;conversation&#8221; with the Jeeves search engine of Ask.com. Prepare
+to&nbsp;laugh.</p>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">MAY</div>
@@ -300,35 +333,6 @@ is a bit of a sham anyway. Of course, we&#8217;ll take the awards if they want
 to give them to&nbsp;us.</p>
 <p>Check out the <strong>award-winning</strong> <a href="http://www.hawktour.net/">Hawktour website</a>, and see why all IPROs
 should strive to be as good as we&nbsp;are.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">APR</div>
-                    <div class="day">24</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/04/delicious-rss-feed/"
-                           title="Permanent link to 'Del.icio.us RSS Feed'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2005-04-24 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2005/04/delicious-rss-feed/">Del.icio.us <span class="caps">RSS</span> Feed</a>
-                                            </h1>
-                </header>
-                                    <p>I removed the <a href="http://del.icio.us/">Del.icio.us</a> <span class="caps">RSS</span> feed from the right side of the site
-because it was getting too long. If I had <a href="http://del.icio.us/pridkett">as many</a> as <a href="http://patrick.wagstrom.net/">Patrick</a>, the
-front page would render about a mile long. So I&#8217;m looking for a way to limit
-the number of entries in the feed to something more manageable, like 10. I
-really only want to share the most recent entries through a feed anyway &#8211;
-that&#8217;s what a feed is for! If I want to share <em>everything</em> I&#8217;ll point people
-to the site! So if anyone knows how to cut down the number of entries in the
-feed, let me&nbsp;know.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

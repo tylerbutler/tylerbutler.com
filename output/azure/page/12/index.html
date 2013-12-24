@@ -1,24 +1,25 @@
 ﻿<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>        Tyler Butler
 </title>
 
                     
-    <link rel="alternate" type="application/rss+xml"
-          title="Tyler Butler RSS Feed"
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
           href="/feeds/atom.xml"/>
 
+                
                                                         <link rel="stylesheet"
                       href="/static/engineer/lib/foundation/stylesheets/grid.css">
                 <link rel="stylesheet"
@@ -60,35 +61,101 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
             </script>    
-    <!-- IE Fix for HTML5 Tags -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            
-<ul>
-                    <li class="current">
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
         <a href="/">articles</a></li>
-                    <li>
+                <li>
         <a href="/projects">projects</a></li>
-    </ul>
+</ul>
 
                         </nav>
                 </header>
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">MAY</div>
+                    <div class="day">13</div>
+                    <div class="year">2009</div>
+                    <div class="permalink">
+                        <a href="/2009/05/twitter-replies-changes/"
+                           title="Permanent link to 'Twitter @replies Changes'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/twitter">twitter</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2009-05-13 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2009/05/twitter-replies-changes/">Twitter @replies Changes</a>
+                                            </h1>
+                </header>
+                                    <p>There&#8217;s been some hoopla on Twitter today after a <a href="http://blog.twitter.com/2009/05/small-settings-update.html">poorly handled
+announcement</a> that the option to control whether replies from people you
+follow to people you don&#8217;t follow show up in your feed. This was an option in
+the Notices section of the Twitter settings that was off by default. The
+original post from <a href="http://twitter.com/Biz">@biz</a> made it sound like they were trying to reduce
+confusion and that it was no big deal. That&#8217;s a bit naive - they should have
+seen the backlash coming a mile away&#8230; Dave Winer has <a href="http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html">a good summary</a> of
+problems with how they messaged&nbsp;things.</p>
+<p>@biz later posted that they had heard the feedback, claiming it was a
+scalability problem with the implementation. I initially didn&#8217;t buy that
+argument, but the <a href="http://www.readwriteweb.com/archives/is_this_why_twitter_changed_its_replies_policy.php">description over at ReadWriteWeb</a> clarifies things
+somewhat. <a href="http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html#comment-9291130">This comment</a> over at Winer&#8217;s post clarifies it further. I think
+I understand now, given their architecture, why this would be a beneficial
+change for them to&nbsp;make.</p>
+<p>But that&#8217;s not what I&#8217;m ultimately writing about. Much of the complaining from
+people opposed to the change has been that it makes it harder to meet new
+people on Twitter. If you see a reply to someone else from a person you follow
+then you might also be interested in following them. <span class="caps">OK</span>, fine, I buy that, but
+for me, I simply want to see <strong>everything</strong> people I follow say, regardless of
+who they say it to. With clients like <a href="http://www.atebits.com/tweetie-mac/">Tweetie</a> and <a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284540316&amp;mt=8">Twitterrific 2.0
+(iTunes link)</a> able to browse through conversations effortlessly, I can use
+the tweets from my timeline as a jumping-off point to see the whole
+conversation which someone I <strong>am</strong> interested in is involved in. My goal is
+not to find new people to follow (though that does happen occasionally), but
+rather, just to see what interesting things people I follow are saying. I
+don&#8217;t care who they&#8217;re talking to. It&#8217;s not like everything <a href="http://twitter.com/Lincolnator">@Lincolnator</a>
+says to <a href="http://twitter.com/MajorLB">@MajorLB</a> is completely uninteresting to me just because I don&#8217;t
+follow&nbsp;her.</p>
+<p><a href="http://blog.twitter.com/2009/05/we-learned-lot.html">The proposed changes</a> as they stand right now don&#8217;t solve my complaint.
+But it&#8217;s early; the smart people at Twitter will figure something out, and
+hopefully, it&#8217;ll solve my scenario and world hunger at the same time. One can
+hope and&nbsp;dream.</p>
+<p>You can see the protests/commentary onTwitter itself by 
+<a href="http://search.twitter.com/search?q=%23Fixreplies">searching for #fixreplies</a>. It&#8217;s still the top trending search term as of 
+this&nbsp;writing.</p>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">MAY</div>
@@ -250,40 +317,6 @@ completely hobbles&nbsp;them.</p>
                 </header>
                                     <p>It&#8217;s about freakin&#8217; time. I was so sick of having to use <a href="http://www.bugmenot.com">BugMeNot</a> just to
 download&nbsp;extensions&#8230;</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">APR</div>
-                    <div class="day">12</div>
-                    <div class="year">2009</div>
-                    <div class="permalink">
-                        <a href="/2009/04/mountain-goats-are-amazing-and-grooveshark-is-pretty-cool-too/"
-                           title="Permanent link to 'Mountain Goats Are Amazing (and Grooveshark is pretty cool too...)'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2009-04-12 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2009/04/mountain-goats-are-amazing-and-grooveshark-is-pretty-cool-too/">Mountain Goats Are Amazing (and Grooveshark is pretty cool too&#8230;)</a>
-                                            </h1>
-                </header>
-                                    <p>If you haven&#8217;t heard of the <a href="http://www.mountain-goats.com">Mountain Goats</a>, then you are in for a real
-treat. I&#8217;ve been a huge fan since 2005. I actually heard about them from a
-girl I met during my interview with Microsoft while in Seattle. I picked up a
-few tracks off of Tallahassee from iTunes, and I&#8217;ve been in love ever since.
-<a href="http://en.wikipedia.org/wiki/John_Darnielle">John Darnielle</a> is utterly stunning –- the lyrics consistently blow me
-away. I mean, it&#8217;s <em>poetry</em>. The fact that it&#8217;s set to music is just icing on
-an already orgasmic cake. If there is one musician who deserves comparison to
-Dylan –- it&#8217;s Darnielle. Anyway, my buddy <a href="http://twitter.com/vandrijevik">Vlad</a> recently discovered them,
-and so I thought it time to share the amazingness with the world at&nbsp;large.</p>
-<p>Oh, and if you haven&#8217;t tried <a href="http://www.grooveshark.com">Grooveshark</a> yet, give it a whirl. The music
-selection is surprisingly large, and being able to link friends directly to
-songs and embed them on the web is <em>killer</em>. The <span class="caps">UI</span> is a bit weird and awkward
-–- but I assume it&#8217;ll evolve over&nbsp;time.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

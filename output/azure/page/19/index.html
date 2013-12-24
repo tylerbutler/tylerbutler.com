@@ -1,24 +1,25 @@
 ﻿<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>        Tyler Butler
 </title>
 
                     
-    <link rel="alternate" type="application/rss+xml"
-          title="Tyler Butler RSS Feed"
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
           href="/feeds/atom.xml"/>
 
+                
                                                         <link rel="stylesheet"
                       href="/static/engineer/lib/foundation/stylesheets/grid.css">
                 <link rel="stylesheet"
@@ -60,35 +61,130 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
             </script>    
-    <!-- IE Fix for HTML5 Tags -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            
-<ul>
-                    <li class="current">
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
         <a href="/">articles</a></li>
-                    <li>
+                <li>
         <a href="/projects">projects</a></li>
-    </ul>
+</ul>
 
                         </nav>
                 </header>
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">FEB</div>
+                    <div class="day">02</div>
+                    <div class="year">2007</div>
+                    <div class="permalink">
+                        <a href="/2007/02/building-moss-master-pages/"
+                           title="Permanent link to 'Building MOSS Master Pages'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/sharepoint">sharepoint</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2007-02-02 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2007/02/building-moss-master-pages/">Building <span class="caps">MOSS</span> Master Pages</a>
+                                            </h1>
+                </header>
+                                    <p>Now that <span class="caps">MOSS</span> is available to lots of people, and people are building lots of
+sites that <a href="http://www.fifteen.net">don&#8217;t</a> <a href="http://www.shareview.co.uk/">look</a> <a href="http://www.hedkandi.com/">like</a> SharePoint, a lot of you might be
+wondering how you should get started in building your own custom master page
+for your site. I talked a little bit about this in my first post on building
+tylerbutler.com, but I think it might be valuable to post some info about the
+minimal master page and its role in helping you build a custom master page for
+your site. But first, some&nbsp;background…</p>
+<p>During the early betas, people heard that you could make SharePoint &#8220;not look
+like SharePoint,&#8221; and so they set off to do just that. People started cracking
+open default.master and trying to understand it. The problem many people
+reported was that the markup in default.master was ridiculously complicated,
+and it wasn&#8217;t clear what could be removed and what couldn&#8217;t. The complexity is
+somewhat necessary for that master page because of all the delegate controls
+we have to put in place to support a bunch of different back-end SharePoint
+stuff (I do believe, however, that there&#8217;s plenty of things we could/can do in
+that master page to make it clearer and easier to customize without removing
+functionality, so this is not meant to be an&nbsp;excuse).</p>
+<p>Anyway, there were customers that were trying to build internet facing sites
+on top of SharePoint, because <strong>a)</strong> we told them that they could/should and
+<strong>b)</strong> we rolled up a lot of web content management functionality from Content
+Management Server 2002, and customers that were using that product were
+investigating how they would move to <span class="caps">MOSS</span>. These customers did not want their
+site to look anything like SharePoint. These customers also often had a site
+design template that was coming from their design team, either in <span class="caps">HTML</span> or as
+image mock-ups. Trying to fit that design into default.master was exceedingly
+difficult because of all the unclear markup in that master page.
+Default.master is designed for a SharePoint site – one that looks and acts
+like SharePoint. But people who wanted to build non-SharePoint looking sites
+were getting tripped up by using it as a starting&nbsp;point.</p>
+<p>We do have several master pages that we built that are much simpler than
+default.master. When you provision a Publishing Portal site collection, for
+example, we default to BlueBand.master, which has customized <span class="caps">CSS</span> and <span class="caps">MOSS</span>
+navigation out of the box. It&#8217;s a cleaner starting point, so we initially told
+people to start there rather than with default.master. We still had problems,
+though, because you never knew if a placeholder was absolutely necessary in
+your master page. What would happen is you&#8217;d remove a seemingly innocuous
+placeholder and your page would work fine until you browsed to some specific
+page that was overriding that placeholder, then things would&nbsp;break.</p>
+<p>What we needed was a sample master page that included only the markup that was
+<em>absolutely necessary to get your pages to render.</em> Thus, the <a href="http://msdn2.microsoft.com/en-us/library/aa660698.aspx">minimal master
+page</a> was born. This master page is purposely bare. It&#8217;s just a bunch of
+placeholders – those placeholders are necessary for things in your site to
+work properly. With this master page, you can take your markup from your
+designer, paste it into SharePoint Designer, and move markups into the
+appropriate placeholders. If there&#8217;s some pieces you need/want from
+default.master or another page, you can always open them up and copy/paste the
+appropriate&nbsp;markup.</p>
+<p>So, should you start with <code>default.master</code>, <code>blueband.master</code>, or the minimal
+master page example when building your own custom master page? Well, the
+answer depends on what you&#8217;re trying to do. If you&#8217;re building out a site that
+really should look and work like vanilla SharePoint, then maybe <code>default.master</code>
+makes sense. If you&#8217;re trying to do something more exotic, <code>blueband.master</code> and
+its siblings have examples of different navigational structures and color
+schemes, so maybe it makes sense to start from one of those that is close to
+the navigation/color you&#8217;re aiming for. But my personal recommendation is to
+start with the minimal page and copy/paste the appropriate controls/markup
+from other master pages as necessary. This ensures you get only what you need
+and want in your page, rather than having to weed through a bunch of markup to
+get rid of stuff that doesn&#8217;t <em>look</em> like it&#8217;s needed. If you do want to go
+the default.master route, then Heather Solomon has <a href="http://heathersolomon.com/blog/archive/2007/01/26/6153.aspx">a custom master page</a>
+that she&#8217;s tweaked from <code>default.master</code> to make things cleaner and more&nbsp;straightforward.</p>
+<p>I hope this helps you figure out how to get started building out your site
+look and feel. There is a growing number of live custom sites on top of <span class="caps">MOSS</span>,
+and it&#8217;s exciting to see what people are able to build with this&nbsp;product!</p>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">JAN</div>
@@ -240,94 +336,6 @@ that I made up as an arbitrary answer to some stupid question that a bank
 decided was an excellent way to distinguish me from some sorry&nbsp;thief.</p>
 <p>To add insult to injury, many times I have to select<strong> two or more</strong> security
 questions. <strong><span class="caps">OMG</span>. <a href="/2004/08/i-hate-banks/">I hate banks so&nbsp;much.</a></strong></p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JAN</div>
-                    <div class="day">16</div>
-                    <div class="year">2007</div>
-                    <div class="permalink">
-                        <a href="/2007/01/rizzy-on-the-wii/"
-                           title="Permanent link to 'Rizzy on the Wii'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/wii">wii</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
-                <time datetime="2007-01-16 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2007/01/rizzy-on-the-wii/">Rizzy on the Wii</a>
-                                            </h1>
-                </header>
-                                    <p>My pledge bro Craig &#8220;Rizzy&#8221; Rohe also has a Wii, and he sent me some mini-reviews on some games. Since he has no online presence (yet), I thought I&#8217;d
-post them. But before I do that, here&#8217;s what he has to say about getting
-online with the&nbsp;thing:</p>
-<blockquote>
-<p>First, some bitching about&nbsp;Wii:</p>
-<p>Up until 10 minutes ago, all I&#8217;ve ever done with the Wii is played games.
-Very easy, very fun. However, trying to use the internet connectivity and
-adding friends made me want to punch a little Japanese person in the face. Do
-they actually expect average people to be able to do this? I&#8217;m an embedded
-systems designer, and I was frustrated with it. Other than letting our Mii&#8217;s
-travel back and forth, is there even any benefit to doing it? Shame on you&nbsp;Nintendo.</p>
-<p>Second, games only save to the internal Wii memory. If you want them on the
-<span class="caps">SD</span> card, you have to copy it over manually. Of course, you&#8217;d have to do that
-each time you play the game in order to keep the <span class="caps">SD</span> card up to date. It pretty
-much makes the $50 1G memory card I bought completely&nbsp;useless.</p>
-</blockquote>
-<p>I couldn&#8217;t have said it better myself. The Wii online setup is pretty bad. I&#8217;m
-really surprised people are getting it to work without wanting to gouge their
-own eyes out with a spoon. As for me, I am still using it on my neighbor&#8217;s
-wireless because it won&#8217;t work on mine. And yes, I have changed to channels
-1/11 on the router. Yes, I have followed all stupid suggestions in the forums
-and on the support site. Nintendo could take a few pointers from Microsoft in
-this particular part of the&nbsp;experience.</p>
-<p>The <span class="caps">SD</span> thing seems strange. I haven&#8217;t tried to use an <span class="caps">SD</span> card yet, but it does
-seem odd that you can&#8217;t save games directly to it. This does seem like
-something Nintendo could fix change with a firmware update&nbsp;though.</p>
-<blockquote>
-<p><strong>Wii Sports</strong> &#8211; It&#8217;s ok. Fun little games to showcase the controller
-abilities. I&#8217;ve found tennis to be pretty fun with multiple people, and you
-can avoid the dreaded Wii tennis elbow once you learn that a skilled flick of
-the wrist will do just as much as a full blown swing. I brought my Wii home
-for Christmas, and since I have a zillion siblings we had continuously
-rotating doubles matches which were a&nbsp;blast.</p>
-<p><strong>Super Monkey Ball</strong> &#8211; I usually only play the mini games. Not as much fun
-as the versions for GameCube. I think they tried too hard to incorporate the
-motion control into the games, and many of them are just too touchy, or they
-should have put more time into making it fun. I guess they were pressed for
-time trying to get that one out for launch. There are a few that are pretty
-entertaining&nbsp;though.</p>
-<p><strong>Zelda: Twilight Princess</strong> &#8211; This game rocks. It&#8217;s hella fun to play. They
-used the motion sensors in moderation, which is good. The game itself is
-really fun - plenty of puzzles and tangent adventures to try out. I haven&#8217;t
-played any Zelda games since the one for 8-bit Nintendo, but I can still
-blindly say this is probably the best to&nbsp;date.</p>
-<p><strong>Excite Truck</strong> &#8211; So much fun my head almost exploded. It&#8217;s a very fast
-paced, physics defying game. There&#8217;s actually a lot of strategy needed for the
-more advanced tracks, but at the same time you can just pick a level and have
-fun doing 720&#8217;s at 1000 ft in the air and smashing through trees with power-
-ups. Definitely one of the best games I&nbsp;own.</p>
-<p><strong>Red Steel</strong> &#8211; I haven&#8217;t played this game very much. The reason? My damn
-arm gets tired. Another example of how not to design a game interface. I think
-it would be much better if I could play for more than 20 mins at a time, so my
-review may be biased. Basically, you are required to use the Wii-mote pointer
-continuously to aim and steer in the game. That&#8217;s not even too bad because you
-could rest your arm on your knee; then they thought up the great idea of
-requiring you to extend your arm towards the <span class="caps">TV</span> to zoom in/out. Combine all of
-that movement and you have to hold your arm straight out for extended periods
-of time during game play. Very annoying. Maybe I need to hit the&nbsp;gym.</p>
-</blockquote>
-<p>Haven&#8217;t gotten into Twilight Princess yet myself. Elebits should be here from
-<a href="http://www.gamefly.com/">Gamefly</a> this week, though in retrospect maybe I should have put Excite
-Truck at the top of my queue instead. Oh well, way too many awesome games
-these days to get to. I still work occasionally, you&nbsp;know.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

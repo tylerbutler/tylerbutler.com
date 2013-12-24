@@ -1,24 +1,25 @@
 ﻿<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>        Tyler Butler
 </title>
 
                     
-    <link rel="alternate" type="application/rss+xml"
-          title="Tyler Butler RSS Feed"
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
           href="/feeds/atom.xml"/>
 
+                
                                                         <link rel="stylesheet"
                       href="/static/engineer/lib/foundation/stylesheets/grid.css">
                 <link rel="stylesheet"
@@ -60,35 +61,117 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
             </script>    
-    <!-- IE Fix for HTML5 Tags -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            
-<ul>
-                    <li class="current">
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
         <a href="/">articles</a></li>
-                    <li>
+                <li>
         <a href="/projects">projects</a></li>
-    </ul>
+</ul>
 
                         </nav>
                 </header>
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">JUL</div>
+                    <div class="day">20</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/07/dropboxxer/"
+                           title="Permanent link to 'DropBoxxer'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/project">project</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-07-20 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2004/07/dropboxxer/">DropBoxxer</a>
+                                            </h1>
+                </header>
+                                    <p>I am a mobile guy. I use my laptop on the road a lot, and at home I have three
+different computers (desktop, server, media box). On top of all that I use
+<a href="http://omega.cs.iit.edu/">Omega</a> to host some files and such for easy mobile access. I have
+everything networked together using windows file sharing, and for most part,
+everything wors flawlessly. The problem is, I often need to copy or move files
+from one remote location to another. Simple, right? Just drag and drop!
+Unfortunately, often times the windows I need to drag to aren&#8217;t readily
+visible, and it is relatively time consuming to drag down to the taskbar, wait
+for the window to become active, then drag back up to the window to drop the&nbsp;file.</p>
+<p>If Windows would let me drop items on the taskbar, it&#8217;d be all good, but since
+it won&#8217;t, I decided to make my own application that would allow me faster
+access to common &#8220;drop&#8221;&nbsp;locations.</p>
+<p>I did this in C# using a copy of Visual Studio .<span class="caps">NET</span> that I got through
+Illinois Tech&#8217;s Academic Alliance program through Microsoft. I&#8217;d never used C#
+or .<span class="caps">NET</span> before, so I learned as I&nbsp;went.</p>
+<p>DropBoxxer sits in your system tray, and doesn&#8217;t take up any screen real
+estate at all until needed. When you select a file and drag it over the left
+corner (right above the system time) DropBoxxer fade up and in from off
+screen. There are different &#8220;drop boxes&#8221; for various locations, with three
+types of icons &#8211; one for local locations, one for remote locations, and one
+for the Recycle Bin (note that the recycle bin icon doesn&#8217;t currently work in
+version 0.1). Simply drop the file over one of these drop boxes, and the
+program copies or moves the file to the drop location. By default, everything
+is copied rather than moved, but simply hold down the Shift key as your drag
+the file(s) onto the drop box, and the files will be moved rather than copied.
+As you drag something over a drop box, the location bar will display where the
+current drop box points, in case you forget or need to double&nbsp;check.</p>
+<p>After the job is complete, DropBoxxer fades back down off screen so you
+don&#8217;t have to worry about it any more. Next time you need it, simply drag a
+file back over and it&#8217;ll automatically reappear. To exit the program, simply
+right-click on its task bar icon and select &#8220;Exit&nbsp;DropBoxxer.&#8221;</p>
+<p><strong><em>Notes About Version&nbsp;0.1</em></strong></p>
+<p>Everything is currently hardcoded, so it&#8217;s not a whole lot of use to anyone
+other than me unless you want to get into the source code (included in the
+download) to make modifications. I plan to add functionality that will allow
+you to drag folders onto the drop area to add drop locations, or at the very
+least provide a menu option to that effect when you right click in the system
+tray. I&#8217;d also like to provide some better progress indicators when copying
+large files. As it stands right now, you don&#8217;t have any indication of what&#8217;s
+going on or how long the process is going to&nbsp;take.</p>
+<p>Finally, I want to trim the file size down a bit. It&#8217;s almost an entire meg
+executable, which seems ridiculously large for something as simple as it is.
+Probably has something to do with the image files I store in&nbsp;there&#8230;</p>
+<p>You can snag a copy of DropBoxxer Version 0.1 here. The zip contains an
+executable and the source code files/resources. The source code is crappy
+right now, but I will clean it up when I add the other functionality. If you
+make modifications to the code, please write me and let me know. DropBoxxer
+requires Windows <span class="caps">XP</span> (because of the fading and transparency effects), and
+requires the .<span class="caps">NET</span> framework (I know, I know, but seriously, there is no other
+way to do an application that operates in a snazzy way and integrates so
+closely with Windows. Java? I think&nbsp;not&#8230;)</p>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">JUL</div>
@@ -488,35 +571,6 @@ useful resource. Gosh, I turn out more like my dad every&nbsp;day&#8230;</p>
                                     <blockquote>
 <p>Money can&#8217;t buy happiness, but it can make you awfully comfortable while you&#8217;re being&nbsp;miserable.</p>
 <p><strong>Clare Boothe Luce</strong>, <em>Socialite</em></p>
-</blockquote>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JUN</div>
-                    <div class="day">15</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/06/impressing-your-friends/"
-                           title="Permanent link to 'Impressing Your Friends'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/quote">quote</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
-                <time datetime="2004-06-15 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2004/06/impressing-your-friends/">Impressing Your Friends</a>
-                                            </h1>
-                </header>
-                                    <p>From <em>An Introduction to the Theory of Traveling Waves</em>, by Erwin&nbsp;Weber:</p>
-<blockquote>
-<p>Notice that there is a star in front of the numbers for the above equations. Equations thus identified in the remainder of the text are to be forgotten. The equations are unimportant and any student who commits them to memory deserves to spend his entire electrical engineering career grabbing the hot end of a soldering iron. These equations may be useful in impressing your friends &#8211; those that don&#8217;t know any better &#8211; but other than this, they serve no useful&nbsp;purpose.</p>
 </blockquote>
                                                             </article>
             </div>                        </div>

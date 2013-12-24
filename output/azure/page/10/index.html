@@ -1,24 +1,25 @@
 ﻿<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>        Tyler Butler
 </title>
 
                     
-    <link rel="alternate" type="application/rss+xml"
-          title="Tyler Butler RSS Feed"
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
           href="/feeds/atom.xml"/>
 
+                
                                                         <link rel="stylesheet"
                       href="/static/engineer/lib/foundation/stylesheets/grid.css">
                 <link rel="stylesheet"
@@ -60,35 +61,182 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
             </script>    
-    <!-- IE Fix for HTML5 Tags -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            
-<ul>
-                    <li class="current">
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
         <a href="/">articles</a></li>
-                    <li>
+                <li>
         <a href="/projects">projects</a></li>
-    </ul>
+</ul>
 
                         </nav>
                 </header>
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">JUN</div>
+                    <div class="day">26</div>
+                    <div class="year">2009</div>
+                    <div class="permalink">
+                        <a href="/2009/06/outlook-email-and-css/"
+                           title="Permanent link to 'Outlook, Email, and CSS'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2009-06-26 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2009/06/outlook-email-and-css/">Outlook, Email, and <span class="caps">CSS</span></a>
+                                            </h1>
+                </header>
+                                    <p><em><strong>Update July 13, 2009:</strong> Thanks to some comments, I&#8217;ve got new links and
+minor updates in the post&nbsp;now.</em></p>
+<p><em>Note: I work for Microsoft, in the Office division, but I don&#8217;t work in or
+with the Outlook team. I don&#8217;t have any specific knowledge about their
+decisions or plans, and this post is based only my own experience here at&nbsp;Microsoft.</em></p>
+<p>The web community has been up in arms the last day or so about a <a href="http://fixoutlook.org">campaign via
+Twitter</a> pushing for Outlook 2010 to stop using the Word rendering engine
+for <span class="caps">HTML</span> email. I engaged in a short friendly discussion with my buddy
+<a href="http://twitter.com/vandrijevik">Vlad</a> on Twitter about the issue, and that got me thinking about the issue
+a bit more deeply. And the more I thought about it, and read everything that
+was being written, the more I realized that people aren&#8217;t actually
+communicating effectively, and that pisses me&nbsp;off…</p>
+<p>The fixoutlook.org website says this: “Microsoft has confirmed they plan on
+using the <strong>Word rendering engine</strong> to display <span class="caps">HTML</span> emails in Outlook 2010.”
+(emphasis added) Based on that, and the rest of the text on the site, it seems
+like the big beef they have is that Word&#8217;s <strong>rendering engine</strong> for <span class="caps">HTML</span> is
+not up to snuff. Fair point &#8211; it isn&#8217;t. But they contradict themselves in
+<a href="http://www.email-standards.org/blog/entry/microsoft-respond-to-our-call-for-standards-support/">their updated response</a> to Microsoft&#8217;s response when they say, “We&#8217;re
+asking that the <strong><span class="caps">HTML</span> produced by the Word engine be standards compliant</strong>.
+This in turn will ensure that the engine will correctly <em>render</em> standards-
+based emails.” (emphasis&nbsp;added)</p>
+<p>Wait a second. Do they want an editor that produces <span class="caps">HTML</span>, or a rendering
+engine that works properly? Doing the work to make sure the editor is
+producing clean markup <strong>might</strong> produce a rendering engine that renders
+nicely, perhaps it even <strong>should</strong> produce one, but that <strong>doesn&#8217;t mean it
+will</strong>. Those two pieces of work are <strong>not</strong> the same&nbsp;thing.</p>
+<p>Lots of people have been pointing to <a href="http://www.zeldman.com/2009/06/24/sour-outlook/">a post from Zeldman</a> about this.
+Zeldman&#8217;s a brilliant guy, but he completely misses the point when he
+perpetuates a rumor about why Outlook chose Word&#8217;s engine: “Rumor has it that
+Microsoft chose the Word rendering engine because its Outlook division
+“couldn&#8217;t afford” to pay its browser division for <span class="caps">IE8</span>. And by “couldn&#8217;t
+afford” I don&#8217;t mean Microsoft has no money; I mean someone at this fabulously
+wealthy corporation must have neglected to budget for an internal&nbsp;cost.”</p>
+<p>Ummmm… no. In my experience, the phrase “couldn&#8217;t afford” at Microsoft R&amp;D has
+nothing to do with monetary cost. It has to do with engineering cost. Features
+don&#8217;t exist just because you want them to exist. (An aside: <a href="http://blogs.msdn.com/oldnewthing/">Raymond Chen</a>
+has a great quote about this that I can&#8217;t find. If you have a link, please let
+me know.) So I imagine that the rationale in the Outlook team went something
+more like&nbsp;this:</p>
+<p><em>Well, we want Outlook to produce really rich emails, and we want it to have a
+really familiar look and feel, so people already using our products will feel
+at home. Hmmm, building an editor is extremely hard to get right, plus we,
+being part of the Office suite, have several editing tools already. Emails
+tend to be a lot like documents, so Word seems to be a reasonable choice. This
+way we can leverage all the editor features Word already has, plus things
+they&#8217;re building this release, and focus on the Outlook-specific work we have
+to do. We don&#8217;t want to invest our engineering time in building an editor when
+we already have&nbsp;one.</em></p>
+<p>From this standpoint, it&#8217;s easy to see why using Word for rendering as well is
+the next logical step. You could argue that they should use <span class="caps">IE</span> (or Gecko, or
+Webkit, as Zeldman does, but again, just because those engines are free
+doesn&#8217;t mean using them is without cost) to render email, and Word to author
+it. That&#8217;s a reasonable idea. In fact, the Outlook team seems to agree with
+you, because if you get an <span class="caps">HTML</span> email that looks wrong, you see a link to open
+it in a browser. In fact, even the <a href="http://farm4.static.flickr.com/3322/3637814200_a2aa59bc89_o.jpg">example image</a> at fixoutlook.org has
+the “info bar” at the top that does&nbsp;this.</p>
+<p>You can take issue with the implementation, certainly, because it sucks
+mightily. The fact that I have to open the email in a browser separately
+blows. I shouldn&#8217;t have to do that. But don&#8217;t kid yourself into thinking that
+integrating an <span class="caps">IE</span> window into the message window is so stupidly simple that
+Microsoft is maliciously avoiding doing it to somehow screw users. It might be
+straightforward &#8211; I honestly don&#8217;t know. But do you? If you think you do,
+please go read Steve Yegge&#8217;s post “<a href="http://steve-yegge.blogspot.com/2009/04/have-you-ever-legalized-marijuana.html">Have you ever legalized marijuana?</a>”
+and come&nbsp;back.</p>
+<p>What really bugs me about this whole thing is that people immediately jumped
+on the fact that Outlook uses Word for rendering, instead of sticking to the
+real problem that Outlook&#8217;s rendering of <span class="caps">HTML</span> sucks in some cases. The
+rendering engine they&#8217;re using is immaterial, really, because if the team goes
+and fixes the rendering inadequacies, then the issue goes away. They can
+choose how to fix the issues, should they choose to fix them at all, but at
+this point, even if all the rendering issues are fixed, many people will still
+be pissed because Word is used to render the email. The argument has shifted
+from being about the support proper email display to being about Word used for
+rendering, so there doesn&#8217;t seem to be a path to redemption for Microsoft in
+the court of public opinion that doesn&#8217;t involve ripping out Word&nbsp;completely.</p>
+<p>I completely agree, personally, that web standards serve as a reasonable basis
+for email format standards even though there is no formal effort to
+standardize email. But please argue about the right things. Spend your energy
+trying to see those standards acknowledged rather than perpetuating this silly
+argument about ripping out Word from Outlook. Hopefully this effort will have
+the desired effect, and these rendering issues will get resolved prior to
+Outlook 2010 <span class="caps">RTM</span>. But I can almost completely guarantee that if you want Word
+completely ripped from Outlook, you&#8217;re not going to get what you&nbsp;want.</p>
+<p><em>By the way, does anyone have a screenshot of what the email used in the
+example image looks like in Outlook 2007, which also used Word for rendering?
+That struck me as a strange omission. I&#8217;m wondering if the issues displayed in
+that screenshot are just bugs in the 2010 beta. I doubt it, but would still
+like to see&nbsp;it.</em></p>
+<p><em><strong>Update:</strong> Turns out you can see this in the <a href="http://www.email-standards.org/clients/microsoft-outlook-2007/">Email Standards project&#8217;s
+review of Outlook 2007</a>. As I suspected, no real&nbsp;differences.</em></p>
+<p><em>Also &#8211; is there any way to get a sample <span class="caps">HTML</span> email from the Email Standards
+Project&#8217;s <a href="http://www.email-standards.org/acid-test/">email acid test</a>? Seems ridiculous there&#8217;s no “email me this
+sample email” form on the acid test page. I can and will file a bug against
+Outlook if I can get a copy mailed to&nbsp;me.</em></p>
+<p><em><strong>Update: </strong>You can now mail yourself a copy of the email directly from the
+<a href="http://www.email-standards.org/acid-test/">acid test page</a>.</em></p>
+<hr />
+<p>This didn&#8217;t really fit into the overall flow of the post above, but I still
+think it&#8217;s reasonable info to consider, so I&#8217;m including it here anyway. I&#8217;m
+about to throw out a bunch of numbers and statistics that are not backed up by
+any data. They are based only on my own logic and occasionally rational mind.
+I think they&#8217;re true and reasonable statements, but I welcome data that
+contradicts&nbsp;them.</p>
+<p>I think it&#8217;s safe to say that a majority, say, 80%, of Outlook users use it
+with Exchange. Also, a majority of Exchange users use Outlook, and Exchange is
+primarily used in business settings. Since a large majority of email sent in a
+business setting is sent to other people in your business, then they&#8217;re
+probably also using Exchange, and also probably using Outlook. Based on this
+not-so-scientific reasoning, I argue that the number of emails received in
+Outlook that didn&#8217;t originate in Outlook is relatively small. That means,
+practically speaking, that as long as Outlook can render email that started in
+Outlook, you&#8217;re hitting the majority of your users&#8217;&nbsp;needs.</p>
+<p>Now, the idealist in you (and me, for the record) is screaming bloody murder,
+because you want to see the &#8220;right thing&#8221; happen for all cases, not just the
+majority case. But unfortunately, software is more about practicality than
+idealism, and at some point some smart, but possibly naive people in Outlook
+made a tradeoff. I&#8217;d say with 99% certainty that at some point a developer or
+two in Outlook estimated the cost of different approaches and implementations,
+and this one wound up cheaper. They made a cut. They made a tradeoff. And we
+disagree with the&nbsp;tradeoff.</p>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">JUN</div>
@@ -248,38 +396,6 @@ use-case, then try to design a solution before you read&nbsp;further.</p>
                         <span class="arrow">→</span>                    </h1>
                 </header>
                                     <p>Great xkcd today about what gets kids interested in&nbsp;science.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">MAY</div>
-                    <div class="day">18</div>
-                    <div class="year">2009</div>
-                    <div class="permalink">
-                        <a href="/2009/05/wikipedia-walks/"
-                           title="Permanent link to 'Wikipedia Walks'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2009-05-18 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2009/05/wikipedia-walks/">Wikipedia Walks</a>
-                                            </h1>
-                </header>
-                                    <p>A few years ago I realized that when I would start reading an interesting
-article on Wikipedia, I would often end up reading 6-8 additional articles
-that were linked from the original article, then branch out from there, etc.
-etc. I&#8217;d end up in a completely different subject than the one I&#8217;d started in,
-and I learned a lot, plus it was just a ton of&nbsp;fun.</p>
-<p>I started calling these <a href="http://www.tylerbutler.com/tags/wikipedia-walks/">Wikipedia Walks</a>. The concept is simple - start at
-an article you find interesting, then just continue on to any articles linked
-from the original. Finish when you get bored. To make it more interesting, you
-should record both the starting article and the ending article, so you can see
-just how far off the beaten path you&#8217;ve&nbsp;gotten.</p>
-<p>To start, I&#8217;d suggest the article on <a href="http://en.wikipedia.org/wiki/Game_theory">Game Theory</a>.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

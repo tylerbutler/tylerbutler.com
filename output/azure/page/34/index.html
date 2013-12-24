@@ -1,24 +1,25 @@
 ﻿<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>        Tyler Butler
 </title>
 
                     
-    <link rel="alternate" type="application/rss+xml"
-          title="Tyler Butler RSS Feed"
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
           href="/feeds/atom.xml"/>
 
+                
                                                         <link rel="stylesheet"
                       href="/static/engineer/lib/foundation/stylesheets/grid.css">
                 <link rel="stylesheet"
@@ -60,35 +61,93 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
             </script>    
-    <!-- IE Fix for HTML5 Tags -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            
-<ul>
-                    <li class="current">
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
         <a href="/">articles</a></li>
-                    <li>
+                <li>
         <a href="/projects">projects</a></li>
-    </ul>
+</ul>
 
                         </nav>
                 </header>
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">OCT</div>
+                    <div class="day">27</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/10/interview-with-microsoft/"
+                           title="Permanent link to 'Interview with Microsoft'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-10-27 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2004/10/interview-with-microsoft/">Interview with Microsoft</a>
+                                            </h1>
+                </header>
+                                    <p>Microsoft is coming to campus on Thursday and Friday of this week, and I
+managed to get an interview. One of the guys who&#8217;s coming is an alumnus from
+<span class="caps">IIT</span>, and he used to be in <a href="http://www.hawktour.net/">my <span class="caps">IPRO</span></a> (back before it became <strong><em>my</em></strong> <span class="caps">IPRO</span>),
+and he sent me an email asking if I knew of anyone from the <span class="caps">IPRO</span> that I would
+recommend he interview. I gave him the only name I could in good conscience,
+and suggested he interview me as well. So he asked for my resume, and I got an
+email this afternoon requesting my preference for an interview time. I&#8217;m not
+sure if any of it&#8217;s going to pan out, but it&#8217;s a good opportunity nonetheless.
+I&#8217;m also not too sure how I feel about working for <span class="caps">MS</span>, but I&#8217;ll cross that
+bridge if/when I come to it. Wish me&nbsp;luck!</p>
+<hr />
+<p><em>November 5,&nbsp;2004</em></p>
+<p>Well, I made it past the first two hurdles. The on-campus interview went well,
+and I must have impressed Ondrej enough that he pushed my resume on through to
+an official recruiter. The recruiter emailed me today about setting up a phone
+interview Wednesday next week. The way I understand it is that if the phone
+interview goes well, then I&#8217;ll be heading out to Redmond for an on-site
+interview. Then, if they&#8217;re <em>really</em> interested, I&#8217;ll get an&nbsp;offer.</p>
+<p>Anyway, I am excited, but would appreciate your thoughts and prayers. This is
+a big deal for me. I&#8217;m keeping my fingers&nbsp;crossed.</p>
+<hr />
+<p><em>December 17,&nbsp;2004</em></p>
+<p>Well, I finally heard back from them today, and they are moving me through to
+the next stage of the interview. I still don&#8217;t know the logistics yet, and it
+kind of throws a wrench in the works with my current plans for next semester,
+but I&#8217;m sure I can work something out if I get an offer.&nbsp;:-)</p>
+<hr />
+<p><em>January 21,&nbsp;2005</em></p>
+<p>Looks like I am flying out to Seattle on February 7th, interviewing on the
+8th, then flying back on the 9th. I am excited, but a little nervous as well.
+Hopefully I&#8217;ll impress&nbsp;them.</p>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">OCT</div>
@@ -379,64 +438,6 @@ for the believers in speech, in life, in love, in faith and in&nbsp;purity.</p>
 <p><a href="http://www.biblegateway.net/cgi-bin/bible?passage=1TIM+4:12&amp;language=english&amp;version=NIV&amp;showfn=on&amp;showxref=on">1 Timothy&nbsp;4:12</a></p>
 </blockquote>
 <p>Take <strong><em>that!</em></strong></p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">SEP</div>
-                    <div class="day">13</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/09/firefox-extensions-updated/"
-                           title="Permanent link to 'Firefox Extensions (Updated)'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2004-09-13 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2004/09/firefox-extensions-updated/">Firefox Extensions (Updated)</a>
-                                            </h1>
-                </header>
-                                    <p>I have quite a few Firefox extensions that I find extremely useful, so I
-thought I&#8217;d share&nbsp;them.</p>
-<ul>
-<li>Firesomething: <a href="http://www.cosmicat.com/extensions">http://www.cosmicat.com/extensions</a></li>
-<li>Adblock: <a href="http://adblock.mozdev.org/">http://adblock.mozdev.org/</a></li>
-<li>Tabbrowser: <a href="http://white.sakura.ne.jp/~piro/xul/_tabextensions.html.en">http://white.sakura.ne.jp/~piro/xul/_tabextensions.html.en</a></li>
-<li>GMail Notifier: <a href="http://www.nexgenmedia.net/extensions/">http://www.nexgenmedia.net/extensions/</a></li>
-<li>Allow Right-Click: <a href="http://extensions.roachfiend.com/index.php">http://extensions.roachfiend.com/index.php</a></li>
-<li>User Agent Switcher: <a href="http://www.chrispederick.com/work/firefox/useragentswitcher/">http://www.chrispederick.com/work/firefox/useragentswitcher/</a></li>
-<li>WeatherFox: <a href="http://weatherfox.mozdev.org/">http://weatherfox.mozdev.org/</a></li>
-<li>Dictionary Search: <a href="http://dictionarysearch.mozdev.org/">http://dictionarysearch.mozdev.org/</a></li>
-<li>Target Alert: <a href="http://www.bolinfest.com/targetalert/">http://www.bolinfest.com/targetalert/</a></li>
-<li>Mozilla Calendar: <a href="http://www.mozilla.org/projects/calendar/">http://www.mozilla.org/projects/calendar/</a></li>
-<li>Foxy Tunes: <a href="http://www.iosart.com/foxytunes/firefox/">http://www.iosart.com/foxytunes/firefox/</a></li>
-<li>Cute Menus: <a href="http://cute.mozdev.org/">http://cute.mozdev.org/</a></li>
-<li>Disable Targets for Downloads: <a href="http://www.cusser.net/">http://www.cusser.net/</a></li>
-<li>Download Manager Tweak: <a href="http://dmextension.mozdev.org/">http://dmextension.mozdev.org/</a></li>
-</ul>
-<hr />
-<p><strong>Update&nbsp;09/22/2004</strong></p>
-<p><span class="caps">OK</span>, so the new version of Firefox (1.<span class="caps">0PR</span>) just isn&#8217;t cooperating with
-TabBrowser Extensions and pop-ups. I want my pop-ups to appear in new tabs,
-but I don&#8217;t want all of them blocked - especially in GMail. Despite adding the
-GMail domain to the Exceptions list in the Firefox pop-up blocker, things
-still won&#8217;t work. I think the problem is with TabBrowser Extensions, since
-disabling it made everything work again. Anyway, in the meantime, I have tried
-to find a few other smaller extensions that will emulate the TabBrowser
-Extensions functionality to get around this. Here&#8217;s what I&#8217;m using right&nbsp;now.</p>
-<ul>
-<li>Tabbrowser Preferences: <a href="http://www.pryan.org/mozilla/site/TheOneKEA/tabprefs/">http://www.pryan.org/mozilla/site/TheOneKEA/tabprefs/</a></li>
-<li>TabX: <a href="http://extensionroom.mozdev.org/more-info/tabx">http://extensionroom.mozdev.org/more-info/tabx</a></li>
-<li>Tab Duplicator: <a href="http://www.twannos-extensions.tk/">http://www.twannos-extensions.tk/</a></li>
-</ul>
-<p>One minor aesthetic problem is with TabX. It just puts simple X&#8217;s for close
-buttons, unlike the nice looking red buttons that <span class="caps">TBE</span> puts there. Oh well,
-beggars can&#8217;t be choosers, right? I just hope that <span class="caps">TBE</span> doesn&#8217;t cause these
-problems when a new version is&nbsp;released.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

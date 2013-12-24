@@ -1,24 +1,25 @@
 ﻿<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>        Tyler Butler
 </title>
 
                     
-    <link rel="alternate" type="application/rss+xml"
-          title="Tyler Butler RSS Feed"
+    <link rel="alternate" type="application/atom+xml"
+          title="Tyler Butler Atom Feed"
           href="/feeds/atom.xml"/>
 
+                
                                                         <link rel="stylesheet"
                       href="/static/engineer/lib/foundation/stylesheets/grid.css">
                 <link rel="stylesheet"
@@ -60,35 +61,70 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                
+                        <script src="/static/engineer/lib/modernizr-2.6.2.min.js"
+                    type="text/javascript"></script>
+            
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.7.1.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
             </script>    
-    <!-- IE Fix for HTML5 Tags -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="">    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<body class=""><!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            
-<ul>
-                    <li class="current">
+                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+    
+                <li class="current">
         <a href="/">articles</a></li>
-                    <li>
+                <li>
         <a href="/projects">projects</a></li>
-    </ul>
+</ul>
 
                         </nav>
                 </header>
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">JUN</div>
+                    <div class="day">01</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/06/ruthless/"
+                           title="Permanent link to 'Ruthless'">∞</a>
+                    </div>
+                            </div>
+                            <div class="attribution">
+                                            via <a href="http://inessential.com/2012/02/19/chris_on_coding">Brent Simmons</a>
+                                    </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-06-01 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://playswithfire.com/blog/2012/02/19/you-are-not-ruthless-enough/">Ruthless</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p>Lot&#8217;s of little gems in this piece by Chris Parker, but I especially like this&nbsp;one:</p>
+<blockquote>
+<p>Every time you throw in something that seems to work, <em>find out why it works.</em> If you don’t understand why it works then the code is just magic and you’re letting yourself off the hook. That code will become enshrined in your version control system for later generations (read: you, three months from now) to discover, wonder at, puzzle over, and leave it because no one understands what it&nbsp;does.</p>
+</blockquote>
+<p>Yes. A thousand times yes. That last sentence is especially applicable when working on larger-scale products with a rolling development team (read: nearly everything that comes out of Microsoft, Google, Apple, Adobe,&nbsp;etc.).</p>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">MAY</div>
@@ -228,28 +264,6 @@
 <blockquote>
 <p>Anything can be forced to converge, but the problem is about trade-offs, and you end up with trade-offs that don&#8217;t please anyone. You can converge a toaster and refrigerator, but the end result won&#8217;t be pleasing to the&nbsp;user.</p>
 </blockquote>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">APR</div>
-                    <div class="day">23</div>
-                    <div class="year">2012</div>
-                    <div class="permalink">
-                        <a href="/2012/04/lukas-mathis/"
-                           title="Permanent link to 'Lukas Mathis'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2012-04-23 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="http://ignorethecode.net">Lukas Mathis</a>
-                        <span class="arrow">→</span>                    </h1>
-                </header>
-                                    <p>I just linked to a piece that I got via <a href="http://ignorethecode.net">Lukas Mathis</a>, but I wanted to explicitly encourage you to read his stuff. In my opinion, <a href="http://ignorethecode.net">ignorethecode.net</a> should be required reading for anyone doing user experience design today. Very smart, very insightful, very well-reasoned. Solid&nbsp;work.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

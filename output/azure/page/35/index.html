@@ -98,6 +98,83 @@
                                     <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
+                                    <div class="month">OCT</div>
+                    <div class="day">15</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/10/fun-with-text-to-speech/"
+                           title="Permanent link to 'Fun With Text-to-Speech'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/snippets">snippets</a>
+                        </li>
+                                            <li><a href="/tag/c">C#</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-10-15 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2004/10/fun-with-text-to-speech/">Fun With Text-to-Speech</a>
+                                            </h1>
+                </header>
+                                    <p>At work, we have a mindless task that has to be done manually every hour.
+Basically, we have to log into this website and click around a bit to make
+sure that the site is still up and running. It&#8217;s pretty ridiculous, I know,
+but it has to be done nonetheless. No one in the office ever remembers to do
+it, so I decided it might be nice to have an alarm of sorts. So I remembered
+some of my old Micrososft Agent tinkering back in High School, and looked
+around for some examples of using the <a href="http://www.microsoft.com/speech/download/sdk51/">Windows speech <span class="caps">API</span></a> in C#. It didn&#8217;t
+take me long to figure it out, and the code for my simple text-to-speech
+program is deceptively simple. Instead of providing the code as a download,
+I&#8217;m just posting it here since it is so&nbsp;short.</p>
+<div class="codehilite"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">SpeechLib</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Speak</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Speak</span>
+    <span class="p">{</span>
+        <span class="c1">///</span>
+        <span class="c1">/// The main entry point for the application.</span>
+        <span class="c1">///  [STAThread]</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">SpeechVoiceSpeakFlags</span> <span class="n">flags</span> <span class="p">=</span> <span class="n">SpeechVoiceSpeakFlags</span><span class="p">.</span><span class="n">SVSFlagsAsync</span><span class="p">;</span>
+            <span class="n">SpVoice</span> <span class="n">v</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SpVoice</span><span class="p">();</span>
+            <span class="k">if</span><span class="p">(</span> <span class="n">args</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span> <span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">v</span><span class="p">.</span><span class="n">Speak</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="n">flags</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">v</span><span class="p">.</span><span class="n">Speak</span><span class="p">(</span><span class="s">&quot;Please specify what you would like me to say.&quot;</span><span class="p">,</span> <span class="n">flags</span> <span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">v</span><span class="p">.</span><span class="n">WaitUntilDone</span><span class="p">(</span><span class="n">Timeout</span><span class="p">.</span><span class="n">Infinite</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Basically all you need is the code above and the Interop.SpeechLib.dll file,
+which provides access to the speech utilities. For completeness (and since I
+had some trouble finding the <span class="caps">DLL</span>), I put a copy of the file up on here.
+This program basically just echoes back whatever string you pass in at the
+command line, so to get the scheduling working, I just used Windows Task
+Scheduler. I scheduled a task to run every hour ever day between 8am and 10pm
+(check the advanced settings of the Task Scheduler), then pointed the task to
+the compiled program, passing it the string I want it to say as the argument.
+Simple. And it works. I still smile every time one of the office computers
+says, &#8220;It is time to check&nbsp;Blackboard.&#8221;</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
                                     <div class="month">SEP</div>
                     <div class="day">29</div>
                     <div class="year">2004</div>
@@ -346,50 +423,6 @@ tendency of government to get all up in our electronic business. Anyway, I
 enjoyed it. At first glance, it seems very outlandish, but when you think
 about it and read the author&#8217;s notes, it becomes clear that the sad future
 isn&#8217;t far&nbsp;away.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">AUG</div>
-                    <div class="day">19</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/08/bear-beer-guzzler/"
-                           title="Permanent link to 'Bear Beer Guzzler'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2004-08-19 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2004/08/bear-beer-guzzler/">Bear Beer Guzzler</a>
-                                            </h1>
-                </header>
-                                    <p><a href="http://patrick.wagstrom.net/">Patrick</a> sent me this story. What a cool bear! Does anyone have his
-address? I&#8217;d like to invite him to my apartment-warming party. Betcha he does
-an awesome keg-stand. He&#8217;s probably been arrested though &#8211; he&#8217;s well under the
-legal drinking age. (Yuk&nbsp;yuk).</p>
-<p><a href="http://www.cnn.com/2004/US/West/08/18/bear.beer.reut/index.html">http://www.cnn.com/2004/<span class="caps">US</span>/West/08/18/bear.beer.reut/index.html</a></p>
-<blockquote>
-<p>A black bear was found passed out at a campground in Washington state
-recently after guzzling down three dozen cans of a local beer, a campground
-worker said on&nbsp;Wednesday.</p>
-<p><span class="dquo">&#8220;</span>We noticed a bear sleeping on the common lawn and wondered what was going on
-until we discovered that there were a lot of beer cans lying around,&#8221; said
-Lisa Broxson, a worker at the Baker Lake Resort, 80 miles (129 km) northeast
-of&nbsp;Seattle.</p>
-<p>The hard-drinking bear, estimated to be about two years old, broke into
-campers&#8217; coolers and, using his claws and teeth to open the cans, swilled down
-the&nbsp;suds.</p>
-<p>It turns out the bear was a bit of a beer sophisticate. He tried a mass-market
-Busch beer, but switched to Rainier Beer, a local ale, and stuck with it for
-his drinking&nbsp;binge.</p>
-<p>Wildlife agents chased the bear away, but it returned the next day, said&nbsp;Broxson.</p>
-<p>They set a trap using as bait some doughnuts, honey and two cans of Rainier
-Beer. It worked, and the bear was captured for&nbsp;relocation.</p>
-</blockquote>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

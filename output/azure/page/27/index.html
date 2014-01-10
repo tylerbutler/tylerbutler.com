@@ -98,6 +98,61 @@
                                     <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
+                                    <div class="month">MAR</div>
+                    <div class="day">08</div>
+                    <div class="year">2005</div>
+                    <div class="permalink">
+                        <a href="/2005/03/code-line-counter/"
+                           title="Permanent link to 'Code Line Counter'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/snippets">snippets</a>
+                        </li>
+                                            <li><a href="/tag/python">python</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2005-03-08 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2005/03/code-line-counter/">Code Line Counter</a>
+                                            </h1>
+                </header>
+                                    <p>I have been working on HawkTour now for over two years, and I started
+wondering today exactly how much code we&#8217;ve generated since we started. I
+thought maybe <a href="http://www.eclipse.org">Eclipse</a> had a project-wide line counter somewhere, but I
+couldn&#8217;t find it, so I just wrote a simple <a href="http://www.python.org">Python</a> script to do it. The
+code is&nbsp;below.</p>
+<div class="codehilite"><pre><span class="c"># linecounter.py</span>
+<span class="c"># Tyler Butler, 03/08/2005</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;java&#39;</span><span class="p">,</span> <span class="s">&#39;cpp&#39;</span><span class="p">,</span> <span class="s">&#39;h&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="nb">dir</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">):</span>
+ <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+     <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">extensions</span><span class="p">:</span>
+         <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+         <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span> <span class="n">filename</span> <span class="p">)</span>
+         <span class="n">total</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="s">&quot;<span class="caps">TOTAL</span> <span class="caps">LINES</span> <span class="caps">IN</span> <span class="caps">PROJECT</span>: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Pretty simple, isn&#8217;t it? It just works in the current directory, but you can
+change that pretty easily. Also, if you want to add more extensions to count
+then just add them to the extensions&nbsp;list.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
                                     <div class="month">FEB</div>
                     <div class="day">18</div>
                     <div class="year">2005</div>
@@ -345,51 +400,6 @@ of March 28th. I suppose it seems kind of fast, but there are benefits to
 getting out there soon. Dr. Sun has accepted the news more gracefully than I
 had anticipated, so things are looking up. I will be posting my overview of
 the interview day itself in a few&nbsp;minutes.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">FEB</div>
-                    <div class="day">01</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/02/yiddish-curses/"
-                           title="Permanent link to 'Yiddish Curses'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2005-02-01 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2005/02/yiddish-curses/">Yiddish Curses</a>
-                                            </h1>
-                </header>
-                                    <p>My friend Dan is Jewish, and he was telling me the other day about Yiddish
-curses. He had some pretty funny ones, and he managed to find a site or two that listed some more. I don&#8217;t know Yiddish, and I can&#8217;t even pronounce it based on the spelling, so I&#8217;m not going to waste the space of including the
-actual Yiddish here. If you actually want the Yiddish, go to the sites listed
-at the bottom of the page. Anyway, here are a few of my&nbsp;favorites.</p>
-<ul>
-<li>All problems I have in my heart, should go to his&nbsp;head.</li>
-<li>He should marry the daughter of the Angel of&nbsp;Death.</li>
-<li>God should visit upon him the best of the Ten&nbsp;Plagues.</li>
-<li>Venereal disease should consume his&nbsp;body.</li>
-<li>I should outlive him long enough to bury&nbsp;him.</li>
-<li>God should bless him with three people: one should grab him, the second should
-stab him and the third should hide&nbsp;him.</li>
-<li>He should have a large store, and whatever people ask for he shouldn&#8217;t have,
-and what he does have shouldn&#8217;t be&nbsp;requested.</li>
-<li>God should bestow him with everything his heart desires, but he should be a
-quadriplegic and not be able to use his&nbsp;tongue.</li>
-<li>He should be transformed into a chandelier, to hang by day and to burn by&nbsp;night.</li>
-<li>May your bones be broken as often as the Ten&nbsp;Commandments.</li>
-<li>May you every day eat chopped liver with onions, herring, chicken soup with
-matzo balls, carp with horseradish, roast beef with tsimmes (a sweet side
-dish), pancakes, and tea with lemon – and may you choke on every&nbsp;bite.</li>
-</ul>
-<p><a href="http://www.signonsandiego.com/uniontrib/20040401/news_1c1yiddish.html" title="A news story about Yiddish curses.">http://www.signonsandiego.com/uniontrib/20040401/news_1c1yiddish.html</a>
-<a href="http://www.yiddishradioproject.org/exhibits/stutchkoff/curses.php3?pg=3" title="A short list of curses... in Yiddish of course!">http://www.yiddishradioproject.org/exhibits/stutchkoff/curses.php3?pg=3</a></p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

@@ -1,0 +1,18 @@
+---
+
+title: Ruthless
+timestamp: 09:52 AM Friday, June 01, 2012 PDT
+status: published
+link: http://playswithfire.com/blog/2012/02/19/you-are-not-ruthless-enough/
+via: Brent Simmons
+via-link: http://inessential.com/2012/02/19/chris_on_coding
+slug: ruthless
+url: /2012/06/ruthless/
+
+---
+
+Lot's of little gems in this piece by Chris Parker, but I especially like this one:
+
+> Every time you throw in something that seems to work, *find out why it works.* If you don’t understand why it works then the code is just magic and you’re letting yourself off the hook. That code will become enshrined in your version control system for later generations (read: you, three months from now) to discover, wonder at, puzzle over, and leave it because no one understands what it does.
+
+Yes. A thousand times yes. That last sentence is especially applicable when working on larger-scale products with a rolling development team (read: nearly everything that comes out of Microsoft, Google, Apple, Adobe, etc.).

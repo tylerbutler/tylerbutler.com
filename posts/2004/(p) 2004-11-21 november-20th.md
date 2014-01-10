@@ -1,0 +1,217 @@
+---
+
+title: November 20th
+timestamp: 07:59 AM Sunday, November 21, 2004 PST
+status: published
+slug: november-20th
+tags:
+- novel
+- nanowrimo
+url: /2004/11/november-20th/
+
+guid: http://blog.tylerbutler.com/index.php/2004/11/november-20th/
+
+---
+
+**Chapter 19: Story **
+
+Holly and Ned sat down along the slope beside the drain pipe, looking
+intently at the grizzled man who lounged on the pipe in front of them. He wore
+a small, faded green kufi on his head, hiding his graying hair underneath it.
+His face was crinkled with age, and his kind eyes glowed warmly out of the dim
+surroundings. He held his hands in his lap, moving them expressively as he
+spoke softly. His dark, rich voice echoed below the bridge as he told his
+tale.
+
+“Well, like I was sayin', me and Darryl was good friends. We tried to stick
+together, you know, have each other's back. ‘Course it wasn't always that way.
+Fact is, when we first met, we didn't much care for each other at all.
+
+“You see, we first met when I tried to work his part of State Ave. one day.
+I hadn't been doing too well on my old strip, so I thought I'd move up further
+north and see if I could do any better.
+
+“The week before, I'd managed to come across some tools at a construction
+site and had nabbed a squeegee there, so not only was I imposin' on Darryl's
+section of the street, I was also doing the exact gig he was. Not to mention,
+I was just learnin' the trade, you know, and I hadn't really had a chance to
+hone my technique. So I wasn't doin' the best job of cleain' the windows,
+‘specially compared to Darryl.
+
+“It was all right the first few days, since we didn't run into each other. A
+couple of guys had told me that Darryl normally squeegeed that section of the
+street, but to be honest, I didn't care. I was just trying to eke by, know
+what I mean?
+
+“But eventually, Darryl and I ran into each other. He had been hearin' stuff
+about another guy down on his street ruinin' his reputation and all, so when
+he finally saw me, he wasn't to pleased. But if you know Darryl, he wadn't one
+to get real angry and up in your face about somethin'. So he stopped me later
+that afternoon after most people had cleared the street ad I was headin' home,
+and he simply asked me to move either further north or further south.
+
+“He explained that he'd been workin' that partickler section of the street
+for some time, and that he had reputation that he'd built, and it just
+wouldn't work to have two guys tryin' to squeegee the same section. He
+explained that it made more sense for us to split up ‘cause we'd be able to
+have more customers.
+
+“Wal, what he said made sense, but it wasn't what I wanted to hear. And him
+bein' so friendly about everything, I didn't take him seriously. So I told him
+he could shove it and I just kept on goin', doin' what I always did.
+
+“Next day, Darryl came up and said basically the same thing, askin' me to
+move on north or south again. And again, I told him the same thing. But he was
+a persistent bastard, and every day he came up to me, polite as the last time,
+and explained the situation again.
+
+“Eventually, it got to the point where I was considerin' movin' on just so I
+wouldn't have to listen to his lecture every day. I started tryin' to avoid
+him during the day, but he usually found me.
+
+“One day, I had had it partickly rough, and there he was, comin' on to ask
+be to move on, and I just lost it. I let him have it. We got into a bit of a
+scuffle, and Darryl, bein' as mild-mannered and small as he was, didn't put up
+much of a fight. Oh, don't get me wrong, I didn't hurt him real bad or
+nothin', but I did pound on him a bit.
+
+“It made me feel a lot better, and I thought that he'd finally get the
+picture that I wasn't plannin' on goin' anywhere, but the next day, he found
+me again and started talkin' to me.
+
+“This time, though, he'd changed his tactics. He said that if I wasn't
+movin' on, the least I could do was stop ruinin' his reputation. So he offered
+to teach me how to do a better job with the squeegee. I could hardly believe
+my ears. I mean, I'd just hit him up the day before -- he still had a bruise on
+his face from where I'd let him have it.
+
+“But as usual, it was a genuine offer, so I spent that day workin' with him,
+learnin' his technique and listenin' to him ramble on about his experiences
+and whatnot. Man, he liked to talk.” He paused, smiling and shaking his head.
+
+“I mean, Darryl'd talk and talk and talk -- didn't matter if no one was
+listenin'. He just liked to talk. But anyway, that night he invited me back
+here, to this bridge, with him, and we spent the rest of the night talkin'
+‘bout everything under the sun.
+
+“And that was really all it took. We started workin' together every day, and
+he taught me a lot. And he and I just became real good friends. I don't really
+know why. By all accounts, we really shoulda still hated each other. We were
+very different people, but somehow we ended up makin' it work.
+
+“Eventually he and I agreed to stop workin' together. It really made the
+most sense, since we could cover twice as much area in the same amount of
+time. He finally got his way, I guess -- I moved on up a lit further north and
+he stayed working his area, but we would get together here at the end of the
+day, and share whatever we had. Sometimes he had a good day, sometimes I did,
+most times neither of us did, but we shared everything and we ended up all
+right I guess.
+
+“As time went on, me and him didn't talk as much as we had, and he started
+spending more time at the shelter, I guess. I never much cared for places like
+that, though he told me St. Ives was diff'rent. Anyway, when we started
+hearin' all the stories ‘bout people disappearin', we decided we'd better
+start stickin' together again. It just made sense. So we started workin'
+together again, and we did all right.
+
+“But one night, Darryl decided he wanted to go to the shelter for a meal,
+and when I told him I really didn't want to go, he just left without me. I
+didn't seem him until really late the next day. I figgered he'd just ended up
+stayin' the night there or somethin', but when he came back he was all beat
+up. He'd stopped by St. Ives ad I guess got cleaned up, but he looked
+terrible. He was limpin', cuts and bruises all over his body -- he was a wreck.
+
+“He wasn't talkin' much either, and I knew better than to press him to tell
+me what had happened. So we just kept on doin' what we always did for the next
+few days. I figgered he'd tell me when he was ready. And finally, about a week
+after it had happened, he did.”
+
+James paused and leaned forward, lowering his voice substantially. “Now,
+there were two cops snoopin' around here earlier today, askin' about him and
+showin' pictures and whatnot, but I didn't tell ‘em anything.” Holly and Ned
+glanced at each other as James frowned. So Ames and Cobb _had_ been by.
+
+“I don't like cops -- don't trust ‘em. Anyway, you have to understand, I'm
+takin' a big risk tellin' you this, just like Darryl took a risk by tellin'
+me, but people need to know. Maybe then somethin' can be done.”
+
+He paused again, drawing Ned and Holly in closer before continuing at an
+even lower volume. “Darryl told me, that as he was walkin' to St. Ives, that a
+man had pulled over on the street -- he couldn't remember exactly where -- and
+started talkin' to him. He had said he recognized Darryl from a time when he'd
+cleaned the windshield of his car, and he just wanted to compliment him on the
+job.
+
+“He gave Darryl a twenty dollar bill, and then asked him if he wanted to
+make a lot more. He told Darryl that it was a really simple thing he needed
+done, and that if Darryl was willing there could be a lot of money in it.
+
+“Darryl wasn't one to believe in these get-rich-quick schemes, but he told
+me that the man seemed so sincere -- so honest and friendly. So Darryl accepted
+the offer and had accepted a ride in the man's car. He didn't know where they
+had gone. He said they had driven for quite awhile.
+
+“They arrived at some warehouse or somethin', and the man had led Darryl
+into this huge empty room. Then, while Darryl waited, a whole bunch of men
+started coming in and standing around the inner walls of the room. Darryl said
+at least 30 to 40 men had come in, and they just stood around, not talkin' to
+him or anything, just stayin' quiet with these serious expressions on their
+faces, like they were anticipatin' somethin' exciting. Most of ‘em were
+wearin' suits or sports jackets, Darryl had said, and they all seemed to be
+businessmen or somethin' judgin' from what they were wearin'.
+
+“Then the man who had picked Daryl up walked in and started talkin'. ‘Well
+gentlemen, tonight we have a man named Darryl. He works down on State Ave. ,
+where many of you work, and squeegees your windows for loose change... I think
+a lot of you are familiar with him.' A lot of the men standing around let out
+a whoop, and the man smiled. ‘Well, I think you all know how this works, so
+who's first tonight?' A bunch of men raised their hands, and the man pointed
+to one in the back of the room. ‘OK, looks like you're our lucky guy tonight.
+Make us proud.' The man who'd picked Darryl up stepped out with the other men,
+and the one he'd pointed out stepped into the center of the circle with
+Darryl. Darryl didn't know what was happenin'.
+
+“The man took his shirt off and ran towards Darryl, and hit him square in
+the face, knocking him to the ground. He waited for Darryl to get back up,
+then hit him again. Darryl tried to get up and run away, or out of the room,
+but the men in the circle would grab him and throw him back in.
+
+“I asked ‘im if he tried to fight back, and he said he did, but there were
+too many of ‘em. As soon as he got a good shot in, somebody else would step
+into the circle and beat him even harder. By the end of the night, he said he
+was just layin' on the floor, blood leakin' out of him, prayin' that'd all be
+over soon. He passed out while they were still beatin' on him.”
+
+Holly felt like she was going to be sick. She had experienced her share of
+violence, but this beating that James spoke of sounded almost sports-like. Who
+were all these men? Did they really get off on beating a defenseless homeless
+man nearly to death?
+
+James noticed his audience's discomfort and broke off his more detailed
+description that Darryl had given him. His voice was still low and he looked
+around nervously, searching for anyone that might be listening in
+surreptitiously. Satisfied that all was clear, he continued.
+
+“Anyway, Darryl came to after the man who'd picked him up splashed some
+water on his face. They threw him back into the car and drove him back to the
+street where they'd picked him up. Before they dropped him off, the man said,
+‘Darryl, I hope you understand that if you tell anyone about this, and I mean
+anyone,' -- he was very clear on this point -- ‘I'm gonna hunt you down and kill
+not only _you_, but _every single person that you told_.' Darryl believed
+him. He said there was somethin' in his eyes that told him he was serious.
+
+That's why Darryl wouldn't tell nobody -- and that's why I've been careful
+m'self. But there comes a time when this kinda things got to be exposed, and
+maybe y'all can do it.”
+
+James sat back on the pipe and sighed heavily. He was pleased to finally
+tell someone Darryl's story, but worried too -- now these fine people, friends
+of Darryl's, also had the burden of Darryl's experience? There was little
+doubt in James' mind that the man responsible for Darryl's abduction and
+beating was also responsible for his death. Would he also now harm these
+people, and James himself?
+
+Holly and Ned looked at each other. They also understood the magnitude of
+the situation. It seemed their quest for answers had yielded some, but also
+created more questions.
+

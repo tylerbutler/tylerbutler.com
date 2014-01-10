@@ -8,4 +8,12 @@ THEME_SETTINGS:
   comments: disqus
   comments_account: tylerbutlercom
 
+LAZY_LINKS_PERSIST: yes
+PLUGIN_PERMISSIONS:
+  MODIFY_RAW_POST:
+  - engineer.plugins.bundled.LazyMarkdownLinksPlugin
+
+
 FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'
+
+THEME: lumen

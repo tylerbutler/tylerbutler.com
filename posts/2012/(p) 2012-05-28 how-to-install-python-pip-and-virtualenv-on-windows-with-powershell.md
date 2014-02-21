@@ -12,6 +12,8 @@ url: /2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershel
 
 ---
 
+***Important note: As of February 2014 this guide is a little out of date. I intend to update it soon; I simply haven't had the time yet. Working on it!***
+
 *Updated May 12, 2013*
 
 If you do any Python development, you'll probably run into an awful lot of package installation instructions [that read][3]:

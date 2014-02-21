@@ -20,6 +20,11 @@ POST_RENAME_CONFIG:
   draft: '{slug} [{status}].md'
   review: '({status}) {slug}.md'
 METADATA_FORMAT: fenced
+FINALIZE_METADATA_CONFIG:
+  slug:
+    - published
+  url:
+    - published
 
 DEBUG: no
 PUBLISH_DRAFTS: no

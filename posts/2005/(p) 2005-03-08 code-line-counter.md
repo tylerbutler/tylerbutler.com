@@ -29,12 +29,12 @@ total = 0
 extensions = ['java', 'cpp', 'h']
 
 for root, dir, files in os.walk('.'):
- for file in files:
-     if str(file).split('.')[-1] in extensions:
-         filename = os.path.join(root, file)
-         f = open( filename )
-         total += len(f.readlines())
-         f.close()
+  for file in files:
+    if str(file).split('.')[-1] in extensions:
+      filename = os.path.join(root, file)
+      f = open( filename )
+      total += len(f.readlines())
+      f.close()
 
 print "TOTAL LINES IN PROJECT: " + str(total)
 ```

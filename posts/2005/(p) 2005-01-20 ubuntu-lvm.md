@@ -21,7 +21,6 @@ set everything up for an LVM volume group and thought I had everything
 working. Apparently I didn't. Silly me for not having a clue how LVM works
 (always read the directions, kids).
 
-  
 Anyway, my installation was b0rked so I figured I'd just reboot and start from
 scratch. No. My LVM data was still present every time I tried to install
 Ubuntu. I would try to remove the volume groups and it would fail, reporting
@@ -35,12 +34,10 @@ volume groups, but **nothing** about how to forcefully wipe LVM volumes.
 Funny... most people that use LVM and software RAID are concerned about
 keeping their data safe. Whatever.
 
-  
 **Finally**, I came across [this forum post][4], which has the necesarry command. In retrospect it makes sense - just write zeroes to the first part of the disk. But I would have never figured it out. For posterity, here's the command you need to run on a device to remove all previous LVM info:
   
     dd if=/dev/zero of=/dev/sda bs=1k count=10
 
-  
 Then of course, I had to figure out how the Ubuntu installer was mounting all
 my drives... but that's another story. And by the way... after all of this,
 MythTV just wasn't liking my remote, and I was suffering PVR withdrawal pretty

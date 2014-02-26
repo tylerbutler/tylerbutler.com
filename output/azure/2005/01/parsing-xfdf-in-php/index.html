@@ -142,13 +142,11 @@ once you figure out the way <span class="caps">PHP</span> does <span class="caps
 <span class="err">$</span><span class="n">field</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
 <span class="err">$</span><span class="n">curTag</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
 
-
 <span class="cm">/* <span class="caps">BEGIN</span> <span class="caps">XML</span> <span class="caps">PROCESSING</span> */</span>
 <span class="c1">// <span class="caps">XML</span> Parser element start function</span>
 <span class="k">function</span><span class="err"> </span><span class="n">startElement</span><span class="p">(</span><span class="err">$</span><span class="n">parser</span><span class="p">,</span><span class="err"> $</span><span class="n">name</span><span class="p">,</span><span class="err"> $</span><span class="n">attrs</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="err">    </span><span class="k">global</span><span class="err"> $</span><span class="n">curTag</span><span class="p">,</span><span class="err"> $</span><span class="n">field</span><span class="p">;</span>
-
 
 <span class="err">    </span><span class="c1">//track the tag we&#39;re currently in</span>
 <span class="err">    $</span><span class="n">curTag</span><span class="err"> </span><span class="p">.</span><span class="o">=</span><span class="err"> </span><span class="s">&quot;^$name&quot;</span><span class="p">;</span>
@@ -200,7 +198,6 @@ once you figure out the way <span class="caps">PHP</span> does <span class="caps
   <span class="k">if</span><span class="err"> </span><span class="p">(</span><span class="o">!</span><span class="n">xml_parse</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">,</span><span class="err"> $</span><span class="n">data</span><span class="p">,</span><span class="err"> </span><span class="n">feof</span><span class="p">(</span><span class="err">$</span><span class="n">fp</span><span class="p">)))</span>
 
 <span class="err">    </span><span class="p">{</span>
-
 <span class="err">        </span><span class="n">die</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&quot;<span class="caps">XML</span> error: %s at line %d&quot;</span><span class="p">,</span>
                     <span class="n">xml_error_string</span><span class="p">(</span><span class="n">xml_get_error_code</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">)),</span>
                     <span class="n">xml_get_current_line_number</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">)));</span>

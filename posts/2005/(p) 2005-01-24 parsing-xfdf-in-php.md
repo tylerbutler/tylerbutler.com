@@ -20,7 +20,6 @@ your form data in several different formats. One, FDF, is usable in PHP
 provided you load this module thingy. Unfortunately, the server I want to run
 the PHP script on uses Irix and the module is unavailable for Irix. Poo.
 
-  
 I then turned to XFDF, which is essentially FDF data all XML-ified. PHP has an
 XML parser built in, so I don't have to load any crazy modules to parse the
 data. Unfortunately, PHP's parser is SAX-based rather than DOM-based, so it
@@ -39,13 +38,11 @@ $values = array();
 $field = "";
 $curTag = "";
 
-
 /* BEGIN XML PROCESSING */
 // XML Parser element start function
 function startElement($parser, $name, $attrs)
 {
     global $curTag, $field;
-
 
     //track the tag we're currently in
     $curTag .= "^$name";
@@ -97,7 +94,6 @@ while ($data = fread($fp, 4096))
   if (!xml_parse($xml_parser, $data, feof($fp)))
 
     {
-
         die(sprintf("XML error: %s at line %d",
                     xml_error_string(xml_get_error_code($xml_parser)),
                     xml_get_current_line_number($xml_parser)));

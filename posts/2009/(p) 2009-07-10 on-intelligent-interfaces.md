@@ -23,3 +23,5 @@ figure this out. Inside your _own_ brain, it is written on glowing letters
 across your forehead.
 
    [1]: http://www82.wolframalpha.com/input/?i=two+cups+of+flour+and+two+eggs
+   [2]: http://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html
+ 

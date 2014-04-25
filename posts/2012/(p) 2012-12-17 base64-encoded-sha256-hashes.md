@@ -33,9 +33,7 @@ You can pipe every file in a directory to this script like this:
     :::powershell
     ls -File |% {.\Get-FileHash.ps1 $_}
 
-
 <!-- more -->
-
 
 ### C\#&nbsp;
 

@@ -29,9 +29,8 @@
                     <link rel="stylesheet" href="/tylerbutler.com/static/engineer/lib/foundation/stylesheets/ie.css">
                 <![endif]-->
                         
-                    
-                    
-                    <link rel="stylesheet" href="/tylerbutler.com/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+                            <link rel="stylesheet" href="/tylerbutler.com/static/theme/stylesheets/dark_rainbow_precompiled.css"
+                  type="text/css"/>
         
                 
                                     
@@ -61,13 +60,13 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                        <script src="/tylerbutler.com/static/engineer/lib/modernizr-2.6.2.min.js"
+                        <script src="/tylerbutler.com/static/engineer/lib/modernizr-2.7.1.min.js"
                     type="text/javascript"></script>
             
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/tylerbutler.com/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/tylerbutler.com/static/engineer/lib/jquery-1.11.0.min.js"><\/script>')
             </script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -96,6 +95,32 @@
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">MAR</div>
+                    <div class="day">23</div>
+                    <div class="year">2009</div>
+                    <div class="permalink">
+                        <a href="/tylerbutler.com/2009/03/more-accessibility/"
+                           title="Permanent link to 'More Accessibility'">∞</a>
+                    </div>
+                            </div>
+                            <div class="attribution">
+                                            via Mark Pilgrim
+                                    </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2009-03-23 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress">More Accessibility</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p>Another great post on accessibility from Mark Pilgrim. Good follow-up to
+<a href="/2009/03/accessibility-insanity/">my last rant post</a>.</p>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">MAR</div>
@@ -250,63 +275,6 @@ Gargantuan stupidity.
                                     <p>Some fan art of Calvin and Hobbes with Calvin a little older. Very
 interesting. I think it&#8217;s time to give my <a href="https://www.amazon.com/dp/0740748475?tag=tylerbutlerco-20&amp;camp=0&amp;creative=0&amp;linkCode=as4&amp;creativeASIN=0740748475&amp;adid=0G5WH77B5B39AK3368E8&amp;">Complete Calvin and Hobbes</a>
 another&nbsp;read-through.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">MAR</div>
-                    <div class="day">15</div>
-                    <div class="year">2009</div>
-                    <div class="permalink">
-                        <a href="/tylerbutler.com/2009/03/linq-confusion/"
-                           title="Permanent link to 'LINQ Confusion'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tylerbutler.com/tag/c">C#</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
-                <time datetime="2009-03-15 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /tylerbutler.com/2009/03/linq-confusion/"><span class="caps">LINQ</span> Confusion</a>
-                                            </h1>
-                </header>
-                                    <p>I find myself using <span class="caps">LINQ</span> a lot in my C# code these days. I use collections all
-over the place, and there&#8217;s no doubt that <span class="caps">LINQ</span> makes sorting and slicing
-collections a lot simpler&nbsp;code-wise.</p>
-<p>In my most recent weekend project, I need to randomly sort a list of cards,
-which are represented by an <strong>Action</strong> class. After some quick searching, I
-found <a href="http://www.dailycoding.com/Posts/random_sort_a_list_using_linq.aspx">some articles</a> that indicated the best way to do this would be to
-sort the list by random <span class="caps">GUID</span>. This makes sense, though I certainly wouldn&#8217;t
-have thought of it on my&nbsp;own.</p>
-<p>The examples given all worked, but not with my lists… With the following code,
-the compiler spits out several&nbsp;errors:</p>
-<div class="codehilite"><pre><span class="nb">List</span><span class="o">&lt;</span><span class="nb">Action</span><span class="o">&gt;</span> <span class="n">cards</span> <span class="o">=</span> <span class="nb">new</span> <span class="nb">List</span><span class="o">&lt;</span><span class="nb">Action</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="nx">cards.Add</span><span class="p">(</span> <span class="nb">new</span> <span class="nx">OneCattle</span><span class="p">()</span> <span class="p">);</span>
-<span class="nx">cards.Sort</span><span class="p">(</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="nx">Guid.NewGuid</span><span class="p">()</span> <span class="p">)</span><span class="bp">.</span><span class="nx">ToList</span><span class="o">&lt;</span><span class="nb">Action</span><span class="o">&gt;</span><span class="p">();</span>
-
-<span class="nb">Error</span>    <span class="mi">1</span>    <span class="nx">Delegate</span> <span class="s1">&#39;System.Comparison&lt;agricola.Action&gt;&#39;</span> <span class="nx">does</span> <span class="ow">not</span> <span class="k">take</span> <span class="s1">&#39;1&#39;</span> <span class="nb">arguments</span>
-<span class="nb">Error</span>    <span class="mi">2</span>    <span class="nx">Cannot</span> <span class="nb">convert</span> <span class="nx">lambda</span> <span class="nx">expression</span> <span class="k">to</span> <span class="k">type</span> <span class="s1">&#39;System.Collections.Generic.IComparer&lt;agricola.Action&gt;&#39;</span> <span class="nx">because</span> <span class="nx">it</span> <span class="nx">is</span> <span class="ow">not</span> <span class="nx">a</span> <span class="nx">delegate</span> <span class="k">type</span>
-<span class="nb">Error</span>    <span class="mi">3</span>    <span class="nx">Cannot</span> <span class="nx">implicitly</span> <span class="nb">convert</span> <span class="k">type</span> <span class="s1">&#39;System.Guid&#39;</span> <span class="k">to</span> <span class="s1">&#39;int&#39;</span>
-<span class="nb">Error</span>    <span class="mi">4</span>    <span class="nx">Cannot</span> <span class="nb">convert</span> <span class="nx">lambda</span> <span class="nx">expression</span> <span class="k">to</span> <span class="nx">delegate</span> <span class="k">type</span> <span class="s1">&#39;System.Comparison&lt;agricola.Action&gt;&#39;</span> <span class="nx">because</span> <span class="nx">some</span> <span class="nx">of</span> <span class="nx">the</span> <span class="k">return</span> <span class="n">types</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">block</span> <span class="nx">are</span> <span class="ow">not</span> <span class="nx">implicitly</span> <span class="nx">convertible</span> <span class="k">to</span> <span class="nx">the</span> <span class="nx">delegate</span> <span class="k">return</span> <span class="k">type</span>
-</pre></div>
-
-
-<p>However, using a more explicit <span class="caps">LINQ</span> query without a lambda expression seems to
-work&nbsp;fine:</p>
-<div class="codehilite"><pre><span class="kd">var</span> <span class="n">q</span> <span class="o">=</span> <span class="nb">from</span> <span class="n">a</span> <span class="k">in</span> <span class="nx">cards</span>
-        <span class="nb">orderby</span> <span class="nx">Guid.NewGuid</span><span class="p">()</span>
-        <span class="k">select</span> <span class="nx">a</span><span class="p">;</span>
-<span class="nb">List</span><span class="o">&lt;</span><span class="nb">Action</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="nx">q.ToList</span><span class="o">&lt;</span><span class="nb">Action</span><span class="o">&gt;</span><span class="p">();</span>
-</pre></div>
-
-
-<p>Anybody know why this is? I haven&#8217;t wrapped my head around lambda expressions
-and the theory behind <span class="caps">LINQ</span> to understand what the root cause&nbsp;is…</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

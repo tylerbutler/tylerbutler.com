@@ -29,9 +29,8 @@
                     <link rel="stylesheet" href="/tylerbutler.com/static/engineer/lib/foundation/stylesheets/ie.css">
                 <![endif]-->
                         
-                    
-                    
-                    <link rel="stylesheet" href="/tylerbutler.com/static/theme/stylesheets/dark_rainbow.css" type="text/css"/>
+                            <link rel="stylesheet" href="/tylerbutler.com/static/theme/stylesheets/dark_rainbow_precompiled.css"
+                  type="text/css"/>
         
                 
                                     
@@ -61,13 +60,13 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                        <script src="/tylerbutler.com/static/engineer/lib/modernizr-2.6.2.min.js"
+                        <script src="/tylerbutler.com/static/engineer/lib/modernizr-2.7.1.min.js"
                     type="text/javascript"></script>
             
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
             <script>
-                window.jQuery || document.write('<script src="/tylerbutler.com/static/engineer/lib/jquery-1.10.2.min.js"><\/script>')
+                window.jQuery || document.write('<script src="/tylerbutler.com/static/engineer/lib/jquery-1.11.0.min.js"><\/script>')
             </script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -96,6 +95,82 @@
             <div class="row">                <section id="main" class="nine columns"
                          role="main">    <div class="posts">
                                     <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">MAY</div>
+                    <div class="day">05</div>
+                    <div class="year">2009</div>
+                    <div class="permalink">
+                        <a href="/tylerbutler.com/2009/05/sharepoint-permissions-cheat-sheet/"
+                           title="Permanent link to 'SharePoint Permissions &ldquo;Cheat Sheet&rdquo;'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tylerbutler.com/tag/sharepoint">sharepoint</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2009-05-05 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /tylerbutler.com/2009/05/sharepoint-permissions-cheat-sheet/">SharePoint Permissions &ldquo;Cheat Sheet&rdquo;</a>
+                                            </h1>
+                </header>
+                                    <p>Back when we were building SharePoint 2007, a member of our Program Management
+team left Microsoft, and I inherited the permissions-related features for the
+then Content Management Server team, which was responsible for all of the web
+publishing features in SharePoint. Essentially, this meant that I has to
+figure out what the correct set of permission levels were for our features,
+and what lists/libraries should have unique (non-inherited)&nbsp;permissions.</p>
+<p>Now, if you&#8217;ve used SharePoint for any length of time, you&#8217;ve no doubt been
+frustrated with permissions management. It&#8217;s definitely a sore point.
+Unfortunately, I don&#8217;t have any magic bullets or golden hammers. When I
+started trying to figure everything out so that I could make educated
+decisions for our designs, I realized that I needed to write stuff down.
+People always asked questions like, “What rights do Designers have by
+default?” Sure, you can find out by going to the site itself and checking, but
+the <span class="caps">UI</span> isn&#8217;t the easiest to navigate, and oftentimes what you really want to
+do is compare multiple permissions levels. “What rights do Designers have that
+Contributors don&#8217;t?”, for example. To help keep it all straight in my mind
+(and so I could point people to the info rather than answer 100 emails a day
+with the same question!), the SharePoint Permissions “Cheat Sheet” was&nbsp;born.</p>
+<p>It&#8217;s nothing fancy, and it&#8217;s certainly not anything that no one else could
+have created. But still, it has proven useful over the past few years. I still
+keep a copy of it pinned to my office wall. It&#8217;s pretty self-explanatory. The
+first sheet has a table of the default publishing permission levels and what
+fine-grain permissions each of them has. The second sheet is just the
+descriptions of each of the fine-grain permissions so I didn&#8217;t have to go
+hunting through the <span class="caps">UI</span> to find them whenever I was wondering what the
+differences were. Finally, the third sheet is a list of “securable objects”
+(which what I decided to call a list/library that had broken away permissions
+inheritance and was independently secured) and what default groups had what
+rights to those locations by default. This was particularly important since in
+general, you want to avoid breaking permissions inheritance if you can, and we
+wanted to be very deliberate about where we did, and also track them to ensure
+they made sense over&nbsp;time.</p>
+<p>So how exactly do you use this? Well, it can be a
+handy reference as-is, but chances are that you have your own permissions
+level or have modified the existing ones to suit your needs, so you can modify
+this sheet to reflect your own custom permissions and keep track of
+everything. It really is helpful to have a centralized reference of all of the
+various permissions levels. If you go through and put in your own levels, you
+might realize that there&#8217;s a lot of needless duplication in the custom
+permission level you might have created. When it comes to SharePoint
+permissions, less is better, so this can be a helpful auditing tool as well as
+a&nbsp;reference.</p>
+<p><strong>A couple of disclaimers&#8230;</strong> This was created based on the <span class="caps">RTM</span>
+version. As far as I know, nothing has been changed in <span class="caps">SP1</span> or <span class="caps">SP2</span> that would
+impact it, but I haven&#8217;t been checking to keep it up to date. If you do notice
+errors you can let me know and I&#8217;ll try to correct it. Also, this obviously
+won&#8217;t take into account any customizations that you may do that would alter
+the default permission levels. If you use this for any of the purposes listed
+or for additional things, leave a comment! I&#8217;d love to hear how it&#8217;s working
+for you and if it&#8217;s been&nbsp;helpful.</p>
+<iframe width="100%" height="800" frameborder="0" scrolling="no" src="https://skydrive.live.com/embed?cid=016388EDBC1188FA&resid=16388EDBC1188FA%211657&authkey=AO9sXmDvE0c07ZA&em=2&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True"></iframe>
+                                                            </article>
+            </div>                                                <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">APR</div>
@@ -210,32 +285,6 @@ foobar.com/iphone/home.aspx. They are not the same thing. If you don&#8217;t hav
 the capability to serve the specific page I asked for in a mobile-friendly
 format, then don&#8217;t do&nbsp;anything.</p>
 <p>Stop being&nbsp;idiots.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">MAR</div>
-                    <div class="day">23</div>
-                    <div class="year">2009</div>
-                    <div class="permalink">
-                        <a href="/tylerbutler.com/2009/03/more-accessibility/"
-                           title="Permanent link to 'More Accessibility'">∞</a>
-                    </div>
-                            </div>
-                            <div class="attribution">
-                                            via Mark Pilgrim
-                                    </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2009-03-23 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress">More Accessibility</a>
-                        <span class="arrow">→</span>                    </h1>
-                </header>
-                                    <p>Another great post on accessibility from Mark Pilgrim. Good follow-up to
-<a href="/2009/03/accessibility-insanity/">my last rant post</a>.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

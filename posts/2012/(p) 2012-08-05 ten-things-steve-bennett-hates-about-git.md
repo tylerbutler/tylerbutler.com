@@ -163,7 +163,7 @@ The future is waiting. Go meet it.
 
 [^3]: In fact, I've thought about trying to wrap my development process in some scripts, sort of like git-flow, but it's likely overkill. I find it hard to believe I'm the only person in the world that works this way, but maybe I am. No other developer codes on more than one machine? Goodness gracious.
 
-[git post]: /2012/06/10/git-vs-mercurial-again/
+[git post]: /2012/06/git-vs-mercurial-again/
 [Engineer]: /projects/engineer/
 [expert mode]: http://blogs.msdn.com/b/oldnewthing/archive/2003/07/28/54583.aspx
 [WebFaction]: http://www.webfaction.com/?affiliate=tylerbutler

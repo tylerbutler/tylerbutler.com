@@ -98,6 +98,56 @@
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">AUG</div>
+                    <div class="day">21</div>
+                    <div class="year">2005</div>
+                    <div class="permalink">
+                        <a href="/2005/08/most-recent-songs-in-itunes/"
+                           title="Permanent link to 'Most Recent Songs in iTunes'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2005-08-21 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2005/08/most-recent-songs-in-itunes/">Most Recent Songs in iTunes</a>
+                                            </h1>
+                </header>
+                                    <p>I decided this morning that I was going to try and learn <span class="caps">XSLT</span> today. I think I
+succeeded somewhat. I decided that my tutorial application would be an iTunes
+<span class="caps">XML</span> feed transformed into a page on my site with the most recent songs I&#8217;ve
+listened to in iTunes. I created my own iTunes <span class="caps">XML</span> schema (a really really
+simple one), though in retropect, I probably should have just tried to use the
+built-in iTunes <span class="caps">XML</span> stuff (though I don&#8217;t know if this capability is exposed
+in the <span class="caps">SDK</span>). Anyway, once I had the <span class="caps">XML</span> (created by my program in C# and the
+iTunes <span class="caps">COM</span> <span class="caps">SDK</span>), I started fooling with the <span class="caps">XSLT</span>. It still needs a lot of
+style work, but I managed to get it formatting the data the right way and&nbsp;everything.</p>
+<p>The album art is actually taken directly from the metadata on the audio files
+in my collection, not from another source like Amazon. I think this is a
+better solution because I have some crazy stuff that Amazon simply doesn&#8217;t
+know about. Besides, I spent a long time trying to clean up the album art in
+my music collection, and though there are still a lot of gaps, I might as well
+get some reward for all my hard&nbsp;work.</p>
+<p>As far as the <span class="caps">XSLT</span> is concerned, it&#8217;s pretty easy stuff, I guess, but there
+are a lot of &#8220;gotchas.&#8221; For example, I couldn&#8217;t get things to render in
+Firefox until I added the &#8220;&#8221; line. It was working fine in <span class="caps">IE</span> and I couldn&#8217;t
+figure out what the heck was wrong. Plus, if you&#8217;re not careful about dividing
+your templates for different elements up properly, things come out pretty
+wierd. Also, my Apache web server isn&#8217;t configured right, I guess, because it
+messes up the <span class="caps">MIME</span> types on *.xslt files, so for awhile, Firefox complained it
+couldn&#8217;t attach the stylesheet. Rather than fool with Apache, I just changed
+the extension of the stylesheet. How&#8217;s that for&nbsp;lazy?</p>
+<p>Anyway, here&#8217;s the xml file with attached stylesheet: <a href="/SiteCollectionDocuments/Post%20Content/nowplaying.xml">nowplaying.xml</a>.
+Obviously, you&#8217;ll need at least <span class="caps">IE</span> 6.0 or Firefox (or another <span class="caps">XSLT</span>-ready
+browser)to see it right. And here&#8217;s the <a href="/SiteCollectionDocuments/Post%20Content/fullview.xsl"><span class="caps">XSLT</span> itself</a>. Like I said, I want
+to do a lot more styling, but I have been doing this stuff all day, so I&#8217;m
+calling it quits for&nbsp;now.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">AUG</div>
                     <div class="day">13</div>
                     <div class="year">2005</div>
                     <div class="permalink">
@@ -217,32 +267,6 @@ interesting, though, and has some good ideas about how to stick it to the junk
 mail advertisers. I think I&#8217;m going to start doing some of the stuff in there,
 like stuffing Business reply envelopes with heavy paper and sending it back
 just to make the company pay for the postage. Take <strong>that</strong>&nbsp;suckers!</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JUN</div>
-                    <div class="day">15</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/06/interview-with-a-search-engine/"
-                           title="Permanent link to 'Interview with a Search Engine'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2005-06-15 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="http://www.satirewire.com/features/satire-jeevesinterview.shtml">Interview with a Search Engine</a>
-                        <span class="arrow">→</span>                    </h1>
-                </header>
-                                    <p><a href="http://www.the-underdogs.org/game.php?id=330">Dr. Sbaitso</a> was a psychiatrist program that I first played with as part
-of my Sound Blaster 16 (my first sound card!) Friends and I actually made some
-prank phone calls using it. Hysterical! Anyway, here is a funny article
-outlining a &#8220;conversation&#8221; with the Jeeves search engine of Ask.com. Prepare
-to&nbsp;laugh.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

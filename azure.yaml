@@ -13,5 +13,15 @@ PLUGIN_PERMISSIONS:
   MODIFY_RAW_POST:
   - engineer.plugins.bundled.LazyMarkdownLinksPlugin
 
+POST_RENAME_ENABLED: yes
+POST_RENAME_CONFIG:
+  draft: '{slug} [{status}].md'
+  review: '({status}) {slug}.md'
+METADATA_FORMAT: fenced
+FINALIZE_METADATA_CONFIG:
+  slug:
+    - published
+  url:
+    - published
 
 FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'

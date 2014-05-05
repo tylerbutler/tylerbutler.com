@@ -97,6 +97,164 @@
                                     <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
+                                    <div class="month">OCT</div>
+                    <div class="day">15</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/10/fun-with-text-to-speech/"
+                           title="Permanent link to 'Fun With Text-to-Speech'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/snippets">snippets</a>
+                        </li>
+                                            <li><a href="/tag/c">C#</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-10-15 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2004/10/fun-with-text-to-speech/">Fun With Text-to-Speech</a>
+                                            </h1>
+                </header>
+                                    <p>At work, we have a mindless task that has to be done manually every hour.
+Basically, we have to log into this website and click around a bit to make
+sure that the site is still up and running. It&#8217;s pretty ridiculous, I know,
+but it has to be done nonetheless. No one in the office ever remembers to do
+it, so I decided it might be nice to have an alarm of sorts. So I remembered
+some of my old Micrososft Agent tinkering back in High School, and looked
+around for some examples of using the <a href="http://www.microsoft.com/speech/download/sdk51/">Windows speech <span class="caps">API</span></a> in C#. It didn&#8217;t
+take me long to figure it out, and the code for my simple text-to-speech
+program is deceptively simple. Instead of providing the code as a download,
+I&#8217;m just posting it here since it is so&nbsp;short.</p>
+<div class="codehilite"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">SpeechLib</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Speak</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Speak</span>
+    <span class="p">{</span>
+        <span class="c1">///</span>
+        <span class="c1">/// The main entry point for the application.</span>
+        <span class="c1">///  [STAThread]</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">SpeechVoiceSpeakFlags</span> <span class="n">flags</span> <span class="p">=</span> <span class="n">SpeechVoiceSpeakFlags</span><span class="p">.</span><span class="n">SVSFlagsAsync</span><span class="p">;</span>
+            <span class="n">SpVoice</span> <span class="n">v</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SpVoice</span><span class="p">();</span>
+            <span class="k">if</span><span class="p">(</span> <span class="n">args</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span> <span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">v</span><span class="p">.</span><span class="n">Speak</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="n">flags</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">v</span><span class="p">.</span><span class="n">Speak</span><span class="p">(</span><span class="s">&quot;Please specify what you would like me to say.&quot;</span><span class="p">,</span> <span class="n">flags</span> <span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">v</span><span class="p">.</span><span class="n">WaitUntilDone</span><span class="p">(</span><span class="n">Timeout</span><span class="p">.</span><span class="n">Infinite</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Basically all you need is the code above and the Interop.SpeechLib.dll file,
+which provides access to the speech utilities. For completeness (and since I
+had some trouble finding the <span class="caps">DLL</span>), I put a copy of the file up on here.
+This program basically just echoes back whatever string you pass in at the
+command line, so to get the scheduling working, I just used Windows Task
+Scheduler. I scheduled a task to run every hour ever day between 8am and 10pm
+(check the advanced settings of the Task Scheduler), then pointed the task to
+the compiled program, passing it the string I want it to say as the argument.
+Simple. And it works. I still smile every time one of the office computers
+says, &#8220;It is time to check&nbsp;Blackboard.&#8221;</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">SEP</div>
+                    <div class="day">29</div>
+                    <div class="year">2004</div>
+                    <div class="permalink">
+                        <a href="/2004/09/getting-rich/"
+                           title="Permanent link to 'Getting Rich'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2004-09-29 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://paulgraham.com/bubble.html">Getting Rich</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p>I came across a link to this story on Slashdot. I always enjoy reading Paul
+Graham, because he writes quite simply, but obviously has the technical
+knowledge and experience to write on the topics he does. This particular
+article was a brief analysis of trends in the market during the DotCom Bubble
+and talks a little bit about the future based on some of the market trends and
+techniques from that time period. A good read, and it gives me hope that maybe
+I can still get rich. After&nbsp;all:</p>
+<blockquote>
+<p>I have no illusions about why nerd culture is becoming more accepted. It&#8217;s
+not because people are realizing that substance is more important than
+marketing. It&#8217;s because the nerds are getting <a href="http://www.paulgraham.com/nerdad.html">rich</a>. But that is not going
+to&nbsp;change.</p>
+</blockquote>
+<p>Now, I don&#8217;t think I&#8217;m overly hung-up on &#8220;getting rich,&#8221; but it sure would be
+nice not to have to worry about how much I&#8217;m paying for food and whether or
+not I can afford rent this month. Opposed to that, rich sounds pretty nice. If
+not rich, at least &#8220;comfortable.&#8221; I also liked the quote about dressing&nbsp;informally:</p>
+<blockquote>
+<p>Dressing up is not so much bad in itself. The problem is the receptor it
+binds to: dressing up is inevitably a substitute for good ideas. It is no
+coincidence that technically inept business types are known as &#8220;suits.&#8221; Nerds
+don&#8217;t just happen to dress informally. They do it too consistently.
+Consciously or not, they dress informally as a prophylactic measure against&nbsp;stupidity.</p>
+</blockquote>
+<p>So true, so true! While I fully understand the importance of appearance,
+people seem to miss the seemingly obvious fact that even underdressed people
+can be very talented and have good ideas. I have found in my <span class="caps">IPRO</span> that while
+people need direction and leadership, they also need freedom and informality.
+That way they can get their work done on their own terms. Frankly, as a
+leader, it shouldn&#8217;t matter how the work gets done (within reason, of course),
+as long as it gets done. Obviously there are limits to this (for example, I
+require that students follow a standard comment format when writing their
+code), but the idea is that most <strong>smart</strong> people work better when they can
+work on their own terms. I have had managers argue with me about this, and I
+have decided that dumb people exist, and that if you require someone else to
+tell you how to get your work done, you must also be dumb. It is against my
+policy to work with dumb people. FInally, I really like what Graham says
+about young&nbsp;people:</p>
+<blockquote>
+<p>A 26 year old may not be very good at managing people or dealing with the
+<span class="caps">SEC</span>. Those require experience. But those are also commodities, which can be
+handed off to some lieutenant. The most important quality in a <span class="caps">CEO</span> is his
+vision for the company&#8217;s future. What will they build next? And in that
+department, there are 26 year olds who can compete with&nbsp;anyone.</p>
+</blockquote>
+<p>You better believe it. While I do my best to defer to my elders, I don&#8217;t think
+the fact that they are 20 years older than I is a default reason for them to
+make better decisions than I do. And frankly, I <strong>do</strong> know a lot more about
+some topics than they do. Consustently, however, I get little or no respect
+from people just because I am young. On the other hand, I am lucky in that I
+have several older people who I deeply respect that also seem to respect me
+and my abilities (Dr. Sun, my friend Patrick). For the rest of you who think
+I&#8217;m too young to be any good at anything, how about reading a little bit of
+the&nbsp;Bible:</p>
+<blockquote>
+<p>Don&#8217;t let anyone look down on you because you are young, but set an example
+for the believers in speech, in life, in love, in faith and in&nbsp;purity.</p>
+<p><a href="http://www.biblegateway.net/cgi-bin/bible?passage=1TIM+4:12&amp;language=english&amp;version=NIV&amp;showfn=on&amp;showxref=on">1 Timothy&nbsp;4:12</a></p>
+</blockquote>
+<p>Take <strong><em>that!</em></strong></p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
                                     <div class="month">SEP</div>
                     <div class="day">13</div>
                     <div class="year">2004</div>
@@ -264,98 +422,6 @@ tendency of government to get all up in our electronic business. Anyway, I
 enjoyed it. At first glance, it seems very outlandish, but when you think
 about it and read the author&#8217;s notes, it becomes clear that the sad future
 isn&#8217;t far&nbsp;away.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">AUG</div>
-                    <div class="day">19</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/08/bear-beer-guzzler/"
-                           title="Permanent link to 'Bear Beer Guzzler'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2004-08-19 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2004/08/bear-beer-guzzler/">Bear Beer Guzzler</a>
-                                            </h1>
-                </header>
-                                    <p><a href="http://patrick.wagstrom.net/">Patrick</a> sent me this story. What a cool bear! Does anyone have his
-address? I&#8217;d like to invite him to my apartment-warming party. Betcha he does
-an awesome keg-stand. He&#8217;s probably been arrested though &#8211; he&#8217;s well under the
-legal drinking age. (Yuk&nbsp;yuk).</p>
-<p><a href="http://www.cnn.com/2004/US/West/08/18/bear.beer.reut/index.html">http://www.cnn.com/2004/<span class="caps">US</span>/West/08/18/bear.beer.reut/index.html</a></p>
-<blockquote>
-<p>A black bear was found passed out at a campground in Washington state
-recently after guzzling down three dozen cans of a local beer, a campground
-worker said on&nbsp;Wednesday.</p>
-<p><span class="dquo">&#8220;</span>We noticed a bear sleeping on the common lawn and wondered what was going on
-until we discovered that there were a lot of beer cans lying around,&#8221; said
-Lisa Broxson, a worker at the Baker Lake Resort, 80 miles (129 km) northeast
-of&nbsp;Seattle.</p>
-<p>The hard-drinking bear, estimated to be about two years old, broke into
-campers&#8217; coolers and, using his claws and teeth to open the cans, swilled down
-the&nbsp;suds.</p>
-<p>It turns out the bear was a bit of a beer sophisticate. He tried a mass-market
-Busch beer, but switched to Rainier Beer, a local ale, and stuck with it for
-his drinking&nbsp;binge.</p>
-<p>Wildlife agents chased the bear away, but it returned the next day, said&nbsp;Broxson.</p>
-<p>They set a trap using as bait some doughnuts, honey and two cans of Rainier
-Beer. It worked, and the bear was captured for&nbsp;relocation.</p>
-</blockquote>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">AUG</div>
-                    <div class="day">17</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/08/the-big-move-part-1/"
-                           title="Permanent link to 'The Big Move (Part 1)'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2004-08-17 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2004/08/the-big-move-part-1/">The Big Move (Part 1)</a>
-                                            </h1>
-                </header>
-                                    <p>I have been looking for a new apartment for what seems like forever. I started
-out with 5 other roommates, but when they decided to go into a house that just
-wasn&#8217;t up to my standards, I struck out on my own and started looking for one-
-bedroom places. Unfortunately, the search was tough. Many places I looked at
-were either in fairly bad shape or just too expensive for the size. I was
-getting pretty discouraged, especially since my financial situation isn&#8217;t
-exactly great and time was running&nbsp;out.</p>
-<p>On Saturday of last week (August 7) I looked at a 2 1/2 room studio apartment
-on Hamilton Avenue, close to the corner of 35th and Archer. I liked what I saw
-- and I liked the price, too. It was a little further from campus than I had
-hoped (about a 15-minute drive, depending on the lights), but it had beautiful
-hardwood floors, a large walk-in closet, and was in pretty good shape. It also
-smelled great, which, considering some of the other places I looked at, was a
-definite plus. The landlord was understanding of my financial situation, and I
-explained to him that I wouldn&#8217;t be able to pay until later the following week
-because <a href="/2004/08/i-hate-banks/">my bank is stupid</a>. That was fine with him, so I crossed my
-fingers and waited until Friday so my bank would finally ackowledge that I had
-the necessary funds in my account (have I mentioned yet that <a href="/2004/08/i-hate-banks/">I despise
-banks?</a>).</p>
-<p>Thankfully (and miraculously), my bank cleared the funds just before I needed
-to make the withdrawal for the security deposit and first month&#8217;s rent. I
-headed over to the landlord&#8217;s office, got everything in order, and had the
-keys in my hand in less than an hour. It felt really good to have the keys in
-my hand. I grabbed Alex&#8217;s camera and headed over to get some pictures before I
-destroyed the place with my stuff. Some of the best ones are here. Others are
-available in the download section. Click on the photos below to get an
-even bigger&nbsp;photo.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

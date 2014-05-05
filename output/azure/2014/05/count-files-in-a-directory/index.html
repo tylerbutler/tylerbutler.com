@@ -11,7 +11,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>    Carmack & Romero    : Tyler Butler
+    <title>    Count Files In A Directory    : Tyler Butler
 </title>
 
                     
@@ -96,42 +96,53 @@
                          role="main">    <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
-                                    <div class="month">APR</div>
-                    <div class="day">27</div>
+                                    <div class="month">MAY</div>
+                    <div class="day">05</div>
                     <div class="year">2014</div>
                     <div class="permalink">
-                        <a href="/2014/04/carmack-romero/"
-                           title="Permanent link to 'Carmack & Romero'">∞</a>
+                        <a href="/2014/05/count-files-in-a-directory/"
+                           title="Permanent link to 'Count Files In A Directory'">∞</a>
                     </div>
                             </div>
-                            <div class="attribution">
-                                            via Markus Persson
-                                    </div>
-                                </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/powershell">powershell</a>
+                        </li>
+                                            <li><a href="/tag/snippets">snippets</a>
+                        </li>
+                                    </ul>
+                    </div>
                             <article class="post-content ten columns">
-                <time datetime="2014-04-27 PDT"
+                <time datetime="2014-05-05 PDT"
                       pubdate=""></time>
                 <header>
                     <h1>
-                        <a href="        /2014/04/carmack-romero/">Carmack <span class="amp">&amp;</span> Romero</a>
+                        <a href="        /2014/05/count-files-in-a-directory/">Count Files In A Directory</a>
                                             </h1>
                 </header>
-                                    <p>I <em>love</em> this picture of John Romero and John&nbsp;Carmack:</p>
-<blockquote class="twitter-tweet" lang="en"><p>Dayum! <a href="https://twitter.com/romero">@romero</a> and <a href="https://twitter.com/ID_AA_Carmack">@ID_AA_Carmack</a> were metal as hell back in the day <a href="http://t.co/tJHwuwrrGM">pic.twitter.com/tJHwuwrrGM</a></p>&mdash; Junkboy (@jnkboy) <a href="https://twitter.com/jnkboy/statuses/460508315747749888">April 27, 2014</a></blockquote>
+                                    <p>Need to count files in a directory? Try this one line of&nbsp;PowerShell:</p>
+<div class="codehilite"><pre><span class="p">(</span><span class="n">dir</span> <span class="p">|</span> <span class="n">where</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">GetType</span><span class="p">()</span> <span class="o">-match</span> <span class="s2">&quot;fileInfo&quot;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">measure-object</span><span class="p">).</span><span class="n">count</span>
+</pre></div>
 
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<p>It looks like a promotional shot for a new 1980&#8217;s-era fantasy-themed buddy cop <span class="caps">TV</span> show. I&#8217;d watch&nbsp;it.</p>
-<p>This reminds me that I really need to finally pick up a copy of <a href="http://www.amazon.com/gp/product/0812972155/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0812972155&amp;linkCode=as2&amp;tag=tylerbutlerco-20">Masters of Doom</a> and read it. It&#8217;s been on my wish list for&nbsp;years.</p>
+<p>You can also add a <code>-r</code> parameter (<code>-r</code> means <em>recursive</em>) to the first <code>dir</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> command and get a complete count of all files in all subdirectories under the current&nbsp;path.</p>
+<p>This comes in handy, though I <em>do</em> wish it was a little more&nbsp;succinct.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>And of course you can substitute <code>ls</code> for <code>dir</code> if you prefer, or even <code>Get-ChildItem</code> if you&#8217;re feeling particularly masochistic.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                                                                                                                 
                     <div class="row">
                         <div class="twelve columns post-links">
                             <ul class="block-grid two-up">
                                 <li>
-                                                                            <a href="/2014/04/aerobie/">← Aerobie</a>
+                                                                            <a href="/2014/04/carmack-romero/">← Carmack & Romero</a>
                                                                     </li>
                                 <li>
-                                                                            <a href="/2014/05/count-files-in-a-directory/">Count Files In A Directory →</a>
+                                                                            <a href="/2014/05/engineer-v0-5-0-released/">Engineer v0.5.0 Released →</a>
                                                                     </li>
                             </ul>
                         </div>
@@ -144,8 +155,8 @@
     <!-- DISQUS -->
     <script type="text/javascript">
         var disqus_shortname = 'tylerbutlercom';
-        var disqus_identifier = '/2014/04/carmack-romero/';
-        var disqus_url = 'http://www.tylerbutler.com/2014/04/carmack-romero/';
+        var disqus_identifier = '/2014/05/count-files-in-a-directory/';
+        var disqus_url = 'http://www.tylerbutler.com/2014/05/count-files-in-a-directory/';
         (function () {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';

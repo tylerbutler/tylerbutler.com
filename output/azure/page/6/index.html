@@ -97,6 +97,100 @@
                                     <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
+                                    <div class="month">NOV</div>
+                    <div class="day">18</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/11/extracting-dates-and-times-from-datetime-cells-in-excel/"
+                           title="Permanent link to 'Extracting Dates and Times from DateTime Cells in Excel'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/excel">excel</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-11-18 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2012/11/extracting-dates-and-times-from-datetime-cells-in-excel/">Extracting Dates and Times from DateTime Cells in Excel</a>
+                                            </h1>
+                </header>
+                                    <p>You may, at some point in your life, find yourself needing to take some data that represents a combined date and time and extract from it <em>only</em> the date or <em>only</em> the time. And should you find yourself in such a position, then this post might just save you a bunch of&nbsp;time.</p>
+<h2>The Magic&nbsp;Formulae</h2>
+<p>Assume our data looks like&nbsp;this:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>8/15/2012 3:39:59 <span class="caps">PM</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>A1</code> contains our date/time, and we want to put the date only in <code>B1</code> and the time only in <code>C1</code>.</p>
+<h3>Extracting the&nbsp;Date</h3>
+<p>Put this formula in <code>B1</code> to extract the&nbsp;date:</p>
+<div class="codehilite"><pre><span class="o">=</span><span class="n"><span class="caps">TRUNC</span></span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Then format <code>B1</code> with whatever date format you want.&nbsp;Done!</p>
+<p>If you search the web for answers to this basic question, a lot of the suggestions are to use a combination of the <code>DATE</code>, <code>MONTH</code>, <code>YEAR</code> and <code>DAY</code> functions.<sup id="fnref:excel1"><a class="footnote-ref" href="#fn:excel1" rel="footnote">1</a></sup> That works, but it&#8217;s really silly in my opinion &#8211; <code>TRUNC</code> is almost certainly faster, especially if you have a large quantity of&nbsp;data.</p>
+<h3>Extracting the&nbsp;Time</h3>
+<p>Put this formula in <code>C1</code> to extract the&nbsp;time:</p>
+<div class="codehilite"><pre><span class="o">=</span><span class="n"><span class="caps">MOD</span></span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Then format <code>C1</code> with whatever time format you want.&nbsp;Done!</p>
+<h2>How It&nbsp;Works</h2>
+<p>The best explanation I&#8217;ve found comes from an article titled <a href="http://office.microsoft.com/en-us/excel-help/redir/AM010288575.aspx?CTT=5&amp;origin=HA010287495">How Excel Handles Dates and Times</a>. Unfortunately it&#8217;s inexplicably an <span class="caps">MHTML</span> file, so you might have trouble opening it.<sup id="fnref:excel2"><a class="footnote-ref" href="#fn:excel2" rel="footnote">2</a></sup> I made a <a href="https://dl.dropbox.com/u/12062432/tylerbutler.com/excel_date_times_explanation.pdf"><span class="caps">PDF</span> copy</a> of the article that should work for most&nbsp;people.</p>
+<p>Anyway, from the&nbsp;article:</p>
+<blockquote>
+<p>To Excel, a date is simply a number. More precisely, a date is a serial number that represents the number of days since the fictitious date of January 0, 1900. A serial number of 1 corresponds to January 1, 1900; a serial number of 2 corresponds to January 2, 1900, and so on. This system makes it possible to deal with dates in&nbsp;formulas.</p>
+</blockquote>
+<p><span class="caps">OK</span>, that&#8217;s pretty straightforward. But what about&nbsp;times?</p>
+<blockquote>
+<p>When you need to work with time values, you simply extend the Excel date serial number system to include decimals. In other words, Excel works with times by using fractional days. For example, the date serial number for June 1, 2007, is 39234. Noon (halfway through the day) is represented internally as&nbsp;39234.5.</p>
+</blockquote>
+<p>Ahhh, there we go! Everything to the left of the decimal represents the date, and everything to the right represents the time. We don&#8217;t actually need to worry about actually <em>converting</em> those numbers into dates and times &#8211; Excel handles that for us, but behind the scenes everything&#8217;s a number. And since we&#8217;re just talking about numbers, we can apply some simple&nbsp;mathematics.</p>
+<p>In the case of dates, we truncate the number using the <a href="http://office.microsoft.com/en-us/excel-help/trunc-function-HP010342970.aspx"><span class="caps">TRUNC</span></a> function, which simply lops off the decimal numbers. This is obviously fast &#8211; all Excel needs to do is forget about the decimal&nbsp;values.</p>
+<p>The time case is a little bit tricker. We want to do the same thing, but instead of lopping off the numbers to the right of the decimal, we want to lop off the numbers to the <em>left.</em> Thankfully, math saves us again. The <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operation</a> (available in Excel via the <a href="http://office.microsoft.com/en-us/excel-help/mod-function-HP010342698.aspx"><span class="caps">MOD</span></a> function) allows us to find the remainder of a division operation. Since we want the numbers to the right of the decimal only, we mod the value by 1. Since the modulo operation gives us the <em>remainder</em>, the result is the decimal portion of the original&nbsp;number.</p>
+<p>Again, since this is simple math and doesn&#8217;t require any fancy conversions of the data, it&#8217;s faster, not to mention simpler to write in the little Excel formula&nbsp;window.</p>
+<p>I hope we can all agree there is sufficient compelling evidence that math is <em>awesome.</em></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:excel1">
+<p>I&#8217;ve chosen not to regurgitate this suboptimal solution so it doesn&#8217;t continue to set a bad example&#8230;&#160;<a class="footnote-backref" href="#fnref:excel1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:excel2">
+<p>It appears that Chrome does support <span class="caps">MHTML</span>, and I think Firefox does with an extension. Regardless, the <span class="caps">PDF</span> is likely easier.&#160;<a class="footnote-backref" href="#fnref:excel2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
                                     <div class="month">SEP</div>
                     <div class="day">07</div>
                     <div class="year">2012</div>
@@ -225,36 +319,6 @@
                     <div>
                         <a href="/2012/08/ten-things-steve-bennett-hates-about-git/" class="button">Read more →</a>
                     </div>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JUL</div>
-                    <div class="day">10</div>
-                    <div class="year">2012</div>
-                    <div class="permalink">
-                        <a href="/2012/07/max-css/"
-                           title="Permanent link to 'Max CSS'">∞</a>
-                    </div>
-                            </div>
-                            <div class="attribution">
-                                            via <a href="https://twitter.com/cssdeck">CSSDeck</a>
-                                    </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2012-07-10 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="http://daneden.me/max-css/">Max <span class="caps">CSS</span></a>
-                        <span class="arrow">→</span>                    </h1>
-                </header>
-                                    <p>Dan Eden pleads with web developers to provide uncompressed <span class="caps">CSS</span> in addition to minified&nbsp;versions:</p>
-<blockquote>
-<p>It’s pretty tough starting out as a designer/developer. You must remember those days of sitting on support forums, relentlessly refreshing and waiting for an answer to &#8220;How does website x do this with&nbsp;<span class="caps">CSS</span>?&#8221;</p>
-</blockquote>
-<p>As someone who learns best by doing, I have to agree. Despite excellent new sources of information like StackOverflow, starting out as a web developer/designer is difficult. I certainly learned a lot &#8211; and still do &#8211; from looking at the <span class="caps">CSS</span> of sites that I find&nbsp;interesting.</p>
-<p>You might not be able to do this for a large business site for business reasons, but there&#8217;s no real excuse for a personal site. I&#8217;ve <a href="https://trello.com/c/rR6cRubk">added this</a> to the list of things to bake into&nbsp;Engineer.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

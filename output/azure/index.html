@@ -98,6 +98,88 @@
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">MAY</div>
+                    <div class="day">28</div>
+                    <div class="year">2014</div>
+                    <div class="permalink">
+                        <a href="/2014/05/markdown-lazy-links-in-python/"
+                           title="Permanent link to 'Markdown Lazy Links in Python'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/engineer">engineer</a>
+                        </li>
+                                            <li><a href="/tag/python">python</a>
+                        </li>
+                                            <li><a href="/tag/markdown">markdown</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2014-05-28 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2014/05/markdown-lazy-links-in-python/">Markdown Lazy Links in Python</a>
+                                            </h1>
+                </header>
+                                    <p>One of the things I am most excited about in <a href="/2014/05/engineer-v0-5-0-released/">Engineer 0.5.0</a> is the new support for <a href="https://engineer.readthedocs.org/en/master/bundled_plugins.html#lazy-links-plugin">Markdown Lazy Links</a>. My implementation is actually a bit richer than <a href="http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/">Brett Terpstra&#8217;s original sample</a>, though it&#8217;s not quite as elegant as the original either. In particular, Engineer&#8217;s implementation allows you to add lazy links to posts that already have numeric reference links. Also, you can optionally have Engineer transform the lazy links into numeric links during a build. This can come in handy if you anticipate doing a lot of reorganizing of the post content at some point, and want to make sure links to don&#8217;t&nbsp;break.</p>
+<p>It took some time to unpack Brett&#8217;s elegant regular expression into the Python form, mostly because Ruby is very foreign to me, and its regex engine has some default behaviors that differ from Python&#8217;s. In particular, it took some time to figure out exactly what flags to pass in so that things behaved appropriately. I&#8217;m still not sure I got it completely right, though my unit tests seem to pass and I&#8217;ve been using the plugin for some time so I think it&#8217;s&nbsp;stable. </p>
+<p>I chose to use the <a href="https://docs.python.org/2/library/re.html#re.VERBOSE"><span class="caps">VERBOSE</span></a> regular expression form so it&#8217;s clearer how the expression works. Hopefully that will save someone some time if they&#8217;re looking to port the thing to some other regular expression language. You can find the source in the <a href="https://github.com/tylerbutler/engineer/blob/dev/engineer/plugins/bundled.py#L306">GitHub repository</a>, but I&#8217;m pasting the relevant class below as well. Note that this is an <a href="https://engineer.readthedocs.org/en/master/dev/plugins.html#post-processor-plugins">Engineer PostProcessor plugin</a>, so some of the code is simply scaffolding for the plugin system. If you find a bug, please let me know, or even better, <a href="https://github.com/tylerbutler/engineer/issues">file an issue on GitHub</a>.</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">LazyMarkdownLinksPlugin</span><span class="p">(</span><span class="n">PostProcessor</span><span class="p">):</span>
+<span class="c"># Inspired by Brett Terpstra: http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/</span>
+<span class="n">_link_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&#39;&#39;</span>
+<span class="s">    (           # Start group 1, which is the actual link text</span>
+<span class="s">        \[          # Match a literal [</span>
+<span class="s">        [^\]]+      # Match anything except a literal ] - this will be the link text itself</span>
+<span class="s">        \]          # Match a literal ]</span>
+<span class="s">        \s*         # Any whitespace (including newlines)</span>
+<span class="s">        \[          # Match the opening bracket of the lazy link marker</span>
+<span class="s">    )           # End group 1</span>
+<span class="s">    \*          # Literal * - this is the lazy link marker</span>
+<span class="s">    (           # Start group 2, which is everything after the lazy link marker</span>
+<span class="s">        \]          # Literal ]</span>
+<span class="s">        .*?^        # Non-greedy match of anything up to a new line</span>
+<span class="s">        \[          # Literal [</span>
+<span class="s">    )           # End Group 2</span>
+<span class="s">    \*\]:       # Match a literal *]: - the lazy link <span class="caps">URL</span> definition follows this</span>
+<span class="s">    &#39;&#39;&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n"><span class="caps">MULTILINE</span></span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n"><span class="caps">DOTALL</span></span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n"><span class="caps">UNICODE</span></span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n"><span class="caps">VERBOSE</span></span><span class="p">)</span>
+
+<span class="n">_counter_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;\[(\d+)\]:&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n"><span class="caps">UNICODE</span></span><span class="p">)</span>
+<span class="n">_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">_replace</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+    <span class="n">cls</span><span class="o">.</span><span class="n">_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">sub_str</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s%s%s%s</span><span class="s">]:&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">cls</span><span class="o">.</span><span class="n">_counter</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">cls</span><span class="o">.</span><span class="n">_counter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sub_str</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_max_link_number</span><span class="p">(</span><span class="n">post</span><span class="p">):</span>
+    <span class="n">all_values</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">LazyMarkdownLinksPlugin</span><span class="o">.</span><span class="n">_counter_regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">post</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">all_values</span><span class="p">)</span> <span class="k">if</span> <span class="n">all_values</span> <span class="k">else</span> <span class="mi">0</span>
+
+<span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">engineer.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">content_preprocessed</span>
+    <span class="n">cls</span><span class="o">.</span><span class="n">_counter</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">get_max_link_number</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="c"># This while loop ensures we handle overlapping matches</span>
+    <span class="k">while</span> <span class="n">cls</span><span class="o">.</span><span class="n">_link_regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">_link_regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">_replace</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+    <span class="n">post</span><span class="o">.</span><span class="n">content_preprocessed</span> <span class="o">=</span> <span class="n">content</span>
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="s">&#39;LAZY_LINKS_PERSIST&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">post</span><span class="o">.</span><span class="n">set_finalized_content</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">cls</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Failed to persist lazy links.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">,</span> <span class="n">metadata</span>
+</pre></div>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">MAY</div>
                     <div class="day">06</div>
                     <div class="year">2014</div>
                     <div class="permalink">
@@ -271,31 +353,6 @@ In particular, GitHub offers a service called [GitHub Pages](http://pages.github
 
 <p>It looks like a promotional shot for a new 1980&#8217;s-era fantasy-themed buddy cop <span class="caps">TV</span> show. I&#8217;d watch&nbsp;it.</p>
 <p>This reminds me that I really need to finally pick up a copy of <a href="http://www.amazon.com/gp/product/0812972155/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0812972155&amp;linkCode=as2&amp;tag=tylerbutlerco-20">Masters of Doom</a> and read it. It&#8217;s been on my wish list for&nbsp;years.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">APR</div>
-                    <div class="day">27</div>
-                    <div class="year">2014</div>
-                    <div class="permalink">
-                        <a href="/2014/04/aerobie/"
-                           title="Permanent link to 'Aerobie'">∞</a>
-                    </div>
-                            </div>
-                            <div class="attribution">
-                                            via <a href="http://daringfireball.net/linked/2014/04/20/aeropress">John Gruber</a>
-                                    </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2014-04-27 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="http://priceonomics.com/the-invention-of-the-aeropress/">Aerobie</a>
-                        <span class="arrow">→</span>                    </h1>
-                </header>
-                                    <p>The <a href="http://www.amazon.com/gp/product/B0000789T2/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B0000789T2&amp;linkCode=as2&amp;tag=tylerbutlerco-20">Aerobie</a> is one of my favorite things ever. I had no idea that the same guy invented the <a href="http://www.amazon.com/gp/product/B0047BIWSK/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B0047BIWSK&amp;linkCode=as2&amp;tag=tylerbutlerco-20">Aeropress</a>. (Though the name is <em>kind of</em> a&nbsp;giveaway&#8230;)</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

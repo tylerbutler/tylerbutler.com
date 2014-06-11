@@ -4,9 +4,9 @@ title: Thoughts On the New iPad
 timestamp: 04:08 PM Saturday, March 24, 2012 PDT
 status: published
 slug: thoughts-on-the-new-ipad
-url: /2012/03/thoughts-on-the-new-ipad/
 tags:
 - Tyler tests
+url: /2012/03/thoughts-on-the-new-ipad/
 
 ---
 

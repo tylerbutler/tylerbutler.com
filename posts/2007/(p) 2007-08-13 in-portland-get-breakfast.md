@@ -12,10 +12,10 @@ guid: http://blog.tylerbutler.com/index.php/2007/08/in-portland-get-breakfast/
 
 Seriously, the next time you're in Portland, go to [Sanborn's][1] and get some breakfast. Freaking **_amazing_**
 food. Elizabeth and I went there last weekend during our trip down there.
-Despite the fact that we got lost (I blame our crummy GPS technology - or
+Despite the fact that we got lost (I blame our crummy GPS technology -- or
 maybe it was the navigator?), once we found it it lived up to the hype.
-Definitely get the biscuits - I am drooling right now just thinking about
-them… The pancakes and omelet's were also very very good. It was busy, but
+Definitely get the biscuits -- I am drooling right now just thinking about
+them… The pancakes and omelette's were also very very good. It was busy, but
 service was decent. We also went to [Lucy's Table][4] for dinner,
 which I can also highly recommend. Excellent food and service, though it was a
 bit pricey. I'd liken it to Café Juanita in Kirkland in terms of quality and

@@ -28,7 +28,7 @@ based on that field. [This post at Lifehacker][3] suggests using the
 This approach works fine until you want to edit a bunch of songs and **add **a
 tag. When you do a bulk edit of the keywords field in iTunes it'll overwrite
 anything that was there previously. So suddenly tagging all that music with
-"[Sasquatch 2006][4]" removed all the other cool tags you had applied. Major
+"Sasquatch 2006" removed all the other cool tags you had applied. Major
 suckage.
 
 Today I decided to try a new approach: I just use dumb, old-fashioned
@@ -56,14 +56,12 @@ anything, natively. All of this is a hack. There are a lot things that it
 could do to make it easier to tag music. And with the iTunes music store, what
 if I could check out how other users were tagging the track, and borrow their
 tags? This is all stuff that is provided by Last.fm, of course, but Last.fm
-doesn't manage my entire music collection - iTunes does.
+doesn't manage my entire music collection -- iTunes does.
 
-And of course **none **of this does anything on my iPod. Heck, **it **can't
+And of course **none** of this does anything on my iPod. Heck, **it** can't
 even understand playlist folders, which is super _super **super**_ dumb.
 Actually, I have a lot of gripes about the iPod UI...
 
    [1]: http://www.pandora.com/ ()
    [2]: http://www.last.fm/ ()
    [3]: http://www.lifehacker.com/software/itunes/tag-your-songs-in-itunes-153970.php ()
-   [4]: /music/Pages/SasquatchMusicFestival2006.aspx ()
-

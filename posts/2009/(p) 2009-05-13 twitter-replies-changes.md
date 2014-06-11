@@ -17,7 +17,7 @@ announcement][1] that the option to control whether replies from people you
 follow to people you don't follow show up in your feed. This was an option in
 the Notices section of the Twitter settings that was off by default. The
 original post from [@biz][2] made it sound like they were trying to reduce
-confusion and that it was no big deal. That's a bit naive - they should have
+confusion and that it was no big deal. That's a bit naive -- they should have
 seen the backlash coming a mile away... Dave Winer has [a good summary][3] of
 problems with how they messaged things.
 
@@ -48,7 +48,7 @@ But it's early; the smart people at Twitter will figure something out, and
 hopefully, it'll solve my scenario and world hunger at the same time. One can
 hope and dream.
 
-You can see the protests/commentary onTwitter itself by 
+You can see the protests/commentary on Twitter itself by 
 [searching for #fixreplies][11]. It's still the top trending search term as of 
 this writing.
 

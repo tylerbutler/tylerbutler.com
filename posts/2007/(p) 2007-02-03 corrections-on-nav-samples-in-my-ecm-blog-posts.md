@@ -29,7 +29,7 @@ last modified time, and you set a `DynamicChildLimit="15"`, for example, you'll
 get back 15 pseudo-random items, then those resulting 15 items will be sorted
 by last modified time. I say a _pseudo-random_ set of items is returned
 because even though items returned aren't really random -- there _is_ a
-deterministic way nodes get returned from the nav store – it's complicated
+deterministic way nodes get returned from the nav store -- it's complicated
 enough that you won't be able to tell what 15 items will be returned at any
 given time.
 

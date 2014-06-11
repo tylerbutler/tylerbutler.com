@@ -66,7 +66,7 @@ but can't easily identify the problems in their solutions, or even potential
 problems outside of the original problem description that was given to them.
 They need someone who can do that for them. The best teams at Microsoft in my
 opinion have a cynic, a guy who takes everything and tears it apart. It's
-_never _good enough. And the best problem solvers I know are able to take that
+_never_ good enough. And the best problem solvers I know are able to take that
 information and make a better solution.
 
 So I guess my conclusion is that it's OK if you're not the best problem solver

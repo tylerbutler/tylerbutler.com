@@ -45,5 +45,5 @@ wasn't. He had removed her watch surreptitiously as part of his act and was
 planning to reveal it to her later on. His intention was by no means to steal
 her watch, but when she ran off so unexpectedly he didn't know what to do.
 
-So people, if you wind up in a street performer's act, please just be good-
-natured about it and participate. It's really not that hard.
+So people, if you wind up in a street performer's act, please just be
+good-natured about it and participate. It's really not that hard.

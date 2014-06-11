@@ -49,8 +49,8 @@ to look it up on their support website to try and figure out what it is. And
 then, you have to type in the error code and hit search, because they don't
 just have a flat list of the codes and what they mean. And to add insult to
 injury, they have ranges of error codes that all have the same recommendation.
-_Change the wireless channel to 1 or 11. Check your SSID, blah blah blah.
-_None of it has worked for me. This is one area where I think Microsoft really
+_Change the wireless channel to 1 or 11. Check your SSID, blah blah blah._
+None of it has worked for me. This is one area where I think Microsoft really
 has it down when you compare the 360 experience to the Wii.
 
 Once I got it online, updating it was painfully slow. It took about a half

@@ -17,9 +17,7 @@ post them. But before I do that, here's what he has to say about getting
 online with the thing:
 
 > First, some bitching about Wii:
-
 >
-
 > Up until 10 minutes ago, all I've ever done with the Wii is played games.
 Very easy, very fun. However, trying to use the internet connectivity and
 adding friends made me want to punch a little Japanese person in the face. Do
@@ -27,9 +25,7 @@ they actually expect average people to be able to do this? I'm an embedded
 systems designer, and I was frustrated with it. Other than letting our Mii's
 travel back and forth, is there even any benefit to doing it? Shame on you
 Nintendo.
-
 >
-
 > Second, games only save to the internal Wii memory. If you want them on the
 SD card, you have to copy it over manually. Of course, you'd have to do that
 each time you play the game in order to keep the SD card up to date. It pretty
@@ -45,7 +41,7 @@ this particular part of the experience.
 
 The SD thing seems strange. I haven't tried to use an SD card yet, but it does
 seem odd that you can't save games directly to it. This does seem like
-something Nintendo could fix change with a firmware update though.
+something Nintendo could change with a firmware update though.
 
 > **Wii Sports** -- It's ok. Fun little games to showcase the controller
 abilities. I've found tennis to be pretty fun with multiple people, and you
@@ -53,34 +49,26 @@ can avoid the dreaded Wii tennis elbow once you learn that a skilled flick of
 the wrist will do just as much as a full blown swing. I brought my Wii home
 for Christmas, and since I have a zillion siblings we had continuously
 rotating doubles matches which were a blast.
-
 >
-
 > **Super Monkey Ball** -- I usually only play the mini games. Not as much fun
 as the versions for GameCube. I think they tried too hard to incorporate the
 motion control into the games, and many of them are just too touchy, or they
 should have put more time into making it fun. I guess they were pressed for
 time trying to get that one out for launch. There are a few that are pretty
 entertaining though.
-
 >
-
 > **Zelda: Twilight Princess** -- This game rocks. It's hella fun to play. They
 used the motion sensors in moderation, which is good. The game itself is
 really fun - plenty of puzzles and tangent adventures to try out. I haven't
 played any Zelda games since the one for 8-bit Nintendo, but I can still
 blindly say this is probably the best to date.
-
 >
-
 > **Excite Truck** -- So much fun my head almost exploded. It's a very fast
 paced, physics defying game. There's actually a lot of strategy needed for the
 more advanced tracks, but at the same time you can just pick a level and have
 fun doing 720's at 1000 ft in the air and smashing through trees with power-
 ups. Definitely one of the best games I own.
-
 >
-
 > **Red Steel** -- I haven't played this game very much. The reason? My damn
 arm gets tired. Another example of how not to design a game interface. I think
 it would be much better if I could play for more than 20 mins at a time, so my

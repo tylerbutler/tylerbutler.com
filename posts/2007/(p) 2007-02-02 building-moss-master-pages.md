@@ -40,7 +40,7 @@ site to look anything like SharePoint. These customers also often had a site
 design template that was coming from their design team, either in HTML or as
 image mock-ups. Trying to fit that design into default.master was exceedingly
 difficult because of all the unclear markup in that master page.
-Default.master is designed for a SharePoint site – one that looks and acts
+Default.master is designed for a SharePoint site -- one that looks and acts
 like SharePoint. But people who wanted to build non-SharePoint looking sites
 were getting tripped up by using it as a starting point.
 

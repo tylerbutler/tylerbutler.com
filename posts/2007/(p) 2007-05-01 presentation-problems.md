@@ -21,7 +21,7 @@ USB key to the back of the machine and just loaded it. Problem 1 solved, but
 it got my nerves in a bit of a tizzy so I didn't quite start with the bang I
 wanted to.
 
-The A/V guy thought I was ready to go as son as the presentation was up and so
+The A/V guy thought I was ready to go as soon as the presentation was up and so
 started everything, but I didn't get a chance to double check that my demo
 laptop was working properly and that the demos were going to be displayed
 correctly. _Big mistake._ When it came time to do my demos, I couldn't get any
@@ -36,7 +36,7 @@ points in the demos verbally, but of course that was a very poor substitute.
 To add insult to injury, I offered to show the demos on my laptop after the
 talk for those that were interested. However, there were a number of
 questions, and due to the wait and inactivity, Virtual PC stopped cooperating
-and I couldn't get anything to display on the demo box. \<sigh\>
+and I couldn't get anything to display on the demo box. <sigh\>
 
 For those of you who were at my session, please accept my sincere apologies
 for the lack of demos. I had a much better, more cohesive presentation

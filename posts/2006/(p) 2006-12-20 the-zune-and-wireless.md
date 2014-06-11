@@ -52,7 +52,7 @@ wouldn't be large, so the process wouldn't take long and the battery drain
 would be minimal. There might be some scenarios where this feature would be
 useful. However, I think that a lot of people had a knee-jerk reaction and
 haven't really thought through the ramifications and technical limitations of
-that feature. But hey, that's what we PM's get paid for, right? :-)
+that feature. But hey, that's what we PM's get paid for, right?
 
    [1]: http://www.zune.net/
    [2]: http://en.wikipedia.org/wiki/USB_2.0#Transfer_speed

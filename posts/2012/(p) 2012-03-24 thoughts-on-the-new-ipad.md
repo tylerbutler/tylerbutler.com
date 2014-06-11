@@ -5,6 +5,8 @@ timestamp: 04:08 PM Saturday, March 24, 2012 PDT
 status: published
 slug: thoughts-on-the-new-ipad
 url: /2012/03/thoughts-on-the-new-ipad/
+tags:
+- Tyler tests
 
 ---
 
@@ -31,7 +33,7 @@ So, so clever. I've been in love with this since I first saw [the ad], but I fra
 
 But the bigger problem is that it only clips on one side -- the *wrong* side, at least for me. This means I have to orient the iPad the opposite way than I usually do, with the Home button on the *left* instead of the *right*[^1]. This is frustrating on two levels. After two years of nearly daily usage, I'm simply accustomed to the home button being on the right. I'm right handed; using the left hand to putz around with the home button just *feels* wrong.
 
-But really, the bigger problem I think is one of weight distribution. It took me some time to reach this conclusion. Something felt off about the feel of the device in my hands while using it in bed, but I couldn't put my finger on it at first. I took off the smart cover, but continued to use it oriented the 'new' way, with the Home button on the left, in an attempt to force myself to adjust (and gauge just how badly it would confuse my muscle memory - spoiler: a *lot*). But my left hand was getting tired. This confused me since the device is clearly lighter than the first generation but still seemed to be causing more fatigue than the first generation did.
+But really, the bigger problem I think is one of weight distribution. It took me some time to reach this conclusion. Something felt off about the feel of the device in my hands while using it in bed, but I couldn't put my finger on it at first. I took off the smart cover, but continued to use it oriented the 'new' way, with the Home button on the left, in an attempt to force myself to adjust (and gauge just how badly it would confuse my muscle memory -- spoiler: a *lot*). But my left hand was getting tired. This confused me since the device is clearly lighter than the first generation but still seemed to be causing more fatigue than the first generation did.
 
 My conclusion thus far is that the weight distribution, at least in landscape orientation, is not balanced. I wouldn't expect it to be, frankly, because fitting everything into the chassis and still having it be perfectly balanced would be nearly impossible. But I do think this causes some fatigue for me because I am so used to the other weight distribution. I am not 100% certain this is the cause of the fatigue; I'm obviously going to keep using it so we'll see if it was just a fluke, but I have decided to just forgo the smart cover for now. I'll use it when I travel or something.
 

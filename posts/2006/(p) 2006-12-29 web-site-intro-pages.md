@@ -17,13 +17,13 @@ option, you invariably get taken to a Flash version of the site, while the
 low-bandwidth version of the site is static HTML.
 
   
-When faced with these types of choices, I often forget that one should _always
-_pick the low-bandwidth option, even if one is using a high-bandwidth
+When faced with these types of choices, I often forget that one should _always_
+pick the low-bandwidth option, even if one is using a high-bandwidth
 connection. The main reason is that these Flash sites often have annoying
 background music or annoying animations. From a site design perspective, Flash
 is best used as a _supplementary_ web technology. A website shouldn't be
 designed entirely in Flash. Some core reasons for this are accessibility and
-search-ability. Google and other spiders cannot crawl a flash web site as
+search-ability. Google and other spiders cannot crawl a Flash web site as
 easily. Not to mention the fact that these types of sites always have some
 crazy navigation scheme and flashy transitions between sections that make it
 very difficult to navigate around, because it doesn't fit the typical web

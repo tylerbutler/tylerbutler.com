@@ -41,7 +41,7 @@ dies on "Lost."
 
 Say what? That we need commercial breaks to be social is ridiculous. In this
 day and age, we have ready access to the Pause button, and it's a far more
-useful tool for fostering discussion while watching TV. [Elizabeth][2] and I
+useful tool for fostering discussion while watching TV. Elizabeth and I
 have been watching quite a few documentaries lately, and we pause quite often
 to talk about whether or not we agree with what's being said. I agree that
 adding discussion and dialog while viewing a show is positive (there's a
@@ -55,5 +55,3 @@ DVD copies of shows sell so well, and it isn't because people are dying to own
 season one of “Scrubs” for eternity...
 
    [1]: http://www.washingtonpost.com/wp-dyn/content/article/2009/03/05/AR2009030504104.html?hpid=topnews
-   [2]: http://twitter.com/elizabethfrench
-

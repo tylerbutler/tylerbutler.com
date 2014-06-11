@@ -38,7 +38,7 @@ write the code. Everybody wins.
 Silverlight controls can be just like regular .Net controls, and get built as
 part of the same development workflow. Sweeeeeet...
 
-[**http://silverlight.metaliq.com/topbanana/**](http://silverlight.metaliq.com/topbanana/)**
+**http://silverlight.metaliq.com/topbanana/**
 
 Really nifty light table app completely in the browser built in C# and XAML
 and delivered via Silverlight. Apparently this will be a sample app that will

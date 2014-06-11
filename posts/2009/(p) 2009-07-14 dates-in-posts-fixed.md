@@ -32,6 +32,6 @@ After:
 
 ```php
 
-<?php the_time("F j, Y, g:i a") ?>`
+<?php the_time("F j, Y, g:i a") ?>
 
 ```

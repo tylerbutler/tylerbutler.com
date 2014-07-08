@@ -97,6 +97,31 @@
                                     <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
+                                    <div class="month">MAR</div>
+                    <div class="day">17</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
+                        <a href="/2012/03/new-tylerbutler-com/"
+                           title="Permanent link to 'New tylerbutler.com'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-03-17 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2012/03/new-tylerbutler-com/">New tylerbutler.com</a>
+                                            </h1>
+                </header>
+                                    <p>I&#8217;ve just pushed out a brand new version of <a href="/">tylerbutler.com</a>. It&#8217;s a completely original redesign from the ground up, and is built using a static blog engine I wrote called <a href="/projects/engineer/">Engineer</a>. I can now write posts in <a href="http://daringfireball.net/projects/markdown/">Markdown</a>, save them to a folder that gets synced everywhere via <a href="http://www.dropbox.com">Dropbox</a>, and reap the speed and huge scale benefits that come with a static site. I&#8217;ll be posting a bit more about Engineer soon, and the source will be up on GitHub eventually as&nbsp;well.</p>
+<p>One of the major goals when rebuilding the site was to encourage me to <em>write</em> again. My last post was in January of <em>last year</em>, and the last substantial post was long before that. That&#8217;s just&#8230;&nbsp;embarrassing&#8230;</p>
+<p>I haven&#8217;t decided whether to migrate any of my old posts over or not. There&#8217;s frankly not a lot of it that&#8217;s relevant at this point, and the prospect of making a completely fresh start has quite a bit of appeal. We&#8217;ll see. Most likely I&#8217;ll leave them up at some archive site for my own benefit (I learn a lot from periodically going back to old stuff I wrote and reading it again with fresh eyes). The world will weep to lose them, I&#8217;m&nbsp;sure.</p>
+<p>Anyway, here&#8217;s hoping I&#8217;ll be writing more often soon. I have no&nbsp;excuses!</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
                                     <div class="month">JAN</div>
                     <div class="day">01</div>
                     <div class="year">2011</div>
@@ -282,44 +307,6 @@ for other hardware that you might not think of as running “software.” Think 
 your microwave. The ice dispenser on your fridge. Your washing machine. Your
 car&#8217;s on-board computer. All of these are running software in some fashion
 most likely, and they all kind of&nbsp;suck.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JUL</div>
-                    <div class="day">14</div>
-                    <div class="year">2009</div>
-                    <div class="permalink">
-                        <a href="/2009/07/dates-in-posts-fixed/"
-                           title="Permanent link to 'Dates in Posts Fixed'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2009-07-14 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2009/07/dates-in-posts-fixed/">Dates in Posts Fixed</a>
-                                            </h1>
-                </header>
-                                    <p>Just made a minor fix to the site&#8230; I noticed that dates weren&#8217;t showing up for
-some posts. Took me about 5 minutes to figure out that the Wordpress
-<a href="http://codex.wordpress.org/Template_Tags/the_date">the_date()</a> function had&nbsp;changed:</p>
-<blockquote>
-<p>When there are multiple posts on a page published under the <span class="caps">SAME</span> <span class="caps">DAY</span>,
-<code>the_date()</code> only displays the date for the first post (that is, the first
-instance of <code>the_date()</code>).</p>
-</blockquote>
-<p>Quick and easy&nbsp;change&#8230;</p>
-<p>Before: </p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span> <span class="nx">the_date</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x">, </span><span class="cp">&lt;?php</span> <span class="nx">the_time</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
-
-
-<p>After:</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span> <span class="nx">the_time</span><span class="p">(</span><span class="s2">&quot;F j, Y, g:i a&quot;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

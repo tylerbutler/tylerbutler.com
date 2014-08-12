@@ -38,3 +38,4 @@ pip-log.txt
 _cache/
 *.cache
 *_emma_secret.pvt
+.webassets-cache

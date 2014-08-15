@@ -101,6 +101,64 @@
                     <div class="day">17</div>
                     <div class="year">2012</div>
                     <div class="permalink">
+                        <a href="/2012/12/base64-encoded-sha256-hashes/"
+                           title="Permanent link to 'Base64 Encoded SHA256 Hashes'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/powershell">powershell</a>
+                        </li>
+                                            <li><a href="/tag/c">C#</a>
+                        </li>
+                                            <li><a href="/tag/python">python</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2012-12-17 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2012/12/base64-encoded-sha256-hashes/">Base64 Encoded <span class="caps">SHA256</span> Hashes</a>
+                                            </h1>
+                </header>
+                                    <p>File this away in your &#8220;might come in handy some day&#8221; drawer&#8230; Here&#8217;s a quick PowerShell script to calculate the Base64 <span class="caps">SHA256</span> hash of a&nbsp;file:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">param</span><span class="p">(</span> 
+    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$True</span><span class="p">,</span>
+               <span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$True</span><span class="p">)]</span>
+    <span class="nv">$filePath</span> 
+<span class="p">)</span>
+
+<span class="nv">$hasher</span> <span class="p">=</span> <span class="no">[System.Security.Cryptography.<span class="caps">SHA256</span>]</span><span class="err">::</span><span class="n">Create</span><span class="p">()</span>
+<span class="nv">$content</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="n">-Encoding</span> <span class="n">byte</span> <span class="nv">$filePath</span>
+<span class="nv">$hash</span> <span class="p">=</span> <span class="no">[System.Convert]</span><span class="err">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$hasher</span><span class="p">.</span><span class="n">ComputeHash</span><span class="p">(</span><span class="nv">$content</span><span class="p">))</span>
+<span class="nb">Write-Output</span> <span class="p">(</span><span class="nv">$filePath</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s2">&quot;: &quot;</span> <span class="p">+</span> <span class="nv">$hash</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>You can pipe every file in a directory to this script like&nbsp;this:</p>
+<div class="codehilite"><pre><span class="n">ls</span> <span class="o">-File</span> <span class="p">|%</span> <span class="p">{.\</span><span class="nb">Get-FileHash</span><span class="p">.</span><span class="n">ps1</span> <span class="nv">$_</span><span class="p">}</span>
+</pre></div>
+                    <div>
+                        <a href="/2012/12/base64-encoded-sha256-hashes/" class="button">Read more →</a>
+                    </div>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">DEC</div>
+                    <div class="day">17</div>
+                    <div class="year">2012</div>
+                    <div class="permalink">
                         <a href="/2012/12/principles-and-taste/"
                            title="Permanent link to 'Principles and Taste'">∞</a>
                     </div>
@@ -219,35 +277,6 @@
 <p>We only have to look as far as the <span class="caps">VW</span> Group to see how things are dramatically unfolding. As most industry insiders know, the <span class="caps">VW</span> Group, led by the maniacal genius, Ferdinand Piech, is on an unbelievable roll right now. The <span class="caps">VW</span> Group boasts twelve brands from seven European countries: Volkswagen, Audi, Bentley, Bugatti, Lamborghini, Porsche (and <span class="caps">SEAT</span>, <span class="caps">SKODA</span>, Ducati motorcycles, Volkswagen Commercial Vehicles, Scania and&nbsp;<span class="caps">MAN</span>).</p>
 </blockquote>
 <p>I had no idea that the <span class="caps">VW</span> Group includes Bentley, Lamborghini, and&nbsp;Porsche.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">NOV</div>
-                    <div class="day">28</div>
-                    <div class="year">2012</div>
-                    <div class="permalink">
-                        <a href="/2012/11/arguing-on-the-internet/"
-                           title="Permanent link to 'Arguing on the Internet'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/quote">quote</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
-                <time datetime="2012-11-28 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2012/11/arguing-on-the-internet/">Arguing on the Internet</a>
-                                            </h1>
-                </header>
-                                    <p>Mark&nbsp;Twain:</p>
-<blockquote>
-<p>Don&#8217;t argue with an idiot. They will drag you down to their level and beat you with&nbsp;experience.</p>
-</blockquote>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

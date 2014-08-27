@@ -98,6 +98,35 @@
             <div class="post-info two columns">
             <div class="post-date">
                                     <div class="month">JUN</div>
+                    <div class="day">23</div>
+                    <div class="year">2013</div>
+                    <div class="permalink">
+                        <a href="/2013/06/the-importance-of-documentation/"
+                           title="Permanent link to 'The Importance of Documentation'">∞</a>
+                    </div>
+                            </div>
+                                </div>
+                            <article class="post-content ten columns">
+                <time datetime="2013-06-23 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2013/06/the-importance-of-documentation/">The Importance of Documentation</a>
+                                            </h1>
+                </header>
+                                    <p>Some free advice for anyone writing&nbsp;software:</p>
+<p><strong><em>Providing excellent documentation is the single most important thing you can do to improve your&nbsp;project.</em></strong></p>
+<p>I&#8217;ve used the Python flavor of <a href="https://github.com/html5lib/html5lib-python">html5lib</a> in a couple of different projects now (<a href="http://xkcd2.com">xkcd2</a> and <a href="http://engineer.readthedocs.org">Engineer</a>) and there&#8217;s really one thing that stands out to me: it has absolutely horrendous documentation. Well, it&#8217;s really just that it has none to speak of, and to be fair, it <em>could</em> be worse&#8230; It <em>could</em> be voluminous yet misleading or poorly organized, but instead there just isn&#8217;t&nbsp;any.</p>
+<p>Of course, it&#8217;d be understandable for you to think otherwise. If you visit the Github repo, you&#8217;re provided with some simple examples of creating a parser and parsing some documents. These examples are pretty standard fare &#8211; they give you a taste of what to expect but don&#8217;t give you enough to actually use the&nbsp;library.</p>
+<p>You&#8217;re happily informed that &#8220;More documentation is available at <a href="http://html5lib.readthedocs.org/">http://html5lib.readthedocs.org/</a>&#8221; but if you head over there you&#8217;ll notice that there isn&#8217;t really much more there. The &#8220;more documentation&#8221; they speak of is a <em>single page</em> with information about &#8220;the moving parts&#8221; which just doesn&#8217;t do much to help you know how to actually use the <span class="caps">API</span> to do anything really&nbsp;meaningful.</p>
+                    <div>
+                        <a href="/2013/06/the-importance-of-documentation/" class="button">Read more →</a>
+                    </div>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
+                                    <div class="month">JUN</div>
                     <div class="day">22</div>
                     <div class="year">2013</div>
                     <div class="permalink">
@@ -206,64 +235,6 @@
 <p>While all of these things <em>can</em> be true, they can be true of all dog breeds (and, like people, there&#8217;s a lot of variation between individual dogs even within a breed!), and chances are you simply haven&#8217;t had a chance to really interact with small breeds that much. Elizabeth and I have been blown away by the number of times we&#8217;ve had friends or family meet our dogs (both Chihuahuas) and say, &#8220;I never really liked small dogs, but your dogs are really awesome!&#8221; We are <em>not</em> some crazy-skilled dog whisperers or something. Rather, there are two fundamental things that we keep in mind when we&#8217;re relating to our&nbsp;dogs.</p>
                     <div>
                         <a href="/2012/12/small-dog-ambassadorship/" class="button">Read more →</a>
-                    </div>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">DEC</div>
-                    <div class="day">17</div>
-                    <div class="year">2012</div>
-                    <div class="permalink">
-                        <a href="/2012/12/base64-encoded-sha256-hashes/"
-                           title="Permanent link to 'Base64 Encoded SHA256 Hashes'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/powershell">powershell</a>
-                        </li>
-                                            <li><a href="/tag/c">C#</a>
-                        </li>
-                                            <li><a href="/tag/python">python</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
-                <time datetime="2012-12-17 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2012/12/base64-encoded-sha256-hashes/">Base64 Encoded <span class="caps">SHA256</span> Hashes</a>
-                                            </h1>
-                </header>
-                                    <p>File this away in your &#8220;might come in handy some day&#8221; drawer&#8230; Here&#8217;s a quick PowerShell script to calculate the Base64 <span class="caps">SHA256</span> hash of a&nbsp;file:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">param</span><span class="p">(</span> 
-    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$True</span><span class="p">,</span>
-               <span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$True</span><span class="p">)]</span>
-    <span class="nv">$filePath</span> 
-<span class="p">)</span>
-
-<span class="nv">$hasher</span> <span class="p">=</span> <span class="no">[System.Security.Cryptography.<span class="caps">SHA256</span>]</span><span class="err">::</span><span class="n">Create</span><span class="p">()</span>
-<span class="nv">$content</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="n">-Encoding</span> <span class="n">byte</span> <span class="nv">$filePath</span>
-<span class="nv">$hash</span> <span class="p">=</span> <span class="no">[System.Convert]</span><span class="err">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$hasher</span><span class="p">.</span><span class="n">ComputeHash</span><span class="p">(</span><span class="nv">$content</span><span class="p">))</span>
-<span class="nb">Write-Output</span> <span class="p">(</span><span class="nv">$filePath</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s2">&quot;: &quot;</span> <span class="p">+</span> <span class="nv">$hash</span><span class="p">)</span>
-</pre></div>
-</td></tr></table>
-
-<p>You can pipe every file in a directory to this script like&nbsp;this:</p>
-<div class="codehilite"><pre><span class="n">ls</span> <span class="o">-File</span> <span class="p">|%</span> <span class="p">{.\</span><span class="nb">Get-FileHash</span><span class="p">.</span><span class="n">ps1</span> <span class="nv">$_</span><span class="p">}</span>
-</pre></div>
-                    <div>
-                        <a href="/2012/12/base64-encoded-sha256-hashes/" class="button">Read more →</a>
                     </div>
                                                             </article>
             </div>                        </div>

@@ -97,6 +97,48 @@
                                     <div class="row">
             <div class="post-info two columns">
             <div class="post-date">
+                                    <div class="month">MAY</div>
+                    <div class="day">05</div>
+                    <div class="year">2014</div>
+                    <div class="permalink">
+                        <a href="/2014/05/count-files-in-a-directory/"
+                           title="Permanent link to 'Count Files In A Directory'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/powershell">powershell</a>
+                        </li>
+                                            <li><a href="/tag/snippets">snippets</a>
+                        </li>
+                                    </ul>
+                    </div>
+                            <article class="post-content ten columns">
+                <time datetime="2014-05-05 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2014/05/count-files-in-a-directory/">Count Files In A Directory</a>
+                                            </h1>
+                </header>
+                                    <p>Need to count files in a directory? Try this one line of&nbsp;PowerShell:</p>
+<div class="codehilite"><pre><span class="p">(</span><span class="n">dir</span> <span class="p">|</span> <span class="n">where</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">GetType</span><span class="p">()</span> <span class="o">-match</span> <span class="s2">&quot;fileInfo&quot;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">measure-object</span><span class="p">).</span><span class="n">count</span>
+</pre></div>
+
+
+<p>You can also add a <code>-r</code> parameter (<code>-r</code> means <em>recursive</em>) to the first <code>dir</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> command and get a complete count of all files in all subdirectories under the current&nbsp;path.</p>
+<p>This comes in handy, though I <em>do</em> wish it was a little more&nbsp;succinct.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>And of course you can substitute <code>ls</code> for <code>dir</code> if you prefer, or even <code>Get-ChildItem</code> if you&#8217;re feeling particularly masochistic.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info two columns">
+            <div class="post-date">
                                     <div class="month">APR</div>
                     <div class="day">27</div>
                     <div class="year">2014</div>
@@ -197,28 +239,6 @@
                                             </h1>
                 </header>
                                     <p>Courtesy <a href="http://www.marco.org/">Marco Arment</a>, a <a href="http://www.marco.org/rmbp-irtest.html">simple test for image retention problems</a> in your Retina iPad Mini. I found no problem with mine, but it seems reasonable to test so you can exchange it if&nbsp;needed.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">DEC</div>
-                    <div class="day">24</div>
-                    <div class="year">2013</div>
-                    <div class="permalink">
-                        <a href="/2013/12/made-by-bees/"
-                           title="Permanent link to 'Made by Bees'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2013-12-24 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="http://lovelypackage.com/hexagon-honey/">Made by Bees</a>
-                        <span class="arrow">→</span>                    </h1>
-                </header>
-                                    <p>I absolutely love this concept packaging for honey. The &#8220;Made by Bees&#8221; tag line is fantastic, and everything about the execution is&nbsp;great.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tyler Butler Feed</title><link href="http://www.tylerbutler.com" rel="alternate"></link><link href="http://feeds.feedburner.com/TylerButlerAllPosts" rel="self"></link><id>http://www.tylerbutler.com</id><updated>2014-10-07T18:04:00Z</updated><entry><title>Stack Traces →</title><link href="http://rustyshelf.org/2014/08/07/thoughts-on-swift-from-an-idiot/" rel="alternate"></link><updated>2014-10-07T18:04:00Z</updated><id>http://www.tylerbutler.com/2014/10/stack-traces/</id><summary type="html">    &lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tyler Butler Feed</title><link href="http://www.tylerbutler.com" rel="alternate"></link><link href="http://feeds.feedburner.com/TylerButlerAllPosts" rel="self"></link><id>http://www.tylerbutler.com</id><updated>2014-10-07T18:45:00Z</updated><entry><title>Updated Python Installation Guide</title><link href="http://www.tylerbutler.com/2014/10/updated-python-installation-guide/" rel="alternate"></link><updated>2014-10-07T18:45:00Z</updated><id>http://www.tylerbutler.com/2014/10/updated-python-installation-guide/</id><summary type="html">    &lt;p&gt;I just made a major update to my &lt;a href="/2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/"&gt;Python Windows installation guide&lt;/a&gt;, which remains my most popular post. Things have gotten a lot simpler over the past few months since the distribute fork of setuptools was integrated&amp;nbsp;back.&lt;/p&gt;
+    </summary></entry><entry><title>Stack Traces →</title><link href="http://rustyshelf.org/2014/08/07/thoughts-on-swift-from-an-idiot/" rel="alternate"></link><updated>2014-10-07T18:04:00Z</updated><id>http://www.tylerbutler.com/2014/10/stack-traces/</id><summary type="html">    &lt;blockquote&gt;
 &lt;p&gt;Yes I know, ha ha Null Pointer, Java, &lt;span class="caps"&gt;LOL&lt;/span&gt;. But that’s an exact line number friends. What did the user do? They tapped the subscribe button. Which page where they on? The Podcast Dialog. Zero ambiguity. Guess how many of our Android crashes we get that for? 100%. In iOS we’d be lucky if even 30% of our crashes had stack traces we can line up to actual things we can then reproduce. So most iOS crashes today involve me becoming House &lt;span class="caps"&gt;MD&lt;/span&gt; and poking the code for hours, only to figure out that like always, it’s never&amp;nbsp;Lupus.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;It astounds me that iOS debugging is so&amp;#8230; &lt;em&gt;medieval&amp;#8230;&lt;/em&gt; That said, JavaScript stack traces can be just as bad, depending on the browser. I think good stack traces are a &lt;em&gt;requirement&lt;/em&gt; for actually shipping software. Here&amp;#8217;s hoping iOS, and browsers, catch up&amp;nbsp;soon.&lt;/p&gt;
@@ -115,52 +116,4 @@
             &lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;warning&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Failed to persist lazy links.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;metadata&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-    </summary></entry><entry><title>Deploying Engineer Sites to Azure</title><link href="http://www.tylerbutler.com/2014/05/deploying-engineer-sites-to-azure/" rel="alternate"></link><updated>2014-05-06T15:42:00Z</updated><id>http://www.tylerbutler.com/2014/05/deploying-engineer-sites-to-azure/</id><summary type="html">    &lt;p&gt;A &lt;a href="https://github.com/tylerbutler/engineer/issues/51"&gt;longstanding issue&lt;/a&gt; in the Engineer issue tracker concerns documenting some of the free/low-cost hosting options one has to host an Engineer site. &lt;a href="http://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; is a common request, and documenting that process is definitely on my to-do list, but I think there&amp;#8217;s a better option:&amp;nbsp;Azure.&lt;/p&gt;
-&lt;p&gt;I&amp;#8217;ve been hosting tylerbutler.com on Azure for the past few months, and I have to say, I&amp;#8217;m very pleased with it so far. It&amp;#8217;s probably not the most cost-effective thing for my site, but if you have an &lt;span class="caps"&gt;MSDN&lt;/span&gt; subscription, which many .Net developers have (including me), then you have a monthly Azure credit that is almost certainly enough to cover the cost of deploying your Engineer site to&amp;nbsp;Azure.&lt;/p&gt;
-&lt;p&gt;Deploying on Azure has the benefits of auto-scaling to handle traffic demands, though that&amp;#8217;s not particularly compelling for Engineer-based sites since static sites by nature tend to be very scalable anyway. The truly compelling feature, in my opinion, is that it lets you maintain your built Engineer site in a Git or Mercurial repository, which is something that developers in particular really like. It is, after all, one of the nice things about GitHub pages as&amp;nbsp;well.&lt;/p&gt;
-&lt;p&gt;With some of the new features in &lt;a href="/2014/05/engineer-v0-5-0-released/"&gt;Engineer version 0.5.0&lt;/a&gt;, I&amp;#8217;ve got tylerbutler.com in a &lt;a href="https://github.com/tylerbutler/tylerbutler.com"&gt;GitHub repository&lt;/a&gt; of its own, and every time I &lt;code&gt;git push&lt;/code&gt;, the site is updated automatically thanks to Azure. Even better, thanks to Engineer&amp;#8217;s support for &lt;a href="https://engineer.readthedocs.org/en/master/settings.html#engineer.conf.EngineerConfiguration.POST_DIR"&gt;multiple post directories&lt;/a&gt;, I can put my published posts inside the Git repository itself for safekeeping but still write posts from any device/app that integrates with Dropbox. This flexibility of post authoring was one of the key reasons I wrote Engineer originally; it&amp;#8217;s important that I maintain that with whatever deployment architecture I&amp;nbsp;choose.&lt;/p&gt;
-&lt;p&gt;Once you have everything set up on Azure, the basic flow looks like&amp;nbsp;this:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Edit and maintain your site in a Git or Mercurial&amp;nbsp;repository&lt;/li&gt;
-&lt;li&gt;Build your site, commit to&amp;nbsp;Git/Mercurial&lt;/li&gt;
-&lt;li&gt;Push the repository to&amp;nbsp;GitHub/Bitbucket &lt;/li&gt;
-&lt;li&gt;Azure site automatically updates itself in a few&amp;nbsp;minutes&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In order to get this up and running, you can follow the steps below. Note that Engineer 0.5.0+ is needed. I&amp;#8217;ll eventually get these instructions incorporated into the official Engineer docs, but I wanted to get the info out there for folks without&amp;nbsp;delay.&lt;/p&gt;
-&lt;h2&gt;Getting&amp;nbsp;started&lt;/h2&gt;
-&lt;p&gt;If you don&amp;#8217;t yet have an Engineer site, you can initialize a new one with a content structure and configuration files especially for Azure using the following command (new in Engineer&amp;nbsp;0.5.0):&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;engineer init -m azure
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;If you have an existing site, you can simply use it, of course, but you may need to add your own &lt;code&gt;.deployment&lt;/code&gt; file or configure the Azure deployment settings for your site yourself. There are more details&amp;nbsp;below.&lt;/p&gt;
-&lt;p&gt;You can lay out your files however you wish, but the typical layout will look something like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;/my-engineer-site
-  - .deployment
-  - config.yaml
-    /content
-    /templates
-    /output
-        /azure
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Run the following command from the root of the folder to build your site for&amp;nbsp;Azure:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;engineer build -s ./config.yaml
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The output will be written to &lt;code&gt;./output/azure/&lt;/code&gt; by default. You can obviously change this in the Engineer settings, though note that you&amp;#8217;ll have to make some other changes as well. Keep reading for further&amp;nbsp;details.&lt;/p&gt;
-&lt;p&gt;Go to your Azure portal and create a new web site. Configure the site to automatically deploy from a GitHub/Bitbucket repository and connect it to your repository. You can also choose to use manual Git deployment if you wish, or even just &lt;span class="caps"&gt;FTP&lt;/span&gt; the site content, but I recommend the GitHub auto-publish route; it&amp;#8217;s much simpler and&amp;nbsp;automatic.&lt;/p&gt;
-&lt;p&gt;Now every time you push a new commit to GitHub/Bitbucket, your Azure site will update automatically with the contents of the &lt;code&gt;./output/azure/&lt;/code&gt; folder. This magic works because of the &lt;code&gt;.deployment&lt;/code&gt; file in your repository, which is created automatically by Engineer when you initialize a new site using &lt;code&gt;engineer init -m azure&lt;/code&gt;. You can read more about this file here: &lt;a href="https://github.com/projectkudu/kudu/wiki/Customizing-deployments"&gt;https://github.com/projectkudu/kudu/wiki/Customizing-deployments&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;If you want to change the output folder to a different path, you can do that in your Engineer config file. However, in addition, you&amp;#8217;ll need to tell Azure that the location of the site content within your repository is different. This is contained in &amp;#8211; you guessed it &amp;#8211; the &lt;code&gt;.deployment&lt;/code&gt; file. Just change the value of the &amp;#8216;project&amp;#8217; setting within that&amp;nbsp;file.&lt;/p&gt;
-&lt;p&gt;If you prefer, you can remove the &lt;code&gt;.deployment&lt;/code&gt; file altogether and configure the site root in the Azure portal directly. This is basically the same as the &lt;code&gt;.deployment&lt;/code&gt; file approach, but if you have a single repository that contains multiple Engineer sites &amp;#8211; or other types of sites, even &amp;#8211; then using the settings in the Azure portal is preferable. From &lt;a href="http://www.hanselman.com/blog/DeployingTWOWebsitesToWindowsAzureFromOneGitRepository.aspx"&gt;Scott Hanselman&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;What&amp;#8217;s nice about setting the &amp;#8220;Project&amp;#8221; setting via site configuration rather than via a &lt;code&gt;.deployment&lt;/code&gt; file is that you can now push the same git repository containing two different web sites to two remote Azure web sites. Each Azure website should have a different project setting and will end up deploying the two different&amp;nbsp;sites.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;That is &lt;em&gt;very&lt;/em&gt; cool. Scott has more details in &lt;a href="http://www.hanselman.com/blog/DeployingTWOWebsitesToWindowsAzureFromOneGitRepository.aspx"&gt;his post on the topic&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Hopefully this helps you get your Engineer site up and running on Azure. As I mentioned before, I am going to be incorporating this information into the official Engineer docs as well. I&amp;#8217;ve also gotten Engineer sites running on GitHub Pages, so I&amp;#8217;ll cover that in a future&amp;nbsp;post.&lt;/p&gt;
-&lt;!--
-In particular, GitHub offers a service called [GitHub Pages](http://pages.github.com/) that integrates wonderfully with Jekyll. Of course, if you're using Engineer, you're not using Jekyll,
---&gt;
     </summary></entry></feed>

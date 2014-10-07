@@ -12,11 +12,9 @@ url: /2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershel
 
 ---
 
-***Important note: As of February 2014 this guide is a little out of date. I intend to update it soon; I simply haven't had the time yet. Working on it!***
+*Updated October 7, 2014*
 
-*Updated May 12, 2013*
-
-If you do any Python development, you'll probably run into an awful lot of package installation instructions [that read][3]:
+If you do any Python development, you'll probably run into an awful lot of package installation instructions [that read][1]:
 
 > To install, use pip:
 >
@@ -26,6 +24,8 @@ Now, that's all fine and dandy, but what is pip? And what is this virtualenv thi
 
 If you're new to Python, getting up and running with pip and virtualenv can be a challenge, especially on Windows. Many guides I've seen out there assume either *a)* you're working on Linux or UNIX or *b)* you already have pip/setuptools installed, or you know how to install packages and manage virtualenv. Heck, when I was learning this I didn't even know what pip *was!* Having gone through this process several times now, I decided to write it all down from the beginning in the hopes that it'll be useful to someone in the future.
 
+[1]: http://engineer.readthedocs.org/en/latest/installation.html#installing-using-pip
+
 <!-- more -->
 
 ## Before We Start
@@ -34,7 +34,7 @@ A brief note before we start... To make sure we're all on the same page, pip is 
 
 The more Python development you do, though, the more packages you're going to need. Wouldn't it be nice if you could install all the packages into a 'special' location where they wouldn't interfere with any other packages? This is where virtualenv comes in. It creates a virtual Python interpreter and isolates any packages installed for that interpreter from others on the system. There are lots of ways this comes in handy; I'll leave enumerating them as an exercise for the reader, but if you think for a minute you can see why this will come in handy. And if you can't yet, then give yourself a few weeks of Python development, then come back and look at this post again once you realize you need to use virtualenv.
 
-Finally, there's a wrapper utility for virtualenv aptly called virtualenvwrapper. This wrapper makes creating new virtual environments and switching between them really straightforward. Unfortunately, it relies on a UNIX shell, which is kind of a pain on Windows. Luckily there's a PowerShell clone of the wrapper that works wonderfully and gives us Windows users the same kind of awesomeness that we've come to expect from PowerShell.
+Finally, there's a wrapper utility for virtualenv aptly called *virtualenvwrapper*. This wrapper makes creating new virtual environments and switching between them really straightforward. Unfortunately, it relies on a UNIX shell, which is kind of a pain on Windows. Luckily there's a PowerShell clone of the wrapper that works wonderfully and gives us Windows users the same kind of awesomeness that we've come to expect from PowerShell.
 
 So with the definitions out of the way, let's get started...
 
@@ -48,46 +48,50 @@ For the most part, this guide assumes you've actually used PowerShell a few time
 
 ## Get Python
 
-First things first -- get Python! You can get the Python 2.7.3 (the current Python 2.x version as of this writing) 32-bit installer from <http://python.org/download/>. There is a 64-bit version of Python as well, but I have personally found it to be more hassle than it's worth. Some packages won't have 64-bit versions available, and I personally haven't found any need for the 64-bit version in any project I've worked on. Feel free to go with the 64-bit version if you'd like, but this guide assumes you're using the 32-bit one.
+First things first -- get Python! You can get the Python 2.7.8 (the current Python 2.x version as of this writing) 32-bit installer from <https://www.python.org/downloads/windows/>. There is a 64-bit version of Python as well, but I have personally found it to be more hassle than it's worth. Some packages won't have 64-bit versions available, and I personally haven't found any need for the 64-bit version in any project I've worked on. Feel free to go with the 64-bit version if you'd like, but this guide assumes you're using the 32-bit one.
+
+Recent Python installers include an explicit option to add `C:\Python27\` to your path. I find checking that option to be the easiest thing to do, and it's generally what you want. It's not selected by default, though, so watch for it and enable it if you want. If you don't do that, and you need to do it manually later, the [Using Python on Windows](http://docs.python.org/using/windows.html) documentation includes more details.
+
+Unfortunately, the installer does *not* add the `Scripts` (i.e. `C:\Python27\Scripts`) subdirectory, which is also really needed, since that's where pip will end up being installed. So even if you check that box chances are you'll need to edit your path anyway.
 
 Once you've installed Python, open up a PowerShell window and type `python` and press enter. You should see something like this:
 
     :::text
     PS C:\> python
-    Python 2.7.2 (default, Jun 12 2011, 15:08:59) [MSC v.1500 32 bit (Intel)] on win32
+    Python 2.7.8 (default, Jun 30 2014, 16:03:49) [MSC v.1500 32 bit (Intel)] on win32
     Type "help", "copyright", "credits" or "license" for more information.
     >>>
 
-You might also get an error, however, saying "The term 'foo' is not recognized as the name of a cmdlet, function, script file, or operable program." This is because the Python installer, for whatever reason, does not automatically add the installation directory to your path. (Although apparently it sometimes does. In some cases I have not had to update my path manually.) You'll need to update your path to include the Python install directory (usually something like `C:\Python27\`). There are a number of ways to do that; the [Using Python on Windows](http://docs.python.org/using/windows.html) documentation includes more details if needed. You'll also want to add the `Scripts` subdirectory directly (so `C:\Python27\Scripts`), since that's where pip will end up being installed.
-
-Once your path is updated, restart PowerShell to ensure the new path is loaded and try typing `python` again. You should be good to go!
-
-
-## Get Distribute
-
-[Distribute][] is a fork of the Setuptools project "intended to replace Setuptools as the standard method for working with Python module distributions." It is a prerequisite for pip. Luckily, unlike Setuptools, Distribute is pretty easy to install on Windows.
-
-You need to download the [distribute_setup.py][] file, save it locally, then run it using Python. For example, after saving the `distribute_setup.py` script locally, open up PowerShell, navigate to where you downloaded the file, and type:
-
-    :::text
-    PS C:\> python distribute_setup.py
+Press `Ctrl-Z` and hit return to exit the Python prompt. If you get an error when you type `python` saying "The term 'foo' is not recognized as the name of a cmdlet, function, script file, or operable program," then Python is not on your path. Add it first, and once your path is updated, restart PowerShell to ensure the new path is loaded and try typing `python` again. You should be good to go!
 
 
 ## Get Pip
 
-The easiest way to install pip is to download the [get-pip.py][] script and run it using Python, much like you did with Distribute.
+*Note: Previous versions of this guide included a step to download and install Distribute. That is no longer needed; just get pip.*
+
+The easiest way to install pip is to download the [get-pip.py][] script, save it locally, then run it using Python.
 
     :::text
     PS C:\> python get-pip.py
+    Downloading/unpacking pip
+    Downloading/unpacking setuptools
+    Installing collected packages: pip, setuptools
+    Successfully installed pip setuptools
+    Cleaning up...
+    PS C:\>
 
-There are other ways to get pip, but this is the easiest way I have found. There are more details on this at [the pip website][1]. To check if everything is working, just type `pip` at the command line:
+There are other ways to get pip, but this is the easiest way I have found. There are more details on this at [the pip website][2]. To check if everything is working, just type `pip` at the command line:
 
     :::text
     PS C:\> pip
-    Usage: pip-script.py COMMAND [OPTIONS]
-    pip-script.py: error: You must give a command (use "pip help" to see a list of commands)
 
-If you get another "command is not recognized" error, check that `C:\Python27\Scripts` is on your path.
+    Usage:
+      pip <command> [options]
+
+If you get another "command is not recognized" error, check that `C:\Python27\Scripts\` is on your path.
+
+[get-pip.py]: https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+[2]: http://www.pip-installer.org/en/latest/installing.html#using-the-installer
 
 
 ## Install virtualenv and virtualenvwrapper-powershell
@@ -99,11 +103,19 @@ Pip should now be installed, so type the following commands to get virtualenv an
     PS C:\> pip install virtualenvwrapper-powershell
 
 Now you need to import the wrapper module in PowerShell, so type `Import-Module virtualenvwrapper`.
-You will probably get an error saying something like this:
+You will probably get one of two errors -- or both. The first will be something like this:
+
+    :::text
+    PS C:\> Import-Module virtualenvwrapper
+    Get-Content : Cannot find path 'Function:\TabExpansion' because it does not exist.
+
+Unfortunately that's a bug in the current released version (12.7.8) of virtualenvwrapper-powershell. It doesn't actually cause any problems in practice as far as I know. It seems to have been fixed in the project but the fix hasn't made it into a released version yet. I don't know why; I'm not involved with the project.
+
+The other error you might see will say something like this:
 
     :::text
     Virtualenvwrapper: Virtual environments directory 
-    'C:\Users\tylerbu/.virtualenvs' does not exist. Create it or 
+    'C:\Users\tyler/.virtualenvs' does not exist. Create it or 
     set $env:WORKON_HOME to an existing directory.
 
 Well, at least you know you're on the right track! Do exactly what the message says: create the missing directory.
@@ -117,24 +129,28 @@ Now try to import the module again. Success! Now you have access to a bunch of v
     :::text
     PS C:\> Get-Command *virtualenv*
 
-    CommandType     Name                          Definition
-    -----------     ----                          ----------
-    Function        CDIntoVirtualEnvironment      ...
-    Alias           cdvirtualenv                  CDIntoVirtualEnvironment
-    Function        Copy-VirtualEnvironment       ...
-    Alias           cpvirtualenv                  Copy-VirtualEnvironment
-    Function        Get-VirtualEnvironment        ...
-    Alias           mkvirtualenv                  New-VirtualEnvironment
-    Function        New-VirtualEnvironment        ...
-    Function        New-VirtualEnvProject         ...
-    Function        Remove-VirtualEnvironment     ...
-    Alias           rmvirtualenv                  Remove-VirtualEnvironment
-    Function        Set-VirtualEnvironment        ...
-    Function        Set-VirtualEnvProject         ...
-    Function        VerifyVirtualEnv              ...
-    Application     virtualenv.exe                C:\Python27\Scripts\virtualenv.exe
-    Application     virtualenv.exe.manifest       C:\Python27\Scripts\virtualenv.exe.manifest
-    Application     virtualenv-script.py          C:\Python27\Scripts\virtualenv-script.py
+    CommandType     Name                                               ModuleName
+    -----------     ----                                               ----------
+    Alias           cdvirtualenv -> CDIntoVirtualEnvironment           virtualenvwrapper
+    Alias           cpvirtualenv -> Copy-VirtualEnvironment            virtualenvwrapper
+    Alias           lsvirtualenv -> Get-VirtualEnvironment             virtualenvwrapper
+    Alias           mkvirtualenv -> New-VirtualEnvironment             virtualenvwrapper
+    Alias           rmvirtualenv -> Remove-VirtualEnvironment          virtualenvwrapper
+    Alias           setvirtualenvproject -> Set-VirtualEnvProject      support
+    Function        add2virtualenv                                     virtualenvwrapper
+    Function        CDIntoVirtualEnvironment                           virtualenvwrapper
+    Function        Copy-VirtualEnvironment                            virtualenvwrapper
+    Function        Get-VirtualEnvironment                             virtualenvwrapper
+    Function        New-VirtualEnvironment                             virtualenvwrapper
+    Function        New-VirtualEnvProject                              support
+    Function        Remove-VirtualEnvironment                          virtualenvwrapper
+    Function        Set-VirtualEnvironment                             virtualenvwrapper
+    Function        Set-VirtualEnvProject                              support
+    Function        showvirtualenv                                     virtualenvwrapper
+    Function        VerifyVirtualEnv                                   support
+    Application     virtualenv.exe
+    Application     virtualenv-2.7.exe
+    Application     virtualenv-clone.exe
 
 You'll see that there are a bunch of nice PowerShell style cmdlets, like `New-VirtualEnvironment`, but there are also aliases set up mapping those cmdlets to commands you might be more familiar with, like `mkvirtualenv`. Of course you also get regular PowerShell tab completion for these cmdlets and aliases.
 
@@ -144,11 +160,9 @@ You'll see that there are a bunch of nice PowerShell style cmdlets, like `New-Vi
 Now that we have virtualenv installed, let's make a new virtualenv:
 
     :::posh
-    New-VirtualEnvironment engineer --no-site-packages
+    New-VirtualEnvironment engineer
 
-Replace `engineer` with whatever you want to call your virtualenv. I usually name it after the project I plan to use that virtualenv for, but whatever you want works. The `--no-site-packages` argument is also optional. By default, virtualenv copies whatever python packages you have installed in your system python environment to a new one. I dislike this behavior since it can unnecessarily pollute a new virtualenv, so I have the habit of disabling it by passing this argument.
-
-*Note: The default virtualenv behavior in recent versions is to not install site packages, so the `--no-site-packages` argument may be superfluous if you're using recent versions.*
+Replace `engineer` with whatever you want to call your virtualenv. I usually name it after the project I plan to use that virtualenv for, but whatever you want works.
 
 After the command completes, you should see a PowerShell prompt that looks like this:
 
@@ -162,7 +176,7 @@ The `(engineer)` prepended to your prompt reminds you that you're currently work
 
     PathInfo         Name          PathToScripts                 PathToSitePackages
     --------         ----          -------------                 ------------------
-    engineer         engineer      C:\Users\tylerbu\.virtuale... C:\Users\tylerbu\.virtuale...
+    engineer         engineer      C:\Users\tyler\.virtuale...   C:\Users\tyler\.virtuale...
 
 
 ## Install Packages with pip
@@ -179,6 +193,8 @@ Also, you might have downloaded a package's source manually that has a `setup.py
     
 The `-e` option can also check out source directly from a Mercurial, Git, Subversion, or Bazaar repository and install a package from there.
 
+[requirements file]: http://www.pip-installer.org/en/latest/requirements.html
+
 
 ## Automatically Importing the virtualenvwrapper PowerShell Module
 
@@ -189,8 +205,8 @@ You might notice at some point -- probably once you open a new PowerShell prompt
 
     AllUsersAllHosts       : C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
     AllUsersCurrentHost    : C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
-    CurrentUserAllHosts    : D:\Users\tyler\Documents\WindowsPowerShell\profile.ps1
-    CurrentUserCurrentHost : D:\Users\tyler\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+    CurrentUserAllHosts    : C:\Users\tyler\Documents\WindowsPowerShell\profile.ps1
+    CurrentUserCurrentHost : C:\Users\tyler\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
     Length                 : 77
 
 Looks like there are four available profile scripts, and based on their names, they all have different scopes. In our case, we probably want the `CurrentUserAllHosts` profile, since that will execute for us in every PowerShell instance. If you navigate to the location listed, there might not be a file there to edit. In that case, the following command will create a file there in the right format:
@@ -210,24 +226,18 @@ It's worth noting that this file is just a regular PowerShell script, so you can
 
 ## Configuring Your IDE
 
-There is one final step to getting everything really *ready* for developing Python projects -- setting up your IDE to use the appropriate `virtualenv` for your project. There are several different IDEs out there or you could just rock [Notepad++][]. I personally like [PyCharm][] a lot though.
+There is one final step to getting everything really *ready* for developing Python projects -- setting up your IDE to use the appropriate `virtualenv` for your project. There are several different IDEs out there or you could just rock [Notepad++][]. I personally like [PyCharm][] a lot though; [I use it](/2013/10/pycharm-3-0/) almost exclusively for Python development.
 
-If you *are* using PyCharm, version 2.5+ has built-in support for virtualenv. You can [create virtual environments][2] directly in PyCharm or you can import ones you created earlier using virtualenvwrapper. Personally I prefer the latter since virtualenvwrapper doesn't pick up the environments created by PyCharm (so they don't show up when you use the `workon` command, among another things).
+If you *are* using PyCharm, version 2.5+ has built-in support for virtualenv. You can [create virtual environments][3] directly in PyCharm or you can import ones you created earlier using virtualenvwrapper. Personally I prefer the latter since virtualenvwrapper doesn't pick up the environments created by PyCharm (so they don't show up when you use the `workon` command, among another things).
 
 Anyway, if you want to use an existing virtualenv, you'll need to tell PyCharm about it. The [PyCharm support site has details][4], but the key thing to know is that you need to point it to the `python.exe` inside your `virtualenv`'s `Scripts` directory. In my case, the full path is `C:\Users\tyler\.virtualenvs\engineer\Scripts\python.exe`.
 
 After all of that's done you should be good to go! You can pop open a PowerShell window and create/switch to virtualenvs as needed and install packages using pip. At this point you should have most of what you need to follow the installation instructions for most Python packages (except those that require C extension compilation, but that's a topic for another post).
 
-*Last updated May 12, 2013. If you notice any errors or missing/out-of-date information in this guide, please let me know at: __tyler AT tylerbutler DOT com__.*
+*This guide was last updated October 7, 2014. It was tested on a fresh Windows VM image. If you notice any errors or missing/out-of-date information, please let me know at: __tyler AT tylerbutler DOT com__.*
 
 
-[1]: http://www.pip-installer.org/en/latest/installing.html#using-the-installer
-[2]: http://www.jetbrains.com/pycharm/webhelp/creating-virtual-environment.html
-[3]: http://engineer.readthedocs.org/en/latest/installation.html#installing-using-pip
+[3]: http://www.jetbrains.com/pycharm/webhelp/creating-virtual-environment.html
 [4]: http://www.jetbrains.com/pycharm/webhelp/configuring-local-python-interpreters.html
-[requirements file]: http://www.pip-installer.org/en/latest/requirements.html
 [PyCharm]: http://www.jetbrains.com/pycharm/
 [Notepad++]: http://notepad-plus-plus.org/
-[get-pip.py]: https://raw.github.com/pypa/pip/master/contrib/get-pip.py
-[Distribute]: http://pypi.python.org/pypi/distribute
-[distribute_setup.py]: http://python-distribute.org/distribute_setup.py

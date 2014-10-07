@@ -15,7 +15,6 @@ PLUGIN_PERMISSIONS:
 
 POST_RENAME_ENABLED: yes
 POST_RENAME_CONFIG:
-  draft: '{slug} [{status}].md'
   review: '({status}) {slug}.md'
 METADATA_FORMAT: fenced
 FINALIZE_METADATA_CONFIG:

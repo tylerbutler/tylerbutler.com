@@ -11,6 +11,20 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+            <!-- Facebook meta tags -->
+        <meta property="og:site_name" content="Tyler Butler" />
+                    <meta property="og:type" content="article" />
+            <meta property="og:url" content="http://www.tylerbutler.com/2005/01/ubuntu-lvm/" />
+            <meta property="og:title" content="Ubuntu + LVM" />
+            <meta property="og:description" content="I spent this past weekend hacking away at my Media Box, which serves as my
+personal free <span class="caps">PVR</span>. I wanted to get <a href="http://www.ubuntu-linux.org" title="Ubuntu, a Debian distro for the masses.  All the cool people do it.">Ubuntu</a> on it with <span class="caps">LVM</span> so I could use
+all four of my hard drives as one for <a href="http://mythtv.org" title="MythTV, the best PVR there is... if you can get it running...">MythTV</a>. I borrowed one of Vlad&#8217;s
+Ubuntu <span class="caps">CD</span>&#8217;s (mine haven&#8217;t arrived yet and I couldn&#8217;t find the one I burnt) and
+got the installer running. During the partitioning section of the install, I
+set everything up for an <span class="caps">LVM</span> volume group and thought I had everything
+working. Apparently I didn&#8217;t. Silly me for not having a clue how <span class="caps">LVM</span> works
+(always read the directions,&nbsp;kids)." />
+            
     <title>    Ubuntu + LVM    : Tyler Butler
 </title>
 
@@ -22,6 +36,7 @@
                             <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
                             
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <!--suppress JSUnresolvedLibraryURL -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         if (window.jQuery == undefined) {
@@ -29,8 +44,9 @@
                     }
     </script>
 
-        <script type="text/javascript"
-            src="http://use.typekit.net/vty2qol.js"></script>
+        <!--suppress JSUnresolvedLibraryURL -->
+    <script type="text/javascript"
+            src="//use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
             // noinspection JSUnresolvedVariable

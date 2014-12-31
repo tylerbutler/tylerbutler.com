@@ -11,6 +11,13 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+            <!-- Facebook meta tags -->
+        <meta property="og:site_name" content="Tyler Butler" />
+                    <meta property="og:type" content="article" />
+            <meta property="og:url" content="http://www.tylerbutler.com/2014/05/markdown-lazy-links-in-python/" />
+            <meta property="og:title" content="Markdown Lazy Links in Python" />
+            <meta property="og:description" content="One of the things I am most excited about in <a href="/2014/05/engineer-v0-5-0-released/">Engineer 0.5.0</a> is the new support for <a href="https://engineer.readthedocs.org/en/master/bundled_plugins.html#lazy-links-plugin">Markdown Lazy Links</a>. My implementation is actually a bit richer than <a href="http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/">Brett Terpstra&#8217;s original sample</a>, though it&#8217;s not quite as elegant as the original either. In particular, Engineer&#8217;s implementation allows you to add lazy links to posts that already have numeric reference links. Also, you can optionally have Engineer transform the lazy links into numeric links during a build. This can come in handy if you anticipate doing a lot of reorganizing of the post content at some point, and want to make sure links don&#8217;t&nbsp;break." />
+            
     <title>    Markdown Lazy Links in Python    : Tyler Butler
 </title>
 
@@ -22,6 +29,7 @@
                             <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
                             
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <!--suppress JSUnresolvedLibraryURL -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         if (window.jQuery == undefined) {
@@ -29,8 +37,9 @@
                     }
     </script>
 
-        <script type="text/javascript"
-            src="http://use.typekit.net/vty2qol.js"></script>
+        <!--suppress JSUnresolvedLibraryURL -->
+    <script type="text/javascript"
+            src="//use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
             // noinspection JSUnresolvedVariable

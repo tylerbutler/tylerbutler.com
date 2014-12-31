@@ -11,6 +11,21 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+            <!-- Facebook meta tags -->
+        <meta property="og:site_name" content="Tyler Butler" />
+                    <meta property="og:type" content="article" />
+            <meta property="og:url" content="http://www.tylerbutler.com/2005/10/java-memory-allocation/" />
+            <meta property="og:title" content="Java Memory Allocation" />
+            <meta property="og:description" content="I saw this article linked over at Slashdot today and found it to be a very
+interesting read. I&#8217;ve had many debates with people that think that byte-
+compiled languages like Java and C# just have inherent performance problems.
+Often they&#8217;ll spout off some nonsense about how garbage collection is
+inefficient or something. Sure, <em>sometimes</em> it&#8217;s better to have manual control
+over your memory allocation/deallocation, but this article makes a
+surprisingly good case for why the perceived performance hits in dynamic
+management don&#8217;t even exist. A great read, especially if you don&#8217;t know much
+about how memory management works in the first&nbsp;place." />
+            
     <title>    Java Memory Allocation    : Tyler Butler
 </title>
 
@@ -22,6 +37,7 @@
                             <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
                             
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <!--suppress JSUnresolvedLibraryURL -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         if (window.jQuery == undefined) {
@@ -29,8 +45,9 @@
                     }
     </script>
 
-        <script type="text/javascript"
-            src="http://use.typekit.net/vty2qol.js"></script>
+        <!--suppress JSUnresolvedLibraryURL -->
+    <script type="text/javascript"
+            src="//use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
             // noinspection JSUnresolvedVariable

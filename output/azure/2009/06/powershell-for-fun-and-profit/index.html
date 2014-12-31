@@ -11,6 +11,19 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+            <!-- Facebook meta tags -->
+        <meta property="og:site_name" content="Tyler Butler" />
+                    <meta property="og:type" content="article" />
+            <meta property="og:url" content="http://www.tylerbutler.com/2009/06/powershell-for-fun-and-profit/" />
+            <meta property="og:title" content="PowerShell for Fun and Profit" />
+            <meta property="og:description" content="Stefan Goßner has a great post on his blog covering <a href="http://blogs.technet.com/stefan_gossner/pages/content-deployment-best-practices.aspx">some common problems</a>
+that people have with Content Deployment in SharePoint. Problem 13 has to do
+with the default timeout window for Content Deployment jobs. Stefan provides
+some sample code that you can use to adjust the timeout value, since it&#8217;s not
+exposed through the <span class="caps">UI</span>, but I find writing and running sample code on a server
+a bit of a pain. Instead of writing code, you can actually use PowerShell to
+do this directly from the <span class="caps">PS</span>&nbsp;prompt." />
+            
     <title>    PowerShell for Fun and Profit    : Tyler Butler
 </title>
 
@@ -22,6 +35,7 @@
                             <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
                             
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <!--suppress JSUnresolvedLibraryURL -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         if (window.jQuery == undefined) {
@@ -29,8 +43,9 @@
                     }
     </script>
 
-        <script type="text/javascript"
-            src="http://use.typekit.net/vty2qol.js"></script>
+        <!--suppress JSUnresolvedLibraryURL -->
+    <script type="text/javascript"
+            src="//use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
             // noinspection JSUnresolvedVariable

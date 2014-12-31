@@ -11,6 +11,21 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+            <!-- Facebook meta tags -->
+        <meta property="og:site_name" content="Tyler Butler" />
+                    <meta property="og:type" content="article" />
+            <meta property="og:url" content="http://www.tylerbutler.com/2005/08/most-recent-songs-in-itunes/" />
+            <meta property="og:title" content="Most Recent Songs in iTunes" />
+            <meta property="og:description" content="I decided this morning that I was going to try and learn <span class="caps">XSLT</span> today. I think I
+succeeded somewhat. I decided that my tutorial application would be an iTunes
+<span class="caps">XML</span> feed transformed into a page on my site with the most recent songs I&#8217;ve
+listened to in iTunes. I created my own iTunes <span class="caps">XML</span> schema (a really really
+simple one), though in retropect, I probably should have just tried to use the
+built-in iTunes <span class="caps">XML</span> stuff (though I don&#8217;t know if this capability is exposed
+in the <span class="caps">SDK</span>). Anyway, once I had the <span class="caps">XML</span> (created by my program in C# and the
+iTunes <span class="caps">COM</span> <span class="caps">SDK</span>), I started fooling with the <span class="caps">XSLT</span>. It still needs a lot of
+style work, but I managed to get it formatting the data the right way and&nbsp;everything." />
+            
     <title>    Most Recent Songs in iTunes    : Tyler Butler
 </title>
 
@@ -22,6 +37,7 @@
                             <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
                             
             <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <!--suppress JSUnresolvedLibraryURL -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         if (window.jQuery == undefined) {
@@ -29,8 +45,9 @@
                     }
     </script>
 
-        <script type="text/javascript"
-            src="http://use.typekit.net/vty2qol.js"></script>
+        <!--suppress JSUnresolvedLibraryURL -->
+    <script type="text/javascript"
+            src="//use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
             // noinspection JSUnresolvedVariable

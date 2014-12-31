@@ -9,40 +9,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>    C# MessageBox Strangeness    : Tyler Butler
 </title>
 
-                    
+    
     <link rel="alternate" type="application/atom+xml"
           title="Tyler Butler Atom Feed"
           href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
 
-                
-                                                        <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
-                <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+                            <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
+                            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        if (window.jQuery == undefined) {
+                            document.write('<script src="/static/bundled/jquery.8fc25e27.js"><\/script>');
+                    }
+    </script>
 
-                <!--[if lt IE 9]>
-                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
-                <![endif]-->
-                        
-                            <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow_precompiled.css"
-                  type="text/css"/>
-        
-                
-                                    
-            <script type="text/javascript"
+        <script type="text/javascript"
             src="http://use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
+            // noinspection JSUnresolvedVariable
             Typekit.load();
         }
         catch (e) {
         }
     </script>
+
+    
     
             <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -60,14 +58,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                        <script src="/static/engineer/lib/modernizr-2.7.1.min.js"
-                    type="text/javascript"></script>
-            
-            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.11.0.min.js"><\/script>')
-            </script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -77,12 +67,12 @@
 </head>
 <body class=""><!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="small-12 medium-5 columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+                                                        <nav class="small-12 medium-7 columns">                            <ul class="nav navbar-nav">
     
                 <li class="current">
         <a href="/">articles</a></li>
@@ -92,20 +82,21 @@
 
                         </nav>
                 </header>
-        <div class="row">                <section id="main" class="twelve columns"
+        <div class="row">                <section id="main"
+                         class="twelve columns"
                          role="main">    <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JAN</div>
-                    <div class="day">21</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/01/c-messagebox-strangeness/"
-                           title="Permanent link to 'C# MessageBox Strangeness'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">JAN</div>
+                        <div class="day">21</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/01/c-messagebox-strangeness/"
+                               title="Permanent link to 'C# MessageBox Strangeness'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-01-21 PST"
                       pubdate=""></time>
                 <header>
@@ -126,8 +117,8 @@ Windows&#8217; fault? Is McAfee just really dumb? Who knows&#8230; I&#8217;m too
 and figure it out right&nbsp;now.</p>
                                                                                                                 
                     <div class="row">
-                        <div class="twelve columns post-links">
-                            <ul class="block-grid two-up">
+                        <div class="small-12 columns post-links">
+                            <ul class="small-block-grid-2">
                                 <li>
                                                                             <a href="/2005/01/ubuntu-lvm/">← Ubuntu + LVM</a>
                                                                     </li>
@@ -147,6 +138,7 @@ and figure it out right&nbsp;now.</p>
         var disqus_shortname = 'tylerbutlercom';
         var disqus_identifier = '/2005/01/c-messagebox-strangeness/';
         var disqus_url = 'http://www.tylerbutler.com/2005/01/c-messagebox-strangeness/';
+        
         (function () {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';
@@ -163,14 +155,12 @@ and figure it out right&nbsp;now.</p>
                             </article>
             </div></section>
             </div>
-        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+        <div class="row">                <footer class="small-12 small-centered columns">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
 
 <p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
             </div>
     </div>
-                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+            <script src="/static/bundled/foundation.55babb4f.js"></script>
         
-    
-    
 </body>
 </html>

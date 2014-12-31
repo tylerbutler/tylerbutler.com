@@ -9,40 +9,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>    PowerShell for Fun and Profit    : Tyler Butler
 </title>
 
-                    
+    
     <link rel="alternate" type="application/atom+xml"
           title="Tyler Butler Atom Feed"
           href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
 
-                
-                                                        <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
-                <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+                            <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
+                            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        if (window.jQuery == undefined) {
+                            document.write('<script src="/static/bundled/jquery.8fc25e27.js"><\/script>');
+                    }
+    </script>
 
-                <!--[if lt IE 9]>
-                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
-                <![endif]-->
-                        
-                            <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow_precompiled.css"
-                  type="text/css"/>
-        
-                
-                                    
-            <script type="text/javascript"
+        <script type="text/javascript"
             src="http://use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
+            // noinspection JSUnresolvedVariable
             Typekit.load();
         }
         catch (e) {
         }
     </script>
+
+    
     
             <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -60,14 +58,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                        <script src="/static/engineer/lib/modernizr-2.7.1.min.js"
-                    type="text/javascript"></script>
-            
-            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.11.0.min.js"><\/script>')
-            </script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -77,12 +67,12 @@
 </head>
 <body class=""><!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="small-12 medium-5 columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+                                                        <nav class="small-12 medium-7 columns">                            <ul class="nav navbar-nav">
     
                 <li class="current">
         <a href="/">articles</a></li>
@@ -92,26 +82,27 @@
 
                         </nav>
                 </header>
-        <div class="row">                <section id="main" class="twelve columns"
+        <div class="row">                <section id="main"
+                         class="twelve columns"
                          role="main">    <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JUN</div>
-                    <div class="day">15</div>
-                    <div class="year">2009</div>
-                    <div class="permalink">
-                        <a href="/2009/06/powershell-for-fun-and-profit/"
-                           title="Permanent link to 'PowerShell for Fun and Profit'">∞</a>
-                    </div>
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">JUN</div>
+                        <div class="day">15</div>
+                        <div class="year">2009</div>
+                        <div class="permalink">
+                            <a href="/2009/06/powershell-for-fun-and-profit/"
+                               title="Permanent link to 'PowerShell for Fun and Profit'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/powershell">powershell</a>
+                            </li>
+                                                    <li><a href="/tag/sharepoint">sharepoint</a>
+                            </li>
+                                            </ul>
                             </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/powershell">powershell</a>
-                        </li>
-                                            <li><a href="/tag/sharepoint">sharepoint</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2009-06-15 PDT"
                       pubdate=""></time>
                 <header>
@@ -140,9 +131,9 @@ a look at this sample&nbsp;script:</p>
  9
 10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">param</span><span class="p">(</span> <span class="nv">$newTimeout</span> <span class="p">=</span> <span class="n">600</span> <span class="p">)</span>
 
-<span class="no">[System.Reflection.Assembly]</span><span class="err">::</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;Microsoft.SharePoint.Publishing, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c&quot;</span><span class="p">)</span>
+<span class="no">[System.Reflection.Assembly]</span><span class="p">::</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;Microsoft.SharePoint.Publishing, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c&quot;</span><span class="p">)</span>
 
-<span class="nv">$cdconfig</span> <span class="p">=</span> <span class="no">[Microsoft.SharePoint.Publishing.Administration.ContentDeploymentConfiguration]</span><span class="err">::</span><span class="n">GetInstance</span><span class="p">()</span>
+<span class="nv">$cdconfig</span> <span class="p">=</span> <span class="no">[Microsoft.SharePoint.Publishing.Administration.ContentDeploymentConfiguration]</span><span class="p">::</span><span class="n">GetInstance</span><span class="p">()</span>
 
 <span class="nv">$cdconfig</span><span class="p">.</span><span class="n">RemoteTimeout</span> <span class="p">=</span> <span class="nv">$newTimeout</span>
 <span class="nv">$cdconfig</span><span class="p">.</span><span class="n">Update</span><span class="p">()</span>
@@ -157,7 +148,7 @@ I update the <code>RemoteTimeout</code> property, then call <code>Update()</code
 code to write and&nbsp;compile.</p>
 <p>This example uses the param keyword, which means you can save it as
 <code>ChangeRemoteTimeout.ps1</code>, then run it like&nbsp;this:</p>
-<div class="codehilite"><pre><span class="n"><span class="caps">PS</span></span> <span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="n">ChangeRemoteTimeout</span> <span class="err">–</span><span class="n">newTimeout</span> <span class="mi">1200</span>
+<div class="codehilite"><pre>PS C:\&gt; ChangeRemoteTimeout –newTimeout 1200
 </pre></div>
 
 
@@ -165,11 +156,11 @@ code to write and&nbsp;compile.</p>
 lot, it might be worth saving it as a reusable&nbsp;script.</p>
 <p>You might also want to make changes to some of the options that are exposed
 through the <span class="caps">UI</span> already. Here&#8217;s an&nbsp;example:</p>
-<div class="codehilite"><pre><span class="n"><span class="caps">PS</span></span> <span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Reflection</span><span class="p">.</span><span class="n">Assembly</span><span class="p">]</span><span class="o">::</span><span class="n">Load</span><span class="p">(</span><span class="s">&quot;Microsoft.SharePoint.Publishing, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c&quot;</span><span class="p">)</span>
-<span class="n"><span class="caps">PS</span></span> <span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="err">$</span><span class="n">cdconfig</span> <span class="o">=</span> <span class="p">[</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">SharePoint</span><span class="p">.</span><span class="n">Publishing</span><span class="p">.</span><span class="n">Administration</span><span class="p">.</span><span class="n">ContentDeploymentConfiguration</span><span class="p">]</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">()</span>
-<span class="n"><span class="caps">PS</span></span> <span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="err">$</span><span class="n">cdconfig</span><span class="p">.</span><span class="n">AcceptIncomingJobs</span> <span class="o">=</span> <span class="err">$</span><span class="nb">true</span>
-<span class="n"><span class="caps">PS</span></span> <span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="err">$</span><span class="n">cdconfig</span><span class="p">.</span><span class="n">RequiresSecureConnection</span> <span class="o">=</span> <span class="err">$</span><span class="nb">false</span>
-<span class="n"><span class="caps">PS</span></span> <span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="err">$</span><span class="n">cdconfig</span><span class="p">.</span><span class="n">Update</span><span class="p">()</span>
+<div class="codehilite"><pre><span class="x"><span class="caps">PS</span> C:\&gt; [System.Reflection.Assembly]::Load(&quot;Microsoft.SharePoint.Publishing, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c&quot;)</span>
+<span class="x"><span class="caps">PS</span> C:\&gt; </span><span class="p">$</span><span class="nv">cdconfig</span><span class="x"> = [Microsoft.SharePoint.Publishing.Administration.ContentDeploymentConfiguration]::GetInstance()</span>
+<span class="x"><span class="caps">PS</span> C:\&gt; </span><span class="p">$</span><span class="nv">cdconfig</span><span class="p">.</span><span class="nv">AcceptIncomingJobs</span><span class="x"> = </span><span class="p">$</span><span class="nv">true</span><span class="x"></span>
+<span class="x"><span class="caps">PS</span> C:\&gt; </span><span class="p">$</span><span class="nv">cdconfig</span><span class="p">.</span><span class="nv">RequiresSecureConnection</span><span class="x"> = </span><span class="p">$</span><span class="nv">false</span><span class="x"></span>
+<span class="x"><span class="caps">PS</span> C:\&gt; </span><span class="p">$</span><span class="nv">cdconfig</span><span class="p">.</span><span class="nv">Update</span><span class="p">()</span><span class="x"></span>
 </pre></div>
 
 
@@ -182,8 +173,8 @@ the board. It&#8217;s not limited to the SharePoint DLLs. There&#8217;s some pre
 exciting stuff you can do here once you start playing&nbsp;around.</p>
                                                                                                                 
                     <div class="row">
-                        <div class="twelve columns post-links">
-                            <ul class="block-grid two-up">
+                        <div class="small-12 columns post-links">
+                            <ul class="small-block-grid-2">
                                 <li>
                                                                             <a href="/2009/05/who-watches-the-watchman/">← Who Watches the Watchman?</a>
                                                                     </li>
@@ -203,6 +194,7 @@ exciting stuff you can do here once you start playing&nbsp;around.</p>
         var disqus_shortname = 'tylerbutlercom';
         var disqus_identifier = '/2009/06/powershell-for-fun-and-profit/';
         var disqus_url = 'http://www.tylerbutler.com/2009/06/powershell-for-fun-and-profit/';
+        
         (function () {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';
@@ -219,14 +211,12 @@ exciting stuff you can do here once you start playing&nbsp;around.</p>
                             </article>
             </div></section>
             </div>
-        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+        <div class="row">                <footer class="small-12 small-centered columns">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
 
 <p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
             </div>
     </div>
-                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+            <script src="/static/bundled/foundation.55babb4f.js"></script>
         
-    
-    
 </body>
 </html>

@@ -9,40 +9,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>        Tyler Butler
 </title>
 
-                    
+    
     <link rel="alternate" type="application/atom+xml"
           title="Tyler Butler Atom Feed"
           href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
 
-                
-                                                        <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
-                <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+                            <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
+                            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        if (window.jQuery == undefined) {
+                            document.write('<script src="/static/bundled/jquery.8fc25e27.js"><\/script>');
+                    }
+    </script>
 
-                <!--[if lt IE 9]>
-                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
-                <![endif]-->
-                        
-                            <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow_precompiled.css"
-                  type="text/css"/>
-        
-                
-                                    
-            <script type="text/javascript"
+        <script type="text/javascript"
             src="http://use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
+            // noinspection JSUnresolvedVariable
             Typekit.load();
         }
         catch (e) {
         }
     </script>
+
+    
     
             <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -60,14 +58,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                        <script src="/static/engineer/lib/modernizr-2.7.1.min.js"
-                    type="text/javascript"></script>
-            
-            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.11.0.min.js"><\/script>')
-            </script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -77,12 +67,12 @@
 </head>
 <body class=""><!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="small-12 medium-5 columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+                                                        <nav class="small-12 medium-7 columns">                            <ul class="nav navbar-nav">
     
                 <li class="current">
         <a href="/">articles</a></li>
@@ -92,25 +82,58 @@
 
                         </nav>
                 </header>
-            <div class="row">                <section id="main" class="nine columns"
+            <div class="row">                <section id="sidebar"
+                         class="medium-4 medium-push-8 large-3 large-push-9 columns">                        <section>
+    <div>
+        <p class="hide-on-phones">I'm <a href="/about">Tyler Butler</a>: a big man with small dogs.</p>
+        <hr class="hide-on-phones"/>
+        <nav>
+            <ul>
+                <li><a href="http://feeds.feedburner.com/TylerButlerAllPosts">feed</a></li>
+                <li><a href="/archives">archives</a></li>
+                <li><a href="/colophon">colophon</a></li>
+            </ul>
+        </nav>
+        <hr class="hide-on-phones"/>
+        <h2 class="hide-on-phones">you might remember me from</h2>
+        <ul class="hide-on-phones">
+            <li><a href="http://twitter.com/tylerbutler">twitter</a></li>
+            <li><a href="http://github.com/tylerbutler">github</a></li>
+        </ul>
+    </div>
+</section>
+
+    <section id="search">
+        <div>
+            <form action="http://google.com/search" method="get">
+                <fieldset role="search">
+                    <input type="hidden" name="q" value="site:http://www.tylerbutler.com">
+                    <input class="search" type="text" name="q" results="0" placeholder="Search...">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+                    </section>
+                            <section id="main"
+                         class="medium-8 medium-pull-4 large-9 large-pull-3 columns"
                          role="main">    <div class="posts">
                                     <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">NOV</div>
-                    <div class="day">01</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/11/tyler-a-novelist/"
-                           title="Permanent link to 'Tyler, a Novelist?'">∞</a>
-                    </div>
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">NOV</div>
+                        <div class="day">01</div>
+                        <div class="year">2004</div>
+                        <div class="permalink">
+                            <a href="/2004/11/tyler-a-novelist/"
+                               title="Permanent link to 'Tyler, a Novelist?'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/nanowrimo">NaNoWriMo</a>
+                            </li>
+                                            </ul>
                             </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/nanowrimo">NaNoWriMo</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2004-11-01 PST"
                       pubdate=""></time>
                 <header>
@@ -133,18 +156,18 @@ decisions while I am trying to write. Wish me&nbsp;luck.</p>
 <p><strong>It&#8217;s going to be a long&nbsp;month.</strong></p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">OCT</div>
-                    <div class="day">29</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/10/homeland-security/"
-                           title="Permanent link to 'Homeland Security?'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">OCT</div>
+                        <div class="day">29</div>
+                        <div class="year">2004</div>
+                        <div class="permalink">
+                            <a href="/2004/10/homeland-security/"
+                               title="Permanent link to 'Homeland Security?'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2004-10-29 PDT"
                       pubdate=""></time>
                 <header>
@@ -200,22 +223,22 @@ have to fear? (The answer is <em>everything</em>. Government sucks. And yes, I a
 <a href="/2004/09/tolls-and-cameras/">paranoid</a>.)</p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">OCT</div>
-                    <div class="day">28</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/10/playing-with-ubuntu/"
-                           title="Permanent link to 'Playing With Ubuntu'">∞</a>
-                    </div>
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">OCT</div>
+                        <div class="day">28</div>
+                        <div class="year">2004</div>
+                        <div class="permalink">
+                            <a href="/2004/10/playing-with-ubuntu/"
+                               title="Permanent link to 'Playing With Ubuntu'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/ubuntu">ubuntu</a>
+                            </li>
+                                            </ul>
                             </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/ubuntu">ubuntu</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2004-10-28 PDT"
                       pubdate=""></time>
                 <header>
@@ -258,18 +281,18 @@ found any truly compelling reasons to switch back to <span class="caps">XP</span
 don&#8217;t. I&#8217;m certainly learning a lot more with&nbsp;Linux.</p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">OCT</div>
-                    <div class="day">27</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/10/interview-with-microsoft/"
-                           title="Permanent link to 'Interview with Microsoft'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">OCT</div>
+                        <div class="day">27</div>
+                        <div class="year">2004</div>
+                        <div class="permalink">
+                            <a href="/2004/10/interview-with-microsoft/"
+                               title="Permanent link to 'Interview with Microsoft'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2004-10-27 PDT"
                       pubdate=""></time>
                 <header>
@@ -310,18 +333,18 @@ but I&#8217;m sure I can work something out if I get an offer.&nbsp;:-)</p>
 Hopefully I&#8217;ll impress&nbsp;them.</p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">OCT</div>
-                    <div class="day">23</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/10/no-more-anonymous-comments/"
-                           title="Permanent link to 'No More Anonymous Comments'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">OCT</div>
+                        <div class="day">23</div>
+                        <div class="year">2004</div>
+                        <div class="permalink">
+                            <a href="/2004/10/no-more-anonymous-comments/"
+                               title="Permanent link to 'No More Anonymous Comments'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2004-10-23 PDT"
                       pubdate=""></time>
                 <header>
@@ -347,8 +370,8 @@ It makes me feel all warm and bubbly&nbsp;inside.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">
-        <div class="twelve columns post-links">
-            <ul class="block-grid three-up">
+        <div class="small-12 columns post-links">
+            <ul class="small-block-grid-3">
                 <li>
                                             <a href="/page/37">← older posts</a>
                                     </li>
@@ -362,46 +385,13 @@ It makes me feel all warm and bubbly&nbsp;inside.</p>
         </div>
     </div>
 </section>
-                            <section id="sidebar" class="three columns">                        <section>
-    <div>
-        <p class="hide-on-phones">I'm <a href="/about">Tyler Butler</a>: a big man with small dogs.</p>
-        <hr class="hide-on-phones"/>
-        <nav>
-            <ul>
-                <li><a href="http://feeds.feedburner.com/TylerButlerAllPosts">feed</a></li>
-                <li><a href="/archives">archives</a></li>
-                <li><a href="/colophon">colophon</a></li>
-            </ul>
-        </nav>
-        <hr class="hide-on-phones"/>
-        <h2 class="hide-on-phones">you might remember me from</h2>
-        <ul class="hide-on-phones">
-            <li><a href="http://twitter.com/tylerbutler">twitter</a></li>
-            <li><a href="http://github.com/tylerbutler">github</a></li>
-        </ul>
-    </div>
-</section>
-
-    <section id="search">
-        <div>
-            <form action="http://google.com/search" method="get">
-                <fieldset role="search">
-                    <input type="hidden" name="q" value="site:http://www.tylerbutler.com">
-                    <input class="search" type="text" name="q" results="0" placeholder="Search...">
-                </fieldset>
-            </form>
-        </div>
-    </section>
-                    </section>
             </div>
-        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+        <div class="row">                <footer class="small-12 small-centered columns">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
 
 <p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
             </div>
     </div>
-                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+            <script src="/static/bundled/foundation.55babb4f.js"></script>
         
-    
-    
 </body>
 </html>

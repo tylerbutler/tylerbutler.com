@@ -9,40 +9,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>        Tyler Butler
 </title>
 
-                    
+    
     <link rel="alternate" type="application/atom+xml"
           title="Tyler Butler Atom Feed"
           href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
 
-                
-                                                        <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
-                <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+                            <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
+                            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        if (window.jQuery == undefined) {
+                            document.write('<script src="/static/bundled/jquery.8fc25e27.js"><\/script>');
+                    }
+    </script>
 
-                <!--[if lt IE 9]>
-                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
-                <![endif]-->
-                        
-                            <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow_precompiled.css"
-                  type="text/css"/>
-        
-                
-                                    
-            <script type="text/javascript"
+        <script type="text/javascript"
             src="http://use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
+            // noinspection JSUnresolvedVariable
             Typekit.load();
         }
         catch (e) {
         }
     </script>
+
+    
     
             <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -60,14 +58,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                        <script src="/static/engineer/lib/modernizr-2.7.1.min.js"
-                    type="text/javascript"></script>
-            
-            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.11.0.min.js"><\/script>')
-            </script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -77,12 +67,12 @@
 </head>
 <body class=""><!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="small-12 medium-5 columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+                                                        <nav class="small-12 medium-7 columns">                            <ul class="nav navbar-nav">
     
                 <li class="current">
         <a href="/">articles</a></li>
@@ -92,161 +82,8 @@
 
                         </nav>
                 </header>
-            <div class="row">                <section id="main" class="nine columns"
-                         role="main">    <div class="posts">
-                                    <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">OCT</div>
-                    <div class="day">02</div>
-                    <div class="year">2013</div>
-                    <div class="permalink">
-                        <a href="/2013/10/pycharm-3-0/"
-                           title="Permanent link to 'PyCharm 3.0'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/python">python</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
-                <time datetime="2013-10-02 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2013/10/pycharm-3-0/">PyCharm 3.0</a>
-                                            </h1>
-                </header>
-                                    <p>JetBrains released version 3.0 of their <a href="http://www.jetbrains.com/pycharm/download/index.html">excellent Python <span class="caps">IDE</span></a> a couple of weeks ago, and with it they made a free Community Edition available as well. I can&#8217;t say enough good things about PyCharm, so if you&#8217;ve been on the fence about it, it&#8217;s worth checking out the Community Edition. They&#8217;ve put together a nice <a href="http://www.jetbrains.com/pycharm/features/editions_comparison_matrix.html">edition comparison chart</a> so you can see the core&nbsp;differences.</p>
-<p>If you&#8217;re looking to do Django/Flask/Pyramid/Google App Engine development, you&#8217;ll likely want the Pro edition, but it&#8217;s still reasonably priced in my opinion (compare it to <a href="https://store.xamarin.com/">Xamarin</a>, for example<sup id="fnref:pycharm1"><a class="footnote-ref" href="#fn:pycharm1" rel="footnote">1</a></sup>) and speaking from experience, the Django support, at least, is very good. I haven&#8217;t checked out the Flask support yet, but <a href="http://www.xkcd2.com">xkcd2</a> would be a good testing&nbsp;ground.</p>
-<p>If you want to see what a <em>real project</em> might look like in PyCharm, you can always clone <a href="https://github.com/tylerbutler/engineer/">Engineer</a>. It&#8217;s been built using PyCharm since day&nbsp;one.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:pycharm1">
-<p>Yes, I know it&#8217;s kind of an apples to oranges comparison given that they have different capabilities and target different languages, but they&#8217;re both IDEs&#8230;&#160;<a class="footnote-backref" href="#fnref:pycharm1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">AUG</div>
-                    <div class="day">21</div>
-                    <div class="year">2013</div>
-                    <div class="permalink">
-                        <a href="/2013/08/axe-cop/"
-                           title="Permanent link to 'Axe Cop'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2013-08-21 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="http://www.youtube.com/watch?v=YHGfSBr2FrY">Axe Cop</a>
-                        <span class="arrow">→</span>                    </h1>
-                </header>
-                                    <p>What do you get when you combine a story written by a 5-year-old with animation done by his 29-year-old brother? If you answered, &#8220;Pure Awesome&#8221;, you are&nbsp;correct.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JUN</div>
-                    <div class="day">23</div>
-                    <div class="year">2013</div>
-                    <div class="permalink">
-                        <a href="/2013/06/the-importance-of-documentation/"
-                           title="Permanent link to 'The Importance of Documentation'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2013-06-23 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2013/06/the-importance-of-documentation/">The Importance of Documentation</a>
-                                            </h1>
-                </header>
-                                    <p>Some free advice for anyone writing&nbsp;software:</p>
-<p><strong><em>Providing excellent documentation is the single most important thing you can do to improve your&nbsp;project.</em></strong></p>
-<p>I&#8217;ve used the Python flavor of <a href="https://github.com/html5lib/html5lib-python">html5lib</a> in a couple of different projects now (<a href="http://xkcd2.com">xkcd2</a> and <a href="http://engineer.readthedocs.org">Engineer</a>) and there&#8217;s really one thing that stands out to me: it has absolutely horrendous documentation. Well, it&#8217;s really just that it has none to speak of, and to be fair, it <em>could</em> be worse&#8230; It <em>could</em> be voluminous yet misleading or poorly organized, but instead there just isn&#8217;t&nbsp;any.</p>
-<p>Of course, it&#8217;d be understandable for you to think otherwise. If you visit the Github repo, you&#8217;re provided with some simple examples of creating a parser and parsing some documents. These examples are pretty standard fare &#8211; they give you a taste of what to expect but don&#8217;t give you enough to actually use the&nbsp;library.</p>
-<p>You&#8217;re happily informed that &#8220;More documentation is available at <a href="http://html5lib.readthedocs.org/">http://html5lib.readthedocs.org/</a>&#8221; but if you head over there you&#8217;ll notice that there isn&#8217;t really much more there. The &#8220;more documentation&#8221; they speak of is a <em>single page</em> with information about &#8220;the moving parts&#8221; which just doesn&#8217;t do much to help you know how to actually use the <span class="caps">API</span> to do anything really&nbsp;meaningful.</p>
-                    <div>
-                        <a href="/2013/06/the-importance-of-documentation/" class="button">Read more →</a>
-                    </div>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JUN</div>
-                    <div class="day">22</div>
-                    <div class="year">2013</div>
-                    <div class="permalink">
-                        <a href="/2013/06/logbook/"
-                           title="Permanent link to 'Logbook'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/python">python</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
-                <time datetime="2013-06-22 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="http://logbook.pocoo.org/">Logbook</a>
-                        <span class="arrow">→</span>                    </h1>
-                </header>
-                                    <p>A Python logging framework by Armin Ronacher (Jinja2, Flask, Werkzeug) and Georg Brandl (Sphinx, Pygments)? Here&#8230; take my money! Wait, it&#8217;s <span class="caps">BSD</span> licensed? <strong>Sign me&nbsp;up!</strong></p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">FEB</div>
-                    <div class="day">24</div>
-                    <div class="year">2013</div>
-                    <div class="permalink">
-                        <a href="/2013/02/speaking-of-the-mouse-wheel/"
-                           title="Permanent link to 'Speaking of the Mouse Wheel...'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
-                <time datetime="2013-02-24 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2013/02/speaking-of-the-mouse-wheel/">Speaking of the Mouse Wheel&#8230;</a>
-                                            </h1>
-                </header>
-                                    <p>A brief addendum to <a href="/2013/02/zoom-zoom/">my last post</a> about zoomable interfaces&#8230; Did you know that the mouse wheel was <a href="http://www.ericmic.com/history%20of%20the%20scroll%20wheel.htm">originally intended</a> to be used to zoom in and out of large Excel spreadsheets? Pretty&nbsp;cool.</p>
-                                                            </article>
-            </div>                        </div>
-    <div class="row archives">
-        <div class="twelve columns post-links">
-            <ul class="block-grid three-up">
-                <li>
-                                            <a href="/page/5">← older posts</a>
-                                    </li>
-                <li style="text-align: center;">
-                    <a href="/archives"> &ndash; archives &ndash; </a>
-                </li>
-                <li>
-                                            <a href="/page/3">newer posts →</a>
-                                    </li>
-            </ul>
-        </div>
-    </div>
-</section>
-                            <section id="sidebar" class="three columns">                        <section>
+            <div class="row">                <section id="sidebar"
+                         class="medium-4 medium-push-8 large-3 large-push-9 columns">                        <section>
     <div>
         <p class="hide-on-phones">I'm <a href="/about">Tyler Butler</a>: a big man with small dogs.</p>
         <hr class="hide-on-phones"/>
@@ -277,15 +114,168 @@
         </div>
     </section>
                     </section>
+                            <section id="main"
+                         class="medium-8 medium-pull-4 large-9 large-pull-3 columns"
+                         role="main">    <div class="posts">
+                                    <div class="row">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">OCT</div>
+                        <div class="day">02</div>
+                        <div class="year">2013</div>
+                        <div class="permalink">
+                            <a href="/2013/10/pycharm-3-0/"
+                               title="Permanent link to 'PyCharm 3.0'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/python">python</a>
+                            </li>
+                                            </ul>
+                            </div>
+                                <article class="post-content medium-9 large-10 columns">
+                <time datetime="2013-10-02 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2013/10/pycharm-3-0/">PyCharm 3.0</a>
+                                            </h1>
+                </header>
+                                    <p>JetBrains released version 3.0 of their <a href="http://www.jetbrains.com/pycharm/download/index.html">excellent Python <span class="caps">IDE</span></a> a couple of weeks ago, and with it they made a free Community Edition available as well. I can&#8217;t say enough good things about PyCharm, so if you&#8217;ve been on the fence about it, it&#8217;s worth checking out the Community Edition. They&#8217;ve put together a nice <a href="http://www.jetbrains.com/pycharm/features/editions_comparison_matrix.html">edition comparison chart</a> so you can see the core&nbsp;differences.</p>
+<p>If you&#8217;re looking to do Django/Flask/Pyramid/Google App Engine development, you&#8217;ll likely want the Pro edition, but it&#8217;s still reasonably priced in my opinion (compare it to <a href="https://store.xamarin.com/">Xamarin</a>, for example<sup id="fnref:pycharm1"><a class="footnote-ref" href="#fn:pycharm1" rel="footnote">1</a></sup>) and speaking from experience, the Django support, at least, is very good. I haven&#8217;t checked out the Flask support yet, but <a href="http://www.xkcd2.com">xkcd2</a> would be a good testing&nbsp;ground.</p>
+<p>If you want to see what a <em>real project</em> might look like in PyCharm, you can always clone <a href="https://github.com/tylerbutler/engineer/">Engineer</a>. It&#8217;s been built using PyCharm since day&nbsp;one.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:pycharm1">
+<p>Yes, I know it&#8217;s kind of an apples to oranges comparison given that they have different capabilities and target different languages, but they&#8217;re both IDEs&#8230;&#160;<a class="footnote-backref" href="#fnref:pycharm1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                                                            </article>
+            </div>                                                <div class="row">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">AUG</div>
+                        <div class="day">21</div>
+                        <div class="year">2013</div>
+                        <div class="permalink">
+                            <a href="/2013/08/axe-cop/"
+                               title="Permanent link to 'Axe Cop'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
+                <time datetime="2013-08-21 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://www.youtube.com/watch?v=YHGfSBr2FrY">Axe Cop</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p>What do you get when you combine a story written by a 5-year-old with animation done by his 29-year-old brother? If you answered, &#8220;Pure Awesome&#8221;, you are&nbsp;correct.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">JUN</div>
+                        <div class="day">23</div>
+                        <div class="year">2013</div>
+                        <div class="permalink">
+                            <a href="/2013/06/the-importance-of-documentation/"
+                               title="Permanent link to 'The Importance of Documentation'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
+                <time datetime="2013-06-23 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2013/06/the-importance-of-documentation/">The Importance of Documentation</a>
+                                            </h1>
+                </header>
+                                    <p>Some free advice for anyone writing&nbsp;software:</p>
+<p><strong><em>Providing excellent documentation is the single most important thing you can do to improve your&nbsp;project.</em></strong></p>
+<p>I&#8217;ve used the Python flavor of <a href="https://github.com/html5lib/html5lib-python">html5lib</a> in a couple of different projects now (<a href="http://xkcd2.com">xkcd2</a> and <a href="http://engineer.readthedocs.org">Engineer</a>) and there&#8217;s really one thing that stands out to me: it has absolutely horrendous documentation. Well, it&#8217;s really just that it has none to speak of, and to be fair, it <em>could</em> be worse&#8230; It <em>could</em> be voluminous yet misleading or poorly organized, but instead there just isn&#8217;t&nbsp;any.</p>
+<p>Of course, it&#8217;d be understandable for you to think otherwise. If you visit the Github repo, you&#8217;re provided with some simple examples of creating a parser and parsing some documents. These examples are pretty standard fare &#8211; they give you a taste of what to expect but don&#8217;t give you enough to actually use the&nbsp;library.</p>
+<p>You&#8217;re happily informed that &#8220;More documentation is available at <a href="http://html5lib.readthedocs.org/">http://html5lib.readthedocs.org/</a>&#8221; but if you head over there you&#8217;ll notice that there isn&#8217;t really much more there. The &#8220;more documentation&#8221; they speak of is a <em>single page</em> with information about &#8220;the moving parts&#8221; which just doesn&#8217;t do much to help you know how to actually use the <span class="caps">API</span> to do anything really&nbsp;meaningful.</p>
+                    <div>
+                        <a href="/2013/06/the-importance-of-documentation/" class="button">Read more →</a>
+                    </div>
+                                                            </article>
+            </div>                                                <div class="row">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">JUN</div>
+                        <div class="day">22</div>
+                        <div class="year">2013</div>
+                        <div class="permalink">
+                            <a href="/2013/06/logbook/"
+                               title="Permanent link to 'Logbook'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/python">python</a>
+                            </li>
+                                            </ul>
+                            </div>
+                                <article class="post-content medium-9 large-10 columns">
+                <time datetime="2013-06-22 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://logbook.pocoo.org/">Logbook</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p>A Python logging framework by Armin Ronacher (Jinja2, Flask, Werkzeug) and Georg Brandl (Sphinx, Pygments)? Here&#8230; take my money! Wait, it&#8217;s <span class="caps">BSD</span> licensed? <strong>Sign me&nbsp;up!</strong></p>
+                                                            </article>
+            </div>                                                <div class="row">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">FEB</div>
+                        <div class="day">24</div>
+                        <div class="year">2013</div>
+                        <div class="permalink">
+                            <a href="/2013/02/speaking-of-the-mouse-wheel/"
+                               title="Permanent link to 'Speaking of the Mouse Wheel...'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
+                <time datetime="2013-02-24 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2013/02/speaking-of-the-mouse-wheel/">Speaking of the Mouse Wheel&#8230;</a>
+                                            </h1>
+                </header>
+                                    <p>A brief addendum to <a href="/2013/02/zoom-zoom/">my last post</a> about zoomable interfaces&#8230; Did you know that the mouse wheel was <a href="http://www.ericmic.com/history%20of%20the%20scroll%20wheel.htm">originally intended</a> to be used to zoom in and out of large Excel spreadsheets? Pretty&nbsp;cool.</p>
+                                                            </article>
+            </div>                        </div>
+    <div class="row archives">
+        <div class="small-12 columns post-links">
+            <ul class="small-block-grid-3">
+                <li>
+                                            <a href="/page/5">← older posts</a>
+                                    </li>
+                <li style="text-align: center;">
+                    <a href="/archives"> &ndash; archives &ndash; </a>
+                </li>
+                <li>
+                                            <a href="/page/3">newer posts →</a>
+                                    </li>
+            </ul>
+        </div>
+    </div>
+</section>
             </div>
-        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+        <div class="row">                <footer class="small-12 small-centered columns">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
 
 <p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
             </div>
     </div>
-                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+            <script src="/static/bundled/foundation.55babb4f.js"></script>
         
-    
-    
 </body>
 </html>

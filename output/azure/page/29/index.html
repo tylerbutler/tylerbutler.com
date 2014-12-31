@@ -9,40 +9,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>        Tyler Butler
 </title>
 
-                    
+    
     <link rel="alternate" type="application/atom+xml"
           title="Tyler Butler Atom Feed"
           href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
 
-                
-                                                        <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
-                <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+                            <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
+                            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        if (window.jQuery == undefined) {
+                            document.write('<script src="/static/bundled/jquery.8fc25e27.js"><\/script>');
+                    }
+    </script>
 
-                <!--[if lt IE 9]>
-                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
-                <![endif]-->
-                        
-                            <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow_precompiled.css"
-                  type="text/css"/>
-        
-                
-                                    
-            <script type="text/javascript"
+        <script type="text/javascript"
             src="http://use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
+            // noinspection JSUnresolvedVariable
             Typekit.load();
         }
         catch (e) {
         }
     </script>
+
+    
     
             <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -60,14 +58,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                        <script src="/static/engineer/lib/modernizr-2.7.1.min.js"
-                    type="text/javascript"></script>
-            
-            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.11.0.min.js"><\/script>')
-            </script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -77,12 +67,12 @@
 </head>
 <body class=""><!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="small-12 medium-5 columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+                                                        <nav class="small-12 medium-7 columns">                            <ul class="nav navbar-nav">
     
                 <li class="current">
         <a href="/">articles</a></li>
@@ -92,27 +82,60 @@
 
                         </nav>
                 </header>
-            <div class="row">                <section id="main" class="nine columns"
+            <div class="row">                <section id="sidebar"
+                         class="medium-4 medium-push-8 large-3 large-push-9 columns">                        <section>
+    <div>
+        <p class="hide-on-phones">I'm <a href="/about">Tyler Butler</a>: a big man with small dogs.</p>
+        <hr class="hide-on-phones"/>
+        <nav>
+            <ul>
+                <li><a href="http://feeds.feedburner.com/TylerButlerAllPosts">feed</a></li>
+                <li><a href="/archives">archives</a></li>
+                <li><a href="/colophon">colophon</a></li>
+            </ul>
+        </nav>
+        <hr class="hide-on-phones"/>
+        <h2 class="hide-on-phones">you might remember me from</h2>
+        <ul class="hide-on-phones">
+            <li><a href="http://twitter.com/tylerbutler">twitter</a></li>
+            <li><a href="http://github.com/tylerbutler">github</a></li>
+        </ul>
+    </div>
+</section>
+
+    <section id="search">
+        <div>
+            <form action="http://google.com/search" method="get">
+                <fieldset role="search">
+                    <input type="hidden" name="q" value="site:http://www.tylerbutler.com">
+                    <input class="search" type="text" name="q" results="0" placeholder="Search...">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+                    </section>
+                            <section id="main"
+                         class="medium-8 medium-pull-4 large-9 large-pull-3 columns"
                          role="main">    <div class="posts">
                                     <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">MAR</div>
-                    <div class="day">08</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/03/code-line-counter/"
-                           title="Permanent link to 'Code Line Counter'">∞</a>
-                    </div>
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">MAR</div>
+                        <div class="day">08</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/03/code-line-counter/"
+                               title="Permanent link to 'Code Line Counter'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/snippets">snippets</a>
+                            </li>
+                                                    <li><a href="/tag/python">python</a>
+                            </li>
+                                            </ul>
                             </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/snippets">snippets</a>
-                        </li>
-                                            <li><a href="/tag/python">python</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-03-08 PST"
                       pubdate=""></time>
                 <header>
@@ -150,24 +173,24 @@ change that pretty easily. Also, if you want to add more extensions to count
 then just add them to the extensions&nbsp;list.</p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">FEB</div>
-                    <div class="day">18</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/02/print-copy/"
-                           title="Permanent link to 'Print Copy'">∞</a>
-                    </div>
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">FEB</div>
+                        <div class="day">18</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/02/print-copy/"
+                               title="Permanent link to 'Print Copy'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/novel">novel</a>
+                            </li>
+                                                    <li><a href="/tag/nanowrimo">NaNoWriMo</a>
+                            </li>
+                                            </ul>
                             </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/novel">novel</a>
-                        </li>
-                                            <li><a href="/tag/nanowrimo">NaNoWriMo</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-02-18 PST"
                       pubdate=""></time>
                 <header>
@@ -185,18 +208,18 @@ experience and will post it as soon as I get a chance. Bottom line, though: I
 recommend&nbsp;it.</p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">FEB</div>
-                    <div class="day">14</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/02/microsoft-program-manager-interview-the-breakdown/"
-                           title="Permanent link to 'Microsoft Program Manager Interview: The Breakdown'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">FEB</div>
+                        <div class="day">14</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/02/microsoft-program-manager-interview-the-breakdown/"
+                               title="Permanent link to 'Microsoft Program Manager Interview: The Breakdown'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-02-14 PST"
                       pubdate=""></time>
                 <header>
@@ -323,18 +346,18 @@ recommend&nbsp;it.</p>
 <p>I came out of the interview pretty confident that I would get an offer. I felt that I had done a very good job during the whole process, and was excited to hear what they would say. In the end they have made a very generous offer and I am happy to say that I accepted. Anyway, I hope that the information contained here will be of some use to you as you pursue employment at&nbsp;Microsoft.</p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">FEB</div>
-                    <div class="day">11</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/02/iit-student-sued/"
-                           title="Permanent link to 'IIT Student Sued'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">FEB</div>
+                        <div class="day">11</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/02/iit-student-sued/"
+                               title="Permanent link to 'IIT Student Sued'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-02-11 PST"
                       pubdate=""></time>
                 <header>
@@ -353,18 +376,18 @@ by the way&#8230; the guy that runs (or ran, since it&#8217;s now offline) the s
 lives in State Street Village and attends <span class="caps">IIT</span>.&nbsp;Cool!</p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">FEB</div>
-                    <div class="day">07</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/02/interview-updates/"
-                           title="Permanent link to 'Interview Update(s)'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">FEB</div>
+                        <div class="day">07</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/02/interview-updates/"
+                               title="Permanent link to 'Interview Update(s)'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-02-07 PST"
                       pubdate=""></time>
                 <header>
@@ -402,8 +425,8 @@ the interview day itself in a few&nbsp;minutes.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">
-        <div class="twelve columns post-links">
-            <ul class="block-grid three-up">
+        <div class="small-12 columns post-links">
+            <ul class="small-block-grid-3">
                 <li>
                                             <a href="/page/30">← older posts</a>
                                     </li>
@@ -417,46 +440,13 @@ the interview day itself in a few&nbsp;minutes.</p>
         </div>
     </div>
 </section>
-                            <section id="sidebar" class="three columns">                        <section>
-    <div>
-        <p class="hide-on-phones">I'm <a href="/about">Tyler Butler</a>: a big man with small dogs.</p>
-        <hr class="hide-on-phones"/>
-        <nav>
-            <ul>
-                <li><a href="http://feeds.feedburner.com/TylerButlerAllPosts">feed</a></li>
-                <li><a href="/archives">archives</a></li>
-                <li><a href="/colophon">colophon</a></li>
-            </ul>
-        </nav>
-        <hr class="hide-on-phones"/>
-        <h2 class="hide-on-phones">you might remember me from</h2>
-        <ul class="hide-on-phones">
-            <li><a href="http://twitter.com/tylerbutler">twitter</a></li>
-            <li><a href="http://github.com/tylerbutler">github</a></li>
-        </ul>
-    </div>
-</section>
-
-    <section id="search">
-        <div>
-            <form action="http://google.com/search" method="get">
-                <fieldset role="search">
-                    <input type="hidden" name="q" value="site:http://www.tylerbutler.com">
-                    <input class="search" type="text" name="q" results="0" placeholder="Search...">
-                </fieldset>
-            </form>
-        </div>
-    </section>
-                    </section>
             </div>
-        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+        <div class="row">                <footer class="small-12 small-centered columns">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
 
 <p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
             </div>
     </div>
-                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+            <script src="/static/bundled/foundation.55babb4f.js"></script>
         
-    
-    
 </body>
 </html>

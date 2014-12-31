@@ -9,40 +9,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>        Tyler Butler
 </title>
 
-                    
+    
     <link rel="alternate" type="application/atom+xml"
           title="Tyler Butler Atom Feed"
           href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
 
-                
-                                                        <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
-                <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+                            <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
+                            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        if (window.jQuery == undefined) {
+                            document.write('<script src="/static/bundled/jquery.8fc25e27.js"><\/script>');
+                    }
+    </script>
 
-                <!--[if lt IE 9]>
-                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
-                <![endif]-->
-                        
-                            <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow_precompiled.css"
-                  type="text/css"/>
-        
-                
-                                    
-            <script type="text/javascript"
+        <script type="text/javascript"
             src="http://use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
+            // noinspection JSUnresolvedVariable
             Typekit.load();
         }
         catch (e) {
         }
     </script>
+
+    
     
             <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -60,14 +58,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                        <script src="/static/engineer/lib/modernizr-2.7.1.min.js"
-                    type="text/javascript"></script>
-            
-            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.11.0.min.js"><\/script>')
-            </script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -77,12 +67,12 @@
 </head>
 <body class=""><!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="small-12 medium-5 columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+                                                        <nav class="small-12 medium-7 columns">                            <ul class="nav navbar-nav">
     
                 <li class="current">
         <a href="/">articles</a></li>
@@ -92,21 +82,54 @@
 
                         </nav>
                 </header>
-            <div class="row">                <section id="main" class="nine columns"
+            <div class="row">                <section id="sidebar"
+                         class="medium-4 medium-push-8 large-3 large-push-9 columns">                        <section>
+    <div>
+        <p class="hide-on-phones">I'm <a href="/about">Tyler Butler</a>: a big man with small dogs.</p>
+        <hr class="hide-on-phones"/>
+        <nav>
+            <ul>
+                <li><a href="http://feeds.feedburner.com/TylerButlerAllPosts">feed</a></li>
+                <li><a href="/archives">archives</a></li>
+                <li><a href="/colophon">colophon</a></li>
+            </ul>
+        </nav>
+        <hr class="hide-on-phones"/>
+        <h2 class="hide-on-phones">you might remember me from</h2>
+        <ul class="hide-on-phones">
+            <li><a href="http://twitter.com/tylerbutler">twitter</a></li>
+            <li><a href="http://github.com/tylerbutler">github</a></li>
+        </ul>
+    </div>
+</section>
+
+    <section id="search">
+        <div>
+            <form action="http://google.com/search" method="get">
+                <fieldset role="search">
+                    <input type="hidden" name="q" value="site:http://www.tylerbutler.com">
+                    <input class="search" type="text" name="q" results="0" placeholder="Search...">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+                    </section>
+                            <section id="main"
+                         class="medium-8 medium-pull-4 large-9 large-pull-3 columns"
                          role="main">    <div class="posts">
                                     <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">FEB</div>
-                    <div class="day">01</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/02/yiddish-curses/"
-                           title="Permanent link to 'Yiddish Curses'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">FEB</div>
+                        <div class="day">01</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/02/yiddish-curses/"
+                               title="Permanent link to 'Yiddish Curses'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-02-01 PST"
                       pubdate=""></time>
                 <header>
@@ -140,18 +163,18 @@ dish), pancakes, and tea with lemon – and may you choke on every&nbsp;bite.</l
 <a href="http://www.yiddishradioproject.org/exhibits/stutchkoff/curses.php3?pg=3" title="A short list of curses... in Yiddish of course!">http://www.yiddishradioproject.org/exhibits/stutchkoff/curses.php3?pg=3</a></p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">FEB</div>
-                    <div class="day">01</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/02/title-droppers/"
-                           title="Permanent link to 'Title Droppers'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">FEB</div>
+                        <div class="day">01</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/02/title-droppers/"
+                               title="Permanent link to 'Title Droppers'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-02-01 PST"
                       pubdate=""></time>
                 <header>
@@ -182,24 +205,24 @@ write an email where a title the pertains to me is relevant, then I&#8217;ll inc
 it. Otherwise, I&#8217;ll let my actions, not my titles, speak for&nbsp;me.</p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JAN</div>
-                    <div class="day">24</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/01/parsing-xfdf-in-php/"
-                           title="Permanent link to 'Parsing XFDF in PHP'">∞</a>
-                    </div>
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">JAN</div>
+                        <div class="day">24</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/01/parsing-xfdf-in-php/"
+                               title="Permanent link to 'Parsing XFDF in PHP'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/snippets">snippets</a>
+                            </li>
+                                                    <li><a href="/tag/php">php</a>
+                            </li>
+                                            </ul>
                             </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/snippets">snippets</a>
-                        </li>
-                                            <li><a href="/tag/php">php</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-01-24 PST"
                       pubdate=""></time>
                 <header>
@@ -225,91 +248,91 @@ file, but if you look at it, I think you&#8217;ll get the idea. It&#8217;s prett
 once you figure out the way <span class="caps">PHP</span> does <span class="caps">XML</span>&nbsp;processing.</p>
 <div class="codehilite"><pre><span class="cm">/* <span class="caps">BEGIN</span> <span class="caps">VARIABLE</span> <span class="caps">DECLARATIONS</span> */</span>
 <span class="c1">//global variables for <span class="caps">XML</span> parsing</span>
-<span class="err">$</span><span class="n">values</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">array</span><span class="p">();</span>
-<span class="err">$</span><span class="n">field</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
-<span class="err">$</span><span class="n">curTag</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="nx">$values</span> <span class="o">=</span> <span class="nx">array</span><span class="p">();</span>
+<span class="nx">$field</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="nx">$curTag</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
 
 <span class="cm">/* <span class="caps">BEGIN</span> <span class="caps">XML</span> <span class="caps">PROCESSING</span> */</span>
 <span class="c1">// <span class="caps">XML</span> Parser element start function</span>
-<span class="k">function</span><span class="err"> </span><span class="n">startElement</span><span class="p">(</span><span class="err">$</span><span class="n">parser</span><span class="p">,</span><span class="err"> $</span><span class="n">name</span><span class="p">,</span><span class="err"> $</span><span class="n">attrs</span><span class="p">)</span>
+<span class="kd">function</span> <span class="nx">startElement</span><span class="p">(</span><span class="nx">$parser</span><span class="p">,</span> <span class="nx">$name</span><span class="p">,</span> <span class="nx">$attrs</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="err">    </span><span class="k">global</span><span class="err"> $</span><span class="n">curTag</span><span class="p">,</span><span class="err"> $</span><span class="n">field</span><span class="p">;</span>
+    <span class="nx">global</span> <span class="nx">$curTag</span><span class="p">,</span> <span class="nx">$field</span><span class="p">;</span>
 
-<span class="err">    </span><span class="c1">//track the tag we&#39;re currently in</span>
-<span class="err">    $</span><span class="n">curTag</span><span class="err"> </span><span class="p">.</span><span class="o">=</span><span class="err"> </span><span class="s">&quot;^$name&quot;</span><span class="p">;</span>
+    <span class="c1">//track the tag we&#39;re currently in</span>
+    <span class="nx">$curTag</span> <span class="p">.</span><span class="o">=</span> <span class="s2">&quot;^$name&quot;</span><span class="p">;</span>
 
-<span class="err">    </span><span class="k">if</span><span class="p">(</span><span class="err"> $</span><span class="n">curTag</span><span class="err"> </span><span class="o">==</span><span class="err"> </span><span class="s">&quot;^<span class="caps">XFDF</span>^<span class="caps">FIELDS</span>^<span class="caps">FIELD</span>&quot;</span><span class="err"> </span><span class="p">)</span>
-<span class="err">    </span><span class="p">{</span>
-<span class="err">        </span><span class="c1">//save the name of the field in a global var</span>
-<span class="err">        $</span><span class="n">field</span><span class="err"> </span><span class="o">=</span><span class="err"> $</span><span class="n">attrs</span><span class="p">[&#39;</span><span class="no"><span class="caps">NAME</span></span><span class="p">&#39;];</span>
-<span class="err">    </span><span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span> <span class="nx">$curTag</span> <span class="o">==</span> <span class="s2">&quot;^<span class="caps">XFDF</span>^<span class="caps">FIELDS</span>^<span class="caps">FIELD</span>&quot;</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//save the name of the field in a global var</span>
+        <span class="nx">$field</span> <span class="o">=</span> <span class="nx">$attrs</span><span class="cp">[</span><span class="s1">&#39;<span class="caps">NAME</span>&#39;</span><span class="cp">]</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 
 
 <span class="c1">// <span class="caps">XML</span> Parser element end function</span>
-<span class="k">function</span><span class="err"> </span><span class="n">endElement</span><span class="p">(</span><span class="err">$</span><span class="n">parser</span><span class="p">,</span><span class="err"> $</span><span class="n">name</span><span class="p">)</span>
+<span class="kd">function</span> <span class="nx">endElement</span><span class="p">(</span><span class="nx">$parser</span><span class="p">,</span> <span class="nx">$name</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="err">    </span><span class="k">global</span><span class="err"> $</span><span class="n">curTag</span><span class="p">;</span>
+    <span class="nx">global</span> <span class="nx">$curTag</span><span class="p">;</span>
 
-<span class="err"> </span> <span class="err">  </span><span class="c1">// remove the tag we&#39;re ending from the &quot;tag tracker&quot;</span>
-<span class="err">    $</span><span class="n">caret_pos</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">[</span><span class="n">strrpos</span><span class="p">][</span><span class="mh">1</span><span class="p">](</span><span class="err">$</span><span class="n">curTag</span><span class="p">,</span><span class="sc">&#39;^&#39;</span><span class="p">);</span>
-<span class="err">    $</span><span class="n">curTag</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">[</span><span class="n">substr</span><span class="p">][</span><span class="mh">2</span><span class="p">](</span><span class="err">$</span><span class="n">curTag</span><span class="p">,</span><span class="err"> </span><span class="mh">0</span><span class="p">,</span><span class="err"> $</span><span class="n">caret_pos</span><span class="p">);</span>
+    <span class="c1">// remove the tag we&#39;re ending from the &quot;tag tracker&quot;</span>
+    <span class="nx">$caret_pos</span> <span class="o">=</span> <span class="cp">[</span><span class="nx">strrpos</span><span class="cp">][</span><span class="mi">1</span><span class="cp">]</span><span class="p">(</span><span class="nx">$curTag</span><span class="p">,</span><span class="s1">&#39;^&#39;</span><span class="p">);</span>
+    <span class="nx">$curTag</span> <span class="o">=</span> <span class="cp">[</span><span class="nx">substr</span><span class="cp">][</span><span class="mi">2</span><span class="cp">]</span><span class="p">(</span><span class="nx">$curTag</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">$caret_pos</span><span class="p">);</span>
 <span class="p">}</span>
 
 
 <span class="c1">// <span class="caps">XML</span> Parser characterData function</span>
-<span class="k">function</span><span class="err"> </span><span class="n">characterData</span><span class="p">(</span><span class="err"> $</span><span class="n">parser</span><span class="p">,</span><span class="err"> $</span><span class="n">data</span><span class="err"> </span><span class="p">)</span>
+<span class="kd">function</span> <span class="nx">characterData</span><span class="p">(</span> <span class="nx">$parser</span><span class="p">,</span> <span class="nx">$data</span> <span class="p">)</span>
 <span class="p">{</span>
-<span class="err">    </span><span class="k">global</span><span class="err"> $</span><span class="n">curTag</span><span class="p">,</span><span class="err"> $</span><span class="n">values</span><span class="p">,</span><span class="err"> $</span><span class="n">field</span><span class="p">;</span>
-<span class="err">    $</span><span class="n">valueTag</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;^<span class="caps">XFDF</span>^<span class="caps">FIELDS</span>^<span class="caps">FIELD</span>^<span class="caps">VALUE</span>&quot;</span><span class="p">;</span>
+    <span class="nx">global</span> <span class="nx">$curTag</span><span class="p">,</span> <span class="nx">$values</span><span class="p">,</span> <span class="nx">$field</span><span class="p">;</span>
+    <span class="nx">$valueTag</span> <span class="o">=</span> <span class="s2">&quot;^<span class="caps">XFDF</span>^<span class="caps">FIELDS</span>^<span class="caps">FIELD</span>^<span class="caps">VALUE</span>&quot;</span><span class="p">;</span>
 
-<span class="err">    </span><span class="k">if</span><span class="p">(</span><span class="err"> $</span><span class="n">curTag</span><span class="err"> </span><span class="o">==</span><span class="err"> $</span><span class="n">valueTag</span><span class="err"> </span><span class="p">)</span>
-<span class="err">    </span><span class="p">{</span>
-<span class="err">        </span><span class="c1">// we&#39;re in the value tag, so put the value in the array</span>
-<span class="err">        $</span><span class="n">values</span><span class="p">[</span><span class="err">$</span><span class="n">field</span><span class="p">]</span><span class="err"> </span><span class="o">=</span><span class="err"> $</span><span class="n">data</span><span class="p">;</span>
-<span class="err">    </span><span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span> <span class="nx">$curTag</span> <span class="o">==</span> <span class="nx">$valueTag</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// we&#39;re in the value tag, so put the value in the array</span>
+        <span class="nx">$values</span><span class="cp">[</span><span class="nv">$field</span><span class="cp">]</span> <span class="o">=</span> <span class="nx">$data</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">// Create the parser and parse the file</span>
-<span class="err">$</span><span class="n">xml_parser</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">xml_parser_create</span><span class="p">();</span>
-<span class="n">xml_set_element_handler</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">,</span><span class="err"> </span><span class="s">&quot;startElement&quot;</span><span class="p">,</span><span class="err"> </span><span class="s">&quot;endElement&quot;</span><span class="p">);</span>
-<span class="n">xml_set_character_data_handler</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">,</span><span class="err"> </span><span class="s">&quot;characterData&quot;</span><span class="p">);</span>
+<span class="nx">$xml_parser</span> <span class="o">=</span> <span class="nx">xml_parser_create</span><span class="p">();</span>
+<span class="nx">xml_set_element_handler</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">,</span> <span class="s2">&quot;startElement&quot;</span><span class="p">,</span> <span class="s2">&quot;endElement&quot;</span><span class="p">);</span>
+<span class="nx">xml_set_character_data_handler</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">,</span> <span class="s2">&quot;characterData&quot;</span><span class="p">);</span>
 
-<span class="k">if</span><span class="err"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="err">$</span><span class="n">fp</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">fopen</span><span class="p">(</span><span class="err">$</span><span class="n">file</span><span class="p">,</span><span class="s">&quot;r&quot;</span><span class="p">)))</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">$fp</span> <span class="o">=</span> <span class="nx">fopen</span><span class="p">(</span><span class="nx">$file</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)))</span>
 <span class="p">{</span>
-<span class="err">    </span><span class="n">die</span><span class="err"> </span><span class="p">(</span><span class="s">&quot;could not open <span class="caps">XML</span> for input&quot;</span><span class="p">);</span>
+    <span class="nx">die</span> <span class="p">(</span><span class="s2">&quot;could not open <span class="caps">XML</span> for input&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">while</span><span class="err"> </span><span class="p">(</span><span class="err">$</span><span class="n">data</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">fread</span><span class="p">(</span><span class="err">$</span><span class="n">fp</span><span class="p">,</span><span class="err"> </span><span class="mh">4096</span><span class="p">))</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">$data</span> <span class="o">=</span> <span class="nx">fread</span><span class="p">(</span><span class="nx">$fp</span><span class="p">,</span> <span class="mi">4096</span><span class="p">))</span>
 <span class="p">{</span>
-  <span class="k">if</span><span class="err"> </span><span class="p">(</span><span class="o">!</span><span class="n">xml_parse</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">,</span><span class="err"> $</span><span class="n">data</span><span class="p">,</span><span class="err"> </span><span class="n">feof</span><span class="p">(</span><span class="err">$</span><span class="n">fp</span><span class="p">)))</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">xml_parse</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">,</span> <span class="nx">$data</span><span class="p">,</span> <span class="nx">feof</span><span class="p">(</span><span class="nx">$fp</span><span class="p">)))</span>
 
-<span class="err">    </span><span class="p">{</span>
-<span class="err">        </span><span class="n">die</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&quot;<span class="caps">XML</span> error: %s at line %d&quot;</span><span class="p">,</span>
-                    <span class="n">xml_error_string</span><span class="p">(</span><span class="n">xml_get_error_code</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">)),</span>
-                    <span class="n">xml_get_current_line_number</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">)));</span>
-<span class="err">    </span><span class="p">}</span>
+    <span class="p">{</span>
+        <span class="nx">die</span><span class="p">(</span><span class="nx">sprintf</span><span class="p">(</span><span class="s2">&quot;<span class="caps">XML</span> error: %s at line %d&quot;</span><span class="p">,</span>
+                    <span class="nx">xml_error_string</span><span class="p">(</span><span class="nx">xml_get_error_code</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">)),</span>
+                    <span class="nx">xml_get_current_line_number</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">)));</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">xml_parser_free</span><span class="p">(</span><span class="err">$</span><span class="n">xml_parser</span><span class="p">);</span>
-<span class="n">flclose</span><span class="p">(</span><span class="err">$</span><span class="n">fp</span><span class="p">);</span>
+<span class="nx">xml_parser_free</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">);</span>
+<span class="nx">flclose</span><span class="p">(</span><span class="nx">$fp</span><span class="p">);</span>
 
 <span class="cm">/* <span class="caps">END</span> <span class="caps">XML</span> <span class="caps">PROCESSING</span> */</span>
 </pre></div>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JAN</div>
-                    <div class="day">21</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/01/c-messagebox-strangeness/"
-                           title="Permanent link to 'C# MessageBox Strangeness'">∞</a>
-                    </div>
-                            </div>
-                                </div>
-                            <article class="post-content ten columns">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">JAN</div>
+                        <div class="day">21</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/01/c-messagebox-strangeness/"
+                               title="Permanent link to 'C# MessageBox Strangeness'">∞</a>
+                        </div>
+                                    </div>
+                                            </div>
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-01-21 PST"
                       pubdate=""></time>
                 <header>
@@ -330,22 +353,22 @@ Windows&#8217; fault? Is McAfee just really dumb? Who knows&#8230; I&#8217;m too
 and figure it out right&nbsp;now.</p>
                                                             </article>
             </div>                                                <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">JAN</div>
-                    <div class="day">20</div>
-                    <div class="year">2005</div>
-                    <div class="permalink">
-                        <a href="/2005/01/ubuntu-lvm/"
-                           title="Permanent link to 'Ubuntu + LVM'">∞</a>
-                    </div>
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">JAN</div>
+                        <div class="day">20</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/01/ubuntu-lvm/"
+                               title="Permanent link to 'Ubuntu + LVM'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/ubuntu">ubuntu</a>
+                            </li>
+                                            </ul>
                             </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/ubuntu">ubuntu</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2005-01-20 PST"
                       pubdate=""></time>
                 <header>
@@ -374,7 +397,7 @@ volume groups, but <strong>nothing</strong> about how to forcefully wipe <span c
 Funny&#8230; most people that use <span class="caps">LVM</span> and software <span class="caps">RAID</span> are concerned about
 keeping their data safe.&nbsp;Whatever.</p>
 <p><strong>Finally</strong>, I came across <a href="http://lists.suse.com/archive/suse-linux-e/2001-Nov/1413.html" title="Too bad I didn't come across this about 6 hours earlier...">this forum post</a>, which has the necesarry command. In retrospect it makes sense - just write zeroes to the first part of the disk. But I would have never figured it out. For posterity, here&#8217;s the command you need to run on a device to remove all previous <span class="caps">LVM</span>&nbsp;info:</p>
-<div class="codehilite"><pre><span class="n">dd</span> <span class="k">if</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">zero</span> <span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span> <span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">k</span> <span class="n">count</span><span class="o">=</span><span class="mi">10</span>
+<div class="codehilite"><pre>dd if=/dev/zero of=/dev/sda bs=1k count=10
 </pre></div>
 
 
@@ -386,8 +409,8 @@ through the commercials manually. Such is&nbsp;life.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">
-        <div class="twelve columns post-links">
-            <ul class="block-grid three-up">
+        <div class="small-12 columns post-links">
+            <ul class="small-block-grid-3">
                 <li>
                                             <a href="/page/31">← older posts</a>
                                     </li>
@@ -401,46 +424,13 @@ through the commercials manually. Such is&nbsp;life.</p>
         </div>
     </div>
 </section>
-                            <section id="sidebar" class="three columns">                        <section>
-    <div>
-        <p class="hide-on-phones">I'm <a href="/about">Tyler Butler</a>: a big man with small dogs.</p>
-        <hr class="hide-on-phones"/>
-        <nav>
-            <ul>
-                <li><a href="http://feeds.feedburner.com/TylerButlerAllPosts">feed</a></li>
-                <li><a href="/archives">archives</a></li>
-                <li><a href="/colophon">colophon</a></li>
-            </ul>
-        </nav>
-        <hr class="hide-on-phones"/>
-        <h2 class="hide-on-phones">you might remember me from</h2>
-        <ul class="hide-on-phones">
-            <li><a href="http://twitter.com/tylerbutler">twitter</a></li>
-            <li><a href="http://github.com/tylerbutler">github</a></li>
-        </ul>
-    </div>
-</section>
-
-    <section id="search">
-        <div>
-            <form action="http://google.com/search" method="get">
-                <fieldset role="search">
-                    <input type="hidden" name="q" value="site:http://www.tylerbutler.com">
-                    <input class="search" type="text" name="q" results="0" placeholder="Search...">
-                </fieldset>
-            </form>
-        </div>
-    </section>
-                    </section>
             </div>
-        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+        <div class="row">                <footer class="small-12 small-centered columns">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
 
 <p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
             </div>
     </div>
-                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+            <script src="/static/bundled/foundation.55babb4f.js"></script>
         
-    
-    
 </body>
 </html>

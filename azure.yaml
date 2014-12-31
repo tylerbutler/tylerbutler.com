@@ -25,3 +25,10 @@ FINALIZE_METADATA_CONFIG:
     - published
 
 FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'
+
+GIT_COMMIT_CONFIG:
+  repository_root: '~/Code/tylerbutler.com'
+  branch: 'master'
+  remote: 'origin'
+  commit_paths:
+    - 'output/azure'

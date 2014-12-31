@@ -9,40 +9,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>    Extracting Dates and Times from DateTime Cells in Excel    : Tyler Butler
 </title>
 
-                    
+    
     <link rel="alternate" type="application/atom+xml"
           title="Tyler Butler Atom Feed"
           href="http://feeds.feedburner.com/TylerButlerAllPosts"/>
 
-                
-                                                        <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/grid.css">
-                <link rel="stylesheet"
-                      href="/static/engineer/lib/foundation/stylesheets/mobile.css">
+                            <link rel="stylesheet" href="/static/bundled/dark_rainbow.b80c84c4.css" type="text/css"/>
+                            
+            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        if (window.jQuery == undefined) {
+                            document.write('<script src="/static/bundled/jquery.8fc25e27.js"><\/script>');
+                    }
+    </script>
 
-                <!--[if lt IE 9]>
-                    <link rel="stylesheet" href="/static/engineer/lib/foundation/stylesheets/ie.css">
-                <![endif]-->
-                        
-                            <link rel="stylesheet" href="/static/theme/stylesheets/dark_rainbow_precompiled.css"
-                  type="text/css"/>
-        
-                
-                                    
-            <script type="text/javascript"
+        <script type="text/javascript"
             src="http://use.typekit.net/vty2qol.js"></script>
     <script type="text/javascript">
         try {
+            // noinspection JSUnresolvedVariable
             Typekit.load();
         }
         catch (e) {
         }
     </script>
+
+    
     
             <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -60,14 +58,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>    
-                        <script src="/static/engineer/lib/modernizr-2.7.1.min.js"
-                    type="text/javascript"></script>
-            
-            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script>
-                window.jQuery || document.write('<script src="/static/engineer/lib/jquery-1.11.0.min.js"><\/script>')
-            </script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -77,12 +67,12 @@
 </head>
 <body class=""><!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="five columns">
+<![endif]-->    <div class="container">            <header id="primary" class="row">                                            <h1 class="small-12 medium-5 columns">
                             <a href="/">                                    tyler
                                     <span class="highlight">butler</span>
                                 </a>
                         </h1>
-                                                        <nav class="seven columns">                            <ul class="nav navbar-nav">
+                                                        <nav class="small-12 medium-7 columns">                            <ul class="nav navbar-nav">
     
                 <li class="current">
         <a href="/">articles</a></li>
@@ -92,24 +82,25 @@
 
                         </nav>
                 </header>
-        <div class="row">                <section id="main" class="twelve columns"
+        <div class="row">                <section id="main"
+                         class="twelve columns"
                          role="main">    <div class="row">
-            <div class="post-info two columns">
-            <div class="post-date">
-                                    <div class="month">NOV</div>
-                    <div class="day">18</div>
-                    <div class="year">2012</div>
-                    <div class="permalink">
-                        <a href="/2012/11/extracting-dates-and-times-from-datetime-cells-in-excel/"
-                           title="Permanent link to 'Extracting Dates and Times from DateTime Cells in Excel'">∞</a>
-                    </div>
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">NOV</div>
+                        <div class="day">18</div>
+                        <div class="year">2012</div>
+                        <div class="permalink">
+                            <a href="/2012/11/extracting-dates-and-times-from-datetime-cells-in-excel/"
+                               title="Permanent link to 'Extracting Dates and Times from DateTime Cells in Excel'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/excel">excel</a>
+                            </li>
+                                            </ul>
                             </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/excel">excel</a>
-                        </li>
-                                    </ul>
-                    </div>
-                            <article class="post-content ten columns">
+                                <article class="post-content medium-9 large-10 columns">
                 <time datetime="2012-11-18 PST"
                       pubdate=""></time>
                 <header>
@@ -147,7 +138,7 @@
 <p><code>A1</code> contains our date/time, and we want to put the date only in <code>B1</code> and the time only in <code>C1</code>.</p>
 <h3>Extracting the&nbsp;Date</h3>
 <p>Put this formula in <code>B1</code> to extract the&nbsp;date:</p>
-<div class="codehilite"><pre><span class="o">=</span><span class="n"><span class="caps">TRUNC</span></span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+<div class="codehilite"><pre>=TRUNC(A1)
 </pre></div>
 
 
@@ -155,7 +146,7 @@
 <p>If you search the web for answers to this basic question, a lot of the suggestions are to use a combination of the <code>DATE</code>, <code>MONTH</code>, <code>YEAR</code> and <code>DAY</code> functions.<sup id="fnref:excel1"><a class="footnote-ref" href="#fn:excel1" rel="footnote">1</a></sup> That works, but it&#8217;s really silly in my opinion &#8211; <code>TRUNC</code> is almost certainly faster, especially if you have a large quantity of&nbsp;data.</p>
 <h3>Extracting the&nbsp;Time</h3>
 <p>Put this formula in <code>C1</code> to extract the&nbsp;time:</p>
-<div class="codehilite"><pre><span class="o">=</span><span class="n"><span class="caps">MOD</span></span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="codehilite"><pre>=MOD(A1, 1)
 </pre></div>
 
 
@@ -188,8 +179,8 @@
 </div>
                                                                                                                 
                     <div class="row">
-                        <div class="twelve columns post-links">
-                            <ul class="block-grid two-up">
+                        <div class="small-12 columns post-links">
+                            <ul class="small-block-grid-2">
                                 <li>
                                                                             <a href="/2012/09/malarious/">← Malarious</a>
                                                                     </li>
@@ -209,6 +200,7 @@
         var disqus_shortname = 'tylerbutlercom';
         var disqus_identifier = '/2012/11/extracting-dates-and-times-from-datetime-cells-in-excel/';
         var disqus_url = 'http://www.tylerbutler.com/2012/11/extracting-dates-and-times-from-datetime-cells-in-excel/';
+        
         (function () {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';
@@ -225,14 +217,12 @@
                             </article>
             </div></section>
             </div>
-        <div class="row">                <footer class="twelve columns centered">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
+        <div class="row">                <footer class="small-12 small-centered columns">                        <p>&copy; 2002-2013 Tyler Butler. All rights reserved.</p>
 
 <p>Powered by <a href="http://www.tylerbutler.com/projects/engineer">engineer</a>.</p>                    </footer>
             </div>
     </div>
-                <script src="/static/engineer/lib/foundation/javascripts/foundation.js"></script>
+            <script src="/static/bundled/foundation.55babb4f.js"></script>
         
-    
-    
 </body>
 </html>

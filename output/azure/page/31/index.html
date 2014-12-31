@@ -120,6 +120,61 @@
                                     <div class="row">
                     <div class="post-info medium-3 large-2 columns">
                 <div class="post-date">
+                                            <div class="month">JAN</div>
+                        <div class="day">20</div>
+                        <div class="year">2005</div>
+                        <div class="permalink">
+                            <a href="/2005/01/ubuntu-lvm/"
+                               title="Permanent link to 'Ubuntu + LVM'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/ubuntu">ubuntu</a>
+                            </li>
+                                            </ul>
+                            </div>
+                                <article class="post-content medium-9 large-10 columns">
+                <time datetime="2005-01-20 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2005/01/ubuntu-lvm/">Ubuntu + <span class="caps">LVM</span></a>
+                                            </h1>
+                </header>
+                                    <p>I spent this past weekend hacking away at my Media Box, which serves as my
+personal free <span class="caps">PVR</span>. I wanted to get <a href="http://www.ubuntu-linux.org" title="Ubuntu, a Debian distro for the masses.  All the cool people do it.">Ubuntu</a> on it with <span class="caps">LVM</span> so I could use
+all four of my hard drives as one for <a href="http://mythtv.org" title="MythTV, the best PVR there is... if you can get it running...">MythTV</a>. I borrowed one of Vlad&#8217;s
+Ubuntu <span class="caps">CD</span>&#8217;s (mine haven&#8217;t arrived yet and I couldn&#8217;t find the one I burnt) and
+got the installer running. During the partitioning section of the install, I
+set everything up for an <span class="caps">LVM</span> volume group and thought I had everything
+working. Apparently I didn&#8217;t. Silly me for not having a clue how <span class="caps">LVM</span> works
+(always read the directions,&nbsp;kids).</p>
+<p>Anyway, my installation was b0rked so I figured I&#8217;d just reboot and start from
+scratch. No. My <span class="caps">LVM</span> data was still present every time I tried to install
+Ubuntu. I would try to remove the volume groups and it would fail, reporting
+the drives were still in use. I was getting manifest errors up the wazoo. So I
+thought, &#8216;<span class="caps">OK</span>, I just need to wipe the drives with something else and I&#8217;ll be
+fine.&#8217; So I tried booting off an <span class="caps">XP</span> <span class="caps">CD</span> into rescue mode and formatting the
+drives there. No dice. I downloaded a few <span class="caps">CD</span>-based disk formatting tools that
+<strong>said</strong> they cleared things out but apparently they didn&#8217;t. <a href="http://www.google.com" title="Google, I still love you...">Google</a>
+searches were returning a whole bunch of information about how to remove
+volume groups, but <strong>nothing</strong> about how to forcefully wipe <span class="caps">LVM</span> volumes.
+Funny&#8230; most people that use <span class="caps">LVM</span> and software <span class="caps">RAID</span> are concerned about
+keeping their data safe.&nbsp;Whatever.</p>
+<p><strong>Finally</strong>, I came across <a href="http://lists.suse.com/archive/suse-linux-e/2001-Nov/1413.html" title="Too bad I didn't come across this about 6 hours earlier...">this forum post</a>, which has the necesarry command. In retrospect it makes sense - just write zeroes to the first part of the disk. But I would have never figured it out. For posterity, here&#8217;s the command you need to run on a device to remove all previous <span class="caps">LVM</span>&nbsp;info:</p>
+<div class="codehilite"><pre>dd if=/dev/zero of=/dev/sda bs=1k count=10
+</pre></div>
+
+
+<p>Then of course, I had to figure out how the Ubuntu installer was mounting all
+my drives&#8230; but that&#8217;s another story. And by the way&#8230; after all of this,
+MythTV just wasn&#8217;t liking my remote, and I was suffering <span class="caps">PVR</span> withdrawal pretty
+bad, so I&#8217;m back to <span class="caps">MCE2005</span>. Looks like I&#8217;ll have to keep fast-forwarding
+through the commercials manually. Such is&nbsp;life.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
                                             <div class="month">DEC</div>
                         <div class="day">27</div>
                         <div class="year">2004</div>
@@ -394,173 +449,6 @@ have it&#8230; I will be putting some polls up soon for people that have read th
 novel, but if you want to compliment me or criticize me for anything in the
 book, comment in this post or send me an email. I really want feedback&#8230;
 seriously. It&#8217;s the only way to&nbsp;improve.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-                    <div class="post-info medium-3 large-2 columns">
-                <div class="post-date">
-                                            <div class="month">NOV</div>
-                        <div class="day">30</div>
-                        <div class="year">2004</div>
-                        <div class="permalink">
-                            <a href="/2004/11/november-29th/"
-                               title="Permanent link to 'November 29th'">∞</a>
-                        </div>
-                                    </div>
-                                                    <ul class="tags">
-                                                    <li><a href="/tag/novel">novel</a>
-                            </li>
-                                                    <li><a href="/tag/nanowrimo">nanowrimo</a>
-                            </li>
-                                            </ul>
-                            </div>
-                                <article class="post-content medium-9 large-10 columns">
-                <time datetime="2004-11-30 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2004/11/november-29th/">November 29th</a>
-                                            </h1>
-                </header>
-                                    <p>Well, here&#8217;s the last of it. I added some new material to previous chapters,
-so the additions are listed here along with the chapter in which they go. The
-<span class="caps">PDF</span> has been updated with all the new&nbsp;material.</p>
-<p><strong>Chapter 29:&nbsp;Epilogue</strong></p>
-<p>Angela was bobbing up and down in her chair almost uncontrollably as Melissa
-came down the stairs into the kitchen. Lawrence , of course, sat reading a
-paper next to her, ignoring her completely as she knocked plates, cups, and
-other random items on the table to the floor with her&nbsp;movement.</p>
-<p>“Angela, settle down and eat your brea kfast!” Melissa knew it wouldn&#8217;t
-happen. The five-year-old looked down in disgust at the strange mixture of
-foodstuffs on her plate. The toast was now soggy from spilled apple juice, and
-the remaining bits of egg swam in a pool of juice as well. Angela turned her
-nose up at the plate primly and crossed her arms across her&nbsp;chest.</p>
-<p>She was pouting at the reprimand. Melissa rolled her eyes at her daughter&#8217;s
-silliness and flipped on the small television in the room, pushing down two
-slices of brea d in the toaster as the picture faded&nbsp;in.</p>
-<p>“Can we watch cartoons,&nbsp;mommy?”</p>
-<p>“No, we cannot,” Melissa responded fla tly. The question was asked each
-morning, and the answer always remained the same. But Angela nev er gave up;
-one day her mother would relent, and she would get to watch cartoons while she
-ate breakfast&#8230; <em>But today is not that day</em>, Melissa thought to&nbsp;herself.</p>
-<p>Lawrence had his morning paper and cup of coffee, Melissa had her morning
-newscast and toast. It was their routine; the sole moment in the day that she
-would not vary &#8211; it was her tether to the world and to her own sanity. No
-matter what mischief Angela would cause throughout the day, it was all
-bearable if she&#8217;d had her toast and caught up with the&nbsp;world.</p>
-<p>She sat down on the chair to Lawrence &#8216;s right, ignoring her daughter&#8217;s
-continued pleas for cartoons. “Angela, I said no! Settle down and <em>be quiet</em>!” 
-Angela resumed her sulking, but at least it got&nbsp;quiet.</p>
-<p>She had just missed the weather report, but she was in time for the morning
-headlines. The newscaster droned on with little emotion through the long list
-of headlines, and Melissa listened only passively until something caught her&nbsp;attention.</p>
-<p>“ Twenty-three-year-old McAllister Park resident Joel Mendocino is dead this
-morning, the victim of a car accident at the Franklin-Niles intersection late
-last night. Mendocino, who had recently returned from an overseas trip, had
-left the Elston Memorial hospital where he was being treated for a near-fatal
-gunshot wound he received earlier in the day. His father was the vehicle&#8217;s
-driver, and is listed in stable condition at Elston&nbsp;Memorial.”</p>
-<p>“ Lawrence , listen to this! This poor kid lived around here!” Lawrence
-looked over his paper and murmured an acknowledgement, then resumed reading
-his paper. Melissa focused intently on the television as the news anchor&nbsp;continued.</p>
-<p>“In related news, police were able to discover an illegal “fight club” of
-sorts that is believed to be the source of a rash of unexplained abductions
-and beatings of homeless individuals that has been plaguing the city of&nbsp;late.</p>
-<p>“In a statement released early this morning, Detective Angus Cobb credited
-Mr. Mendocino&#8217;s identification of his attackers as the crucial clue that led
-the detectives to a supposedly abandoned warehouse in the ind ustrial area of
-the&nbsp;city.</p>
-<p>“Several participants in the “fight club” were apprehended by city police
-officers, and it is expected that the ringleader will soon be&nbsp;located.”</p>
-<p>The news anchor seemed to be enthralled by the story as it continued&nbsp;on.</p>
-<p>“But the story doesn&#8217;t end there, folks. Mike Turner, a former Copeland
-Advertising executive, was shot and killed by detectives on the scene when he
-refused to discontinue his beating of a mentally-challenged homeless man, and
-instead charged towards police&nbsp;officers.</p>
-<p>“It is believed that Mr. Turner was also responsible for the brutal beating
-and death of his wife&#8217;s lover, Brandon Lloyd, a story that we brought to you
-yesterday on the 6 o&#8217;clock&nbsp;newscast.</p>
-<p>“Police are confident that the criminal&#8217;s behind these recent activities
-will soon be rounded up, but remind all city residents to report any
-suspicious activity immediately and exercise common sense when moving around
-the city at&nbsp;night.”</p>
-<p>Melissa was almost sad to realize that the story had come to an end. It was
-more interesting than the plot to one of the afternoon soap opera&#8217;s that
-Lawrence berated her for watching. Who knew so much could happen one day in
-their&nbsp;city?</p>
-<p>“Makes you wonder sometimes, doesn&#8217;t it&nbsp;honey?”</p>
-<p>“Hmmm?” Lawrence murmured, looking over his newspaper&nbsp;again.</p>
-<p>“Makes you wonder how many people you see and interact with each day will be
-dead tomorrow. It&#8217;s kind of sad,&nbsp;really.”</p>
-<p>Lawrence looked back at his paper. “I suppose. But I don&#8217;t worry too much
-about it. After all, what do they have to do with&nbsp;us?”</p>
-<p>Melissa stood and ran her dishes under the warm water at the kitchen sink.
-She wouldn&#8217;t think about Joel much after that. Lawrence was right, after all;
-what did it all have to with&nbsp;her?</p>
-<p><strong>Chapter&nbsp;3</strong></p>
-<p><em>Joel shrugged as she moved as quickly as she could to the opposite side of
-the train, sat down, and eyed him warily.&nbsp;Whatever.</em></p>
-<p>While he had traveled in Asia , he&#8217;d been amazed at the hospitality and
-friendliness of nearly everyone he met, including the tourists with which he&#8217;d
-had the opportunity to converse. All travelers there seemed to be inexplicably
-linked; they al shared that undeniable experience that was Asia , and that
-experience drew them together. That experience, combined with the basic human
-need to communicate, at least occasionally, with people from similar
-backgrounds and worldviews, produced a level of camaraderie with some of his
-new acquaintances that Joel had seldom had with friends from&nbsp;home.</p>
-<p>Two, in particular, Sean and Pang, had become very close to him during the
-three days he&#8217;d known them. They had met outside a market while he was staying
-in Thailand for a week. Sean had been excited at spotting someone with the
-same color skin as his own, and Pang, who&#8217;d spent a year studying at a
-university in the States, was glad to have a Westerner with which she could
-converse. Pang and Joel hit it off immediately; they both had an affinity for
-analytical thought, much to Sean&#8217;s dismay, and spent many of their nights
-chatting about philosophy, art, literature and even mathematics, late into the&nbsp;night.</p>
-<p>Sean played the dumb oaf, but behind his goofy exterior was a curious, sharp
-young man with a razor sharp wit. Together, the three of them had traveled the
-city high and low, seeking out coffee shops, bars and pubs, and sampling every
-piece of the Thai nightlife that Pang could think to show them. It was hard
-for Joel to believe that they&#8217;d only been together for three days before
-they&#8217;d split paths. He looked forward to calling them when he got the chance;
-their ongoing relationship was an opportunity to relive their past experience
-vicariously through each other, and it was an opportunity that Joel was
-thankful&nbsp;for.</p>
-<p>But it didn&#8217;t stop there. The Asian people he&#8217;d met, from Sumatra to
-Thailand , were friendly, eager to please, and very rarely had any desire for
-profit, monetary or otherwise. On several occasions, while he&#8217;d carried his
-bags to and from a taxi, a random man off the street would run up to assist
-him, and many times, refused payment. Their payment was his smile and
-gratitude, and in the wake of their unabashed kindness, Joel felt obligated to
-at least attempt to repay them by spreading that kindness. It was just too bad
-no one could believe he was just trying to be&nbsp;helpful.</p>
-<p><em>As the train began to move towards its downtown destination, Joel found an
-empty seat and sat down, peering out the window at the cars passing on the
-highway alongside&nbsp;him.</em></p>
-<p><strong>Chapter&nbsp;8</strong></p>
-<p><em>The path along State Avenue to the tower was relatively clear; it was so
-late in the morning, a majority of people had already made it to their jobs.</em>
-He eyed the homeless men on the corner warily. Why the hell didn&#8217;t they get
-jobs? They were always standing there, begging for change, occasionally
-offering a useless trinket or piece of shoddy journalism up in&nbsp;exchange.</p>
-<p>But even worse than the beggars were the ones with the squeegees. They
-attacked his car every single time he drove to work, splashing his windshield
-with their vile liquid and doing a piss-poor job of cleaning it off. They
-always left his car in worse shape than when they started, and they expected
-to get paid! Bull <em>shit</em>! The mere thought of them soured his entire mood
-considerably, if it were even possible for him to be more pissed off at this&nbsp;point.</p>
-<p>His previous physical activity had left his body reeling, and he was unable
-to move faster than a brisk walk towards the tower. He was interrupted several
-times by beggars along the way, huddling against the looming stone buildings
-for shelter from the wind. He ignored than each time, yelling whatever
-obscenities surfaced to his mind first, until finally he slapped at the hands
-of the last one, knocking the small collection of nickels and dimes from the
-man&#8217;s hand. He smiled cruelly as the man cried out and dropped to his knees to
-reclaim the coins that would serve as his dinner for the day. That would show
-the&nbsp;bastard.</p>
-<p>He continued as fast as he could along State Avenue, ding his best to ignore
-the legs&#8217; increasing cries of anguish as they suffocated, until the doors of
-the Tower stood before him, peering down at him with a foreboding gaze. <em>He
-pushed his way through the revolving doors and ignored the pleasant greetings
-of the security guard as he headed straight to the&nbsp;elevator.</em></p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

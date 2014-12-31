@@ -124,6 +124,65 @@
                         <div class="day">23</div>
                         <div class="year">2007</div>
                         <div class="permalink">
+                            <a href="/2007/01/hiding-vs-disabling/"
+                               title="Permanent link to 'Hiding vs. Disabling'">∞</a>
+                        </div>
+                                    </div>
+                                                    <ul class="tags">
+                                                    <li><a href="/tag/design">design</a>
+                            </li>
+                                                    <li><a href="/tag/sharepoint">sharepoint</a>
+                            </li>
+                                            </ul>
+                            </div>
+                                <article class="post-content medium-9 large-10 columns">
+                <time datetime="2007-01-23 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2007/01/hiding-vs-disabling/">Hiding vs. Disabling</a>
+                                            </h1>
+                </header>
+                                    <p>Someone came by my office today and asked me if I could show him how to make a
+column on a SharePoint list required. No problem! While this isn&#8217;t as simple
+as it could be, it&#8217;s pretty straightforward. Go into the list you want to
+change, select <strong>List Settings</strong> from the <strong>Settings</strong> drop down, then click
+the column you want to change in the <strong>List Settings</strong> page. You should see an
+option called &#8220;Require that this column contains information.&#8221; By default,
+this is off, but turning it on will make the column&nbsp;required.</p>
+<p>However, in this case, that option wasn&#8217;t showing in the <span class="caps">UI</span>. The reason was
+that the column was a <strong>Yes/No (check box)</strong> field. Now, if you think about
+it, this makes sense. A checkbox <em>always</em> has state, either checked or
+unchecked, so it&#8217;s by nature required. A user always has to fill in a checkbox
+with some data, either by checking it or unchecking it. It all comes down to
+the default state, which <em>is</em> settable in the SharePoint&nbsp;<span class="caps">UI</span>.</p>
+<p>The interesting thing here, though, is that the user didn&#8217;t stop to think
+about this. And that makes sense. He just wanted to make a column required; he
+didn&#8217;t think about what type of column it was. SharePoint totally removes the
+required field setting from the <span class="caps">UI</span> for Yes/No fields because it doesn&#8217;t make
+sense. However, the user got confused. He wasn&#8217;t sure if the <span class="caps">UI</span> was missing by
+design or if he wasn&#8217;t looking in the right spot for the setting. If you have
+a task to accomplish using relatively unfamiliar <span class="caps">UI</span>, you go to the place that
+makes sense to you, but you&#8217;re never sure you&#8217;re in the right place. In this
+case, the user poked around other parts of the <span class="caps">UI</span> before coming to me, because
+he thought he was looking in the wrong&nbsp;place.</p>
+<p>This might be alleviated by disabling (i.e. graying out) the part of the <span class="caps">UI</span>
+that is not applicable. This is somewhat clearer, because it says, &#8220;Yes, this
+is where you would change this setting, but it doesn&#8217;t make sense here or is
+not allowed.&#8221; This isn&#8217;t a hard rule. You can&#8217;t <em>always</em> display <em>all</em>
+possible settings in one piece of <span class="caps">UI</span> because if there are a large number of
+settings, things can get confusing and distracting. Some hiding does make
+sense in many cases. But it is worth some dedicated thought about your <span class="caps">UI</span> and
+what your users are trying to accomplish when deciding whether to hide a piece
+of <span class="caps">UI</span> or simply gray it&nbsp;out.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+                    <div class="post-info medium-3 large-2 columns">
+                <div class="post-date">
+                                            <div class="month">JAN</div>
+                        <div class="day">23</div>
+                        <div class="year">2007</div>
+                        <div class="permalink">
                             <a href="/2007/01/site-problems/"
                                title="Permanent link to 'Site Problems'">∞</a>
                         </div>
@@ -298,72 +357,6 @@ of time during game play. Very annoying. Maybe I need to hit the&nbsp;gym.</p>
 <a href="http://www.gamefly.com/">Gamefly</a> this week, though in retrospect maybe I should have put Excite
 Truck at the top of my queue instead. Oh well, way too many awesome games
 these days to get to. I still work occasionally, you&nbsp;know.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-                    <div class="post-info medium-3 large-2 columns">
-                <div class="post-date">
-                                            <div class="month">JAN</div>
-                        <div class="day">02</div>
-                        <div class="year">2007</div>
-                        <div class="permalink">
-                            <a href="/2007/01/itunes-tagging/"
-                               title="Permanent link to 'iTunes Tagging'">∞</a>
-                        </div>
-                                    </div>
-                                                    <ul class="tags">
-                                                    <li><a href="/tag/itunes">itunes</a>
-                            </li>
-                                            </ul>
-                            </div>
-                                <article class="post-content medium-9 large-10 columns">
-                <time datetime="2007-01-02 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2007/01/itunes-tagging/">iTunes Tagging</a>
-                                            </h1>
-                </header>
-                                    <p>One of the things that really annoys me about iTunes is the lack of
-categorical tagging. Actually, I shouldn&#8217;t blame iTunes. I think this is a
-fundamental limitation in the <span class="caps">ID3</span> tags. What I want is the ability to &#8220;tag&#8221;
-music as I listen to it, with terms like &#8220;story-song&#8221; (songs that tell a
-story) or &#8220;ricardo&#8221; (songs that my friend Ricardo has introduced me to).
-Social music sites like <a href="http://www.pandora.com/">Pandora</a> and <a href="http://www.last.fm/">Last.fm</a> have this concept, as
-does just about every &#8220;Web 2.0&#8221; site in the world. Why not my music&nbsp;player?</p>
-<p>Initially when I tried to implement this sort of thing I used the &#8220;keywords&#8221;
-field. I would just add the tag to that field, then I created Smart Playlists
-based on that field. <a href="http://www.lifehacker.com/software/itunes/tag-your-songs-in-itunes-153970.php">This post at Lifehacker</a> suggests using the
-&#8220;Grouping&#8221; field, but the premise is the&nbsp;same.</p>
-<p>This approach works fine until you want to edit a bunch of songs and <strong>add </strong>a
-tag. When you do a bulk edit of the keywords field in iTunes it&#8217;ll overwrite
-anything that was there previously. So suddenly tagging all that music with
-&#8220;Sasquatch 2006&#8221; removed all the other cool tags you had applied. Major&nbsp;suckage.</p>
-<p>Today I decided to try a new approach: I just use dumb, old-fashioned
-playlists. When I want a new tag, I create a new playlist for it. For
-organization purposes I keep all tag playlists in a folder called Tags. I can
-then create additional nested folders for categories, and because of how
-iTunes handles folders with playlists inside, the folders will become
-aggregators of all the music in playlists underneath them, which is nifty.
-This means I can see all of the music I have tagged just by clicking the Tag&nbsp;folder</p>
-<p>This approach is pretty simple. Adding a tag is easy, and using the tags to
-drive smart playlists is easy too. Just add an &#8220;If &lt;<strong>Playlist</strong>&gt; &lt;<strong>is/is
-not</strong>&gt; &lt;<strong>Tag playlist name</strong>&gt;&#8221; clause to the Smart Playlist. There is a
-drawback, though&#8230; <strong>Removing </strong>tags is now a pain. From the frying pan into
-the fire&#8230; I have to make sure the song doesn&#8217;t appear multiple times in a
-playlist, and if it does, remove all occurrences. This is because playlists
-are designed to support multiple occurrences of the same song. If I want to
-start and end my playlist with <em>My Heart Will Go On</em>, then dang it, I can do
-it. But for my purposes, it&#8217;s not the ideal&nbsp;behavior.</p>
-<p>Anyway, none of this really helps my situation, because the iTunes app
-<strong>doesn&#8217;t help me</strong> manage my tags, build playlists based on them, or
-anything, natively. All of this is a hack. There are a lot things that it
-could do to make it easier to tag music. And with the iTunes music store, what
-if I could check out how other users were tagging the track, and borrow their
-tags? This is all stuff that is provided by Last.fm, of course, but Last.fm
-doesn&#8217;t manage my entire music collection &#8211; iTunes&nbsp;does.</p>
-<p>And of course <strong>none</strong> of this does anything on my iPod. Heck, <strong>it</strong> can&#8217;t
-even understand playlist folders, which is super <em>super <strong>super</strong></em> dumb.
-Actually, I have a lot of gripes about the iPod&nbsp;<span class="caps">UI</span>&#8230;</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

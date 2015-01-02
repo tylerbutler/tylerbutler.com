@@ -7,6 +7,15 @@ OUTPUT_DIR: './output/azure'
 THEME_SETTINGS:
   comments: disqus
   comments_account: tylerbutlercom
+  sharing:
+    enabled: yes
+    facebook:
+      enabled: yes
+      app_id: '298536070167430'
+    twitter:
+      enabled: yes
+      username: tylerbutler
+
 
 LAZY_LINKS_PERSIST: yes
 PLUGIN_PERMISSIONS:

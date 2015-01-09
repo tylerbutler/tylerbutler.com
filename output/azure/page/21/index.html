@@ -140,6 +140,55 @@
                     <div class="day">30</div>
                     <div class="year">2007</div>
                     <div class="permalink">
+                        <a href="/2007/04/net-browser-integration-demos/"
+                           title="Permanent link to '.Net Browser Integration Demos'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/mix07">mix07</a>
+                        </li>
+                                    </ul>
+                                </div>
+    
+                        <article class="post-content medium-9 large-10 columns">
+                <time datetime="2007-04-30 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2007/04/net-browser-integration-demos/">.Net Browser Integration Demos</a>
+                                            </h1>
+                </header>
+                                    <p>To expand on my post from earlier about .Net in the browser, here&#8217;s some of
+the more salient points from the demos that Scott Guthrie et. al.&nbsp;showed:</p>
+<p><strong>Debugging in both Windows and&nbsp;Mac</strong></p>
+<p>Yup, you can attach to a remote process running on the Mac, and step into
+breakpoints in your managed code locally in <span class="caps">VS</span>. This must have been <em>really</em>
+hard to build. Nonetheless, this is super&nbsp;useful.</p>
+<p><strong>Code behind for Silverlight&nbsp;projects </strong></p>
+<p>This is basically how you get your .Net code in the browser. As far as I can
+tell, your <span class="caps">XAML</span> has an associated code-behind page that contains all of your
+code, as in pretty much all of&nbsp;<span class="caps">ASP</span>.Net</p>
+<p><strong>Integration between Expression and <span class="caps">VS</span> for inserting <span class="caps">XAML</span> into the Silverlight project from&nbsp;Expression </strong></p>
+<p>You can easily use the best app for the specific job. Designers can crack open
+the <span class="caps">XAML</span> in Expression and munge it, then developers can live in <span class="caps">VS</span> and just
+write the code. Everybody&nbsp;wins.</p>
+<p><strong>Add Silverlight projects to <span class="caps">ASP</span>.Net projects, get them built and deployed&nbsp;together </strong></p>
+<p>Silverlight controls can be just like regular .Net controls, and get built as
+part of the same development workflow.&nbsp;Sweeeeeet&#8230;</p>
+<p><strong>http://silverlight.metaliq.com/topbanana/</strong></p>
+<p>Really nifty light table app completely in the browser built in C# and <span class="caps">XAML</span>
+and delivered via Silverlight. Apparently this will be a sample app that will
+be part of the <span class="caps">SDK</span> or something, which is pretty sweet. I was hoping it&#8217;d be
+live so everyone could play, but it&#8217;s not. Built in a month with alpha
+Silverlight 1.1&nbsp;code.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info medium-3 large-2 columns">
+            <div class="post-date">
+                                    <div class="month">APR</div>
+                    <div class="day">30</div>
+                    <div class="year">2007</div>
+                    <div class="permalink">
                         <a href="/2007/04/net-in-the-browser/"
                            title="Permanent link to '.Net in the Browser'">∞</a>
                     </div>
@@ -301,96 +350,6 @@ parts that live <em>outside</em> of web part zones. I have not yet tried it on a
 part inside a zone, but I&#8217;ve heard reports that the property gets reset every
 time you change properties on the web part in the browser, which you can&#8217;t do
 for parts that live outside&nbsp;zones.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info medium-3 large-2 columns">
-            <div class="post-date">
-                                    <div class="month">FEB</div>
-                    <div class="day">02</div>
-                    <div class="year">2007</div>
-                    <div class="permalink">
-                        <a href="/2007/02/building-moss-master-pages/"
-                           title="Permanent link to 'Building MOSS Master Pages'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/sharepoint">sharepoint</a>
-                        </li>
-                                    </ul>
-                                </div>
-    
-                        <article class="post-content medium-9 large-10 columns">
-                <time datetime="2007-02-02 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2007/02/building-moss-master-pages/">Building <span class="caps">MOSS</span> Master Pages</a>
-                                            </h1>
-                </header>
-                                    <p>Now that <span class="caps">MOSS</span> is available to lots of people, and people are building lots of
-sites that <a href="http://www.fifteen.net">don&#8217;t</a> <a href="http://www.shareview.co.uk/">look</a> <a href="http://www.hedkandi.com/">like</a> SharePoint, a lot of you might be
-wondering how you should get started in building your own custom master page
-for your site. I talked a little bit about this in my first post on building
-tylerbutler.com, but I think it might be valuable to post some info about the
-minimal master page and its role in helping you build a custom master page for
-your site. But first, some&nbsp;background…</p>
-<p>During the early betas, people heard that you could make SharePoint &#8220;not look
-like SharePoint,&#8221; and so they set off to do just that. People started cracking
-open default.master and trying to understand it. The problem many people
-reported was that the markup in default.master was ridiculously complicated,
-and it wasn&#8217;t clear what could be removed and what couldn&#8217;t. The complexity is
-somewhat necessary for that master page because of all the delegate controls
-we have to put in place to support a bunch of different back-end SharePoint
-stuff (I do believe, however, that there&#8217;s plenty of things we could/can do in
-that master page to make it clearer and easier to customize without removing
-functionality, so this is not meant to be an&nbsp;excuse).</p>
-<p>Anyway, there were customers that were trying to build internet facing sites
-on top of SharePoint, because <strong>a)</strong> we told them that they could/should and
-<strong>b)</strong> we rolled up a lot of web content management functionality from Content
-Management Server 2002, and customers that were using that product were
-investigating how they would move to <span class="caps">MOSS</span>. These customers did not want their
-site to look anything like SharePoint. These customers also often had a site
-design template that was coming from their design team, either in <span class="caps">HTML</span> or as
-image mock-ups. Trying to fit that design into default.master was exceedingly
-difficult because of all the unclear markup in that master page.
-Default.master is designed for a SharePoint site &#8211; one that looks and acts
-like SharePoint. But people who wanted to build non-SharePoint looking sites
-were getting tripped up by using it as a starting&nbsp;point.</p>
-<p>We do have several master pages that we built that are much simpler than
-default.master. When you provision a Publishing Portal site collection, for
-example, we default to BlueBand.master, which has customized <span class="caps">CSS</span> and <span class="caps">MOSS</span>
-navigation out of the box. It&#8217;s a cleaner starting point, so we initially told
-people to start there rather than with default.master. We still had problems,
-though, because you never knew if a placeholder was absolutely necessary in
-your master page. What would happen is you&#8217;d remove a seemingly innocuous
-placeholder and your page would work fine until you browsed to some specific
-page that was overriding that placeholder, then things would&nbsp;break.</p>
-<p>What we needed was a sample master page that included only the markup that was
-<em>absolutely necessary to get your pages to render.</em> Thus, the <a href="http://msdn2.microsoft.com/en-us/library/aa660698.aspx">minimal master
-page</a> was born. This master page is purposely bare. It&#8217;s just a bunch of
-placeholders – those placeholders are necessary for things in your site to
-work properly. With this master page, you can take your markup from your
-designer, paste it into SharePoint Designer, and move markups into the
-appropriate placeholders. If there&#8217;s some pieces you need/want from
-default.master or another page, you can always open them up and copy/paste the
-appropriate&nbsp;markup.</p>
-<p>So, should you start with <code>default.master</code>, <code>blueband.master</code>, or the minimal
-master page example when building your own custom master page? Well, the
-answer depends on what you&#8217;re trying to do. If you&#8217;re building out a site that
-really should look and work like vanilla SharePoint, then maybe <code>default.master</code>
-makes sense. If you&#8217;re trying to do something more exotic, <code>blueband.master</code> and
-its siblings have examples of different navigational structures and color
-schemes, so maybe it makes sense to start from one of those that is close to
-the navigation/color you&#8217;re aiming for. But my personal recommendation is to
-start with the minimal page and copy/paste the appropriate controls/markup
-from other master pages as necessary. This ensures you get only what you need
-and want in your page, rather than having to weed through a bunch of markup to
-get rid of stuff that doesn&#8217;t <em>look</em> like it&#8217;s needed. If you do want to go
-the default.master route, then Heather Solomon has <a href="http://heathersolomon.com/blog/archive/2007/01/26/6153.aspx">a custom master page</a>
-that she&#8217;s tweaked from <code>default.master</code> to make things cleaner and more&nbsp;straightforward.</p>
-<p>I hope this helps you figure out how to get started building out your site
-look and feel. There is a growing number of live custom sites on top of <span class="caps">MOSS</span>,
-and it&#8217;s exciting to see what people are able to build with this&nbsp;product!</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

@@ -30,51 +30,52 @@ I chose to use the [VERBOSE][2] regular expression form so it's clearer how the 
 
     :::python
     class LazyMarkdownLinksPlugin(PostProcessor):
-    # Inspired by Brett Terpstra: http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/
-    _link_regex = re.compile(r'''
-        (           # Start group 1, which is the actual link text
-            \[          # Match a literal [
-            [^\]]+      # Match anything except a literal ] - this will be the link text itself
-            \]          # Match a literal ]
-            \s*         # Any whitespace (including newlines)
-            \[          # Match the opening bracket of the lazy link marker
-        )           # End group 1
-        \*          # Literal * - this is the lazy link marker
-        (           # Start group 2, which is everything after the lazy link marker
-            \]          # Literal ]
-            .*?^        # Non-greedy match of anything up to a new line
-            \[          # Literal [
-        )           # End Group 2
-        \*\]:       # Match a literal *]: - the lazy link URL definition follows this
-        ''', re.MULTILINE | re.DOTALL | re.UNICODE | re.VERBOSE)
+        # Inspired by Brett Terpstra: http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/
+        _link_regex = re.compile(r'''
+            (           # Start group 1, which is the actual link text
+                \[          # Match a literal [
+                [^\]]+      # Match anything except a literal ] - this will be the link text itself
+                \]          # Match a literal ]
+                \s*         # Any whitespace (including newlines)
+                \[          # Match the opening bracket of the lazy link marker
+            )           # End group 1
+            \*          # Literal * - this is the lazy link marker
+            (           # Start group 2, which is everything after the lazy link marker
+                \]          # Literal ]
+                .*?^        # Non-greedy match of anything up to a new line
+                \[          # Literal [
+            )           # End Group 2
+            \*\]:       # Match a literal *]: - the lazy link URL definition follows this
+            ''', re.MULTILINE | re.DOTALL | re.UNICODE | re.VERBOSE)
 
-    _counter_regex = re.compile(r'\[(\d+)\]:', re.UNICODE)
-    _counter = 0
+        _counter_regex = re.compile(r'\[(\d+)\]:', re.UNICODE)
+        _counter = 0
 
-    @classmethod
-    def _replace(cls, match):
-        cls._counter += 1
-        sub_str = '%s%s%s%s]:' % (match.group(1), cls._counter, match.group(2), cls._counter)
-        return sub_str
+        @classmethod
+        def _replace(cls, match):
+            cls._counter += 1
+            sub_str = '%s%s%s%s]:' % (match.group(1), cls._counter, match.group(2), cls._counter)
+            return sub_str
 
-    @staticmethod
-    def get_max_link_number(post):
-        all_values = set([int(i) for i in LazyMarkdownLinksPlugin._counter_regex.findall(post)])
-        return max(all_values) if all_values else 0
+        @staticmethod
+        def get_max_link_number(post):
+            all_values = set([int(i) for i in LazyMarkdownLinksPlugin._counter_regex.findall(post)])
+            return max(all_values) if all_values else 0
 
-    @classmethod
-    def preprocess(cls, post, metadata):
-        from engineer.conf import settings
+        @classmethod
+        def preprocess(cls, post, metadata):
+            from engineer.conf import settings
 
-        logger = cls.get_logger()
-        content = post.content_preprocessed
-        cls._counter = cls.get_max_link_number(content)
+            logger = cls.get_logger()
+            content = post.content_preprocessed
+            cls._counter = cls.get_max_link_number(content)
 
-        # This while loop ensures we handle overlapping matches
-        while cls._link_regex.search(content):
-            content = cls._link_regex.sub(cls._replace, content)
-        post.content_preprocessed = content
-        if getattr(settings, 'LAZY_LINKS_PERSIST', False):
-            if not post.set_finalized_content(content, cls):
-                logger.warning("Failed to persist lazy links.")
-        return post, metadata
+            # This while loop ensures we handle overlapping matches
+            while cls._link_regex.search(content):
+                content = cls._link_regex.sub(cls._replace, content)
+            post.content_preprocessed = content
+            if getattr(settings, 'LAZY_LINKS_PERSIST', False):
+                if not post.set_finalized_content(content, cls):
+                    logger.warning("Failed to persist lazy links.")
+    return post, metadata
+    

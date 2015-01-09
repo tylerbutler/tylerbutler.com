@@ -8,11 +8,12 @@ tags:
 - guide
 - python
 - powershell
+updated: 12:00 AM Tuesday, October 07, 2014 PDT
+content-template: guide_content.html
 url: /2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/
 
----
 
-*Updated October 7, 2014*
+---
 
 If you do any Python development, you'll probably run into an awful lot of package installation instructions [that read][1]:
 
@@ -233,8 +234,6 @@ If you *are* using PyCharm, version 2.5+ has built-in support for virtualenv. Yo
 Anyway, if you want to use an existing virtualenv, you'll need to tell PyCharm about it. The [PyCharm support site has details][4], but the key thing to know is that you need to point it to the `python.exe` inside your `virtualenv`'s `Scripts` directory. In my case, the full path is `C:\Users\tyler\.virtualenvs\engineer\Scripts\python.exe`.
 
 After all of that's done you should be good to go! You can pop open a PowerShell window and create/switch to virtualenvs as needed and install packages using pip. At this point you should have most of what you need to follow the installation instructions for most Python packages (except those that require C extension compilation, but that's a topic for another post).
-
-*This guide was last updated October 7, 2014. It was tested on a fresh Windows VM image. If you notice any errors or missing/out-of-date information, please let me know at: __tyler AT tylerbutler DOT com__.*
 
 
 [3]: http://www.jetbrains.com/pycharm/webhelp/creating-virtual-environment.html

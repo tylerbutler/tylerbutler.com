@@ -125,6 +125,7 @@
                                         <div class="sharing hide-for-small-only">
                                             <div>
     <a href="https://twitter.com/share" class="twitter-share-button"
+       data-text="How To Install Python, pip, and virtualenv on Windows with PowerShell"
                    data-via="tylerbutler"
        data-related="tylerbutler"
                    data-url="http://www.tylerbutler.com/2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/"
@@ -159,6 +160,7 @@
                                             </h1>
                 </header>
                                     <p><em>Updated October 7,&nbsp;2014</em></p>
+
 <p>If you do any Python development, you&#8217;ll probably run into an awful lot of package installation instructions <a href="http://engineer.readthedocs.org/en/latest/installation.html#installing-using-pip">that read</a>:</p>
 <blockquote>
 <p>To install, use&nbsp;pip:</p>
@@ -334,7 +336,9 @@ Length                 : 77
 <p>If you <em>are</em> using PyCharm, version 2.5+ has built-in support for virtualenv. You can <a href="http://www.jetbrains.com/pycharm/webhelp/creating-virtual-environment.html">create virtual environments</a> directly in PyCharm or you can import ones you created earlier using virtualenvwrapper. Personally I prefer the latter since virtualenvwrapper doesn&#8217;t pick up the environments created by PyCharm (so they don&#8217;t show up when you use the <code>workon</code> command, among another&nbsp;things).</p>
 <p>Anyway, if you want to use an existing virtualenv, you&#8217;ll need to tell PyCharm about it. The <a href="http://www.jetbrains.com/pycharm/webhelp/configuring-local-python-interpreters.html">PyCharm support site has details</a>, but the key thing to know is that you need to point it to the <code>python.exe</code> inside your <code>virtualenv</code>&#8216;s <code>Scripts</code> directory. In my case, the full path is <code>C:\Users\tyler\.virtualenvs\engineer\Scripts\python.exe</code>.</p>
 <p>After all of that&#8217;s done you should be good to go! You can pop open a PowerShell window and create/switch to virtualenvs as needed and install packages using pip. At this point you should have most of what you need to follow the installation instructions for most Python packages (except those that require C extension compilation, but that&#8217;s a topic for another&nbsp;post).</p>
-<p><em>This guide was last updated October 7, 2014. It was tested on a fresh Windows <span class="caps">VM</span> image. If you notice any errors or missing/out-of-date information, please let me know at: <strong>tyler <span class="caps">AT</span> tylerbutler <span class="caps">DOT</span> com</strong>.</em></p>
+<p><em>This guide was last updated October 7, 2014.
+It was tested on a Windows 8.1 machine. If you notice any errors or missing/out-of-date information,
+please let me know at: __tyler <span class="caps">AT</span> tylerbutler <span class="caps">DOT</span>&nbsp;com__.</em></p>
                                                                                                                 
                     <div class="row">
                         <div class="small-12 columns post-links">

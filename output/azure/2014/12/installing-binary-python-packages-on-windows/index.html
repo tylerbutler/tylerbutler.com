@@ -123,6 +123,7 @@
                                         <div class="sharing hide-for-small-only">
                                             <div>
     <a href="https://twitter.com/share" class="twitter-share-button"
+       data-text="Installing Binary Python Packages on Windows"
                    data-via="tylerbutler"
        data-related="tylerbutler"
                    data-url="http://www.tylerbutler.com/2014/12/installing-binary-python-packages-on-windows/"
@@ -157,6 +158,7 @@
                                             </h1>
                 </header>
                                     <p><em>Updated December 31,&nbsp;2014</em></p>
+
 <p>In my <a href="/2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/">Python Windows installation guide</a>, I concluded with the following&nbsp;paragraph:</p>
 <blockquote>
 <p>After all of that’s done you should be good to go! You can pop open a PowerShell window and create/switch to virtualenvs as needed and install packages using pip. At this point you should have most of what you need to follow the installation instructions for most Python packages (except those that require C extension compilation, but that’s a topic for another&nbsp;post).</p>
@@ -164,11 +166,9 @@
 <p>Despite writing the initial version of that guide over two years ago, I never got around to writing that &#8216;other post&#8217; to cover installing packages that require C extension compilation. I personally rarely run into this need, but when it comes up it&#8217;s incredibly annoying. And guess what? It came up recently when I tried to install <a href="https://www.samba.org/~jelmer/dulwich/">Dulwich</a>, a Python implementation of Git. Fortunately for you, I decided to take this opportunity to actually write the&nbsp;guide.</p>
 <h2>Do I Need This&nbsp;Guide?</h2>
 <p>You only <em>need</em> this guide if you try to install a Python package on Windows and you get an error like&nbsp;this:</p>
-<div class="codehilite"><pre><span class="nt">building</span> <span class="s1">&#39;Crypto.Random.<span class="caps">OSRNG</span>.winrandom&#39;</span> <span class="nt">extension</span>
-
-<span class="nt">warning</span><span class="o">:</span> <span class="nt"><span class="caps">GMP</span></span> <span class="nt">or</span> <span class="nt"><span class="caps">MPIR</span></span> <span class="nt">library</span> <span class="nt">not</span> <span class="nt">found</span><span class="o">;</span> <span class="nt">Not</span> <span class="nt">building</span> <span class="nt">Crypto</span><span class="nc">.PublicKey._fastmath</span><span class="o">.</span>
-
-<span class="nt">error</span><span class="o">:</span> <span class="nt">Unable</span> <span class="nt">to</span> <span class="nt">find</span> <span class="nt">vcvarsall</span><span class="nc">.bat</span>
+<div class="codehilite"><pre>building &#39;Crypto.Random.OSRNG.winrandom&#39; extension
+warning: GMP or MPIR library not found; Not building Crypto.PublicKey._fastmath.
+error: Unable to find vcvarsall.bat
 </pre></div>
 
 
@@ -219,7 +219,10 @@ Successfully installed dulwich-0.9.8
 <p>If you release packages on PyPI, consider creating a Wheel if your package has a C extension. There&#8217;s a great guide for distributing your Python projects, including creating Wheels, in the <a href="http://python-packaging-user-guide.readthedocs.org/en/latest/distributing.html">Python Packaging User Guide</a>.</p>
 <h2>Addendum:&nbsp;dulwich-windows</h2>
 <p>In the event you&#8217;re using Windows and need <a href="https://www.samba.org/~jelmer/dulwich/">Dulwich</a>, but don&#8217;t want to fool with following the steps above, I <a href="dulwich fork">forked the repository</a> and published a Wheel (my first!) &#8211; it&#8217;s <a href="https://pypi.python.org/pypi/dulwich-windows">dulwich-windows</a> on PyPI. The <em>only</em> change to the code is a few minor changes to the setup file to differentiate it from the official Dulwich package. You can see those changes on the windows_wheel branch in <a href="dulwich fork">my fork</a>. Feel free to install it (<code>pip install dulwich-windows</code>). I may or may not keep it up to date, though, so I recommend using the official Dulwich releases if&nbsp;possible.</p>
-<p><em>This guide was last updated December 31, 2014. It was tested on a Windows 8.1 machine. If you notice any errors or missing/out-of-date information, please let me know at: <strong>tyler <span class="caps">AT</span> tylerbutler <span class="caps">DOT</span> com</strong>.</em></p>
+<p><em>This guide was last updated December 31, 2014.
+It was tested on a Windows 8.1 machine. If you notice any errors or missing/out-of-date information,
+please let me know at: __tyler <span class="caps">AT</span> tylerbutler <span class="caps">DOT</span>&nbsp;com__.</em></p>
+
 <div class="footnote">
 <hr />
 <ol>

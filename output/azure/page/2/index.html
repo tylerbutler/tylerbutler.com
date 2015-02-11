@@ -136,6 +136,86 @@
                                     <div class="row">
             <div class="post-info medium-3 large-2 columns">
             <div class="post-date">
+                                    <div class="month">AUG</div>
+                    <div class="day">15</div>
+                    <div class="year">2014</div>
+                    <div class="permalink">
+                        <a href="/2014/08/node-js-on-windows-8-1/"
+                           title="Permanent link to 'Node.js On Windows 8.1'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/node-js">node.js</a>
+                        </li>
+                                    </ul>
+                                </div>
+    
+                        <article class="post-content medium-9 large-10 columns">
+                <time datetime="2014-08-15 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2014/08/node-js-on-windows-8-1/">Node.js On Windows 8.1</a>
+                                            </h1>
+                </header>
+                                    <p>This afternoon I installed Node.js version 0.10.30 (the most recent according to <a href="http://nodejs.org/">http://nodejs.org/</a>) on a new Windows box. Unfortunately, after installing, using <code>npm</code> was, uhhh, not&nbsp;good:</p>
+<div class="codehilite"><pre><span class="n">C</span><span class="err">:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">tyler</span><span class="p">&gt;</span> <span class="n">npm</span>
+<span class="n">Error</span><span class="err">:</span> <span class="n"><span class="caps">ENOENT</span></span><span class="p">,</span> <span class="n">stat</span> <span class="s1">&#39;C:\Users\tyler\AppData\Roaming\npm&#39;</span>
+</pre></div>
+
+
+<p>Not exactly a great experience. And that error message? Useless. To me, anyway. I&#8217;m sure <code>ENOENT</code> means something useful to someone.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
+<p>Fortunately, a quick search revealed <a href="https://stackoverflow.com/questions/25103499/cant-start-npm-on-windows-8-error-enoent-stat-c-users-user-appdata-roaming">this page on Stack Overflow</a>, where the &#8216;fix&#8217; is outlined: you just need to manually create the npm folder at the path in the error&nbsp;message:</p>
+<div class="codehilite"><pre><span class="n">C</span><span class="err">:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">tylerbu</span><span class="p">&gt;</span> <span class="n">mkdir</span> <span class="n">C</span><span class="err">:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">tylerbu</span><span class="p">\</span><span class="n">AppData</span><span class="p">\</span><span class="n">Roaming</span><span class="p">\</span><span class="n">npm</span>
+
+
+<span class="n">Directory</span><span class="err">:</span> <span class="n">C</span><span class="err">:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">tylerbu</span><span class="p">\</span><span class="n">AppData</span><span class="p">\</span><span class="n">Roaming</span>
+
+
+<span class="n">Mode</span>                <span class="n">LastWriteTime</span>       <span class="n">Length</span>      <span class="n">Name</span>
+<span class="p">----</span>                <span class="p">-------------</span>       <span class="p">------</span>      <span class="p">----</span>
+<span class="n">d</span><span class="p">----</span>               <span class="n">8</span><span class="p">/</span><span class="n">15</span><span class="p">/</span><span class="n">2014</span>           <span class="n">1</span><span class="err">:</span><span class="n">25</span> <span class="n"><span class="caps">PM</span></span>     <span class="n">npm</span>
+</pre></div>
+
+
+<p>After that, things were&nbsp;golden:</p>
+<div class="codehilite"><pre><span class="n">C</span><span class="err">:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">tylerbu</span><span class="p">&gt;</span> <span class="n">npm</span> <span class="n">install</span> <span class="n">grunt</span>
+<span class="n">grunt</span><span class="nv">@0</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">5</span> <span class="n">node_modules</span><span class="p">\</span><span class="n">grunt</span>
+<span class="err">├──</span> <span class="n">dateformat</span><span class="nv">@1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">2</span><span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">3</span>
+<span class="err">├──</span> <span class="n">which</span><span class="nv">@1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">5</span>
+<span class="err">├──</span> <span class="n">eventemitter2</span><span class="nv">@0</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">14</span>
+<span class="err">├──</span> <span class="n">getobject</span><span class="nv">@0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>
+<span class="err">├──</span> <span class="n">colors</span><span class="nv">@0</span><span class="p">.</span><span class="n">6</span><span class="p">.</span><span class="n">2</span>
+<span class="err">├──</span> <span class="n">rimraf</span><span class="nv">@2</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">8</span>
+<span class="err">├──</span> <span class="n">async</span><span class="nv">@0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">22</span>
+<span class="err">├──</span> <span class="n">hooker</span><span class="nv">@0</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">3</span>
+<span class="err">├──</span> <span class="n">grunt-legacy-util</span><span class="nv">@0</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">0</span>
+<span class="err">├──</span> <span class="n">exit</span><span class="nv">@0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">2</span>
+<span class="err">├──</span> <span class="n">lodash</span><span class="nv">@0</span><span class="p">.</span><span class="n">9</span><span class="p">.</span><span class="n">2</span>
+<span class="err">├──</span> <span class="n">nopt</span><span class="nv">@1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">10</span> <span class="p">(</span><span class="n">abbrev</span><span class="nv">@1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">5</span><span class="p">)</span>
+<span class="err">├──</span> <span class="n">coffee-script</span><span class="nv">@1</span><span class="p">.</span><span class="n">3</span><span class="p">.</span><span class="n">3</span>
+<span class="err">├──</span> <span class="n">iconv-lite</span><span class="nv">@0</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">11</span>
+<span class="err">├──</span> <span class="n">underscore</span><span class="p">.</span><span class="n">string</span><span class="nv">@2</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">1</span>
+<span class="err">├──</span> <span class="n">minimatch</span><span class="nv">@0</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">14</span> <span class="p">(</span><span class="n">sigmund</span><span class="nv">@1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">,</span> <span class="n">lru-cache</span><span class="nv">@2</span><span class="p">.</span><span class="n">5</span><span class="p">.</span><span class="n">0</span><span class="p">)</span>
+<span class="err">├──</span> <span class="n">glob</span><span class="nv">@3</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">21</span> <span class="p">(</span><span class="n">inherits</span><span class="nv">@1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">,</span> <span class="n">graceful-fs</span><span class="nv">@1</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">3</span><span class="p">)</span>
+<span class="err">├──</span> <span class="n">findup-sync</span><span class="nv">@0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">3</span> <span class="p">(</span><span class="n">lodash</span><span class="nv">@2</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">1</span><span class="p">,</span> <span class="n">glob</span><span class="nv">@3</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">11</span><span class="p">)</span>
+<span class="err">├──</span> <span class="n">grunt-legacy-log</span><span class="nv">@0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">1</span> <span class="p">(</span><span class="n">underscore</span><span class="p">.</span><span class="n">string</span><span class="nv">@2</span><span class="p">.</span><span class="n">3</span><span class="p">.</span><span class="n">3</span><span class="p">,</span> <span class="n">lodash</span><span class="nv">@2</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">1</span><span class="p">)</span>
+<span class="err">└──</span> <span class="n">js-yaml</span><span class="nv">@2</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="p">(</span><span class="n">esprima</span><span class="nv">@1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">4</span><span class="p">,</span> <span class="n">argparse</span><span class="nv">@0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">15</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>On the plus side, the <code>ENOENT</code> string <em>did</em> help me find help on the web more quickly. So, maybe not so bad after all?&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info medium-3 large-2 columns">
+            <div class="post-date">
                                     <div class="month">JUL</div>
                     <div class="day">08</div>
                     <div class="year">2014</div>
@@ -350,49 +430,6 @@ In particular, GitHub offers a service called [GitHub Pages](http://pages.github
                                     <p>I released the next major version of Engineer, version 0.5.0, last month. I didn&#8217;t quite meet all of my goals with the release (not the least of which was the release date, which was five months later than I had optimistically planned), but it&#8217;s a major one nonetheless. As usual, full release notes are available at <a href="https://engineer.readthedocs.org/en/master/changelog.html">Read the Docs</a>.</p>
 <p>Unfortunately, upgrade may or may not work for you the normal way due to setuptools changes. There are more details in the <a href="https://engineer.readthedocs.org/en/master/upgrade.html">upgrade docs</a>.</p>
 <p>Lots of cool stuff in this release, and more planned, so if you&#8217;ve not tried Engineer yet, now might be a good&nbsp;time.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info medium-3 large-2 columns">
-            <div class="post-date">
-                                    <div class="month">MAY</div>
-                    <div class="day">05</div>
-                    <div class="year">2014</div>
-                    <div class="permalink">
-                        <a href="/2014/05/count-files-in-a-directory/"
-                           title="Permanent link to 'Count Files In A Directory'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/powershell">powershell</a>
-                        </li>
-                                            <li><a href="/tag/snippets">snippets</a>
-                        </li>
-                                    </ul>
-                                </div>
-    
-                        <article class="post-content medium-9 large-10 columns">
-                <time datetime="2014-05-05 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2014/05/count-files-in-a-directory/">Count Files In A Directory</a>
-                                            </h1>
-                </header>
-                                    <p>Need to count files in a directory? Try this one line of&nbsp;PowerShell:</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="n">dir</span> <span class="p">|</span> <span class="n">where</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">GetType</span><span class="p">()</span> <span class="o">-match</span> <span class="s2">&quot;fileInfo&quot;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">measure-object</span><span class="p">).</span><span class="n">count</span>
-</pre></div>
-
-
-<p>You can also add a <code>-r</code> parameter (<code>-r</code> means <em>recursive</em>) to the first <code>dir</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> command and get a complete count of all files in all subdirectories under the current&nbsp;path.</p>
-<p>This comes in handy, though I <em>do</em> wish it was a little more&nbsp;succinct.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>And of course you can substitute <code>ls</code> for <code>dir</code> if you prefer, or even <code>Get-ChildItem</code> if you&#8217;re feeling particularly masochistic.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

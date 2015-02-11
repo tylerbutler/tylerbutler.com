@@ -137,6 +137,123 @@
             <div class="post-info medium-3 large-2 columns">
             <div class="post-date">
                                     <div class="month">JAN</div>
+                    <div class="day">24</div>
+                    <div class="year">2005</div>
+                    <div class="permalink">
+                        <a href="/2005/01/parsing-xfdf-in-php/"
+                           title="Permanent link to 'Parsing XFDF in PHP'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/snippets">snippets</a>
+                        </li>
+                                            <li><a href="/tag/php">php</a>
+                        </li>
+                                    </ul>
+                                </div>
+    
+                        <article class="post-content medium-9 large-10 columns">
+                <time datetime="2005-01-24 PST"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="        /2005/01/parsing-xfdf-in-php/">Parsing <span class="caps">XFDF</span> in <span class="caps">PHP</span></a>
+                                            </h1>
+                </header>
+                                    <p>This past week at work I have been working on using Adobe Acrobat to submit
+form data. The value of this is that the form data can be reimported into the
+<span class="caps">PDF</span> form then printed all purty-lookin&#8217;. Anyway, Acrobat allows you to submit
+your form data in several different formats. One, <span class="caps">FDF</span>, is usable in <span class="caps">PHP</span>
+provided you load this module thingy. Unfortunately, the server I want to run
+the <span class="caps">PHP</span> script on uses Irix and the module is unavailable for Irix.&nbsp;Poo.</p>
+<p>I then turned to <span class="caps">XFDF</span>, which is essentially <span class="caps">FDF</span> data all <span class="caps">XML</span>-ified. <span class="caps">PHP</span> has an
+<span class="caps">XML</span> parser built in, so I don&#8217;t have to load any crazy modules to parse the
+data. Unfortunately, <span class="caps">PHP</span>&#8217;s parser is <span class="caps">SAX</span>-based rather than <span class="caps">DOM</span>-based, so it
+took me a rather long time to figure out how to get it working right. Anyway,
+here&#8217;s the <span class="caps">PHP</span> code that essentially takes <span class="caps">XFDF</span> data (declare <code>$file</code> as a
+string pointing to the location of your <span class="caps">XFDF</span> file) and parses it into an
+associative array (<code>$values</code>). The array is indexed by the <span class="caps">XFDF</span> field names.
+The code below is not entirely complete since I snipped it out of a larger
+file, but if you look at it, I think you&#8217;ll get the idea. It&#8217;s pretty simple
+once you figure out the way <span class="caps">PHP</span> does <span class="caps">XML</span>&nbsp;processing.</p>
+<div class="codehilite"><pre><span class="cm">/* <span class="caps">BEGIN</span> <span class="caps">VARIABLE</span> <span class="caps">DECLARATIONS</span> */</span>
+<span class="c1">//global variables for <span class="caps">XML</span> parsing</span>
+<span class="nx">$values</span> <span class="o">=</span> <span class="nx">array</span><span class="p">();</span>
+<span class="nx">$field</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="nx">$curTag</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="cm">/* <span class="caps">BEGIN</span> <span class="caps">XML</span> <span class="caps">PROCESSING</span> */</span>
+<span class="c1">// <span class="caps">XML</span> Parser element start function</span>
+<span class="kd">function</span> <span class="nx">startElement</span><span class="p">(</span><span class="nx">$parser</span><span class="p">,</span> <span class="nx">$name</span><span class="p">,</span> <span class="nx">$attrs</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">global</span> <span class="nx">$curTag</span><span class="p">,</span> <span class="nx">$field</span><span class="p">;</span>
+
+    <span class="c1">//track the tag we&#39;re currently in</span>
+    <span class="nx">$curTag</span> <span class="p">.</span><span class="o">=</span> <span class="s2">&quot;^$name&quot;</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="nx">$curTag</span> <span class="o">==</span> <span class="s2">&quot;^<span class="caps">XFDF</span>^<span class="caps">FIELDS</span>^<span class="caps">FIELD</span>&quot;</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//save the name of the field in a global var</span>
+        <span class="nx">$field</span> <span class="o">=</span> <span class="nx">$attrs</span><span class="cp">[</span><span class="s1">&#39;<span class="caps">NAME</span>&#39;</span><span class="cp">]</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">// <span class="caps">XML</span> Parser element end function</span>
+<span class="kd">function</span> <span class="nx">endElement</span><span class="p">(</span><span class="nx">$parser</span><span class="p">,</span> <span class="nx">$name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">global</span> <span class="nx">$curTag</span><span class="p">;</span>
+
+    <span class="c1">// remove the tag we&#39;re ending from the &quot;tag tracker&quot;</span>
+    <span class="nx">$caret_pos</span> <span class="o">=</span> <span class="cp">[</span><span class="nx">strrpos</span><span class="cp">][</span><span class="mi">1</span><span class="cp">]</span><span class="p">(</span><span class="nx">$curTag</span><span class="p">,</span><span class="s1">&#39;^&#39;</span><span class="p">);</span>
+    <span class="nx">$curTag</span> <span class="o">=</span> <span class="cp">[</span><span class="nx">substr</span><span class="cp">][</span><span class="mi">2</span><span class="cp">]</span><span class="p">(</span><span class="nx">$curTag</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">$caret_pos</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="c1">// <span class="caps">XML</span> Parser characterData function</span>
+<span class="kd">function</span> <span class="nx">characterData</span><span class="p">(</span> <span class="nx">$parser</span><span class="p">,</span> <span class="nx">$data</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">global</span> <span class="nx">$curTag</span><span class="p">,</span> <span class="nx">$values</span><span class="p">,</span> <span class="nx">$field</span><span class="p">;</span>
+    <span class="nx">$valueTag</span> <span class="o">=</span> <span class="s2">&quot;^<span class="caps">XFDF</span>^<span class="caps">FIELDS</span>^<span class="caps">FIELD</span>^<span class="caps">VALUE</span>&quot;</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="nx">$curTag</span> <span class="o">==</span> <span class="nx">$valueTag</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// we&#39;re in the value tag, so put the value in the array</span>
+        <span class="nx">$values</span><span class="cp">[</span><span class="nv">$field</span><span class="cp">]</span> <span class="o">=</span> <span class="nx">$data</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Create the parser and parse the file</span>
+<span class="nx">$xml_parser</span> <span class="o">=</span> <span class="nx">xml_parser_create</span><span class="p">();</span>
+<span class="nx">xml_set_element_handler</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">,</span> <span class="s2">&quot;startElement&quot;</span><span class="p">,</span> <span class="s2">&quot;endElement&quot;</span><span class="p">);</span>
+<span class="nx">xml_set_character_data_handler</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">,</span> <span class="s2">&quot;characterData&quot;</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">$fp</span> <span class="o">=</span> <span class="nx">fopen</span><span class="p">(</span><span class="nx">$file</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)))</span>
+<span class="p">{</span>
+    <span class="nx">die</span> <span class="p">(</span><span class="s2">&quot;could not open <span class="caps">XML</span> for input&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nx">$data</span> <span class="o">=</span> <span class="nx">fread</span><span class="p">(</span><span class="nx">$fp</span><span class="p">,</span> <span class="mi">4096</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">xml_parse</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">,</span> <span class="nx">$data</span><span class="p">,</span> <span class="nx">feof</span><span class="p">(</span><span class="nx">$fp</span><span class="p">)))</span>
+
+    <span class="p">{</span>
+        <span class="nx">die</span><span class="p">(</span><span class="nx">sprintf</span><span class="p">(</span><span class="s2">&quot;<span class="caps">XML</span> error: %s at line %d&quot;</span><span class="p">,</span>
+                    <span class="nx">xml_error_string</span><span class="p">(</span><span class="nx">xml_get_error_code</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">)),</span>
+                    <span class="nx">xml_get_current_line_number</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">)));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">xml_parser_free</span><span class="p">(</span><span class="nx">$xml_parser</span><span class="p">);</span>
+<span class="nx">flclose</span><span class="p">(</span><span class="nx">$fp</span><span class="p">);</span>
+
+<span class="cm">/* <span class="caps">END</span> <span class="caps">XML</span> <span class="caps">PROCESSING</span> */</span>
+</pre></div>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info medium-3 large-2 columns">
+            <div class="post-date">
+                                    <div class="month">JAN</div>
                     <div class="day">21</div>
                     <div class="year">2005</div>
                     <div class="permalink">
@@ -410,60 +527,6 @@ participating in a DoS attack against the <span class="caps">DNS</span> server. 
 have been contained, and about 25 people still remain blocked.</strong> Yeah, DoS
 sucks, but it is kinda cool to realize that 8-10 machines can destroy a
 network connection serving a university of 3000 people. <em>Kinda</em>&nbsp;cool.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info medium-3 large-2 columns">
-            <div class="post-date">
-                                    <div class="month">DEC</div>
-                    <div class="day">10</div>
-                    <div class="year">2004</div>
-                    <div class="permalink">
-                        <a href="/2004/12/then-vs-than/"
-                           title="Permanent link to '"Then" Vs. "Than"'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/words">words</a>
-                        </li>
-                                    </ul>
-                                </div>
-    
-                        <article class="post-content medium-9 large-10 columns">
-                <time datetime="2004-12-10 PST"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2004/12/then-vs-than/"><span class="dquo">&#8220;</span>Then&#8221; Vs. &#8220;Than&#8221;</a>
-                                            </h1>
-                </header>
-                                    <p>I started looking at some open-source software and came across Blender, a
-cool-looking 3D modeling program. On <a href="http://www.blender3d.org/" title="Blender looks pretty cool.  Too bad I don't have any artistic skills...">their homepage</a>, I noticed this image
-(it may no longer be on their&nbsp;page):</p>
-<p><img alt="" src="/SiteCollectionImages/Post%20Images/then%20than.jpg" /></p>
-<p>Now what&#8217;s wrong with this picture? Well, the designer of the image was not
-very careful when selecting the words to use. The words &#8220;than&#8221; and &#8220;then,&#8221;
-while differing only by one letter, are vastly different in meaning. <a href="http://dictionary.reference.com/search?q=then" title="Check the meaning of then at dictionary.com.">Then</a>
-is most commonly an adverb, but can sometimes be a noun or adjective (time-
-related). <a href="http://dictionary.reference.com/search?q=than" title="Check the meaning of than at dictionary.com.">Than</a>, on the other hand, is a conjunction, used to compare
-things. <em>I am better at English <strong>than</strong> you are</em>, for example. So when you
-want to compare things, as the person making this advertisement image
-apparently wanted to, you want to use&nbsp;than.</p>
-<p>I think the confusion regarding this stems from the use of &#8220;then&#8221; as a time-
-related adjective or noun. For example, &#8220;I was there then,&#8221; or &#8220;the then
-director of <span class="caps">OTS</span>&#8221; are valid uses of the word, which confuses people when they
-want to compare things, especially in time-related constructs, such as &#8220;more
-than before.&#8221; Then implies a previous state of being, so previously &#8211; then -
-there were less than there are now. This, I think, is the root of the
-confusion. If you really want to get your head spinning, try this: &#8220;There were
-more employers there then than previously.&#8221; I <em>think</em> that&#8217;s grammatically
-correct, but many people seem to get this confused. It could also be that they
-are often pronounced similarly if not exactly the same, so drill yourself on
-it if you&#8217;re having problems&nbsp;remembering.</p>
-<p>Since I have noticed some common grammatical and language-related mistakes at
-work, in the <span class="caps">IPRO</span>, and just on blogs and websites in general, I think I might
-start a regular column on here with common problems people have with similar
-sounding, yet different meaning words. After all, I am the master of all that
-is English. And I <a href="/tag/novel" title="Check out Knot, the novel I wrote as part of NaNoWriMo">wrote a novel</a>.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

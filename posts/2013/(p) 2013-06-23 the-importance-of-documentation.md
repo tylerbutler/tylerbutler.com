@@ -5,6 +5,7 @@ timestamp: 02:26 AM Sunday, June 23, 2013 PDT
 status: published
 slug: the-importance-of-documentation
 url: /2013/06/the-importance-of-documentation/
+tags: documentation
 
 ---
 

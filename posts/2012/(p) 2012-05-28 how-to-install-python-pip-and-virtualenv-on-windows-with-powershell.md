@@ -68,6 +68,8 @@ Press `Ctrl-Z` and hit return to exit the Python prompt. If you get an error whe
 
 ## Get Pip
 
+*Note: As of Python 2.7.10, pip can be automatically installed as part of the Python for Windows installer. If you do that, you can skip this step.*
+
 *Note: Previous versions of this guide included a step to download and install Distribute. That is no longer needed; just get pip.*
 
 The easiest way to install pip is to download the [get-pip.py][] script, save it locally, then run it using Python.
@@ -115,8 +117,8 @@ Unfortunately that's a bug in the current released version (12.7.8) of virtualen
 The other error you might see will say something like this:
 
     :::text
-    Virtualenvwrapper: Virtual environments directory 
-    'C:\Users\tyler/.virtualenvs' does not exist. Create it or 
+    Virtualenvwrapper: Virtual environments directory
+    'C:\Users\tyler/.virtualenvs' does not exist. Create it or
     set $env:WORKON_HOME to an existing directory.
 
 Well, at least you know you're on the right track! Do exactly what the message says: create the missing directory.
@@ -186,12 +188,12 @@ Now that your virtual environments are configured, you can install packages into
 
     :::text
     PS C:\> pip install -r path_to_requirements_file
-    
+
 Also, you might have downloaded a package's source manually that has a `setup.py` file in it. You can have pip install that for you by typing:
-    
+
     :::text
     PS C:\> pip install -e path_to_source
-    
+
 The `-e` option can also check out source directly from a Mercurial, Git, Subversion, or Bazaar repository and install a package from there.
 
 [requirements file]: http://www.pip-installer.org/en/latest/requirements.html
@@ -221,7 +223,7 @@ In that file, put the command you used to import the `virtualenvwrapper` modules
 
     :::posh
     Import-Module virtualenvwrapper
-    
+
 It's worth noting that this file is just a regular PowerShell script, so you can put other stuff in it too, such as aliases you like to set up, etc. Anyway, once that's done, save the file and open a new PowerShell window. Now the `workon` command and other virtualenv cmdlets should start functioning.
 
 

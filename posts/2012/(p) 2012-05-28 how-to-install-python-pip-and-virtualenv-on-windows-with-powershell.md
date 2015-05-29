@@ -12,7 +12,6 @@ updated: 12:00 AM Tuesday, October 07, 2014 PDT
 content-template: guide_content.html
 url: /2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/
 
-
 ---
 
 If you do any Python development, you'll probably run into an awful lot of package installation instructions [that read][1]:

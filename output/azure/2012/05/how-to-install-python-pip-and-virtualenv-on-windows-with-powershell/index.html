@@ -196,6 +196,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 
 <p>Press <code>Ctrl-Z</code> and hit return to exit the Python prompt. If you get an error when you type <code>python</code> saying &#8220;The term &#8216;foo&#8217; is not recognized as the name of a cmdlet, function, script file, or operable program,&#8221; then Python is not on your path. Add it first, and once your path is updated, restart PowerShell to ensure the new path is loaded and try typing <code>python</code> again. You should be good to&nbsp;go!</p>
 <h2>Get&nbsp;Pip</h2>
+<p><em>Note: As of Python 2.7.10, pip can be automatically installed as part of the Python for Windows installer. If you do that, you can skip this&nbsp;step.</em></p>
 <p><em>Note: Previous versions of this guide included a step to download and install Distribute. That is no longer needed; just get&nbsp;pip.</em></p>
 <p>The easiest way to install pip is to download the <a href="https://raw.github.com/pypa/pip/master/contrib/get-pip.py">get-pip.py</a> script, save it locally, then run it using&nbsp;Python.</p>
 <div class="codehilite"><pre>PS C:\&gt; python get-pip.py
@@ -233,8 +234,8 @@ Get-Content : Cannot find path &#39;Function:\TabExpansion&#39; because it does 
 
 <p>Unfortunately that&#8217;s a bug in the current released version (12.7.8) of virtualenvwrapper-powershell. It doesn&#8217;t actually cause any problems in practice as far as I know. It seems to have been fixed in the project but the fix hasn&#8217;t made it into a released version yet. I don&#8217;t know why; I&#8217;m not involved with the&nbsp;project.</p>
 <p>The other error you might see will say something like&nbsp;this:</p>
-<div class="codehilite"><pre>Virtualenvwrapper: Virtual environments directory 
-&#39;C:\Users\tyler/.virtualenvs&#39; does not exist. Create it or 
+<div class="codehilite"><pre>Virtualenvwrapper: Virtual environments directory
+&#39;C:\Users\tyler/.virtualenvs&#39; does not exist. Create it or
 set $env:WORKON_HOME to an existing directory.
 </pre></div>
 

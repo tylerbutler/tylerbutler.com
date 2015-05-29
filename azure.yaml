@@ -16,22 +16,27 @@ THEME_SETTINGS:
       enabled: yes
       username: tylerbutler
 
+LAZY_LINKS:
+  persist: yes
 
-LAZY_LINKS_PERSIST: yes
 PLUGIN_PERMISSIONS:
   MODIFY_RAW_POST:
   - engineer.plugins.bundled.LazyMarkdownLinksPlugin
 
-POST_RENAME_ENABLED: yes
-POST_RENAME_CONFIG:
-  draft: ~
-  review: '({status}) {slug}.md'
-METADATA_FORMAT: fenced
-FINALIZE_METADATA_CONFIG:
-  slug:
-    - published
-  url:
-    - published
+POST_RENAME:
+  enabled: yes
+  config:
+    draft: ~
+    review: '({status}) {slug}.md'
+
+FINALIZE_METADATA:
+  enabled: yes
+  format: fenced
+  config:
+    slug:
+      - published
+    url:
+      - published
 
 FEED_URL: 'http://feeds.feedburner.com/TylerButlerAllPosts'
 

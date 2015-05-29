@@ -1,0 +1,9 @@
+{% extends 'theme/template_page_simple.html' %}
+
+{% block page_title %}CBroussa is Loud{% endblock %}
+
+{% block content %}
+    {% filter markdown %}
+        CBroussa is loud enough that I can hear him in my office even when his door is closed.
+    {% endfilter %}
+{% endblock %}

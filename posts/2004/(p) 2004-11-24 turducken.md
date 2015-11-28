@@ -4,6 +4,8 @@ title: Turducken!
 timestamp: 04:32 PM Wednesday, November 24, 2004 PST
 status: published
 slug: turducken
+tags:
+- thanksgiving
 url: /2004/11/turducken/
 
 guid: http://blog.tylerbutler.com/index.php/2004/11/turducken/
@@ -24,4 +26,3 @@ soon as the holiday is over. I'll let you know how it goes. My mouth is
 watering already...
 
    [1]: http://www.cajungrocer.com/product_info.php?cPath=15_24&products_id=340
-

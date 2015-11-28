@@ -4,6 +4,8 @@ title: New Music
 timestamp: 06:12 AM Tuesday, November 08, 2005 PST
 status: published
 slug: new-music
+tags:
+- music
 url: /2005/11/new-music/
 
 guid: http://blog.tylerbutler.com/index.php/2005/11/new-music/

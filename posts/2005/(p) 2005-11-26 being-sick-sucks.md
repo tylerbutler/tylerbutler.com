@@ -4,6 +4,8 @@ title: Being Sick Sucks
 timestamp: 11:14 PM Saturday, November 26, 2005 PST
 status: published
 slug: being-sick-sucks
+tags:
+- thanksgiving
 url: /2005/11/being-sick-sucks/
 
 guid: http://blog.tylerbutler.com/index.php/2005/11/being-sick-sucks/

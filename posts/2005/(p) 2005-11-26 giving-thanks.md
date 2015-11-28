@@ -4,6 +4,8 @@ title: Giving Thanks
 timestamp: 11:27 PM Saturday, November 26, 2005 PST
 status: published
 slug: giving-thanks
+tags:
+- thanksgiving
 url: /2005/11/giving-thanks/
 
 guid: http://blog.tylerbutler.com/index.php/2005/11/giving-thanks/

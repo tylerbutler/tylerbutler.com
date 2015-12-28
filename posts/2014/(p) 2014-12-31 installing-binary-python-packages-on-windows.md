@@ -40,7 +40,10 @@ Because of the relative complexity of the problem, and all the potential ways va
 
 I am extremely glad I didn't try to write this guide a few years ago, when I wrote my Python installation guide, because in the time since then, some smart person[^2] at Microsoft felt the collective pain and anguish of Python developers everywhere and made [a package available directly on microsoft.com][msft_package] that "contains the compiler and set of system headers necessary for producing binary wheels for Python 2.7 packages." Hooray![^3]
 
-If you [download that package][msft_package] and install it, you should be able to successfully install whatever package that was erroring out with *Unable to find vcvarsall.bat* before. Make sure you re-open any PowerShell or cmd windows you had open to make sure your environment variables are up to date. Oh, and in case you care, the compiler and all its supporting files can be found in `~\AppData\Local\Programs\Common\Microsoft\Visual C++ for Python\9.0` after installation.
+If you [download that package][msft_package] and install it, you should be able to successfully install whatever package that was erroring out with *Unable to find vcvarsall.bat* before. Make sure you re-open any PowerShell or cmd windows you had open to make sure your environment variables are up to date. Oh, and in case you care, the compiler and all its supporting files can be found in the following directory after installation:
+
+    :::text
+    ~\AppData\Local\Programs\Common\Microsoft\Visual C++ for Python\9.0
 
 If you're still having problems, chances are your version of setuptools is out of date.
 

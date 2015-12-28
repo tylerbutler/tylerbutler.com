@@ -29,7 +29,7 @@ Once you have everything set up on Azure, the basic flow looks like this:
 
 - Edit and maintain your site in a Git or Mercurial repository
 - Build your site, commit to Git/Mercurial
-- Push the repository to GitHub/Bitbucket 
+- Push the repository to GitHub/Bitbucket
 - Azure site automatically updates itself in a few minutes
 
 In order to get this up and running, you can follow the steps below. Note that Engineer 0.5.0+ is needed. I'll eventually get these instructions incorporated into the official Engineer docs, but I wanted to get the info out there for folks without delay.
@@ -63,7 +63,7 @@ The output will be written to `./output/azure/` by default. You can obviously ch
 
 Go to your Azure portal and create a new web site. Configure the site to automatically deploy from a GitHub/Bitbucket repository and connect it to your repository. You can also choose to use manual Git deployment if you wish, or even just FTP the site content, but I recommend the GitHub auto-publish route; it's much simpler and automatic.
 
-Now every time you push a new commit to GitHub/Bitbucket, your Azure site will update automatically with the contents of the `./output/azure/` folder. This magic works because of the `.deployment` file in your repository, which is created automatically by Engineer when you initialize a new site using `engineer init -m azure`. You can read more about this file here: <https://github.com/projectkudu/kudu/wiki/Customizing-deployments>
+Now every time you push a new commit to GitHub/Bitbucket, your Azure site will update automatically with the contents of the `./output/azure/` folder. This magic works because of the `.deployment` file in your repository, which is created automatically by Engineer when you initialize a new site using `engineer init -m azure`. You can read more about this file [in the GitHub wiki](https://github.com/projectkudu/kudu/wiki/Customizing-deployments)
 
 If you want to change the output folder to a different path, you can do that in your Engineer config file. However, in addition, you'll need to tell Azure that the location of the site content within your repository is different. This is contained in -- you guessed it -- the `.deployment` file. Just change the value of the 'project' setting within that file.
 

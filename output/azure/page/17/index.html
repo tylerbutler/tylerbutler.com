@@ -149,6 +149,33 @@
                     <div class="day">23</div>
                     <div class="year">2009</div>
                     <div class="permalink">
+                        <a href="/2009/03/more-accessibility/"
+                           title="Permanent link to 'More Accessibility'">∞</a>
+                    </div>
+                            </div>
+                            <div class="attribution">
+                                            via Mark Pilgrim
+                                    </div>
+                                            </div>
+    
+                        <article class="post-content medium-9 large-10 columns">
+                <time datetime="2009-03-23 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress">More Accessibility</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p>Another great post on accessibility from Mark Pilgrim. Good follow-up to
+<a href="/2009/03/accessibility-insanity/">my last rant post</a>.</p>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info medium-3 large-2 columns">
+            <div class="post-date">
+                                    <div class="month">MAR</div>
+                    <div class="day">23</div>
+                    <div class="year">2009</div>
+                    <div class="permalink">
                         <a href="/2009/03/accessibility-insanity/"
                            title="Permanent link to 'Accessibility Insanity'">∞</a>
                     </div>
@@ -301,64 +328,6 @@ Gargantuan stupidity.
                                     <p>Some fan art of Calvin and Hobbes with Calvin a little older. Very
 interesting. I think it&#8217;s time to give my <a href="https://www.amazon.com/dp/0740748475?tag=tylerbutlerco-20&amp;camp=0&amp;creative=0&amp;linkCode=as4&amp;creativeASIN=0740748475&amp;adid=0G5WH77B5B39AK3368E8&amp;">Complete Calvin and Hobbes</a>
 another&nbsp;read-through.</p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info medium-3 large-2 columns">
-            <div class="post-date">
-                                    <div class="month">MAR</div>
-                    <div class="day">15</div>
-                    <div class="year">2009</div>
-                    <div class="permalink">
-                        <a href="/2009/03/linq-confusion/"
-                           title="Permanent link to 'LINQ Confusion'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/c">C#</a>
-                        </li>
-                                    </ul>
-                                </div>
-    
-                        <article class="post-content medium-9 large-10 columns">
-                <time datetime="2009-03-15 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2009/03/linq-confusion/"><span class="caps">LINQ</span> Confusion</a>
-                                            </h1>
-                </header>
-                                    <p>I find myself using <span class="caps">LINQ</span> a lot in my C# code these days. I use collections all
-over the place, and there&#8217;s no doubt that <span class="caps">LINQ</span> makes sorting and slicing
-collections a lot simpler&nbsp;code-wise.</p>
-<p>In my most recent weekend project, I need to randomly sort a list of cards,
-which are represented by an <strong>Action</strong> class. After some quick searching, I
-found <a href="http://www.dailycoding.com/Posts/random_sort_a_list_using_linq.aspx">some articles</a> that indicated the best way to do this would be to
-sort the list by random <span class="caps">GUID</span>. This makes sense, though I certainly wouldn&#8217;t
-have thought of it on my&nbsp;own.</p>
-<p>The examples given all worked, but not with my lists… With the following code,
-the compiler spits out several&nbsp;errors:</p>
-<div class="codehilite"><pre>List&lt;Action&gt; cards = new List&lt;Action&gt;();
-cards.Add( new OneCattle() );
-cards.Sort( a =&gt; Guid.NewGuid() ).ToList&lt;Action&gt;();
-
-Error    1    Delegate &#39;System.Comparison&lt;agricola.Action&gt;&#39; does not take &#39;1&#39; arguments
-Error    2    Cannot convert lambda expression to type &#39;System.Collections.Generic.IComparer&lt;agricola.Action&gt;&#39; because it is not a delegate type
-Error    3    Cannot implicitly convert type &#39;System.Guid&#39; to &#39;int&#39;
-Error    4    Cannot convert lambda expression to delegate type &#39;System.Comparison&lt;agricola.Action&gt;&#39; because some of the return types in the block are not implicitly convertible to the delegate return type
-</pre></div>
-
-
-<p>However, using a more explicit <span class="caps">LINQ</span> query without a lambda expression seems to
-work&nbsp;fine:</p>
-<div class="codehilite"><pre>var q = from a in cards
-        orderby Guid.NewGuid()
-        select a;
-List&lt;Action&gt; r = q.ToList&lt;Action&gt;();
-</pre></div>
-
-
-<p>Anybody know why this is? I haven&#8217;t wrapped my head around lambda expressions
-and the theory behind <span class="caps">LINQ</span> to understand what the root cause&nbsp;is…</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

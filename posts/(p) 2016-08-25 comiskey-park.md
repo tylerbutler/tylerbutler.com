@@ -1,0 +1,19 @@
+---
+
+title: Comiskey Park
+timestamp: 08:40 PM Thursday, August 25, 2016 PDT
+status: published
+slug: comiskey-park
+url: /2016/08/comiskey-park/
+
+---
+
+Well, it's happened again. They've gone and renamed Comiskey Park to something
+else. And I feel about the same way [I did back in 2004][1], when the last name
+change happened.
+
+[1]: /2004/05/all-i-said-was-comiskey-park/
+
+I lived a few blocks from the park at that time, as opposed to the few thousand
+I do now, but it still upsets me. Whatever happens, it'll always be Comiskey
+Park to me.

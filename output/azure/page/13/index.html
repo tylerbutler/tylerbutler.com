@@ -145,6 +145,40 @@
                                     <div class="row">
             <div class="post-info medium-3 large-2 columns">
             <div class="post-date">
+                                    <div class="month">JUL</div>
+                    <div class="day">10</div>
+                    <div class="year">2009</div>
+                    <div class="permalink">
+                        <a href="/2009/07/on-intelligent-interfaces/"
+                           title="Permanent link to 'On Intelligent Interfaces'">∞</a>
+                    </div>
+                            </div>
+                                        <ul class="tags">
+                                            <li><a href="/tag/design">design</a>
+                        </li>
+                                    </ul>
+                                </div>
+    
+                        <article class="post-content medium-9 large-10 columns">
+                <time datetime="2009-07-10 PDT"
+                      pubdate=""></time>
+                <header>
+                    <h1>
+                        <a href="http://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html">On Intelligent Interfaces</a>
+                        <span class="arrow">→</span>                    </h1>
+                </header>
+                                    <p><a href="http://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html">Mencius Moldbug</a> on why Wolfram Alpha shouldn&#8217;t have a natural language-based&nbsp;interface:</p>
+<blockquote>
+<p><em>You</em> know that when you type &#8220;two cups of flour and two eggs&#8221; (which now
+<a href="http://www82.wolframalpha.com/input/?i=two+cups+of+flour+and+two+eggs">works</a>) you are looking for a Nutrition Facts label. It is only Stephen
+Wolfram&#8217;s giant electronic brain which has to run ten million lines of code to
+figure this out. Inside your <em>own</em> brain, it is written on glowing letters
+across your&nbsp;forehead.</p>
+</blockquote>
+                                                            </article>
+            </div>                                                <div class="row">
+            <div class="post-info medium-3 large-2 columns">
+            <div class="post-date">
                                     <div class="month">JUN</div>
                     <div class="day">26</div>
                     <div class="year">2009</div>
@@ -355,95 +389,6 @@ disagree with the&nbsp;tradeoff.</p>
                                     <p>I love this game, and it&#8217;s great with a mouse. But it would make an even more
 amazing iPhone&nbsp;game&#8230;</p>
 <p><a href="http://jiggmin.com/play_game.php?title=Effing+Hail">http://jiggmin.com/play_game.php?title=Effing+Hail</a></p>
-                                                            </article>
-            </div>                                                <div class="row">
-            <div class="post-info medium-3 large-2 columns">
-            <div class="post-date">
-                                    <div class="month">JUN</div>
-                    <div class="day">15</div>
-                    <div class="year">2009</div>
-                    <div class="permalink">
-                        <a href="/2009/06/powershell-for-fun-and-profit/"
-                           title="Permanent link to 'PowerShell for Fun and Profit'">∞</a>
-                    </div>
-                            </div>
-                                        <ul class="tags">
-                                            <li><a href="/tag/powershell">powershell</a>
-                        </li>
-                                            <li><a href="/tag/sharepoint">sharepoint</a>
-                        </li>
-                                    </ul>
-                                </div>
-    
-                        <article class="post-content medium-9 large-10 columns">
-                <time datetime="2009-06-15 PDT"
-                      pubdate=""></time>
-                <header>
-                    <h1>
-                        <a href="        /2009/06/powershell-for-fun-and-profit/">PowerShell for Fun and Profit</a>
-                                            </h1>
-                </header>
-                                    <p>Stefan Goßner has a great post on his blog covering <a href="http://blogs.technet.com/stefan_gossner/pages/content-deployment-best-practices.aspx">some common problems</a>
-that people have with Content Deployment in SharePoint. Problem 13 has to do
-with the default timeout window for Content Deployment jobs. Stefan provides
-some sample code that you can use to adjust the timeout value, since it&#8217;s not
-exposed through the <span class="caps">UI</span>, but I find writing and running sample code on a server
-a bit of a pain. Instead of writing code, you can actually use PowerShell to
-do this directly from the <span class="caps">PS</span>&nbsp;prompt.</p>
-<p>The key to doing this is loading the SharePoint DLLs into your PowerShell
-environment. You can do this using the System.Reflection.Assembly class. Take
-a look at this sample&nbsp;script:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">param</span><span class="p">(</span> <span class="nv">$newTimeout</span> <span class="p">=</span> <span class="n">600</span> <span class="p">)</span>
-
-<span class="no">[System.Reflection.Assembly]</span><span class="p">::</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;Microsoft.SharePoint.Publishing, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c&quot;</span><span class="p">)</span>
-
-<span class="nv">$cdconfig</span> <span class="p">=</span> <span class="no">[Microsoft.SharePoint.Publishing.Administration.ContentDeploymentConfiguration]</span><span class="p">::</span><span class="n">GetInstance</span><span class="p">()</span>
-
-<span class="nv">$cdconfig</span><span class="p">.</span><span class="n">RemoteTimeout</span> <span class="p">=</span> <span class="nv">$newTimeout</span>
-<span class="nv">$cdconfig</span><span class="p">.</span><span class="n">Update</span><span class="p">()</span>
-
-<span class="s2">&quot;Updated RemoteTimeout to $newTimeout seconds.&quot;</span>
-</pre></div>
-</td></tr></table>
-
-<p>In line 3, I load up the Microsoft.SharePoint.Publishing <span class="caps">DLL</span>, then I grab the
-<code>ContentDeploymentConfiguration</code> (line 5) using the <code>GetInstance()</code> static method.
-I update the <code>RemoteTimeout</code> property, then call <code>Update()</code>, and we&#8217;re done. No
-code to write and&nbsp;compile.</p>
-<p>This example uses the param keyword, which means you can save it as
-<code>ChangeRemoteTimeout.ps1</code>, then run it like&nbsp;this:</p>
-<div class="codehilite"><pre>PS C:\&gt; ChangeRemoteTimeout –newTimeout 1200
-</pre></div>
-
-
-<p>This is completely optional, of course, but if you find yourself doing this a
-lot, it might be worth saving it as a reusable&nbsp;script.</p>
-<p>You might also want to make changes to some of the options that are exposed
-through the <span class="caps">UI</span> already. Here&#8217;s an&nbsp;example:</p>
-<div class="codehilite"><pre><span class="x"><span class="caps">PS</span> C:\&gt; [System.Reflection.Assembly]::Load(&quot;Microsoft.SharePoint.Publishing, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c&quot;)</span>
-<span class="x"><span class="caps">PS</span> C:\&gt; </span><span class="p">$</span><span class="nv">cdconfig</span><span class="x"> = [Microsoft.SharePoint.Publishing.Administration.ContentDeploymentConfiguration]::GetInstance()</span>
-<span class="x"><span class="caps">PS</span> C:\&gt; </span><span class="p">$</span><span class="nv">cdconfig</span><span class="p">.</span><span class="nv">AcceptIncomingJobs</span><span class="x"> = </span><span class="p">$</span><span class="nv">true</span><span class="x"></span>
-<span class="x"><span class="caps">PS</span> C:\&gt; </span><span class="p">$</span><span class="nv">cdconfig</span><span class="p">.</span><span class="nv">RequiresSecureConnection</span><span class="x"> = </span><span class="p">$</span><span class="nv">false</span><span class="x"></span>
-<span class="x"><span class="caps">PS</span> C:\&gt; </span><span class="p">$</span><span class="nv">cdconfig</span><span class="p">.</span><span class="nv">Update</span><span class="p">()</span><span class="x"></span>
-</pre></div>
-
-
-<p>In this case, I&#8217;m configuring the farm to accept incoming deployment jobs and
-not require secure connections. You can also make additional changes to other
-properties, such as FileMaxSize and RemotePollingInterval using this method.
-Stefan covers these properties in his <a href="http://blogs.technet.com/stefan_gossner/archive/2008/05/28/pimp-my-content-deployment-job.aspx">Pimp My Content Deployment Job</a>&nbsp;post.</p>
-<p>One other note&#8230; Using .<span class="caps">NET</span> DLLs in PowerShell is generally supported across
-the board. It&#8217;s not limited to the SharePoint DLLs. There&#8217;s some pretty
-exciting stuff you can do here once you start playing&nbsp;around.</p>
                                                             </article>
             </div>                        </div>
     <div class="row archives">

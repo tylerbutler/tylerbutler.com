@@ -16,7 +16,7 @@ that were linked from the original article, then branch out from there, etc.
 etc. I'd end up in a completely different subject than the one I'd started in,
 and I learned a lot, plus it was just a ton of fun.
 
-I started calling these [Wikipedia Walks][1]. The concept is simple - start at
+I started calling these *Wikipedia Walks*. The concept is simple - start at
 an article you find interesting, then just continue on to any articles linked
 from the original. Finish when you get bored. To make it more interesting, you
 should record both the starting article and the ending article, so you can see
@@ -24,6 +24,4 @@ just how far off the beaten path you've gotten.
 
 To start, I'd suggest the article on [Game Theory][2].
 
-   [1]: http://www.tylerbutler.com/tags/wikipedia-walks/
    [2]: http://en.wikipedia.org/wiki/Game_theory
-

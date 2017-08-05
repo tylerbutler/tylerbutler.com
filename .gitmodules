@@ -1,7 +1,3 @@
-[submodule "output/github"]
-	path = output/github
-	url = https://github.com/tylerbutler/tylerbutler.com.git
-	branch = gh-pages
-[submodule "output/github.io"]
-	path = output/github.io
-	url = https://github.com/tylerbutler/tylerbutler.github.io.git
+[submodule "themes/ananke"]
+	path = themes/ananke
+	url = https://github.com/budparr/gohugo-theme-ananke.git

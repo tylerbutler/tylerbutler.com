@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://tylerbutler.com/posts/new-post/</loc>
+    <lastmod>2017-08-06T10:05:00-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://tylerbutler.com/posts/p-2017-08-05-coke-zero-ii-the-review/</loc>
     <lastmod>2017-08-05T13:32:00-07:00</lastmod>
   </url>
@@ -40,6 +45,12 @@
   </url>
   
   <url>
+    <loc>http://tylerbutler.com/series/foobar/</loc>
+    <lastmod>2017-08-06T10:05:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://tylerbutler.com/tags/music/</loc>
     <lastmod>2015-11-27T12:01:00-08:00</lastmod>
     <priority>0</priority>
@@ -47,12 +58,18 @@
   
   <url>
     <loc>http://tylerbutler.com/posts/</loc>
-    <lastmod>2017-08-05T13:32:00-07:00</lastmod>
+    <lastmod>2017-08-06T10:05:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://tylerbutler.com/projects/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tylerbutler.com/series/</loc>
+    <lastmod>2017-08-06T10:05:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -64,7 +81,7 @@
   
   <url>
     <loc>http://tylerbutler.com/tags/thanksgiving/</loc>
-    <lastmod>2015-11-27T12:01:00-08:00</lastmod>
+    <lastmod>2017-08-06T10:05:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -76,7 +93,7 @@
   
   <url>
     <loc>http://tylerbutler.com/</loc>
-    <lastmod>2017-08-05T13:32:00-07:00</lastmod>
+    <lastmod>2017-08-06T10:05:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   

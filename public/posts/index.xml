@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Tyler Butler</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 05 Aug 2017 13:32:00 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 06 Aug 2017 10:05:00 -0700</lastBuildDate>
     
 	<atom:link href="http://tylerbutler.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>New Post</title>
+      <link>http://tylerbutler.com/posts/new-post/</link>
+      <pubDate>Sun, 06 Aug 2017 10:05:00 -0700</pubDate>
+      
+      <guid>http://tylerbutler.com/posts/new-post/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Coke Zero II: The Review</title>

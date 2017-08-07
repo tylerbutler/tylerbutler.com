@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Series on Tyler Butler</title>
+    <link>http://tylerbutler.com/series/</link>
+    <description>Recent content in Series on Tyler Butler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Aug 2017 10:05:00 -0700</lastBuildDate>
+    
+	<atom:link href="http://tylerbutler.com/series/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Foobar</title>
+      <link>http://tylerbutler.com/series/foobar/</link>
+      <pubDate>Sun, 06 Aug 2017 10:05:00 -0700</pubDate>
+      
+      <guid>http://tylerbutler.com/series/foobar/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

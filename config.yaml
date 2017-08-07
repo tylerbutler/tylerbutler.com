@@ -1,3 +1,37 @@
-baseURL: http://example.org/
+baseURL: http://tylerbutler.com/
 languageCode: en-us
-title: My New Hugo Site
+title: Tyler Butler
+paginate: 5
+#theme: ananke
+theme: dark_rainbow
+
+taxonomies:
+  tag: tags
+
+params:
+  theme:
+    bigfoot:
+      enabled: yes
+    typekit_id: vty2qol
+    sharing:
+      enabled: yes
+      facebook:
+        enabled: yes
+        app_id: '298536070167430'
+      twitter:
+        enabled: no
+        username: tylerbutler
+    comments:
+      enabled: yes
+      provider: "disqus"
+      account: my_account
+
+#sectionPagesMenu: main
+menu:
+  main:
+    - Name: "articles"
+      Identifier: "posts"
+      URL: "/posts/"
+    - Name: "projects"
+      Identifier: "projects"
+      URL: "/projects/"

@@ -264,18 +264,9 @@
                                             </h1>
                 </header>
                                     <p>File this away in your &#8220;might come in handy some day&#8221; drawer&#8230; Here&#8217;s a quick PowerShell script to calculate the Base64 <span class="caps">SHA256</span> hash of a&nbsp;file:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">param</span><span class="p">(</span> 
+<div class="codehilite"><pre><span class="k">param</span><span class="p">(</span> 
     <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$True</span><span class="p">,</span>
-               <span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$True</span><span class="p">)]</span>
+            <span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$True</span><span class="p">)]</span>
     <span class="nv">$filePath</span> 
 <span class="p">)</span>
 
@@ -284,7 +275,7 @@
 <span class="nv">$hash</span> <span class="p">=</span> <span class="no">[System.Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$hasher</span><span class="p">.</span><span class="n">ComputeHash</span><span class="p">(</span><span class="nv">$content</span><span class="p">))</span>
 <span class="nb">Write-Output</span> <span class="p">(</span><span class="nv">$filePath</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s2">&quot;: &quot;</span> <span class="p">+</span> <span class="nv">$hash</span><span class="p">)</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>You can pipe every file in a directory to this script like&nbsp;this:</p>
 <div class="codehilite"><pre><span class="n">ls</span> <span class="o">-File</span> <span class="p">|%</span> <span class="p">{.\</span><span class="nb">Get-FileHash</span><span class="p">.</span><span class="n">ps1</span> <span class="nv">$_</span><span class="p">}</span>

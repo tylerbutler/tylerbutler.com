@@ -170,18 +170,9 @@
                                             </h1>
                 </header>
                                     <p>File this away in your &#8220;might come in handy some day&#8221; drawer&#8230; Here&#8217;s a quick PowerShell script to calculate the Base64 <span class="caps">SHA256</span> hash of a&nbsp;file:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">param</span><span class="p">(</span> 
+<div class="codehilite"><pre><span class="k">param</span><span class="p">(</span> 
     <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$True</span><span class="p">,</span>
-               <span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$True</span><span class="p">)]</span>
+            <span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$True</span><span class="p">)]</span>
     <span class="nv">$filePath</span> 
 <span class="p">)</span>
 
@@ -190,7 +181,7 @@
 <span class="nv">$hash</span> <span class="p">=</span> <span class="no">[System.Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$hasher</span><span class="p">.</span><span class="n">ComputeHash</span><span class="p">(</span><span class="nv">$content</span><span class="p">))</span>
 <span class="nb">Write-Output</span> <span class="p">(</span><span class="nv">$filePath</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s2">&quot;: &quot;</span> <span class="p">+</span> <span class="nv">$hash</span><span class="p">)</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>You can pipe every file in a directory to this script like&nbsp;this:</p>
 <div class="codehilite"><pre><span class="n">ls</span> <span class="o">-File</span> <span class="p">|%</span> <span class="p">{.\</span><span class="nb">Get-FileHash</span><span class="p">.</span><span class="n">ps1</span> <span class="nv">$_</span><span class="p">}</span>
@@ -201,20 +192,7 @@
 
 <h3>C#&nbsp;</h3>
 <p>Or, if you prefer, a C#&nbsp;example:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="codehilite"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.<span class="caps">IO</span></span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Security.Cryptography</span><span class="p">;</span>
 
@@ -229,37 +207,11 @@
     <span class="k">return</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToBase64String</span><span class="p">(</span><span class="n">hashValue</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
-</td></tr></table>
+
 
 <h3>Python</h3>
 <p>Finally, the same thing in Python. This function is a bit more involved than the other examples because it takes advantage of Python&#8217;s dynamic typing. You can pass it a string or any object with a <code>read</code> attribute. Note that this function relies on the <a href="http://pypi.python.org/pypi/path.py/2.4.1">path.py</a> module, though you can remove that dependency pretty&nbsp;easily. </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kn">import</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">base64</span>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">base64</span>
 <span class="kn">from</span> <span class="nn">path</span> <span class="kn">import</span> <span class="n">path</span>
 
 <span class="k">def</span> <span class="nf">calc_sha</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
@@ -287,7 +239,7 @@
     <span class="n">r</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">r</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>This particular implementation can also be found in my <a href="http://pypi.python.org/pypi/propane/0.1.2">propane</a> utility library (in the <code>filetools</code> module).</p>
                                                                                                                 

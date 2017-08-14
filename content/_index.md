@@ -1,0 +1,5 @@
+---
+
+showsidebar: yes
+#homepagesection: yes
+---

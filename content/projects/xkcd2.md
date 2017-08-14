@@ -1,25 +1,18 @@
 ---
+
 title: xkcd 2
+date: 2012-05-17
+description: A [Flask](http://flask.pocoo.org/)-based web application that displays xkcd comics in a slightly different way.
 
 ---
 
+## Overview
 
-{% extends 'custom/project_page.html' %}
+xkcd 2 is a slightly different presentation of [xkcd][] comics. You can [read more about why I made it][1]
+and [check out the code on github][2].
 
-{% block name %}xkcd 2{% endblock %}
+Licensed under the MIT license.
 
-{% block details %}
-    {% filter markdown %}
-        ## Overview
-
-        xkcd 2 is a slightly different presentation of [xkcd][] comics. You can [read more about why I made it][2]
-        and [check out the code on github][1].
-
-        Licensed under the MIT license.
-
-        [xkcd]: http://xkcd.com
-        [1]: https://github.com/tylerbutler/xkcd2
-        [2]: /2012/05/xkcd-2/
-
-    {% endfilter %}
-{% endblock %}
+[xkcd]: http://xkcd.com
+[1]: {{< relref "articles/2012/2012-05-17-xkcd-2.md" >}}
+[2]: https://github.com/tylerbutler/xkcd2

@@ -20,7 +20,7 @@ First, the things I agree with:
 
 ## Yes, the command line and official Git documentation suck.
 
-I've [complained about this before][git post]. Software engineers like to believe that if we know how to do one thing, then we can work out how to do all similar things quickly by applying that knowledge. After all, software engineering is advanced problem solving and critical thinking, so applying previous knowledge to current problems is something we're pretty good at. 
+I've [complained about this before][git post]. Software engineers like to believe that if we know how to do one thing, then we can work out how to do all similar things quickly by applying that knowledge. After all, software engineering is advanced problem solving and critical thinking, so applying previous knowledge to current problems is something we're pretty good at.
 
 Frankly, the Git command line breaks this all the time. Some commands need some flags; others don't. Conceptually similar operations require different top-level commands (not just flags) depending on what you're doing that operation on.[^1] It's madness, and I think it's safe to say that the command line isn't *designed*; it's merely *implemented.*
 
@@ -86,7 +86,7 @@ Ummm, OK... I'll forgive the conflation of GitHub with Git -- they are *not* the
 
 You absolutely must understand that Git (and Mercurial) are not centralized systems. They just aren't. They weren't meant to be. I believe that the decentralized model is better, but if you don't, that's fine. But the danger in comparing a centralized system to a decentralized one is that fundamental assumptions about behavior can't be made. *Of course* Git doesn't automatically throw your changes up for the world to see the moment you commit them. You haven't said they're ready to share.
 
-Now admittedly this is more steps than the Subversion model -- if your intent is to immediately share all code you commit. That feels so incredibly dangerous to me that I would freak out a little bit if working on a system like that, but... that's just me. 
+Now admittedly this is more steps than the Subversion model -- if your intent is to immediately share all code you commit. That feels so incredibly dangerous to me that I would freak out a little bit if working on a system like that, but... that's just me.
 
 
 ## Let's talk about defaults.
@@ -103,7 +103,7 @@ Whatever defaults Git chooses (even if it miraculously became consistent overnig
 
 Having written all of this, I think Bennett has an excellent point when he writes -- in [his reponse to a comment](https://steveko.wordpress.com/2012/02/24/10-things-i-hate-about-git/#comment-82):
 
-> The annoying thing about VCS, compared to say, an editor, is that the basic rule of “if you don’t like it, use something else” doesn’t apply. (So in my case, since I never start open source projects, I’ll never get to choose a Git alternative.) 
+> The annoying thing about VCS, compared to say, an editor, is that the basic rule of “if you don’t like it, use something else” doesn’t apply. (So in my case, since I never start open source projects, I’ll never get to choose a Git alternative.)
 
 That truly is a problem. You have to play by other people's rules if you want to join their game, which means you have to learn -- or relearn -- some things. I personally welcome learning new things as a general rule, but perhaps I am unique or unusual in that regard.
 
@@ -151,7 +151,7 @@ The future is waiting. Go meet it.
 
     > To reset one file in your working directory to its committed state:
 
-    >     :::text
+    >     ```text
     >     git checkout file.txt
 
     > To reset every file in your working directory to its committed state:

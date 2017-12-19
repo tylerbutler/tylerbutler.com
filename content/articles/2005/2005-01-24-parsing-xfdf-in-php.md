@@ -31,7 +31,7 @@ The code below is not entirely complete since I snipped it out of a larger
 file, but if you look at it, I think you'll get the idea. It's pretty simple
 once you figure out the way PHP does XML processing.
 
-```
+```php
 /* BEGIN VARIABLE DECLARATIONS */
 //global variables for XML parsing
 $values = array();

@@ -41,9 +41,10 @@ So with the definitions out of the way, let's get started...
 
 For the most part, this guide assumes you've actually used PowerShell a few times and know how to run scripts. If that's not the case, though, then the very first thing you'll want to do is enable scripts to run on your system using the `Set-ExecutionPolicy` command. There's [a great article on TechNet](http://technet.microsoft.com/en-us/library/ee176949.aspx) that covers this in detail, so I won't go into detail here. You can also skip this step for now if you want. Just read that article if you run into the following error message at any point:
 
-    :::text
-    ...cannot be loaded because the execution of scripts is disabled on
-    this system. Please see "get-help about_signing" for more details.
+```text
+...cannot be loaded because the execution of scripts is disabled on
+this system. Please see "get-help about_signing" for more details.
+```
 
 ## Get Python
 
@@ -55,11 +56,12 @@ Unfortunately, the installer does *not* add the `Scripts` (i.e. `C:\Python27\Scr
 
 Once you've installed Python, open up a PowerShell window and type `python` and press enter. You should see something like this:
 
-    :::text
-    PS C:\> python
-    Python 2.7.8 (default, Jun 30 2014, 16:03:49) [MSC v.1500 32 bit (Intel)] on win32
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>>
+```text
+PS C:\> python
+Python 2.7.8 (default, Jun 30 2014, 16:03:49) [MSC v.1500 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
 
 Press `Ctrl-Z` and hit return to exit the Python prompt. If you get an error when you type `python` saying "The term 'foo' is not recognized as the name of a cmdlet, function, script file, or operable program," then Python is not on your path. Add it first, and once your path is updated, restart PowerShell to ensure the new path is loaded and try typing `python` again. You should be good to go!
 

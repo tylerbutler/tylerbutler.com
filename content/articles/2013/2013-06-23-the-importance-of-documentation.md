@@ -2,6 +2,7 @@
 
 title: The Importance of Documentation
 date: '2013-06-23T02:26:00-07:00'
+teaser: true
 tags:
 - documentation
 engineer:
@@ -20,7 +21,7 @@ Of course, it'd be understandable for you to think otherwise. If you visit the G
 
 You're happily informed that "More documentation is available at [http://html5lib.readthedocs.org/](http://html5lib.readthedocs.org/)" but if you head over there you'll notice that there isn't really much more there. The "more documentation" they speak of is a *single page* with information about "the moving parts" which just doesn't do much to help you know how to actually use the API to do anything really meaningful.
 
-<!-- more -->
+<!--more-->
 
 The only reason I cared at all about html5lib this evening was because I set up a fresh virtualenv and installed Engineer, only to be greeted by an exception when I tried to build my site. Ugh. Turns out html5lib has pushed out a couple of new versions since I last installed Engineer, and one of those updates broke my code.[^docs1] It didn't take long to narrow things down to my simple `html5lib.parseFragment()` call, which was now throwing an exception. Fixing that was relatively straightforward, though it was pretty much me just trying random arguments in the method call. Going further down the rabbit hole, though, it's become clear that the fix is not as simple as I'd hoped, so I'm just [cauterizing things](https://github.com/tylerbutler/engineer/issues/63) for now. This actually turns out to be pretty important since right now anyone trying out Engineer 0.4.3 (the most recent version) will see an exception on their first build. Not exactly the first impression quality software should make, eh?
 

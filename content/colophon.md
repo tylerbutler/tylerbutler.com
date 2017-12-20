@@ -3,7 +3,7 @@
 title: Colophon
 type: pages
 
-showsidebar: no
+showsidebar: yes
 
 #sidebar: This is some custom **sidebar** content!
 

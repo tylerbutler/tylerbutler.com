@@ -2,6 +2,7 @@
 
 title: About
 type: pages
+showsidebar: no
 
 ---
 

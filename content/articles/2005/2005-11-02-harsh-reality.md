@@ -2,6 +2,7 @@
 
 title: Harsh Reality
 date: '2005-11-02T07:34:00-08:00'
+slug: harsh-reality
 engineer:
   slug: harsh-reality
   url: /2005/11/harsh-reality/

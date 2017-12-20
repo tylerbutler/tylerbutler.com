@@ -2,6 +2,7 @@
 
 title: Buying Toothpaste
 date: '2006-12-25T03:25:00-08:00'
+slug: buying-toothpaste
 engineer:
   slug: buying-toothpaste
   url: /2006/12/buying-toothpaste/

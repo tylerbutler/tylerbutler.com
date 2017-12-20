@@ -2,6 +2,7 @@
 
 title: Assumptions Make Life Simpler
 date: '2009-08-13T20:14:00-07:00'
+slug: assumptions-make-life-simpler
 tags:
 - design
 engineer:

@@ -2,6 +2,7 @@
 
 title: Building tylerbutler.com on MOSS
 date: '2006-11-04T02:15:00-08:00'
+slug: building-tylerbutlercom-on-moss
 engineer:
   slug: building-tylerbutlercom-on-moss
   url: /2006/11/building-tylerbutlercom-on-moss/

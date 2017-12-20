@@ -3,6 +3,7 @@
 title: Brave New World
 date: '2009-08-14T22:09:00-07:00'
 link: http://www.recombinantrecords.net/docs/2009-05-Amusing-Ourselves-to-Death.html
+slug: brave-new-world
 engineer:
   slug: brave-new-world
   url: /2009/08/brave-new-world/

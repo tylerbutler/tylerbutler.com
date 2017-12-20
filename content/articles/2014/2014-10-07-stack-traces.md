@@ -5,6 +5,7 @@ date: '2014-10-07T11:04:00-07:00'
 link: http://rustyshelf.org/2014/08/07/thoughts-on-swift-from-an-idiot/
 via: Brent Simmons
 vialink: http://inessential.com/2014/08/27/a_rant_about_stack_traces
+slug: stack-traces
 engineer:
   slug: stack-traces
   url: /2014/10/stack-traces/

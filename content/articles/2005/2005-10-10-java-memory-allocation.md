@@ -4,6 +4,7 @@ title: Java Memory Allocation
 date: '2005-10-10T01:00:00-07:00'
 link: http://www-128.ibm.com/developerworks/java/library/j-jtp09275.html?ca=dgr-lnxw01JavaUrbanLegends
 via: Slashdot
+slug: java-memory-allocation
 engineer:
   slug: java-memory-allocation
   url: /2005/10/java-memory-allocation/

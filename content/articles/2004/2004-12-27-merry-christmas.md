@@ -2,6 +2,7 @@
 
 title: Merry Christmas!
 date: '2004-12-27T19:51:00-08:00'
+slug: merry-christmas
 engineer:
   slug: merry-christmas
   url: /2004/12/merry-christmas/

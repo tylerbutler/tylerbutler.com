@@ -2,6 +2,7 @@
 
 title: Bear Beer Guzzler
 date: '2004-08-19T06:20:00-07:00'
+slug: bear-beer-guzzler
 engineer:
   slug: bear-beer-guzzler
   url: /2004/08/bear-beer-guzzler/

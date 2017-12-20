@@ -2,6 +2,7 @@
 
 title: Correlation != Causation
 date: '2007-08-27T23:55:00-07:00'
+slug: correlation-causation
 engineer:
   slug: correlation-causation
   url: /2007/08/correlation-causation/

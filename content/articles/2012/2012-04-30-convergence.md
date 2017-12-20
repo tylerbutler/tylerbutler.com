@@ -4,6 +4,7 @@ title: Convergence
 date: '2012-04-30T14:56:00-07:00'
 via: Dan Provost
 vialink: http://www.therussiansusedapencil.com/post/21738046940/anything-can-be-forced-to-converge-but-the
+slug: convergence
 tags:
 - quote
 engineer:

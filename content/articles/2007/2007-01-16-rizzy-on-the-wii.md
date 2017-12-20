@@ -2,6 +2,7 @@
 
 title: Rizzy on the Wii
 date: '2007-01-16T00:52:00-08:00'
+slug: rizzy-on-the-wii
 tags:
 - wii
 engineer:

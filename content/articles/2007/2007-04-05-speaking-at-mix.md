@@ -2,6 +2,7 @@
 
 title: Speaking at MIX
 date: '2007-04-05T18:30:00-07:00'
+slug: speaking-at-mix
 tags:
 - mix07
 engineer:

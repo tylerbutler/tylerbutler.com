@@ -2,6 +2,7 @@
 
 title: Gettin' Famous
 date: '2007-06-02T00:57:00-07:00'
+slug: gettin-famous
 tags:
 - mix07
 engineer:

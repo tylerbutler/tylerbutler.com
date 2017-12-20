@@ -2,6 +2,7 @@
 
 title: Del.icio.us RSS Feed
 date: '2005-04-24T06:14:00-07:00'
+slug: delicious-rss-feed
 engineer:
   slug: delicious-rss-feed
   url: /2005/04/delicious-rss-feed/

@@ -2,6 +2,7 @@
 
 title: Tyler, a Novelist?
 date: '2004-11-01T05:46:00-08:00'
+slug: tyler-a-novelist
 tags:
 - NaNoWriMo
 engineer:

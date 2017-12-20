@@ -2,6 +2,7 @@
 
 title: 'Word of the Day: Cruft'
 date: '2004-08-13T17:37:00-07:00'
+slug: word-of-the-day-cruft
 engineer:
   slug: word-of-the-day-cruft
   url: /2004/08/word-of-the-day-cruft/

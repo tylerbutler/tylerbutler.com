@@ -2,6 +2,7 @@
 
 title: Wikipedia in Tok Pisin
 date: '2005-07-04T17:09:00-07:00'
+slug: wikipedia-in-tok-pisin
 engineer:
   slug: wikipedia-in-tok-pisin
   url: /2005/07/wikipedia-in-tok-pisin/

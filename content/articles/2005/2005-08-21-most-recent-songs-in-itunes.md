@@ -2,6 +2,7 @@
 
 title: Most Recent Songs in iTunes
 date: '2005-08-21T23:19:00-07:00'
+slug: most-recent-songs-in-itunes
 engineer:
   slug: most-recent-songs-in-itunes
   url: /2005/08/most-recent-songs-in-itunes/

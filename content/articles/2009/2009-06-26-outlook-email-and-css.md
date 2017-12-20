@@ -2,6 +2,7 @@
 
 title: Outlook, Email, and CSS
 date: '2009-06-26T17:11:00-07:00'
+slug: outlook-email-and-css
 engineer:
   slug: outlook-email-and-css
   url: /2009/06/outlook-email-and-css/

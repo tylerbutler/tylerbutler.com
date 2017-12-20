@@ -2,6 +2,7 @@
 
 title: Acrobat Reader 8 Sucks Less
 date: '2007-01-17T20:15:00-08:00'
+slug: acrobat-reader-8-sucks-less
 engineer:
   slug: acrobat-reader-8-sucks-less
   url: /2007/01/acrobat-reader-8-sucks-less/

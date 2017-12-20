@@ -2,6 +2,7 @@
 
 title: Problem Finders vs. Problem Solvers
 date: '2006-12-07T06:35:00-08:00'
+slug: problem-finders-vs-problem-solvers
 engineer:
   slug: problem-finders-vs-problem-solvers
   url: /2006/12/problem-finders-vs-problem-solvers/

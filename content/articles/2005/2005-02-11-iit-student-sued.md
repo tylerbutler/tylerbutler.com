@@ -2,6 +2,7 @@
 
 title: IIT Student Sued
 date: '2005-02-11T22:00:00-08:00'
+slug: iit-student-sued
 engineer:
   slug: iit-student-sued
   url: /2005/02/iit-student-sued/

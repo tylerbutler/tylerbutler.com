@@ -2,6 +2,7 @@
 
 title: Site Problems
 date: '2007-01-23T07:35:00-08:00'
+slug: site-problems
 engineer:
   slug: site-problems
   url: /2007/01/site-problems/

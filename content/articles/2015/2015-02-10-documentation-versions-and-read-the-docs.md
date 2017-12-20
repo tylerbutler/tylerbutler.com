@@ -2,6 +2,7 @@
 
 title: Documentation, Versions, and Read the Docs
 date: '2015-02-10T20:45:00-08:00'
+slug: documentation-versions-and-read-the-docs
 tags:
 - engineer
 - documentation

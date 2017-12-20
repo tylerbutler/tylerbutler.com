@@ -4,6 +4,7 @@ title: Malaria Vaccine
 date: '2012-11-21T19:00:00-08:00'
 via: Bill Gates
 vialink: https://twitter.com/BillGates/statuses/248936929175953408
+slug: malaria-vaccine
 engineer:
   slug: malaria-vaccine
   url: /2012/11/malaria-vaccine/

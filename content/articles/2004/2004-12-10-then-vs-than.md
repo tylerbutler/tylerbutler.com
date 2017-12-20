@@ -2,6 +2,7 @@
 
 title: '"Then" Vs. "Than"'
 date: '2004-12-10T23:09:00-08:00'
+slug: then-vs-than
 tags:
 - words
 engineer:

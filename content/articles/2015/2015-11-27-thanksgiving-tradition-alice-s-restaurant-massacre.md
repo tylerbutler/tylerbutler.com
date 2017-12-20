@@ -2,6 +2,7 @@
 
 title: 'Thanksgiving Tradition: Alice''s Restaurant Massacre'
 date: '2015-11-27T12:01:00-08:00'
+slug: thanksgiving-tradition-alice-s-restaurant-massacre
 tags:
 - music
 - thanksgiving

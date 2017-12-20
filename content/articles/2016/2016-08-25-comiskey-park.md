@@ -2,6 +2,7 @@
 
 title: Comiskey Park
 date: '2016-08-25T20:40:00-07:00'
+slug: comiskey-park
 engineer:
   slug: comiskey-park
   url: /2016/08/comiskey-park/

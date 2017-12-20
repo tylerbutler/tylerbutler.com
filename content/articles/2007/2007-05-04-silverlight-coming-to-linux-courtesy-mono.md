@@ -2,6 +2,7 @@
 
 title: Silverlight Coming to Linux Courtesy Mono
 date: '2007-05-04T00:10:00-07:00'
+slug: silverlight-coming-to-linux-courtesy-mono
 tags:
 - mix07
 engineer:

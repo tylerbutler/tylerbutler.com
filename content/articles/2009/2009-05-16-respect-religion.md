@@ -3,6 +3,7 @@
 title: Respect Religion
 date: '2009-05-16T15:37:00-07:00'
 link: http://www.marco.org/50630064
+slug: respect-religion
 engineer:
   slug: respect-religion
   url: /2009/05/respect-religion/

@@ -2,6 +2,7 @@
 
 title: 'Coke Zero II: The Review'
 date: '2017-08-05T13:32:00-07:00'
+slug: coke-zero-ii-the-review
 engineer:
   slug: coke-zero-ii-the-review
   url: /2017/08/coke-zero-ii-the-review/

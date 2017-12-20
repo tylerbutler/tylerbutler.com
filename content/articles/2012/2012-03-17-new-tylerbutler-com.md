@@ -2,6 +2,7 @@
 
 title: New tylerbutler.com
 date: '2012-03-17T23:30:00-07:00'
+slug: new-tylerbutler-com
 engineer:
   slug: new-tylerbutler-com
   url: /2012/03/new-tylerbutler-com/

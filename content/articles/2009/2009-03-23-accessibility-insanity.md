@@ -2,6 +2,7 @@
 
 title: Accessibility Insanity
 date: '2009-03-23T01:32:00-07:00'
+slug: accessibility-insanity
 engineer:
   slug: accessibility-insanity
   url: /2009/03/accessibility-insanity/

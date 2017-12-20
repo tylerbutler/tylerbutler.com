@@ -2,6 +2,7 @@
 
 title: Being Sick Sucks
 date: '2005-11-26T23:14:00-08:00'
+slug: being-sick-sucks
 tags:
 - thanksgiving
 engineer:

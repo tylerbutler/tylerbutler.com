@@ -2,6 +2,7 @@
 
 title: Presentation Problems
 date: '2007-05-01T17:04:00-07:00'
+slug: presentation-problems
 tags:
 - mix07
 engineer:

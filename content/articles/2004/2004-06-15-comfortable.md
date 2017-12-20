@@ -2,6 +2,7 @@
 
 title: Comfortable
 date: '2004-06-15T00:00:00-07:00'
+slug: comfortable
 tags:
 - quote
 engineer:

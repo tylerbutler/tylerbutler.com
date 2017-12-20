@@ -2,6 +2,7 @@
 
 title: .Net Browser Integration Demos
 date: '2007-04-30T20:38:00-07:00'
+slug: net-browser-integration-demos
 tags:
 - mix07
 engineer:

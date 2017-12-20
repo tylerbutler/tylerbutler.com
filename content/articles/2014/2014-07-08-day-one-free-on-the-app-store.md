@@ -2,6 +2,7 @@
 
 title: Day One Free on the App Store
 date: '2014-07-08T13:49:00-07:00'
+slug: day-one-free-on-the-app-store
 tags:
 - apps
 engineer:

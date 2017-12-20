@@ -2,6 +2,7 @@
 
 title: Interview with Microsoft
 date: '2004-10-27T22:01:00-07:00'
+slug: interview-with-microsoft
 engineer:
   slug: interview-with-microsoft
   url: /2004/10/interview-with-microsoft/

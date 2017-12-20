@@ -2,6 +2,7 @@
 
 title: I Hate Security Questions
 date: '2007-01-17T19:56:00-08:00'
+slug: i-hate-security-questions
 engineer:
   slug: i-hate-security-questions
   url: /2007/01/i-hate-security-questions/

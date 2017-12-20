@@ -2,6 +2,7 @@
 
 title: Ode to the Nice Guys
 date: '2004-10-20T01:55:00-07:00'
+slug: ode-to-the-nice-guys
 engineer:
   slug: ode-to-the-nice-guys
   url: /2004/10/ode-to-the-nice-guys/

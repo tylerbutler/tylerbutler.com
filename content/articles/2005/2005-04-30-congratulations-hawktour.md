@@ -2,6 +2,7 @@
 
 title: Congratulations Hawktour!
 date: '2005-04-30T16:18:00-07:00'
+slug: congratulations-hawktour
 engineer:
   slug: congratulations-hawktour
   url: /2005/04/congratulations-hawktour/

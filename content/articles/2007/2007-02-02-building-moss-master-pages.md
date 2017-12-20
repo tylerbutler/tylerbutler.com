@@ -2,6 +2,7 @@
 
 title: Building MOSS Master Pages
 date: '2007-02-02T22:57:00-08:00'
+slug: building-moss-master-pages
 tags:
 - sharepoint
 engineer:

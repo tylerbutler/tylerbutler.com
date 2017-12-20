@@ -2,6 +2,7 @@
 
 title: In Portland? Get Breakfast!
 date: '2007-08-13T05:41:00-07:00'
+slug: in-portland-get-breakfast
 engineer:
   slug: in-portland-get-breakfast
   url: /2007/08/in-portland-get-breakfast/

@@ -2,6 +2,7 @@
 
 title: Updated Python Installation Guide
 date: '2014-10-07T11:45:00-07:00'
+slug: updated-python-installation-guide
 tags:
 - python
 - powershell

@@ -2,6 +2,7 @@
 
 title: Twitter @replies Changes
 date: '2009-05-13T21:14:00-07:00'
+slug: twitter-replies-changes
 tags:
 - twitter
 engineer:

@@ -2,6 +2,7 @@
 
 title: The Big Move (Part 1)
 date: '2004-08-17T18:22:00-07:00'
+slug: the-big-move-part-1
 engineer:
   slug: the-big-move-part-1
   url: /2004/08/the-big-move-part-1/

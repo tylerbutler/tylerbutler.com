@@ -2,6 +2,7 @@
 
 title: Playing With Ubuntu
 date: '2004-10-28T20:04:00-07:00'
+slug: playing-with-ubuntu
 tags:
 - ubuntu
 engineer:

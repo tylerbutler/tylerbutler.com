@@ -2,6 +2,7 @@
 
 title: The History of the GUI
 date: '2005-05-08T04:52:00-07:00'
+slug: the-history-of-the-gui
 engineer:
   slug: the-history-of-the-gui
   url: /2005/05/the-history-of-the-gui/

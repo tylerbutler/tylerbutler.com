@@ -2,6 +2,7 @@
 
 title: 'Operation: Look Good, Feel Good'
 date: '2005-10-05T17:35:00-07:00'
+slug: operation-look-good-feel-good
 tags:
 - weight loss
 engineer:

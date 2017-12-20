@@ -2,6 +2,7 @@
 
 title: Site Move and Redesign
 date: '2009-02-19T02:06:00-08:00'
+slug: site-move-and-redesign
 engineer:
   slug: site-move-and-redesign
   url: /2009/02/site-move-and-redesign/

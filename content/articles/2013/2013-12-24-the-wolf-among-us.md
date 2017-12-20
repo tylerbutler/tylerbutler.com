@@ -5,6 +5,7 @@ date: '2013-12-24T12:38:00-08:00'
 link: http://marketplace.xbox.com/en-CA/Product/The-Wolf-Among-Us/66acd000-77fe-1000-9115-d80258411216
 via: Polygon
 vialink: http://www.polygon.com/2013/12/24/5241066/the-wolf-among-us-episode-1-free-on-xbox-live-marketplace
+slug: the-wolf-among-us
 tags:
 - games
 engineer:

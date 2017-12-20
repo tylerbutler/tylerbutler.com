@@ -2,6 +2,7 @@
 
 title: Homeland Security?
 date: '2004-10-29T18:08:00-07:00'
+slug: homeland-security
 engineer:
   slug: homeland-security
   url: /2004/10/homeland-security/

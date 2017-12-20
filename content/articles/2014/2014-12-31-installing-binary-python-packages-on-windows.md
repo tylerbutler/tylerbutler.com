@@ -2,6 +2,7 @@
 
 title: Installing Binary Python Packages on Windows
 date: '2014-12-31T07:31:00-08:00'
+slug: installing-binary-python-packages-on-windows
 tags:
 - guide
 - python

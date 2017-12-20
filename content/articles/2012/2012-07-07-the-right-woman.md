@@ -2,6 +2,7 @@
 
 title: The Right Woman
 date: '2012-07-07T09:34:00-07:00'
+slug: the-right-woman
 engineer:
   slug: the-right-woman
   url: /2012/07/the-right-woman/

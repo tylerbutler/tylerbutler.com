@@ -3,6 +3,7 @@
 title: The Importance of Documentation
 date: '2013-06-23T02:26:00-07:00'
 teaser: true
+slug: the-importance-of-documentation
 tags:
 - documentation
 engineer:

@@ -2,6 +2,7 @@
 
 title: LINQ Confusion
 date: '2009-03-15T07:47:00-07:00'
+slug: linq-confusion
 tags:
 - C#
 engineer:

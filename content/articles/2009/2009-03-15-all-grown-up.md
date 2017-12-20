@@ -5,6 +5,7 @@ date: '2009-03-15T08:32:00-07:00'
 link: http://gerrycanavan.blogspot.com/2009/03/grown-up-calvin-and-hobbes.html
 via: Jason Kottke
 vialink: http://www.kottke.org/09/03/grownup-calvin-and-hobbes
+slug: all-grown-up
 engineer:
   slug: all-grown-up
   url: /2009/03/all-grown-up/

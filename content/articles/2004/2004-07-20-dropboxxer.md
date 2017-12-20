@@ -2,6 +2,7 @@
 
 title: DropBoxxer
 date: '2004-07-20T22:02:00-07:00'
+slug: dropboxxer
 tags:
 - project
 engineer:

@@ -2,6 +2,7 @@
 
 title: All I Said Was Comiskey Park!
 date: '2004-05-21T19:50:00-07:00'
+slug: all-i-said-was-comiskey-park
 engineer:
   slug: all-i-said-was-comiskey-park
   url: /2004/05/all-i-said-was-comiskey-park/

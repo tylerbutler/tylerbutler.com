@@ -2,6 +2,7 @@
 
 title: Content Deployment
 date: '2006-05-03T01:38:00-07:00'
+slug: content-deployment
 tags:
 - sharepoint
 engineer:

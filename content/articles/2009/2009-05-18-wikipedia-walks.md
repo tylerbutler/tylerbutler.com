@@ -2,6 +2,7 @@
 
 title: Wikipedia Walks
 date: '2009-05-18T13:35:00-07:00'
+slug: wikipedia-walks
 engineer:
   slug: wikipedia-walks
   url: /2009/05/wikipedia-walks/

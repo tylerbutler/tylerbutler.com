@@ -2,6 +2,7 @@
 
 title: SharePoint Updates
 date: '2008-10-01T17:10:00-07:00'
+slug: sharepoint-updates
 tags:
 - sharepoint
 engineer:

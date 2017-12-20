@@ -2,6 +2,7 @@
 
 title: Patrick Has a Wii, or, Experimenting with Microformats
 date: '2006-12-12T00:45:00-08:00'
+slug: patrick-has-a-wii-or-experimenting-with-microformats
 engineer:
   slug: patrick-has-a-wii-or-experimenting-with-microformats
   url: /2006/12/patrick-has-a-wii-or-experimenting-with-microformats/

@@ -2,6 +2,7 @@
 
 title: Corrections on Nav Samples in my ECM Blog Posts
 date: '2007-02-03T00:38:00-08:00'
+slug: corrections-on-nav-samples-in-my-ecm-blog-posts
 tags:
 - sharepoint
 engineer:

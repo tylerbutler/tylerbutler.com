@@ -5,6 +5,7 @@ date: '2009-05-18T00:17:00-07:00'
 link: http://db.tidbits.com/article/10218
 via: John Gruber
 vialink: http://daringfireball.net/linked/2009/04/28/mogull-tips
+slug: computer-security-x-ray-specs
 engineer:
   slug: computer-security-x-ray-specs
   url: /2009/05/computer-security-x-ray-specs/

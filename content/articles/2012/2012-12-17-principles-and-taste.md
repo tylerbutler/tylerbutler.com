@@ -2,6 +2,7 @@
 
 title: Principles and Taste
 date: '2012-12-17T13:03:00-08:00'
+slug: principles-and-taste
 tags:
 - quote
 engineer:

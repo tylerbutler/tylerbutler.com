@@ -2,6 +2,7 @@
 
 title: 'Microsoft Program Manager Interview: The Breakdown'
 date: '2005-02-14T23:44:00-08:00'
+slug: microsoft-program-manager-interview-the-breakdown
 engineer:
   slug: microsoft-program-manager-interview-the-breakdown
   url: /2005/02/microsoft-program-manager-interview-the-breakdown/

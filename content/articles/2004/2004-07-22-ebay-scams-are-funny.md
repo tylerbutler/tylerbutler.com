@@ -2,6 +2,7 @@
 
 title: eBay Scams Are Funny!
 date: '2004-07-22T22:16:00-07:00'
+slug: ebay-scams-are-funny
 engineer:
   slug: ebay-scams-are-funny
   url: /2004/07/ebay-scams-are-funny/

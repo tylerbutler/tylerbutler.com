@@ -2,6 +2,7 @@
 
 title: Dates in Posts Fixed
 date: '2009-07-14T04:01:00-07:00'
+slug: dates-in-posts-fixed
 engineer:
   slug: dates-in-posts-fixed
   url: /2009/07/dates-in-posts-fixed/

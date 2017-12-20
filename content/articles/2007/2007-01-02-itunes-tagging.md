@@ -2,6 +2,7 @@
 
 title: iTunes Tagging
 date: '2007-01-02T03:30:00-08:00'
+slug: itunes-tagging
 tags:
 - itunes
 engineer:

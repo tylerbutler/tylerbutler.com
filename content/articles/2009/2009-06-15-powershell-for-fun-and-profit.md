@@ -2,6 +2,7 @@
 
 title: PowerShell for Fun and Profit
 date: '2009-06-15T19:20:00-07:00'
+slug: powershell-for-fun-and-profit
 tags:
 - powershell
 - sharepoint

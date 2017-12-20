@@ -2,6 +2,7 @@
 
 title: A Short History of Video Games
 date: '2004-08-16T05:15:00-07:00'
+slug: a-short-history-of-video-games
 engineer:
   slug: a-short-history-of-video-games
   url: /2004/08/a-short-history-of-video-games/

@@ -2,6 +2,7 @@
 
 title: Follow Up On Outlook HTML+CSS Post
 date: '2009-07-14T01:35:00-07:00'
+slug: follow-up-on-outlook-htmlcss-post
 engineer:
   slug: follow-up-on-outlook-htmlcss-post
   url: /2009/07/follow-up-on-outlook-htmlcss-post/

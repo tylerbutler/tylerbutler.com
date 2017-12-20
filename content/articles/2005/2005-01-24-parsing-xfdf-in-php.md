@@ -2,6 +2,7 @@
 
 title: Parsing XFDF in PHP
 date: '2005-01-24T22:56:00-08:00'
+slug: parsing-xfdf-in-php
 tags:
 - snippets
 - php

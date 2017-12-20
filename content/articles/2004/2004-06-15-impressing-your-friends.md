@@ -2,6 +2,7 @@
 
 title: Impressing Your Friends
 date: '2004-06-15T00:00:00-07:00'
+slug: impressing-your-friends
 tags:
 - quote
 engineer:

@@ -2,6 +2,7 @@
 
 title: Super Stickman Golf 2
 date: '2014-01-10T11:50:00-08:00'
+slug: super-stickman-golf-2
 tags:
 - games
 engineer:

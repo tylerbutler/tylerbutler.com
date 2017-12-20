@@ -2,6 +2,7 @@
 
 title: From Diary to Blog
 date: '2004-05-20T23:32:00-07:00'
+slug: from-diary-to-blog
 engineer:
   slug: from-diary-to-blog
   url: /2004/05/from-diary-to-blog/

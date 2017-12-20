@@ -2,6 +2,7 @@
 
 title: Web Site Intro Pages
 date: '2006-12-29T01:00:00-08:00'
+slug: web-site-intro-pages
 engineer:
   slug: web-site-intro-pages
   url: /2006/12/web-site-intro-pages/

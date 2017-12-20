@@ -5,6 +5,7 @@ date: '2012-09-07T13:32:00-07:00'
 teaser: true
 via: Rainn Wilson
 vialink: https://twitter.com/rainnwilson/statuses/239163978813698048
+slug: malarious
 engineer:
   slug: malarious
   teaser: true
@@ -14,7 +15,7 @@ engineer:
 
 I have some experience with [malaria][]. I grew up in [a country][png] where it's still a major concern,[^malaria1] and I've had seven bouts of it over my lifetime. It's not a terribly frightening disease unless you either don't get treatment or are unlucky enough to contract a strain that is resistant to medications like [Chloroquine][] or [Quinine][], which has unfortunately become more common over the years. When I tell people I've had it many times they tend to look at me like I survived cancer or walked out of a burning building unscathed. While it's certainly not an illness I'd wish on anyone, it is not terrible *provided you get treatment.*
 
-<!--more--> 
+<!--more-->
 
 Treatment and prevention is the key, and unfortunately due to the relative ease with which it spreads in areas dense with mosquitoes, it still kills many many people worldwide. One of the reasons the Gates Foundation has [focused on malaria][gf] is that by the numbers, it's still one of the most widespread and impactful diseases worldwide.
 

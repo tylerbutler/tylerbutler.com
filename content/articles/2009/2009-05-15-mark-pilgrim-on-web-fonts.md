@@ -4,6 +4,7 @@ title: Mark Pilgrim on Web Fonts
 date: '2009-05-15T21:40:00-07:00'
 link: http://diveintomark.org/archives/2009/04/21/fuck-the-foundries
 via: Mark Pilgrim
+slug: mark-pilgrim-on-web-fonts
 engineer:
   slug: mark-pilgrim-on-web-fonts
   url: /2009/05/mark-pilgrim-on-web-fonts/

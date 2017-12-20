@@ -2,6 +2,7 @@
 
 title: Thunder, Thunder, Thunder, Thundercats - HO!!!
 date: '2005-08-22T06:26:00-07:00'
+slug: thunder-thunder-thunder-thundercats-ho
 engineer:
   slug: thunder-thunder-thunder-thundercats-ho
   url: /2005/08/thunder-thunder-thunder-thundercats-ho/

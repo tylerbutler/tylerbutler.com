@@ -2,6 +2,7 @@
 
 title: Markdown Lazy Links in Python
 date: '2014-05-28T13:16:00-07:00'
+slug: markdown-lazy-links-in-python
 tags:
 - engineer
 - python

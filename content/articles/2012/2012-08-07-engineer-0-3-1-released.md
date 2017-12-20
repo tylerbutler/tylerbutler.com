@@ -3,6 +3,7 @@
 title: Engineer 0.3.1 Released
 date: '2012-08-07T02:59:00-07:00'
 teaser: true
+slug: engineer-0-3-1-released
 tags:
 - engineer
 - project

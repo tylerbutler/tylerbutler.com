@@ -2,6 +2,7 @@
 
 title: Finding Meaning in UI
 date: '2009-03-19T21:55:00-07:00'
+slug: finding-meaning-in-ui
 tags:
 - design
 engineer:

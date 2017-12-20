@@ -2,6 +2,7 @@
 
 title: Giving Thanks
 date: '2005-11-26T23:27:00-08:00'
+slug: giving-thanks
 tags:
 - thanksgiving
 engineer:

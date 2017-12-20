@@ -4,6 +4,7 @@ title: The VW Group
 date: '2012-12-02T00:45:00-08:00'
 via: John Gruber
 vialink: http://daringfireball.net/linked/2012/11/26/product-desirability-profitability
+slug: the-vw-group
 engineer:
   slug: the-vw-group
   url: /2012/12/the-vw-group/

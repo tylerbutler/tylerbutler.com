@@ -2,6 +2,7 @@
 
 title: American Airlines Apologizes For Your Flight Delay
 date: '2004-08-13T20:27:00-07:00'
+slug: american-airlines-apologizes-for-your-flight-delay
 engineer:
   slug: american-airlines-apologizes-for-your-flight-delay
   url: /2004/08/american-airlines-apologizes-for-your-flight-delay/

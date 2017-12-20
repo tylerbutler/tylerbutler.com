@@ -2,6 +2,7 @@
 
 title: How Lightsabers Work
 date: '2005-05-05T23:59:00-07:00'
+slug: how-lightsabers-work
 engineer:
   slug: how-lightsabers-work
   url: /2005/05/how-lightsabers-work/

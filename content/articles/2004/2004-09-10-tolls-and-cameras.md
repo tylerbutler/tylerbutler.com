@@ -2,6 +2,7 @@
 
 title: Tolls and Cameras
 date: '2004-09-10T23:13:00-07:00'
+slug: tolls-and-cameras
 engineer:
   slug: tolls-and-cameras
   url: /2004/09/tolls-and-cameras/

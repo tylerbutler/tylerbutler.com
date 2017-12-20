@@ -3,6 +3,7 @@
 title: Bad Product Designs
 date: '2005-06-28T18:21:00-07:00'
 link: http://www.baddesigns.com/examples.html
+slug: bad-product-designs
 tags:
 - design
 engineer:

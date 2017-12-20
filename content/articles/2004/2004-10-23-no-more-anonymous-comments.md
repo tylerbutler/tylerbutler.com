@@ -2,6 +2,7 @@
 
 title: No More Anonymous Comments
 date: '2004-10-23T00:36:00-07:00'
+slug: no-more-anonymous-comments
 engineer:
   slug: no-more-anonymous-comments
   url: /2004/10/no-more-anonymous-comments/

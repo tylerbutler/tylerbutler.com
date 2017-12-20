@@ -2,6 +2,7 @@
 
 title: Node.js On Windows 8.1
 date: '2014-08-15T13:33:00-07:00'
+slug: node-js-on-windows-8-1
 tags:
 - node.js
 engineer:

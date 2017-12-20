@@ -3,6 +3,7 @@
 title: Interview with a Search Engine
 date: '2005-06-15T23:41:00-07:00'
 link: http://www.satirewire.com/features/satire-jeevesinterview.shtml
+slug: interview-with-a-search-engine
 engineer:
   slug: interview-with-a-search-engine
   url: /2005/06/interview-with-a-search-engine/

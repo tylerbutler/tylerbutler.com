@@ -2,6 +2,7 @@
 
 title: What Have You Done for Your Country Lately?
 date: '2005-05-09T17:44:00-07:00'
+slug: what-have-you-done-for-your-country-lately
 engineer:
   slug: what-have-you-done-for-your-country-lately
   url: /2005/05/what-have-you-done-for-your-country-lately/

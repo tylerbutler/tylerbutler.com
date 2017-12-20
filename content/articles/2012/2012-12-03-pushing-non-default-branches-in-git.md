@@ -4,6 +4,7 @@ title: Pushing Non-Default Branches in Git
 date: '2012-12-03T15:53:00-08:00'
 teaser: true
 via: Mark Longair
+slug: pushing-non-default-branches-in-git
 tags:
 - git
 engineer:

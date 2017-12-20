@@ -5,6 +5,7 @@ date: '2012-04-23T14:13:00-07:00'
 link: http://www.literatureandlatte.com/blog/?p=271
 via: Lukas Mathis
 vialink: http://ignorethecode.net/blog/2012/04/05/the_monochrome_trend/
+slug: the-monochrome-trend
 engineer:
   slug: the-monochrome-trend
   url: /2012/04/the-monochrome-trend/

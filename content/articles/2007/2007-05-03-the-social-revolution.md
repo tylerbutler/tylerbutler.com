@@ -2,6 +2,7 @@
 
 title: The Social Revolution
 date: '2007-05-03T18:38:00-07:00'
+slug: the-social-revolution
 engineer:
   slug: the-social-revolution
   url: /2007/05/the-social-revolution/

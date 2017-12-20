@@ -2,6 +2,7 @@
 
 title: Retina iPad Mini Image Retention Test
 date: '2013-12-24T16:38:00-08:00'
+slug: retina-ipad-mini-image-retention-test
 engineer:
   slug: retina-ipad-mini-image-retention-test
   url: /2013/12/retina-ipad-mini-image-retention-test/

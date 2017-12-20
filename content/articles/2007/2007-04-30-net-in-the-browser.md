@@ -2,6 +2,7 @@
 
 title: .Net in the Browser
 date: '2007-04-30T17:52:00-07:00'
+slug: net-in-the-browser
 tags:
 - mix07
 engineer:

@@ -3,6 +3,7 @@
 title: Base64 Encoded SHA256 Hashes
 date: '2012-12-17T15:26:00-08:00'
 teaser: true
+slug: base64-encoded-sha256-hashes
 tags:
 - powershell
 - C#

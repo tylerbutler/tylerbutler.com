@@ -2,6 +2,7 @@
 
 title: Title Droppers
 date: '2005-02-01T17:11:00-08:00'
+slug: title-droppers
 engineer:
   slug: title-droppers
   url: /2005/02/title-droppers/

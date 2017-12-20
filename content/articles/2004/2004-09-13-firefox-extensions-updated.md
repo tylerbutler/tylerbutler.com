@@ -2,6 +2,7 @@
 
 title: Firefox Extensions (Updated)
 date: '2004-09-13T16:06:00-07:00'
+slug: firefox-extensions-updated
 engineer:
   slug: firefox-extensions-updated
   url: /2004/09/firefox-extensions-updated/

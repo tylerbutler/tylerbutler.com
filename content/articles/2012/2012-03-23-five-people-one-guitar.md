@@ -2,6 +2,7 @@
 
 title: Five People, One Guitar
 date: '2012-03-23T00:35:00-07:00'
+slug: five-people-one-guitar
 tags:
 - music
 engineer:

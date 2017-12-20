@@ -2,6 +2,7 @@
 
 title: Hiding vs. Disabling
 date: '2007-01-23T07:49:00-08:00'
+slug: hiding-vs-disabling
 tags:
 - design
 - sharepoint

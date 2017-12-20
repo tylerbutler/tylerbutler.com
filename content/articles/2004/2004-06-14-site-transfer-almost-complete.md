@@ -2,6 +2,7 @@
 
 title: Site Transfer Almost Complete
 date: '2004-06-14T21:54:00-07:00'
+slug: site-transfer-almost-complete
 engineer:
   slug: site-transfer-almost-complete
   url: /2004/06/site-transfer-almost-complete/

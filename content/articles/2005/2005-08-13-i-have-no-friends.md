@@ -2,6 +2,7 @@
 
 title: I Have No Friends
 date: '2005-08-13T22:10:00-07:00'
+slug: i-have-no-friends
 engineer:
   slug: i-have-no-friends
   url: /2005/08/i-have-no-friends/

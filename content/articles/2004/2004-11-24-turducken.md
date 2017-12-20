@@ -2,6 +2,7 @@
 
 title: Turducken!
 date: '2004-11-24T16:32:00-08:00'
+slug: turducken
 tags:
 - thanksgiving
 engineer:

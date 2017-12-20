@@ -6,6 +6,7 @@ teaser: true
 link: http://www.macdrifter.com/2012/07/things-i-have-learned-about-blog-portability.html
 via: Collin Donnell
 vialink: http://collindonnell.com/2012/07/31/macdrifter-on-blog-portability/
+slug: blog-portability
 tags:
 - engineer
 engineer:
@@ -21,7 +22,7 @@ MacDrifter on blog portability:
 
 I'm proud to point out that [Engineer](/projects/engineer/) helps avoid a number of these. Let's examine them.
 
-<!--more--> 
+<!--more-->
 
 **1. Always save the original Markdown in text files.**
 
@@ -29,12 +30,12 @@ Check. Engineer always keeps your raw post around -- the formatting is done duri
 
 
 **2. Avoid plugins that appear to make life easier by reformatting content for viewing.**
-    
+
 Engineer doesn't require you to use any such plugins, but it doesn't prevent you either; it's your choice.
 
 
 **3. Footnotes are hard to convert from HTML to MultiMarkdown.**
-    
+
 This simply isn't a problem in Engineer because the raw Markdown is stored, not just the HTML (see #1).
 
 

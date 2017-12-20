@@ -2,6 +2,7 @@
 
 title: C# MessageBox Strangeness
 date: '2005-01-21T20:33:00-08:00'
+slug: c-messagebox-strangeness
 engineer:
   slug: c-messagebox-strangeness
   url: /2005/01/c-messagebox-strangeness/

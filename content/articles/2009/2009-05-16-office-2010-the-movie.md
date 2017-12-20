@@ -3,6 +3,7 @@
 title: 'Office 2010: The Movie'
 date: '2009-05-16T01:47:00-07:00'
 link: http://www.office2010themovie.com/
+slug: office-2010-the-movie
 engineer:
   slug: office-2010-the-movie
   url: /2009/05/office-2010-the-movie/

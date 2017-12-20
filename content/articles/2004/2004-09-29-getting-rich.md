@@ -3,6 +3,7 @@
 title: Getting Rich
 date: '2004-09-29T20:24:00-07:00'
 link: http://paulgraham.com/bubble.html
+slug: getting-rich
 engineer:
   slug: getting-rich
   url: /2004/09/getting-rich/

@@ -2,6 +2,7 @@
 
 title: The Zune and Wireless
 date: '2006-12-20T02:20:00-08:00'
+slug: the-zune-and-wireless
 engineer:
   slug: the-zune-and-wireless
   url: /2006/12/the-zune-and-wireless/

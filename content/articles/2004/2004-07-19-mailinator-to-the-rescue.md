@@ -2,6 +2,7 @@
 
 title: Mailinator to the Rescue!
 date: '2004-07-19T22:58:00-07:00'
+slug: mailinator-to-the-rescue
 engineer:
   slug: mailinator-to-the-rescue
   url: /2004/07/mailinator-to-the-rescue/

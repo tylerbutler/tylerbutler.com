@@ -2,6 +2,7 @@
 
 title: Yiddish Curses
 date: '2005-02-01T17:45:00-08:00'
+slug: yiddish-curses
 engineer:
   slug: yiddish-curses
   url: /2005/02/yiddish-curses/

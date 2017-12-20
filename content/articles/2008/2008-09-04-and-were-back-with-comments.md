@@ -2,6 +2,7 @@
 
 title: And We're Back! (With Comments!)
 date: '2008-09-04T18:19:00-07:00'
+slug: and-were-back-with-comments
 engineer:
   slug: and-were-back-with-comments
   url: /2008/09/and-were-back-with-comments/

@@ -2,6 +2,7 @@
 
 title: Ubuntu + LVM
 date: '2005-01-20T05:42:00-08:00'
+slug: ubuntu-lvm
 tags:
 - ubuntu
 engineer:

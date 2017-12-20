@@ -2,6 +2,7 @@
 
 title: SharePoint Permissions &ldquo;Cheat Sheet&rdquo;
 date: '2009-05-05T21:28:00-07:00'
+slug: sharepoint-permissions-cheat-sheet
 tags:
 - sharepoint
 engineer:

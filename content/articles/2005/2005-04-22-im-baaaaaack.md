@@ -2,6 +2,7 @@
 
 title: I'm Baaaaaack!
 date: '2005-04-22T06:20:00-07:00'
+slug: im-baaaaaack
 engineer:
   slug: im-baaaaaack
   url: /2005/04/im-baaaaaack/

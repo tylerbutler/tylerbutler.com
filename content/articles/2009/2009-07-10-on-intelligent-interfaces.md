@@ -3,6 +3,7 @@
 title: On Intelligent Interfaces
 date: '2009-07-10T04:50:00-07:00'
 link: http://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html
+slug: on-intelligent-interfaces
 tags:
 - design
 engineer:

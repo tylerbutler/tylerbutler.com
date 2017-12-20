@@ -2,6 +2,7 @@
 
 title: November 13th and 14th
 date: '2004-11-15T07:18:00-08:00'
+slug: november-13th-and-14th
 tags:
 - novel
 - nanowrimo

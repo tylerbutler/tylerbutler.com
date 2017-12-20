@@ -2,6 +2,7 @@
 
 title: 'GMail: A Review (Updated)'
 date: '2004-07-07T17:44:00-07:00'
+slug: gmail-a-review-updated
 engineer:
   slug: gmail-a-review-updated
   url: /2004/07/gmail-a-review-updated/

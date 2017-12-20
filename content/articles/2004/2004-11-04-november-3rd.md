@@ -2,6 +2,7 @@
 
 title: November 3rd
 date: '2004-11-04T06:21:00-08:00'
+slug: november-3rd
 tags:
 - novel
 - nanowrimo

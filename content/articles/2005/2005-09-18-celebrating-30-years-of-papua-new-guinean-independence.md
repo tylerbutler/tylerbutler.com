@@ -2,6 +2,7 @@
 
 title: Celebrating 30 Years of Papua New Guinean Independence
 date: '2005-09-18T20:52:00-07:00'
+slug: celebrating-30-years-of-papua-new-guinean-independence
 tags:
 - png
 engineer:

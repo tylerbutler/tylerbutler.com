@@ -2,6 +2,7 @@
 
 title: November 8th
 date: '2004-11-09T07:01:00-08:00'
+slug: november-8th
 tags:
 - novel
 - nanowrimo

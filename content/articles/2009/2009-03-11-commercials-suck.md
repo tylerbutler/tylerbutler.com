@@ -2,6 +2,7 @@
 
 title: Commercials Suck
 date: '2009-03-11T22:54:00-07:00'
+slug: commercials-suck
 engineer:
   slug: commercials-suck
   url: /2009/03/commercials-suck/

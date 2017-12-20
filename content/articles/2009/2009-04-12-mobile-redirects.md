@@ -2,6 +2,7 @@
 
 title: Mobile Redirects
 date: '2009-04-12T06:57:00-07:00'
+slug: mobile-redirects
 engineer:
   slug: mobile-redirects
   url: /2009/04/mobile-redirects/

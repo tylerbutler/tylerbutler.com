@@ -2,6 +2,7 @@
 
 title: The Wealthy Man (Communication)
 date: '2007-10-16T18:44:00-07:00'
+slug: the-wealthy-man-communication
 tags:
 - story
 engineer:

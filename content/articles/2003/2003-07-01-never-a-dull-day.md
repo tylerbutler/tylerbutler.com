@@ -2,6 +2,7 @@
 
 title: Never A Dull Day
 date: '2003-07-01T17:37:00-07:00'
+slug: never-a-dull-day
 engineer:
   slug: never-a-dull-day
   url: /2003/07/never-a-dull-day/

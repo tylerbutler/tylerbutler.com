@@ -5,6 +5,7 @@ date: '2009-07-23T20:22:00-07:00'
 link: http://www.codinghorror.com/blog/archives/001289.html
 via: Jeff Atwood
 vialink: http://www.codinghorror.com/
+slug: software-hatred
 tags:
 - design
 engineer:

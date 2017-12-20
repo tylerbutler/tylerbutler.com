@@ -2,6 +2,7 @@
 
 title: Unproduced Screenplays
 date: '2004-05-21T01:10:00-07:00'
+slug: unproduced-screenplays
 engineer:
   slug: unproduced-screenplays
   url: /2004/05/unproduced-screenplays/

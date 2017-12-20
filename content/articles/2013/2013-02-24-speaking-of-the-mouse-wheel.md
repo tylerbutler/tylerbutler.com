@@ -2,6 +2,7 @@
 
 title: Speaking of the Mouse Wheel...
 date: '2013-02-24T12:46:00-08:00'
+slug: speaking-of-the-mouse-wheel
 engineer:
   slug: speaking-of-the-mouse-wheel
   url: /2013/02/speaking-of-the-mouse-wheel/

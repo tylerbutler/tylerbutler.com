@@ -3,6 +3,7 @@
 title: Lukas Mathis
 date: '2012-04-23T14:27:00-07:00'
 link: http://ignorethecode.net
+slug: lukas-mathis
 engineer:
   slug: lukas-mathis
   url: /2012/04/lukas-mathis/

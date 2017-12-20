@@ -2,6 +2,7 @@
 
 title: I Hate Banks
 date: '2004-08-16T23:18:00-07:00'
+slug: i-hate-banks
 engineer:
   slug: i-hate-banks
   url: /2004/08/i-hate-banks/

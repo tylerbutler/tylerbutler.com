@@ -2,6 +2,7 @@
 
 title: The Secret to Avoiding Telemarketers
 date: '2007-07-30T22:32:00-07:00'
+slug: the-secret-to-avoiding-telemarketers
 engineer:
   slug: the-secret-to-avoiding-telemarketers
   url: /2007/07/the-secret-to-avoiding-telemarketers/

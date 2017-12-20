@@ -2,6 +2,7 @@
 
 title: Extracting Dates and Times from DateTime Cells in Excel
 date: '2012-11-18T16:33:00-08:00'
+slug: extracting-dates-and-times-from-datetime-cells-in-excel
 tags:
 - excel
 engineer:

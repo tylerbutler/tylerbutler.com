@@ -2,6 +2,7 @@
 
 title: Interview Update(s)
 date: '2005-02-07T23:12:00-08:00'
+slug: interview-updates
 engineer:
   slug: interview-updates
   url: /2005/02/interview-updates/

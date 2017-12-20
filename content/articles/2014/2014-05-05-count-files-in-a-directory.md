@@ -2,6 +2,7 @@
 
 title: Count Files In A Directory
 date: '2014-05-05T09:04:00-07:00'
+slug: count-files-in-a-directory
 tags:
 - powershell
 - snippets

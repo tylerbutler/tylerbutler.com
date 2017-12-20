@@ -6,6 +6,7 @@ teaser: true
 link: https://steveko.wordpress.com/2012/02/24/10-things-i-hate-about-git/
 via: Jeff Atwood
 vialink: https://twitter.com/codinghorror/statuses/231982243109822464
+slug: ten-things-steve-bennett-hates-about-git
 tags:
 - git
 engineer:

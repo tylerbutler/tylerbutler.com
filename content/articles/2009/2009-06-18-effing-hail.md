@@ -2,6 +2,7 @@
 
 title: Effing Hail
 date: '2009-06-18T20:27:00-07:00'
+slug: effing-hail
 engineer:
   slug: effing-hail
   url: /2009/06/effing-hail/

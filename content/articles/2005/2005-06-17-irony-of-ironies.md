@@ -2,6 +2,7 @@
 
 title: Irony of Ironies
 date: '2005-06-17T19:24:00-07:00'
+slug: irony-of-ironies
 engineer:
   slug: irony-of-ironies
   url: /2005/06/irony-of-ironies/

@@ -2,6 +2,7 @@
 
 title: Arguing on the Internet
 date: '2012-11-28T11:11:00-08:00'
+slug: arguing-on-the-internet
 tags:
 - quote
 engineer:

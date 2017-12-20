@@ -2,6 +2,7 @@
 
 title: The Internet is Down!
 date: '2004-12-13T22:30:00-08:00'
+slug: the-internet-is-down
 engineer:
   slug: the-internet-is-down
   url: /2004/12/the-internet-is-down/

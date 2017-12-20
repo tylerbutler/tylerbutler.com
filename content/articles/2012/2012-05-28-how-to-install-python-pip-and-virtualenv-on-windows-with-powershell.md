@@ -3,6 +3,7 @@
 title: How To Install Python, pip, and virtualenv on Windows with PowerShell
 date: '2012-05-28T17:26:00-07:00'
 teaser: true
+slug: how-to-install-python-pip-and-virtualenv-on-windows-with-powershell
 tags:
 - guide
 - python

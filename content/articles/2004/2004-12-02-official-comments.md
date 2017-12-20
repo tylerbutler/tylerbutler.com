@@ -2,6 +2,7 @@
 
 title: Official Comments
 date: '2004-12-02T19:27:00-08:00'
+slug: official-comments
 tags:
 - novel
 - NaNoWriMo

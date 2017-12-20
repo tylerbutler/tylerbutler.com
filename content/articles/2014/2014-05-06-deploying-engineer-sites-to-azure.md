@@ -38,26 +38,29 @@ In order to get this up and running, you can follow the steps below. Note that E
 
 If you don't yet have an Engineer site, you can initialize a new one with a content structure and configuration files especially for Azure using the following command (new in Engineer 0.5.0):
 
-    :::text
-    engineer init -m azure
+```text
+engineer init -m azure
+```
 
 If you have an existing site, you can simply use it, of course, but you may need to add your own `.deployment` file or configure the Azure deployment settings for your site yourself. There are more details below.
 
 You can lay out your files however you wish, but the typical layout will look something like this:
 
-    :::text
-    /my-engineer-site
-      - .deployment
-      - config.yaml
-        /content
-        /templates
-        /output
-            /azure
+```text
+/my-engineer-site
+    - .deployment
+    - config.yaml
+    /content
+    /templates
+    /output
+        /azure
+```
 
 Run the following command from the root of the folder to build your site for Azure:
 
-    :::text
-    engineer build -s ./config.yaml
+```text
+engineer build -s ./config.yaml
+```
 
 The output will be written to `./output/azure/` by default. You can obviously change this in the Engineer settings, though note that you'll have to make some other changes as well. Keep reading for further details.
 

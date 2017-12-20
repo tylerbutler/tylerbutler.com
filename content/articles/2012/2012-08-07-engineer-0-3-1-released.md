@@ -13,13 +13,13 @@ engineer:
 
 ---
 
-I pushed out a new version of Engineer -- 0.3.1 -- this weekend. While 0.3.1 is a minor release to fix a couple of major bugs that slipped through, 0.3.0 was a pretty major release. A majority of the new stuff is under the covers or developer-focused, so it might not seem like a big deal -- but it is. With this release I think Engineer is stable enough for me to start hyping it a bit more, so you can anticipate that over the next few months. 
+I pushed out a new version of Engineer -- 0.3.1 -- this weekend. While 0.3.1 is a minor release to fix a couple of major bugs that slipped through, 0.3.0 was a pretty major release. A majority of the new stuff is under the covers or developer-focused, so it might not seem like a big deal -- but it is. With this release I think Engineer is stable enough for me to start hyping it a bit more, so you can anticipate that over the next few months.
 
 The full [release notes][v0.3.0] go into more details about the specifics, but there are two major features I added that are particularly interesting from a development perspective: the new plugin architecture, and the Jekyll/Octopress compatibility work.
 
-<!--more--> 
+<!--more-->
 
-## Plugin Architecture 
+## Plugin Architecture
 
 Before I go into details about the plugin architecture, a disclaimer: I'm not yet completely happy with it, and it's still a work in progress.
 
@@ -52,12 +52,12 @@ Luckily, with some help from the Pygments source, I was able to find out about s
 
 This is covered in more detail in the [Engineer documentation](http://engineer.readthedocs.org/en/latest/dev/plugins.html#loading-plugins), but basically you'd add something like this to your plugin's `setup.py` file:
 
-    :::python
-    entry_points = {
-    'engineer.plugins': ['post_processors=dotted.path.to.module',
-                         'themes=another.module.path'],
-    }
-
+```python
+entry_points = {
+'engineer.plugins': ['post_processors=dotted.path.to.module',
+                        'themes=another.module.path'],
+}
+```
 If you do that, then when your Python package is installed, it will advertise its modules to Engineer such that they can be imported, and then your plugins will run. Magic!
 
 Like I said earlier, though, it's still a work in progress. In particular, some of the limitations of the plugin system include:
@@ -78,12 +78,13 @@ Anyway, there are other Markdown previewers/editors -- notably [MarkdownPad](htt
 
 Obviously this is not a required feature since Engineer metadata doesn't *break* Markdown rendering, but it's kind of nice to have when you're writing/previewing a lot of posts. So I excitedly turned it on and loaded an Engineer post... and it didn't work. The problem, of course, is that Jekyll requires that metadata (sorry, 'front matter') be 'fenced' within two YAML document separators, like so:
 
-    :::text
-    ---
-    metadata goes here...
-    ---
+```text
+---
+metadata goes here...
+---
 
-    post content goes here...
+post content goes here...
+```
 
 Engineer, on the other hand, required, (prior to version 0.3.0) that that first `---` not be there. Fundamental incompatibility. When I originally made the decision to not require the first `---` it was for simplicity. I didn't need it for parsing, and it felt silly to *require* users to always type it, so I just left it out. However, this meant two things:
 

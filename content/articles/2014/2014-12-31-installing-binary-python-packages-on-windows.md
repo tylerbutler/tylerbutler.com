@@ -23,10 +23,11 @@ Despite writing the initial version of that guide over two years ago, I never go
 
 You only *need* this guide if you try to install a Python package on Windows and you get an error like this:
 
-    :::text
-    building 'Crypto.Random.OSRNG.winrandom' extension
-    warning: GMP or MPIR library not found; Not building Crypto.PublicKey._fastmath.
-    error: Unable to find vcvarsall.bat
+```text
+building 'Crypto.Random.OSRNG.winrandom' extension
+warning: GMP or MPIR library not found; Not building Crypto.PublicKey._fastmath.
+error: Unable to find vcvarsall.bat
+```
 
 Ahhh, the dreaded *Unable to find vcvarsall.bat* error... This error means that the package you're installing has a C extension that needs to be compiled. Python itself is compiled using a specific version of the Visual Studio C++ compiler, and when you try to install packages that require C compilation, it goes looking for the compiler locally so it can compile the necessary stuff.
 
@@ -41,8 +42,9 @@ I am extremely glad I didn't try to write this guide a few years ago, when I wro
 
 If you [download that package][msft_package] and install it, you should be able to successfully install whatever package that was erroring out with *Unable to find vcvarsall.bat* before. Make sure you re-open any PowerShell or cmd windows you had open to make sure your environment variables are up to date. Oh, and in case you care, the compiler and all its supporting files can be found in the following directory after installation:
 
-    :::text
-    ~\AppData\Local\Programs\Common\Microsoft\Visual C++ for Python\9.0
+```text
+~\AppData\Local\Programs\Common\Microsoft\Visual C++ for Python\9.0
+```
 
 If you're still having problems, chances are your version of setuptools is out of date.
 
@@ -55,35 +57,37 @@ The installation instructions for the Microsoft C++ Compiler for Python 2.7 pack
 
 There are more details there, but it basically boils down to executing two commands: `python -m pip install -U pip` followed by `pip install -U setuptools`. When you do that, you should see some output like this:
 
-    :::text
-    C:\Users\Tyler\Code> python -m pip install -U pip
-    Downloading/unpacking pip from https://pypi.python.org/packages/py2.py3/p/pip/pip-6.0.2-py2.py3-none-any.whl#md5=26404d27a64a40d4c358a2405b16d043
-    Installing collected packages: pip
-      Found existing installation: pip 1.5.2
-        Uninstalling pip:
-          Successfully uninstalled pip
-    Successfully installed pip
-    Cleaning up...
+```text
+C:\Users\Tyler\Code> python -m pip install -U pip
+Downloading/unpacking pip from https://pypi.python.org/packages/py2.py3/p/pip/pip-6.0.2-py2.py3-none-any.whl#md5=26404d27a64a40d4c358a2405b16d043
+Installing collected packages: pip
+    Found existing installation: pip 1.5.2
+    Uninstalling pip:
+        Successfully uninstalled pip
+Successfully installed pip
+Cleaning up...
 
-    C:\Users\Tyler\Code> pip install -U setuptools
-    Collecting setuptools from https://pypi.python.org/packages/3.4/s/setuptools/setuptools-8.2.1-py2.py3-none-any.whl#md5=a0582adbe0c56b3945570049b8d7c953
-      Downloading setuptools-8.2.1-py2.py3-none-any.whl (551kB)
-      100% |################################| 552kB 975kB/s ta 0:00:01
-    Installing collected packages: setuptools
-      Found existing installation: setuptools 2.2
-        Uninstalling setuptools-2.2:
-          Successfully uninstalled setuptools-2.2
+C:\Users\Tyler\Code> pip install -U setuptools
+Collecting setuptools from https://pypi.python.org/packages/3.4/s/setuptools/setuptools-8.2.1-py2.py3-none-any.whl#md5=a0582adbe0c56b3945570049b8d7c953
+    Downloading setuptools-8.2.1-py2.py3-none-any.whl (551kB)
+    100% |################################| 552kB 975kB/s ta 0:00:01
+Installing collected packages: setuptools
+    Found existing installation: setuptools 2.2
+    Uninstalling setuptools-2.2:
+        Successfully uninstalled setuptools-2.2
 
-    Successfully installed setuptools-8.2.1
+Successfully installed setuptools-8.2.1
+```
 
 Congratulations, your pip and setuptools installations are now upgraded. As I note in the [Engineer 0.5.0 upgrade guide][engineer_upgrade], "if you’re using virtualenv, you may need to upgrade pip and setuptools in your virtualenv as well as the 'global' (outside the virtualenv) versions." You should be able to avoid doing this for all new virtualenvs by upgrading virtualenv itself (`pip install -U virtualenv` -- version 12.7.8 is the latest as of this writing). Once it was upgraded my new virtualenvs got the correct updated versions of pip and setuptools. If you don't want to recreate your virtualenvs, then you can just upgrade the ones you need.
 
 Once pip and setuptools are upgraded, try installing the previously failed package again. You should see a bunch of output like this:
 
-    :::text
-    C:\Users\Tyler\AppData\Local\Programs\Common\Microsoft\Visual C++ for Python\9.0\VC\Bin\link.exe /DLL /nologo /INCREMENTAL:NO /LIBPATH:C:\Python27\Libs /LIBPATH:C:\Users\Tyler\.virtualenvs\test\libs /LIBPATH:C:\Users\Tyler\.virtualenvs\test\PCbuild /EXPORT:init_diff_tree build\temp.win32-2.7\Release\dulwich/_diff_tree.obj /OUT:build\lib.win32-2.7\dulwich\_diff_tree.pyd /IMPLIB:build\temp.win32-2.7\Release\dulwich\_diff_tree.lib /MANIFESTFILE:build\temp.win32-2.7\Release\dulwich\_diff_tree.pyd.manifest
-       Creating library build\temp.win32-2.7\Release\dulwich\_diff_tree.lib and object build\temp.win32-2.7\Release\dulwich\_diff_tree.exp
-    Successfully installed dulwich-0.9.8
+```text
+C:\Users\Tyler\AppData\Local\Programs\Common\Microsoft\Visual C++ for Python\9.0\VC\Bin\link.exe /DLL /nologo /INCREMENTAL:NO /LIBPATH:C:\Python27\Libs /LIBPATH:C:\Users\Tyler\.virtualenvs\test\libs /LIBPATH:C:\Users\Tyler\.virtualenvs\test\PCbuild /EXPORT:init_diff_tree build\temp.win32-2.7\Release\dulwich/_diff_tree.obj /OUT:build\lib.win32-2.7\dulwich\_diff_tree.pyd /IMPLIB:build\temp.win32-2.7\Release\dulwich\_diff_tree.lib /MANIFESTFILE:build\temp.win32-2.7\Release\dulwich\_diff_tree.pyd.manifest
+    Creating library build\temp.win32-2.7\Release\dulwich\_diff_tree.lib and object build\temp.win32-2.7\Release\dulwich\_diff_tree.exp
+Successfully installed dulwich-0.9.8
+```
 
 Congratulations, you can now install source Python packages that include C extensions (like [Dulwich][])!
 

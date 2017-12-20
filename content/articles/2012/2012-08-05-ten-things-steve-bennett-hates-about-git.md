@@ -152,13 +152,8 @@ The future is waiting. Go meet it.
 [^1]: Bennett uses this example, which is apt:
 
     > To reset one file in your working directory to its committed state:
-
-    >     :::text
     >     git checkout file.txt
-
     > To reset every file in your working directory to its committed state:
-
-    >     :::text
     >     git reset --hard
 
 [^2]: I *know* that closed-source software has this same problem. How do you bring a new developer up to speed on the codebase? Every software development shop has to solve that problem *somehow.* However, in those cases, the problem is not publically evident since we, the public, don't see the 'internal developer documentation,' if it exists.

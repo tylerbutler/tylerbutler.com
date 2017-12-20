@@ -26,15 +26,16 @@ Learning new things every day... Mark Longair describes some [sitations in which
 
 He's got a very good description of why this doesn't work like you might expect as well as an overview of options to get things configured the way you want.
 
-<!--more--> 
+<!--more-->
 
 I hit up against this today. I use both private git repositories on my own server and repos on GitHub to publish and share the code more broadly. The repo in question has a `dev` branch which I periodically push to GitHub, but the GitHub version of the branch lags a bit behind my own private repo (so I can do things like `git rebase` without breaking people). The way I manage this is with a local tracking branch tracking the remote `github/dev` branch that I fast-forward when I am ready to share something more widely. That local tracking branch is unsurprisingly called `github_dev`.
 
 Anyway, I made an update to the `github_dev` branch today and wanted to push the changes out, and of course `git push` didn't do what I expected. I ended up changing my `.gitconfig`, adding the following lines:
 
-    :::text
-    [push]
-        default = upstream
+```text
+[push]
+    default = upstream
+```
 
 That's the option that makes the most sense to me personally, but I understand that pushing all local tracking branches when you haven't specified a refspec is likely confusing to most people, especially those without git experience.
 

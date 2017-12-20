@@ -8,6 +8,7 @@ engineer:
   slug: java-memory-allocation
   url: /2005/10/java-memory-allocation/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/10/java-memory-allocation/
 
 ---

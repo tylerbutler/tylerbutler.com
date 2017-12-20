@@ -9,6 +9,7 @@ engineer:
   slug: computer-security-x-ray-specs
   url: /2009/05/computer-security-x-ray-specs/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/?p=438
 
 ---

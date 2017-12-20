@@ -6,6 +6,7 @@ engineer:
   slug: a-short-history-of-video-games
   url: /2004/08/a-short-history-of-video-games/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/08/a-short-history-of-video-games/
 
 ---

@@ -8,6 +8,7 @@ engineer:
   slug: silverlight-coming-to-linux-courtesy-mono
   url: /2007/05/silverlight-coming-to-linux-courtesy-mono/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/05/silverlight-coming-to-linux-courtesy-mono/
 
 ---

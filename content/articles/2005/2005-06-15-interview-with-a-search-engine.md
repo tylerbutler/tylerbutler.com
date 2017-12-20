@@ -7,6 +7,7 @@ engineer:
   slug: interview-with-a-search-engine
   url: /2005/06/interview-with-a-search-engine/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/06/interview-with-a-search-engine/
 
 ---

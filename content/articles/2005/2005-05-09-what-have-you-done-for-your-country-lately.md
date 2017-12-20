@@ -6,6 +6,7 @@ engineer:
   slug: what-have-you-done-for-your-country-lately
   url: /2005/05/what-have-you-done-for-your-country-lately/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/05/what-have-you-done-for-your-country-lately/
 
 ---

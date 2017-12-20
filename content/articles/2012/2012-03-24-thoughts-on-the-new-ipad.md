@@ -2,10 +2,12 @@
 
 title: Thoughts On the New iPad
 date: '2012-03-24T16:08:00-07:00'
+teaser: true
 tags:
 - Tyler tests
 engineer:
   slug: thoughts-on-the-new-ipad
+  teaser: true
   url: /2012/03/thoughts-on-the-new-ipad/
 
 ---
@@ -23,7 +25,7 @@ With that, here are some things to note about my iPad usage.
 
 Keeping in mind my usage patterns of the iPad first-gen, and the fact that I have explicitly avoided touching the iPad 2 too much because I didn't want to be too tempted to upgrade (this is a serious problem for me) and thus am comparing almost exclusively against the iPad 1, here's what I've noticed:
 
-<!-- more -->
+<!--more--> 
 
 ## Weight
 It's a bit lighter. I knew this going in, and indeed it was a selling point, though not a major one. Unfortunately this lighter weight is countermanded by some other problems that I'll cover in more detail below.

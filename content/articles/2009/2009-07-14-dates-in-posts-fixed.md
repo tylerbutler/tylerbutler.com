@@ -6,6 +6,7 @@ engineer:
   slug: dates-in-posts-fixed
   url: /2009/07/dates-in-posts-fixed/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/?p=522
 
 ---

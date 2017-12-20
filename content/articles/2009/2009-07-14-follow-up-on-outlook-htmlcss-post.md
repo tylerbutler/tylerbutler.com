@@ -6,6 +6,7 @@ engineer:
   slug: follow-up-on-outlook-htmlcss-post
   url: /2009/07/follow-up-on-outlook-htmlcss-post/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/2009/07/follow-up-on-outlook-htmlcss-post/
 
 ---

@@ -1,13 +1,13 @@
 ---
 
-title: "The drugs, the drugs..."
-draft: true
+title: The drugs, the drugs...
 date: '2004-05-21T05:03:00-07:00'
 link: http://games.slashdot.org/games/04/05/20/076251.shtml?tid=127&tid=186&tid=206&tid=209
 engineer:
   slug: the-drugs-the-drugs
   url: /2004/05/the-drugs-the-drugs/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/05/the-drugs-the-drugs/
 
 ---

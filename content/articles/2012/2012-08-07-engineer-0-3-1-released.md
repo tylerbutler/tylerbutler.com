@@ -2,11 +2,13 @@
 
 title: Engineer 0.3.1 Released
 date: '2012-08-07T02:59:00-07:00'
+teaser: true
 tags:
 - engineer
 - project
 engineer:
   slug: engineer-0-3-1-released
+  teaser: true
   url: /2012/08/engineer-0-3-1-released/
 
 ---
@@ -15,7 +17,7 @@ I pushed out a new version of Engineer -- 0.3.1 -- this weekend. While 0.3.1 is 
 
 The full [release notes][v0.3.0] go into more details about the specifics, but there are two major features I added that are particularly interesting from a development perspective: the new plugin architecture, and the Jekyll/Octopress compatibility work.
 
-<!-- more -->
+<!--more--> 
 
 ## Plugin Architecture 
 

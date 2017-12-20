@@ -9,6 +9,7 @@ engineer:
   slug: print-copy
   url: /2005/02/print-copy/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/02/print-copy/
 
 ---

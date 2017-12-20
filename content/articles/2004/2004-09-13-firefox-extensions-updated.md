@@ -6,6 +6,7 @@ engineer:
   slug: firefox-extensions-updated
   url: /2004/09/firefox-extensions-updated/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/09/firefox-extensions-updated/
 
 ---

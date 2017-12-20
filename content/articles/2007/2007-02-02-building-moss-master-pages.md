@@ -8,6 +8,7 @@ engineer:
   slug: building-moss-master-pages
   url: /2007/02/building-moss-master-pages/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/02/building-moss-master-pages/
 
 ---

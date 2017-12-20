@@ -8,6 +8,7 @@ engineer:
   slug: assumptions-make-life-simpler
   url: /2009/08/assumptions-make-life-simpler/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/2009/08/assumptions-make-life-simpler/
 
 ---

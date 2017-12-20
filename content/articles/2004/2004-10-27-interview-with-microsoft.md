@@ -6,6 +6,7 @@ engineer:
   slug: interview-with-microsoft
   url: /2004/10/interview-with-microsoft/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/10/interview-with-microsoft/
 
 ---

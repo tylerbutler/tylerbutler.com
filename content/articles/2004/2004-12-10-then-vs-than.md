@@ -8,6 +8,7 @@ engineer:
   slug: then-vs-than
   url: /2004/12/then-vs-than/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/12/then-vs-than/
 
 ---

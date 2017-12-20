@@ -2,11 +2,13 @@
 
 title: Pushing Non-Default Branches in Git
 date: '2012-12-03T15:53:00-08:00'
+teaser: true
 via: Mark Longair
 tags:
 - git
 engineer:
   slug: pushing-non-default-branches-in-git
+  teaser: true
   url: /2012/12/pushing-non-default-branches-in-git/
 
 ---
@@ -24,7 +26,7 @@ Learning new things every day... Mark Longair describes some [sitations in which
 
 He's got a very good description of why this doesn't work like you might expect as well as an overview of options to get things configured the way you want.
 
-<!-- more -->
+<!--more--> 
 
 I hit up against this today. I use both private git repositories on my own server and repos on GitHub to publish and share the code more broadly. The repo in question has a `dev` branch which I periodically push to GitHub, but the GitHub version of the branch lags a bit behind my own private repo (so I can do things like `git rebase` without breaking people). The way I manage this is with a local tracking branch tracking the remote `github/dev` branch that I fast-forward when I am ready to share something more widely. That local tracking branch is unsurprisingly called `github_dev`.
 

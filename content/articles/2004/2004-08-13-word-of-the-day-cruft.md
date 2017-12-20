@@ -6,6 +6,7 @@ engineer:
   slug: word-of-the-day-cruft
   url: /2004/08/word-of-the-day-cruft/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/08/word-of-the-day-cruft/
 
 ---

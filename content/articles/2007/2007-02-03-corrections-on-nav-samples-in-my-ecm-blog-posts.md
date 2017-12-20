@@ -8,6 +8,7 @@ engineer:
   slug: corrections-on-nav-samples-in-my-ecm-blog-posts
   url: /2007/02/corrections-on-nav-samples-in-my-ecm-blog-posts/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/02/corrections-on-nav-samples-in-my-ecm-blog-posts/
 
 ---

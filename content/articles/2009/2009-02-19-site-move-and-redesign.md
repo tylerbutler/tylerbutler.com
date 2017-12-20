@@ -6,6 +6,7 @@ engineer:
   slug: site-move-and-redesign
   url: /2009/02/site-move-and-redesign/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2009/02/site-move-and-redesign/
 
 ---

@@ -9,6 +9,7 @@ engineer:
   slug: november-8th
   url: /2004/11/november-8th/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/11/november-8th/
 
 ---

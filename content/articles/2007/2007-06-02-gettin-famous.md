@@ -8,6 +8,7 @@ engineer:
   slug: gettin-famous
   url: /2007/06/gettin-famous/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/06/gettin%e2%80%99-famous/
 
 ---

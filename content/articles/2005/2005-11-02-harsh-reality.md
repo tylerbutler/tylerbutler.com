@@ -6,6 +6,7 @@ engineer:
   slug: harsh-reality
   url: /2005/11/harsh-reality/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/11/harsh-reality/
 
 ---

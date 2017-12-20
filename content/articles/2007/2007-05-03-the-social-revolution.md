@@ -6,6 +6,7 @@ engineer:
   slug: the-social-revolution
   url: /2007/05/the-social-revolution/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/05/the-social-revolution/
 
 ---

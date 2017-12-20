@@ -6,6 +6,7 @@ engineer:
   slug: the-big-move-part-1
   url: /2004/08/the-big-move-part-1/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/08/the-big-move-part-1/
 
 ---

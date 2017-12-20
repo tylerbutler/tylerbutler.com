@@ -7,6 +7,7 @@ tags:
 - documentation
 engineer:
   slug: the-importance-of-documentation
+  teaser: true
   url: /2013/06/the-importance-of-documentation/
 
 ---

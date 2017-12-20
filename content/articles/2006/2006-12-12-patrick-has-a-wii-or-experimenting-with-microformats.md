@@ -6,6 +6,7 @@ engineer:
   slug: patrick-has-a-wii-or-experimenting-with-microformats
   url: /2006/12/patrick-has-a-wii-or-experimenting-with-microformats/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2006/12/patrick-has-a-wii-or-experimenting-with-microformats/
 
 ---

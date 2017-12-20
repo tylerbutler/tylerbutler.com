@@ -8,6 +8,7 @@ engineer:
   slug: celebrating-30-years-of-papua-new-guinean-independence
   url: /2005/09/celebrating-30-years-of-papua-new-guinean-independence/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/09/celebrating-30-years-of-papua-new-guinean-independence/
 
 ---

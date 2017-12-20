@@ -8,6 +8,7 @@ engineer:
   slug: tyler-a-novelist
   url: /2004/11/tyler-a-novelist/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/10/tyler-a-novelist/
 
 ---

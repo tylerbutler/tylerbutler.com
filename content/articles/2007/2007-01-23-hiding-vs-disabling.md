@@ -9,6 +9,7 @@ engineer:
   slug: hiding-vs-disabling
   url: /2007/01/hiding-vs-disabling/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/01/hiding-vs-disabling/
 
 ---

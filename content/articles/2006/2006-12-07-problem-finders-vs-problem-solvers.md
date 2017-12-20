@@ -6,6 +6,7 @@ engineer:
   slug: problem-finders-vs-problem-solvers
   url: /2006/12/problem-finders-vs-problem-solvers/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2006/12/problem-finders-vs-problem-solvers/
 
 ---

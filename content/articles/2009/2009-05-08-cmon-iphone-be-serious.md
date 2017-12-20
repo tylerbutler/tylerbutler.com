@@ -8,6 +8,7 @@ engineer:
   slug: cmon-iphone-be-serious
   url: /2009/05/cmon-iphone-be-serious/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/2009/05/cmon-iphone-be-serious/
 
 ---

@@ -9,6 +9,7 @@ engineer:
   slug: code-line-counter
   url: /2005/03/code-line-counter/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/03/code-line-counter/
 
 ---

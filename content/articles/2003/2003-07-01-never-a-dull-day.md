@@ -6,6 +6,7 @@ engineer:
   slug: never-a-dull-day
   url: /2003/07/never-a-dull-day/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2003/07/never-a-dull-day/
 
 ---

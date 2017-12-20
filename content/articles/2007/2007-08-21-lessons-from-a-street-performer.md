@@ -8,6 +8,7 @@ engineer:
   slug: lessons-from-a-street-performer
   url: /2007/08/lessons-from-a-street-performer/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/08/lessons-from-a-street-performer/
 
 ---

@@ -6,6 +6,7 @@ engineer:
   slug: tolls-and-cameras
   url: /2004/09/tolls-and-cameras/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/09/tolls-and-cameras/
 
 ---

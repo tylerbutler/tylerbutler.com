@@ -6,6 +6,7 @@ engineer:
   slug: c-messagebox-strangeness
   url: /2005/01/c-messagebox-strangeness/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/01/c-messagebox-strangeness/
 
 ---

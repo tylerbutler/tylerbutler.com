@@ -9,6 +9,7 @@ engineer:
   slug: bad-product-designs
   url: /2005/06/bad-product-designs/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/06/bad-product-designs/
 
 ---

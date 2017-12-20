@@ -6,6 +6,7 @@ engineer:
   slug: from-diary-to-blog
   url: /2004/05/from-diary-to-blog/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/05/from-diary-to-blog/
 
 ---

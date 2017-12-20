@@ -8,6 +8,7 @@ engineer:
   slug: sharepoint-updates
   url: /2008/10/sharepoint-updates/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2008/10/sharepoint-updates/
 
 ---

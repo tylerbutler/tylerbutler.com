@@ -6,6 +6,7 @@ engineer:
   slug: mailinator-to-the-rescue
   url: /2004/07/mailinator-to-the-rescue/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/07/mailinator-to-the-rescue/
 
 ---

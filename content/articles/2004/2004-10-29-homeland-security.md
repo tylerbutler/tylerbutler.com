@@ -6,6 +6,7 @@ engineer:
   slug: homeland-security
   url: /2004/10/homeland-security/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/10/homeland-security/
 
 ---

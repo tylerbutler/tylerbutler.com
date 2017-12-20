@@ -8,6 +8,7 @@ engineer:
   slug: speaking-at-mix
   url: /2007/04/speaking-at-mix/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/04/speaking-at-mix/
 
 ---

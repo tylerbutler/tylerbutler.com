@@ -6,6 +6,7 @@ engineer:
   slug: the-history-of-the-gui
   url: /2005/05/the-history-of-the-gui/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/05/the-history-of-the-gui/
 
 ---

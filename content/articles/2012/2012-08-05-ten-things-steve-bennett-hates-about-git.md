@@ -2,6 +2,7 @@
 
 title: Ten Things Steve Bennett Hates About Git
 date: '2012-08-05T15:08:00-07:00'
+teaser: true
 link: https://steveko.wordpress.com/2012/02/24/10-things-i-hate-about-git/
 via: Jeff Atwood
 vialink: https://twitter.com/codinghorror/statuses/231982243109822464
@@ -9,6 +10,7 @@ tags:
 - git
 engineer:
   slug: ten-things-steve-bennett-hates-about-git
+  teaser: true
   url: /2012/08/ten-things-steve-bennett-hates-about-git/
 
 ---
@@ -24,7 +26,7 @@ I've [complained about this before][git post]. Software engineers like to believ
 
 Frankly, the Git command line breaks this all the time. Some commands need some flags; others don't. Conceptually similar operations require different top-level commands (not just flags) depending on what you're doing that operation on.[^1] It's madness, and I think it's safe to say that the command line isn't *designed*; it's merely *implemented.*
 
-<!-- more -->
+<!--more-->
 
 Similarly, the documentation sucks. I have found that a major challenge with documenting an application, even [one whose primary interface is a command line][Engineer], is documenting things for both a *user* and a *potential contributor*. With [Engineer][], I try to keep the two types separate, but it's a challenge. Arguably open-source software tends to have this problem more -- or at least it's more publically evident[^2] -- since the point of the software is two-fold: to be useful to users, and to attract additional developers to contribute.
 
@@ -151,7 +153,7 @@ The future is waiting. Go meet it.
 
     > To reset one file in your working directory to its committed state:
 
-    >     ```text
+    >     :::text
     >     git checkout file.txt
 
     > To reset every file in your working directory to its committed state:

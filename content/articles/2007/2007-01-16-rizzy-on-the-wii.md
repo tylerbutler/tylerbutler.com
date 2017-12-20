@@ -8,6 +8,7 @@ engineer:
   slug: rizzy-on-the-wii
   url: /2007/01/rizzy-on-the-wii/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/01/rizzy-on-the-wii/
 
 ---

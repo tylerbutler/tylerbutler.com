@@ -6,6 +6,7 @@ engineer:
   slug: mobile-redirects
   url: /2009/04/mobile-redirects/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/2009/04/mobile-redirects/
 
 ---

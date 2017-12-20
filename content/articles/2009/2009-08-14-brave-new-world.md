@@ -7,6 +7,7 @@ engineer:
   slug: brave-new-world
   url: /2009/08/brave-new-world/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/2009/08/brave-new-world/
 
 ---

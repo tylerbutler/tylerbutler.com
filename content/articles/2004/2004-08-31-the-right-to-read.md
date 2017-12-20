@@ -7,6 +7,7 @@ engineer:
   slug: the-right-to-read
   url: /2004/08/the-right-to-read/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/08/the-right-to-read/
 
 ---

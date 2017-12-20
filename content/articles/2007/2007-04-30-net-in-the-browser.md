@@ -8,6 +8,7 @@ engineer:
   slug: net-in-the-browser
   url: /2007/04/net-in-the-browser/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/04/net-in-the-browser/
 
 ---

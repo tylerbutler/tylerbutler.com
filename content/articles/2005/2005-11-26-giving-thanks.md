@@ -8,6 +8,7 @@ engineer:
   slug: giving-thanks
   url: /2005/11/giving-thanks/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/11/giving-thanks/
 
 ---

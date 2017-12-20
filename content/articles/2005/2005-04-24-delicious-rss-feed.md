@@ -6,6 +6,7 @@ engineer:
   slug: delicious-rss-feed
   url: /2005/04/delicious-rss-feed/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/04/delicious-rss-feed/
 
 ---

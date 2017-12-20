@@ -6,6 +6,7 @@ engineer:
   slug: building-tylerbutlercom-on-moss
   url: /2006/11/building-tylerbutlercom-on-moss/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2006/11/building-tylerbutlercom-on-moss/
 
 ---

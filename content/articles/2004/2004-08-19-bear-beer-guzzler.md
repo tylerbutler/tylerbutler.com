@@ -6,6 +6,7 @@ engineer:
   slug: bear-beer-guzzler
   url: /2004/08/bear-beer-guzzler/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/08/bear-beer-guzzler/
 
 ---

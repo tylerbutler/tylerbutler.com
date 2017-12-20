@@ -2,10 +2,12 @@
 
 title: Small Dog Ambassadorship
 date: '2012-12-22T15:08:00-08:00'
+teaser: true
 tags:
 - dogs
 engineer:
   slug: small-dog-ambassadorship
+  teaser: true
   url: /2012/12/small-dog-ambassadorship/
 
 ---
@@ -18,7 +20,7 @@ If you do consider yourself a dog person, then you probably have some preconceiv
 
 While all of these things *can* be true, they can be true of all dog breeds (and, like people, there's a lot of variation between individual dogs even within a breed!), and chances are you simply haven't had a chance to really interact with small breeds that much. Elizabeth and I have been blown away by the number of times we've had friends or family meet our dogs (both Chihuahuas) and say, "I never really liked small dogs, but your dogs are really awesome!" We are *not* some crazy-skilled dog whisperers or something. Rather, there are two fundamental things that we keep in mind when we're relating to our dogs.
 
-<!-- more -->
+<!--more--> 
 
 First, a small dog is still a dog. The biggest problem small dogs have is that they're simply not treated like dogs, so they either get away with poor behavior because they're small and it's "cute," or they're treated like fashion accessories rather than animal companions. By treating small breeds like you would a larger breed -- especially when they're young -- they wind up being much happier, and so will you.
 

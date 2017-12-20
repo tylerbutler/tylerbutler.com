@@ -9,6 +9,7 @@ engineer:
   slug: powershell-for-fun-and-profit
   url: /2009/06/powershell-for-fun-and-profit/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/?p=460
 
 ---

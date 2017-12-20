@@ -6,6 +6,7 @@ engineer:
   slug: outlook-email-and-css
   url: /2009/06/outlook-email-and-css/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/2009/06/outlook-email-and-css/
 
 ---

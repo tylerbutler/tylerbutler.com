@@ -8,6 +8,7 @@ engineer:
   slug: nintendo-wii
   url: /2006/12/nintendo-wii/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2006/12/nintendo-wii/
 
 ---

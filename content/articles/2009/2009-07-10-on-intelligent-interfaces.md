@@ -9,6 +9,7 @@ engineer:
   slug: on-intelligent-interfaces
   url: /2009/07/on-intelligent-interfaces/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/?p=517
 
 ---

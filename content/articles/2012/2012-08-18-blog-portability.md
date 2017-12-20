@@ -2,6 +2,7 @@
 
 title: Blog Portability
 date: '2012-08-18T20:37:00-07:00'
+teaser: true
 link: http://www.macdrifter.com/2012/07/things-i-have-learned-about-blog-portability.html
 via: Collin Donnell
 vialink: http://collindonnell.com/2012/07/31/macdrifter-on-blog-portability/
@@ -9,6 +10,7 @@ tags:
 - engineer
 engineer:
   slug: blog-portability
+  teaser: true
   url: /2012/08/blog-portability/
 
 ---
@@ -19,7 +21,7 @@ MacDrifter on blog portability:
 
 I'm proud to point out that [Engineer](/projects/engineer/) helps avoid a number of these. Let's examine them.
 
-<!-- more -->
+<!--more--> 
 
 **1. Always save the original Markdown in text files.**
 

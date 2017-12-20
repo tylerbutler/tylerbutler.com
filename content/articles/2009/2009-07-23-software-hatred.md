@@ -11,6 +11,7 @@ engineer:
   slug: software-hatred
   url: /2009/07/software-hatred/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/2009/07/software-hatred/
 
 ---

@@ -6,6 +6,7 @@ engineer:
   slug: buying-toothpaste
   url: /2006/12/buying-toothpaste/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2006/12/buying-toothpaste/
 
 ---

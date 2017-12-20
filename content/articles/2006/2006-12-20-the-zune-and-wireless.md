@@ -6,6 +6,7 @@ engineer:
   slug: the-zune-and-wireless
   url: /2006/12/the-zune-and-wireless/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2006/12/the-zune-and-wireless/
 
 ---

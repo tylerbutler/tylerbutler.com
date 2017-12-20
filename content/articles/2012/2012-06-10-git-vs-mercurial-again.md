@@ -2,11 +2,13 @@
 
 title: Git vs. Mercurial (Again)
 date: '2012-06-10T17:57:00-07:00'
+teaser: true
 tags:
 - git
 - mercurial
 engineer:
   slug: git-vs-mercurial-again
+  teaser: true
   url: /2012/06/git-vs-mercurial-again/
 
 ---
@@ -19,7 +21,7 @@ My first experience with true source code management was with CVS. I was in coll
 
 The Unix server we used had CVS installed, so I learned the ropes then gave new students a crash-course in using it, as well as how to check things in and out using the Eclipse addins. This was the first time almost every student I encountered had used any source code management software, which in retrospect is a travesty. I *really* hope college courses include source code management tools these days.
 
-<!-- more -->
+<!--more--> 
 
 Fast forward a couple of years... I got out of college, started my career as a PM, and promptly stopped worrying about source code management. I mean, I had to worry about it insofar as I needed to understand what core developers were talking about ("*This* branch" and "*That* branch" and "No we can't merge yet because of the children. Think of the children!" and... well, you get the idea) but it wasn't part of my daily routine.
 

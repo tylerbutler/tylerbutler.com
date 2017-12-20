@@ -6,6 +6,7 @@ engineer:
   slug: ebay-scams-are-funny
   url: /2004/07/ebay-scams-are-funny/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/07/ebay-scams-are-funny/
 
 ---

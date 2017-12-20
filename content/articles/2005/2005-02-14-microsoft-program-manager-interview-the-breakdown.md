@@ -6,6 +6,7 @@ engineer:
   slug: microsoft-program-manager-interview-the-breakdown
   url: /2005/02/microsoft-program-manager-interview-the-breakdown/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/02/microsoft-program-manager-interview-the-breakdown/
 
 ---

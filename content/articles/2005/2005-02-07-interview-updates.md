@@ -6,6 +6,7 @@ engineer:
   slug: interview-updates
   url: /2005/02/interview-updates/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/02/interview-updates/
 
 ---

@@ -6,6 +6,7 @@ engineer:
   slug: all-i-said-was-comiskey-park
   url: /2004/05/all-i-said-was-comiskey-park/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/05/all-i-said-was-comiskey-park/
 
 ---

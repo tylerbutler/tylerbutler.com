@@ -6,6 +6,7 @@ engineer:
   slug: i-hate-banks
   url: /2004/08/i-hate-banks/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/08/i-hate-banks/
 
 ---

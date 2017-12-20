@@ -8,6 +8,7 @@ engineer:
   slug: turducken
   url: /2004/11/turducken/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2004/11/turducken/
 
 ---

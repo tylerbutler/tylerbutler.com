@@ -8,6 +8,7 @@ engineer:
   slug: the-wealthy-man-communication
   url: /2007/10/the-wealthy-man-communication/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2007/10/the-wealthy-man-communication/
 
 ---

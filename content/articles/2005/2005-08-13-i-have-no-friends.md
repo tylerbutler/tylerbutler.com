@@ -6,6 +6,7 @@ engineer:
   slug: i-have-no-friends
   url: /2005/08/i-have-no-friends/
 
+# Custom Properties
 guid: http://blog.tylerbutler.com/index.php/2005/08/i-have-no-friends/
 
 ---

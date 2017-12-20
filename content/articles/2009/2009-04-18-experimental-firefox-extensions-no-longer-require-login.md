@@ -8,6 +8,7 @@ engineer:
   slug: experimental-firefox-extensions-no-longer-require-login
   url: /2009/04/experimental-firefox-extensions-no-longer-require-login/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/?p=376
 
 ---

@@ -8,6 +8,7 @@ engineer:
   slug: linq-confusion
   url: /2009/03/linq-confusion/
 
+# Custom Properties
 guid: http://www.tylerbutler.com/?p=341
 
 ---

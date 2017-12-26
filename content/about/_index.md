@@ -1,8 +1,8 @@
 ---
 
 title: About
-type: pages
-showsidebar: no
+hidesidebar: yes
+weight: 30
 
 ---
 

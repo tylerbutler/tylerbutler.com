@@ -1,5 +1,6 @@
 ---
 
 showsidebar: yes
-#homepagesection: yes
+homepage: yes
+
 ---

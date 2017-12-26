@@ -1,11 +1,7 @@
 ---
 
 title: Colophon
-type: pages
-
-showsidebar: yes
-
-#sidebar: This is some custom **sidebar** content!
+hideInTopNav: true
 
 ---
 

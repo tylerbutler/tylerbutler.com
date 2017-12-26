@@ -2,9 +2,9 @@ baseURL: http://www.tylerbutler.com/
 languageCode: en-us
 title: Tyler Butler
 Paginate: 5
-#theme: ananke
 theme: dark_rainbow
 disqusShortname: tylerbutlercom
+googleAnalytics: "UA-26061862-1"
 
 permalinks:
   pages: /:slug/
@@ -18,10 +18,10 @@ pygmentsCodefencesGuessSyntax: true
 # true use pygments-css or false will color code directly
 pygmentsUseClasses: true
 
-#pygmentsUseClassic: true
-#ignoreCache: true
-
-# pygmentsOptions: "linenos=inline"
+enableGitInfo: false
+enableRobotsTXT: true
+disableKinds: ["404"]
+disableHugoGeneratorInject: false
 
 taxonomies:
   tag: tags
@@ -45,19 +45,8 @@ params:
       provider: "disqus"
       account: tylerbutlercom
 
-sectionPagesMenu: main
+# sectionPagesMenu: main
 menu:
-  main:
-    - Name: "about"
-      Identifier: "about"
-      URL: "/about"
-      Weight: 0
-  # - Name: "articles"
-  #   Identifier: "articles"
-  #   URL: "/"
-  # - Name: "projects"
-  #   Identifier: "projects"
-  #   URL: "/projects/"
   sidebarmiddle:
     - Name: "feed"
       Identifier: "feed"

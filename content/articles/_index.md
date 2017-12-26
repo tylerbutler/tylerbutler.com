@@ -1,10 +1,7 @@
 ---
 
 title: Articles
-Weight: 100
-
-homepagesection: yes
-showsidebar: yes
+Weight: 10
 
 aliases:
   - /archives/

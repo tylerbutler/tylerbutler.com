@@ -23,6 +23,14 @@ enableRobotsTXT: true
 disableKinds: ["404"]
 disableHugoGeneratorInject: false
 
+outputs:
+  home: ["HTML", "RSS"]
+
+outputFormats:
+  RSS:
+    mediatype: "application/rss"
+    baseName: "feed"
+
 taxonomies:
   tag: tags
   series: series

@@ -58,7 +58,7 @@ menu:
   sidebarmiddle:
     - Name: "feed"
       Identifier: "feed"
-      URL: "http://feeds.feedburner.com/TylerButlerAllPosts"
+      URL: "http://feed.tylerbutler.com/AllPosts"
       Weight: 1
     - Name: "archives"
       Identifier: "archives"

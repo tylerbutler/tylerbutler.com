@@ -1,6 +1,8 @@
 baseURL: http://www.tylerbutler.com/
 languageCode: en-us
 title: Tyler Butler
+author:
+  name: Tyler Butler
 Paginate: 5
 theme: dark_rainbow
 disqusShortname: tylerbutlercom

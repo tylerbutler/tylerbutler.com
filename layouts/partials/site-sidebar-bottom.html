@@ -1,6 +1,6 @@
 <h2 class="hide-on-phones">you might remember me from</h2>
 <ul class="hide-on-phones">
   {{ range $.Site.Menus.sidebarbottom }}
-    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+    <li><a href="{{ .URL }}" rel="me">{{ .Name }}</a></li>
   {{ end }}
 </ul>

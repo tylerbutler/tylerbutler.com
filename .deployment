@@ -1,2 +1,2 @@
 [config]
-command = azure-deploy.cmd
+command = powershell -NoProfile -NoLogo -ExecutionPolicy Unrestricted -Command "& "$pwd\azure-hugo\deploy.ps1" 2>&1 | echo"

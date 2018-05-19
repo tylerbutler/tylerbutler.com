@@ -45,12 +45,10 @@ params:
     typekit_id: vty2qol
     sharing:
       enabled: yes
-      facebook:
-        enabled: yes
-        app_id: '298536070167430'
-      twitter:
-        enabled: yes
-        username: tylerbutler
+      size: medium
+      services:
+        - facebook
+        - twitter
     comments:
       enabled: yes
       provider: "disqus"

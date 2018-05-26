@@ -54,6 +54,18 @@ params:
       provider: "disqus"
       account: tylerbutlercom
 
+privacy:
+  googleAnalytics:
+    respectDoNotTrack: true
+  instagram:
+    disable: true
+  speakerDeck:
+    disable: true
+  twitter:
+    enableDNT: true
+  youtube:
+    privacyEnhanced: true
+
 # sectionPagesMenu: main
 menu:
   sidebarmiddle:

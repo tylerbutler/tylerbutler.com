@@ -7,6 +7,7 @@ tags:
 - guide
 - python
 lastmod: '2014-12-31T00:00:00-08:00'
+type: 'guide'
 engineer:
   slug: installing-binary-python-packages-on-windows
   url: /2014/12/installing-binary-python-packages-on-windows/

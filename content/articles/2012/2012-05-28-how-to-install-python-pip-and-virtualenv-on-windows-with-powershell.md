@@ -9,6 +9,7 @@ tags:
 - python
 - powershell
 lastmod: '2014-10-07T00:00:00-07:00'
+type: 'guide'
 engineer:
   slug: how-to-install-python-pip-and-virtualenv-on-windows-with-powershell
   teaser: true

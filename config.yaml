@@ -44,7 +44,7 @@ params:
       enabled: yes
     typekit_id: vty2qol
     sharing:
-      enabled: yes
+      enabled: no
       size: medium
       services:
         - facebook

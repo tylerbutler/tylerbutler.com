@@ -10,7 +10,7 @@ fields:
 - type: datetime
   name: date
   default: ''
-  label: ''
+  label: Date
   config:
     date_format: YYYY-MM-DD
 - name: draft

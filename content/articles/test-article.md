@@ -4,4 +4,4 @@ draft = true
 title = "Test Article"
 
 +++
-
+This is a simple article to test forestry.io integration.

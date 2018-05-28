@@ -18,3 +18,5 @@ fields:
   type: boolean
   hidden: false
   default: true
+pages:
+- articles/test-article.md

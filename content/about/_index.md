@@ -3,6 +3,7 @@
 title: About
 hidesidebar: yes
 weight: 30
+layout: singlepage
 
 ---
 

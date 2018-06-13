@@ -2,6 +2,7 @@
 
 title: Colophon
 hideInTopNav: true
+layout: singlepage
 
 ---
 

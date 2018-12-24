@@ -15,3 +15,4 @@ original-draft-timestamp: 2015-01-01 8:57 AM
 
 Daniel Cook tells you [more than you ever needed to know about loot tables][post-link]. Unless you're a game designer, of course...
 
+[post-link]: http://www.lostgarden.com/2014/12/loot-drop-tables.html

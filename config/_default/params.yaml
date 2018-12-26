@@ -1,0 +1,15 @@
+# Default params
+theme:
+  bigfoot:
+    enabled: yes
+  typekit_id: vty2qol
+  sharing:
+    enabled: no
+    size: medium
+    services:
+      - facebook
+      - twitter
+  comments:
+    enabled: yes
+    provider: "disqus"
+    account: tylerbutlercom

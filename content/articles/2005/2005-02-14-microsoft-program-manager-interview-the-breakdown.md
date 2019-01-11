@@ -20,7 +20,7 @@ Before I go into more details about the actual interviews themselves, here's a b
 * Total number of teams with which I interviewed: **3**
 * Length of day: **8:30am --- 5:30pm**
 
-##Interview Breakdown:
+## Interview Breakdown:
 
 *  [Human Resources (Ron Honcoop)][2]
 *  [Publisher Team (Jeff Bell)][3]
@@ -33,9 +33,9 @@ Before I go into more details about the actual interviews themselves, here's a b
 
 Being the conscientious young man that I am, I took notes on each interview and wrote down most of the questions I was asked, so I will share those. Please note that I honestly don't know exactly what they're looking for, but I did get an offer, so I must have done something right. I did do some preparation work for the interview.
 
-##Pre-interview Preparation
+## Pre-interview Preparation
 
-###Blog reading
+### Blog reading
 I did a simple Google search for "Microsoft interview questions" and wound up with quite a few blogs from people that had had interviews. The search process to uncover really useful information took me a couple of days. Here's a few of the ones that proved most helpful:
 
 *   <http://www.sellsbrothers.com/fun/msiview/>
@@ -44,7 +44,7 @@ I did a simple Google search for "Microsoft interview questions" and wound up wi
 *   <http://blogs.msdn.com/jobsblog>
 
 
-###Brain teasers
+### Brain teasers
 I had heard the Microsoft was fond of asking brain teaser questions, so I looked around for a few of those as well. Even though I had been told that they really no longer asked these questions, I was interested in trying to solve them anyway. They proved to be very stimulating bar conversation on my weekly Thursday-night outing to John Barleycorn's with the guys. Also, they helped to focus my nervous energy into something mentally stimulating, and provided hours of amusement at work. Here are a couple of the sites that had a lot of interesting problems:
 
 *   <http://halcyon.usc.edu/~kiran/msqs.html>
@@ -52,10 +52,10 @@ I had heard the Microsoft was fond of asking brain teaser questions, so I looked
 
 It should be noted that these brain-teasers provided me **absolutely no useful information for my interview!** I was not asked any of these questions, nor any others that were similar. Their only value was in keeping my mind off of my nervousness and making me the life of the party at Barleycorn's.
 
-###Phone conversation 
+### Phone conversation 
 My friend Matt's sister had an interview with Microsoft a few months ago and got an offer (which she accepted), so Matt got us in touch and she provided me a lot of useful information. She had some tips for the actual day (scope out the location the night before, be ready for it to last the whole day, etc.), and she helped to calm me down a bit, since at that point I was pretty nervous. She did not interview for a PM position, though, so there were differences in my experience. If you know someone or can find a friend of a friend that interviewed for the specific position you're interviewing for, it would be the most useful.
 
-###Important points
+### Important points
 I also made a mental list of major points I wanted to be sure to mention during the interview. This basically reflected the major points I hit in my resume's professional summary. I wanted to be sure I hit a lot about [HawkTour][], since my experience there directly relates to the PM position. I also wanted to stress my multi-cultural background (lots of teamwork benefits there) and communication skills. These were the things that set me apart from other people --- I wanted to make sure I talked about them. I wrote out a list of questions that I wanted to ask each interviewer (things like "what are your core responsibilities?" and "how many people are on your team?"). This list gave me a baseline for every interview. I knew they would ask if I had any questions, so I always looked back and my list to make sure we'd covered everything I wanted to go over. 
 
 So with all of that background out of the way, let's get into the guts of every interview. I will go in chronological order. Please hold your questions until the end of the lecture.
@@ -80,7 +80,7 @@ I arrived at 7:30. Traffic was kind of bad, but it certainly wasn't as bad as I 
 
 I got back to Building 19 at around 8:05. I parked and checked in with the receptionist, who gave a me a couple of forms to fill out, and pointed me to a rather nice sunlit lobby to sit and wait. I was soon joined by a Stanford sophomore who was there for a internship interview. He could not stop yawning. I inquired about how much sleep he had gotten, and he had actually gotten more than I had. And here I was, bouncing off the walls... Anyway, Rondell Honcoop, my HR contact, came to get me at about 8:45.
 
-##<a name="hr"></a>Human Resources --- Rondell Honcoop --- 8:45 am PST
+## <a name="hr"></a>Human Resources --- Rondell Honcoop --- 8:45 am PST
 
 Ron began by explaining briefly how the day would go. I would not know the identity of my next interviewer until after each interview (I had been told this before). He also explained a little about the teams I'd be interviewing with (Authoring and CMS). He didn't know much about CMS (indeed, no one seemed to have much info on it), but he told me that Authoring was Office-related. He asked me if there were other companies I was looking at. I told him Google and Lexmark. He asked me to rate them in order of interest, and I put Google at the top and Microsoft second. He asked me specifically what I liked about Google and what it would take to get Microsoft to the top of that list. I was very honest through this process and also made sure to let him know that I was not as far along at Lexmark or Google (I do not have interviews at either of them yet) as with Microsoft. He encouraged me to keep an open mind during the interview and try to figure out how Microsoft dealt with the things that excite me about Google.
 
@@ -92,7 +92,7 @@ Ron walked me outside and made sure I got on the recruiting shuttle to the next 
 
 I arrived at the next building and checked in with the receptionist. Jeff came to get me just before 10am.
 
-##<a name="pub1"></a>Publisher Team --- Jeff Bell --- 10:00am PST
+## <a name="pub1"></a>Publisher Team --- Jeff Bell --- 10:00am PST
 
 Jeff, like all the people I met with, was very friendly. He talked to me about the basic role of the PM (manages features, not people; influence without authority), then asked me about the HawkTour project. I talked about the design architecture and our use of SOAP. He asked me about other solutions we had considered, and I mentioned XML-RPC. He asked me if there were any benefits to using it over SOAP other than it was more lightweight. He posed the question in an interesting way: "If someone else were to enter the market with a similar product, but that used XML-RPC, would they have any advantages over your product?"
 
@@ -114,7 +114,7 @@ At this point it became a green light question, so I talked a little about addin
 
 Jeff led me to a waiting room after our interview, and I continued thinking through the problems he'd posed, sketching on the whiteboard that was there in the room. Tara came and got me in a few minutes.
 
-##<a name="pub2"> </a>Publisher Team --- Tara Kraft --- 11:00 am PST
+## <a name="pub2"> </a>Publisher Team --- Tara Kraft --- 11:00 am PST
 
 Tara talked to me a little about her role in the Publisher team and the overall PM position. She then asked me about HawkTour and asked for clarification when I said I was the "go-to" guy for the project. She then posed a question related directly to Publisher. It was about an email sharing feature. She treated it as a greenlight question initially, then transitioned into design after I had a few ideas. We proed and conned the solutions, then made a decision based on the simplicity of the solution. I made all my assumptions clear, as per usual. I really enjoyed this interview, even though it was kind of short, because Tara actually got up and worked on the whiteboard with me, which made it seem more teamwork oriented, rather than observational. 
 
@@ -122,7 +122,7 @@ At this point I was kind of hungry, so I was glad that lunch was coming up. I ha
 
 I had to take the shuttle to a different building for the next interview, and when I arrived, the receptionist informed me I would be meeting with Dave Quick instead of Dan Kogan, who I was scheduled to meet with. Dave came down in a couple of minutes and asked if I wanted to eat in the cafeteria or go out somewhere. It really didn't matter to me, so we went to a teriyaki place at his suggestion.
 
-##<a name="cms1"></a>Content Management Server Team --- Dave Quick --- 12:30 pm PST
+## <a name="cms1"></a>Content Management Server Team --- Dave Quick --- 12:30 pm PST
 
 The beginning of the meeting was pretty informal, since we went to lunch. Dave talked a lot about his hobbies and interests, and we discussed technologies. He was Greek at [RPI][], and knew some of the Delts from the chapter there, which was cool. It was nice to talk to someone who knew about the Greek system and didn't find it strange that I was in a fraternity. I had a good time with him and enjoyed talking about blogging, movies, photography, cars, etc.
 
@@ -136,7 +136,7 @@ He then asked me about integrating the LCS into Excel. How could we do it? What 
 
 Dave led me back down to the lobby and chatted with me a bit before heading back upstairs. Dan Kogan would be my next interviewer.
 
-##<a name="cms2"></a>Content Management Server Team --- Dan Kogan --- 2:00 pm PST
+## <a name="cms2"></a>Content Management Server Team --- Dan Kogan --- 2:00 pm PST
 
 This interview was my worst, I think. Dan and I didn't really hit it off and he mentioned that I was his third interview, so he was probably as tired as I was. I felt my brain slow down tangibly towards the end of my interview with Dave, and it pretty much stayed checked out for the entire interview with Dan. Dan asked me some questions about the HawkTour survey UI, and seemed to be checking that I knew what UI components made the most sense in certain situations.
 
@@ -150,7 +150,7 @@ I think I may have gotten a little too defensive in this interview. Dan made som
 
 After the interview, Dan was unsure of who I'd be meeting with next, so he took me to the lobby and said he'd check for me. A few minutes later, Jim Masson came out and led me to his office.
 
-##<a name="cms3"></a>Content Management Server Team --- Jim Masson --- 3:15 pm PST
+## <a name="cms3"></a>Content Management Server Team --- Jim Masson --- 3:15 pm PST
 
 Jim got right down to business, I think because I was an unexpected interview for him, and he didn't have much time. He told me a little about himself, then set up the following scenario:
 
@@ -162,7 +162,7 @@ I came away from the interview refreshed because I felt like I had offered a rob
 
 Next up was Dieter from the Project Team. I never got fully introduced to him, so I don't know his last name. This was my final interview on-site.
 
-##<a name="project"></a>Project Team --- Dieter --- 4:00 pm PST
+## <a name="project"></a>Project Team --- Dieter --- 4:00 pm PST
 
 My interview with Dieter consisted of a lot of questions and answers (I'd actually had a chance throughout the day to think of a couple of new ones) and a greenlight session that was interestingly related to pervasive computing:
 
@@ -172,7 +172,7 @@ I went right to work. I'd actually had some experience with this particular prob
 
 Dieter walked me to Building 19, I checked out with the receptionist, then headed back to my hotel room. I was pretty tired, but desperately needed food. I browsed the web for a bit and found a nice-looking steakhouse, and was almost ready to go when Ron gave me a call to debrief.
 
-##<a name="debrief"></a>Debrief --- Rondell Honcoop --- 5:45 pm PST
+## <a name="debrief"></a>Debrief --- Rondell Honcoop --- 5:45 pm PST
 
 Ron basically wanted to go over the day and how I felt things went. He asked me if I had gotten answers for my questions, and wanted to know how Microsoft stacked up against Google post-interview. Honestly, I was pretty impressed with the whole interview process and the people I had met, so I told him honestly that they were at the front now. He encouraged me to let him know if I had questions, and I got permission from him to follow-up if I hadn't heard anything from him by Friday (which ended up being overkill, because I got an offer the next day). 
 

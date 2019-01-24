@@ -1,4 +1,5 @@
 ---
+label: default
 hide_body: false
 is_partial: false
 fields:
@@ -19,4 +20,4 @@ fields:
   hidden: false
   default: true
 pages:
-- articles/test-article.md
+- content/articles/test-article.md

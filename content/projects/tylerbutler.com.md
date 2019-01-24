@@ -15,5 +15,5 @@ web applications and ideas I am playing around with, along with occasional artic
 The source for the Engineer pieces of the site are [on github][1]. The articles themselves are
 stored in Dropbox and synchronized between all of my devices, so I can write anywhere.
 
-[Engineer]: {{< relref "projects/engineer.md" >}}
+[Engineer]: {{< relref "/projects/engineer.md" >}}
 [1]: https://github.com/tylerbutler/tylerbutler.com

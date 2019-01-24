@@ -18,7 +18,7 @@ xkcd comics. Most of my recent work is [available on github][github].
 You can reach me at **tyler@tylerbutler.com**. If you haven't heard from me
 in awhile, it's because I'm too busy changing the world. After all, somebody has to.
 
-[Engineer]: {{< relref "projects/engineer.md" >}}
+[Engineer]: {{< relref "/projects/engineer.md" >}}
 [xkcd 2]: http://xkcd2.com/
 [twitter]: https://twitter.com/tylerbutler
 [github]: https://github.com/tylerbutler

@@ -30,7 +30,8 @@ I chose to use the [VERBOSE][2] regular expression form so it's clearer how the 
 
 ```python
 class LazyMarkdownLinksPlugin(PostProcessor):
-    # Inspired by Brett Terpstra: http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/
+    # Inspired by Brett Terpstra:
+    # http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/
     _link_regex = re.compile(r'''
         (           # Start group 1, which is the actual link text
             \[          # Match a literal [

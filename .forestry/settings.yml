@@ -31,7 +31,7 @@ sections:
   match: "*"
 - type: directory
   path: content/png2019
-  label: Png2019
+  label: PNG 2019
   create: all
   match: "**/*"
 upload_dir: static/uploads

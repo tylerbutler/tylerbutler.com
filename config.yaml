@@ -8,7 +8,7 @@ Paginate: 5
 theme: dark_rainbow
 disqusShortname: tylerbutlercom
 googleAnalytics: "UA-26061862-1"
-copyright: 2002-2018 Tyler Butler
+copyright: 2002-2019 Tyler Butler
 
 permalinks:
   pages: /:slug/

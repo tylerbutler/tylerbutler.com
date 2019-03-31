@@ -3,6 +3,7 @@
 title: 'Coke Zero II: The Review'
 date: '2017-08-05T13:32:00-07:00'
 slug: coke-zero-ii-the-review
+teaser: true
 engineer:
   slug: coke-zero-ii-the-review
   url: /2017/08/coke-zero-ii-the-review/
@@ -26,6 +27,8 @@ Nope:
 >The new cans and bottles, which will incorporate more red like regular Coke, will start hitting shelves in August 2017.
 
 *August 2017?* Commence freak-out in three... two... one...
+
+<!--more-->
 
 Lo and behold, at a Fred Meyer in Issaquah yesterday, my wife couldn't find Coke Zero at all, but Coca-Cola Zero Sugar[^2] was there in spades. I naively figured that it would be a few more weeks before actual stores had switched over their stock, but I was wrong. My taste test would be happening a lot sooner than I'd expected.
 

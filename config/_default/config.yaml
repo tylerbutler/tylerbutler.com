@@ -5,6 +5,7 @@ author:
   name: Tyler Butler
   website: https://tylerbutler.com/
 Paginate: 5
+metaDataFormat: yaml
 theme: dark_rainbow
 disqusShortname: tylerbutlercom
 googleAnalytics: "UA-26061862-1"

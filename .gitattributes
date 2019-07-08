@@ -1,14 +1,3 @@
-# Auto detect text files and perform LF normalization 
+# Auto detect text files and perform LF normalization
+# https://www.davidlaing.com/2012/09/19/customise-your-gitattributes-to-become-a-git-ninja/
 * text=auto
-
-# Explicitly declare text files you want to always be normalized and converted
-# to native line endings on checkout.
-*.txt text
-*.md text
-*.html text
-*.py text
-*.js text
-*.css text
-*.less text
-*.yaml text
-*.yml text

@@ -4,7 +4,7 @@ title: LINQ Confusion
 date: '2009-03-15T07:47:00-07:00'
 slug: linq-confusion
 tags:
-- C#
+- CSharp
 engineer:
   slug: linq-confusion
   url: /2009/03/linq-confusion/
@@ -27,20 +27,20 @@ have thought of it on my own.
 The examples given all worked, but not with my lists… With the following code,
 the compiler spits out several errors:
 
-    
+
     List<Action> cards = new List<Action>();
     cards.Add( new OneCattle() );
     cards.Sort( a => Guid.NewGuid() ).ToList<Action>();
-    
+
     Error    1    Delegate 'System.Comparison<agricola.Action>' does not take '1' arguments
     Error    2    Cannot convert lambda expression to type 'System.Collections.Generic.IComparer<agricola.Action>' because it is not a delegate type
     Error    3    Cannot implicitly convert type 'System.Guid' to 'int'
-    Error    4    Cannot convert lambda expression to delegate type 'System.Comparison<agricola.Action>' because some of the return types in the block are not implicitly convertible to the delegate return type 
+    Error    4    Cannot convert lambda expression to delegate type 'System.Comparison<agricola.Action>' because some of the return types in the block are not implicitly convertible to the delegate return type
 
 However, using a more explicit LINQ query without a lambda expression seems to
 work fine:
 
-    
+
     var q = from a in cards
             orderby Guid.NewGuid()
             select a;

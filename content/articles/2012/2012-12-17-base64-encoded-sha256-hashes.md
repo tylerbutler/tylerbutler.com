@@ -6,7 +6,7 @@ teaser: true
 slug: base64-encoded-sha256-hashes
 tags:
 - powershell
-- C#
+- CSharp
 - python
 engineer:
   slug: base64-encoded-sha256-hashes

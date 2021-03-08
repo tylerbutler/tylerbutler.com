@@ -1,0 +1,19 @@
+{
+  "name": "tylerbutler.com-hugo",
+  "version": "0.1.0",
+  "description": "This repo has nested submodules, so use the following command to update them all after a fresh clone:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylerbutler/tylerbutler.com-hugo.git"
+  },
+  "author": "Tyler Butler <tyler@tylerbutler.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tylerbutler/tylerbutler.com-hugo/issues"
+  },
+  "homepage": "https://github.com/tylerbutler/tylerbutler.com-hugo#readme"
+}

@@ -30,4 +30,4 @@ jobs:
         with:
           project: "cold-lobster-85"
           entrypoint: "index.html" # 📝 Update the entrypoint
-          root: "."
+          root: "public"

@@ -23,11 +23,11 @@ jobs:
           node-version: lts/*
 
       - name: Build step
-        run: npm install && npm run build # 📝 Update the build command(s)
+        run: npm ci && npm run build # 📝 Update the build command(s)
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: "cold-lobster-85"
-          entrypoint: "index.js" # 📝 Update the entrypoint
+          entrypoint: "index.html" # 📝 Update the entrypoint
           root: "."

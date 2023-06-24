@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "This repo has nested submodules, so use the following command to update them all after a fresh clone:",
   "main": "index.js",
+  "private": true,
   "scripts": {
+    "build": "hugo",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/tylerbutler/tylerbutler.com-hugo/issues"
   },
-  "homepage": "https://github.com/tylerbutler/tylerbutler.com-hugo#readme"
+  "homepage": "https://github.com/tylerbutler/tylerbutler.com-hugo#readme",
+  "dependencies": {
+		"hugo-extended": "^0.113.0"
+  }
 }

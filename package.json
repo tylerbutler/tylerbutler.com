@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/tylerbutler/tylerbutler.com-hugo#readme",
   "dependencies": {
-		"hugo-extended": "^0.117.0"
+		"hugo-extended": "^0.126.1"
   }
 }

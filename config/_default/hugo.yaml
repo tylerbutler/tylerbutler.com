@@ -27,6 +27,13 @@ enableRobotsTXT: true
 disableKinds: ["404"]
 disableHugoGeneratorInject: false
 
+markup:
+  goldmark:
+    renderer:
+      hardWraps: false
+      unsafe: true
+      xhtml: false
+
 outputs:
   home:
     - html
@@ -68,12 +75,12 @@ menus:
       URL: "/colophon/"
       Weight: 3
   sidebarbottom:
-    - Name: twitter
-      URL: "https://twitter.com/tylerbutler"
-      Weight: 1
+    # - Name: twitter
+    #   URL: "https://twitter.com/tylerbutler"
+    #   Weight: 1
     - Name: github
       URL: "https://github.com/tylerbutler"
-      Weight: 2
+      Weight: 1
   footer:
     - Name: "all articles"
       Identifier: "archives"

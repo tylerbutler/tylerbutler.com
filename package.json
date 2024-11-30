@@ -1,11 +1,11 @@
 {
   "name": "tylerbutler.com-hugo",
   "version": "0.1.0",
-  "description": "This repo has nested submodules, so use the following command to update them all after a fresh clone:",
   "main": "index.js",
   "private": true,
   "scripts": {
     "build": "hugo",
+    "hugo": "hugo",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

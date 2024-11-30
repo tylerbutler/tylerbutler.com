@@ -8,7 +8,6 @@ theme:
     size: medium
     services:
       - facebook
-      - twitter
   comments:
     enabled: yes
     provider: "disqus"

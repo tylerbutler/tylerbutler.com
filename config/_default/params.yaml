@@ -12,6 +12,7 @@ theme:
     enabled: yes
     provider: "disqus"
     account: tylerbutlercom
-author:
+Author:
   name: Tyler Butler
   email: tyler@tylerbutler.com
+  website: https://tylerbutler.com/

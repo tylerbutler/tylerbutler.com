@@ -4,7 +4,8 @@ title: Tyler Butler
 author:
   name: Tyler Butler
   website: https://tylerbutler.com/
-Paginate: 5
+pagination:
+  pagerSize: 5
 metaDataFormat: yaml
 theme: dark_rainbow
 disqusShortname: tylerbutlercom
@@ -54,7 +55,7 @@ privacy:
     disable: true
   speakerDeck:
     disable: true
-  twitter:
+  x:
     enableDNT: true
   youtube:
     privacyEnhanced: true

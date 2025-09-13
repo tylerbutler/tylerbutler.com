@@ -6,10 +6,24 @@
   "scripts": {
     "build": "hugo",
     "hugo": "hugo",
-    "test": "playwright test",
+    "test": "npm run test:visual && npm run test:performance && npm run test:accessibility && npm run test:bundle",
     "test:visual": "playwright test tests/visual",
+    "test:performance": "npm run test:lighthouse && npm run test:web-vitals",
+    "test:lighthouse": "lhci autorun",
+    "test:lighthouse:mobile": "lhci autorun --config=lighthouserc.mobile.js",
+    "test:web-vitals": "playwright test scripts/web-vitals-test.js",
+    "test:accessibility": "pa11y-ci",
+    "test:bundle": "sonda",
+    "test:images": "node scripts/check-images.js",
     "test:headed": "playwright test --headed",
-    "test:update": "playwright test --update-snapshots"
+    "test:update": "playwright test --update-snapshots",
+    "baseline": "npm run baseline:build && npm run baseline:lighthouse && npm run baseline:accessibility && npm run baseline:bundle && npm run baseline:images",
+    "baseline:build": "hugo --minify",
+    "baseline:lighthouse": "npm run test:lighthouse && npm run test:lighthouse:mobile",
+    "baseline:accessibility": "npm run test:accessibility",
+    "baseline:bundle": "npm run test:bundle",
+    "baseline:images": "npm run test:images",
+    "baseline:web-vitals": "npm run test:web-vitals"
   },
   "repository": {
     "type": "git",
@@ -22,9 +36,18 @@
   },
   "homepage": "https://github.com/tylerbutler/tylerbutler.com-hugo#readme",
   "dependencies": {
-		"hugo-extended": "^0.148.2"
+    "hugo-extended": "^0.148.2"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.0"
+    "@axe-core/playwright": "^4.10.2",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.55.0",
+    "axe-core": "^4.10.3",
+    "imageoptim-cli": "^3.1.9",
+    "lighthouse": "^12.8.2",
+    "pa11y-ci": "^4.0.1",
+    "sharp": "^0.34.3",
+    "sonda": "^0.9.0",
+    "web-vitals": "^5.1.0"
   }
 }

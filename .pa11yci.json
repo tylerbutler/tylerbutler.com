@@ -1,0 +1,33 @@
+{
+  "defaults": {
+    "concurrency": 4,
+    "standard": "WCAG2AA",
+    "runners": ["axe", "htmlcs"],
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    },
+    "timeout": 30000,
+    "wait": 1000,
+    "actions": [
+      "wait for element body to be visible"
+    ]
+  },
+  "urls": [
+    "http://localhost:1314/",
+    "http://localhost:1314/posts/",
+    "http://localhost:1314/about/",
+    "http://localhost:1314/tags/"
+  ],
+  "sitemap": "http://localhost:1314/sitemap.xml",
+  "sitemapFind": "https://tylerbutler.com",
+  "sitemapReplace": "http://localhost:1314",
+  "ignore": [
+    "color-contrast",
+    "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail"
+  ],
+  "includeNotices": false,
+  "includeWarnings": true,
+  "reporter": "json",
+  "threshold": 0,
+  "hideElements": ".skip-link, .visually-hidden"
+}

@@ -14,7 +14,14 @@
       "Bash(git pull:*)",
       "Bash(curl:*)",
       "Bash(npm test:*)",
-      "Bash(open tests/visual/baseline.spec.js-snapshots/)"
+      "Bash(open tests/visual/baseline.spec.js-snapshots/)",
+      "Bash(git fetch:*)",
+      "Bash(git rebase:*)",
+      "Bash(npm run baseline:bundle:*)",
+      "Bash(npx sonda:*)",
+      "Bash(npm run test:images:*)",
+      "Bash(node:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,72 @@
+{
+  "timestamp": "2025-09-13T01:48:27.139Z",
+  "css": {
+    "files": [
+      {
+        "file": "_css/dark_rainbow.max.css",
+        "size": 122917,
+        "sizeFormatted": "120.04 KB"
+      },
+      {
+        "file": "_css/dark_rainbow.min.css",
+        "size": 91154,
+        "sizeFormatted": "89.02 KB"
+      },
+      {
+        "file": "dark_rainbow_fallback.efe4477002a08993e62384272dc74ecc0fe74e105613e9feb09c5972742c1b30.css",
+        "size": 89460,
+        "sizeFormatted": "87.36 KB"
+      },
+      {
+        "file": "dark_rainbow.81b9d91e005fb3476afacf4a3a09c5c8d2ea22caa0a921eeb7127de1419fd5ec.css",
+        "size": 89451,
+        "sizeFormatted": "87.35 KB"
+      },
+      {
+        "file": "dark_rainbow_modern.afb75da593ce4aba162095ca4d0b6fe0ac7a3e3eccfbc90e71910068f2f22ae8.css",
+        "size": 19005,
+        "sizeFormatted": "18.56 KB"
+      },
+      {
+        "file": "css/littlefoot.css",
+        "size": 4840,
+        "sizeFormatted": "4.73 KB"
+      }
+    ],
+    "totalSize": 416827
+  },
+  "js": {
+    "files": [
+      {
+        "file": "_js/jquery-2.2.4.min.js",
+        "size": 85578,
+        "sizeFormatted": "83.57 KB"
+      },
+      {
+        "file": "_js/bigfoot.min.js",
+        "size": 12766,
+        "sizeFormatted": "12.47 KB"
+      },
+      {
+        "file": "_shared/lib/bigfoot/bigfoot.min.db296080c2faac224c73cd7b29b13c0b1f9cbb160833ee9b8c6d86a6ada0ee25.js",
+        "size": 12766,
+        "sizeFormatted": "12.47 KB"
+      },
+      {
+        "file": "js/littlefoot.js",
+        "size": 10543,
+        "sizeFormatted": "10.3 KB"
+      }
+    ],
+    "totalSize": 121653
+  },
+  "images": {
+    "files": 0,
+    "totalSize": 0,
+    "largeFiles": []
+  },
+  "totals": {
+    "assetsSize": 538480,
+    "grandTotal": 538480
+  }
+}

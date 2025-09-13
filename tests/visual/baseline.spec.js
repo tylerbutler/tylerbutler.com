@@ -29,7 +29,22 @@ test.describe('Homepage Layout', () => {
   test('homepage main content', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
-    await expect(page.locator('section#main')).toHaveScreenshot('main-content.png');
+    
+    // Hide dynamic elements that cause instability
+    await page.addStyleTag({
+      content: `
+        iframe[src*="spotify"] { display: none !important; }
+        time { visibility: hidden !important; }
+        .date { visibility: hidden !important; }
+      `
+    });
+    
+    // Wait a bit longer for content to stabilize
+    await page.waitForTimeout(2000);
+    
+    await expect(page.locator('section#main')).toHaveScreenshot('main-content.png', {
+      timeout: 10000
+    });
   });
 });
 

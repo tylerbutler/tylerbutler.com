@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(hugo)",
+      "WebSearch",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm run test:update:*)",
+      "Bash(pkill:*)",
+      "Bash(npm test)",
+      "Bash(lsof:*)",
+      "Bash(DEBUG=pw:webserver npx playwright test --project=chromium tests/visual/baseline.spec.js --grep \"homepage full page\" --timeout=30000)",
+      "Bash(git submodule:*)",
+      "Bash(git pull:*)",
+      "Bash(curl:*)",
+      "Bash(npm test:*)",
+      "Bash(open tests/visual/baseline.spec.js-snapshots/)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

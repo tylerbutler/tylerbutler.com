@@ -19,3 +19,9 @@ hugo.linux
 # End of https://www.toptal.com/developers/gitignore/api/hugo
 
 node_modules/
+
+# Playwright Testing
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

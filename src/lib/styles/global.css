@@ -1,0 +1,207 @@
+/* Import fonts */
+@import '@fontsource/advent-pro/100.css';
+@import '@fontsource/advent-pro/400.css';
+@import '@fontsource/lato/400.css';
+
+/* CSS Variables matching mockup specifications */
+:root {
+  /* Backgrounds */
+  --dark-bg: #0E0E0E;      /* Header section background */
+  --light-bg: #F7F6F5;     /* Content section background */
+  --overlay: rgba(0,0,0,0.2); /* Dark overlay for depth */
+
+  /* Text Colors */
+  --accent: #A2834E;       /* Titles, active nav, tagline (golden bronze) */
+  --text: #262626;         /* Body text (dark gray) */
+  --nav-links: #F7F6F5;    /* Navigation links (off-white) */
+
+  /* Layout measurements */
+  --container-width: 636px;
+  --content-width: 534px;
+  --container-margin: 30px 282px; /* Centers in 1200px viewport */
+  --header-padding: 35px 25px;
+  --content-padding: 50.875px 0px;
+  --inner-content-margins: 0px 50.8828px;
+}
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: adelle, Georgia, serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 23.8px;
+  color: var(--text);
+  background: var(--light-bg);
+}
+
+/* Site container - matching mockup layout architecture */
+.site-container {
+  width: var(--container-width);
+  margin: var(--container-margin);
+  background: white;
+  box-shadow: 0 0 20px var(--overlay);
+}
+
+/* Header section - dark background */
+.site-header {
+  background-color: var(--dark-bg);
+  padding: var(--header-padding);
+  text-align: center;
+}
+
+/* Content section - light background */
+.content-section {
+  background-color: var(--light-bg);
+  padding: var(--content-padding);
+}
+
+.content-inner {
+  margin: var(--inner-content-margins);
+  width: var(--content-width);
+}
+
+/* Typography system - exact mockup specifications */
+
+/* Main Site Title */
+h1 {
+  font-family: "Advent Pro", sans-serif;
+  font-size: 96px;
+  font-weight: 100;
+  line-height: 96px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 5px 0;
+  text-align: center;
+}
+
+h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Site Tagline */
+.tagline {
+  font-family: adelle, Georgia, serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18.2px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+  margin: 7px 0 17px;
+}
+
+/* Navigation Links */
+nav a {
+  font-family: Lato, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--nav-links);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--accent);
+}
+
+/* Navigation container */
+nav {
+  text-align: center;
+  padding: 12px 0;
+  display: none; /* Hidden by default as per mockup */
+}
+
+nav.visible {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Section Headings */
+h2 {
+  font-family: adelle, Georgia, serif;
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 32.5px;
+  letter-spacing: 1px;
+  color: var(--text);
+  margin: 0 0 19.5px;
+}
+
+/* Body Text */
+p {
+  font-family: adelle, Georgia, serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 23.8px;
+  color: var(--text);
+  margin: 14px 0;
+}
+
+/* Links in content */
+a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  :root {
+    --container-margin: 20px auto;
+  }
+
+  .site-container {
+    max-width: 90vw;
+    width: auto;
+  }
+
+  .content-inner {
+    width: auto;
+    margin: 0 20px;
+  }
+
+  h1 {
+    font-size: 72px;
+    line-height: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: 1px;
+  }
+
+  :root {
+    --header-padding: 25px 15px;
+    --content-padding: 30px 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

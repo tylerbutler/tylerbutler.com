@@ -2,8 +2,8 @@ module.exports = {
   ci: {
     collect: {
       url: [
-        'http://localhost:1314/',
-        'http://localhost:1314/posts/',
+        'http://localhost:4173/',
+        'http://localhost:4173/articles/',
       ],
       numberOfRuns: 3,
       settings: {
@@ -37,8 +37,8 @@ module.exports = {
       target: 'temporary-public-storage',
     },
     server: {
-      command: 'hugo server -D --bind 0.0.0.0 --port 1314',
-      port: 1314,
+      command: 'npm run preview',
+      port: 4173,
       wait: 3000,
     },
   },

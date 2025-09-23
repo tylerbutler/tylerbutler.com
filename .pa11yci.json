@@ -13,12 +13,12 @@
     ]
   },
   "urls": [
-    "http://localhost:1314/",
-    "http://localhost:1314/posts/",
-    "http://localhost:1314/about/",
-    "http://localhost:1314/tags/"
+    "http://localhost:4173/",
+    "http://localhost:4173/articles/",
+    "http://localhost:4173/about/",
+    "http://localhost:4173/projects/"
   ],
-  "sitemap": "http://localhost:1314/sitemap.xml",
+  "sitemap": false,
   "sitemapFind": "https://tylerbutler.com",
   "sitemapReplace": "http://localhost:1314",
   "ignore": [

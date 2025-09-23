@@ -9,7 +9,7 @@
   # the build. This is relative to the base directory if one has been set, or the
   # root directory if a base has not been set. This sample publishes the
   # directory located at the absolute path "root/project/build-output"
-  publish = "public"
+  publish = "build"
 
   # Default build command.
-  command = "git submodule update --recursive --init ; hugo"
+  command = "npm run build"

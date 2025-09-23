@@ -3,8 +3,8 @@ module.exports = {
     collect: {
       // Test both homepage and an article page
       url: [
-        'http://localhost:1314/',
-        'http://localhost:1314/posts/', // Will test first available post
+        'http://localhost:4173/',
+        'http://localhost:4173/articles/', // Will test articles page
       ],
       numberOfRuns: 3, // Run multiple times for consistent results
       settings: {
@@ -51,8 +51,8 @@ module.exports = {
       target: 'temporary-public-storage',
     },
     server: {
-      command: 'hugo server -D --bind 0.0.0.0 --port 1314',
-      port: 1314,
+      command: 'npm run preview',
+      port: 4173,
       wait: 3000, // Wait for server to start
     },
   },

@@ -1,0 +1,51 @@
+<script lang="ts">
+  // About page
+</script>
+
+<svelte:head>
+  <title>About - Tyler Butler</title>
+  <meta name="description" content="About Tyler Butler - software engineer, writer, and technology enthusiast" />
+</svelte:head>
+
+<section>
+  <h2>About</h2>
+
+  <p>
+    Hi, I'm Tyler Butler. I'm a software engineer, writer, and technology enthusiast.
+    This is my personal website where I share thoughts, experiences, and projects.
+  </p>
+
+  <p>
+    I've been working in software development for many years, with experience across
+    web technologies, cloud platforms, and developer tools. I'm particularly interested
+    in web standards, developer experience, and building tools that make other developers
+    more productive.
+  </p>
+
+  <p>
+    When I'm not coding, I enjoy reading, writing, and exploring new technologies.
+    I believe in the power of sharing knowledge and contributing to the developer community.
+  </p>
+
+  <h3>Contact</h3>
+  <p>
+    You can find me on <a href="https://github.com/tylerbutler" target="_blank" rel="noopener">GitHub</a>
+    or reach out via email at <a href="mailto:tyler@tylerbutler.com">tyler@tylerbutler.com</a>.
+  </p>
+
+  <h3>This Site</h3>
+  <p>
+    This website has been through several iterations over the years. It currently runs
+    on SvelteKit and is hosted on Netlify. The source code is available on
+    <a href="https://github.com/tylerbutler/tylerbutler.com-hugo" target="_blank" rel="noopener">GitHub</a>.
+  </p>
+</section>
+
+<style>
+  h3 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 2em 0 1em 0;
+    color: var(--accent);
+  }
+</style>

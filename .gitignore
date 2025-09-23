@@ -1,1 +1,10 @@
-public/
+node_modules/
+
+# Playwright Testing
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.playwright-mcp
+/build/
+.svelte-kit

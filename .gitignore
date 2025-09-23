@@ -1,10 +1,29 @@
 node_modules/
 
+# Astro
+dist/
+.astro/
+
+# SvelteKit (legacy)
+/build/
+.svelte-kit
+
 # Playwright Testing
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 .playwright-mcp
-/build/
-.svelte-kit
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

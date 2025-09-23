@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Get all articles (non-draft)
+const articles = await getCollection('articles', ({ data }) => {
+  return !data.draft;
+});
+
+// Sort by date (newest first)
+const sortedArticles = articles
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Group articles by year
+const articlesByYear = sortedArticles.reduce((acc, article) => {
+  const year = new Date(article.data.date).getFullYear();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(article);
+  return acc;
+}, {} as Record<number, typeof articles>);
+
+const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
+---
+
+<BaseLayout title="Articles - Tyler Butler" description="All articles by Tyler Butler on technology, programming, and more.">
+  <section>
+    <h2>Articles</h2>
+    <p>
+      A collection of articles covering web development, software engineering,
+      and technology trends over the years.
+    </p>
+
+    {years.map(year => (
+      <section class="year-section">
+        <h3>{year}</h3>
+        <ul class="articles-list">
+          {articlesByYear[year].map(article => {
+            const date = new Date(article.data.date);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const slug = article.data.slug || article.slug;
+
+            return (
+              <li class="article-item">
+                <article>
+                  <h4>
+                    <a href={`/articles/${year}/${month}/${slug}`}>
+                      {article.data.title}
+                    </a>
+                  </h4>
+                  <time datetime={article.data.date.toISOString()}>
+                    {date.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                  {article.data.excerpt && (
+                    <p class="excerpt">{article.data.excerpt}</p>
+                  )}
+                </article>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .year-section {
+    margin-bottom: 3em;
+  }
+
+  .year-section h3 {
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 1em;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.5em;
+  }
+
+  .articles-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .article-item {
+    margin-bottom: 1.5em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .article-item:last-child {
+    border-bottom: none;
+  }
+
+  .article-item h4 {
+    margin: 0 0 0.5em 0;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .article-item h4 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .article-item h4 a:hover {
+    color: var(--accent);
+  }
+
+  .article-item time {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .excerpt {
+    margin: 0.5em 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #555;
+  }
+</style>

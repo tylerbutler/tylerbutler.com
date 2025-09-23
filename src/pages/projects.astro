@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Get all projects
+const projects = await getCollection('projects');
+---
+
+<BaseLayout title="Projects - Tyler Butler" description="Projects by Tyler Butler - open source and personal projects.">
+  <section>
+    <h2>Projects</h2>
+    <p>
+      A collection of projects I've worked on over the years, including open source
+      contributions and personal experiments.
+    </p>
+
+    {projects.length > 0 ? (
+      <ul class="projects-list">
+        {projects.map(async project => {
+          const { Content } = await project.render();
+          return (
+            <li class="project-item">
+              <article>
+                <h3>{project.data.title}</h3>
+                {project.data.description && (
+                  <p class="description">{project.data.description}</p>
+                )}
+                <div class="project-content">
+                  <Content />
+                </div>
+                <div class="project-links">
+                  {project.data.url && (
+                    <a href={project.data.url} target="_blank" rel="noopener">View Project</a>
+                  )}
+                  {project.data.github && (
+                    <a href={project.data.github} target="_blank" rel="noopener">GitHub</a>
+                  )}
+                </div>
+              </article>
+            </li>
+          );
+        })}
+      </ul>
+    ) : (
+      <p>More projects coming soon...</p>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-list {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0;
+  }
+
+  .project-item {
+    margin-bottom: 2.5em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .project-item:last-child {
+    border-bottom: none;
+  }
+
+  .project-item h3 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 0.5em 0;
+    color: var(--accent);
+  }
+
+  .description {
+    font-style: italic;
+    color: #666;
+    margin: 0.5em 0 1em 0;
+  }
+
+  .project-content {
+    margin: 1em 0;
+    line-height: 1.6;
+  }
+
+  .project-links {
+    margin-top: 1em;
+  }
+
+  .project-links a {
+    display: inline-block;
+    margin-right: 1em;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .project-links a:hover {
+    text-decoration: underline;
+  }
+</style>

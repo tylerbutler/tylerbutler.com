@@ -1,0 +1,169 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => {
+    return !data.draft;
+  });
+
+  return articles.map(article => {
+    const date = new Date(article.data.date);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const slug = article.data.slug || article.slug;
+
+    return {
+      params: {
+        slug: `${year}/${month}/${slug}`
+      },
+      props: { article }
+    };
+  });
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+
+const date = new Date(article.data.date);
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<BaseLayout title={`${article.data.title} - Tyler Butler`} description={article.data.excerpt}>
+  <article class="article">
+    <header class="article-header">
+      <h1>{article.data.title}</h1>
+      <time datetime={article.data.date.toISOString()} class="article-date">
+        {formattedDate}
+      </time>
+      {article.data.tags && article.data.tags.length > 0 && (
+        <div class="article-tags">
+          {article.data.tags.map(tag => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="article-content">
+      <Content />
+    </div>
+  </article>
+
+  <nav class="article-nav">
+    <a href="/articles">← Back to Articles</a>
+  </nav>
+</BaseLayout>
+
+<style>
+  .article {
+    max-width: 100%;
+  }
+
+  .article-header {
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .article h1 {
+    font-family: adelle, Georgia, serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--text);
+    margin: 0 0 0.5em 0;
+  }
+
+  .article-date {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1em;
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
+  .tag {
+    background: var(--accent);
+    color: white;
+    padding: 0.2em 0.5em;
+    font-size: 11px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .article-content {
+    line-height: 1.7;
+  }
+
+  .article-content h2 {
+    margin: 2em 0 1em 0;
+    font-size: 22px;
+  }
+
+  .article-content h3 {
+    margin: 1.5em 0 0.8em 0;
+    font-size: 18px;
+  }
+
+  .article-content p {
+    margin: 1em 0;
+  }
+
+  .article-content blockquote {
+    margin: 1.5em 0;
+    padding: 1em 1.5em;
+    border-left: 4px solid var(--accent);
+    background: #f9f9f9;
+    font-style: italic;
+  }
+
+  .article-content code {
+    background: #f4f4f4;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+
+  .article-content pre {
+    background: #f4f4f4;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 1.5em 0;
+  }
+
+  .article-content pre code {
+    background: none;
+    padding: 0;
+  }
+
+  .article-nav {
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .article-nav a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .article-nav a:hover {
+    text-decoration: underline;
+  }
+</style>

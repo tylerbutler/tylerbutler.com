@@ -1,0 +1,29 @@
+---
+// Navigation items matching the current site structure
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/articles', label: 'Articles' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/about', label: 'About' },
+  { href: '/colophon', label: 'Colophon' },
+];
+
+// Get current path for active state
+const currentPath = Astro.url.pathname;
+---
+
+<nav>
+  <ul>
+    {navItems.map(item => (
+      <li>
+        <a
+          href={item.href}
+          class={currentPath === item.href ? 'active' : ''}
+          aria-current={currentPath === item.href ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

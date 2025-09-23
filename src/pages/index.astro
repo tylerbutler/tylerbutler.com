@@ -1,0 +1,115 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Get recent articles (latest 5, non-draft)
+const articles = await getCollection('articles', ({ data }) => {
+  return !data.draft;
+});
+
+// Sort by date (newest first) and take first 5
+const recentArticles = articles
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 5);
+---
+
+<BaseLayout title="Tyler Butler - Personal Website" description="Personal website and blog of Tyler Butler, featuring articles on technology, programming, and more.">
+  <section>
+    <h2>Welcome</h2>
+    <p>
+      This is the personal website of Tyler Butler. Here you'll find articles about technology,
+      programming, and various other topics that interest me. The site contains content dating
+      back to 2002, providing a long history of thoughts and experiences.
+    </p>
+
+    <h2>Recent Articles</h2>
+    <p>
+      Browse through my collection of articles covering web development, software engineering,
+      and technology trends over the years.
+    </p>
+
+    {recentArticles.length > 0 && (
+      <ul class="recent-articles">
+        {recentArticles.map((article) => {
+          const date = new Date(article.data.date);
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const slug = article.data.slug || article.slug;
+
+          return (
+            <li>
+              <article class="article-preview">
+                <h3>
+                  <a href={`/articles/${year}/${month}/${slug}`}>
+                    {article.data.title}
+                  </a>
+                </h3>
+                <time datetime={article.data.date.toISOString()}>
+                  {date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+                {article.data.excerpt && (
+                  <p class="excerpt">{article.data.excerpt}</p>
+                )}
+              </article>
+            </li>
+          );
+        })}
+      </ul>
+    )}
+
+    <p>
+      <a href="/articles">View All Articles</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .recent-articles {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0;
+  }
+
+  .article-preview {
+    margin-bottom: 1.5em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .article-preview:last-child {
+    border-bottom: none;
+  }
+
+  .article-preview h3 {
+    margin: 0 0 0.5em 0;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .article-preview h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .article-preview h3 a:hover {
+    color: var(--accent);
+  }
+
+  .article-preview time {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .excerpt {
+    margin: 0.5em 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #555;
+  }
+</style>

@@ -45,7 +45,7 @@ body {
   width: var(--container-width);
   margin: var(--container-margin);
   background-color: white;
-  background-image: url('/src/lib/assets/bg.jpg');
+  background-image: url('/bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

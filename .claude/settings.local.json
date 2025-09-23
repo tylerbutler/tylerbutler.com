@@ -48,7 +48,12 @@
       "mcp__serena__think_about_whether_you_are_done",
       "Bash(pnpm check:*)",
       "mcp__serena__find_symbol",
-      "mcp__sequential-thinking__sequentialthinking"
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm create:*)",
+      "Bash(unalias mv cp)",
+      "Bash(unalias cp)"
     ],
     "deny": [],
     "ask": []

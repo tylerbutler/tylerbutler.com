@@ -1,7 +1,7 @@
+import type { PageServerLoad } from './$types.js';
 import { getArticlesByYear } from '$lib/content/articles.js';
-import type { PageLoad } from './$types.js';
 
-export const load: PageLoad = async () => {
+export const load: PageServerLoad = async () => {
   const articlesByYear = await getArticlesByYear();
 
   return {

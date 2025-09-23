@@ -45,7 +45,10 @@
       "Bash(npm run dev:*)",
       "Bash(npm run build:*)",
       "Bash(npm run preview:*)",
-      "mcp__serena__think_about_whether_you_are_done"
+      "mcp__serena__think_about_whether_you_are_done",
+      "Bash(pnpm check:*)",
+      "mcp__serena__find_symbol",
+      "mcp__sequential-thinking__sequentialthinking"
     ],
     "deny": [],
     "ask": []

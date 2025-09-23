@@ -11,7 +11,7 @@
   ];
 </script>
 
-<nav class="main-navigation visible">
+<nav>
   <ul>
     {#each navItems as item}
       <li>

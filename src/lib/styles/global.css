@@ -40,11 +40,15 @@ body {
   background: var(--light-bg);
 }
 
-/* Site container - matching mockup layout architecture */
+/* Site container - matching mockup layout architecture with background image */
 .site-container {
   width: var(--container-width);
   margin: var(--container-margin);
-  background: white;
+  background-color: white;
+  background-image: url('/src/lib/assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   box-shadow: 0 0 20px var(--overlay);
 }
 
@@ -121,11 +125,7 @@ nav a.active {
 nav {
   text-align: center;
   padding: 12px 0;
-  display: none; /* Hidden by default as per mockup */
-}
-
-nav.visible {
-  display: block;
+  display: block; /* Always visible in header */
 }
 
 nav ul {
@@ -166,6 +166,24 @@ a:hover {
   text-decoration: none;
 }
 
+/* Footer section */
+.site-footer {
+  background-color: var(--dark-bg);
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 11px;
+  color: #888;
+}
+
+.site-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   :root {
@@ -188,7 +206,7 @@ a:hover {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   h1 {
     font-size: 48px;
     line-height: 48px;

@@ -24,6 +24,12 @@
       "Bash(git add:*)",
       "Bash(git config:*)",
       "Bash(git rm:*)"
+      "Bash(git add:*)",
+      "mcp__serena__get_current_config",
+      "mcp__serena__list_dir",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_take_screenshot"
     ],
     "deny": [],
     "ask": []

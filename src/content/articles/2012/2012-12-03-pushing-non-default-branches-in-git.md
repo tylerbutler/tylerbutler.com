@@ -33,7 +33,7 @@ I hit up against this today. I use both private git repositories on my own serve
 
 Anyway, I made an update to the `github_dev` branch today and wanted to push the changes out, and of course `git push` didn't do what I expected. I ended up changing my `.gitconfig`, adding the following lines:
 
-```text
+```ini
 [push]
     default = upstream
 ```

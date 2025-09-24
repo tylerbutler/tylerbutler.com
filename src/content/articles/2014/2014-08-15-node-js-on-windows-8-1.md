@@ -13,7 +13,7 @@ engineer:
 
 This afternoon I installed Node.js version 0.10.30 (the most recent according to <http://nodejs.org/>) on a new Windows box. Unfortunately, after installing, using `npm` was, uhhh, not good:
 
-```text
+```ps1
 C:\Users\tyler> npm
 Error: ENOENT, stat 'C:\Users\tyler\AppData\Roaming\npm'
 ```
@@ -22,7 +22,7 @@ Not exactly a great experience. And that error message? Useless. To me, anyway. 
 
 Fortunately, a quick search revealed [this page on Stack Overflow][1], where the 'fix' is outlined: you just need to manually create the npm folder at the path in the error message:
 
-```text
+```ps1
 C:\Users\tylerbu> mkdir C:\Users\tylerbu\AppData\Roaming\npm
 
 
@@ -36,7 +36,7 @@ d----				8/15/2014			1:25 PM		npm
 
 After that, things were golden:
 
-```text
+```ps1
 C:\Users\tylerbu> npm install grunt
 grunt@0.4.5 node_modules\grunt
 ├── dateformat@1.0.2-1.2.3

@@ -45,7 +45,7 @@ So with the definitions out of the way, let's get started...
 
 For the most part, this guide assumes you've actually used PowerShell a few times and know how to run scripts. If that's not the case, though, then the very first thing you'll want to do is enable scripts to run on your system using the `Set-ExecutionPolicy` command. There's [a great article on TechNet](http://technet.microsoft.com/en-us/library/ee176949.aspx) that covers this in detail, so I won't go into detail here. You can also skip this step for now if you want. Just read that article if you run into the following error message at any point:
 
-```text
+```ps1
 ...cannot be loaded because the execution of scripts is disabled on
 this system. Please see "get-help about_signing" for more details.
 ```
@@ -60,7 +60,7 @@ Unfortunately, the installer does *not* add the `Scripts` (i.e. `C:\Python27\Scr
 
 Once you've installed Python, open up a PowerShell window and type `python` and press enter. You should see something like this:
 
-```text
+```ps1
 PS C:\> python
 Python 2.7.8 (default, Jun 30 2014, 16:03:49) [MSC v.1500 32 bit (Intel)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
@@ -78,7 +78,7 @@ Press `Ctrl-Z` and hit return to exit the Python prompt. If you get an error whe
 
 The easiest way to install pip is to download the [get-pip.py][] script, save it locally, then run it using Python.
 
-```text
+```ps1
 PS C:\> python get-pip.py
 Downloading/unpacking pip
 Downloading/unpacking setuptools
@@ -90,7 +90,7 @@ PS C:\>
 
 There are other ways to get pip, but this is the easiest way I have found. There are more details on this at [the pip website][2]. To check if everything is working, just type `pip` at the command line:
 
-```text
+```ps1
 PS C:\> pip
 
 Usage:
@@ -107,7 +107,7 @@ If you get another "command is not recognized" error, check that `C:\Python27\Sc
 
 Pip should now be installed, so type the following commands to get virtualenv and the PowerShell virtualenvwrapper installed:
 
-```text
+```ps1
 PS C:\> pip install virtualenv
 PS C:\> pip install virtualenvwrapper-powershell
 ```
@@ -115,7 +115,7 @@ PS C:\> pip install virtualenvwrapper-powershell
 Now you need to import the wrapper module in PowerShell, so type `Import-Module virtualenvwrapper`.
 You will probably get one of two errors -- or both. The first will be something like this:
 
-```text
+```ps1
 PS C:\> Import-Module virtualenvwrapper
 Get-Content : Cannot find path 'Function:\TabExpansion' because it does not exist.
 ```
@@ -124,7 +124,7 @@ Unfortunately that's a bug in the current released version (12.7.8) of virtualen
 
 The other error you might see will say something like this:
 
-```text
+```ps1
 Virtualenvwrapper: Virtual environments directory
 'C:\Users\tyler/.virtualenvs' does not exist. Create it or
 set $env:WORKON_HOME to an existing directory.
@@ -140,7 +140,7 @@ You might also want to change the location to store your virtual environments. T
 
 Now try to import the module again. Success! Now you have access to a bunch of virtualenv management commands directly in PowerShell. To see all of them, you can type:
 
-```text
+```ps1
 PS C:\> Get-Command *virtualenv*
 
 CommandType     Name                                               ModuleName
@@ -174,7 +174,7 @@ You'll see that there are a bunch of nice PowerShell style cmdlets, like `New-Vi
 
 Now that we have virtualenv installed, let's make a new virtualenv:
 
-```posh
+```ps1
 New-VirtualEnvironment engineer
 ```
 
@@ -182,13 +182,13 @@ Replace `engineer` with whatever you want to call your virtualenv. I usually nam
 
 After the command completes, you should see a PowerShell prompt that looks like this:
 
-```text
+```ps1
 (engineer)PS C:\>
 ```
 
 The `(engineer)` prepended to your prompt reminds you that you're currently working within that virtualenv. If you type `workon` now you should see the available virtualenvs, and if you type `workon name_of_another_virtualenv` you'll flip to that environment.
 
-```text
+```ps1
 PS C:\> workon
 
 PathInfo         Name          PathToScripts                 PathToSitePackages
@@ -201,13 +201,13 @@ engineer         engineer      C:\Users\tyler\.virtuale...   C:\Users\tyler\.vir
 
 Now that your virtual environments are configured, you can install packages into them using pip. Open a PowerShell prompt, type `workon name_of_virtualenv` and then type `pip install package_name`. There are also a couple of additional pip commands that might be useful to know. If you have a project with lots of package requirements, it might have come with (or you might have written) a [requirements file][] (often called `requirements.txt`). To have pip load all of the packages in that file, type:
 
-```text
+```ps1
 PS C:\> pip install -r path_to_requirements_file
 ```
 
 Also, you might have downloaded a package's source manually that has a `setup.py` file in it. You can have pip install that for you by typing:
 
-```text
+```ps1
 PS C:\> pip install -e path_to_source
 ```
 
@@ -220,7 +220,7 @@ The `-e` option can also check out source directly from a Mercurial, Git, Subver
 
 You might notice at some point -- probably once you open a new PowerShell prompt -- that you can no longer use the `workon` and `New-VirtualEnvironment` commands. Well, silly, you forgot to import the `virtualenvwrapper` module! Now, you could just import it and move on with your life, but that's going to get annoying really quickly, so you can configure your PowerShell profile so that the module is loaded every time you open up a PowerShell window. First, though, you're going to need to find your profile. To make matters a bit more confusing, there are actually several profiles that PowerShell uses. But only one or two of them are really relevant to us. To see all the profiles available to you, type:
 
-```text
+```ps1
 PS C:\> $profile | Format-List * -Force
 
 AllUsersAllHosts       : C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
@@ -232,7 +232,7 @@ Length                 : 77
 
 Looks like there are four available profile scripts, and based on their names, they all have different scopes. In our case, we probably want the `CurrentUserAllHosts` profile, since that will execute for us in every PowerShell instance. If you navigate to the location listed, there might not be a file there to edit. In that case, the following command will create a file there in the right format:
 
-```posh
+```ps1
 New-Item -Path $Profile.CurrentUserAllHosts -Type file -Force
 ```
 
@@ -240,7 +240,7 @@ Or you could just create a file in your favorite text editor and save it in that
 
 In that file, put the command you used to import the `virtualenvwrapper` modules earlier
 
-```posh
+```ps1
 Import-Module virtualenvwrapper
 ```
 

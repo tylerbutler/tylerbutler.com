@@ -440,11 +440,11 @@ hr::after {
 }
 
 
-/* Code block container */
-.astro-code,
-pre {
+/* Code block container - exclude Expressive Code elements */
+.astro-code:not(.expressive-code),
+pre:not(.expressive-code pre) {
   position: relative;
-  background-color: var(--code-bg) !important;
+  background-color: var(--code-bg);
   border: 1px solid var(--code-border);
   border-radius: var(--code-radius);
   box-shadow: var(--code-shadow);
@@ -455,9 +455,9 @@ pre {
   line-height: var(--code-line-height);
 }
 
-/* Code content */
-.astro-code code,
-pre code {
+/* Code content - exclude Expressive Code elements */
+.astro-code:not(.expressive-code) code,
+pre:not(.expressive-code pre) code {
   display: block;
   padding: 32px var(--code-padding) var(--code-padding) var(--code-padding);
   color: var(--code-text);

@@ -79,7 +79,7 @@ Anyway, there are other Markdown previewers/editors -- notably [MarkdownPad](htt
 
 Obviously this is not a required feature since Engineer metadata doesn't *break* Markdown rendering, but it's kind of nice to have when you're writing/previewing a lot of posts. So I excitedly turned it on and loaded an Engineer post... and it didn't work. The problem, of course, is that Jekyll requires that metadata (sorry, 'front matter') be 'fenced' within two YAML document separators, like so:
 
-```text
+```markdown
 ---
 metadata goes here...
 ---

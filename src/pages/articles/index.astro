@@ -26,42 +26,48 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
 
 <BaseLayout title="Articles - Tyler Butler" description="All articles by Tyler Butler on technology, programming, and more.">
   <section>
-    <h2>Articles</h2>
-    <p>
-      A collection of articles covering web development, software engineering,
-      and technology trends over the years.
-    </p>
+    <h1>Articles</h1>
 
-    {years.map(year => (
-      <section class="year-section">
-        <h3>{year}</h3>
-        <ul class="articles-list">
-          {articlesByYear[year].map(article => {
-            const date = new Date(article.data.date);
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const slug = article.data.slug || article.slug;
+    <nav class="year-navigation">
+      <ul class="year-nav-list">
+        {years.map((year, index) => (
+          <li class="year-nav-item">
+            <a href={`#${year}`} class="year-nav-link">{year}</a>
+            {index < years.length - 1 && <span class="year-separator">/</span>}
+          </li>
+        ))}
+      </ul>
+    </nav>
 
-            // Use external link if available, otherwise use local article link
-            const linkUrl = article.data.link || `/articles/${year}/${month}/${slug}`;
-            const isExternalLink = !!article.data.link;
+    <main class="articles-main">
+      {years.map(year => (
+        <section class="year-section" id={year.toString()}>
+          <h2 class="year-heading">{year}</h2>
+          <div class="articles-container">
+            {articlesByYear[year].map(article => {
+              const date = new Date(article.data.date);
+              const year = date.getFullYear();
+              const month = String(date.getMonth() + 1).padStart(2, '0');
+              const slug = article.data.slug || article.slug;
 
-            return (
-              <li class="article-item">
-                <article>
-                  <h4>
-                    <a href={linkUrl} {...(isExternalLink ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+              // Use external link if available, otherwise use local article link
+              const linkUrl = article.data.link || `/articles/${year}/${month}/${slug}`;
+              const isExternalLink = !!article.data.link;
+
+              return (
+                <article class="article-item">
+                  <time class="article-date" datetime={article.data.date.toISOString()}>
+                    {date.toLocaleDateString('en-US', {
+                      day: '2-digit',
+                      month: 'short'
+                    })}
+                  </time>
+                  <h1 class="article-title">
+                    <a href={linkUrl} class="article-link" {...(isExternalLink ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                       {article.data.title}
                       {isExternalLink && <span class="external-link-icon">↗</span>}
                     </a>
-                  </h4>
-                  <time datetime={article.data.date.toISOString()}>
-                    {date.toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </time>
+                  </h1>
                   {article.data.tags && article.data.tags.length > 0 && (
                     <div class="article-tags">
                       {article.data.tags.map(tag => (
@@ -82,56 +88,109 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
                     </p>
                   )}
                 </article>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-    ))}
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </main>
   </section>
 </BaseLayout>
 
 <style>
-  .year-section {
-    margin-bottom: 3em;
+  section h1 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
   }
 
-  .year-section h3 {
-    font-size: 22px;
-    color: var(--accent);
-    margin-bottom: 1em;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 0.5em;
+  .year-navigation {
+    margin-bottom: 2rem;
   }
 
-  .articles-list {
+  .year-nav-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+  }
+
+  .year-nav-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .year-nav-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .year-nav-link:hover {
+    text-decoration: underline;
+  }
+
+  .year-separator {
+    margin: 0 0.5rem;
+    color: var(--text);
+  }
+
+  .articles-main {
+    margin-top: 2rem;
+  }
+
+  .year-section {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .year-heading {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text);
+    margin: 0;
+    flex-shrink: 0;
+    width: 80px;
+    text-align: right;
+  }
+
+  .articles-container {
+    flex: 1;
   }
 
   .article-item {
-    margin-bottom: 1.5em;
-    padding-bottom: 1em;
-    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: start;
   }
 
-  .article-item:last-child {
-    border-bottom: none;
+  .article-date {
+    flex-shrink: 0;
+    width: 60px;
+    font-size: 13px;
+    color: #666;
+    font-variant-numeric: tabular-nums;
+    text-align: left;
   }
 
-  .article-item h4 {
-    margin: 0 0 0.5em 0;
-    font-size: 16px;
+  .article-title {
+    margin: 0;
+    font-size: 14px;
     font-weight: 400;
+    line-height: 1.2;
   }
 
-  .article-item h4 a {
+  .article-link {
     color: var(--text);
     text-decoration: none;
   }
 
-  .article-item h4 a:hover {
+  .article-link:hover {
     color: var(--accent);
   }
 
@@ -139,13 +198,6 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
     font-size: 0.8em;
     margin-left: 0.3em;
     opacity: 0.6;
-  }
-
-  .article-item time {
-    font-size: 11px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
   }
 
   .article-tags {

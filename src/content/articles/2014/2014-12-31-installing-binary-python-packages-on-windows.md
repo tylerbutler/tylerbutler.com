@@ -25,7 +25,7 @@ Despite writing the initial version of that guide over two years ago, I never go
 
 You only *need* this guide if you try to install a Python package on Windows and you get an error like this:
 
-```text
+```bash
 building 'Crypto.Random.OSRNG.winrandom' extension
 warning: GMP or MPIR library not found; Not building Crypto.PublicKey._fastmath.
 error: Unable to find vcvarsall.bat
@@ -44,7 +44,7 @@ I am extremely glad I didn't try to write this guide a few years ago, when I wro
 
 If you [download that package][msft_package] and install it, you should be able to successfully install whatever package that was erroring out with *Unable to find vcvarsall.bat* before. Make sure you re-open any PowerShell or cmd windows you had open to make sure your environment variables are up to date. Oh, and in case you care, the compiler and all its supporting files can be found in the following directory after installation:
 
-```text
+```powershell
 ~\AppData\Local\Programs\Common\Microsoft\Visual C++ for Python\9.0
 ```
 
@@ -59,7 +59,7 @@ The installation instructions for the Microsoft C++ Compiler for Python 2.7 pack
 
 There are more details there, but it basically boils down to executing two commands: `python -m pip install -U pip` followed by `pip install -U setuptools`. When you do that, you should see some output like this:
 
-```text
+```powershell
 C:\Users\Tyler\Code> python -m pip install -U pip
 Downloading/unpacking pip from https://pypi.python.org/packages/py2.py3/p/pip/pip-6.0.2-py2.py3-none-any.whl#md5=26404d27a64a40d4c358a2405b16d043
 Installing collected packages: pip
@@ -85,7 +85,7 @@ Congratulations, your pip and setuptools installations are now upgraded. As I no
 
 Once pip and setuptools are upgraded, try installing the previously failed package again. You should see a bunch of output like this:
 
-```text
+```powershell
 C:\Users\Tyler\AppData\Local\Programs\Common\Microsoft\Visual C++ for Python\9.0\VC\Bin\link.exe /DLL /nologo /INCREMENTAL:NO /LIBPATH:C:\Python27\Libs /LIBPATH:C:\Users\Tyler\.virtualenvs\test\libs /LIBPATH:C:\Users\Tyler\.virtualenvs\test\PCbuild /EXPORT:init_diff_tree build\temp.win32-2.7\Release\dulwich/_diff_tree.obj /OUT:build\lib.win32-2.7\dulwich\_diff_tree.pyd /IMPLIB:build\temp.win32-2.7\Release\dulwich\_diff_tree.lib /MANIFESTFILE:build\temp.win32-2.7\Release\dulwich\_diff_tree.pyd.manifest
     Creating library build\temp.win32-2.7\Release\dulwich\_diff_tree.lib and object build\temp.win32-2.7\Release\dulwich\_diff_tree.exp
 Successfully installed dulwich-0.9.8

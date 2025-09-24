@@ -39,7 +39,7 @@ In order to get this up and running, you can follow the steps below. Note that E
 
 If you don't yet have an Engineer site, you can initialize a new one with a content structure and configuration files especially for Azure using the following command (new in Engineer 0.5.0):
 
-```text
+```bash
 engineer init -m azure
 ```
 
@@ -59,7 +59,7 @@ You can lay out your files however you wish, but the typical layout will look so
 
 Run the following command from the root of the folder to build your site for Azure:
 
-```text
+```bash
 engineer build -s ./config.yaml
 ```
 

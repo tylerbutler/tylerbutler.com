@@ -66,7 +66,8 @@
       "mcp__playwright__browser_click",
       "Bash(cat:*)",
       "mcp__serena__activate_project",
-      "mcp__playwright__browser_resize"
+      "mcp__playwright__browser_resize",
+      "Bash(avifenc:*)"
     ],
     "deny": [],
     "ask": []

@@ -7,26 +7,32 @@ const articles = await getCollection('articles', ({ data }) => {
   return !data.draft;
 });
 
-// Sort by date (newest first) and take first 5
-const recentArticles = articles
+// Sort by date (newest first) and take first 5, then render each
+const sortedArticles = articles
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 5);
+
+// Render content for each article to get preview
+const recentArticles = await Promise.all(
+  sortedArticles.map(async (article) => {
+    const { Content } = await article.render();
+    return { ...article, RenderedContent: Content };
+  })
+);
 ---
 
 <BaseLayout title="Tyler Butler - Personal Website" description="Personal website and blog of Tyler Butler, featuring articles on technology, programming, and more.">
-  <section>
-    <h2>Welcome</h2>
-    <p>
-      This is the personal website of Tyler Butler. Here you'll find articles about technology,
-      programming, and various other topics that interest me. The site contains content dating
-      back to 2002, providing a long history of thoughts and experiences.
-    </p>
+  <nav class="links-nav">
+    <ul class="horizontal-links">
+      <li><a href="https://github.com/tylerbutler" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="mailto:tyler@tylerbutler.com">Email</a></li>
+      <li><a href="/feed.xml">Feed</a></li>
+      <li><a href="/articles">Archive</a></li>
+    </ul>
+  </nav>
 
-    <h2>Recent Articles</h2>
-    <p>
-      Browse through my collection of articles covering web development, software engineering,
-      and technology trends over the years.
-    </p>
+  <div class="homepage-layout">
+    <main class="main-content">
 
     {recentArticles.length > 0 && (
       <ul class="recent-articles">
@@ -51,9 +57,16 @@ const recentArticles = articles
                     day: 'numeric'
                   })}
                 </time>
-                {article.data.excerpt && (
-                  <p class="excerpt">{article.data.excerpt}</p>
+                {article.data.tags && article.data.tags.length > 0 && (
+                  <div class="tags">
+                    {article.data.tags.map((tag) => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
                 )}
+                <div class="article-content">
+                  <article.RenderedContent />
+                </div>
               </article>
             </li>
           );
@@ -64,10 +77,52 @@ const recentArticles = articles
     <p>
       <a href="/articles">View All Articles</a>
     </p>
-  </section>
+    </main>
+  </div>
 </BaseLayout>
 
 <style>
+  .links-nav {
+    margin: 0;
+    padding: 1em 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .horizontal-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5em;
+    justify-content: center;
+  }
+
+  .horizontal-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    font-family: Lato, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .horizontal-links a:hover {
+    color: var(--accent);
+  }
+
+  .homepage-layout {
+    max-width: var(--content-width);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .horizontal-links {
+      flex-direction: column;
+      gap: 0.5em;
+    }
+  }
+
   .recent-articles {
     list-style: none;
     padding: 0;
@@ -111,5 +166,61 @@ const recentArticles = articles
     font-size: 13px;
     line-height: 1.6;
     color: #555;
+  }
+
+  .article-content {
+    margin: 0.5em 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .article-content h1,
+  .article-content h2,
+  .article-content h3,
+  .article-content h4,
+  .article-content h5,
+  .article-content h6 {
+    color: var(--text);
+    margin: 1em 0 0.5em 0;
+  }
+
+  .article-content p {
+    margin: 0.5em 0;
+  }
+
+  .article-content a {
+    color: var(--accent);
+  }
+
+  .article-content pre,
+  .article-content code {
+    background: #f5f5f5;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+
+  .article-content blockquote {
+    border-left: 3px solid #ddd;
+    padding-left: 1em;
+    margin: 1em 0;
+    font-style: italic;
+  }
+
+  .tags {
+    margin: 0.5em 0;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 2px 6px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: #666;
+    border-radius: 3px;
+    text-transform: lowercase;
   }
 </style>

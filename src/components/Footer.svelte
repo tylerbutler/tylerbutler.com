@@ -1,3 +1,0 @@
-<footer class="site-footer">
-  <p>Background image by Klaus Bürgle, courtesy of <a href="http://www.retro-futurismus.de" target="_blank" rel="noopener">retro-futurismus.de</a></p>
-</footer>

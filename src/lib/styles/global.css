@@ -15,13 +15,13 @@
   --text: #262626;         /* Body text (dark gray) */
   --nav-links: #F7F6F5;    /* Navigation links (off-white) */
 
-  /* Layout measurements */
+  /* Layout measurements - matching mockup innerWrapper */
   --container-width: 636px;
-  --content-width: 534px;
-  --container-margin: 30px 282px; /* Centers in 1200px viewport */
+  --content-width: 380px;
+  --container-margin: 30px auto; /* Centers in viewport */
   --header-padding: 35px 25px;
   --content-padding: 50.875px 0px;
-  --inner-content-margins: 0px 50.8828px;
+  --inner-content-margins: 0px 35px;
 }
 
 /* Reset and base styles */
@@ -67,7 +67,6 @@ body {
 
 .content-inner {
   margin: var(--inner-content-margins);
-  width: var(--content-width);
 }
 
 /* Typography system - exact mockup specifications */
@@ -172,7 +171,7 @@ a:hover {
   padding: 15px 25px;
   text-align: center;
   font-size: 11px;
-  color: #888;
+  color: #6e6e6e;
 }
 
 .site-footer a {
@@ -185,7 +184,7 @@ a:hover {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
   :root {
     --container-margin: 20px auto;
   }

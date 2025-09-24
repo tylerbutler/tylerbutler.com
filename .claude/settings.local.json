@@ -53,7 +53,12 @@
       "Bash(git checkout:*)",
       "Bash(npm create:*)",
       "Bash(unalias mv cp)",
-      "Bash(unalias cp)"
+      "Bash(unalias cp)",
+      "mcp__playwright__browser_close",
+      "WebFetch(domain:tylerbutler.com)",
+      "mcp__serena__find_file",
+      "Bash(rm:*)",
+      "Bash(npm run check:*)"
     ],
     "deny": [],
     "ask": []

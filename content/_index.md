@@ -1,6 +1,0 @@
----
-
-showsidebar: yes
-homepage: yes
-
----

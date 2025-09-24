@@ -59,7 +59,11 @@
       "mcp__serena__find_file",
       "Bash(rm:*)",
       "Bash(npm run check:*)",
-      "mcp__serena__get_symbols_overview"
+      "mcp__serena__get_symbols_overview",
+      "mcp__playwright__browser_network_requests",
+      "mcp__playwright__browser_console_messages",
+      "mcp__serena__search_for_pattern",
+      "mcp__playwright__browser_click"
     ],
     "deny": [],
     "ask": []

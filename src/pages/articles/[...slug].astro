@@ -106,11 +106,11 @@ const formattedDate = date.toLocaleDateString('en-US', {
 
   .article h1 {
     font-family: adelle, Georgia, serif;
-    font-size: 42px;
+    font-size: clamp(32px, 6vw, 48px);
     font-weight: 300;
-    line-height: 1.3;
+    line-height: 1.2;
     color: var(--text);
-    margin: 0 0 0.05em 0;
+    margin: 0 0 0.5em 0;
   }
 
   .article-date {
@@ -146,45 +146,58 @@ const formattedDate = date.toLocaleDateString('en-US', {
   }
 
   .article-content {
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 65ch;
+  }
+
+  .article-content p + p {
+    margin-top: 1.25em;
   }
 
   .article-content h2 {
     margin: 2em 0 1em 0;
-    font-size: 28px;
+    font-size: clamp(28px, 4.5vw, 36px);
     font-family: adelle, Georgia, serif;
     font-weight: 300;
+    line-height: 1.2;
   }
 
   .article-content h3 {
     margin: 1.5em 0 0.8em 0;
-    font-size: 24px;
+    font-size: clamp(24px, 4vw, 28px);
     font-family: adelle, Georgia, serif;
     font-weight: 300;
+    line-height: 1.2;
   }
 
   .article-content h4 {
     margin: 1.2em 0 0.6em 0;
-    font-size: 20px;
+    font-size: clamp(20px, 3.5vw, 24px);
     font-family: adelle, Georgia, serif;
     font-weight: 400;
+    line-height: 1.3;
   }
 
   .article-content h5 {
     margin: 1em 0 0.5em 0;
-    font-size: 18px;
+    font-size: clamp(18px, 3vw, 20px);
     font-family: adelle, Georgia, serif;
     font-weight: 400;
+    line-height: 1.3;
   }
 
   .article-content h6 {
     margin: 1em 0 0.5em 0;
-    font-size: 16px;
+    font-size: clamp(16px, 2.5vw, 18px);
     font-family: adelle, Georgia, serif;
     font-weight: 400;
+    line-height: 1.3;
   }
 
   .article-content p {
+    font-size: clamp(15px, 2.5vw, 16px);
+    line-height: 1.6;
     margin: 1em 0;
   }
 
@@ -264,6 +277,25 @@ const formattedDate = date.toLocaleDateString('en-US', {
 
     .nav-link-next .nav-text {
       text-align: left;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .article-content p {
+      font-size: 16px !important; /* Ensure mobile readability */
+      line-height: 1.6;
+    }
+
+    .article h1 {
+      font-size: clamp(28px, 8vw, 40px);
+    }
+
+    .article-content h2 {
+      font-size: clamp(24px, 6vw, 32px);
+    }
+
+    .article-content h3 {
+      font-size: clamp(20px, 5vw, 28px);
     }
   }
 </style>

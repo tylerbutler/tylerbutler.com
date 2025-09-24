@@ -63,7 +63,10 @@
       "mcp__playwright__browser_network_requests",
       "mcp__playwright__browser_console_messages",
       "mcp__serena__search_for_pattern",
-      "mcp__playwright__browser_click"
+      "mcp__playwright__browser_click",
+      "Bash(cat:*)",
+      "mcp__serena__activate_project",
+      "mcp__playwright__browser_resize"
     ],
     "deny": [],
     "ask": []

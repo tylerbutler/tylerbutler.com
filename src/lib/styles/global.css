@@ -1,7 +1,18 @@
-/* Import fonts */
+/* Import fonts with font-display optimization */
 @import '@fontsource/advent-pro/100.css';
 @import '@fontsource/advent-pro/400.css';
 @import '@fontsource/lato/400.css';
+
+/* Font loading optimization */
+@font-face {
+  font-family: 'westgate';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'adelle';
+  font-display: swap;
+}
 
 /* CSS Variables matching mockup specifications */
 :root {
@@ -10,9 +21,12 @@
   --light-bg: #F7F6F5;     /* Content section background */
   --overlay: rgba(0,0,0,0.2); /* Dark overlay for depth */
 
-  /* Text Colors */
-  --accent: #A2834E;       /* Titles, active nav, tagline (golden bronze) */
-  --text: #262626;         /* Body text (dark gray) */
+  /* Text Colors - WCAG AA compliant */
+  --accent: #6B5530;       /* Darker for better contrast (4.5:1) */
+  --accent-light: #8B6F3A; /* Medium version for hover states */
+  --accent-hover: #A2834E; /* Original color for hover */
+  --text: #1a1a1a;         /* Body text (darker for better readability) */
+  --text-light: #262626;   /* Secondary text color */
   --nav-links: #F7F6F5;    /* Navigation links (off-white) */
 
   /* Layout measurements - matching mockup innerWrapper */
@@ -24,18 +38,27 @@
   --inner-content-margins: 0px 35px;
 }
 
-/* Reset and base styles */
+/* Reset and base styles with typography optimization */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  /* Improved text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: common-ligatures;
+  font-kerning: auto;
+}
+
 body {
-  font-family: adelle, Georgia, serif;
-  font-size: 14px;
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 23.8px;
+  line-height: 1.6;
   color: var(--text);
   background-color: var(--light-bg);
   background-image: url('/bg.jpg');
@@ -68,17 +91,31 @@ body {
 
 .content-inner {
   margin: var(--inner-content-margins);
+  max-width: 70ch; /* Optimal reading line length */
+}
+
+/* Better content spacing system */
+.content-inner > * + * {
+  margin-top: var(--flow-space, 1em);
+}
+
+.content-inner > h2 {
+  --flow-space: 2em;
+}
+
+.content-inner > h3 {
+  --flow-space: 1.5em;
 }
 
 /* Typography system - exact mockup specifications */
 
 /* Main Site Title - only in header */
 .site-header h1 {
-  font-family: "westgate", sans-serif;
-  font-size: 108px;
+  font-family: "westgate", "Trajan Pro", "Copperplate", serif;
+  font-size: clamp(64px, 12vw, 108px);
   font-weight: 100;
-  line-height: 108px;
-  letter-spacing: 10px;
+  line-height: 1;
+  letter-spacing: clamp(2px, 1vw, 10px);
   text-transform: uppercase;
   color: var(--accent);
   margin: 5px 0;
@@ -87,11 +124,11 @@ body {
 
 /* Site title when not h1 (for non-homepage header) */
 .site-title {
-  font-family: "westgate", sans-serif;
-  font-size: 108px;
+  font-family: "westgate", "Trajan Pro", "Copperplate", serif;
+  font-size: clamp(64px, 12vw, 108px);
   font-weight: 100;
-  line-height: 108px;
-  letter-spacing: 10px;
+  line-height: 1;
+  letter-spacing: clamp(2px, 1vw, 10px);
   text-transform: uppercase;
   color: var(--accent);
   margin: 5px 0;
@@ -106,11 +143,11 @@ body {
 
 /* Site Tagline */
 .tagline {
-  font-family: adelle, Georgia, serif;
-  font-size: 13px;
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: clamp(11px, 2vw, 13px);
   font-weight: 400;
-  line-height: 18.2px;
-  letter-spacing: 3px;
+  line-height: 1.4;
+  letter-spacing: clamp(2px, 0.5vw, 3px);
   text-transform: uppercase;
   color: var(--accent);
   text-align: center;
@@ -119,20 +156,27 @@ body {
 
 /* Navigation Links */
 nav a {
-  font-family: Lato, sans-serif;
-  font-size: 12px;
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 15px;
-  letter-spacing: 3px;
+  line-height: 1.2;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--nav-links);
   text-decoration: none;
   transition: color 0.2s ease;
+  padding: 8px 4px;
 }
 
 nav a:hover,
 nav a.active {
-  color: var(--accent);
+  color: var(--accent-hover);
+}
+
+nav a:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Navigation container */
@@ -151,9 +195,9 @@ nav ul {
 
 /* Small header navigation styles */
 .site-header--small nav a {
-  font-size: 10px;
-  letter-spacing: 2px;
-  line-height: 12px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
 }
 
 .site-header--small nav {
@@ -164,49 +208,102 @@ nav ul {
   gap: 15px;
 }
 
-/* Section Headings */
+/* Section Headings - Consistent hierarchy with fluid typography */
 h2 {
-  font-family: adelle, Georgia, serif;
-  font-size: 26px;
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: clamp(28px, 4.5vw, 36px);
   font-weight: 300;
-  line-height: 32.5px;
+  line-height: 1.2;
   letter-spacing: 1px;
   color: var(--text);
-  margin: 0 0 19.5px;
+  margin: 0 0 1em;
+}
+
+h3 {
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: clamp(24px, 4vw, 28px);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  margin: 0 0 0.8em;
+}
+
+h4 {
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 0 0 0.6em;
+}
+
+h5 {
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 0 0 0.5em;
+}
+
+h6 {
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 0 0 0.5em;
 }
 
 /* Body Text */
 p {
-  font-family: adelle, Georgia, serif;
-  font-size: 14px;
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: clamp(15px, 2.5vw, 16px);
   font-weight: 400;
-  line-height: 23.8px;
+  line-height: 1.6;
   color: var(--text);
-  margin: 14px 0;
+  margin: 1em 0;
 }
 
-/* Links in content */
+/* Better paragraph spacing */
+p + p {
+  margin-top: 1.25em;
+}
+
+/* Links in content - Better accessibility */
 a {
   color: var(--accent);
   text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.08em;
+  transition: all 0.2s ease;
 }
 
 a:hover {
+  color: var(--accent-hover);
   text-decoration: none;
+}
+
+a:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Enhanced blockquote styling */
 blockquote {
-  margin: 0.8em 0;
-  padding: 0.75em 1em;
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
   border-left: 4px solid var(--accent);
   background: #f8f7f6;
   font-style: italic;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: clamp(16px, 3vw, 18px);
+  line-height: 1.5;
   color: #555;
   border-radius: 0 4px 4px 0;
   position: relative;
+  max-width: 60ch;
 }
 
 blockquote::before {
@@ -246,8 +343,9 @@ hr {
 
 hr::after {
   content: "###";
-  font-family: adelle, Georgia, serif;
-  font-size: 14px;
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: clamp(14px, 2.5vw, 16px);
+  color: var(--text-light);
 }
 
 /* Footer section */
@@ -297,13 +395,36 @@ hr::after {
     letter-spacing: 1px;
   }
 
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  body {
+    font-size: 16px; /* Increased for better mobile readability */
+  }
+
+  p {
+    font-size: 16px; /* Ensure paragraphs are readable on mobile */
+    line-height: 1.6;
+  }
+
   :root {
     --header-padding: 25px 15px;
     --content-padding: 30px 0;
   }
 
+  nav a {
+    font-size: 14px; /* Increased for better touch targets */
+    letter-spacing: 1.5px;
+    padding: 12px 8px; /* Larger touch targets */
+  }
+
   nav ul {
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 }

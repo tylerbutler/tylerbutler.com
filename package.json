@@ -16,7 +16,7 @@
     "test:lighthouse:mobile": "lhci autorun --config=lighthouserc.mobile.cjs",
     "test:web-vitals": "playwright test scripts/web-vitals-test.js",
     "test:accessibility": "pa11y-ci",
-    "test:bundle": "node scripts/analyze-bundle.js",
+    "test:bundle": "NODE_ENV=production npm run build && echo \"📊 Bundle analysis generated at dist/bundle-analysis.html\"",
     "test:images": "node scripts/check-images.js",
     "test:headed": "playwright test --headed",
     "test:update": "playwright test --update-snapshots",
@@ -58,6 +58,7 @@
     "imageoptim-cli": "^3.1.9",
     "lighthouse": "^12.8.2",
     "pa11y-ci": "^4.0.1",
+    "rollup-plugin-visualizer": "^6.0.3",
     "sharp": "^0.34.3",
     "typescript": "^5.0.0",
     "web-vitals": "^5.1.0"

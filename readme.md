@@ -1,24 +1,28 @@
-# Tyler Butler's Hugo Site
+# Tyler Butler's Website
 
-This repo has nested submodules, so use the following command to update them all after a fresh clone:
-
-    git submodule update --recursive --init
+Built with [Astro](https://astro.build/) - a modern web framework for content-focused sites.
 
 ## Requirements
 
-- Hugo 0.126.1+ (see `mise.toml`)
-- Node.js 24+ (for testing infrastructure)
+- Node.js 20+ (for Astro and testing infrastructure)
+- See `mise.toml` for specific version requirements
 
 ## Development
 
 ### Building the Site
 
 ```bash
-# Build the site
-npm run build
+# Install dependencies
+npm install
 
 # Start development server
-hugo server -D
+npm run dev
+
+# Build the site for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
 ## Testing Infrastructure
@@ -76,14 +80,16 @@ Tests homepage, articles, code blocks, and footer across:
 ### Bundle Analysis
 
 ```bash
-# Analyze CSS/JS bundle sizes
+# Analyze bundle composition with interactive visualization
 npm run test:bundle
 ```
 
-**Current baseline:**
-- CSS: 407KB (⚠️ consider code splitting >100KB)
-- JavaScript: 119KB ✅
-- Total: 526KB
+This generates an interactive treemap visualization at `dist/bundle-analysis.html` showing:
+- Bundle composition by module
+- Gzip and Brotli compressed sizes
+- Import relationships and dependencies
+
+Open `dist/bundle-analysis.html` in your browser after running the command to explore the bundle structure.
 
 ### Image Optimization
 
@@ -118,8 +124,8 @@ npm run test:accessibility
 npm run baseline
 ```
 
-**Metrics saved to:**
-- `metrics/bundle-analysis.json` - Bundle size tracking
+**Output files:**
+- `dist/bundle-analysis.html` - Interactive bundle visualization (generated during production builds)
 - `metrics/image-analysis.json` - Image optimization data
 - `metrics/web-vitals.json` - Core Web Vitals measurements
 - `.lighthouseci/` - Lighthouse performance reports

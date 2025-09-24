@@ -61,11 +61,53 @@ body {
   line-height: 1.6;
   color: var(--text);
   background-color: var(--light-bg);
-  background-image: url('/bg.jpg');
+  background-image: url('/bg.jpg'); /* Fallback for older browsers */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+/* Use AVIF for supporting browsers (best compression) */
+@supports (background-image: url('data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgABogQEAwgMg8f8D///8WfhwB8+ErK42A=')) {
+  body {
+    background-image: url('/bg.avif'); /* Standard AVIF - 250KB */
+  }
+
+  /* High-quality AVIF for large screens */
+  @media (min-width: 1200px) {
+    body {
+      background-image: url('/bg-hq.avif'); /* High-quality AVIF - 435KB */
+    }
+  }
+
+  /* Mobile-optimized AVIF for small screens */
+  @media (max-width: 768px) {
+    body {
+      background-image: url('/bg-mobile.avif'); /* Mobile AVIF - 123KB */
+    }
+  }
+}
+
+/* Use WebP for supporting browsers (fallback from AVIF) */
+@supports (background-image: url('data:image/webp;base64,UklGRh4AAABXRUJQVlA4IBYAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=')) {
+  body {
+    background-image: url('/bg.webp'); /* Standard WebP - 274KB */
+  }
+
+  /* High-quality WebP for large screens */
+  @media (min-width: 1200px) {
+    body {
+      background-image: url('/bg-hq.webp'); /* High-quality WebP - 484KB */
+    }
+  }
+
+  /* Mobile-optimized WebP for small screens */
+  @media (max-width: 768px) {
+    body {
+      background-image: url('/bg-mobile.webp'); /* Mobile WebP - 170KB */
+    }
+  }
 }
 
 /* Site container - matching mockup layout architecture */
@@ -206,6 +248,19 @@ nav ul {
 
 .site-header--small nav ul {
   gap: 15px;
+}
+
+/* Wide screen navigation - vertical on the left */
+@media (min-width: 1200px) {
+  nav {
+    text-align: left;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
 
 /* Section Headings - Consistent hierarchy with fluid typography */
@@ -350,7 +405,7 @@ hr::after {
 
 /* Footer section */
 .site-footer {
-  background-color: var(--dark-bg);
+  background-color: #f0f0f0;
   padding: 15px 25px;
   text-align: center;
   font-size: 11px;

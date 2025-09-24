@@ -1,9 +1,9 @@
 ---
-
 title: xkcd 2
 date: 2012-05-17
-description: A [Flask](http://flask.pocoo.org/)-based web application that displays xkcd comics in a slightly different way.
-
+description: A Flask-based web application that displays xkcd comics in a slightly different way.
+url: http://xkcd2.com
+github: https://github.com/tylerbutler/xkcd2
 ---
 
 ## Overview

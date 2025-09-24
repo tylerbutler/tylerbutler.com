@@ -9,6 +9,9 @@ const articles = defineCollection({
     slug: z.string().optional(),
     excerpt: z.string().optional(),
     draft: z.boolean().default(false),
+    link: z.string().optional(),
+    via: z.string().optional(),
+    vialink: z.string().optional(),
   }),
 });
 

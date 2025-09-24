@@ -42,12 +42,17 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const slug = article.data.slug || article.slug;
 
+            // Use external link if available, otherwise use local article link
+            const linkUrl = article.data.link || `/articles/${year}/${month}/${slug}`;
+            const isExternalLink = !!article.data.link;
+
             return (
               <li class="article-item">
                 <article>
                   <h4>
-                    <a href={`/articles/${year}/${month}/${slug}`}>
+                    <a href={linkUrl} {...(isExternalLink ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                       {article.data.title}
+                      {isExternalLink && <span class="external-link-icon">↗</span>}
                     </a>
                   </h4>
                   <time datetime={article.data.date.toISOString()}>
@@ -66,6 +71,15 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
                   )}
                   {article.data.excerpt && (
                     <p class="excerpt">{article.data.excerpt}</p>
+                  )}
+                  {(article.data.via || article.data.vialink) && (
+                    <p class="via">
+                      via {article.data.vialink ? (
+                        <a href={article.data.vialink} target="_blank" rel="noopener noreferrer">
+                          {article.data.via || 'link'}
+                        </a>
+                      ) : article.data.via}
+                    </p>
                   )}
                 </article>
               </li>
@@ -121,6 +135,12 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
     color: var(--accent);
   }
 
+  .external-link-icon {
+    font-size: 0.8em;
+    margin-left: 0.3em;
+    opacity: 0.6;
+  }
+
   .article-item time {
     font-size: 11px;
     color: #666;
@@ -156,5 +176,21 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
     font-size: 13px;
     line-height: 1.6;
     color: #555;
+  }
+
+  .via {
+    margin: 0.5em 0 0 0;
+    font-size: 11px;
+    color: #888;
+    font-style: italic;
+  }
+
+  .via a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .via a:hover {
+    text-decoration: underline;
   }
 </style>

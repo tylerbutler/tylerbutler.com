@@ -7,50 +7,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h2>Colophon</h2>
 
     <p>
-      This page describes the technical details of how this website is built,
-      hosted, and maintained.
+      This site is built using <a href="https://astro.build/" target="_blank" rel="noopener">Astro</a>,
+      a modern static site generator. It was previously built with
+      <a href="/projects/engineer">Engineer</a>, a static site generator I wrote myself
+      after being inspired by Jekyll, Hyde, and other similar projects.
     </p>
 
-    <h3>Technology Stack</h3>
+    <h3>Design</h3>
     <p>
-      This website is built with <a href="https://astro.build/" target="_blank" rel="noopener">Astro</a>,
-      a modern static site generator that delivers fast, content-focused websites.
-      The site uses Astro's content collections for managing articles and projects,
-      providing excellent developer experience and performance.
+      The design was created by me using CSS Grid and Flexbox. The site uses a
+      clean, typography-focused layout with a background image by Klaus Bürgle.
     </p>
 
+    <h3>Typography</h3>
     <p>
-      Styling is handled with plain CSS using modern features like CSS Grid and Flexbox.
-      Typography uses fonts from Adobe Fonts (Typekit) including Adelle for body text
-      and Advent Pro for headings.
+      The site uses several fonts from Adobe Fonts (Typekit):
     </p>
+    <ul>
+      <li><strong>Westgate</strong> - Main site title</li>
+      <li><strong>Adelle</strong> - Body text and headings</li>
+      <li><strong>Lato</strong> - Navigation</li>
+      <li><strong>Advent Pro</strong> - Accent text</li>
+    </ul>
 
-    <h3>Hosting & Deployment</h3>
+    <h3>Hosting</h3>
     <p>
       The site is hosted on <a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a>
-      with automatic deployments from the main branch of the GitHub repository.
-      SSL certificates are provided automatically by Netlify.
-    </p>
-
-    <h3>Performance</h3>
-    <p>
-      The site is optimized for performance with static generation, minimal JavaScript,
-      and optimized images. Astro's partial hydration ensures that only necessary
-      JavaScript is loaded on each page.
-    </p>
-
-    <h3>Content Management</h3>
-    <p>
-      Articles are written in Markdown with YAML frontmatter and managed through
-      Astro's content collections. This provides type safety and excellent developer
-      experience while maintaining simplicity.
+      with automatic deployments from GitHub. The domain is registered through Hover.
     </p>
 
     <h3>Source Code</h3>
     <p>
       The complete source code for this website is available on
-      <a href="https://github.com/tylerbutler/tylerbutler.com-hugo" target="_blank" rel="noopener">GitHub</a>
-      under an open source license.
+      <a href="https://github.com/tylerbutler/tylerbutler.com-hugo" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+
+    <h3>Affiliate Links</h3>
+    <p>
+      Some links on this site may be affiliate links. When you purchase something
+      through these links, I may receive a small commission at no extra cost to you.
+    </p>
+
+    <p>
+      © 2002-2024 Tyler Butler
     </p>
   </section>
 </BaseLayout>
@@ -60,6 +59,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 20px;
     font-weight: 400;
     margin: 2em 0 1em 0;
+    color: var(--accent);
+  }
+
+  ul {
+    margin: 1em 0;
+    padding-left: 1.5em;
+  }
+
+  li {
+    margin-bottom: 0.5em;
+  }
+
+  li strong {
     color: var(--accent);
   }
 </style>

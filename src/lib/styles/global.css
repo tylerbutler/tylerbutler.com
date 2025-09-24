@@ -165,6 +165,22 @@ a:hover {
   text-decoration: none;
 }
 
+/* HR styling - render as three centered hash symbols */
+hr {
+  border: none;
+  background: none;
+  color: var(--text);
+  text-align: center;
+  margin: 30px 0;
+  position: relative;
+}
+
+hr::after {
+  content: "###";
+  font-family: adelle, Georgia, serif;
+  font-size: 14px;
+}
+
 /* Footer section */
 .site-footer {
   background-color: var(--dark-bg);

@@ -1,9 +1,39 @@
 ---
 import Navigation from './Navigation.astro';
+
+export interface Props {
+  size?: 'large' | 'small';
+}
+
+const { size = 'large' } = Astro.props;
 ---
 
-<header class="site-header">
+<header class={`site-header ${size === 'small' ? 'site-header--small' : ''}`}>
   <Navigation />
-  <h1><a href="/">Tyler Butler</a></h1>
+  {size === 'large' ? (
+    <h1><a href="/">Tyler Butler</a></h1>
+  ) : (
+    <div class="site-title"><a href="/">Tyler Butler</a></div>
+  )}
   <p class="tagline">I'm Tyler Butler: a big man with small dogs.</p>
 </header>
+
+<style>
+  .site-header--small h1,
+  .site-header--small .site-title {
+    font-size: 48px;
+    line-height: 48px;
+    margin: 3px 0;
+  }
+
+  .site-header--small .tagline {
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 2px;
+    margin: 5px 0 12px;
+  }
+
+  .site-header--small {
+    padding: 20px 25px;
+  }
+</style>

@@ -7,23 +7,45 @@ export async function getStaticPaths() {
     return !data.draft;
   });
 
-  return articles.map(article => {
+  // Sort articles by date (newest first)
+  const sortedArticles = articles.sort((a, b) =>
+    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  );
+
+  return sortedArticles.map((article, index) => {
     const date = new Date(article.data.date);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const slug = article.data.slug || article.slug;
 
+    // Get previous (older) and next (newer) articles
+    const prevArticle = sortedArticles[index + 1] || null;
+    const nextArticle = sortedArticles[index - 1] || null;
+
     return {
       params: {
         slug: `${year}/${month}/${slug}`
       },
-      props: { article }
+      props: {
+        article,
+        prevArticle,
+        nextArticle
+      }
     };
   });
 }
 
-const { article } = Astro.props;
+const { article, prevArticle, nextArticle } = Astro.props;
 const { Content } = await article.render();
+
+// Helper function to generate article URL
+function generateArticleUrl(article) {
+  const date = new Date(article.data.date);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const slug = article.data.slug || article.slug;
+  return `/articles/${year}/${month}/${slug}`;
+}
 
 const date = new Date(article.data.date);
 const formattedDate = date.toLocaleDateString('en-US', {
@@ -33,29 +55,42 @@ const formattedDate = date.toLocaleDateString('en-US', {
 });
 ---
 
-<BaseLayout title={`${article.data.title} - Tyler Butler`} description={article.data.excerpt}>
+<BaseLayout title={`${article.data.title} - Tyler Butler`} description={article.data.excerpt} headerSize="small">
   <article class="article">
     <header class="article-header">
       <h1>{article.data.title}</h1>
       <time datetime={article.data.date.toISOString()} class="article-date">
         {formattedDate}
       </time>
-      {article.data.tags && article.data.tags.length > 0 && (
-        <div class="article-tags">
-          {article.data.tags.map(tag => (
-            <span class="tag">{tag}</span>
-          ))}
-        </div>
-      )}
     </header>
 
     <div class="article-content">
       <Content />
     </div>
+
+    {article.data.tags && article.data.tags.length > 0 && (
+      <div class="article-tags">
+        {article.data.tags.map(tag => (
+          <span class="tag">#{tag}</span>
+        ))}
+      </div>
+    )}
   </article>
 
   <nav class="article-nav">
-    <a href="/articles">← Back to Articles</a>
+    {prevArticle && (
+      <a href={generateArticleUrl(prevArticle)} class="nav-link">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">{prevArticle.data.title}</span>
+      </a>
+    )}
+
+    {nextArticle && (
+      <a href={generateArticleUrl(nextArticle)} class="nav-link nav-link-next">
+        <span class="nav-text">{nextArticle.data.title}</span>
+        <span class="nav-arrow">→</span>
+      </a>
+    )}
   </nav>
 </BaseLayout>
 
@@ -66,21 +101,20 @@ const formattedDate = date.toLocaleDateString('en-US', {
 
   .article-header {
     margin-bottom: 2em;
-    padding-bottom: 1em;
-    border-bottom: 2px solid var(--accent);
+    border-bottom: 1px solid #e0e0e0;
   }
 
   .article h1 {
     font-family: adelle, Georgia, serif;
-    font-size: 28px;
+    font-size: 42px;
     font-weight: 300;
     line-height: 1.3;
     color: var(--text);
-    margin: 0 0 0.5em 0;
+    margin: 0 0 0.05em 0;
   }
 
   .article-date {
-    font-size: 12px;
+    font-size: 16px;
     color: #666;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -89,19 +123,19 @@ const formattedDate = date.toLocaleDateString('en-US', {
   }
 
   .article-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5em;
+    margin: 1.5em 0;
   }
 
   .tag {
-    background: var(--accent);
-    color: white;
-    padding: 0.2em 0.5em;
+    display: inline-block;
+    background: #e8e8e8;
+    padding: 2px 6px;
+    margin-right: 6px;
+    margin-bottom: 4px;
     font-size: 11px;
+    color: #555;
     border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    text-transform: lowercase;
   }
 
   .article-content {
@@ -110,25 +144,43 @@ const formattedDate = date.toLocaleDateString('en-US', {
 
   .article-content h2 {
     margin: 2em 0 1em 0;
-    font-size: 22px;
+    font-size: 28px;
+    font-family: adelle, Georgia, serif;
+    font-weight: 300;
   }
 
   .article-content h3 {
     margin: 1.5em 0 0.8em 0;
+    font-size: 24px;
+    font-family: adelle, Georgia, serif;
+    font-weight: 300;
+  }
+
+  .article-content h4 {
+    margin: 1.2em 0 0.6em 0;
+    font-size: 20px;
+    font-family: adelle, Georgia, serif;
+    font-weight: 400;
+  }
+
+  .article-content h5 {
+    margin: 1em 0 0.5em 0;
     font-size: 18px;
+    font-family: adelle, Georgia, serif;
+    font-weight: 400;
+  }
+
+  .article-content h6 {
+    margin: 1em 0 0.5em 0;
+    font-size: 16px;
+    font-family: adelle, Georgia, serif;
+    font-weight: 400;
   }
 
   .article-content p {
     margin: 1em 0;
   }
 
-  .article-content blockquote {
-    margin: 1.5em 0;
-    padding: 1em 1.5em;
-    border-left: 4px solid var(--accent);
-    background: #f9f9f9;
-    font-style: italic;
-  }
 
   .article-content code {
     background: #f4f4f4;
@@ -155,15 +207,56 @@ const formattedDate = date.toLocaleDateString('en-US', {
     margin-top: 3em;
     padding-top: 2em;
     border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
   }
 
-  .article-nav a {
+  .nav-link {
     color: var(--accent);
     text-decoration: none;
     font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    line-height: 1.4;
+    max-width: 45%;
   }
 
-  .article-nav a:hover {
-    text-decoration: underline;
+  .nav-link:hover {
+    color: var(--text);
+  }
+
+  .nav-link-next {
+    align-self: flex-end;
+  }
+
+  .nav-link-next .nav-text {
+    text-align: right;
+  }
+
+  .nav-arrow {
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .nav-text {
+    flex: 1;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .article-nav {
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    .nav-link {
+      max-width: 100%;
+    }
+
+    .nav-link-next .nav-text {
+      text-align: left;
+    }
   }
 </style>

@@ -6,9 +6,14 @@ import '../lib/styles/global.css';
 export interface Props {
   title?: string;
   description?: string;
+  headerSize?: 'large' | 'small';
 }
 
-const { title = "Tyler Butler", description = "Personal website and blog of Tyler Butler" } = Astro.props;
+const {
+  title = "Tyler Butler",
+  description = "Personal website and blog of Tyler Butler",
+  headerSize = 'large'
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -23,7 +28,7 @@ const { title = "Tyler Butler", description = "Personal website and blog of Tyle
   </head>
   <body>
     <div class="site-container">
-      <Header />
+      <Header size={headerSize} />
       <main class="content-section">
         <div class="content-inner">
           <slot />

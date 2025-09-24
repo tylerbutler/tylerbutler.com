@@ -58,7 +58,8 @@
       "WebFetch(domain:tylerbutler.com)",
       "mcp__serena__find_file",
       "Bash(rm:*)",
-      "Bash(npm run check:*)"
+      "Bash(npm run check:*)",
+      "mcp__serena__get_symbols_overview"
     ],
     "deny": [],
     "ask": []

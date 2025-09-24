@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const articles = await getCollection('articles', ({ data }) => {
+  return !data.draft;
+});
+
+// Get tag counts
+const tagCounts: Record<string, number> = {};
+articles.forEach(article => {
+  if (article.data.tags) {
+    article.data.tags.forEach(tag => {
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    });
+  }
+});
+
+const tags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+
+const title = 'Tags';
+const description = 'All tags used on articles across the site';
+---
+
+<BaseLayout title={title} description={description}>
+  <main>
+    <header class="page-header">
+      <h1>{title}</h1>
+      <p>All tags used on articles across the site</p>
+    </header>
+
+    <div class="tags-grid">
+      {tags.map(([tag, count]) => (
+        <a href={`/tags/${tag}/`} class="tag-item">
+          <span class="tag-name">{tag}</span>
+          <span class="tag-count">({count})</span>
+        </a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .page-header h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .tag-item {
+    display: block;
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .tag-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .tag-name {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .tag-count {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+</style>

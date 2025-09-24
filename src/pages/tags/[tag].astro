@@ -1,0 +1,198 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => {
+    return !data.draft;
+  });
+
+  // Get all unique tags
+  const tagSet = new Set<string>();
+  articles.forEach(article => {
+    if (article.data.tags) {
+      article.data.tags.forEach(tag => tagSet.add(tag));
+    }
+  });
+
+  const tags = Array.from(tagSet);
+
+  return tags.map(tag => ({
+    params: { tag },
+    props: {
+      tag,
+      articles: articles.filter(article =>
+        article.data.tags && article.data.tags.includes(tag)
+      ).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    }
+  }));
+}
+
+const { tag, articles } = Astro.props;
+
+const title = `Articles tagged "${tag}"`;
+const description = `All articles tagged with "${tag}"`;
+---
+
+<BaseLayout title={title} description={description}>
+  <main>
+    <header class="page-header">
+      <h1>Articles tagged "{tag}"</h1>
+      <p>{articles.length} article{articles.length === 1 ? '' : 's'} found</p>
+    </header>
+
+    <div class="articles-list">
+      {articles.map(article => {
+        const date = new Date(article.data.date);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const slug = article.data.slug || article.slug;
+
+        return (
+          <article class="article-item">
+            <h2>
+              <a href={`/articles/${year}/${month}/${slug}/`}>
+                {article.data.title}
+              </a>
+            </h2>
+            <div class="article-meta">
+              <time datetime={article.data.date.toISOString()}>
+                {date.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </time>
+              {article.data.tags && article.data.tags.length > 0 && (
+                <div class="tags">
+                  {article.data.tags.map(articleTag => (
+                    <a
+                      href={`/tags/${articleTag}/`}
+                      class={`tag ${articleTag === tag ? 'current-tag' : ''}`}
+                    >
+                      {articleTag}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+            {article.data.excerpt && (
+              <p class="article-excerpt">{article.data.excerpt}</p>
+            )}
+          </article>
+        );
+      })}
+    </div>
+
+    <div class="navigation">
+      <a href="/tags/" class="back-link">← All Tags</a>
+      <a href="/articles/" class="back-link">All Articles</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .page-header h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .article-item {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+  }
+
+  .article-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .article-item h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+  }
+
+  .article-item h2 a {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .article-item h2 a:hover {
+    color: var(--accent);
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .article-meta time {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    padding: 0.25rem 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+  }
+
+  .current-tag {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .article-excerpt {
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .navigation {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .back-link {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -86,3 +86,41 @@ export async function getRecentArticles(limit: number = 5): Promise<ArticleMeta[
   const articles = await loadArticles();
   return articles.slice(0, limit);
 }
+
+// Get all unique tags from articles
+export async function getAllTags(): Promise<string[]> {
+  const articles = await loadArticles();
+  const tagSet = new Set<string>();
+
+  articles.forEach(article => {
+    if (article.tags) {
+      article.tags.forEach(tag => tagSet.add(tag));
+    }
+  });
+
+  return Array.from(tagSet).sort();
+}
+
+// Get articles by tag
+export async function getArticlesByTag(tag: string): Promise<ArticleMeta[]> {
+  const articles = await loadArticles();
+  return articles.filter(article =>
+    article.tags && article.tags.includes(tag)
+  );
+}
+
+// Get tag counts for tag cloud/index
+export async function getTagCounts(): Promise<Record<string, number>> {
+  const articles = await loadArticles();
+  const tagCounts: Record<string, number> = {};
+
+  articles.forEach(article => {
+    if (article.tags) {
+      article.tags.forEach(tag => {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+      });
+    }
+  });
+
+  return tagCounts;
+}

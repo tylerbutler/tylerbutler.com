@@ -57,6 +57,13 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
                       day: 'numeric'
                     })}
                   </time>
+                  {article.data.tags && article.data.tags.length > 0 && (
+                    <div class="article-tags">
+                      {article.data.tags.map(tag => (
+                        <a href={`/tags/${tag}/`} class="tag">#{tag}</a>
+                      ))}
+                    </div>
+                  )}
                   {article.data.excerpt && (
                     <p class="excerpt">{article.data.excerpt}</p>
                   )}
@@ -119,6 +126,29 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
     color: #666;
     text-transform: uppercase;
     letter-spacing: 1px;
+  }
+
+  .article-tags {
+    margin: 0.5em 0;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #e8e8e8;
+    padding: 2px 6px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    font-size: 10px;
+    color: #555;
+    border-radius: 3px;
+    text-transform: lowercase;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .tag:hover {
+    background: var(--accent);
+    color: white;
   }
 
   .excerpt {

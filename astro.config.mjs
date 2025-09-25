@@ -7,8 +7,6 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 import expressiveCode from "astro-expressive-code";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
-// import { pluginColorChips } from 'expressive-code-color-chips';
-import ecTwoSlash from "expressive-code-twoslash";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,12 +16,20 @@ export default defineConfig({
 		sitemap(),
 		expressiveCode({
 			themes: [
-				// "github-dark",
-				// "github-light",
-				"catppuccin-latte",
-				"catppuccin-frappe",
+				"catppuccin-latte",  // light theme
+				"catppuccin-frappe", // dark theme
 			],
-			useDarkModeMediaQuery: true,
+			useDarkModeMediaQuery: false,
+			themeCssSelector: (theme) => {
+				// Map Catppuccin themes to our CSS classes
+				if (theme.name === 'catppuccin-latte') {
+					return '.light';
+				}
+				if (theme.name === 'catppuccin-frappe') {
+					return '.dark';
+				}
+				return ':root'; // fallback
+			},
 			defaultProps: {
 				wrap: false,
 				// Disable line numbers by default
@@ -35,11 +41,7 @@ export default defineConfig({
 					},
 				},
 			},
-			plugins: [
-				pluginLineNumbers(),
-				// pluginColorChips()
-				ecTwoSlash(),
-			],
+			plugins: [pluginLineNumbers()],
 		}),
 		mdx(),
 	],

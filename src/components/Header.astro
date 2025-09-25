@@ -1,5 +1,6 @@
 ---
 import Navigation from './Navigation.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 export interface Props {
   size?: 'large' | 'small';
@@ -9,6 +10,9 @@ const { size = 'large' } = Astro.props;
 ---
 
 <header class={`site-header ${size === 'small' ? 'site-header--small' : ''}`}>
+  <div class="theme-toggle-wrapper">
+    <ThemeToggle />
+  </div>
   <Navigation />
   {size === 'large' ? (
     <h1><a href="/">Tyler Butler</a></h1>
@@ -19,6 +23,17 @@ const { size = 'large' } = Astro.props;
 </header>
 
 <style>
+  .site-header {
+    position: relative;
+  }
+
+  .theme-toggle-wrapper {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+  }
+
   .site-header--small h1,
   .site-header--small .site-title {
     font-size: 48px;
@@ -35,5 +50,10 @@ const { size = 'large' } = Astro.props;
 
   .site-header--small {
     padding: 20px 25px;
+  }
+
+  .site-header--small .theme-toggle-wrapper {
+    top: 8px;
+    right: 8px;
   }
 </style>

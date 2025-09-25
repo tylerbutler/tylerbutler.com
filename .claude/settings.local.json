@@ -70,7 +70,11 @@
       "Bash(cat:*)",
       "mcp__serena__activate_project",
       "mcp__playwright__browser_resize",
-      "Bash(avifenc:*)"
+      "Bash(avifenc:*)",
+      "WebFetch(domain:stackoverflow.com)",
+      "mcp__playwright__browser_tabs",
+      "WebFetch(domain:expressive-code.com)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []

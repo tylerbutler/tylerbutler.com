@@ -17,6 +17,7 @@
 
 /* CSS Variables matching mockup specifications */
 :root {
+  /* Light theme variables */
   /* Backgrounds */
   --dark-bg: #0E0E0E;      /* Header section background */
   --light-bg: #F7F6F5;     /* Content section background */
@@ -37,6 +38,22 @@
   --header-padding: 35px 25px;
   --content-padding: 50.875px 0px;
   --inner-content-margins: 0px 35px;
+}
+
+/* Dark theme variables */
+.dark {
+  /* Dark theme backgrounds */
+  --dark-bg: #1a1a1a;      /* Slightly lighter dark for better contrast */
+  --light-bg: #111111;     /* Dark content background */
+  --overlay: rgba(255,255,255,0.1); /* Light overlay for depth */
+
+  /* Dark theme text colors */
+  --accent: #D4AF37;       /* Brighter gold for dark theme */
+  --text: #e5e5e5;         /* Light gray text */
+  --nav-links: #f0f0f0;    /* Off-white navigation links */
+
+  /* Dark theme specific */
+  --site-container-bg: #1a1a1a; /* Container background */
 }
 
 /* Reset and base styles with typography optimization */
@@ -117,6 +134,11 @@ body {
   margin: var(--container-margin);
   background-color: white;
   box-shadow: 0 0 20px var(--overlay);
+}
+
+/* Dark theme site container */
+.dark .site-container {
+  background-color: var(--site-container-bg, #1a1a1a);
 }
 
 /* Header section - dark background */
@@ -387,6 +409,16 @@ blockquote p:last-child {
   margin-bottom: 0;
 }
 
+/* Dark theme blockquote styles */
+.dark blockquote {
+  background: #1f1f1f;
+  color: #cccccc;
+}
+
+.dark blockquote::before {
+  color: var(--accent);
+}
+
 /* HR styling - render as three centered hash symbols */
 hr {
   border: none;
@@ -468,16 +500,7 @@ pre:not(.expressive-code pre) code {
   line-height: inherit;
 }
 
-/* Inline code styling */
-code:not(pre code) {
-  background-color: #f1f3f4;
-  color: #d73a49;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-family: var(--code-font);
-  font-size: 0.9em;
-  font-weight: 500;
-}
+/* This styling is now handled in the Expressive Code integration section below */
 
 /* Copy button styling */
 .code-block-wrapper {
@@ -618,9 +641,29 @@ table tr:hover {
   }
 }
 
-/* Dark theme adjustments for code blocks */
+/* Expressive Code will handle themes via media query automatically */
+/* We just need to ensure our .dark class triggers the media query */
+
+/* Dark theme adjustments for inline code */
+code:not(pre code) {
+  background-color: #f1f3f4;
+  color: #d73a49;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: var(--code-font);
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.dark code:not(pre code) {
+  background-color: #2d3748;
+  color: #e2e8f0;
+}
+
+/* Override media query with our custom class-based approach */
 @media (prefers-color-scheme: dark) {
-  code:not(pre code) {
+  /* Only apply if no explicit theme class is set */
+  :root:not(.dark):not(.light) code:not(pre code) {
     background-color: #2d3748;
     color: #e2e8f0;
   }
@@ -714,3 +757,18 @@ table tr:hover {
     font-size: 9px;
   }
 }
+
+/* Expressive Code theme switching support */
+/* With themeCssRoot: 'html', Expressive Code will generate theme CSS targeting html element */
+/* We need to ensure our theme classes are applied correctly */
+
+/* Apply data attributes for theme switching that work with Expressive Code */
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+/* Dark theme adjustments for inline code */

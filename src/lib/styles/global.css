@@ -273,16 +273,82 @@ nav ul {
   gap: 15px;
 }
 
-/* Wide screen navigation - vertical on the left */
+/* Wide screen navigation - extension of the header box */
 @media (min-width: 1200px) {
-  nav {
-    text-align: left;
+  /* Make header relative for nav positioning */
+  header,
+  banner {
+    position: relative;
   }
 
-  nav ul {
+  /* Position nav as an extension of the header */
+  header nav,
+  banner nav {
+    position: absolute;
+    left: -200px; /* Extend to the left of the header */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    background: #000000;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: flex-start;
-    gap: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 100;
+  }
+
+  /* Match horizontal nav styling exactly */
+  header nav ul,
+  banner nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px; /* Match horizontal gap */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  header nav ul li,
+  banner nav ul li {
+    width: 100%;
+  }
+
+  /* Use exact same styling as horizontal nav */
+  header nav ul li a,
+  banner nav ul li a {
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px; /* Match horizontal */
+    font-weight: 400; /* Match horizontal */
+    line-height: 1.2; /* Match horizontal */
+    letter-spacing: 2px; /* Match horizontal */
+    text-transform: uppercase; /* Match horizontal */
+    color: white !important;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding: 8px 4px; /* Match horizontal */
+    display: block;
+    width: 100%;
+  }
+
+  header nav ul li a:hover,
+  banner nav ul li a:hover {
+    color: var(--accent-hover);
+  }
+
+  header nav ul li a:focus,
+  banner nav ul li a:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Adjust main site container to account for nav extension */
+  .site-container {
+    margin-left: 200px;
   }
 }
 

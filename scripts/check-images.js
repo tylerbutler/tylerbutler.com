@@ -5,7 +5,7 @@ const path = require('path');
 const sharp = require('sharp');
 
 /**
- * Image optimization checker for Hugo static site
+ * Image optimization checker for Astro static site
  * Checks for proper image formats, sizes, and responsive image usage
  */
 

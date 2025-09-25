@@ -1,7 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(hugo)",
       "WebSearch",
       "Bash(npm install:*)",
       "Bash(mkdir:*)",
@@ -74,7 +73,8 @@
       "WebFetch(domain:stackoverflow.com)",
       "mcp__playwright__browser_tabs",
       "WebFetch(domain:expressive-code.com)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "mcp__serena__delete_memory"
     ],
     "deny": [],
     "ask": []

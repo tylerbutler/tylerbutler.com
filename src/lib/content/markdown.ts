@@ -69,7 +69,7 @@ export function extractSlugFromPath(filepath: string): string {
   const parts = filepath.split('/');
   const filename = parts[parts.length - 1];
 
-  // Handle Hugo date-prefixed filenames like "2024-01-15-article-title.md"
+  // Handle date-prefixed filenames like "2024-01-15-article-title.md"
   let slug = filename.replace(/\.md$/, '');
 
   // Remove date prefix if present (YYYY-MM-DD-title -> title)

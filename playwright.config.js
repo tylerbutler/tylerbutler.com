@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://localhost:1314',
+    baseURL: 'http://localhost:4321',
     trace: 'on-first-retry',
   },
   projects: [
@@ -38,8 +38,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'hugo server -D --bind 0.0.0.0 --port 1314',
-    port: 1314,
+    command: 'astro dev --port 4321',
+    port: 4321,
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe',
     stderr: 'pipe',

@@ -5,13 +5,22 @@
 # Build the site
 npm run build
 # OR
-hugo
+astro build
 
 # Start development server
-hugo server -D
+npm run dev
+# OR  
+astro dev
 
-# Build with minification (production)
-hugo --minify
+# Preview production build
+npm run preview
+# OR
+astro preview
+
+# Type checking
+npm run check
+# OR
+astro check
 ```
 
 ## Testing Commands
@@ -65,10 +74,13 @@ npm run baseline:bundle
 npm run baseline:images
 ```
 
-## Git Submodules
+## Development Tools
 ```bash
-# Initialize/update submodules (required after clone)
-git submodule update --recursive --init
+# Add Astro integrations
+npx astro add <integration>     # Add official integrations
+
+# Bundle analysis (generated during test:bundle)
+open dist/bundle-analysis.html
 ```
 
 ## System Commands (macOS/Darwin)
@@ -84,13 +96,15 @@ mise list          # List available tools
 ## Project Structure Navigation
 ```bash
 # Content directories
-ls content/articles/    # Blog posts by year
-ls content/projects/    # Project pages
-ls content/about/       # About page
-ls content/colophon/    # Site info
+ls src/content/articles/    # Blog posts by year
+ls src/content/projects/    # Project pages  
+ls src/content/about/       # About page content
+ls src/content/colophon/    # Site info
 
-# Configuration
-ls config/_default/     # Hugo config
-ls themes/              # Theme files
-ls static/              # Static assets
+# Source structure
+ls src/pages/              # Astro pages
+ls src/layouts/            # Layout components
+ls src/lib/                # Utilities and styles
+ls public/                 # Static assets
+ls dist/                   # Built output
 ```

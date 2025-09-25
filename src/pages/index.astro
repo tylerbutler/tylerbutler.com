@@ -119,8 +119,15 @@ const recentArticles = await Promise.all(
 
   @media (max-width: 768px) {
     .horizontal-links {
-      flex-direction: column;
-      gap: 0.5em;
+      flex-direction: row; /* Keep horizontal on mobile */
+      gap: 0.8em; /* Smaller gap to fit all items */
+      flex-wrap: nowrap; /* Force single line */
+      justify-content: center;
+    }
+
+    .horizontal-links a {
+      font-size: 12px; /* Smaller font to match top nav */
+      padding: 8px 4px; /* Tighter padding for single line */
     }
   }
 

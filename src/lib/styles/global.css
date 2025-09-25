@@ -99,10 +99,10 @@ body {
     }
   }
 
-  /* Mobile-optimized AVIF for small screens */
+  /* Hide background on mobile for cleaner experience */
   @media (max-width: 768px) {
     body {
-      background-image: url('/bg-mobile.avif'); /* Mobile AVIF - 123KB */
+      background-image: none; /* No background image on mobile */
     }
   }
 }
@@ -120,10 +120,10 @@ body {
     }
   }
 
-  /* Mobile-optimized WebP for small screens */
+  /* Hide background on mobile for cleaner experience */
   @media (max-width: 768px) {
     body {
-      background-image: url('/bg-mobile.webp'); /* Mobile WebP - 170KB */
+      background-image: none; /* No background image on mobile */
     }
   }
 }
@@ -268,6 +268,7 @@ nav {
   text-align: center;
   padding: 12px 0;
   display: block; /* Always visible in header */
+  width: 100%; /* Use full width */
 }
 
 nav ul {
@@ -775,6 +776,12 @@ code:not(pre code) {
     font-size: 72px;
     line-height: 72px;
   }
+
+  /* Hide background image on mobile for all formats */
+  body {
+    background-image: none !important;
+    background-color: #000000; /* Solid black background on mobile */
+  }
 }
 
 @media (max-width: 480px) {
@@ -807,14 +814,17 @@ code:not(pre code) {
   }
 
   nav a {
-    font-size: 14px; /* Increased for better touch targets */
-    letter-spacing: 1.5px;
-    padding: 12px 8px; /* Larger touch targets */
+    font-size: 12px; /* Smaller font for mobile horizontal layout */
+    letter-spacing: 1px;
+    padding: 8px 4px; /* Tighter padding for single line */
   }
 
   nav ul {
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row; /* Keep horizontal on mobile */
+    gap: 8px; /* Smaller gap to fit all items */
+    flex-wrap: nowrap; /* Force single line */
+    justify-content: center;
+    width: 100%; /* Use full width */
   }
 
   /* Code block mobile optimizations */

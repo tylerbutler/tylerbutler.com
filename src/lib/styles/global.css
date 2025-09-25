@@ -19,20 +19,20 @@
 :root {
   /* Light theme variables */
   /* Backgrounds */
-  --dark-bg: #0E0E0E;      /* Header section background */
+  --dark-bg: #000000;      /* Header section background - solid black to match mockup */
   --light-bg: #F7F6F5;     /* Content section background */
   --overlay: rgba(0,0,0,0.2); /* Dark overlay for depth */
 
   /* Text Colors - WCAG AA compliant */
-  --accent: #6B5530;       /* Darker for better contrast (4.5:1) */
+  --accent: #A2834E;       /* Golden color to match mockup */
   --accent-light: #8B6F3A; /* Medium version for hover states */
-  --accent-hover: #A2834E; /* Original color for hover */
+  --accent-hover: #C4A366; /* Lighter golden for hover */
   --text: #1a1a1a;         /* Body text (darker for better readability) */
   --text-light: #262626;   /* Secondary text color */
   --nav-links: #F7F6F5;    /* Navigation links (off-white) */
 
   /* Layout measurements - matching mockup innerWrapper */
-  --container-width: 636px;
+  --container-width: clamp(636px, 90vw, 763px);
   --content-width: 380px;
   --container-margin: 30px auto; /* Centers in viewport */
   --header-padding: 35px 25px;
@@ -156,7 +156,7 @@ body {
 
 .content-inner {
   margin: var(--inner-content-margins);
-  max-width: 70ch; /* Optimal reading line length */
+  width: calc(100% - 70px); /* Use full container width minus margins */
 }
 
 /* Better content spacing system */

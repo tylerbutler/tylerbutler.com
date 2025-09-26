@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { createHomepagePreview } from '../lib/markdown-utils.js';
 
 // Get recent articles (latest 5, non-draft)
 const articles = await getCollection('articles', ({ data }) => {
@@ -12,11 +13,16 @@ const sortedArticles = articles
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 5);
 
-// Render content for each article to get preview
+// Process articles with transformed headings for proper hierarchy
 const recentArticles = await Promise.all(
   sortedArticles.map(async (article) => {
-    const { Content } = await article.render();
-    return { ...article, RenderedContent: Content };
+    // Transform raw markdown content to HTML with shifted headings for proper hierarchy
+    const transformedHtml = createHomepagePreview(article.body);
+
+    return {
+      ...article,
+      transformedHtml
+    };
   })
 );
 ---
@@ -45,11 +51,11 @@ const recentArticles = await Promise.all(
           return (
             <li>
               <article class="article-preview">
-                <h3>
+                <h2>
                   <a href={`/articles/${year}/${month}/${slug}`}>
                     {article.data.title}
                   </a>
-                </h3>
+                </h2>
                 <div class="article-meta">
                   <time datetime={article.data.date.toISOString()}>
                     {date.toLocaleDateString('en-US', {
@@ -66,9 +72,7 @@ const recentArticles = await Promise.all(
                     </div>
                   )}
                 </div>
-                <div class="article-content">
-                  <article.RenderedContent />
-                </div>
+                <div class="article-content" set:html={article.transformedHtml}></div>
               </article>
             </li>
           );
@@ -147,19 +151,19 @@ const recentArticles = await Promise.all(
     border-bottom: none;
   }
 
-  .article-preview h3 {
+  .article-preview h2 {
     margin: 0 0 0.5em 0;
     font-family: adelle, Georgia, serif;
     font-size: 28px;
     font-weight: 300;
   }
 
-  .article-preview h3 a {
+  .article-preview h2 a {
     color: var(--text);
     text-decoration: none;
   }
 
-  .article-preview h3 a:hover {
+  .article-preview h2 a:hover {
     color: var(--accent);
   }
 

@@ -388,6 +388,20 @@ nav ul {
     border-radius: 2px;
   }
 
+  /* Active state highlighting for wide screen navigation */
+  header nav ul li a.active,
+  banner nav ul li a.active {
+    color: var(--accent) !important;
+    font-weight: 600;
+  }
+
+  /* Active state for dark theme - ensure proper contrast */
+  .dark header nav ul li a.active,
+  .dark banner nav ul li a.active {
+    color: var(--accent) !important;
+    font-weight: 600;
+  }
+
   /* Social navigation styles for sidebar - only show on large screens */
   .social-nav-item {
     margin-top: 0;

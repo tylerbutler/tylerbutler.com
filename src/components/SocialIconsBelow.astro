@@ -1,6 +1,6 @@
 ---
 // Simple social icons component for positioning below subtitle
-import { Github, Mail, Rss, Archive } from '@lucide/svelte';
+import { Github, Mail, Rss } from '@lucide/svelte';
 
 const socialItems = [
   {
@@ -19,12 +19,6 @@ const socialItems = [
     href: '/feed.xml',
     label: 'Feed',
     icon: 'feed',
-    external: false
-  },
-  {
-    href: '/articles',
-    label: 'Archive',
-    icon: 'archive',
     external: false
   },
 ];
@@ -51,9 +45,6 @@ const socialItems = [
         <Rss class="social-icon" />
       )}
 
-      {item.icon === 'archive' && (
-        <Archive class="social-icon" />
-      )}
 
       <span class="sr-only">{item.label}</span>
     </a>

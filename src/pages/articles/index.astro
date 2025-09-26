@@ -50,9 +50,8 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
               const month = String(date.getMonth() + 1).padStart(2, '0');
               const slug = article.data.slug || article.slug;
 
-              // Use external link if available, otherwise use local article link
-              const linkUrl = article.data.link || `/articles/${year}/${month}/${slug}`;
-              const isExternalLink = !!article.data.link;
+              // Always use local article link
+              const linkUrl = `/articles/${year}/${month}/${slug}`;
 
               return (
                 <article class="article-item">
@@ -62,30 +61,13 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
                       month: 'short'
                     })}
                   </time>
-                  <h1 class="article-title">
-                    <a href={linkUrl} class="article-link" {...(isExternalLink ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                  <h3 class="article-title">
+                    <a href={linkUrl} class="article-link">
                       {article.data.title}
-                      {isExternalLink && <span class="external-link-icon">↗</span>}
                     </a>
-                  </h1>
-                  {article.data.tags && article.data.tags.length > 0 && (
-                    <div class="article-tags">
-                      {article.data.tags.map(tag => (
-                        <a href={`/tags/${tag}/`} class="tag">#{tag}</a>
-                      ))}
-                    </div>
-                  )}
+                  </h3>
                   {article.data.excerpt && (
                     <p class="excerpt">{article.data.excerpt}</p>
-                  )}
-                  {(article.data.via || article.data.vialink) && (
-                    <p class="via">
-                      via {article.data.vialink ? (
-                        <a href={article.data.vialink} target="_blank" rel="noopener noreferrer">
-                          {article.data.via || 'link'}
-                        </a>
-                      ) : article.data.via}
-                    </p>
                   )}
                 </article>
               );
@@ -98,11 +80,6 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
 </BaseLayout>
 
 <style>
-  section h1 {
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-  }
 
   .year-navigation {
     margin-bottom: 2rem;
@@ -150,12 +127,9 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
   }
 
   .year-heading {
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--text);
     margin: 0;
     flex-shrink: 0;
-    width: 80px;
+    width: 120px;
     text-align: right;
   }
 
@@ -176,13 +150,11 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
     color: #666;
     font-variant-numeric: tabular-nums;
     text-align: left;
+    align-self: center;
   }
 
   .article-title {
     margin: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.2;
   }
 
   .article-link {
@@ -194,35 +166,6 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
     color: var(--accent);
   }
 
-  .external-link-icon {
-    font-size: 0.8em;
-    margin-left: 0.3em;
-    opacity: 0.6;
-  }
-
-  .article-tags {
-    margin: 0.5em 0;
-  }
-
-  .tag {
-    display: inline-block;
-    background: #e8e8e8;
-    padding: 2px 6px;
-    margin-right: 6px;
-    margin-bottom: 4px;
-    font-size: 10px;
-    color: #555;
-    border-radius: 3px;
-    text-transform: lowercase;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .tag:hover {
-    background: var(--accent);
-    color: white;
-  }
-
   .excerpt {
     margin: 0.5em 0;
     font-size: 13px;
@@ -230,19 +173,12 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
     color: #555;
   }
 
-  .via {
-    margin: 0.5em 0 0 0;
-    font-size: 11px;
-    color: #888;
-    font-style: italic;
+  /* Smaller headings for articles page */
+  .year-heading {
+    font-size: clamp(24px, 4vw, 28px); /* Use h3 size */
   }
 
-  .via a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .via a:hover {
-    text-decoration: underline;
+  .article-title {
+    font-size: 24px; /* Use h4 size */
   }
 </style>

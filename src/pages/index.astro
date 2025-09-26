@@ -28,12 +28,6 @@ const recentArticles = await Promise.all(
 ---
 
 <BaseLayout title="Tyler Butler - Personal Website" description="Personal website and blog of Tyler Butler, featuring articles on technology, programming, and more.">
-  <nav class="links-nav">
-    <ul class="horizontal-links">
-      <!-- Social links moved to compact icon navigation in header -->
-      <li class="social-links-notice">Social links now available as icons in the header navigation</li>
-    </ul>
-  </nav>
 
   <div class="homepage-layout">
     <main class="main-content">
@@ -62,13 +56,6 @@ const recentArticles = await Promise.all(
                       day: 'numeric'
                     })}
                   </time>
-                  {article.data.tags && article.data.tags.length > 0 && (
-                    <div class="tags">
-                      {article.data.tags.map((tag) => (
-                        <span class="tag">#{tag}</span>
-                      ))}
-                    </div>
-                  )}
                 </div>
                 <div class="article-content" set:html={article.transformedHtml}></div>
               </article>
@@ -180,12 +167,6 @@ const recentArticles = await Promise.all(
     flex-shrink: 0;
   }
 
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin: 0;
-  }
 
   .excerpt {
     margin: 0.5em 0;
@@ -229,15 +210,4 @@ const recentArticles = await Promise.all(
 
 
 
-  .tag {
-    display: inline-block;
-    background: #e8e8e8;
-    padding: 2px 6px;
-    margin-right: 6px;
-    margin-bottom: 4px;
-    font-size: 11px;
-    color: #555;
-    border-radius: 3px;
-    text-transform: lowercase;
-  }
 </style>

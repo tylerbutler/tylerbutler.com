@@ -51,7 +51,7 @@ export default defineConfig({
 	},
 	vite: {
 		optimizeDeps: {
-			exclude: ["@fontsource/advent-pro", "@fontsource/lato"],
+			exclude: ["@fontsource/lato"],
 		},
 		plugins: [
 			// Only generate bundle analysis in production builds

@@ -45,7 +45,6 @@
     "@astrojs/svelte": "^7.2.0",
     "@expressive-code/plugin-line-numbers": "^0.41.3",
     "@fontsource/abel": "^5.2.7",
-    "@fontsource/advent-pro": "^5.2.7",
     "@fontsource/lato": "^5.2.7",
     "@lucide/svelte": "^0.544.0",
     "astro": "^5.13.11",

@@ -1,6 +1,4 @@
 /* Import fonts with font-display optimization */
-@import '@fontsource/advent-pro/100.css';
-@import '@fontsource/advent-pro/400.css';
 @import '@fontsource/lato/400.css';
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 

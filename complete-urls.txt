@@ -218,6 +218,7 @@ https://tylerbutler.com/2024/11/thanksgiving/
 https://tylerbutler.com/about/
 https://tylerbutler.com/articles/
 https://tylerbutler.com/colophon/
+https://tylerbutler.com/feed.xml
 https://tylerbutler.com/page/10/
 https://tylerbutler.com/page/2/
 https://tylerbutler.com/page/3/

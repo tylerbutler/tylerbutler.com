@@ -74,7 +74,11 @@
       "mcp__playwright__browser_tabs",
       "WebFetch(domain:expressive-code.com)",
       "WebFetch(domain:github.com)",
-      "mcp__serena__delete_memory"
+      "mcp__serena__delete_memory",
+      "Bash(npx tsx:*)",
+      "mcp__magic__logo_search",
+      "WebFetch(domain:lucide.dev)",
+      "WebFetch(domain:www.npmjs.com)"
     ],
     "deny": [],
     "ask": []

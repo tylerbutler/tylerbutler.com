@@ -1,39 +1,53 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BookOpen from '@lucide/svelte/icons/book-open';
+import ExternalLink from '@lucide/svelte/icons/external-link';
+import Github from '@lucide/svelte/icons/github';
 
-// Get all projects
-const projects = await getCollection('projects');
+// Get all projects (excluding index files)
+const projects = await getCollection('projects', ({ id }) => !id.startsWith('_'));
+
+// Sort projects by date (newest first)
+const sortedProjects = projects.sort((a, b) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
 ---
 
 <BaseLayout title="Projects - Tyler Butler" description="Projects by Tyler Butler - open source and personal projects.">
   <section>
-    <h2>Projects</h2>
+    <h1>Projects</h1>
     <p>
       A collection of projects I've worked on over the years, including open source
       contributions and personal experiments.
     </p>
 
-    {projects.length > 0 ? (
+    {sortedProjects.length > 0 ? (
       <ul class="projects-list">
-        {projects.map(async project => {
-          const { Content } = await project.render();
+        {sortedProjects.map(project => {
           return (
             <li class="project-item">
               <article>
-                <h3>{project.data.title}</h3>
+                <h2>{project.data.title}</h2>
                 {project.data.description && (
                   <p class="description">{project.data.description}</p>
                 )}
-                <div class="project-content">
-                  <Content />
-                </div>
                 <div class="project-links">
+                  <a href={`/projects/${project.slug}`} class="read-more">
+                    <BookOpen size={16} />
+                    Read More
+                  </a>
                   {project.data.url && (
-                    <a href={project.data.url} target="_blank" rel="noopener">View Project</a>
+                    <a href={project.data.url} target="_blank" rel="noopener" class="external-link">
+                      <ExternalLink size={16} />
+                      View Project
+                    </a>
                   )}
                   {project.data.github && (
-                    <a href={project.data.github} target="_blank" rel="noopener">GitHub</a>
+                    <a href={project.data.github} target="_blank" rel="noopener" class="external-link">
+                      <Github size={16} />
+                      GitHub
+                    </a>
                   )}
                 </div>
               </article>
@@ -64,22 +78,16 @@ const projects = await getCollection('projects');
     border-bottom: none;
   }
 
-  .project-item h3 {
-    font-size: 20px;
-    font-weight: 400;
+  .project-item h2 {
     margin: 0 0 0.5em 0;
-    color: var(--accent);
+    color: var(--text);
   }
 
   .description {
     font-style: italic;
     color: #666;
     margin: 0.5em 0 1em 0;
-  }
-
-  .project-content {
-    margin: 1em 0;
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   .project-links {
@@ -87,7 +95,9 @@ const projects = await getCollection('projects');
   }
 
   .project-links a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
     margin-right: 1em;
     color: var(--accent);
     text-decoration: none;
@@ -97,6 +107,15 @@ const projects = await getCollection('projects');
   }
 
   .project-links a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  .read-more {
+    font-weight: 500;
+  }
+
+  .external-link {
+    opacity: 0.8;
   }
 </style>

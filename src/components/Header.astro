@@ -1,18 +1,21 @@
 ---
 import Navigation from './Navigation.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import SocialIconsBelow from './SocialIconsBelow.astro';
 
 export interface Props {
   size?: 'large' | 'small';
 }
 
 const { size = 'large' } = Astro.props;
+
 ---
 
 <header class={`site-header ${size === 'small' ? 'site-header--small' : ''}`}>
   <div class="theme-toggle-wrapper">
     <ThemeToggle />
   </div>
+
   <Navigation />
   {size === 'large' ? (
     <h1><a href="/">Tyler Butler</a></h1>
@@ -20,6 +23,8 @@ const { size = 'large' } = Astro.props;
     <div class="site-title"><a href="/">Tyler Butler</a></div>
   )}
   <p class="tagline">A big man with small dogs&nbsp;</p>
+
+  <SocialIconsBelow />
 </header>
 
 <style>
@@ -55,5 +60,18 @@ const { size = 'large' } = Astro.props;
   .site-header--small .theme-toggle-wrapper {
     top: 8px;
     right: 8px;
+  }
+
+  /* Screen reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>

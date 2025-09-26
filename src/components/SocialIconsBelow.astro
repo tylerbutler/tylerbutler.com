@@ -1,0 +1,112 @@
+---
+// Simple social icons component for positioning below subtitle
+import { Github, Mail, Rss, Archive } from '@lucide/svelte';
+
+const socialItems = [
+  {
+    href: 'https://github.com/tylerbutler',
+    label: 'GitHub',
+    icon: 'github',
+    external: true
+  },
+  {
+    href: 'mailto:tyler@tylerbutler.com',
+    label: 'Email',
+    icon: 'email',
+    external: false
+  },
+  {
+    href: '/feed.xml',
+    label: 'Feed',
+    icon: 'feed',
+    external: false
+  },
+  {
+    href: '/articles',
+    label: 'Archive',
+    icon: 'archive',
+    external: false
+  },
+];
+---
+
+<div class="social-icons-below">
+  {socialItems.map(item => (
+    <a
+      href={item.href}
+      class={`social-link social-link--${item.icon}`}
+      title={item.label}
+      target={item.external ? '_blank' : undefined}
+      rel={item.external ? 'noopener' : undefined}
+    >
+      {item.icon === 'github' && (
+        <Github class="social-icon" />
+      )}
+
+      {item.icon === 'email' && (
+        <Mail class="social-icon" />
+      )}
+
+      {item.icon === 'feed' && (
+        <Rss class="social-icon" />
+      )}
+
+      {item.icon === 'archive' && (
+        <Archive class="social-icon" />
+      )}
+
+      <span class="sr-only">{item.label}</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .social-icons-below {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin: 8px 0 4px 0;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--nav-links);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 4px;
+    border-radius: 3px;
+  }
+
+  .social-link:hover {
+    color: var(--accent);
+    background-color: rgba(212, 175, 55, 0.1);
+  }
+
+  .social-link:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  .social-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* Screen reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

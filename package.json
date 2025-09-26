@@ -47,6 +47,7 @@
     "@fontsource/abel": "^5.2.7",
     "@fontsource/advent-pro": "^5.2.7",
     "@fontsource/lato": "^5.2.7",
+    "@lucide/svelte": "^0.544.0",
     "astro": "^5.13.11",
     "astro-expressive-code": "^0.41.3",
     "expressive-code-twoslash": "^0.5.3",

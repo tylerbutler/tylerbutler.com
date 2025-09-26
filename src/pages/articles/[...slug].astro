@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { normalizeMarkdownHeadings } from '../../lib/markdown-utils.ts';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -38,6 +39,9 @@ export async function getStaticPaths() {
 const { article, prevArticle, nextArticle } = Astro.props;
 const { Content } = await article.render();
 
+// Normalize headings to start at h2 (since article title is h1)
+const normalizedHtml = normalizeMarkdownHeadings(article.body, 2);
+
 // Helper function to generate article URL
 function generateArticleUrl(article) {
   const date = new Date(article.data.date);
@@ -64,8 +68,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
       </time>
     </header>
 
-    <div class="article-content">
-      <Content />
+    <div class="article-content" set:html={normalizedHtml}>
     </div>
 
     {article.data.tags && article.data.tags.length > 0 && (

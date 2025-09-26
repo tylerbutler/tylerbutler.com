@@ -50,13 +50,71 @@ export function transformMarkdownWithShiftedHeadings(markdownContent: string, sh
 }
 
 /**
+ * Analyzes markdown content to find the minimum heading level
+ * @param markdownContent - Raw markdown content to analyze
+ * @returns The minimum heading level found (1-6), or null if no headings
+ */
+function getMinimumHeadingLevel(markdownContent: string): number | null {
+  const mdast: Root = fromMarkdown(markdownContent);
+  let minLevel: number | null = null;
+
+  visit(mdast, 'heading', (node: Heading) => {
+    if (minLevel === null || node.depth < minLevel) {
+      minLevel = node.depth;
+    }
+  });
+
+  return minLevel;
+}
+
+/**
+ * Normalizes heading levels in markdown content based on context
+ * @param markdownContent - Raw markdown content to transform
+ * @param targetStartLevel - Desired level for the highest heading (1-6)
+ * @param maxLevel - Maximum heading level allowed (default: 6)
+ * @returns HTML with normalized heading levels
+ */
+export function normalizeMarkdownHeadings(
+  markdownContent: string,
+  targetStartLevel: number = 2,
+  maxLevel: number = 6
+): string {
+  const minCurrentLevel = getMinimumHeadingLevel(markdownContent);
+
+  // If no headings found, return content as-is
+  if (minCurrentLevel === null) {
+    const mdast: Root = fromMarkdown(markdownContent);
+    const hast = toHast(mdast);
+    return toHtml(hast);
+  }
+
+  // Calculate the shift needed to normalize to target start level
+  const shiftBy = targetStartLevel - minCurrentLevel;
+
+  // Parse markdown to AST
+  const mdast: Root = fromMarkdown(markdownContent);
+
+  // Visit all heading nodes and normalize depth
+  visit(mdast, 'heading', (node: Heading) => {
+    const newLevel = node.depth + shiftBy;
+    // Ensure level stays within valid range (1-maxLevel)
+    node.depth = Math.max(1, Math.min(newLevel, maxLevel));
+  });
+
+  // Convert to HAST (HTML AST)
+  const hast = toHast(mdast);
+
+  // Convert to HTML string
+  return toHtml(hast);
+}
+
+/**
  * Creates a preview version of article content with shifted headings for homepage display
  * This ensures proper heading hierarchy when article content appears under h2 article titles
  * @param markdownContent - Raw article markdown content
  * @returns HTML with properly shifted headings suitable for homepage previews
  */
 export function createHomepagePreview(markdownContent: string): string {
-  // Shift headings by 2 levels for proper hierarchy:
-  // h1 -> h3, h2 -> h4, etc. (since article titles are h2)
-  return transformMarkdownWithShiftedHeadings(markdownContent, 2);
+  // Normalize headings to start at h3 (since article titles are h2 on homepage)
+  return normalizeMarkdownHeadings(markdownContent, 3);
 }

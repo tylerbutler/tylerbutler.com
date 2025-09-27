@@ -1,0 +1,77 @@
+/* Mermaid diagram styles */
+
+.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  background-color: transparent;
+}
+
+/* Container for mermaid diagrams */
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+  background-color: transparent;
+}
+
+/* Dark mode adjustments for mermaid diagrams */
+.dark .mermaid {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.dark .mermaid svg {
+  background-color: transparent;
+}
+
+/* Responsive mermaid diagrams */
+@media (max-width: 768px) {
+  .mermaid {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  .mermaid svg {
+    min-width: 300px;
+  }
+}
+
+/* Custom theme overrides if needed */
+.mermaid .node rect {
+  stroke-width: 2px;
+}
+
+.mermaid .node text {
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* Ensure diagrams don't break layout */
+.mermaid {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Style for diagram titles */
+.mermaid .titleText {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Loading state for mermaid diagrams */
+.mermaid-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  color: #666;
+  font-style: italic;
+}
+
+.mermaid-loading::before {
+  content: "Loading diagram...";
+}
+
+.dark .mermaid-loading {
+  color: #999;
+}

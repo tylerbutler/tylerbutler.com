@@ -16,7 +16,8 @@ export default defineConfig({
 		sitemap(),
 		expressiveCode({
 			themes: [
-				"catppuccin-latte",  // light theme
+				// "catppuccin-latte",  // light theme
+				"catppuccin-macchiato",
 				"catppuccin-frappe", // dark theme
 			],
 			useDarkModeMediaQuery: false,
@@ -36,7 +37,7 @@ export default defineConfig({
 				showLineNumbers: false,
 				// But enable line numbers for certain languages
 				overridesByLang: {
-					"js,ts,html,python,rust,csharp": {
+					"js,ts,html,python,rust,csharp,powershell": {
 						showLineNumbers: true,
 					},
 				},

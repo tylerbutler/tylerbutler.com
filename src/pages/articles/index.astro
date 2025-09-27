@@ -51,7 +51,7 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
               const slug = article.data.slug || article.slug;
 
               // Always use local article link
-              const linkUrl = `/articles/${year}/${month}/${slug}`;
+              const linkUrl = `/${year}/${month}/${slug}`;
 
               return (
                 <article class="article-item">

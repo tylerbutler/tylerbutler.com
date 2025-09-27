@@ -2,8 +2,18 @@ import { fromMarkdown } from 'mdast-util-from-markdown';
 import { toHast } from 'mdast-util-to-hast';
 import { visit } from 'unist-util-visit';
 import { toHtml } from 'hast-util-to-html';
+import rehypeExpressiveCode from 'rehype-expressive-code';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
+import remarkSmartypants from 'remark-smartypants';
+import remarkMermaid from 'remark-mermaid';
+import remarkRehype from 'remark-rehype';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeStringify from 'rehype-stringify';
 import type { Root, Heading } from 'mdast';
 import type { Element } from 'hast';
+import { rehypeFootnotes } from './footnotes.js';
 
 /**
  * Shifts all heading levels in HTML content by the specified amount
@@ -117,4 +127,132 @@ export function normalizeMarkdownHeadings(
 export function createHomepagePreview(markdownContent: string): string {
   // Normalize headings to start at h3 (since article titles are h2 on homepage)
   return normalizeMarkdownHeadings(markdownContent, 3);
+}
+
+/**
+ * Processes markdown content with heading normalization and Expressive Code syntax highlighting
+ * @param markdownContent - Raw markdown content to transform
+ * @param targetStartLevel - Desired level for the highest heading (1-6)
+ * @param maxLevel - Maximum heading level allowed (default: 6)
+ * @returns HTML with normalized headings and syntax highlighting
+ */
+export async function processMarkdownWithExpressiveCode(
+  markdownContent: string,
+  targetStartLevel: number = 2,
+  maxLevel: number = 6
+): Promise<string> {
+  const minCurrentLevel = getMinimumHeadingLevel(markdownContent);
+
+  // If no headings found, process content with Expressive Code only
+  if (minCurrentLevel === null) {
+    const processor = unified()
+      .use(remarkParse)
+      .use(remarkGfm) // Enable GitHub Flavored Markdown including footnotes
+      .use(remarkSmartypants) // Smart quotes, dashes, ellipses
+      .use(remarkMermaid) // Mermaid diagram support
+      .use(remarkRehype)
+      .use(rehypeFootnotes) // Transform footnotes for Littlefoot.js compatibility
+      .use(rehypeAutolinkHeadings, {
+        behavior: 'wrap',
+        properties: {
+          className: ['heading-anchor'],
+          ariaLabel: 'Link to this heading'
+        }
+      })
+      .use(rehypeExpressiveCode, {
+        themes: [
+          "catppuccin-latte",  // light theme
+          "catppuccin-frappe", // dark theme
+        ],
+        useDarkModeMediaQuery: false,
+        themeCssSelector: (theme) => {
+          // Map Catppuccin themes to our CSS classes
+          if (theme.name === 'catppuccin-latte') {
+            return '.light';
+          }
+          if (theme.name === 'catppuccin-frappe') {
+            return '.dark';
+          }
+          return ':root'; // fallback
+        },
+        defaultProps: {
+          wrap: false,
+          // Disable line numbers by default
+          showLineNumbers: false,
+          // But enable line numbers for certain languages
+          overridesByLang: {
+            "js,ts,html,python,rust,csharp,powershell": {
+              showLineNumbers: true,
+            },
+          },
+        },
+      })
+      .use(rehypeStringify);
+
+    const result = await processor.process(markdownContent);
+    return String(result);
+  }
+
+  // Calculate the shift needed to normalize to target start level
+  const shiftBy = targetStartLevel - minCurrentLevel;
+
+  // Create a custom remark plugin to handle heading normalization
+  const remarkNormalizeHeadings = () => {
+    return (tree: Root) => {
+      visit(tree, 'heading', (node: Heading) => {
+        const newLevel = node.depth + shiftBy;
+        // Ensure level stays within valid range (1-maxLevel)
+        node.depth = Math.max(1, Math.min(newLevel, maxLevel));
+      });
+    };
+  };
+
+  // Process with unified pipeline
+  const processor = unified()
+    .use(remarkParse)
+    .use(remarkGfm) // Enable GitHub Flavored Markdown including footnotes
+    .use(remarkSmartypants) // Smart quotes, dashes, ellipses
+    .use(remarkMermaid) // Mermaid diagram support
+    .use(remarkNormalizeHeadings)
+    .use(remarkRehype)
+    .use(rehypeFootnotes) // Transform footnotes for Littlefoot.js compatibility
+    .use(rehypeAutolinkHeadings, {
+      behavior: 'wrap',
+      properties: {
+        className: ['heading-anchor'],
+        ariaLabel: 'Link to this heading'
+      }
+    })
+    .use(rehypeExpressiveCode, {
+      themes: [
+        "catppuccin-latte",  // light theme
+        "catppuccin-frappe", // dark theme
+      ],
+      useDarkModeMediaQuery: false,
+      themeCssSelector: (theme) => {
+        // Map Catppuccin themes to our CSS classes
+        if (theme.name === 'catppuccin-latte') {
+          return '.light';
+        }
+        if (theme.name === 'catppuccin-frappe') {
+          return '.dark';
+        }
+        return ':root'; // fallback
+      },
+      defaultProps: {
+        wrap: false,
+        // Disable line numbers by default
+        showLineNumbers: false,
+        // But enable line numbers for certain languages
+        overridesByLang: {
+          "js,ts,html,python,rust,csharp,powershell": {
+            showLineNumbers: true,
+          },
+        },
+      },
+    })
+    .use(rehypeStringify);
+
+  const result = await processor.process(markdownContent);
+  return String(result);
 }

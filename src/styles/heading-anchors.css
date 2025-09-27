@@ -1,0 +1,75 @@
+/* Heading anchor styles for rehype-autolink-headings */
+
+.heading-anchor {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  display: block;
+}
+
+.heading-anchor:hover {
+  text-decoration: none;
+}
+
+/* Add a subtle link icon on hover */
+.heading-anchor:hover::after {
+  content: "#";
+  position: absolute;
+  right: -1.2em;
+  top: 0;
+  color: #666;
+  font-weight: normal;
+  font-size: 0.8em;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.heading-anchor:hover::after:hover {
+  opacity: 1;
+  color: #0066cc;
+}
+
+/* Dark mode support */
+.dark .heading-anchor:hover::after {
+  color: #999;
+}
+
+.dark .heading-anchor:hover::after:hover {
+  color: #66b3ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .heading-anchor:hover::after {
+    right: -1em;
+    font-size: 0.7em;
+  }
+}
+
+/* Ensure proper spacing for nested elements */
+.heading-anchor h1,
+.heading-anchor h2,
+.heading-anchor h3,
+.heading-anchor h4,
+.heading-anchor h5,
+.heading-anchor h6 {
+  margin: 0;
+}
+
+/* Make sure the anchor links work properly with scroll offset */
+.heading-anchor {
+  scroll-margin-top: 2rem;
+}
+
+/* Style for when the heading is targeted via anchor link */
+.heading-anchor:target {
+  background-color: rgba(255, 255, 0, 0.1);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  margin: -0.2em -0.4em;
+  transition: background-color 0.3s ease;
+}
+
+.dark .heading-anchor:target {
+  background-color: rgba(255, 255, 0, 0.05);
+}

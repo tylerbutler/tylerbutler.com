@@ -1,6 +1,6 @@
 ---
 
-title: SharePoint Permissions &ldquo;Cheat Sheet&rdquo;
+title: SharePoint Permissions "Cheat Sheet"
 date: '2009-05-05T21:28:00-07:00'
 slug: sharepoint-permissions-cheat-sheet
 tags:

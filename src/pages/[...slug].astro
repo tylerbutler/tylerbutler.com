@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { normalizeMarkdownHeadings } from '../../lib/markdown-utils.ts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { processMarkdownWithExpressiveCode } from '../lib/markdown-utils.ts';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -39,8 +39,8 @@ export async function getStaticPaths() {
 const { article, prevArticle, nextArticle } = Astro.props;
 const { Content } = await article.render();
 
-// Normalize headings to start at h2 (since article title is h1)
-const normalizedHtml = normalizeMarkdownHeadings(article.body, 2);
+// Process markdown with heading normalization and Expressive Code syntax highlighting
+const processedHtml = await processMarkdownWithExpressiveCode(article.body, 2);
 
 // Helper function to generate article URL
 function generateArticleUrl(article) {
@@ -48,7 +48,7 @@ function generateArticleUrl(article) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const slug = article.data.slug || article.slug;
-  return `/articles/${year}/${month}/${slug}`;
+  return `/${year}/${month}/${slug}`;
 }
 
 const date = new Date(article.data.date);
@@ -68,7 +68,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
       </time>
     </header>
 
-    <div class="article-content" set:html={normalizedHtml}>
+    <div class="article-content" set:html={processedHtml}>
     </div>
 
     {article.data.tags && article.data.tags.length > 0 && (

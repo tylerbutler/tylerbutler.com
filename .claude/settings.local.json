@@ -78,7 +78,16 @@
       "Bash(npx tsx:*)",
       "mcp__magic__logo_search",
       "WebFetch(domain:lucide.dev)",
-      "WebFetch(domain:www.npmjs.com)"
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(timeout:*)",
+      "Bash(pnpm run:*)",
+      "Bash(pnpm add:*)",
+      "Bash(npx linkcheck:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(npx linkinator:*)",
+      "Bash(mise list:*)",
+      "Bash(mise exec:*)",
+      "WebFetch(domain:lychee.cli.rs)"
     ],
     "deny": [],
     "ask": []

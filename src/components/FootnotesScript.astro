@@ -1,0 +1,143 @@
+---
+/**
+ * Component to include Littlefoot.js for interactive footnotes
+ * This should be included in pages that contain footnotes
+ */
+export interface Props {
+  /** Custom configuration for Littlefoot.js */
+  config?: {
+    allowDuplicates?: boolean;
+    allowMultiple?: boolean;
+    dismissDelay?: number;
+    dismissOnUnhover?: boolean;
+    hoverDelay?: number;
+    [key: string]: any;
+  };
+}
+
+const { config = {} } = Astro.props;
+
+// Default configuration
+const defaultConfig = {
+  allowDuplicates: false,
+  allowMultiple: false,
+  dismissDelay: 100,
+  dismissOnUnhover: true,
+  hoverDelay: 250,
+  scope: 'body'
+};
+
+const littlefootConfig = { ...defaultConfig, ...config };
+---
+
+<!-- Littlefoot.js CSS -->
+<link rel="stylesheet" href="/node_modules/littlefoot/dist/littlefoot.css" />
+
+<!-- Custom footnote styles -->
+<style>
+  /* Littlefoot.js customizations */
+  .littlefoot-footnote__wrapper {
+    max-width: 400px;
+    z-index: 1000;
+  }
+
+  .littlefoot-footnote__content {
+    font-size: 0.9em;
+    line-height: 1.4;
+    color: #333;
+  }
+
+  /* Dark mode support */
+  .dark .littlefoot-footnote__content {
+    color: #e5e5e5;
+  }
+
+  .dark .littlefoot-footnote__wrapper {
+    background-color: #2a2a2a;
+    border-color: #444;
+  }
+
+  /* Style footnote references */
+  a[rel="footnote"] {
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: 500;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    font-size: 0.85em;
+    line-height: 1;
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+  }
+
+  a[rel="footnote"]:hover {
+    background-color: #f0f8ff;
+    text-decoration: none;
+  }
+
+  .dark a[rel="footnote"] {
+    color: #66b3ff;
+  }
+
+  .dark a[rel="footnote"]:hover {
+    background-color: #1a3040;
+  }
+
+  /* Hide the footnote section when Littlefoot is active */
+  .footnotes-section {
+    border-top: 1px solid #e1e1e1;
+    margin-top: 2rem;
+    padding-top: 1rem;
+  }
+
+  .dark .footnotes-section {
+    border-top-color: #444;
+  }
+
+  /* Hide footnotes section if JavaScript is enabled and Littlefoot loads */
+  .littlefoot-footnote__wrapper + .footnotes-section,
+  body.littlefoot-active .footnotes-section {
+    display: none;
+  }
+</style>
+
+<!-- Littlefoot.js initialization script -->
+<script type="module" define:vars={{ littlefootConfig }}>
+  import { littlefoot } from '/node_modules/littlefoot/dist/littlefoot.mjs';
+
+  function initializeLittlefoot() {
+    try {
+      // Add class to body to indicate Littlefoot is active
+      document.body.classList.add('littlefoot-active');
+
+      // Initialize Littlefoot with configuration
+      littlefoot(littlefootConfig);
+
+      console.log('Littlefoot.js initialized successfully');
+    } catch (error) {
+      console.warn('Failed to initialize Littlefoot.js:', error);
+      // If Littlefoot fails, ensure footnotes section remains visible
+      document.body.classList.remove('littlefoot-active');
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeLittlefoot);
+  } else {
+    initializeLittlefoot();
+  }
+
+  // Re-initialize after navigation in SPA mode (if applicable)
+  document.addEventListener('astro:page-load', initializeLittlefoot);
+</script>
+
+<!-- Fallback: show regular footnotes if JavaScript is disabled -->
+<noscript>
+  <style>
+    .footnotes-section {
+      display: block !important;
+    }
+  </style>
+</noscript>

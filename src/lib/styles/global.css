@@ -542,6 +542,7 @@ nav ul {
     width: fit-content;
     position: relative;
     box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   /* Ensure code block content can expand naturally */
@@ -938,15 +939,6 @@ html.light {
 /* ExpressiveCode frame styling - keep frames dark in both light and dark modes */
 /* Target all possible frame-related elements with comprehensive selectors */
 
-/* Main frame container */
-.expressive-code,
-.expressive-code figure,
-.expressive-code .frame,
-.expressive-code [data-frame] {
-  background-color: #0d1117 !important;
-  border-color: #30363d !important;
-}
-
 /* Frame headers and titles */
 .expressive-code .header,
 .expressive-code [data-header],
@@ -979,20 +971,6 @@ html.light {
   background-color: #0d1117 !important;
 }
 
-/* Code content area */
-.expressive-code pre,
-.expressive-code code,
-.expressive-code .code {
-  background-color: #0d1117 !important;
-}
-
-/* Comprehensive override for both themes */
-.light .expressive-code,
-.dark .expressive-code,
-html.light .expressive-code,
-html.dark .expressive-code {
-  background-color: #0d1117 !important;
-}
 
 .light .expressive-code .header,
 .light .expressive-code [data-header],

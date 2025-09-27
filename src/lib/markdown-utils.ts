@@ -18,19 +18,24 @@ import fs from 'node:fs'
 import { rehypeFootnotes } from './footnotes.js';
 
 // Load themes
-const srcery = ExpressiveCodeTheme.fromJSONString(
-  fs.readFileSync(new URL(`./themes/Srcery.jsonc`, import.meta.url), 'utf-8'))
-const oneDark = ExpressiveCodeTheme.fromJSONString(
-  fs.readFileSync(new URL(`./themes/OneDark.json`, import.meta.url), 'utf-8'))
-const ayuMirage = ExpressiveCodeTheme.fromJSONString(
-  fs.readFileSync(new URL(`./themes/ayu-mirage.json`, import.meta.url), 'utf-8'))
-const ayuLight = ExpressiveCodeTheme.fromJSONString(
-  fs.readFileSync(new URL(`./themes/ayu-light.json`, import.meta.url), 'utf-8'))
+// const srcery = ExpressiveCodeTheme.fromJSONString(
+//   fs.readFileSync(new URL(`./themes/Srcery.jsonc`, import.meta.url), 'utf-8'))
+// const oneDark = ExpressiveCodeTheme.fromJSONString(
+//   fs.readFileSync(new URL(`./themes/OneDark.json`, import.meta.url), 'utf-8'))
+
+// import srceryJson from './themes/Srcery.jsonc';
+import ayuLightJson from './themes/ayu-light.json';
+import ayuMirageJson from './themes/ayu-mirage.json';
+import oneDarkJson from './themes/OneDark.json';
+
+const ayuLight = new ExpressiveCodeTheme(ayuLightJson);
+const ayuMirage = new ExpressiveCodeTheme(ayuMirageJson);
+const oneDark = new ExpressiveCodeTheme(oneDarkJson)
 
   // TODO: This order doesn't match with the comment descriptions or the classes added.
 const themes= [
-  // ayuMirage, // light
-  ayuLight, // dark
+  ayuLight, // light
+  ayuMirage, // dark
 ];
 
 // Centralized Expressive Code configuration
@@ -43,10 +48,10 @@ const expressiveCodeConfig: ExpressiveCodeConfig = {
       // return '.dark';
       return '.light';
     }
-    // if (theme.name === themes[1].name) {
-    //   // return '.light';
-    //   return '.dark';
-    // }
+    if (theme.name === themes[1].name) {
+      // return '.light';
+      return '.dark';
+    }
     return ':root'; // fallback
   },
   defaultProps: {

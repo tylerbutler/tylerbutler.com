@@ -13,7 +13,13 @@ export default defineConfig({
   site: "https://tylerbutler.com",
 
   integrations: [
-      svelte(),
+      svelte({
+        compilerOptions: {
+          experimental: {
+            async: true
+          }
+        }
+      }),
       sitemap(),
       mdx(),
 	],

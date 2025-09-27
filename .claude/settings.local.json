@@ -87,7 +87,8 @@
       "Bash(npx linkinator:*)",
       "Bash(mise list:*)",
       "Bash(mise exec:*)",
-      "WebFetch(domain:lychee.cli.rs)"
+      "WebFetch(domain:lychee.cli.rs)",
+      "Bash(npm remove:*)"
     ],
     "deny": [],
     "ask": []

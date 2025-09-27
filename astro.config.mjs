@@ -5,7 +5,6 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import { visualizer } from 'rollup-plugin-visualizer';
 
-
 import netlify from "@astrojs/netlify";
 
 // https://astro.build/config

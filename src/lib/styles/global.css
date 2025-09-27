@@ -15,19 +15,20 @@
 
 /* CSS Variables matching mockup specifications */
 :root {
-  /* Light theme variables */
+  /* Light theme variables - inspired by retro sci-fi background */
   /* Backgrounds */
-  --dark-bg: #000000;      /* Header section background - solid black to match mockup */
-  --light-bg: #F7F6F5;     /* Content section background */
-  --overlay: rgba(0,0,0,0.2); /* Dark overlay for depth */
+  --dark-bg: #1a2332;      /* Deep blue-gray to match spacecraft interior */
+  --light-bg: #FAF8F6;     /* Softer warm white inspired by cloud highlights */
+  --overlay: rgba(26, 35, 50, 0.15); /* Subtle blue-gray overlay */
 
-  /* Text Colors - WCAG AA compliant */
-  --accent: #A2834E;       /* Golden color to match mockup */
-  --accent-light: #8B6F3A; /* Medium version for hover states */
-  --accent-hover: #C4A366; /* Lighter golden for hover */
-  --text: #1a1a1a;         /* Body text (darker for better readability) */
-  --text-light: #262626;   /* Secondary text color */
-  --nav-links: #F7F6F5;    /* Navigation links (off-white) */
+  /* Text Colors - WCAG AA compliant with mixed harmonies */
+  --accent: #B8722A;       /* Deeper orange for links and accents */
+  --accent-light: #A3621F; /* Even deeper orange for contrast */
+  --accent-hover: #D4842A; /* Warm orange for interactions */
+  --header-accent: #E6B35C; /* Golden yellow for headers from atmospheric layers */
+  --text: #2A4A47;         /* Deep teal-gray */
+  --text-light: #4A6662;   /* Lighter teal-gray for secondary text */
+  --nav-links: #F7F5F2;    /* Warm off-white for navigation */
 
   /* Layout measurements - matching mockup innerWrapper */
   --container-width: clamp(636px, 90vw, 763px);
@@ -38,20 +39,23 @@
   --inner-content-margins: 0px 35px;
 }
 
-/* Dark theme variables */
+/* Dark theme variables - inspired by 2012 blog backgrounds */
 .dark {
-  /* Dark theme backgrounds */
-  --dark-bg: #1a1a1a;      /* Slightly lighter dark for better contrast */
-  --light-bg: #111111;     /* Dark content background */
+  /* Dark theme backgrounds - deep blue-gray inspiration */
+  --dark-bg: #1a2332;      /* Lightened blue-gray header background */
+  --light-bg: #0f1419;    /* Slightly darker content background for contrast */
   --overlay: rgba(255,255,255,0.1); /* Light overlay for depth */
 
-  /* Dark theme text colors */
-  --accent: #D4AF37;       /* Brighter gold for dark theme */
-  --text: #e5e5e5;         /* Light gray text */
+  /* Dark theme text colors - keep readable neutrals */
+  --accent: #D4AF37;       /* Keep the gold accent */
+  --accent-light: #8B6F3A; /* Medium version for hover states */
+  --accent-hover: #C4A366; /* Lighter golden for hover */
+  --text: #e5e5e5;         /* Light gray text for readability */
+  --text-light: #cccccc;   /* Secondary text color */
   --nav-links: #f0f0f0;    /* Off-white navigation links */
 
   /* Dark theme specific */
-  --site-container-bg: #1a1a1a; /* Container background */
+  --site-container-bg: #1a2332; /* Container background matching dark-bg */
 }
 
 /* Reset and base styles with typography optimization */
@@ -160,7 +164,7 @@ body::before {
 .site-container {
   width: var(--container-width);
   margin: var(--container-margin);
-  background-color: white;
+  background-color: var(--light-bg);
   box-shadow: 0 0 20px var(--overlay);
 }
 
@@ -229,7 +233,7 @@ body::before {
   line-height: 1;
   letter-spacing: clamp(2px, 1vw, 10px);
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--header-accent);
   margin: 5px 0;
   text-align: center;
 }
@@ -242,7 +246,7 @@ body::before {
   line-height: 1;
   letter-spacing: clamp(2px, 1vw, 10px);
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--header-accent);
   margin: 5px 0;
   text-align: center;
 }
@@ -261,7 +265,7 @@ body::before {
   line-height: 1.4;
   letter-spacing: clamp(2px, 0.5vw, 3px);
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--header-accent);
   text-align: center;
   margin: 7px 0 17px;
 }
@@ -338,7 +342,7 @@ nav ul {
     top: 0; /* Align with header top */
     bottom: 0; /* Align with header bottom */
     width: clamp(125px, 19.6vw, 150px); /* Smaller responsive container width */
-    background: #000000;
+    background: var(--dark-bg);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -529,6 +533,25 @@ nav ul {
     margin-left: calc(50vw - var(--container-width) / 2);
     margin-right: calc(50vw - var(--container-width) / 2);
   }
+
+  /* Wide screen code block extension - let content dictate expansion */
+  .expressive-code {
+    /* Content-driven width with expansion capability */
+    min-width: 100%;
+    max-width: calc(100% + 180px);
+    width: fit-content;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  /* Ensure code block content can expand naturally */
+  .expressive-code pre,
+  .expressive-code code {
+    white-space: pre;
+    overflow-x: visible;
+    min-width: 100%;
+    width: max-content;
+  }
 }
 
 /* Section Headings - Consistent hierarchy with fluid typography */
@@ -629,11 +652,11 @@ blockquote {
   margin: 1.5em 0;
   padding: 1em 1.5em;
   border-left: 4px solid var(--accent);
-  background: #f8f7f6;
+  background: #F5F3F0;
   font-style: italic;
   font-size: clamp(16px, 3vw, 18px);
   line-height: 1.5;
-  color: #555;
+  color: var(--text-light);
   border-radius: 0 4px 4px 0;
   position: relative;
   max-width: 60ch;
@@ -666,8 +689,9 @@ blockquote p:last-child {
 
 /* Dark theme blockquote styles */
 .dark blockquote {
-  background: #1f1f1f;
+  background: #0c1116;
   color: #cccccc;
+  border-left-color: var(--accent);
 }
 
 .dark blockquote::before {
@@ -693,11 +717,16 @@ hr::after {
 
 /* Footer section */
 .site-footer {
-  background-color: #f0f0f0;
+  background-color: #F2F0ED;
   padding: 15px 25px;
   text-align: center;
   font-size: 11px;
-  color: #6e6e6e;
+  color: var(--text-light);
+}
+
+/* Dark theme footer - match header background */
+.dark .site-footer {
+  background-color: var(--dark-bg);
 }
 
 .site-footer a {
@@ -709,111 +738,7 @@ hr::after {
   text-decoration: underline;
 }
 
-/* Modern Code Block Styling */
-:root {
-  /* Code block color scheme - One Dark Pro inspired */
-  --code-bg: #282c34;
-  --code-text: #abb2bf;
-  --code-border: #3e4451;
-  --code-header-bg: #21252b;
-  --code-copy-btn: #61afef;
-  --code-copy-btn-hover: #528bcc;
-  --code-font: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-  --code-font-size: 14px;
-  --code-line-height: 1.5;
-  --code-padding: 16px;
-  --code-radius: 8px;
-  --code-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-
-/* Code block container - exclude Expressive Code elements */
-.astro-code:not(.expressive-code),
-pre:not(.expressive-code pre) {
-  position: relative;
-  background-color: var(--code-bg);
-  border: 1px solid var(--code-border);
-  border-radius: var(--code-radius);
-  box-shadow: var(--code-shadow);
-  margin: 1.5em 0;
-  overflow-x: auto;
-  font-family: var(--code-font);
-  font-size: var(--code-font-size);
-  line-height: var(--code-line-height);
-}
-
-/* Code content - exclude Expressive Code elements */
-.astro-code:not(.expressive-code) code,
-pre:not(.expressive-code pre) code {
-  display: block;
-  padding: 32px var(--code-padding) var(--code-padding) var(--code-padding);
-  color: var(--code-text);
-  background: none;
-  border: none;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-/* This styling is now handled in the Expressive Code integration section below */
-
-/* Copy button styling */
-.code-block-wrapper {
-  position: relative;
-}
-
-.copy-code-button {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: var(--code-copy-btn);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-size: 12px;
-  font-family: var(--code-font);
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.2s ease, background-color 0.2s ease;
-  z-index: 10;
-}
-
-.code-block-wrapper:hover .copy-code-button {
-  opacity: 1;
-}
-
-.copy-code-button:hover {
-  background: var(--code-copy-btn-hover);
-}
-
-.copy-code-button:focus {
-  opacity: 1;
-  outline: 2px solid var(--code-copy-btn);
-  outline-offset: 2px;
-}
-
-/* Success state for copy button */
-.copy-code-button.copied {
-  background: #28a745;
-  opacity: 1;
-}
-
-/* Language indicator */
-.code-language {
-  position: absolute;
-  top: 8px;
-  left: 12px;
-  background: var(--code-border);
-  color: var(--code-text);
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: 10px;
-  font-family: var(--code-font);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  opacity: 0.7;
-}
+/* Expressive Code handles all code block styling - we just need inline code */
 
 /* Accessibility improvements */
 .visually-hidden {
@@ -826,29 +751,6 @@ pre:not(.expressive-code pre) code {
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
-}
-
-/* Scrollbar styling for code blocks */
-.astro-code::-webkit-scrollbar,
-pre::-webkit-scrollbar {
-  height: 8px;
-}
-
-.astro-code::-webkit-scrollbar-track,
-pre::-webkit-scrollbar-track {
-  background: var(--code-header-bg);
-  border-radius: 4px;
-}
-
-.astro-code::-webkit-scrollbar-thumb,
-pre::-webkit-scrollbar-thumb {
-  background: var(--code-border);
-  border-radius: 4px;
-}
-
-.astro-code::-webkit-scrollbar-thumb:hover,
-pre::-webkit-scrollbar-thumb:hover {
-  background: #4a5568;
 }
 
 /* Table Styles */
@@ -870,18 +772,38 @@ table td {
 }
 
 table th {
-  background-color: #f8f7f6;
+  background-color: #F5F3F0;
   font-weight: 600;
   color: var(--text);
   border-bottom: 2px solid var(--accent);
 }
 
 table tr:nth-child(even) {
-  background-color: #fafafa;
+  background-color: #FBFAF9;
 }
 
 table tr:hover {
-  background-color: #f5f5f5;
+  background-color: #F7F5F2;
+}
+
+/* Dark theme table styles */
+.dark table th {
+  background-color: #0f1419;
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.dark table th,
+.dark table td {
+  border-color: #1f2937;
+}
+
+.dark table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark table tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Table responsive behavior */
@@ -899,10 +821,10 @@ table tr:hover {
 /* Expressive Code will handle themes via media query automatically */
 /* We just need to ensure our .dark class triggers the media query */
 
-/* Dark theme adjustments for inline code */
+/* Inline code styling with orange theme */
 code:not(pre code) {
-  background-color: #f1f3f4;
-  color: #d73a49;
+  background-color: #F0EDE8;
+  color: #B8722A;
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: var(--code-font);
@@ -995,31 +917,7 @@ code:not(pre code) {
     width: 100%; /* Use full width */
   }
 
-  /* Code block mobile optimizations */
-  .astro-code,
-  pre {
-    margin: 1em 0;
-    border-radius: 4px;
-    font-size: 12px;
-  }
-
-  .astro-code code,
-  pre code {
-    padding: 28px 12px 12px 12px;
-  }
-
-  .copy-code-button {
-    top: 8px;
-    right: 8px;
-    padding: 4px 8px;
-    font-size: 11px;
-  }
-
-  .code-language {
-    top: 6px;
-    left: 8px;
-    font-size: 9px;
-  }
+  /* Expressive Code handles mobile code block optimizations */
 }
 
 /* Expressive Code theme switching support */
@@ -1036,3 +934,81 @@ html.light {
 }
 
 /* Dark theme adjustments for inline code */
+
+/* ExpressiveCode frame styling - keep frames dark in both light and dark modes */
+/* Target all possible frame-related elements with comprehensive selectors */
+
+/* Main frame container */
+.expressive-code,
+.expressive-code figure,
+.expressive-code .frame,
+.expressive-code [data-frame] {
+  background-color: #0d1117 !important;
+  border-color: #30363d !important;
+}
+
+/* Frame headers and titles */
+.expressive-code .header,
+.expressive-code [data-header],
+.expressive-code .title,
+.expressive-code [data-title],
+.expressive-code .frame-title {
+  background-color: #1f2328 !important;
+  color: #e6e8eb !important;
+  border-bottom-color: #30363d !important;
+}
+
+/* Tab bars and tabs */
+.expressive-code .tab-bar,
+.expressive-code [data-tab-bar],
+.expressive-code .tabs {
+  background-color: #1f2328 !important;
+  border-bottom-color: #30363d !important;
+}
+
+.expressive-code .tab,
+.expressive-code [data-tab] {
+  color: #7d8590 !important;
+  background-color: transparent !important;
+}
+
+.expressive-code .tab.active,
+.expressive-code .tab[data-active],
+.expressive-code [data-tab].active {
+  color: #e6e8eb !important;
+  background-color: #0d1117 !important;
+}
+
+/* Code content area */
+.expressive-code pre,
+.expressive-code code,
+.expressive-code .code {
+  background-color: #0d1117 !important;
+}
+
+/* Comprehensive override for both themes */
+.light .expressive-code,
+.dark .expressive-code,
+html.light .expressive-code,
+html.dark .expressive-code {
+  background-color: #0d1117 !important;
+}
+
+.light .expressive-code .header,
+.light .expressive-code [data-header],
+.light .expressive-code .title,
+.light .expressive-code .frame-title,
+.dark .expressive-code .header,
+.dark .expressive-code [data-header],
+.dark .expressive-code .title,
+.dark .expressive-code .frame-title {
+  background-color: #1f2328 !important;
+  color: #e6e8eb !important;
+}
+
+.light .expressive-code .tab-bar,
+.light .expressive-code [data-tab-bar],
+.dark .expressive-code .tab-bar,
+.dark .expressive-code [data-tab-bar] {
+  background-color: #1f2328 !important;
+}

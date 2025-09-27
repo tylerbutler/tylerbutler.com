@@ -2,7 +2,7 @@ import { fromMarkdown } from 'mdast-util-from-markdown';
 import { toHast } from 'mdast-util-to-hast';
 import { visit } from 'unist-util-visit';
 import { toHtml } from 'hast-util-to-html';
-import rehypeExpressiveCode from 'rehype-expressive-code';
+import rehypeExpressiveCode, { ExpressiveCodeTheme, type ExpressiveCodeConfig } from 'rehype-expressive-code';
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
@@ -14,9 +14,56 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeStringify from 'rehype-stringify';
 import type { Root, Heading } from 'mdast';
 import type { Element } from 'hast';
+import fs from 'node:fs'
 import { rehypeFootnotes } from './footnotes.js';
 
-/**
+// Load themes
+const srcery = ExpressiveCodeTheme.fromJSONString(
+  fs.readFileSync(new URL(`./themes/Srcery.jsonc`, import.meta.url), 'utf-8'))
+const oneDark = ExpressiveCodeTheme.fromJSONString(
+  fs.readFileSync(new URL(`./themes/OneDark.json`, import.meta.url), 'utf-8'))
+const ayuMirage = ExpressiveCodeTheme.fromJSONString(
+  fs.readFileSync(new URL(`./themes/ayu-mirage.json`, import.meta.url), 'utf-8'))
+const ayuLight = ExpressiveCodeTheme.fromJSONString(
+  fs.readFileSync(new URL(`./themes/ayu-light.json`, import.meta.url), 'utf-8'))
+
+  // TODO: This order doesn't match with the comment descriptions or the classes added.
+const themes= [
+  // ayuMirage, // light
+  ayuLight, // dark
+];
+
+// Centralized Expressive Code configuration
+const expressiveCodeConfig: ExpressiveCodeConfig = {
+  themes,
+  useDarkModeMediaQuery: false,
+  themeCssSelector: (theme: ExpressiveCodeTheme) => {
+    // Map themes to our CSS classes - use dark themes for both modes
+    if (theme.name === themes[0].name) {
+      // return '.dark';
+      return '.light';
+    }
+    // if (theme.name === themes[1].name) {
+    //   // return '.light';
+    //   return '.dark';
+    // }
+    return ':root'; // fallback
+  },
+  defaultProps: {
+    wrap: false,
+    // Disable line numbers by default
+    showLineNumbers: false,
+    // But enable line numbers for certain languages
+    overridesByLang: {
+      "js,ts,html,python,rust,csharp": {
+        showLineNumbers: true,
+      },
+    },
+  },
+  plugins: [pluginLineNumbers()],
+}
+
+  /**
  * Shifts all heading levels in HTML content by the specified amount
  * @param htmlContent - HTML content to transform
  * @param shiftBy - Number of levels to shift headings (default: 2)
@@ -160,36 +207,7 @@ export async function processMarkdownWithExpressiveCode(
           ariaLabel: 'Link to this heading'
         }
       })
-      .use(rehypeExpressiveCode, {
-        themes: [
-          // "catppuccin-latte",  // light theme
-          "catppuccin-macchiato",
-          "catppuccin-frappe", // dark theme
-        ],
-        useDarkModeMediaQuery: false,
-        themeCssSelector: (theme) => {
-          // Map Catppuccin themes to our CSS classes
-          if (theme.name === 'catppuccin-macchiato') {
-            return '.light';
-          }
-          if (theme.name === 'catppuccin-frappe') {
-            return '.dark';
-          }
-          return ':root'; // fallback
-        },
-        defaultProps: {
-          wrap: false,
-          // Disable line numbers by default
-          showLineNumbers: false,
-          // But enable line numbers for certain languages
-          overridesByLang: {
-            "js,ts,html,python,rust,csharp,powershell": {
-              showLineNumbers: true,
-            },
-          },
-        },
-        plugins: [pluginLineNumbers()],
-      })
+      .use(rehypeExpressiveCode, expressiveCodeConfig)
       .use(rehypeStringify);
 
     const result = await processor.process(markdownContent);
@@ -226,36 +244,7 @@ export async function processMarkdownWithExpressiveCode(
         ariaLabel: 'Link to this heading'
       }
     })
-    .use(rehypeExpressiveCode, {
-      themes: [
-        // "catppuccin-latte",  // light theme
-        "catppuccin-macchiato",
-        "catppuccin-frappe", // dark theme
-      ],
-      useDarkModeMediaQuery: false,
-      themeCssSelector: (theme) => {
-        // Map Catppuccin themes to our CSS classes
-        if (theme.name === 'catppuccin-macchiato') {
-          return '.light';
-        }
-        if (theme.name === 'catppuccin-frappe') {
-          return '.dark';
-        }
-        return ':root'; // fallback
-      },
-      defaultProps: {
-        wrap: false,
-        // Disable line numbers by default
-        showLineNumbers: false,
-        // But enable line numbers for certain languages
-        overridesByLang: {
-          "js,ts,html,python,rust,csharp,powershell": {
-            showLineNumbers: true,
-          },
-        },
-      },
-      plugins: [pluginLineNumbers()],
-    })
+    .use(rehypeExpressiveCode, expressiveCodeConfig)
     .use(rehypeStringify);
 
   const result = await processor.process(markdownContent);

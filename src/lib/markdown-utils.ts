@@ -3,6 +3,7 @@ import { toHast } from 'mdast-util-to-hast';
 import { visit } from 'unist-util-visit';
 import { toHtml } from 'hast-util-to-html';
 import rehypeExpressiveCode from 'rehype-expressive-code';
+import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
@@ -161,13 +162,14 @@ export async function processMarkdownWithExpressiveCode(
       })
       .use(rehypeExpressiveCode, {
         themes: [
-          "catppuccin-latte",  // light theme
+          // "catppuccin-latte",  // light theme
+          "catppuccin-macchiato",
           "catppuccin-frappe", // dark theme
         ],
         useDarkModeMediaQuery: false,
         themeCssSelector: (theme) => {
           // Map Catppuccin themes to our CSS classes
-          if (theme.name === 'catppuccin-latte') {
+          if (theme.name === 'catppuccin-macchiato') {
             return '.light';
           }
           if (theme.name === 'catppuccin-frappe') {
@@ -186,6 +188,7 @@ export async function processMarkdownWithExpressiveCode(
             },
           },
         },
+        plugins: [pluginLineNumbers()],
       })
       .use(rehypeStringify);
 
@@ -225,13 +228,14 @@ export async function processMarkdownWithExpressiveCode(
     })
     .use(rehypeExpressiveCode, {
       themes: [
-        "catppuccin-latte",  // light theme
+        // "catppuccin-latte",  // light theme
+        "catppuccin-macchiato",
         "catppuccin-frappe", // dark theme
       ],
       useDarkModeMediaQuery: false,
       themeCssSelector: (theme) => {
         // Map Catppuccin themes to our CSS classes
-        if (theme.name === 'catppuccin-latte') {
+        if (theme.name === 'catppuccin-macchiato') {
           return '.light';
         }
         if (theme.name === 'catppuccin-frappe') {
@@ -250,6 +254,7 @@ export async function processMarkdownWithExpressiveCode(
           },
         },
       },
+      plugins: [pluginLineNumbers()],
     })
     .use(rehypeStringify);
 

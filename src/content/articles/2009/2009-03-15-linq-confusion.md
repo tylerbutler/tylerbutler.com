@@ -27,10 +27,11 @@ have thought of it on my own.
 The examples given all worked, but not with my lists… With the following code,
 the compiler spits out several errors:
 
-
-    List<Action> cards = new List<Action>();
-    cards.Add( new OneCattle() );
-    cards.Sort( a => Guid.NewGuid() ).ToList<Action>();
+```c#
+List<Action> cards = new List<Action>();
+cards.Add( new OneCattle() );
+cards.Sort( a => Guid.NewGuid() ).ToList<Action>();
+```
 
     Error    1    Delegate 'System.Comparison<agricola.Action>' does not take '1' arguments
     Error    2    Cannot convert lambda expression to type 'System.Collections.Generic.IComparer<agricola.Action>' because it is not a delegate type
@@ -41,13 +42,14 @@ However, using a more explicit LINQ query without a lambda expression seems to
 work fine:
 
 
-    var q = from a in cards
-            orderby Guid.NewGuid()
-            select a;
-    List<Action> r = q.ToList<Action>();
-
+```c#
+var q = from a in cards
+        orderby Guid.NewGuid()
+        select a;
+List<Action> r = q.ToList<Action>();
+```
 Anybody know why this is? I haven't wrapped my head around lambda expressions
 and the theory behind LINQ to understand what the root cause is…
 
-   [1]: http://www.dailycoding.com/Posts/random_sort_a_list_using_linq.aspx
+[1]: http://www.dailycoding.com/Posts/random_sort_a_list_using_linq.aspx
 

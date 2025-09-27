@@ -82,6 +82,26 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  position: relative;
+}
+
+/* Dark mode overlay for background image */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dark body::before {
+  opacity: 1;
 }
 
 /* Use AVIF for supporting browsers (best compression) */
@@ -101,6 +121,11 @@ body {
   @media (max-width: 768px) {
     body {
       background-image: none; /* No background image on mobile */
+    }
+
+    /* Also hide overlay on mobile since there's no background */
+    body::before {
+      display: none;
     }
   }
 }
@@ -122,6 +147,11 @@ body {
   @media (max-width: 768px) {
     body {
       background-image: none; /* No background image on mobile */
+    }
+
+    /* Also hide overlay on mobile since there's no background */
+    body::before {
+      display: none;
     }
   }
 }

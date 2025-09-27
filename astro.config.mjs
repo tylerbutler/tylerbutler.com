@@ -12,7 +12,9 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   site: "https://tylerbutler.com",
 
-  integrations: [
+  adapter: netlify(),
+	
+	integrations: [
       svelte({
         compilerOptions: {
           experimental: {
@@ -45,6 +47,4 @@ export default defineConfig({
           })
       ].filter(Boolean)
 	},
-
-  adapter: netlify(),
 });

@@ -44,7 +44,7 @@ const recentArticles = await Promise.all(
             <li>
               <article class="article-preview">
                 <h2>
-                  <a href={`/articles/${year}/${month}/${slug}`}>
+                  <a href={`/${year}/${month}/${slug}`}>
                     {article.data.title}
                   </a>
                 </h2>
@@ -66,7 +66,7 @@ const recentArticles = await Promise.all(
     )}
 
     <p>
-      <a href="/articles">View All Articles</a>
+      <a href="/articles/">View All Articles</a>
     </p>
     </main>
   </div>

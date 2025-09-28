@@ -1,4 +1,3 @@
-import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 
@@ -10,7 +9,7 @@ const fonts = [
 ].map((p) => `fonts/PragmataPro0.902W/${p}`);
 
 export async function downloadFonts() {
-	console.log("Downloading fonts using GitHub CLI...");
+	console.log("Downloading fonts using GitHub API...");
 
 	const fontsDir = path.join(process.cwd(), "public", "fonts");
 	const repo = `${process.env.GITHUB_REPO_OWNER}/${process.env.GITHUB_REPO_NAME}`;
@@ -20,19 +19,17 @@ export async function downloadFonts() {
 		fs.mkdirSync(fontsDir, { recursive: true });
 	}
 
-	try {
-		// Check if already authenticated, if not authenticate with GitHub CLI
-		try {
-			execSync("gh auth status", { stdio: "pipe" });
-			console.log("GitHub CLI already authenticated");
-		} catch {
-			console.log("Authenticating with GitHub CLI...");
-			execSync(
-				`echo ${process.env.GITHUB_TOKEN} | gh auth login --with-token`,
-				{ stdio: "pipe" },
-			);
-		}
+	if (!process.env.GITHUB_TOKEN) {
+		throw new Error("GITHUB_TOKEN environment variable is required");
+	}
 
+	const headers = {
+		"Authorization": `token ${process.env.GITHUB_TOKEN}`,
+		"Accept": "application/vnd.github.v3+json",
+		"User-Agent": "Private-Font-Downloader",
+	};
+
+	try {
 		for (const font of fonts) {
 			const fontName = path.basename(font);
 			const outputPath = path.join(fontsDir, fontName);
@@ -44,19 +41,25 @@ export async function downloadFonts() {
 			try {
 				console.log(`Downloading ${fontName}...`);
 
-				// Get download URL from GitHub API
-				const urlResponse = execSync(
-					`gh api repos/${repo}/contents/${font} --jq '.download_url'`,
-					{
-						encoding: "utf8",
-						stdio: "pipe",
-					},
-				).trim();
+				// Get file metadata from GitHub API
+				const apiUrl = `https://api.github.com/repos/${repo}/contents/${font}`;
+				const metaResponse = await fetch(apiUrl, { headers });
 
-				// Download file using fetch
-				const response = await fetch(urlResponse, {
+				if (!metaResponse.ok) {
+					throw new Error(`GitHub API error: ${metaResponse.status} ${metaResponse.statusText}`);
+				}
+
+				const fileData = await metaResponse.json();
+				const downloadUrl = fileData.download_url;
+
+				if (!downloadUrl) {
+					throw new Error("No download URL found in GitHub API response");
+				}
+
+				// Download file using the download URL
+				const response = await fetch(downloadUrl, {
 					headers: {
-						// Authorization: `token ${process.env.GITHUB_TOKEN}`,
+						"Authorization": `token ${process.env.GITHUB_TOKEN}`,
 						"User-Agent": "Private-Font-Downloader",
 					},
 				});
@@ -71,11 +74,11 @@ export async function downloadFonts() {
 				console.log(`✓ Downloaded: ${font}`);
 			} catch (error) {
 				throw new Error(
-					`Failed to download font: ${font} - ${error.message} - ${error.stack}`,
+					`Failed to download font: ${font} - ${error.message}`,
 				);
 			}
 		}
 	} catch (error) {
-		throw new Error(`GitHub CLI error: ${error.message}`);
+		throw new Error(`Font download error: ${error.message}`);
 	}
 }

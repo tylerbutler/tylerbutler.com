@@ -66,6 +66,10 @@ const expressiveCodeConfig: ExpressiveCodeConfig = {
     },
   },
   plugins: [pluginLineNumbers()],
+  styleOverrides: {
+    codeFontFamily: 'var(--code-font)',
+    codeFontSize: 'var(--code-font-size)',
+  }
 }
 
   /**

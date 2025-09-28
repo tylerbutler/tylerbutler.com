@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../lib/styles/global.css';
+import '../styles/fonts.css';
 
 export interface Props {
   title?: string;
@@ -25,6 +26,7 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="stylesheet" href="https://use.typekit.net/zsx5vsn.css" />
+    <link rel="preload" href="/fonts/PragmataPro_Mono_R_liga_0902.woff2" as="font" type="font/woff2" crossorigin>
   </head>
   <body>
     <div class="site-container">

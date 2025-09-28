@@ -30,3 +30,6 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# Private webfonts shouldn't be committed
+public/fonts/

@@ -1,2 +1,3 @@
 [tools]
+gh = "latest"
 node = "24"

@@ -30,6 +30,11 @@
   --text-light: #4A6662;   /* Lighter teal-gray for secondary text */
   --nav-links: #F7F5F2;    /* Warm off-white for navigation */
 
+  /* Code styling variables */
+  --code-bg: #F0EDE8;      /* Light warm background for inline code */
+  --code-text: #B8722A;    /* Orange accent color for inline code text */
+  --code-border: rgba(184, 114, 42, 0.2); /* Subtle border using accent color */
+
   /* Layout measurements - matching mockup innerWrapper */
   --container-width: clamp(636px, 90vw, 763px);
   --content-width: 380px;
@@ -37,6 +42,9 @@
   --header-padding: 35px 25px;
   --content-padding: 50.875px 0px;
   --inner-content-margins: 0px 35px;
+
+  --code-font: "PragmataPro", "JetBrains Mono", mono;
+  --code-font-size: 16px;
 }
 
 /* Dark theme variables - inspired by 2012 blog backgrounds */
@@ -54,6 +62,11 @@
   --text-light: #cccccc;   /* Secondary text color */
   --nav-links: #f0f0f0;    /* Off-white navigation links */
 
+  /* Dark theme code styling variables */
+  --code-bg: #2d3748;      /* Dark blue-gray background for inline code */
+  --code-text: #e2e8f0;    /* Light text for good contrast */
+  --code-border: rgba(212, 175, 55, 0.3); /* Subtle golden border using dark theme accent */
+
   /* Dark theme specific */
   --site-container-bg: #1a2332; /* Container background matching dark-bg */
 }
@@ -70,7 +83,7 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-variant-ligatures: common-ligatures;
+  font-variant-ligatures: common-ligatures contextual discretionary-ligatures;
   font-kerning: auto;
 }
 
@@ -822,28 +835,27 @@ table tr:hover {
 /* Expressive Code will handle themes via media query automatically */
 /* We just need to ensure our .dark class triggers the media query */
 
-/* Inline code styling with orange theme */
+/* Inline code styling using theme variables */
 code:not(pre code) {
-  background-color: #F0EDE8;
-  color: #B8722A;
+  background-color: var(--code-bg);
+  color: var(--code-text);
   padding: 0.2em 0.4em;
   border-radius: 3px;
+  border: 1px solid var(--code-border);
   font-family: var(--code-font);
-  font-size: 0.9em;
+  font-size: calc(var(--code-font-size) * 0.875); /* 14px when base is 16px */
   font-weight: 500;
-}
-
-.dark code:not(pre code) {
-  background-color: #2d3748;
-  color: #e2e8f0;
+  font-variant-ligatures: normal; /* Ensure ligatures work in inline code */
+  letter-spacing: 0.025em; /* Slight letter spacing for better readability */
 }
 
 /* Override media query with our custom class-based approach */
 @media (prefers-color-scheme: dark) {
-  /* Only apply if no explicit theme class is set */
-  :root:not(.dark):not(.light) code:not(pre code) {
-    background-color: #2d3748;
-    color: #e2e8f0;
+  /* Only apply if no explicit theme class is set - use dark theme variables */
+  :root:not(.dark):not(.light) {
+    --code-bg: #2d3748;
+    --code-text: #e2e8f0;
+    --code-border: rgba(212, 175, 55, 0.3);
   }
 }
 

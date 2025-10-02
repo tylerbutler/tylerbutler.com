@@ -181,4 +181,28 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
   .article-title {
     font-size: 24px; /* Use h4 size */
   }
+
+  /* Mobile responsive layout */
+  @media (max-width: 768px) {
+    .year-section {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .year-heading {
+      width: auto;
+      text-align: left;
+    }
+
+    .article-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .article-date {
+      width: auto;
+      align-self: flex-start;
+    }
+  }
 </style>

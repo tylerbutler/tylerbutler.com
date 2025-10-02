@@ -7,6 +7,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import netlify from "@astrojs/netlify";
 
 import { downloadFonts } from "./scripts/download-fonts.mjs";
+import { optimizeFonts } from "./scripts/optimize-fonts.mjs";
 
 const fontDownloader = () => ({
 	name: "font-downloader",
@@ -28,6 +29,19 @@ const fontDownloader = () => ({
 	},
 });
 
+const fontOptimizer = () => ({
+	name: "font-optimizer",
+	hooks: {
+		"astro:build:done": async () => {
+			try {
+				await optimizeFonts();
+			} catch (error) {
+				console.warn("⚠️  Font optimization failed (continuing anyway):", error.message);
+			}
+		},
+	},
+});
+
 // https://astro.build/config
 export default defineConfig({
 	site: "https://tylerbutler.com",
@@ -36,6 +50,7 @@ export default defineConfig({
 
 	integrations: [
 		fontDownloader(),
+		fontOptimizer(),
 		svelte({
 			compilerOptions: {
 				experimental: {

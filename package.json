@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "cross-env GITHUB_REPO_OWNER=tylerbutler GITHUB_REPO_NAME=private-resources astro build",
+    "optimize:fonts": "node scripts/optimize-fonts.mjs",
+    "install:python": "pip install -r requirements.txt",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
@@ -79,6 +81,7 @@
     "@playwright/test": "^1.55.1",
     "axe-core": "^4.10.3",
     "cross-env": "^10.0.0",
+    "glyphhanger": "^5.0.0",
     "imageoptim-cli": "^3.1.9",
     "lighthouse": "^12.8.2",
     "netlify-plugin-subfont": "^6.0.0",

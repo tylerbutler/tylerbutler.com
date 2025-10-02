@@ -9,7 +9,7 @@ const fonts = [
 ].map((p) => `fonts/PragmataPro0.902W/${p}`);
 
 export async function downloadFonts() {
-	console.log("Downloading fonts using GitHub API...");
+	console.log("Checking fonts...");
 
 	const fontsDir = path.join(process.cwd(), "public", "fonts");
 	const repo = `${process.env.GITHUB_REPO_OWNER}/${process.env.GITHUB_REPO_NAME}`;
@@ -19,9 +19,23 @@ export async function downloadFonts() {
 		fs.mkdirSync(fontsDir, { recursive: true });
 	}
 
+	// Check if all fonts already exist
+	const allFontsExist = fonts.every((font) => {
+		const fontName = path.basename(font);
+		const outputPath = path.join(fontsDir, fontName);
+		return fs.existsSync(outputPath);
+	});
+
+	if (allFontsExist) {
+		console.log("All fonts already exist, skipping download");
+		return;
+	}
+
 	if (!process.env.GITHUB_TOKEN) {
 		throw new Error("GITHUB_TOKEN environment variable is required");
 	}
+
+	console.log("Downloading fonts using GitHub API...");
 
 	const headers = {
 		"Authorization": `token ${process.env.GITHUB_TOKEN}`,

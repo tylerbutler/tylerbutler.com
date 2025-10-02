@@ -13,8 +13,6 @@ import remarkRehype from 'remark-rehype';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeStringify from 'rehype-stringify';
 import type { Root, Heading } from 'mdast';
-import type { Element } from 'hast';
-import fs from 'node:fs'
 import { rehypeFootnotes } from './footnotes.js';
 
 // Load themes
@@ -106,7 +104,7 @@ export function transformMarkdownWithShiftedHeadings(markdownContent: string, sh
   // Visit all heading nodes and increase depth
   visit(mdast, 'heading', (node: Heading) => {
     // Shift heading depth while capping at h6 (max HTML heading level)
-    node.depth = Math.min(node.depth + shiftBy, 6);
+    node.depth = Math.min(node.depth + shiftBy, 6) as typeof node.depth;
   });
 
   // Convert to HAST (HTML AST)
@@ -165,7 +163,7 @@ export function normalizeMarkdownHeadings(
   visit(mdast, 'heading', (node: Heading) => {
     const newLevel = node.depth + shiftBy;
     // Ensure level stays within valid range (1-maxLevel)
-    node.depth = Math.max(1, Math.min(newLevel, maxLevel));
+    node.depth = Math.max(1, Math.min(newLevel, maxLevel)) as typeof node.depth;
   });
 
   // Convert to HAST (HTML AST)
@@ -232,7 +230,7 @@ export async function processMarkdownWithExpressiveCode(
       visit(tree, 'heading', (node: Heading) => {
         const newLevel = node.depth + shiftBy;
         // Ensure level stays within valid range (1-maxLevel)
-        node.depth = Math.max(1, Math.min(newLevel, maxLevel));
+        node.depth = Math.max(1, Math.min(newLevel, maxLevel)) as typeof node.depth;
       });
     };
   };

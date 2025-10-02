@@ -15,8 +15,14 @@ const fontDownloader = () => ({
 			try {
 				await downloadFonts();
 			} catch (error) {
-				console.error("Font download failed:", error.message);
-				process.exit(1);
+				const isProduction = process.env.NODE_ENV === "production" || process.env.NETLIFY === "true";
+
+				if (isProduction) {
+					console.error("Font download failed:", error.message);
+					process.exit(1);
+				} else {
+					console.warn("⚠️  Font download failed (local dev - continuing anyway):", error.message);
+				}
 			}
 		},
 	},

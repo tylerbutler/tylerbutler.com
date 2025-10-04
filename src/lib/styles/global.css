@@ -665,6 +665,23 @@ a:focus {
   border-radius: 2px;
 }
 
+/* Broken link styling with semantic <del> wrapper */
+del a[data-broken="true"] {
+  color: var(--text-light);
+  opacity: 0.6;
+  cursor: help;
+  text-decoration: line-through;
+  position: relative;
+}
+
+/* Enhanced visual indicator for broken links */
+del a[data-broken="true"]::after {
+  content: " 🔗";
+  font-size: 0.85em;
+  opacity: 0.5;
+  vertical-align: super;
+}
+
 /* Enhanced blockquote styling */
 blockquote {
   margin: 1.5em 0;

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
@@ -39,7 +39,7 @@ const { article, prevArticle, nextArticle } = Astro.props;
 const { Content } = await article.render();
 
 // Helper function to generate article URL
-function generateArticleUrl(article) {
+function generateArticleUrl(article: CollectionEntry<'articles'>) {
   const date = new Date(article.data.date);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');

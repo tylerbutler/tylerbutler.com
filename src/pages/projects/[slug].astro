@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { ExternalLink, Github } from '@lucide/svelte';
+import { ExternalLink, Github } from '@lucide/astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ id }) => !id.startsWith('_'));

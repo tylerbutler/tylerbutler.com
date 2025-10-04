@@ -75,14 +75,10 @@ function createMarkdownProcessor(headingLevel?: number) {
     .use(remarkGithubBlockquoteAlert);
 
   // Add heading normalization with optional override
-  if (headingLevel !== undefined) {
-    processor.use(remarkNormalizeHeadings, {
-      defaultCollectionLevel: headingLevel,
-      defaultPageLevel: headingLevel,
-    });
-  } else {
-    processor.use(remarkNormalizeHeadings);
-  }
+  processor.use(remarkNormalizeHeadings, headingLevel !== undefined ? {
+    defaultCollectionLevel: headingLevel,
+    defaultPageLevel: headingLevel,
+  } : {});
 
   return processor
     .use(remarkRehype)

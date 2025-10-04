@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import { visualizer } from "rollup-plugin-visualizer";
@@ -65,20 +64,14 @@ export default defineConfig({
 	site: "https://tylerbutler.com",
 
 	adapter: netlify({
-		// imageCDN: false,
+		imageCDN: false,
 	}),
 	output: "static",
 
 	integrations: [
 		fontDownloader(),
-		fontOptimizer(),
-		svelte({
-			compilerOptions: {
-				experimental: {
-					async: true,
-				},
-			},
-		}),
+		// TODO: Re-enable font optimizer once Chrome/Puppeteer is configured for glyphhanger
+		// fontOptimizer(),
 		sitemap(),
 		mdx({
 			remarkPlugins: [
@@ -110,6 +103,7 @@ export default defineConfig({
 	],
 	image: {
 		responsiveStyles: true,
+		layout: 'constrained', // Generates srcset for responsive images
 	},
 	markdown: {
 		remarkPlugins: [
@@ -142,7 +136,9 @@ export default defineConfig({
 
 	vite: {
 		optimizeDeps: {
-			exclude: ["@fontsource/lato"],
+			exclude: [
+				// "@fontsource/lato",
+			],
 		},
 		plugins: [
 			// Only generate bundle analysis in production builds

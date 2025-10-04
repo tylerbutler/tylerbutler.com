@@ -1,16 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BookOpen from '@lucide/svelte/icons/book-open';
-import ExternalLink from '@lucide/svelte/icons/external-link';
-import Github from '@lucide/svelte/icons/github';
+import { BookOpen, ExternalLink, Github } from '@lucide/astro';
 
 // Get all projects (excluding index files)
 const projects = await getCollection('projects', ({ id }) => !id.startsWith('_'));
 
 // Sort projects by date (newest first)
-const sortedProjects = projects.sort((a, b) =>
-  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+const sortedProjects = projects.filter(p => p.data.date).sort((a, b) =>
+  new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime()
 );
 ---
 
@@ -34,18 +32,18 @@ const sortedProjects = projects.sort((a, b) =>
                 )}
                 <div class="project-links">
                   <a href={`/projects/${project.slug}`} class="read-more">
-                    <BookOpen size={16} />
+                    <BookOpen class="icon" />
                     Read More
                   </a>
                   {project.data.url && (
                     <a href={project.data.url} target="_blank" rel="noopener" class="external-link">
-                      <ExternalLink size={16} />
+                      <ExternalLink class="icon" />
                       View Project
                     </a>
                   )}
                   {project.data.github && (
                     <a href={project.data.github} target="_blank" rel="noopener" class="external-link">
-                      <Github size={16} />
+                      <Github class="icon" />
                       GitHub
                     </a>
                   )}
@@ -92,6 +90,11 @@ const sortedProjects = projects.sort((a, b) =>
 
   .project-links {
     margin-top: 1em;
+  }
+
+  .project-links .icon {
+    width: 16px;
+    height: 16px;
   }
 
   .project-links a {

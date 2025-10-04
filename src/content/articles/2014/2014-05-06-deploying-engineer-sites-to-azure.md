@@ -5,7 +5,6 @@ date: '2014-05-06T08:42:00-07:00'
 slug: deploying-engineer-sites-to-azure
 tags:
 - engineer
-- azure
 engineer:
   slug: deploying-engineer-sites-to-azure
   url: /2014/05/deploying-engineer-sites-to-azure/

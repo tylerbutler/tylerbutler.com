@@ -4,7 +4,6 @@ title: 'But Why? #0: But why, "But Why?"'
 date: '2008-09-09T18:49:00-07:00'
 slug: but-why-0-but-why-but-why
 tags:
-- but why
 - sharepoint
 engineer:
   slug: but-why-0-but-why-but-why

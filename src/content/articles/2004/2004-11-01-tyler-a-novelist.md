@@ -4,7 +4,7 @@ title: Tyler, a Novelist?
 date: '2004-11-01T05:46:00-08:00'
 slug: tyler-a-novelist
 tags:
-- NaNoWriMo
+- nanowrimo
 engineer:
   slug: tyler-a-novelist
   url: /2004/11/tyler-a-novelist/
@@ -31,4 +31,4 @@ decisions while I am trying to write. Wish me luck.
 **It's going to be a long month.**
 
    [1]: http://www.nanowrimo.com
-   [2]: /tag/nanowrimo
+   [2]: /tags/nanowrimo

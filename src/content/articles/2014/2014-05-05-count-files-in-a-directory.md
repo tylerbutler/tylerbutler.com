@@ -5,7 +5,6 @@ date: '2014-05-05T09:04:00-07:00'
 slug: count-files-in-a-directory
 tags:
 - powershell
-- snippets
 engineer:
   slug: count-files-in-a-directory
   url: /2014/05/count-files-in-a-directory/

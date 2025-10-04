@@ -4,7 +4,6 @@ title: Fun With Text-to-Speech
 date: '2004-10-15T22:25:00-07:00'
 slug: fun-with-text-to-speech
 tags:
-- snippets
 - CSharp
 engineer:
   slug: fun-with-text-to-speech

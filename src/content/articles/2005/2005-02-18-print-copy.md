@@ -5,7 +5,7 @@ date: '2005-02-18T20:56:00-08:00'
 slug: print-copy
 tags:
 - novel
-- NaNoWriMo
+- nanowrimo
 engineer:
   slug: print-copy
   url: /2005/02/print-copy/

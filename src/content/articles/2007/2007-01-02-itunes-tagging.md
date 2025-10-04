@@ -3,8 +3,6 @@
 title: iTunes Tagging
 date: '2007-01-02T03:30:00-08:00'
 slug: itunes-tagging
-tags:
-- itunes
 engineer:
   slug: itunes-tagging
   url: /2007/01/itunes-tagging/

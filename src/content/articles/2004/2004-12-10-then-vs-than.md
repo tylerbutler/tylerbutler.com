@@ -3,8 +3,6 @@
 title: '"Then" Vs. "Than"'
 date: '2004-12-10T23:09:00-08:00'
 slug: then-vs-than
-tags:
-- words
 engineer:
   slug: then-vs-than
   url: /2004/12/then-vs-than/
@@ -52,7 +50,7 @@ sounding, yet different meaning words. After all, I am the master of all that
 is English. And I [wrote a novel][5].
 
    [1]: http://www.blender3d.org/ (Blender looks pretty cool.  Too bad I don't have any artistic skills...)
-   [2]: /SiteCollectionImages/Post%20Images/then%20than.jpg
+   [2]: ../../../assets/lost.png
    [3]: http://dictionary.reference.com/search?q=then (Check the meaning of then at dictionary.com.)
    [4]: http://dictionary.reference.com/search?q=than (Check the meaning of than at dictionary.com.)
-   [5]: /tag/novel (Check out Knot, the novel I wrote as part of NaNoWriMo)
+   [5]: /tags/nanowrimo (Check out Knot, the novel I wrote as part of NaNoWriMo)

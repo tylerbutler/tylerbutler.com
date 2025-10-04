@@ -6,7 +6,6 @@ slug: markdown-lazy-links-in-python
 tags:
 - engineer
 - python
-- markdown
 engineer:
   slug: markdown-lazy-links-in-python
   url: /2014/05/markdown-lazy-links-in-python/

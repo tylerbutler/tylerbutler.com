@@ -4,8 +4,6 @@ title: Thoughts On the New iPad
 date: '2012-03-24T16:08:00-07:00'
 teaser: true
 slug: thoughts-on-the-new-ipad
-tags:
-- Tyler tests
 engineer:
   slug: thoughts-on-the-new-ipad
   teaser: true

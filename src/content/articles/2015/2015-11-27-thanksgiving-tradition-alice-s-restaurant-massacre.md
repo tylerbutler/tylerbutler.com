@@ -6,7 +6,6 @@ slug: thanksgiving-tradition-alice-s-restaurant-massacre
 tags:
 - music
 - thanksgiving
-- tradition
 engineer:
   slug: thanksgiving-tradition-alice-s-restaurant-massacre
   url: /2015/11/thanksgiving-tradition-alice-s-restaurant-massacre/

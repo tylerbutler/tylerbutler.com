@@ -4,8 +4,6 @@ title: Small Dog Ambassadorship
 date: '2012-12-22T15:08:00-08:00'
 teaser: true
 slug: small-dog-ambassadorship
-tags:
-- dogs
 engineer:
   slug: small-dog-ambassadorship
   teaser: true

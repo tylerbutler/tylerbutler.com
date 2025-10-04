@@ -3,6 +3,8 @@
 title: Mountain Goats Are Amazing (and Grooveshark is pretty cool too...)
 date: '2009-04-12T07:28:00-07:00'
 slug: mountain-goats-are-amazing-and-grooveshark-is-pretty-cool-too
+tags:
+- music
 engineer:
   slug: mountain-goats-are-amazing-and-grooveshark-is-pretty-cool-too
   url: /2009/04/mountain-goats-are-amazing-and-grooveshark-is-pretty-cool-too/

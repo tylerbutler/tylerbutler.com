@@ -5,7 +5,6 @@ date: '2014-05-05T11:11:00-07:00'
 slug: engineer-v0-5-0-released
 tags:
 - engineer
-- project
 engineer:
   slug: engineer-v0-5-0-released
   url: /2014/05/engineer-v0-5-0-released/

@@ -6,7 +6,6 @@ teaser: true
 slug: engineer-0-3-1-released
 tags:
 - engineer
-- project
 engineer:
   slug: engineer-0-3-1-released
   teaser: true

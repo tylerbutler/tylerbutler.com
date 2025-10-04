@@ -3,8 +3,6 @@
 title: C'mon iPhone, be serious...
 date: '2009-05-08T17:33:00-07:00'
 slug: cmon-iphone-be-serious
-tags:
-- Warren Spector
 engineer:
   slug: cmon-iphone-be-serious
   url: /2009/05/cmon-iphone-be-serious/

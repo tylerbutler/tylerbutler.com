@@ -1,9 +1,12 @@
 # Project Todos
 
 ## Active
-- [ ] Review code styling
+- [x] Review code styling
 - [ ] Comprehensive link crawl of old site to make sure no links are broken
-- [ ] Figure out light/dark mode
+- [x] Figure out light/dark mode
+- [ ] guide styling
+- [ ] Broken outgoing links page
+
 ## Completed
 - [x] Remove archives icon or articles link - we only need one | Done: 09/26/2025
 - [x] Remove the "Social links now available as icons in the header navigation" text | Done: 09/26/2025

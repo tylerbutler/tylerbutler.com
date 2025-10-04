@@ -5,7 +5,7 @@ date: '2004-12-02T19:27:00-08:00'
 slug: official-comments
 tags:
 - novel
-- NaNoWriMo
+- nanowrimo
 engineer:
   slug: official-comments
   url: /2004/12/official-comments/
@@ -27,6 +27,6 @@ novel, but if you want to compliment me or criticize me for anything in the
 book, comment in this post or send me an email. I really want feedback...
 seriously. It's the only way to improve.
 
-   [1]: /tag/novel/ (Yup, it's finished! You should read it!)
+   [1]: /tags/novel/ (Yup, it's finished! You should read it!)
    [2]: http://www.nanowrimo.org/ (National Novel Writing Month)
 

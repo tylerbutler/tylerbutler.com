@@ -4,6 +4,8 @@ title: Carmack & Romero
 date: '2014-04-27T19:22:00-07:00'
 via: Markus Persson
 slug: carmack-romero
+tags:
+- games
 engineer:
   slug: carmack-romero
   url: /2014/04/carmack-romero/

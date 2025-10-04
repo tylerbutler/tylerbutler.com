@@ -3,8 +3,6 @@
 title: Lessons from a Street Performer
 date: '2007-08-21T02:08:00-07:00'
 slug: lessons-from-a-street-performer
-tags:
-- travel
 engineer:
   slug: lessons-from-a-street-performer
   url: /2007/08/lessons-from-a-street-performer/

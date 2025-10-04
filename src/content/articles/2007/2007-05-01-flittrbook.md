@@ -5,7 +5,6 @@ date: '2007-05-01T17:49:00-07:00'
 slug: flittrbook
 tags:
 - mix07
-- twitter
 engineer:
   slug: flittrbook
   url: /2007/05/flittrbook/

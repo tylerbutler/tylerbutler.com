@@ -4,7 +4,6 @@ title: Code Line Counter
 date: '2005-03-08T21:14:00-08:00'
 slug: code-line-counter
 tags:
-- snippets
 - python
 engineer:
   slug: code-line-counter

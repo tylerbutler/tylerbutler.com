@@ -3,8 +3,6 @@
 title: Nintendo Wii
 date: '2006-12-25T03:00:00-08:00'
 slug: nintendo-wii
-tags:
-- wii
 engineer:
   slug: nintendo-wii
   url: /2006/12/nintendo-wii/

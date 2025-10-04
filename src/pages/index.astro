@@ -1,27 +1,27 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { createHomepagePreview } from '../lib/markdown-utils.js';
+import { createHomepagePreview } from '../lib/markdown-utils';
 
 // Get recent articles (latest 5, non-draft)
 const articles = await getCollection('articles', ({ data }) => {
   return !data.draft;
 });
 
-// Sort by date (newest first) and take first 5, then render each
+// Sort by date (newest first) and take first 5
 const sortedArticles = articles
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 5);
 
-// Process articles with transformed headings for proper hierarchy
+// Render articles with full markdown pipeline and h3 headings for homepage
 const recentArticles = await Promise.all(
   sortedArticles.map(async (article) => {
-    // Transform raw markdown content to HTML with shifted headings for proper hierarchy
-    const transformedHtml = createHomepagePreview(article.body);
+    const { html, isTruncated } = await createHomepagePreview(article.body);
 
     return {
       ...article,
-      transformedHtml
+      transformedHtml: html,
+      isTruncated
     };
   })
 );
@@ -58,6 +58,11 @@ const recentArticles = await Promise.all(
                   </time>
                 </div>
                 <div class="article-content" set:html={article.transformedHtml}></div>
+                {article.isTruncated && (
+                  <p class="read-more">
+                    <a href={`/${year}/${month}/${slug}`}>Read More →</a>
+                  </p>
+                )}
               </article>
             </li>
           );
@@ -208,6 +213,25 @@ const recentArticles = await Promise.all(
     font-size: 12px;
   }
 
+  .read-more {
+    margin: 1em 0 0 0;
+  }
 
+  .read-more a {
+    display: inline-block;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--text-light);
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+  .read-more a:hover {
+    background: var(--accent);
+    color: var(--light-bg);
+  }
 
 </style>

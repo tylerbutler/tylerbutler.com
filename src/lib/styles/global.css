@@ -89,6 +89,7 @@ html {
 
 body {
   font-family: "adelle", "Baskerville", Georgia, serif;
+  font-variant-ligatures: common-ligatures contextual;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
@@ -838,7 +839,7 @@ table tr:hover {
 /* Expressive Code will handle themes via media query automatically */
 /* We just need to ensure our .dark class triggers the media query */
 
-/* Inline code styling using theme variables */
+/* Inline code styling */
 code:not(pre code) {
   background-color: var(--code-bg);
   color: var(--code-text);

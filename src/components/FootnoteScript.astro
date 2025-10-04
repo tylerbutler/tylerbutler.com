@@ -1,0 +1,73 @@
+---
+/**
+ * Littlefoot footnote enhancement script
+ * Automatically initializes interactive footnote popovers
+ * Only loads on pages with footnotes
+ */
+---
+
+<link rel="stylesheet" href="https://unpkg.com/littlefoot/dist/littlefoot.css" />
+
+<script type="module">
+  import { littlefoot } from 'littlefoot';
+
+  function initializeLittlefoot() {
+    // Only initialize if there are footnotes on the page
+    const hasFootnotes = document.querySelector('a[rel="footnote"]') ||
+                         document.querySelector('section[data-footnotes]');
+
+    if (hasFootnotes) {
+      littlefoot({
+        allowDuplicates: false,
+        allowMultiple: false,
+        dismissDelay: 100,
+        dismissOnUnhover: true,
+        hoverDelay: 250,
+        scope: 'body'
+      });
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeLittlefoot);
+  } else {
+    initializeLittlefoot();
+  }
+</script>
+
+<style is:global>
+  /* Hide the original footnotes section - Littlefoot will show them in popovers */
+  section[data-footnotes] {
+    display: none;
+  }
+
+  /* Show footnotes for print and no-JS users */
+  @media print {
+    section[data-footnotes] {
+      display: block;
+    }
+  }
+
+  /* Custom footnote styling to match site design */
+  .littlefoot-footnote__wrapper {
+    max-width: 400px;
+  }
+
+  .littlefoot-footnote__content {
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  /* Style footnote references */
+  a[rel="footnote"] {
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  a[rel="footnote"]:hover {
+    text-decoration: underline;
+    color: var(--accent-hover);
+  }
+</style>

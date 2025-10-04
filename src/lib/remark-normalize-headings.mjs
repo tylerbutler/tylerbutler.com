@@ -1,0 +1,65 @@
+import { visit } from 'unist-util-visit';
+
+/**
+ * Remark plugin to normalize heading levels based on context
+ *
+ * By default, content collection pages (articles, projects) start at h2
+ * since their titles are h1 in the layout. Other pages start at h1.
+ *
+ * Override behavior via frontmatter:
+ *   headingStartLevel: 3  # Force highest heading to be h3
+ *
+ * @param {Object} options - Plugin options
+ * @param {number} options.defaultCollectionLevel - Default level for collection content (default: 2)
+ * @param {number} options.defaultPageLevel - Default level for standalone pages (default: 1)
+ * @param {number} options.maxLevel - Maximum heading level (default: 6)
+ */
+export function remarkNormalizeHeadings(options = {}) {
+  const {
+    defaultCollectionLevel = 2,
+    defaultPageLevel = 1,
+    maxLevel = 6,
+  } = options;
+
+  return (tree, file) => {
+    // Strategy 1: Check frontmatter for explicit override
+    const frontmatterLevel = file.data.astro?.frontmatter?.headingStartLevel;
+
+    // Strategy 2: Check if rendering context was set (for Container API usage)
+    const contextLevel = file.data.headingStartLevel;
+
+    // Strategy 3: Auto-detect content collections from file path
+    const filePath = file.history?.[0] || '';
+    const isCollection = /\/src\/content\/(articles|projects)\//.test(filePath);
+
+    // Determine target start level (frontmatter > context > auto-detect)
+    const targetStartLevel = frontmatterLevel ?? contextLevel ?? (isCollection ? defaultCollectionLevel : defaultPageLevel);
+
+    // Skip normalization if target is h1 (no adjustment needed)
+    if (targetStartLevel === 1) return;
+
+    // Find minimum heading level in the content
+    let minLevel = null;
+    visit(tree, 'heading', (node) => {
+      if (minLevel === null || node.depth < minLevel) {
+        minLevel = node.depth;
+      }
+    });
+
+    // No headings found, nothing to normalize
+    if (minLevel === null) return;
+
+    // Calculate shift amount needed
+    const shiftBy = targetStartLevel - minLevel;
+
+    // Skip if no shift needed
+    if (shiftBy === 0) return;
+
+    // Apply normalization to all headings
+    visit(tree, 'heading', (node) => {
+      const newLevel = node.depth + shiftBy;
+      // Ensure level stays within valid range (1-maxLevel)
+      node.depth = Math.max(1, Math.min(newLevel, maxLevel));
+    });
+  };
+}

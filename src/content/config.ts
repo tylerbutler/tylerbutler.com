@@ -12,6 +12,7 @@ const articles = defineCollection({
     link: z.string().optional(),
     via: z.string().optional(),
     vialink: z.string().optional(),
+    headingStartLevel: z.number().optional(), // Override for heading normalization
   }),
 });
 

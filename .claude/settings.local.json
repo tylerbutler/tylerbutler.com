@@ -89,7 +89,9 @@
       "Bash(mise exec:*)",
       "WebFetch(domain:lychee.cli.rs)",
       "Bash(npm remove:*)",
-      "WebFetch(domain:docs.astro.build)"
+      "WebFetch(domain:docs.astro.build)",
+      "Bash(npm search:*)",
+      "WebFetch(domain:littlefoot.js.org)"
     ],
     "deny": [],
     "ask": []

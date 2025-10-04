@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { ExternalLink, Github } from '@lucide/svelte';
-import { normalizeMarkdownHeadings } from '../../lib/markdown-utils.ts';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ id }) => !id.startsWith('_'));
@@ -15,9 +14,6 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
-
-// Normalize headings to start at h2 (since project title is h1)
-const normalizedHtml = normalizeMarkdownHeadings(project.body, 2);
 ---
 
 <BaseLayout title={`${project.data.title} - Tyler Butler`} description={project.data.description} headerSize="small">
@@ -29,7 +25,8 @@ const normalizedHtml = normalizeMarkdownHeadings(project.body, 2);
       )}
     </header>
 
-    <div class="project-content" set:html={normalizedHtml}>
+    <div class="project-content">
+      <Content />
     </div>
 
     <div class="project-links">

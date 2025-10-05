@@ -8,7 +8,11 @@ const fonts = [
 	"PragmataPro_Mono_Z_liga_0902.woff2",
 ].map((p) => `fonts/PragmataPro0.902W/${p}`);
 
-export async function downloadFonts() {
+interface GitHubFileData {
+	download_url?: string;
+}
+
+export async function downloadFonts(): Promise<void> {
 	console.log("Checking fonts...");
 
 	const fontsDir = path.join(process.cwd(), "public", "fonts");
@@ -63,7 +67,7 @@ export async function downloadFonts() {
 					throw new Error(`GitHub API error: ${metaResponse.status} ${metaResponse.statusText}`);
 				}
 
-				const fileData = await metaResponse.json();
+				const fileData = await metaResponse.json() as GitHubFileData;
 				const downloadUrl = fileData.download_url;
 
 				if (!downloadUrl) {
@@ -87,12 +91,14 @@ export async function downloadFonts() {
 
 				console.log(`✓ Downloaded: ${font}`);
 			} catch (error) {
+				const errorMessage = error instanceof Error ? error.message : String(error);
 				throw new Error(
-					`Failed to download font: ${font} - ${error.message}`,
+					`Failed to download font: ${font} - ${errorMessage}`,
 				);
 			}
 		}
 	} catch (error) {
-		throw new Error(`Font download error: ${error.message}`);
+		const errorMessage = error instanceof Error ? error.message : String(error);
+		throw new Error(`Font download error: ${errorMessage}`);
 	}
 }

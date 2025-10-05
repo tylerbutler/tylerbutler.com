@@ -10,7 +10,7 @@
     const brokenLinks = document.querySelectorAll('a[data-broken="true"]');
 
     brokenLinks.forEach(link => {
-      const url = link.getAttribute('data-broken-url') || link.href;
+      const url = link.getAttribute('data-broken-url') || (link as HTMLAnchorElement).href;
 
       // Create tooltip element
       const tooltip = document.createElement('div');

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { ExternalLink, Github } from '@lucide/astro';
+import { formatTitle } from '../../lib/typography';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ id }) => !id.startsWith('_'));
@@ -19,7 +20,7 @@ const { Content } = await project.render();
 <BaseLayout title={`${project.data.title} - Tyler Butler`} description={project.data.description} headerSize="small">
   <article class="project">
     <header class="project-header">
-      <h1>{project.data.title}</h1>
+      <h1>{await formatTitle(project.data.title)}</h1>
       {project.data.description && (
         <p class="project-description">{project.data.description}</p>
       )}

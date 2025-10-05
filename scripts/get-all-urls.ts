@@ -6,10 +6,8 @@ import { URL } from 'url';
 
 /**
  * Extract URLs from sitemap and optionally rewrite hosts
- * @param {string} baseUrl - The base URL to crawl
- * @param {string} [newHost] - Optional new host to rewrite URLs to
  */
-async function getAllUrls(baseUrl = 'https://tylerbutler.com', newHost = null) {
+async function getAllUrls(baseUrl = 'https://tylerbutler.com', newHost?: string): Promise<void> {
   console.log(`🕷️  Extracting all URLs from ${baseUrl}...`);
 
   const tempSitemapFile = 'urls.xml';
@@ -109,7 +107,8 @@ async function getAllUrls(baseUrl = 'https://tylerbutler.com', newHost = null) {
     ]);
 
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('❌ Error:', errorMessage);
     process.exit(1);
   }
 }
@@ -117,11 +116,11 @@ async function getAllUrls(baseUrl = 'https://tylerbutler.com', newHost = null) {
 /**
  * Run a command and return a promise
  */
-function runCommand(command, args) {
+function runCommand(command: string, args: string[]): Promise<void> {
   return new Promise((resolve, reject) => {
-    const process = spawn(command, args, { stdio: 'inherit' });
+    const childProcess = spawn(command, args, { stdio: 'inherit' });
 
-    process.on('close', (code) => {
+    childProcess.on('close', (code) => {
       if (code === 0) {
         resolve();
       } else {
@@ -129,17 +128,22 @@ function runCommand(command, args) {
       }
     });
 
-    process.on('error', reject);
+    childProcess.on('error', reject);
   });
+}
+
+interface ParsedArgs {
+  baseUrl: string;
+  newHost?: string;
 }
 
 /**
  * Parse command line arguments
  */
-function parseArgs() {
+function parseArgs(): ParsedArgs {
   const args = process.argv.slice(2);
   let baseUrl = 'https://tylerbutler.com';
-  let newHost = null;
+  let newHost: string | undefined = undefined;
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];

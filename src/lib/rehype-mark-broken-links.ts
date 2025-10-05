@@ -1,12 +1,17 @@
 import { visit } from 'unist-util-visit';
-import brokenLinksData from '../data/broken-links.json' assert { type: 'json' };
+import type { Root, Element } from 'hast';
+import type { Plugin } from 'unified';
+import brokenLinksData from '../data/broken-links.json';
 
-export function rehypeMarkBrokenLinks() {
-  return (tree) => {
-    visit(tree, 'element', (node) => {
+/**
+ * Rehype plugin to mark broken links with custom attributes
+ */
+export const rehypeMarkBrokenLinks: Plugin<[], Root> = () => {
+  return (tree: Root) => {
+    visit(tree, 'element', (node: Element) => {
       if (node.tagName === 'a' && node.properties?.href) {
-        const href = node.properties.href;
-        if (brokenLinksData.some(broken => href.includes(broken))) {
+        const href = node.properties.href as string;
+        if (brokenLinksData.some((broken) => href.includes(broken))) {
           node.properties = node.properties || {};
 
           // Store original URL and rewrite to custom page
@@ -19,4 +24,4 @@ export function rehypeMarkBrokenLinks() {
       }
     });
   };
-}
+};

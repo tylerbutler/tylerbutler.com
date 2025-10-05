@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { createHomepagePreview } from '../lib/markdown-utils';
+import { formatTitle } from '../lib/typography';
 
 // Get recent articles (latest 5, non-draft)
 const articles = await getCollection('articles', ({ data }) => {
@@ -21,7 +22,8 @@ const recentArticles = await Promise.all(
     return {
       ...article,
       transformedHtml: html,
-      isTruncated
+      isTruncated,
+      formattedTitle: await formatTitle(article.data.title)
     };
   })
 );
@@ -45,7 +47,7 @@ const recentArticles = await Promise.all(
               <article class="article-preview">
                 <h2>
                   <a href={`/${year}/${month}/${slug}`}>
-                    {article.data.title}
+                    {article.formattedTitle}
                   </a>
                 </h2>
                 <div class="article-meta">

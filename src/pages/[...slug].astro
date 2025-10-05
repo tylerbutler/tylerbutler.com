@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatTitle } from '../lib/typography';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -58,7 +59,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
 <BaseLayout title={`${article.data.title} - Tyler Butler`} description={article.data.excerpt} headerSize="small">
   <article class="article">
     <header class="article-header">
-      <h1>{article.data.title}</h1>
+      <h1>{await formatTitle(article.data.title)}</h1>
       <time datetime={article.data.date.toISOString()} class="article-date">
         {formattedDate}
       </time>
@@ -81,13 +82,13 @@ const formattedDate = date.toLocaleDateString('en-US', {
     {prevArticle && (
       <a href={generateArticleUrl(prevArticle)} class="nav-link">
         <span class="nav-arrow">←</span>
-        <span class="nav-text">{prevArticle.data.title}</span>
+        <span class="nav-text">{await formatTitle(prevArticle.data.title)}</span>
       </a>
     )}
 
     {nextArticle && (
       <a href={generateArticleUrl(nextArticle)} class="nav-link nav-link-next">
-        <span class="nav-text">{nextArticle.data.title}</span>
+        <span class="nav-text">{await formatTitle(nextArticle.data.title)}</span>
         <span class="nav-arrow">→</span>
       </a>
     )}

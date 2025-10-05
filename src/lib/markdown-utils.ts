@@ -9,7 +9,7 @@ import remarkGithubBlockquoteAlert from 'remark-github-blockquote-alert';
 import remarkRehype from 'remark-rehype';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeStringify from 'rehype-stringify';
-import { remarkNormalizeHeadings } from './remark-normalize-headings.mjs';
+import { remarkNormalizeHeadings } from './remark-normalize-headings.ts';
 import { rehypeFootnotes } from './footnotes.js';
 
 // Load themes
@@ -75,10 +75,14 @@ function createMarkdownProcessor(headingLevel?: number) {
     .use(remarkGithubBlockquoteAlert);
 
   // Add heading normalization with optional override
-  processor.use(remarkNormalizeHeadings, headingLevel !== undefined ? {
-    defaultCollectionLevel: headingLevel,
-    defaultPageLevel: headingLevel,
-  } : {});
+  if (headingLevel !== undefined) {
+    processor.use(remarkNormalizeHeadings, {
+      defaultCollectionLevel: headingLevel,
+      defaultPageLevel: headingLevel,
+    });
+  } else {
+    processor.use(remarkNormalizeHeadings);
+  }
 
   return processor
     .use(remarkRehype)

@@ -6,15 +6,15 @@ import netlify from "@astrojs/netlify";
 import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
 import brokenLinksChecker from "astro-broken-links-checker";
 
-import { downloadFonts } from "./scripts/download-fonts.mjs";
-import { optimizeFonts } from "./scripts/optimize-fonts.mjs";
+import { downloadFonts } from "./scripts/download-fonts.ts";
+import { optimizeFonts } from "./scripts/optimize-fonts.ts";
 import remarkGfm from "remark-gfm";
 import remarkSmartypants from "remark-smartypants";
 import remarkMermaid from "remark-mermaid";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
-import { remarkNormalizeHeadings } from "./src/lib/remark-normalize-headings.mjs";
-import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.mjs";
+import { remarkNormalizeHeadings } from "./src/lib/remark-normalize-headings.ts";
+import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
 import { rehypeFootnotes } from "./src/lib/footnotes.js";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
 
@@ -135,6 +135,9 @@ export default defineConfig({
 	},
 
 	vite: {
+		ssr: {
+			// noExternal: ["simple-icons-astro"],
+		},
 		optimizeDeps: {
 			exclude: [
 				// "@fontsource/lato",

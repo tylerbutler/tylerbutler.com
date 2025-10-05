@@ -1,14 +1,20 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BookOpen, ExternalLink, Github } from '@lucide/astro';
+import { Github, BookOpen, ExternalLink } from '@lucide/astro';
+import { formatTitle } from '../lib/typography';
 
 // Get all projects (excluding index files)
 const projects = await getCollection('projects', ({ id }) => !id.startsWith('_'));
 
 // Sort projects by date (newest first)
-const sortedProjects = projects.filter(p => p.data.date).sort((a, b) =>
-  new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime()
+const sortedProjects = await Promise.all(
+  projects.filter(p => p.data.date).sort((a, b) =>
+    new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime()
+  ).map(async (project) => ({
+    ...project,
+    formattedTitle: await formatTitle(project.data.title)
+  }))
 );
 ---
 
@@ -26,7 +32,7 @@ const sortedProjects = projects.filter(p => p.data.date).sort((a, b) =>
           return (
             <li class="project-item">
               <article>
-                <h2>{project.data.title}</h2>
+                <h2>{project.formattedTitle}</h2>
                 {project.data.description && (
                   <p class="description">{project.data.description}</p>
                 )}

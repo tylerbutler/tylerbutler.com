@@ -91,7 +91,8 @@
       "Bash(npm remove:*)",
       "WebFetch(domain:docs.astro.build)",
       "Bash(npm search:*)",
-      "WebFetch(domain:littlefoot.js.org)"
+      "WebFetch(domain:littlefoot.js.org)",
+      "mcp__playwright__browser_hover"
     ],
     "deny": [],
     "ask": []

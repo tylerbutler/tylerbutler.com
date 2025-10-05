@@ -5,7 +5,7 @@ import path from "path";
 const fontsDir = path.join(process.cwd(), "public", "fonts");
 const distDir = path.join(process.cwd(), "dist");
 
-export async function optimizeFonts() {
+export async function optimizeFonts(): Promise<void> {
 	console.log("Optimizing fonts with glyphhanger...");
 
 	// Check if fonts exist
@@ -61,8 +61,9 @@ export async function optimizeFonts() {
 				console.log(`  ✓ Optimized ${fontFile}`);
 			}
 		} catch (error) {
+			const errorMessage = error instanceof Error ? error.message : String(error);
 			console.warn(
-				`  ⚠️  Failed to optimize ${fontFile}: ${error.message}`,
+				`  ⚠️  Failed to optimize ${fontFile}: ${errorMessage}`,
 			);
 		}
 	}
@@ -75,7 +76,8 @@ export async function optimizeFonts() {
 // Allow running directly
 if (import.meta.url === `file://${process.argv[1]}`) {
 	optimizeFonts().catch((error) => {
-		console.error("Font optimization failed:", error.message);
+		const errorMessage = error instanceof Error ? error.message : String(error);
+		console.error("Font optimization failed:", errorMessage);
 		process.exit(1);
 	});
 }

@@ -10,7 +10,7 @@
     "install:python": "pip install -r requirements.txt",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check",
+    "check": "astro check --minimumSeverity warning",
     "linkcheck": "start-server-and-test dev http://localhost:4321 'cat complete-urls.txt | xargs lychee'",
     "test": "npm run test:visual && npm run test:performance && npm run test:accessibility && npm run test:bundle",
     "test:visual": "playwright test tests/visual",

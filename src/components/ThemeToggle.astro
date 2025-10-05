@@ -69,6 +69,7 @@ const theme = (() => {
 })();
 
 // Apply theme by setting CSS classes
+/** @param {string} themeName */
 function applyTheme(themeName) {
   const root = document.documentElement;
   const isDark = themeName === 'dark';

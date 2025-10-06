@@ -29,4 +29,7 @@ Thumbs.db
 
 # Private webfonts shouldn't be committed
 public/fonts/
+
+# Local mise config files
+.mise.local.toml
 mise.local.toml

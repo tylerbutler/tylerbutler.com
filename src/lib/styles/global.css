@@ -108,7 +108,7 @@ body::before {
   height: 100vh;
   background-image: url('/bg.jpg'); /* Fallback for older browsers */
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   background-repeat: no-repeat;
   pointer-events: none;
   z-index: -2;

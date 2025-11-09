@@ -24,34 +24,37 @@ import 'littlefoot/dist/littlefoot.css';
     color: #333;
   }
 
-  /* Dark mode support - override littlefoot CSS variables on root elements */
-  :root.dark {
-    /* Button styling for dark mode */
-    --button-background-color: var(--code-bg);
-    --button-text-color: var(--text);
-    --button-active-background-color: var(--accent);
-    --button-active-text-color: var(--dark-bg);
+  /* Dark mode support - directly style littlefoot elements */
+  .dark .littlefoot__button {
+    background-color: var(--code-bg) !important;
+    color: var(--text) !important;
+  }
 
-    /* Popover styling for dark mode */
-    --popover-background-color: var(--code-bg);
-    --popover-text-color: var(--text);
-    --popover-border: 1px solid var(--code-border);
-    --popover-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
-    --popover-scroll-indicator-color: var(--accent);
+  .dark .littlefoot__button.is-active,
+  .dark .littlefoot__button:hover,
+  .dark .littlefoot__button:focus {
+    background-color: var(--accent) !important;
+    color: var(--dark-bg) !important;
   }
 
   .dark .littlefoot__content {
-    color: var(--text);
+    background-color: var(--code-bg) !important;
+    color: var(--text) !important;
   }
 
   .dark .littlefoot__wrapper {
-    background-color: var(--code-bg);
-    border-color: var(--code-border);
+    background-color: var(--code-bg) !important;
+    border-color: var(--code-border) !important;
   }
 
   .dark .littlefoot__tooltip {
-    background-color: var(--code-bg);
-    border-color: var(--code-border);
+    background-color: var(--code-bg) !important;
+    border-color: var(--code-border) !important;
+  }
+
+  .dark .littlefoot__popover {
+    border-color: var(--code-border) !important;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.8) !important;
   }
 
   /* Style footnote references */

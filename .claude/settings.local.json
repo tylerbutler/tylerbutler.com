@@ -98,7 +98,9 @@
       "Bash(chmod:*)",
       "Bash(npm info:*)",
       "Bash(npm --version:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "WebFetch(domain:redesign-2025-astro--focused-payne-e67af5.netlify.app)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": []

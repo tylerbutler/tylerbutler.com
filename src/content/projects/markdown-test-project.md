@@ -77,6 +77,8 @@ CMD ["npm", "start"]
 
 ### System Design
 
+<!-- TODO: Re-enable once mermaid SVG generation is fixed on Netlify -->
+<!--
 ```mermaid
 graph LR
     A[Client] --> B[API Gateway]
@@ -85,9 +87,11 @@ graph LR
     C --> E[Cache]
     B --> F[Authentication]
 ```
+-->
 
 ### Data Flow
 
+<!--
 ```mermaid
 sequenceDiagram
     participant Client
@@ -102,9 +106,11 @@ sequenceDiagram
     Service->>API: Response
     API->>Client: JSON
 ```
+-->
 
 ### Component Architecture
 
+<!--
 ```mermaid
 graph TD
     A[Application] --> B[Core Module]
@@ -117,6 +123,7 @@ graph TD
     D --> I[Models]
     D --> J[Services]
 ```
+-->
 
 ## Configuration
 

@@ -349,6 +349,8 @@ Copyright © Trademark ™ Registered ®
 
 ## Mermaid Diagrams
 
+<!-- TODO: Re-enable once mermaid SVG generation is fixed on Netlify -->
+<!--
 ```mermaid
 graph TD
     A[Start] --> B{Is it working?}
@@ -368,6 +370,7 @@ sequenceDiagram
     Server->>Browser: HTML Response
     Browser->>User: Render page
 ```
+-->
 
 ## Definition Lists (if supported)
 

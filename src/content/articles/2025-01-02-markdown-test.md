@@ -322,10 +322,9 @@ ___
 
 ## Images
 
-<!-- TODO: Re-enable once remote image processing is fixed on Netlify -->
-<!-- ![Alt text for image](https://via.placeholder.com/600x300) -->
+![Alt text for image](https://via.placeholder.com/600x300)
 
-<!-- ![Image with title](https://via.placeholder.com/400x200 "Image Title Text") -->
+![Image with title](https://via.placeholder.com/400x200 "Image Title Text")
 
 ## Inline HTML
 

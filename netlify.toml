@@ -12,7 +12,11 @@
   publish = "dist"
 
   # Default build command.
-  command = "pip install -r requirements.txt && npm run build"
+  # Clear Astro cache to avoid stale content asset references
+  command = "rm -rf .astro && pip install -r requirements.txt && npm run build"
+
+  # Ignore Netlify's cache to force clean builds
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
 
 # Subfont optimization plugin (runs after Astro build)
 # Disabled - using manual font management

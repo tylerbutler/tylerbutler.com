@@ -71,9 +71,10 @@
   },
   "devDependencies": {
     "@lhci/cli": "^0.15.1",
-    "cross-env": "^10.1.0",
     "@playwright/test": "^1.56.1",
+    "cross-env": "^10.1.0",
     "pa11y-ci": "^4.0.1",
+    "pagefind": "^1.4.0",
     "rollup-plugin-visualizer": "^6.0.5",
     "start-server-and-test": "^2.1.2",
     "typescript": "^5.9.3"

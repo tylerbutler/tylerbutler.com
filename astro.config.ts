@@ -17,6 +17,7 @@ import { remarkNormalizeHeadings } from "./src/lib/remark-normalize-headings.ts"
 import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
 import { rehypeFootnotes } from "./src/lib/footnotes.js";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
+import { execSync } from "node:child_process";
 
 const fontDownloader = () => ({
 	name: "font-downloader",
@@ -59,6 +60,27 @@ const fontOptimizer = () => ({
 	},
 });
 
+const pagefindIntegration = () => ({
+	name: "pagefind-integration",
+	hooks: {
+		"astro:build:done": async ({ dir }) => {
+			try {
+				console.log("🔍 Building Pagefind search index...");
+				execSync(`npx pagefind --site "${dir.pathname}"`, {
+					stdio: "inherit",
+				});
+				console.log("✅ Pagefind search index built successfully");
+			} catch (error) {
+				console.error(
+					"❌ Pagefind indexing failed:",
+					(error as Error).message,
+				);
+				throw error;
+			}
+		},
+	},
+});
+
 // https://astro.build/config
 export default defineConfig({
 	site: "https://tylerbutler.com",
@@ -72,6 +94,7 @@ export default defineConfig({
 		fontDownloader(),
 		// TODO: Re-enable font optimizer once Chrome/Puppeteer is configured for glyphhanger
 		// fontOptimizer(),
+		pagefindIntegration(),
 		sitemap(),
 		mdx({
 			remarkPlugins: [

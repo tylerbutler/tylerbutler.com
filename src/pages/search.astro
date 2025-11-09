@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Search - Tyler Butler"
+  description="Search Tyler Butler's articles and projects"
+  headerSize="small"
+>
+  <div class="search-page">
+    <h1>Search</h1>
+    <div id="search"></div>
+  </div>
+
+  <!-- Load Pagefind UI CSS and JS from the generated bundle -->
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    // Initialize Pagefind UI
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        excerptLength: 30,
+        resetStyles: false,
+        showEmptyFilters: false,
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .search-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .search-page h1 {
+    margin-bottom: 2rem;
+  }
+
+  /* Basic Pagefind UI styling */
+  #search {
+    margin-top: 2rem;
+  }
+</style>

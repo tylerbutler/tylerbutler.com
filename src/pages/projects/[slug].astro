@@ -30,6 +30,14 @@ const { Content } = await project.render();
       <Content />
     </div>
 
+    {project.data.tags && project.data.tags.length > 0 && (
+      <div class="project-tags">
+        {project.data.tags.map(tag => (
+          <a href={`/tags/${tag}/`} class="tag" data-pagefind-filter="tag">#{tag}</a>
+        ))}
+      </div>
+    )}
+
     <div class="project-links">
       {project.data.url && (
         <a href={project.data.url} target="_blank" rel="noopener" class="project-link">
@@ -72,6 +80,29 @@ const { Content } = await project.render();
     font-size: 18px;
     margin: 1em 0 1.5em 0;
     line-height: 1.5;
+  }
+
+  .project-tags {
+    margin: 1.5em 0;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #e8e8e8;
+    padding: 2px 6px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: #555;
+    border-radius: 3px;
+    text-transform: lowercase;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .tag:hover {
+    background: var(--accent);
+    color: white;
   }
 
   .project-links {

@@ -72,7 +72,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
     {article.data.tags && article.data.tags.length > 0 && (
       <div class="article-tags">
         {article.data.tags.map(tag => (
-          <a href={`/tags/${tag}/`} class="tag">#{tag}</a>
+          <a href={`/tags/${tag}/`} class="tag" data-pagefind-filter="tag">#{tag}</a>
         ))}
       </div>
     )}

@@ -129,6 +129,7 @@ export default defineConfig({
 		layout: 'constrained', // Generates srcset for responsive images
 	},
 	markdown: {
+		syntaxHighlight: false, // Disable Astro's built-in syntax highlighting to use Expressive Code
 		remarkPlugins: [
 			remarkGfm,
 			remarkSmartypants,

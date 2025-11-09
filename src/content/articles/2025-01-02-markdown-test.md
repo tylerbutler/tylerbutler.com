@@ -104,7 +104,7 @@ No syntax highlighting
 
 ### JavaScript with Line Numbers
 
-```js
+```js showLineNumbers
 // JavaScript with automatic line numbers
 function fibonacci(n) {
   if (n <= 1) return n;

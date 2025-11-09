@@ -47,7 +47,7 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
     wrap: false,
     showLineNumbers: false,
     overridesByLang: {
-      "js,ts,html,python,rust,csharp": {
+      'js,ts,html,python,rust,csharp': {
         showLineNumbers: true,
       },
     },
@@ -56,6 +56,8 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
   styleOverrides: {
     codeFontFamily: 'var(--code-font)',
     codeFontSize: 'var(--code-font-size)',
+    codePaddingBlock: '1.5rem',
+    codePaddingInline: '1.5rem',
   }
 }
 

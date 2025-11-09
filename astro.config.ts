@@ -159,7 +159,8 @@ export default defineConfig({
 
 	vite: {
 		ssr: {
-			// noExternal: ["simple-icons-astro"],
+			// Externalize Lucide to prevent SSR bundling issues
+			noExternal: ["@lucide/astro"],
 		},
 		optimizeDeps: {
 			exclude: [

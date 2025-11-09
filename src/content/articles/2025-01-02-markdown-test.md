@@ -229,6 +229,104 @@ public class Program
 }
 ```
 
+### Haskell - Ligature Showcase
+
+```haskell
+-- Haskell showcasing font ligatures: <=, >=, ==, /=, ->, =>
+quicksort :: Ord a => [a] -> [a]
+quicksort [] = []
+quicksort (x:xs) =
+    let smaller = quicksort [a | a <- xs, a <= x]
+        bigger  = quicksort [a | a <- xs, a > x]
+    in smaller ++ [x] ++ bigger
+
+compose :: (b -> c) -> (a -> b) -> (a -> c)
+compose f g = \x -> f (g x)
+
+fibonacci :: Integer -> Integer
+fibonacci n
+    | n <= 1    = n
+    | otherwise = fibonacci (n - 1) + fibonacci (n - 2)
+
+-- Type constraints and arrows: =>, ->, /=, >=, <=
+isValid :: Eq a => a -> a -> Bool
+isValid x y = x /= y && x >= y || x <= y
+```
+
+### Gleam - Modern Ligatures
+
+```gleam
+// Gleam showcasing modern ligatures: ->, |>, <-, ==, !=, <=, >=
+import gleam/io
+import gleam/list
+import gleam/result
+
+pub fn main() {
+  // Pipeline operator |> and arrow ->
+  [1, 2, 3, 4, 5]
+  |> list.map(fn(x) { x * 2 })
+  |> list.filter(fn(x) { x >= 4 })
+  |> list.each(io.println)
+}
+
+// Pattern matching with -> and comparison operators
+pub fn compare(a: Int, b: Int) -> String {
+  case a, b {
+    a, b if a == b -> "equal"
+    a, b if a >= b -> "greater or equal"
+    a, b if a <= b -> "less or equal"
+    a, b if a != b -> "not equal"
+    _, _ -> "unknown"
+  }
+}
+
+// Function composition with arrows
+pub fn pipeline_example(value: Int) -> Int {
+  value
+  |> add_one
+  |> multiply_two
+  |> subtract_three
+}
+
+fn add_one(x: Int) -> Int { x + 1 }
+fn multiply_two(x: Int) -> Int { x * 2 }
+fn subtract_three(x: Int) -> Int { x - 3 }
+```
+
+### Font Ligatures Demo
+
+```js
+// Showcasing common programming ligatures
+// Comparisons: ==, !=, ===, !==, <=, >=
+const isEqual = (a, b) => a === b && a !== null;
+const inRange = (x, min, max) => x >= min && x <= max;
+
+// Arrows: =>, ->, <-, <=>
+const map = arr => arr.map(x => x * 2);
+const compose = (f, g) => x => f(g(x));
+
+// Logic operators: ||, &&, ??
+const result = value ?? fallback || default && backup;
+
+// Special operators: |>, <|, <>, ++, --, **, ===
+const pipeline = data
+  |> transform
+  |> validate
+  |> process;
+
+// Combined ligatures
+if (x >= 10 && y <= 20) {
+  return x !== y ? x : y;
+}
+
+// More arrow variations: =>, ->, ~>, <=, >=, <=>
+const funcs = {
+  arrow: () => {},
+  bigarrow: () => true,
+  compare: (a, b) => a >= b || a <= b,
+};
+```
+
 ### JSON
 
 ```json

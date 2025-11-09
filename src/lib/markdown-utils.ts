@@ -56,8 +56,8 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
   styleOverrides: {
     codeFontFamily: 'var(--code-font)',
     codeFontSize: 'var(--code-font-size)',
-    codePaddingBlock: '1.5rem',
-    codePaddingInline: '1.5rem',
+    codePaddingBlock: '1rem',
+    codePaddingInline: '1rem',
   }
 }
 

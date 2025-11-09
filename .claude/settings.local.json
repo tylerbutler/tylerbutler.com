@@ -97,7 +97,8 @@
       "mcp__playwright__browser_type",
       "Bash(chmod:*)",
       "Bash(npm info:*)",
-      "Bash(npm --version:*)"
+      "Bash(npm --version:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []

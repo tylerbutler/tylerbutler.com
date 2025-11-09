@@ -24,8 +24,8 @@ import 'littlefoot/dist/littlefoot.css';
     color: #333;
   }
 
-  /* Dark mode support - override littlefoot CSS variables */
-  .dark .littlefoot {
+  /* Dark mode support - override littlefoot CSS variables on root elements */
+  :root.dark {
     /* Button styling for dark mode */
     --button-background-color: var(--code-bg);
     --button-text-color: var(--text);
@@ -40,11 +40,16 @@ import 'littlefoot/dist/littlefoot.css';
     --popover-scroll-indicator-color: var(--accent);
   }
 
-  .dark .littlefoot-footnote__content {
+  .dark .littlefoot__content {
     color: var(--text);
   }
 
-  .dark .littlefoot-footnote__wrapper {
+  .dark .littlefoot__wrapper {
+    background-color: var(--code-bg);
+    border-color: var(--code-border);
+  }
+
+  .dark .littlefoot__tooltip {
     background-color: var(--code-bg);
     border-color: var(--code-border);
   }

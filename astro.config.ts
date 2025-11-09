@@ -127,12 +127,6 @@ export default defineConfig({
 	image: {
 		responsiveStyles: true,
 		layout: 'constrained', // Generates srcset for responsive images
-		remotePatterns: [
-			{
-				protocol: 'https',
-				hostname: 'via.placeholder.com',
-			},
-		],
 	},
 	markdown: {
 		remarkPlugins: [
@@ -165,8 +159,7 @@ export default defineConfig({
 
 	vite: {
 		ssr: {
-			// Externalize Lucide to prevent SSR bundling issues
-			noExternal: ["@lucide/astro"],
+			// noExternal: ["simple-icons-astro"],
 		},
 		optimizeDeps: {
 			exclude: [

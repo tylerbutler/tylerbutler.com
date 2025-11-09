@@ -93,7 +93,8 @@
       "Bash(npm search:*)",
       "WebFetch(domain:littlefoot.js.org)",
       "mcp__playwright__browser_hover",
-      "mcp__serena*"
+      "mcp__serena*",
+      "mcp__playwright__browser_type"
     ],
     "deny": [],
     "ask": []

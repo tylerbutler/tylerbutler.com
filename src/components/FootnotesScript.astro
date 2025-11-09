@@ -24,14 +24,29 @@ import 'littlefoot/dist/littlefoot.css';
     color: #333;
   }
 
-  /* Dark mode support */
+  /* Dark mode support - override littlefoot CSS variables */
+  .dark .littlefoot {
+    /* Button styling for dark mode */
+    --button-background-color: var(--code-bg);
+    --button-text-color: var(--text);
+    --button-active-background-color: var(--accent);
+    --button-active-text-color: var(--dark-bg);
+
+    /* Popover styling for dark mode */
+    --popover-background-color: var(--code-bg);
+    --popover-text-color: var(--text);
+    --popover-border: 1px solid var(--code-border);
+    --popover-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+    --popover-scroll-indicator-color: var(--accent);
+  }
+
   .dark .littlefoot-footnote__content {
-    color: #e5e5e5;
+    color: var(--text);
   }
 
   .dark .littlefoot-footnote__wrapper {
-    background-color: #2a2a2a;
-    border-color: #444;
+    background-color: var(--code-bg);
+    border-color: var(--code-border);
   }
 
   /* Style footnote references */

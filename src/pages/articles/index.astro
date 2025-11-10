@@ -138,6 +138,12 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
     flex-shrink: 0;
     width: 120px;
     text-align: right;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    background: var(--background);
+    padding: 0.5rem 0;
+    z-index: 10;
   }
 
   .articles-container {

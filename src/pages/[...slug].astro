@@ -265,14 +265,10 @@ const isLinkPost = article.data.articleType === 'link';
     color: var(--text);
   }
 
-  /* Medium+ screens: two-column layout with sidebar */
+  /* Medium+ screens: TOC positioned to the right */
   @media (min-width: 1024px) {
     .article-layout.with-toc {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 280px;
-      gap: 3em;
-      align-items: start;
-      max-width: none;
+      position: relative;
     }
 
     /* Hide narrow TOC on medium+ screens */
@@ -280,19 +276,26 @@ const isLinkPost = article.data.articleType === 'link';
       display: none;
     }
 
-    /* Show sidebar TOC on medium+ screens */
+    /* Show sidebar TOC on medium+ screens - positioned to the right of content */
     .toc-sidebar {
       display: block;
-      position: sticky;
-      top: 2em;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      width: clamp(200px, 25vw, 280px);
+      margin-left: 2em;
       padding: 1.5em;
       background: var(--code-bg);
       border-radius: 5px;
       border-left: 3px solid var(--accent);
+    }
+
+    /* Make TOC sticky within viewport */
+    .toc-sidebar {
+      position: sticky;
+      top: 2em;
       max-height: calc(100vh - 4em);
       overflow-y: auto;
-      width: 280px;
-      min-width: 280px;
     }
 
     .toc-sidebar .toc-title {

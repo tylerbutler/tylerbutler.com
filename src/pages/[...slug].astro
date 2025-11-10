@@ -121,18 +121,20 @@ const isLinkPost = article.data.articleType === 'link';
 
     {isLinkPost && article.data.link && (
       <div class="link-post-reference">
-        <a href={article.data.link} target="_blank" rel="noopener noreferrer" class="external-article-link">
-          {await formatTitle(article.data.title)}
-          <ExternalLink size={16} class="external-icon" />
-        </a>
-        {article.data.via && article.data.vialink && (
-          <cite class="link-via">
-            via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
-              {article.data.via}
-              <ExternalLink size={12} class="external-icon" />
-            </a>
-          </cite>
-        )}
+        <div class="link-wrapper">
+          <a href={article.data.link} target="_blank" rel="noopener noreferrer" class="external-article-link">
+            {await formatTitle(article.data.title)}
+            <ExternalLink size={16} class="external-icon" />
+          </a>
+          {article.data.via && article.data.vialink && (
+            <cite class="link-via">
+              via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
+                {article.data.via}
+                <ExternalLink size={12} class="external-icon" />
+              </a>
+            </cite>
+          )}
+        </div>
       </div>
     )}
 
@@ -187,13 +189,16 @@ const isLinkPost = article.data.articleType === 'link';
 
   .link-post-reference {
     margin-bottom: 2em;
-    padding: 1em 1em 0.75em 1em;
+    padding: 1em;
     background: var(--code-bg);
     border-left: 3px solid var(--accent);
     border-radius: 3px;
-    display: flex;
+  }
+
+  .link-wrapper {
+    display: inline-flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
   }
 
   .external-article-link {
@@ -216,7 +221,6 @@ const isLinkPost = article.data.articleType === 'link';
     font-style: normal;
     font-size: 13px;
     color: var(--text-light);
-    align-self: flex-end;
   }
 
   .link-via::before {

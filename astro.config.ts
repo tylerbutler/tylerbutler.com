@@ -99,7 +99,9 @@ export default defineConfig({
 		sitemap(),
 		mdx({
 			remarkPlugins: [
-				remarkLazyLinks, // Process lazy links first, before other transformations
+				// Process lazy links first, before other transformations
+				// Use [remarkLazyLinks, { persist: true }] to write changes back to source files
+				remarkLazyLinks,
 				remarkGfm,
 				remarkSmartypants,
 				remarkMermaid,
@@ -133,7 +135,9 @@ export default defineConfig({
 	markdown: {
 		syntaxHighlight: false, // Disable Astro's built-in syntax highlighting to use Expressive Code
 		remarkPlugins: [
-			remarkLazyLinks, // Process lazy links first, before other transformations
+			// Process lazy links first, before other transformations
+			// Use [remarkLazyLinks, { persist: true }] to write changes back to source files
+			remarkLazyLinks,
 			remarkGfm,
 			remarkSmartypants,
 			remarkMermaid,

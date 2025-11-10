@@ -1,6 +1,23 @@
 import type { Plugin } from 'unified';
 import type { Root } from 'mdast';
 import type { VFile } from 'vfile';
+import { writeFileSync } from 'node:fs';
+
+interface LazyLinksOptions {
+  /**
+   * Whether to persist the transformed links back to source files.
+   *
+   * When false (default): Transformation happens in-memory only during build.
+   * Source files remain unchanged with [*] markers.
+   *
+   * When true: Source files are permanently modified, replacing [*] with
+   * numbered links. Useful if you want the transformed format to be the
+   * canonical version or need to use files outside of Astro.
+   *
+   * @default false
+   */
+  persist?: boolean;
+}
 
 /**
  * Remark plugin to transform lazy markdown links [*] into numbered references.
@@ -16,9 +33,19 @@ import type { VFile } from 'vfile';
  * Features:
  * - Preserves existing numbered links
  * - Handles multiple overlapping lazy links
- * - In-memory transformation only (source files unchanged)
+ * - Configurable persistence (in-memory or write back to source)
+ *
+ * @example
+ * // In-memory transformation only (default)
+ * remarkPlugins: [remarkLazyLinks]
+ *
+ * @example
+ * // Persist changes back to source files
+ * remarkPlugins: [[remarkLazyLinks, { persist: true }]]
  */
-export const remarkLazyLinks: Plugin<[], Root> = () => {
+export const remarkLazyLinks: Plugin<[LazyLinksOptions?], Root> = (options = {}) => {
+  const { persist = false } = options;
+
   return (tree: Root, file: VFile) => {
     // Get the raw markdown content
     const content = String(file.value || '');
@@ -55,16 +82,32 @@ export const remarkLazyLinks: Plugin<[], Root> = () => {
     // Transform lazy links to numbered links
     // Use a while loop to handle overlapping matches
     let transformed = content;
+    let hasChanges = false;
+
     while (linkRegex.test(transformed)) {
       linkRegex.lastIndex = 0;
       transformed = transformed.replace(linkRegex, (match, group1, group2) => {
         counter++;
+        hasChanges = true;
         return `${group1}${counter}${group2}${counter}]:`;
       });
       linkRegex.lastIndex = 0;
     }
 
-    // Update the file content for further processing (in-memory only)
+    // Update the file content for further processing (in-memory)
     file.value = transformed;
+
+    // If persist is enabled and changes were made, write back to source file
+    if (persist && hasChanges) {
+      const filepath = file.history && file.history[0];
+      if (filepath) {
+        try {
+          writeFileSync(filepath, transformed, 'utf-8');
+          console.log(`✨ Lazy links persisted to: ${filepath}`);
+        } catch (error) {
+          console.warn(`⚠️  Failed to persist lazy links to ${filepath}:`, error);
+        }
+      }
+    }
   };
 };

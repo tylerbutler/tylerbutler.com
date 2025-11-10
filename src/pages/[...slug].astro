@@ -268,7 +268,15 @@ const isLinkPost = article.data.articleType === 'link';
   /* Medium+ screens: TOC positioned to the right */
   @media (min-width: 1024px) {
     .article-layout.with-toc {
-      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0;
+      align-items: start;
+    }
+
+    .article-layout.with-toc .article {
+      grid-column: 1;
+      min-width: 0;
     }
 
     /* Hide narrow TOC on medium+ screens */
@@ -276,26 +284,21 @@ const isLinkPost = article.data.articleType === 'link';
       display: none;
     }
 
-    /* Show sidebar TOC on medium+ screens - positioned to the right of content */
+    /* Show sidebar TOC on medium+ screens - positioned to the right */
     .toc-sidebar {
       display: block;
-      position: absolute;
-      left: 100%;
-      top: 0;
+      grid-column: 2;
       width: clamp(200px, 25vw, 280px);
       margin-left: 2em;
       padding: 1.5em;
       background: var(--code-bg);
       border-radius: 5px;
       border-left: 3px solid var(--accent);
-    }
-
-    /* Make TOC sticky within viewport */
-    .toc-sidebar {
       position: sticky;
       top: 2em;
       max-height: calc(100vh - 4em);
       overflow-y: auto;
+      align-self: start;
     }
 
     .toc-sidebar .toc-title {

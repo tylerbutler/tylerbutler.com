@@ -191,6 +191,9 @@ const isLinkPost = article.data.articleType === 'link';
     background: var(--code-bg);
     border-left: 3px solid var(--accent);
     border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .external-article-link {
@@ -209,12 +212,11 @@ const isLinkPost = article.data.articleType === 'link';
   }
 
   .link-via {
-    display: block;
     margin-top: 0.75em;
     font-style: normal;
     font-size: 13px;
     color: var(--text-light);
-    text-align: right;
+    align-self: flex-end;
   }
 
   .link-via::before {

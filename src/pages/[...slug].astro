@@ -3,6 +3,8 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { formatTitle } from '../lib/typography';
 import { ExternalLink } from '@lucide/astro';
+import { TOC } from 'astro-toc';
+import type { TocItem } from 'astro-toc';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -38,7 +40,17 @@ export async function getStaticPaths() {
 }
 
 const { article, prevArticle, nextArticle } = Astro.props;
-const { Content } = await article.render();
+const { Content, headings } = await article.render();
+
+// Check if this is a guide article and prepare TOC data
+const isGuide = article.data.type === 'guide';
+const tocData: TocItem[] = isGuide ? headings
+  .filter(h => h.depth >= 2 && h.depth <= 3) // Only h2 and h3
+  .map(h => ({
+    depth: h.depth,
+    title: h.text,
+    url: `#${h.slug}`
+  })) : [];
 
 // Helper function to generate article URL
 function generateArticleUrl(article: CollectionEntry<'articles'>) {
@@ -100,56 +112,74 @@ const isLinkPost = article.data.articleType === 'link';
 ---
 
 <BaseLayout title={`${article.data.title} - Tyler Butler`} description={article.data.excerpt} headerSize="small">
-  <article class="article" class:list={{ 'link-post': isLinkPost }}>
-    <header class="article-header">
-      <h1>{await formatTitle(article.data.title)}</h1>
-      <div class="article-meta">
-        <time datetime={article.data.date.toISOString()} class="article-date">
-          {formattedDate}
-          {agePeriod && <span class="age-aside"> <em>(I wrote this in my {agePeriod})</em></span>}
-        </time>
-        {!isLinkPost && article.data.via && article.data.vialink && (
-          <span class="article-via">
-            via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
-              {article.data.via}
-              <ExternalLink size={12} class="external-icon" />
-            </a>
-          </span>
-        )}
-      </div>
-    </header>
-
-    {isLinkPost && article.data.link && (
-      <div class="link-post-reference">
-        <div class="link-wrapper">
-          <a href={article.data.link} target="_blank" rel="noopener noreferrer" class="external-article-link">
-            {await formatTitle(article.data.title)}
-            <ExternalLink size={16} class="external-icon" />
-          </a>
-          {article.data.via && article.data.vialink && (
-            <cite class="link-via">
+  <div class="article-layout" class:list={{ 'with-toc': isGuide && tocData.length > 0 }}>
+    <article class="article" class:list={{ 'link-post': isLinkPost }}>
+      <header class="article-header">
+        <h1>{await formatTitle(article.data.title)}</h1>
+        <div class="article-meta">
+          <time datetime={article.data.date.toISOString()} class="article-date">
+            {formattedDate}
+            {agePeriod && <span class="age-aside"> <em>(I wrote this in my {agePeriod})</em></span>}
+          </time>
+          {!isLinkPost && article.data.via && article.data.vialink && (
+            <span class="article-via">
               via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
                 {article.data.via}
                 <ExternalLink size={12} class="external-icon" />
               </a>
-            </cite>
+            </span>
           )}
         </div>
-      </div>
-    )}
+      </header>
 
-    <div class="article-content">
-      <Content />
-    </div>
+      {isLinkPost && article.data.link && (
+        <div class="link-post-reference">
+          <div class="link-wrapper">
+            <a href={article.data.link} target="_blank" rel="noopener noreferrer" class="external-article-link">
+              {await formatTitle(article.data.title)}
+              <ExternalLink size={16} class="external-icon" />
+            </a>
+            {article.data.via && article.data.vialink && (
+              <cite class="link-via">
+                via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
+                  {article.data.via}
+                  <ExternalLink size={12} class="external-icon" />
+                </a>
+              </cite>
+            )}
+          </div>
+        </div>
+      )}
 
-    {article.data.tags && article.data.tags.length > 0 && (
-      <div class="article-tags">
-        {article.data.tags.map(tag => (
-          <a href={`/tags/${tag}/`} class="tag" data-pagefind-filter="tag">#{tag}</a>
-        ))}
+      {/* TOC for narrow screens - inline at top */}
+      {isGuide && tocData.length > 0 && (
+        <nav class="toc-narrow" aria-label="Table of Contents">
+          <h2 class="toc-title">Contents</h2>
+          <TOC toc={tocData} depth={2} maxDepth={3} class="toc-list" />
+        </nav>
+      )}
+
+      <div class="article-content">
+        <Content />
       </div>
+
+      {article.data.tags && article.data.tags.length > 0 && (
+        <div class="article-tags">
+          {article.data.tags.map(tag => (
+            <a href={`/tags/${tag}/`} class="tag" data-pagefind-filter="tag">#{tag}</a>
+          ))}
+        </div>
+      )}
+    </article>
+
+    {/* TOC for medium+ screens - sidebar on right */}
+    {isGuide && tocData.length > 0 && (
+      <aside class="toc-sidebar" aria-label="Table of Contents">
+        <h2 class="toc-title">Contents</h2>
+        <TOC toc={tocData} depth={2} maxDepth={3} class="toc-list" />
+      </aside>
     )}
-  </article>
+  </div>
 
   <nav class="article-nav">
     {prevArticle && (
@@ -169,8 +199,117 @@ const isLinkPost = article.data.articleType === 'link';
 </BaseLayout>
 
 <style>
+  /* Article layout container */
+  .article-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+
   .article {
     max-width: 100%;
+  }
+
+  /* TOC for narrow screens - inline at top */
+  .toc-narrow {
+    margin-bottom: 2em;
+    padding: 1.5em;
+    background: var(--code-bg);
+    border-radius: 5px;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* TOC sidebar hidden on narrow screens */
+  .toc-sidebar {
+    display: none;
+  }
+
+  .toc-title {
+    font-family: adelle, Georgia, serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 1em 0;
+    color: var(--text);
+  }
+
+  /* Override astro-toc default styles */
+  .toc-narrow :global(.toc-list),
+  .toc-sidebar :global(.toc-list) {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-narrow :global(.toc-list li),
+  .toc-sidebar :global(.toc-list li) {
+    margin: 0.5em 0;
+  }
+
+  .toc-narrow :global(.toc-list li ul),
+  .toc-sidebar :global(.toc-list li ul) {
+    margin-left: 1em;
+    margin-top: 0.5em;
+  }
+
+  .toc-narrow :global(.toc-list a),
+  .toc-sidebar :global(.toc-list a) {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    line-height: 1.4;
+    display: inline-block;
+  }
+
+  .toc-narrow :global(.toc-list a:hover),
+  .toc-sidebar :global(.toc-list a:hover) {
+    color: var(--text);
+  }
+
+  /* Medium+ screens: two-column layout with sidebar */
+  @media (min-width: 1024px) {
+    .article-layout.with-toc {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3em;
+      align-items: start;
+    }
+
+    /* Hide narrow TOC on medium+ screens */
+    .toc-narrow {
+      display: none;
+    }
+
+    /* Show sidebar TOC on medium+ screens */
+    .toc-sidebar {
+      display: block;
+      position: sticky;
+      top: 2em;
+      padding: 1.5em;
+      background: var(--code-bg);
+      border-radius: 5px;
+      border-left: 3px solid var(--accent);
+      max-height: calc(100vh - 4em);
+      overflow-y: auto;
+    }
+
+    .toc-sidebar .toc-title {
+      font-size: 16px;
+      margin-bottom: 0.75em;
+    }
+
+    .toc-sidebar :global(.toc-list li) {
+      margin: 0.4em 0;
+      font-size: 14px;
+    }
+
+    .toc-sidebar :global(.toc-list li ul) {
+      margin-left: 1em;
+      margin-top: 0.4em;
+    }
+
+    .toc-sidebar :global(.toc-list li li) {
+      font-size: 13px;
+    }
   }
 
   .article-header {

@@ -13,6 +13,7 @@ const articles = defineCollection({
     via: z.string().optional(),
     vialink: z.string().optional(),
     headingStartLevel: z.number().optional(), // Override for heading normalization
+    type: z.enum(['guide', 'standard']).optional(), // Article type (guide for ToC, standard otherwise)
   }).transform((data) => ({
     ...data,
     // Auto-infer article type based on presence of external link

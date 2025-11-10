@@ -54,6 +54,7 @@
     "astro": "^5.14.1",
     "astro-broken-links-checker": "github:imazen/astro-broken-link-checker",
     "astro-expressive-code": "^0.41.3",
+    "astro-toc": "^0.2.0",
     "expressive-code-twoslash": "^0.5.3",
     "littlefoot": "^4.1.2",
     "rehype-autolink-headings": "^7.1.0",

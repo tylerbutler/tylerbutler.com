@@ -13,7 +13,11 @@ const articles = defineCollection({
     via: z.string().optional(),
     vialink: z.string().optional(),
     headingStartLevel: z.number().optional(), // Override for heading normalization
-  }),
+  }).transform((data) => ({
+    ...data,
+    // Auto-infer article type based on presence of external link
+    articleType: data.link ? 'link' as const : 'standard' as const,
+  })),
 });
 
 const projects = defineCollection({

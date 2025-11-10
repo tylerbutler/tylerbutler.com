@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { formatTitle } from '../lib/typography';
+import { ExternalLink } from '@lucide/astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -95,17 +96,37 @@ function getAgePeriod(year: number): string {
 }
 
 const agePeriod = shouldShowAgeAside ? getAgePeriod(articleYear) : null;
+const isLinkPost = article.data.articleType === 'link';
 ---
 
 <BaseLayout title={`${article.data.title} - Tyler Butler`} description={article.data.excerpt} headerSize="small">
-  <article class="article">
+  <article class="article" class:list={{ 'link-post': isLinkPost }}>
     <header class="article-header">
       <h1>{await formatTitle(article.data.title)}</h1>
-      <time datetime={article.data.date.toISOString()} class="article-date">
-        {formattedDate}
-        {agePeriod && <span class="age-aside"> <em>(I wrote this in my {agePeriod})</em></span>}
-      </time>
+      <div class="article-meta">
+        <time datetime={article.data.date.toISOString()} class="article-date">
+          {formattedDate}
+          {agePeriod && <span class="age-aside"> <em>(I wrote this in my {agePeriod})</em></span>}
+        </time>
+        {article.data.via && article.data.vialink && (
+          <span class="article-via">
+            via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
+              {article.data.via}
+              <ExternalLink size={12} class="external-icon" />
+            </a>
+          </span>
+        )}
+      </div>
     </header>
+
+    {isLinkPost && article.data.link && (
+      <div class="link-post-reference">
+        <a href={article.data.link} target="_blank" rel="noopener noreferrer" class="external-article-link">
+          {await formatTitle(article.data.title)}
+          <ExternalLink size={16} class="external-icon" />
+        </a>
+      </div>
+    )}
 
     <div class="article-content">
       <Content />
@@ -156,13 +177,39 @@ const agePeriod = shouldShowAgeAside ? getAgePeriod(articleYear) : null;
     margin: 0 0 0.5em 0;
   }
 
+  .link-post-reference {
+    margin-bottom: 2em;
+    padding: 1em;
+    background: #f8f8f8;
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+  }
+
+  .external-article-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    transition: color 0.2s ease;
+  }
+
+  .external-article-link:hover {
+    color: var(--text);
+  }
+
+  .article-meta {
+    margin-bottom: 1em;
+  }
+
   .article-date {
     font-size: 16px;
     color: #666;
     text-transform: uppercase;
     letter-spacing: 1px;
     display: block;
-    margin-bottom: 1em;
   }
 
   .age-aside {
@@ -170,6 +217,31 @@ const agePeriod = shouldShowAgeAside ? getAgePeriod(articleYear) : null;
     letter-spacing: normal;
     font-size: 14px;
     color: var(--text-light);
+  }
+
+  .article-via {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-top: 0.5em;
+  }
+
+  .via-link {
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    transition: color 0.2s ease;
+  }
+
+  .via-link:hover {
+    color: var(--text);
+  }
+
+  .external-icon {
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .article-tags {

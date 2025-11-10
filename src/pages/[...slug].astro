@@ -54,6 +54,47 @@ const formattedDate = date.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric'
 });
+
+// Calculate if article is old enough to show age aside (>10 years)
+const currentYear = new Date().getFullYear();
+const articleYear = date.getFullYear();
+const yearsSinceWritten = currentYear - articleYear;
+const shouldShowAgeAside = yearsSinceWritten > 10;
+
+// Determine age period when article was written
+// Assume: early 2000s = early 20s, 2010s = 30s, 2020s = 40s
+// Each decade divided into thirds: 0-3 = early, 4-6 = mid, 7-9 = late
+function getAgePeriod(year: number): string {
+  const decade = Math.floor(year / 10) * 10;
+  const yearInDecade = year % 10;
+
+  // Determine age range based on decade
+  let ageDecade: number;
+  if (decade >= 2000 && decade < 2010) {
+    ageDecade = 20;
+  } else if (decade >= 2010 && decade < 2020) {
+    ageDecade = 30;
+  } else if (decade >= 2020 && decade < 2030) {
+    ageDecade = 40;
+  } else {
+    // For older articles, continue the pattern backwards
+    ageDecade = 20 - ((2000 - decade) / 10) * 10;
+  }
+
+  // Determine early/mid/late
+  let period: string;
+  if (yearInDecade <= 3) {
+    period = 'early';
+  } else if (yearInDecade <= 6) {
+    period = 'mid';
+  } else {
+    period = 'late';
+  }
+
+  return `${period} ${ageDecade}s`;
+}
+
+const agePeriod = shouldShowAgeAside ? getAgePeriod(articleYear) : null;
 ---
 
 <BaseLayout title={`${article.data.title} - Tyler Butler`} description={article.data.excerpt} headerSize="small">
@@ -62,6 +103,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
       <h1>{await formatTitle(article.data.title)}</h1>
       <time datetime={article.data.date.toISOString()} class="article-date">
         {formattedDate}
+        {agePeriod && <span class="age-aside"> <em>(I wrote this in my {agePeriod})</em></span>}
       </time>
     </header>
 
@@ -121,6 +163,13 @@ const formattedDate = date.toLocaleDateString('en-US', {
     letter-spacing: 1px;
     display: block;
     margin-bottom: 1em;
+  }
+
+  .age-aside {
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 14px;
+    color: var(--text-light);
   }
 
   .article-tags {

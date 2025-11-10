@@ -198,7 +198,7 @@ const isLinkPost = article.data.articleType === 'link';
   .link-wrapper {
     display: inline-flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
   }
 
   .external-article-link {
@@ -210,6 +210,7 @@ const isLinkPost = article.data.articleType === 'link';
     align-items: center;
     gap: 0.5em;
     transition: color 0.2s ease;
+    align-self: flex-start;
   }
 
   .external-article-link:hover {
@@ -221,6 +222,7 @@ const isLinkPost = article.data.articleType === 'link';
     font-style: normal;
     font-size: 13px;
     color: var(--text-light);
+    align-self: flex-end;
   }
 
   .link-via::before {

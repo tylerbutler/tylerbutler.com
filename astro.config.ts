@@ -14,6 +14,7 @@ import remarkMermaid from "remark-mermaid";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
 import { remarkNormalizeHeadings } from "./src/lib/remark-normalize-headings.ts";
+import { remarkLazyLinks } from "./src/lib/remark-lazy-links.ts";
 import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
 import { rehypeFootnotes } from "./src/lib/footnotes.js";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
@@ -98,6 +99,7 @@ export default defineConfig({
 		sitemap(),
 		mdx({
 			remarkPlugins: [
+				remarkLazyLinks, // Process lazy links first, before other transformations
 				remarkGfm,
 				remarkSmartypants,
 				remarkMermaid,
@@ -131,6 +133,7 @@ export default defineConfig({
 	markdown: {
 		syntaxHighlight: false, // Disable Astro's built-in syntax highlighting to use Expressive Code
 		remarkPlugins: [
+			remarkLazyLinks, // Process lazy links first, before other transformations
 			remarkGfm,
 			remarkSmartypants,
 			remarkMermaid,

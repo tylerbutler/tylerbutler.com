@@ -269,9 +269,10 @@ const isLinkPost = article.data.articleType === 'link';
   @media (min-width: 1024px) {
     .article-layout.with-toc {
       display: grid;
-      grid-template-columns: 1fr 280px;
+      grid-template-columns: minmax(0, 1fr) 280px;
       gap: 3em;
       align-items: start;
+      max-width: none;
     }
 
     /* Hide narrow TOC on medium+ screens */
@@ -290,6 +291,8 @@ const isLinkPost = article.data.articleType === 'link';
       border-left: 3px solid var(--accent);
       max-height: calc(100vh - 4em);
       overflow-y: auto;
+      width: 280px;
+      min-width: 280px;
     }
 
     .toc-sidebar .toc-title {

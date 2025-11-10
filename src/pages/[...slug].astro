@@ -108,14 +108,6 @@ const isLinkPost = article.data.articleType === 'link';
           {formattedDate}
           {agePeriod && <span class="age-aside"> <em>(I wrote this in my {agePeriod})</em></span>}
         </time>
-        {article.data.via && article.data.vialink && (
-          <span class="article-via">
-            via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
-              {article.data.via}
-              <ExternalLink size={12} class="external-icon" />
-            </a>
-          </span>
-        )}
       </div>
     </header>
 
@@ -125,6 +117,14 @@ const isLinkPost = article.data.articleType === 'link';
           {await formatTitle(article.data.title)}
           <ExternalLink size={16} class="external-icon" />
         </a>
+        {article.data.via && article.data.vialink && (
+          <cite class="link-via">
+            via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
+              {article.data.via}
+              <ExternalLink size={12} class="external-icon" />
+            </a>
+          </cite>
+        )}
       </div>
     )}
 
@@ -179,7 +179,7 @@ const isLinkPost = article.data.articleType === 'link';
 
   .link-post-reference {
     margin-bottom: 2em;
-    padding: 1em;
+    padding: 1em 1em 0.75em 1em;
     background: #f8f8f8;
     border-left: 3px solid var(--accent);
     border-radius: 3px;
@@ -200,6 +200,19 @@ const isLinkPost = article.data.articleType === 'link';
     color: var(--text);
   }
 
+  .link-via {
+    display: block;
+    margin-top: 0.75em;
+    font-style: normal;
+    font-size: 13px;
+    color: #888;
+    text-align: right;
+  }
+
+  .link-via::before {
+    content: '— ';
+  }
+
   .article-meta {
     margin-bottom: 1em;
   }
@@ -217,13 +230,6 @@ const isLinkPost = article.data.articleType === 'link';
     letter-spacing: normal;
     font-size: 14px;
     color: var(--text-light);
-  }
-
-  .article-via {
-    font-size: 14px;
-    color: #666;
-    display: block;
-    margin-top: 0.5em;
   }
 
   .via-link {

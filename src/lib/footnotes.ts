@@ -3,9 +3,9 @@
  * Transforms GFM footnotes to be compatible with Littlefoot's expected format
  */
 
-import type { Element } from 'hast';
-import { visit } from 'unist-util-visit';
-import type { Root } from 'hast';
+import type { Element } from "hast";
+import { visit } from "unist-util-visit";
+import type { Root } from "hast";
 
 /**
  * Configuration options for footnote processing
@@ -38,7 +38,7 @@ export interface FootnoteOptions {
  */
 const defaultOptions: Required<FootnoteOptions> = {
   referenceSelector: 'sup[id^="user-content-fnref-"]',
-  definitionSelector: 'section[data-footnotes]',
+  definitionSelector: "section[data-footnotes]",
   activateOnLoad: true,
   littlefootOptions: {
     allowDuplicates: false,
@@ -46,8 +46,8 @@ const defaultOptions: Required<FootnoteOptions> = {
     dismissDelay: 100,
     dismissOnUnhover: true,
     hoverDelay: 250,
-    scope: 'body'
-  }
+    scope: "body",
+  },
 };
 
 /**
@@ -57,30 +57,38 @@ const defaultOptions: Required<FootnoteOptions> = {
  * @param tree - HAST tree to transform
  * @param options - Configuration options
  */
-export function transformFootnotesForLittlefoot(tree: Root, options: FootnoteOptions = {}): void {
+export function transformFootnotesForLittlefoot(
+  tree: Root,
+  options: FootnoteOptions = {},
+): void {
   const opts = { ...defaultOptions, ...options };
 
   // Track footnote references and definitions
   const footnoteMap = new Map<string, { ref: Element; def: Element }>();
 
   // First pass: find all footnote references
-  visit(tree, 'element', (node: Element) => {
-    if (node.tagName === 'sup' && node.properties?.id &&
-        typeof node.properties.id === 'string' &&
-        node.properties.id.startsWith('user-content-fnref-')) {
-
-      const footnoteId = node.properties.id.replace('user-content-fnref-', '');
+  visit(tree, "element", (node: Element) => {
+    if (
+      node.tagName === "sup" &&
+      node.properties?.id &&
+      typeof node.properties.id === "string" &&
+      node.properties.id.startsWith("user-content-fnref-")
+    ) {
+      const footnoteId = node.properties.id.replace("user-content-fnref-", "");
 
       // Transform the reference for Littlefoot compatibility
-      if (node.children[0] && node.children[0].type === 'element' &&
-          node.children[0].tagName === 'a') {
+      if (
+        node.children[0] &&
+        node.children[0].type === "element" &&
+        node.children[0].tagName === "a"
+      ) {
         const linkElement = node.children[0] as Element;
 
         // Add rel="footnote" for Littlefoot recognition
         linkElement.properties = {
           ...linkElement.properties,
-          rel: 'footnote',
-          'data-footnote-id': footnoteId
+          rel: "footnote",
+          "data-footnote-id": footnoteId,
         };
 
         // Store for mapping with definition
@@ -94,38 +102,46 @@ export function transformFootnotesForLittlefoot(tree: Root, options: FootnoteOpt
   });
 
   // Second pass: find footnote definitions and transform them
-  visit(tree, 'element', (node: Element) => {
-    if (node.tagName === 'section' &&
-        node.properties?.['data-footnotes'] !== undefined) {
-
+  visit(tree, "element", (node: Element) => {
+    if (
+      node.tagName === "section" &&
+      node.properties?.["data-footnotes"] !== undefined
+    ) {
       // Remove the "Footnotes" heading if it exists
       node.children = node.children.filter((child: any) => {
-        if (child.type !== 'element') return true;
-        if (child.tagName !== 'h2') return true;
-        if (child.properties?.id !== 'footnote-label') return true;
+        if (child.type !== "element") return true;
+        if (child.tagName !== "h2") return true;
+        if (child.properties?.id !== "footnote-label") return true;
         return false; // Remove this h2 with id="footnote-label"
       });
 
       // Find all footnote list items within this section
-      visit(node, 'element', (listItem: Element) => {
-        if (listItem.tagName === 'li' && listItem.properties?.id &&
-            typeof listItem.properties.id === 'string' &&
-            listItem.properties.id.startsWith('user-content-fn-')) {
-
-          const footnoteId = listItem.properties.id.replace('user-content-fn-', '');
+      visit(node, "element", (listItem: Element) => {
+        if (
+          listItem.tagName === "li" &&
+          listItem.properties?.id &&
+          typeof listItem.properties.id === "string" &&
+          listItem.properties.id.startsWith("user-content-fn-")
+        ) {
+          const footnoteId = listItem.properties.id.replace(
+            "user-content-fn-",
+            "",
+          );
 
           // Transform for Littlefoot compatibility
           listItem.properties = {
             ...listItem.properties,
             id: `fn:${footnoteId}`,
-            'data-footnote-id': footnoteId
+            "data-footnote-id": footnoteId,
           };
 
           // Remove the back-reference link (↩) as Littlefoot handles this
-          visit(listItem, 'element', (backRef: Element, index, parent) => {
-            if (backRef.tagName === 'a' &&
-                backRef.properties?.['data-footnote-backref'] !== undefined) {
-              if (parent && typeof index === 'number') {
+          visit(listItem, "element", (backRef: Element, index, parent) => {
+            if (
+              backRef.tagName === "a" &&
+              backRef.properties?.["data-footnote-backref"] !== undefined
+            ) {
+              if (parent && typeof index === "number") {
                 parent.children.splice(index, 1);
               }
             }
@@ -149,7 +165,9 @@ export function transformFootnotesForLittlefoot(tree: Root, options: FootnoteOpt
  * @param options - Configuration options
  * @returns JavaScript code as a string
  */
-export function generateLittlefootScript(options: FootnoteOptions = {}): string {
+export function generateLittlefootScript(
+  options: FootnoteOptions = {},
+): string {
   const opts = { ...defaultOptions, ...options };
 
   const littlefootConfig = JSON.stringify(opts.littlefootOptions, null, 2);

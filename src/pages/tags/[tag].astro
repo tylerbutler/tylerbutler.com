@@ -1,43 +1,50 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { formatTitle } from '../../lib/typography';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatTitle } from "../../lib/typography";
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles', ({ data }) => {
+  const articles = await getCollection("articles", ({ data }) => {
     return !data.draft;
   });
 
   // Get all unique tags
   const tagSet = new Set<string>();
-  articles.forEach(article => {
+  articles.forEach((article) => {
     if (article.data.tags) {
-      article.data.tags.forEach(tag => tagSet.add(tag));
+      article.data.tags.forEach((tag) => tagSet.add(tag));
     }
   });
 
   const tags = Array.from(tagSet);
 
-  return Promise.all(tags.map(async tag => {
-    const filteredArticles = articles.filter(article =>
-      article.data.tags && article.data.tags.includes(tag)
-    ).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  return Promise.all(
+    tags.map(async (tag) => {
+      const filteredArticles = articles
+        .filter(
+          (article) => article.data.tags && article.data.tags.includes(tag),
+        )
+        .sort(
+          (a, b) =>
+            new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+        );
 
-    const articlesWithFormattedTitles = await Promise.all(
-      filteredArticles.map(async (article) => ({
-        ...article,
-        formattedTitle: await formatTitle(article.data.title)
-      }))
-    );
+      const articlesWithFormattedTitles = await Promise.all(
+        filteredArticles.map(async (article) => ({
+          ...article,
+          formattedTitle: await formatTitle(article.data.title),
+        })),
+      );
 
-    return {
-      params: { tag },
-      props: {
-        tag,
-        articles: articlesWithFormattedTitles
-      }
-    };
-  }));
+      return {
+        params: { tag },
+        props: {
+          tag,
+          articles: articlesWithFormattedTitles,
+        },
+      };
+    }),
+  );
 }
 
 const { tag, articles } = Astro.props;
@@ -50,7 +57,7 @@ const description = `All articles tagged with "${tag}"`;
   <main>
     <header class="page-header">
       <h1>Articles tagged "{tag}"</h1>
-      <p>{articles.length} article{articles.length === 1 ? '' : 's'} found</p>
+      <p>{articles.length}article{articles.length === 1 ? '' : 's'}found</p>
     </header>
 
     <div class="articles-list">

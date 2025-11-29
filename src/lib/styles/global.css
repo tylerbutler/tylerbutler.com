@@ -1,15 +1,15 @@
 /* Import fonts with font-display optimization */
-@import '@fontsource/lato/400.css';
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import "@fontsource/lato/400.css";
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
 /* Font loading optimization */
 @font-face {
-  font-family: 'westgate';
+  font-family: "westgate";
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'adelle';
+  font-family: "adelle";
   font-display: swap;
 }
 
@@ -17,30 +17,30 @@
 :root {
   /* Light theme variables - inspired by retro sci-fi background */
   /* Backgrounds */
-  --dark-bg: #1a2332;      /* Deep blue-gray to match spacecraft interior */
-  --light-bg: #FAF8F6;     /* Softer warm white inspired by cloud highlights */
+  --dark-bg: #1a2332; /* Deep blue-gray to match spacecraft interior */
+  --light-bg: #faf8f6; /* Softer warm white inspired by cloud highlights */
   --overlay: rgba(26, 35, 50, 0.15); /* Subtle blue-gray overlay */
 
   /* Text Colors - WCAG AA compliant with mixed harmonies */
-  --accent: #B8722A;       /* Deeper orange for links and accents */
-  --accent-light: #A3621F; /* Even deeper orange for contrast */
-  --accent-hover: #D4842A; /* Warm orange for interactions */
-  --header-accent: #E6B35C; /* Golden yellow for headers from atmospheric layers */
-  --text: #2A4A47;         /* Deep teal-gray */
-  --text-light: #4A6662;   /* Lighter teal-gray for secondary text */
-  --nav-links: #F7F5F2;    /* Warm off-white for navigation */
+  --accent: #b8722a; /* Deeper orange for links and accents */
+  --accent-light: #a3621f; /* Even deeper orange for contrast */
+  --accent-hover: #d4842a; /* Warm orange for interactions */
+  --header-accent: #e6b35c; /* Golden yellow for headers from atmospheric layers */
+  --text: #2a4a47; /* Deep teal-gray */
+  --text-light: #4a6662; /* Lighter teal-gray for secondary text */
+  --nav-links: #f7f5f2; /* Warm off-white for navigation */
 
   /* Code styling variables */
-  --code-bg: #F0EDE8;      /* Light warm background for inline code */
-  --code-text: #B8722A;    /* Orange accent color for inline code text */
+  --code-bg: #f0ede8; /* Light warm background for inline code */
+  --code-text: #b8722a; /* Orange accent color for inline code text */
   --code-border: rgba(184, 114, 42, 0.2); /* Subtle border using accent color */
 
   /* Alert/Status colors */
-  --success: #4A7C59;      /* Muted green for success states */
-  --info: #4A6B8A;         /* Blue-gray for informational messages */
-  --warning: #D4842A;      /* Warm orange for warnings */
-  --error: #B85A4A;        /* Muted red for errors */
-  --important: #8B5A9D;    /* Muted purple for important alerts */
+  --success: #4a7c59; /* Muted green for success states */
+  --info: #4a6b8a; /* Blue-gray for informational messages */
+  --warning: #d4842a; /* Warm orange for warnings */
+  --error: #b85a4a; /* Muted red for errors */
+  --important: #8b5a9d; /* Muted purple for important alerts */
 
   /* Layout measurements - matching mockup innerWrapper */
   --container-width: clamp(636px, 90vw, 763px);
@@ -57,29 +57,34 @@
 /* Dark theme variables - inspired by 2012 blog backgrounds */
 .dark {
   /* Dark theme backgrounds - deep blue-gray inspiration */
-  --dark-bg: #1a2332;      /* Lightened blue-gray header background */
-  --light-bg: #0f1419;    /* Slightly darker content background for contrast */
-  --overlay: rgba(255,255,255,0.1); /* Light overlay for depth */
+  --dark-bg: #1a2332; /* Lightened blue-gray header background */
+  --light-bg: #0f1419; /* Slightly darker content background for contrast */
+  --overlay: rgba(255, 255, 255, 0.1); /* Light overlay for depth */
 
   /* Dark theme text colors - keep readable neutrals */
-  --accent: #D4AF37;       /* Keep the gold accent */
-  --accent-light: #8B6F3A; /* Medium version for hover states */
-  --accent-hover: #C4A366; /* Lighter golden for hover */
-  --text: #e5e5e5;         /* Light gray text for readability */
-  --text-light: #cccccc;   /* Secondary text color */
-  --nav-links: #f0f0f0;    /* Off-white navigation links */
+  --accent: #d4af37; /* Keep the gold accent */
+  --accent-light: #8b6f3a; /* Medium version for hover states */
+  --accent-hover: #c4a366; /* Lighter golden for hover */
+  --text: #e5e5e5; /* Light gray text for readability */
+  --text-light: #cccccc; /* Secondary text color */
+  --nav-links: #f0f0f0; /* Off-white navigation links */
 
   /* Dark theme code styling variables */
-  --code-bg: #2d3748;      /* Dark blue-gray background for inline code */
-  --code-text: #e2e8f0;    /* Light text for good contrast */
-  --code-border: rgba(212, 175, 55, 0.3); /* Subtle golden border using dark theme accent */
+  --code-bg: #2d3748; /* Dark blue-gray background for inline code */
+  --code-text: #e2e8f0; /* Light text for good contrast */
+  --code-border: rgba(
+    212,
+    175,
+    55,
+    0.3
+  ); /* Subtle golden border using dark theme accent */
 
   /* Dark theme alert/status colors */
-  --success: #6B9D7A;      /* Lighter muted green for dark backgrounds */
-  --info: #6B8AAA;         /* Lighter blue-gray for dark backgrounds */
-  --warning: #E69A4A;      /* Lighter warm orange for dark backgrounds */
-  --error: #D47A6A;        /* Lighter muted red for dark backgrounds */
-  --important: #A67AB8;    /* Lighter muted purple for dark backgrounds */
+  --success: #6b9d7a; /* Lighter muted green for dark backgrounds */
+  --info: #6b8aaa; /* Lighter blue-gray for dark backgrounds */
+  --warning: #e69a4a; /* Lighter warm orange for dark backgrounds */
+  --error: #d47a6a; /* Lighter muted red for dark backgrounds */
+  --important: #a67ab8; /* Lighter muted purple for dark backgrounds */
 
   /* Dark theme specific */
   --site-container-bg: #1a2332; /* Container background matching dark-bg */
@@ -114,13 +119,13 @@ body {
 
 /* Fixed background image - prevents distortion on long pages */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/bg.jpg'); /* Fallback for older browsers */
+  background-image: url("/bg.jpg"); /* Fallback for older browsers */
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
@@ -130,7 +135,7 @@ body::before {
 
 /* Dark mode overlay for background image */
 body::after {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
@@ -148,15 +153,17 @@ body::after {
 }
 
 /* Use AVIF for supporting browsers (best compression) */
-@supports (background-image: url('data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgABogQEAwgMg8f8D///8WfhwB8+ErK42A=')) {
+@supports (
+    background-image: url("data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgABogQEAwgMg8f8D///8WfhwB8+ErK42A=")
+  ) {
   body::before {
-    background-image: url('/bg.avif'); /* Standard AVIF - 250KB */
+    background-image: url("/bg.avif"); /* Standard AVIF - 250KB */
   }
 
   /* High-quality AVIF for large screens */
   @media (min-width: 1200px) {
     body::before {
-      background-image: url('/bg-hq.avif'); /* High-quality AVIF - 435KB */
+      background-image: url("/bg-hq.avif"); /* High-quality AVIF - 435KB */
     }
   }
 
@@ -170,15 +177,17 @@ body::after {
 }
 
 /* Use WebP for supporting browsers (fallback from AVIF) */
-@supports (background-image: url('data:image/webp;base64,UklGRh4AAABXRUJQVlA4IBYAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=')) {
+@supports (
+    background-image: url("data:image/webp;base64,UklGRh4AAABXRUJQVlA4IBYAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=")
+  ) {
   body::before {
-    background-image: url('/bg.webp'); /* Standard WebP - 274KB */
+    background-image: url("/bg.webp"); /* Standard WebP - 274KB */
   }
 
   /* High-quality WebP for large screens */
   @media (min-width: 1200px) {
     body::before {
-      background-image: url('/bg-hq.webp'); /* High-quality WebP - 484KB */
+      background-image: url("/bg-hq.webp"); /* High-quality WebP - 484KB */
     }
   }
 
@@ -415,7 +424,11 @@ nav ul {
 
   /* Tighter spacing for small headers to fit in reduced height */
   .site-header--small nav ul {
-    gap: clamp(2px, 0.5vw, 5px) !important; /* Much smaller gap for compact header */
+    gap: clamp(
+      2px,
+      0.5vw,
+      5px
+    ) !important; /* Much smaller gap for compact header */
   }
 
   header nav ul li,
@@ -427,7 +440,11 @@ nav ul {
   header nav ul li a,
   banner nav ul li a {
     font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
-    font-size: clamp(10px, 1.4vw, 14px); /* Proportional font size scaling with nav width */
+    font-size: clamp(
+      10px,
+      1.4vw,
+      14px
+    ); /* Proportional font size scaling with nav width */
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: clamp(0.2px, 0.2vw, 2px); /* Proportional letter spacing */
@@ -446,8 +463,16 @@ nav ul {
 
   /* Smaller text and padding for small headers to fit in reduced height */
   .site-header--small nav ul li a {
-    font-size: clamp(8px, 1.0vw, 12px) !important; /* Smaller font for compact header */
-    letter-spacing: clamp(0.1px, 0.15vw, 1.5px) !important; /* Match horizontal nav letter spacing */
+    font-size: clamp(
+      8px,
+      1vw,
+      12px
+    ) !important; /* Smaller font for compact header */
+    letter-spacing: clamp(
+      0.1px,
+      0.15vw,
+      1.5px
+    ) !important; /* Match horizontal nav letter spacing */
     padding: clamp(2px, 0.4vw, 4px) clamp(1px, 0.3vw, 3px) !important; /* Tighter padding */
     line-height: 1.1 !important; /* Tighter line height */
   }
@@ -516,7 +541,7 @@ nav ul {
     transition: all 0.2s ease;
     padding: 6px;
     border-radius: 4px;
-    font-size: clamp(8px, 1.0vw, 11px);
+    font-size: clamp(8px, 1vw, 11px);
     letter-spacing: 0.5px;
     text-transform: uppercase;
     flex-shrink: 0;
@@ -673,7 +698,8 @@ p + p {
 }
 
 /* List Styles */
-ul, ol {
+ul,
+ol {
   margin: 1em 0;
   padding-left: 0;
   list-style-position: outside;
@@ -935,7 +961,7 @@ hr::after {
 
 /* Footer section */
 .site-footer {
-  background-color: #F2F0ED;
+  background-color: #f2f0ed;
   padding: 15px 25px;
   text-align: center;
   font-size: 11px;
@@ -1034,18 +1060,18 @@ table td {
 }
 
 table th {
-  background-color: #F5F3F0;
+  background-color: #f5f3f0;
   font-weight: 600;
   color: var(--text);
   border-bottom: 2px solid var(--accent);
 }
 
 table tr:nth-child(even) {
-  background-color: #FBFAF9;
+  background-color: #fbfaf9;
 }
 
 table tr:hover {
-  background-color: #F7F5F2;
+  background-color: #f7f5f2;
 }
 
 /* Dark theme table styles */
@@ -1234,7 +1260,6 @@ html.light {
   color: #e6e8eb !important;
   background-color: #0d1117 !important;
 }
-
 
 .light .expressive-code .header,
 .light .expressive-code [data-header],

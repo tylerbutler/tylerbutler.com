@@ -1,54 +1,85 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Colophon - Tyler Butler" description="Technical details about tylerbutler.com - how it's built and hosted.">
+<BaseLayout
+  title="Colophon - Tyler Butler"
+  description="Technical details about tylerbutler.com - how it's built and hosted."
+>
   <section>
     <h1>Colophon</h1>
 
     <p>
-      This site is built using <a href="https://astro.build/" target="_blank" rel="noopener">Astro</a>,
-      a modern static site generator. The most recent redesign was in 2012, when I introduced <a href="/projects/engineer">Engineer</a>, a static site generator I wrote myself after being inspired by Jekyll, Hyde, and other similar projects. Eventually maintenance became too much, and I sadly had maybe three users at most, including myself, so I decided to switch to Hugo. After porting my custom Dark Rainbow theme from Jinja2 templates to Go templates, I was rather appalled with the <i>very</i> different template system in Hugo. I eventually found Hugo's templating system to be too limiting and frustrating, so I switched to Astro in 2025. But those Hugo build speeds... I miss them.
+      This site is built using
+      <a href="https://astro.build/" target="_blank" rel="noopener">Astro</a>, a
+      modern static site generator. The most recent redesign was in 2012, when I
+      introduced <a href="/projects/engineer">Engineer</a>, a static site
+      generator I wrote myself after being inspired by Jekyll, Hyde, and other
+      similar projects. Eventually maintenance became too much, and I sadly had
+      maybe three users at most, including myself, so I decided to switch to
+      Hugo. After porting my custom Dark Rainbow theme from Jinja2 templates to
+      Go templates, I was rather appalled with the <i>very</i>different template
+      system in Hugo. I eventually found Hugo's templating system to be too
+      limiting and frustrating, so I switched to Astro in 2025. But those Hugo
+      build speeds... I miss them.
     </p>
 
     <h2>Design</h2>
     <p>
-      The site design is based on a now-defunct online magazine I used to read and the sci-fi magazines like Analog that my dad had when I was a kid. The background image is by Klaus Bürgle of <a href="https://retro-futurismus.de/" target="_blank" rel="noopener">retro-futurismus.de</a>.
-
-      From 2012 to 2025, the site used a custom theme called Dark Rainbow, which I designed and built myself. It was inspired by the color schemes frequently used by one of my favorite online artists, David Lanham. That design is now archived at https://darkrainbow.tylerbutler.com.
+      The site design is based on a now-defunct online magazine I used to read
+      and the sci-fi magazines like Analog that my dad had when I was a kid. The
+      background image is by Klaus Bürgle of
+      <a href="https://retro-futurismus.de/" target="_blank" rel="noopener"
+        >retro-futurismus.de</a
+      >. From 2012 to 2025, the site used a custom theme called Dark Rainbow,
+      which I designed and built myself. It was inspired by the color schemes
+      frequently used by one of my favorite online artists, David Lanham. That
+      design is now archived at https://darkrainbow.tylerbutler.com.
     </p>
 
     <h2>Typography</h2>
-    <p>
-      The site uses several fonts from Adobe Fonts (formerly Typekit):
-    </p>
+    <p>The site uses several fonts from Adobe Fonts (formerly Typekit):</p>
     <ul>
-      <li><strong>Westgate</strong> - Main site title</li>
-      <li><strong>Adelle</strong> - Body text and headings</li>
-      <li><strong>Lato</strong> - Navigation</li>
+      <li>
+        <strong>Westgate</strong>- Main site title
+      </li>
+      <li>
+        <strong>Adelle</strong>- Body text and headings
+      </li>
+      <li>
+        <strong>Lato</strong>- Navigation
+      </li>
     </ul>
 
     <h2>Hosting</h2>
     <p>
-      The site is hosted on <a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a>
-      with automatic deployments from GitHub. The domain is registered through Hover.
+      The site is hosted on
+      <a href="https://www.netlify.com/" target="_blank" rel="noopener"
+        >Netlify</a
+      >
+      with automatic deployments from GitHub. The domain is registered through
+      Hover.
     </p>
 
     <h2>Source Code</h2>
     <p>
       The complete source code for this website is available on
-      <a href="https://github.com/tylerbutler/tylerbutler.com-hugo" target="_blank" rel="noopener">GitHub</a>.
+      <a
+        href="https://github.com/tylerbutler/tylerbutler.com-hugo"
+        target="_blank"
+        rel="noopener"
+        >GitHub</a
+      >.
     </p>
 
     <h2>Affiliate Links</h2>
     <p>
-      Some links on this site may be affiliate links. When you purchase something
-      through these links, I may receive a small commission at no extra cost to you.
+      Some links on this site may be affiliate links. When you purchase
+      something through these links, I may receive a small commission at no
+      extra cost to you.
     </p>
 
-    <p>
-      © 2002-2025 Tyler Butler
-    </p>
+    <p>© 2002-2025 Tyler Butler</p>
   </section>
 </BaseLayout>
 

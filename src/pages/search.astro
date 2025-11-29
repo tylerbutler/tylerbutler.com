@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
@@ -13,11 +13,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 
   <!-- Load Pagefind UI CSS and JS from the generated bundle -->
-  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
   <script is:inline src="/pagefind/pagefind-ui.js"></script>
   <script is:inline>
     // Initialize Pagefind UI
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener("DOMContentLoaded", () => {
       new PagefindUI({
         element: "#search",
         showSubResults: true,

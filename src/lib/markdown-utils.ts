@@ -1,25 +1,28 @@
-import rehypeExpressiveCode, { ExpressiveCodeTheme, type ExpressiveCodeConfig } from 'rehype-expressive-code';
+import rehypeExpressiveCode, {
+  ExpressiveCodeTheme,
+  type ExpressiveCodeConfig,
+} from "rehype-expressive-code";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkGfm from 'remark-gfm';
-import remarkSmartypants from 'remark-smartypants';
-import remarkMermaid from 'remark-mermaid';
-import remarkGithubBlockquoteAlert from 'remark-github-blockquote-alert';
-import remarkRehype from 'remark-rehype';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeStringify from 'rehype-stringify';
-import { remarkNormalizeHeadings } from './remark-normalize-headings.ts';
-import { rehypeFootnotes } from './footnotes.js';
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkSmartypants from "remark-smartypants";
+import remarkMermaid from "remark-mermaid";
+import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
+import remarkRehype from "remark-rehype";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeStringify from "rehype-stringify";
+import { remarkNormalizeHeadings } from "./remark-normalize-headings.ts";
+import { rehypeFootnotes } from "./footnotes.js";
 
 // Load themes
-import ayuLightJson from './themes/ayu-light.json';
-import ayuMirageJson from './themes/ayu-mirage.json';
-import oneDarkJson from './themes/OneDark.json';
+import ayuLightJson from "./themes/ayu-light.json";
+import ayuMirageJson from "./themes/ayu-mirage.json";
+import oneDarkJson from "./themes/OneDark.json";
 
 const ayuLight = new ExpressiveCodeTheme(ayuLightJson);
 const ayuMirage = new ExpressiveCodeTheme(ayuMirageJson);
-const oneDark = new ExpressiveCodeTheme(oneDarkJson)
+const oneDark = new ExpressiveCodeTheme(oneDarkJson);
 
 const themes = [
   ayuLight, // light
@@ -36,30 +39,30 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
   themeCssSelector: (theme: ExpressiveCodeTheme) => {
     // Map themes to our CSS classes
     if (theme.name === themes[0].name) {
-      return '.light';
+      return ".light";
     }
     if (theme.name === themes[1].name) {
-      return '.dark';
+      return ".dark";
     }
-    return ':root'; // fallback
+    return ":root"; // fallback
   },
   defaultProps: {
     wrap: false,
     showLineNumbers: false,
     overridesByLang: {
-      'js,ts,html,python,rust,csharp': {
+      "js,ts,html,python,rust,csharp": {
         showLineNumbers: true,
       },
     },
   },
   plugins: [pluginLineNumbers()],
   styleOverrides: {
-    codeFontFamily: 'var(--code-font)',
-    codeFontSize: 'var(--code-font-size)',
-    codePaddingBlock: '1rem',
-    codePaddingInline: '1rem',
-  }
-}
+    codeFontFamily: "var(--code-font)",
+    codeFontSize: "var(--code-font-size)",
+    codePaddingBlock: "1rem",
+    codePaddingInline: "1rem",
+  },
+};
 
 /**
  * Creates a unified processor with the same plugins as Astro's markdown config
@@ -110,7 +113,7 @@ function createMarkdownProcessor(headingLevel?: number) {
  */
 export async function renderMarkdownWithPipeline(
   markdownContent: string,
-  headingLevel?: number
+  headingLevel?: number,
 ): Promise<string> {
   const processor = createMarkdownProcessor(headingLevel);
   const result = await processor.process(markdownContent);
@@ -130,8 +133,10 @@ export async function renderMarkdownWithPipeline(
  * @param markdownContent - Raw article markdown content
  * @returns Object with HTML and whether content was truncated
  */
-export async function createHomepagePreview(markdownContent: string): Promise<{ html: string; isTruncated: boolean }> {
-  const moreIndex = markdownContent.indexOf('<!--more-->');
+export async function createHomepagePreview(
+  markdownContent: string,
+): Promise<{ html: string; isTruncated: boolean }> {
+  const moreIndex = markdownContent.indexOf("<!--more-->");
 
   if (moreIndex === -1) {
     // No separator, render full content
@@ -141,7 +146,7 @@ export async function createHomepagePreview(markdownContent: string): Promise<{ 
 
   // Extract excerpt and strip all footnote markers
   const excerpt = markdownContent.substring(0, moreIndex);
-  const excerptWithoutFootnotes = excerpt.replace(/\[\^(\w+)\]/g, '');
+  const excerptWithoutFootnotes = excerpt.replace(/\[\^(\w+)\]/g, "");
 
   const html = await renderMarkdownWithPipeline(excerptWithoutFootnotes, 3);
   return { html, isTruncated: true };

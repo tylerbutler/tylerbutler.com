@@ -1,31 +1,31 @@
 ---
 // Social navigation items with icons - GitHub, Email, Feed, Archive
-import { Mail, Github, Rss, Archive } from '@lucide/astro';
+import { Mail, Github, Rss, Archive } from "@lucide/astro";
 
 const socialItems = [
   {
-    href: 'https://github.com/tylerbutler',
-    label: 'GitHub',
-    icon: 'github',
-    external: true
+    href: "https://github.com/tylerbutler",
+    label: "GitHub",
+    icon: "github",
+    external: true,
   },
   {
-    href: 'mailto:tyler@tylerbutler.com',
-    label: 'Email',
-    icon: 'email',
-    external: false
+    href: "mailto:tyler@tylerbutler.com",
+    label: "Email",
+    icon: "email",
+    external: false,
   },
   {
-    href: '/feed.xml',
-    label: 'Feed',
-    icon: 'feed',
-    external: false
+    href: "/feed.xml",
+    label: "Feed",
+    icon: "feed",
+    external: false,
   },
   {
-    href: '/articles/',
-    label: 'Archive',
-    icon: 'archive',
-    external: false
+    href: "/articles/",
+    label: "Archive",
+    icon: "archive",
+    external: false,
   },
 ];
 ---
@@ -94,7 +94,6 @@ const socialItems = [
     height: 16px;
     flex-shrink: 0;
   }
-
 
   .social-label {
     margin-left: 6px;

@@ -1,7 +1,7 @@
-import type { Plugin } from 'unified';
-import type { Root } from 'mdast';
-import type { VFile } from 'vfile';
-import { writeFileSync } from 'node:fs';
+import type { Plugin } from "unified";
+import type { Root } from "mdast";
+import type { VFile } from "vfile";
+import { writeFileSync } from "node:fs";
 
 interface LazyLinksOptions {
   /**
@@ -43,15 +43,17 @@ interface LazyLinksOptions {
  * // Persist changes back to source files
  * remarkPlugins: [[remarkLazyLinks, { persist: true }]]
  */
-export const remarkLazyLinks: Plugin<[LazyLinksOptions?], Root> = (options = {}) => {
+export const remarkLazyLinks: Plugin<[LazyLinksOptions?], Root> = (
+  options = {},
+) => {
   const { persist = false } = options;
 
   return (tree: Root, file: VFile) => {
     // Get the raw markdown content
-    const content = String(file.value || '');
+    const content = String(file.value || "");
 
     // Check if there are any lazy links to process
-    if (!content.includes('[*]')) {
+    if (!content.includes("[*]")) {
       return;
     }
 
@@ -77,7 +79,8 @@ export const remarkLazyLinks: Plugin<[LazyLinksOptions?], Root> = (options = {})
     // Matches: [link text][*] ... [*]: url
     // Uses DOTALL (s) and MULTILINE (m) flags
     // The pattern needs to match from [text][*] to the corresponding [*]: url
-    const linkRegex = /(\[[^\]]+\]\s*\[)\*(\](?:(?!\[[^\]]+\]\s*\[)[\s\S])*?\[)\*\]:/g;
+    const linkRegex =
+      /(\[[^\]]+\]\s*\[)\*(\](?:(?!\[[^\]]+\]\s*\[)[\s\S])*?\[)\*\]:/g;
 
     // Transform lazy links to numbered links
     // Use a while loop to handle overlapping matches
@@ -102,10 +105,13 @@ export const remarkLazyLinks: Plugin<[LazyLinksOptions?], Root> = (options = {})
       const filepath = file.history && file.history[0];
       if (filepath) {
         try {
-          writeFileSync(filepath, transformed, 'utf-8');
+          writeFileSync(filepath, transformed, "utf-8");
           console.log(`✨ Lazy links persisted to: ${filepath}`);
         } catch (error) {
-          console.warn(`⚠️  Failed to persist lazy links to ${filepath}:`, error);
+          console.warn(
+            `⚠️  Failed to persist lazy links to ${filepath}:`,
+            error,
+          );
         }
       }
     }

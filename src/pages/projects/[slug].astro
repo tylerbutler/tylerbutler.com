@@ -1,11 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { ExternalLink, Github } from '@lucide/astro';
-import { formatTitle } from '../../lib/typography';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { ExternalLink, Github } from "@lucide/astro";
+import { formatTitle } from "../../lib/typography";
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects', ({ id }) => !id.startsWith('_'));
+  const projects = await getCollection(
+    "projects",
+    ({ id }) => !id.startsWith("_"),
+  );
 
   return projects.map((project) => ({
     params: { slug: project.slug },
@@ -17,7 +20,11 @@ const { project } = Astro.props;
 const { Content } = await project.render();
 ---
 
-<BaseLayout title={`${project.data.title} - Tyler Butler`} description={project.data.description} headerSize="small">
+<BaseLayout
+  title={`${project.data.title} - Tyler Butler`}
+  description={project.data.description}
+  headerSize="small"
+>
   <article class="article">
     <header class="article-header">
       <h1>{await formatTitle(project.data.title)}</h1>
@@ -27,7 +34,7 @@ const { Content } = await project.render();
     </header>
 
     <div class="article-content">
-      <Content />
+      <Content/>
     </div>
 
     {project.data.tags && project.data.tags.length > 0 && (

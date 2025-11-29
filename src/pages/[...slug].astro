@@ -1,25 +1,25 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { formatTitle } from '../lib/typography';
-import { ExternalLink } from '@lucide/astro';
-import { TOC } from 'astro-toc';
-import type { TocItem } from 'astro-toc';
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { formatTitle } from "../lib/typography";
+import { ExternalLink } from "@lucide/astro";
+import { TOC } from "astro-toc";
+import type { TocItem } from "astro-toc";
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles', ({ data }) => {
+  const articles = await getCollection("articles", ({ data }) => {
     return !data.draft;
   });
 
   // Sort articles by date (newest first)
-  const sortedArticles = articles.sort((a, b) =>
-    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  const sortedArticles = articles.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
   );
 
   return sortedArticles.map((article, index) => {
     const date = new Date(article.data.date);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
     const slug = article.data.slug || article.slug;
 
     // Get previous (older) and next (newer) articles
@@ -28,13 +28,13 @@ export async function getStaticPaths() {
 
     return {
       params: {
-        slug: `${year}/${month}/${slug}`
+        slug: `${year}/${month}/${slug}`,
       },
       props: {
         article,
         prevArticle,
-        nextArticle
-      }
+        nextArticle,
+      },
     };
   });
 }
@@ -43,29 +43,31 @@ const { article, prevArticle, nextArticle } = Astro.props;
 const { Content, headings } = await article.render();
 
 // Check if this is a guide article and prepare TOC data
-const isGuide = article.data.type === 'guide';
-const tocData: TocItem[] = isGuide ? headings
-  .filter(h => h.depth >= 2 && h.depth <= 3) // Only h2 and h3
-  .map(h => ({
-    depth: h.depth,
-    title: h.text,
-    url: `#${h.slug}`
-  })) : [];
+const isGuide = article.data.type === "guide";
+const tocData: TocItem[] = isGuide
+  ? headings
+      .filter((h) => h.depth >= 2 && h.depth <= 3) // Only h2 and h3
+      .map((h) => ({
+        depth: h.depth,
+        title: h.text,
+        url: `#${h.slug}`,
+      }))
+  : [];
 
 // Helper function to generate article URL
-function generateArticleUrl(article: CollectionEntry<'articles'>) {
+function generateArticleUrl(article: CollectionEntry<"articles">) {
   const date = new Date(article.data.date);
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, "0");
   const slug = article.data.slug || article.slug;
   return `/${year}/${month}/${slug}`;
 }
 
 const date = new Date(article.data.date);
-const formattedDate = date.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
+const formattedDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 
 // Calculate if article is old enough to show age aside (>10 years)
@@ -97,18 +99,18 @@ function getAgePeriod(year: number): string {
   // Determine early/mid/late
   let period: string;
   if (yearInDecade <= 3) {
-    period = 'early';
+    period = "early";
   } else if (yearInDecade <= 6) {
-    period = 'mid';
+    period = "mid";
   } else {
-    period = 'late';
+    period = "late";
   }
 
   return `${period} ${ageDecade}s`;
 }
 
 const agePeriod = shouldShowAgeAside ? getAgePeriod(articleYear) : null;
-const isLinkPost = article.data.articleType === 'link';
+const isLinkPost = article.data.articleType === "link";
 ---
 
 <BaseLayout title={`${article.data.title} - Tyler Butler`} description={article.data.excerpt} headerSize="small">

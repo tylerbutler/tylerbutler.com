@@ -1,7 +1,7 @@
-import { visit } from 'unist-util-visit';
-import type { Root, Heading } from 'mdast';
-import type { Plugin } from 'unified';
-import type { VFile } from 'vfile';
+import { visit } from "unist-util-visit";
+import type { Root, Heading } from "mdast";
+import type { Plugin } from "unified";
+import type { VFile } from "vfile";
 
 interface Options {
   defaultCollectionLevel?: number;
@@ -44,18 +44,21 @@ export const remarkNormalizeHeadings: Plugin<[Options?], Root> = (options) => {
     const contextLevel = fileData.headingStartLevel;
 
     // Strategy 3: Auto-detect content collections from file path
-    const filePath = file.history?.[0] || '';
+    const filePath = file.history?.[0] || "";
     const isCollection = /\/src\/content\/(articles|projects)\//.test(filePath);
 
     // Determine target start level (frontmatter > context > auto-detect)
-    const targetStartLevel = frontmatterLevel ?? contextLevel ?? (isCollection ? defaultCollectionLevel : defaultPageLevel);
+    const targetStartLevel =
+      frontmatterLevel ??
+      contextLevel ??
+      (isCollection ? defaultCollectionLevel : defaultPageLevel);
 
     // Skip normalization if target is h1 (no adjustment needed)
     if (targetStartLevel === 1) return;
 
     // Find minimum heading level in the content
     let minLevel = Infinity;
-    visit(tree, 'heading', (node: Heading) => {
+    visit(tree, "heading", (node: Heading) => {
       if (node.depth < minLevel) {
         minLevel = node.depth;
       }
@@ -71,10 +74,16 @@ export const remarkNormalizeHeadings: Plugin<[Options?], Root> = (options) => {
     if (shiftBy === 0) return;
 
     // Apply normalization to all headings
-    visit(tree, 'heading', (node: Heading) => {
+    visit(tree, "heading", (node: Heading) => {
       const newLevel = node.depth + shiftBy;
       // Ensure level stays within valid range (1-maxLevel)
-      node.depth = Math.max(1, Math.min(newLevel, maxLevel)) as 1 | 2 | 3 | 4 | 5 | 6;
+      node.depth = Math.max(1, Math.min(newLevel, maxLevel)) as
+        | 1
+        | 2
+        | 3
+        | 4
+        | 5
+        | 6;
     });
   };
 };

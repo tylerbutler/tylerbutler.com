@@ -1,16 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const articles = await getCollection('articles', ({ data }) => {
+const articles = await getCollection("articles", ({ data }) => {
   return !data.draft;
 });
 
 // Get tag counts
 const tagCounts: Record<string, number> = {};
-articles.forEach(article => {
+articles.forEach((article) => {
   if (article.data.tags) {
-    article.data.tags.forEach(tag => {
+    article.data.tags.forEach((tag) => {
       tagCounts[tag] = (tagCounts[tag] || 0) + 1;
     });
   }
@@ -18,8 +18,8 @@ articles.forEach(article => {
 
 const tags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
 
-const title = 'Tags';
-const description = 'All tags used on articles across the site';
+const title = "Tags";
+const description = "All tags used on articles across the site";
 ---
 
 <BaseLayout title={title} description={description}>

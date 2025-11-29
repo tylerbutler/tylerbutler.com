@@ -1,30 +1,30 @@
 @font-face {
-  font-family: 'PragmataPro';
-  src: url('/fonts/PragmataPro_Mono_R_liga_0902.woff2') format('woff2');
+  font-family: "PragmataPro";
+  src: url("/fonts/PragmataPro_Mono_R_liga_0902.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'PragmataPro';
-  src: url('/fonts/PragmataPro_Mono_B_liga_0902.woff2') format('woff2');
+  font-family: "PragmataPro";
+  src: url("/fonts/PragmataPro_Mono_B_liga_0902.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'PragmataPro';
-  src: url('/fonts/PragmataPro_Mono_I_liga_0902.woff2') format('woff2');
+  font-family: "PragmataPro";
+  src: url("/fonts/PragmataPro_Mono_I_liga_0902.woff2") format("woff2");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'PragmataPro';
-  src: url('/fonts/PragmataPro_Mono_I_liga_0902.woff2') format('woff2');
+  font-family: "PragmataPro";
+  src: url("/fonts/PragmataPro_Mono_I_liga_0902.woff2") format("woff2");
   font-weight: normal;
   font-style: italic;
   font-display: swap;

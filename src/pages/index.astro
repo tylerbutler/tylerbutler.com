@@ -1,17 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { createHomepagePreview } from '../lib/markdown-utils';
-import { formatTitle } from '../lib/typography';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { createHomepagePreview } from "../lib/markdown-utils";
+import { formatTitle } from "../lib/typography";
 
 // Get recent articles (latest 5, non-draft)
-const articles = await getCollection('articles', ({ data }) => {
+const articles = await getCollection("articles", ({ data }) => {
   return !data.draft;
 });
 
 // Sort by date (newest first) and take first 5
 const sortedArticles = articles
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  )
   .slice(0, 5);
 
 // Render articles with full markdown pipeline and h3 headings for homepage
@@ -23,18 +25,19 @@ const recentArticles = await Promise.all(
       ...article,
       transformedHtml: html,
       isTruncated,
-      formattedTitle: await formatTitle(article.data.title)
+      formattedTitle: await formatTitle(article.data.title),
     };
-  })
+  }),
 );
 ---
 
-<BaseLayout title="Tyler Butler - Personal Website" description="Personal website and blog of Tyler Butler, featuring articles on technology, programming, and more.">
-
+<BaseLayout
+  title="Tyler Butler - Personal Website"
+  description="Personal website and blog of Tyler Butler, featuring articles on technology, programming, and more."
+>
   <div class="homepage-layout">
     <main class="main-content">
-
-    {recentArticles.length > 0 && (
+      {recentArticles.length > 0 && (
       <ul class="recent-articles">
         {recentArticles.map((article) => {
           const date = new Date(article.data.date);
@@ -72,9 +75,9 @@ const recentArticles = await Promise.all(
       </ul>
     )}
 
-    <p>
-      <a href="/articles/">View All Articles</a>
-    </p>
+      <p>
+        <a href="/articles/">View All Articles</a>
+      </p>
     </main>
   </div>
 </BaseLayout>
@@ -174,7 +177,6 @@ const recentArticles = await Promise.all(
     flex-shrink: 0;
   }
 
-
   .excerpt {
     margin: 0.5em 0;
     font-size: 13px;
@@ -235,5 +237,4 @@ const recentArticles = await Promise.all(
     background: var(--accent);
     color: var(--light-bg);
   }
-
 </style>

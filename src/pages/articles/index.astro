@@ -1,37 +1,48 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { formatTitle } from '../../lib/typography';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatTitle } from "../../lib/typography";
 
 // Get all articles (non-draft)
-const articles = await getCollection('articles', ({ data }) => {
+const articles = await getCollection("articles", ({ data }) => {
   return !data.draft;
 });
 
 // Sort by date (newest first) and format titles
 const sortedArticles = await Promise.all(
   articles
-    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+    )
     .map(async (article) => ({
       ...article,
-      formattedTitle: await formatTitle(article.data.title)
-    }))
+      formattedTitle: await formatTitle(article.data.title),
+    })),
 );
 
 // Group articles by year
-const articlesByYear = sortedArticles.reduce((acc, article) => {
-  const year = new Date(article.data.date).getFullYear();
-  if (!acc[year]) {
-    acc[year] = [];
-  }
-  acc[year].push(article);
-  return acc;
-}, {} as Record<number, typeof sortedArticles>);
+const articlesByYear = sortedArticles.reduce(
+  (acc, article) => {
+    const year = new Date(article.data.date).getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(article);
+    return acc;
+  },
+  {} as Record<number, typeof sortedArticles>,
+);
 
-const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
+const years = Object.keys(articlesByYear)
+  .map(Number)
+  .sort((a, b) => b - a);
 ---
 
-<BaseLayout title="Articles - Tyler Butler" description="All articles by Tyler Butler on technology, programming, and more.">
+<BaseLayout
+  title="Articles - Tyler Butler"
+  description="All articles by Tyler Butler on technology, programming, and more."
+>
   <section>
     <h1>Articles</h1>
 
@@ -87,7 +98,6 @@ const years = Object.keys(articlesByYear).map(Number).sort((a, b) => b - a);
 </BaseLayout>
 
 <style>
-
   .year-navigation {
     margin-bottom: 2rem;
   }

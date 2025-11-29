@@ -8,9 +8,7 @@
     },
     "timeout": 30000,
     "wait": 1000,
-    "actions": [
-      "wait for element body to be visible"
-    ]
+    "actions": ["wait for element body to be visible"]
   },
   "urls": [
     "http://localhost:4173/",

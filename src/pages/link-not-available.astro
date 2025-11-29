@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const url = Astro.url.searchParams.get('url') || 'Unknown URL';
+const url = Astro.url.searchParams.get("url") || "Unknown URL";
 ---
 
 <BaseLayout
@@ -14,7 +14,8 @@ const url = Astro.url.searchParams.get('url') || 'Unknown URL';
     <h1>Link Not Available</h1>
 
     <p class="explanation">
-      The link you're trying to access is no longer available. This is likely due to:
+      The link you're trying to access is no longer available. This is likely
+      due to:
     </p>
 
     <ul class="reasons">
@@ -100,7 +101,7 @@ const url = Astro.url.searchParams.get('url') || 'Unknown URL';
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 0.75em;
-    font-family: 'Pragmata Pro Mono', 'Courier New', monospace;
+    font-family: "Pragmata Pro Mono", "Courier New", monospace;
     font-size: 13px;
     color: #333;
     word-break: break-all;

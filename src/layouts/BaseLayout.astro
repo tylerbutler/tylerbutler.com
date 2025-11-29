@@ -1,46 +1,52 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FootnoteScript from '../components/FootnotesScript.astro';
-import BrokenLinkTooltip from '../components/BrokenLinkTooltip.astro';
-import '../lib/styles/global.css';
-import '../styles/fonts.css';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FootnoteScript from "../components/FootnotesScript.astro";
+import BrokenLinkTooltip from "../components/BrokenLinkTooltip.astro";
+import "../lib/styles/global.css";
+import "../styles/fonts.css";
 
 export interface Props {
   title?: string;
   description?: string;
-  headerSize?: 'large' | 'small';
+  headerSize?: "large" | "small";
 }
 
 const {
   title = "Tyler Butler",
   description = "Personal website and blog of Tyler Butler",
-  headerSize = 'large'
+  headerSize = "large",
 } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content={Astro.generator}>
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="stylesheet" href="https://use.typekit.net/zsx5vsn.css" />
-    <link rel="preload" href="/fonts/PragmataPro_Mono_R_liga_0902.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="description" content={description}>
+    <link rel="stylesheet" href="https://use.typekit.net/zsx5vsn.css">
+    <link
+      rel="preload"
+      href="/fonts/PragmataPro_Mono_R_liga_0902.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    >
   </head>
   <body>
     <div class="site-container">
-      <Header size={headerSize} />
+      <Header size={headerSize}/>
       <main class="content-section" data-pagefind-body>
         <div class="content-inner">
-          <slot />
+          <slot/>
         </div>
       </main>
-      <Footer />
+      <Footer/>
     </div>
-    <FootnoteScript />
-    <BrokenLinkTooltip />
+    <FootnoteScript/>
+    <BrokenLinkTooltip/>
   </body>
 </html>

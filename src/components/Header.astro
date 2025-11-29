@@ -1,35 +1,38 @@
 ---
-import Navigation from './Navigation.astro';
-import ThemeToggle from './ThemeToggle.astro';
-import SocialIconsBelow from './SocialIconsBelow.astro';
-import headlinesRaw from '../data/headlines.txt?raw';
+import Navigation from "./Navigation.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import SocialIconsBelow from "./SocialIconsBelow.astro";
+import headlinesRaw from "../data/headlines.txt?raw";
 
 export interface Props {
-  size?: 'large' | 'small';
+  size?: "large" | "small";
 }
 
-const { size = 'large' } = Astro.props;
+const { size = "large" } = Astro.props;
 
-const headlines = headlinesRaw.split('\n').filter(line => line.trim() !== '');
+const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
 ---
 
 <header class="site-header">
   <div class="theme-toggle-wrapper">
-    <ThemeToggle />
+    <ThemeToggle/>
   </div>
 
-  <Navigation />
-  <h1><a href="/">Tyler Butler</a></h1>
+  <Navigation/>
+  <h1>
+    <a href="/">Tyler Butler</a>
+  </h1>
   <p class="tagline" id="random-headline"></p>
 
-  <SocialIconsBelow />
+  <SocialIconsBelow/>
 </header>
 
 <script define:vars={{ headlines }}>
-  const taglineElement = document.getElementById('random-headline');
+  const taglineElement = document.getElementById("random-headline");
   if (taglineElement) {
-    const randomHeadline = headlines[Math.floor(Math.random() * headlines.length)];
-    taglineElement.textContent = randomHeadline + '\u00A0'; // \u00A0 is &nbsp;
+    const randomHeadline =
+      headlines[Math.floor(Math.random() * headlines.length)];
+    taglineElement.textContent = randomHeadline + "\u00A0"; // \u00A0 is &nbsp;
   }
 </script>
 

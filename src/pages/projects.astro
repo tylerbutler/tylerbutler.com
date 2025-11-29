@@ -1,29 +1,39 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { Github, BookOpen, ExternalLink } from '@lucide/astro';
-import { formatTitle } from '../lib/typography';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Github, BookOpen, ExternalLink } from "@lucide/astro";
+import { formatTitle } from "../lib/typography";
 
 // Get all projects (excluding index files)
-const projects = await getCollection('projects', ({ id }) => !id.startsWith('_'));
+const projects = await getCollection(
+  "projects",
+  ({ id }) => !id.startsWith("_"),
+);
 
 // Sort projects by date (newest first)
 const sortedProjects = await Promise.all(
-  projects.filter(p => p.data.date).sort((a, b) =>
-    new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime()
-  ).map(async (project) => ({
-    ...project,
-    formattedTitle: await formatTitle(project.data.title)
-  }))
+  projects
+    .filter((p) => p.data.date)
+    .sort(
+      (a, b) =>
+        new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime(),
+    )
+    .map(async (project) => ({
+      ...project,
+      formattedTitle: await formatTitle(project.data.title),
+    })),
 );
 ---
 
-<BaseLayout title="Projects - Tyler Butler" description="Projects by Tyler Butler - open source and personal projects.">
+<BaseLayout
+  title="Projects - Tyler Butler"
+  description="Projects by Tyler Butler - open source and personal projects."
+>
   <section>
     <h1>Projects</h1>
     <p>
-      A collection of projects I've worked on over the years, including open source
-      contributions and personal experiments.
+      A collection of projects I've worked on over the years, including open
+      source contributions and personal experiments.
     </p>
 
     {sortedProjects.length > 0 ? (

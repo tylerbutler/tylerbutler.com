@@ -21,166 +21,166 @@ import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
 import { execSync } from "node:child_process";
 
 const fontDownloader = () => ({
-	name: "font-downloader",
-	hooks: {
-		"astro:build:start": async () => {
-			try {
-				await downloadFonts();
-			} catch (error) {
-				const isProduction =
-					process.env.NODE_ENV === "production" ||
-					process.env.NETLIFY === "true";
+  name: "font-downloader",
+  hooks: {
+    "astro:build:start": async () => {
+      try {
+        await downloadFonts();
+      } catch (error) {
+        const isProduction =
+          process.env.NODE_ENV === "production" ||
+          process.env.NETLIFY === "true";
 
-				if (isProduction) {
-					console.error("Font download failed:", (error as Error).message);
-					process.exit(1);
-				} else {
-					console.warn(
-						"⚠️  Font download failed (local dev - continuing anyway):",
-						(error as Error).message,
-					);
-				}
-			}
-		},
-	},
+        if (isProduction) {
+          console.error("Font download failed:", (error as Error).message);
+          process.exit(1);
+        } else {
+          console.warn(
+            "⚠️  Font download failed (local dev - continuing anyway):",
+            (error as Error).message,
+          );
+        }
+      }
+    },
+  },
 });
 
 const fontOptimizer = () => ({
-	name: "font-optimizer",
-	hooks: {
-		"astro:build:done": async () => {
-			try {
-				await optimizeFonts();
-			} catch (error) {
-				console.warn(
-					"⚠️  Font optimization failed (continuing anyway):",
-					(error as Error).message,
-				);
-			}
-		},
-	},
+  name: "font-optimizer",
+  hooks: {
+    "astro:build:done": async () => {
+      try {
+        await optimizeFonts();
+      } catch (error) {
+        console.warn(
+          "⚠️  Font optimization failed (continuing anyway):",
+          (error as Error).message,
+        );
+      }
+    },
+  },
 });
 
 const pagefindIntegration = () => ({
-	name: "pagefind-integration",
-	hooks: {
-		"astro:build:done": async ({ dir }) => {
-			try {
-				console.log("🔍 Building Pagefind search index...");
-				execSync(`npx pagefind --site "${dir.pathname}"`, {
-					stdio: "inherit",
-				});
-				console.log("✅ Pagefind search index built successfully");
-			} catch (error) {
-				console.error("❌ Pagefind indexing failed:", (error as Error).message);
-				throw error;
-			}
-		},
-	},
+  name: "pagefind-integration",
+  hooks: {
+    "astro:build:done": async ({ dir }) => {
+      try {
+        console.log("🔍 Building Pagefind search index...");
+        execSync(`npx pagefind --site "${dir.pathname}"`, {
+          stdio: "inherit",
+        });
+        console.log("✅ Pagefind search index built successfully");
+      } catch (error) {
+        console.error("❌ Pagefind indexing failed:", (error as Error).message);
+        throw error;
+      }
+    },
+  },
 });
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://tylerbutler.com",
+  site: "https://tylerbutler.com",
 
-	adapter: netlify({
-		imageCDN: false,
-	}),
-	output: "static",
+  adapter: netlify({
+    imageCDN: false,
+  }),
+  output: "static",
 
-	integrations: [
-		fontDownloader(),
-		// TODO: Re-enable font optimizer once Chrome/Puppeteer is configured for glyphhanger
-		// fontOptimizer(),
-		pagefindIntegration(),
-		sitemap(),
-		mdx({
-			remarkPlugins: [
-				// Process lazy links first, before other transformations
-				// Use [remarkLazyLinks, { persist: true }] to write changes back to source files
-				remarkLazyLinks,
-				remarkGfm,
-				remarkSmartypants,
-				[remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
-				[remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
-				remarkNormalizeHeadings,
-			],
-			rehypePlugins: [
-				rehypeFootnotes,
-				[
-					rehypeAutolinkHeadings,
-					{
-						behavior: "wrap",
-						properties: {
-							className: ["heading-anchor"],
-							ariaLabel: "Link to this heading",
-						},
-					},
-				],
-				[rehypeExpressiveCode, expressiveCodeConfig],
-				rehypeMarkBrokenLinks,
-			],
-		}),
-		brokenLinksChecker({
-			checkExternalLinks: false,
-		}),
-	],
-	image: {
-		responsiveStyles: true,
-		layout: "constrained", // Generates srcset for responsive images
-	},
-	markdown: {
-		syntaxHighlight: false, // Disable Astro's built-in syntax highlighting to use Expressive Code
-		remarkPlugins: [
-			// Process lazy links first, before other transformations
-			// Use [remarkLazyLinks, { persist: true }] to write changes back to source files
-			remarkLazyLinks,
-			remarkGfm,
-			remarkSmartypants,
-			[remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
-			[remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
-			remarkNormalizeHeadings,
-		],
-		rehypePlugins: [
-			rehypeFootnotes,
-			[
-				rehypeAutolinkHeadings,
-				{
-					behavior: "wrap",
-					properties: {
-						className: ["heading-anchor"],
-						ariaLabel: "Link to this heading",
-					},
-				},
-			],
-			[rehypeExpressiveCode, expressiveCodeConfig],
-			rehypeMarkBrokenLinks,
-		],
-	},
+  integrations: [
+    fontDownloader(),
+    // TODO: Re-enable font optimizer once Chrome/Puppeteer is configured for glyphhanger
+    // fontOptimizer(),
+    pagefindIntegration(),
+    sitemap(),
+    mdx({
+      remarkPlugins: [
+        // Process lazy links first, before other transformations
+        // Use [remarkLazyLinks, { persist: true }] to write changes back to source files
+        remarkLazyLinks,
+        remarkGfm,
+        remarkSmartypants,
+        [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
+        [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
+        remarkNormalizeHeadings,
+      ],
+      rehypePlugins: [
+        rehypeFootnotes,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "wrap",
+            properties: {
+              className: ["heading-anchor"],
+              ariaLabel: "Link to this heading",
+            },
+          },
+        ],
+        [rehypeExpressiveCode, expressiveCodeConfig],
+        rehypeMarkBrokenLinks,
+      ],
+    }),
+    brokenLinksChecker({
+      checkExternalLinks: false,
+    }),
+  ],
+  image: {
+    responsiveStyles: true,
+    layout: "constrained", // Generates srcset for responsive images
+  },
+  markdown: {
+    syntaxHighlight: false, // Disable Astro's built-in syntax highlighting to use Expressive Code
+    remarkPlugins: [
+      // Process lazy links first, before other transformations
+      // Use [remarkLazyLinks, { persist: true }] to write changes back to source files
+      remarkLazyLinks,
+      remarkGfm,
+      remarkSmartypants,
+      [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
+      [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
+      remarkNormalizeHeadings,
+    ],
+    rehypePlugins: [
+      rehypeFootnotes,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+          properties: {
+            className: ["heading-anchor"],
+            ariaLabel: "Link to this heading",
+          },
+        },
+      ],
+      [rehypeExpressiveCode, expressiveCodeConfig],
+      rehypeMarkBrokenLinks,
+    ],
+  },
 
-	build: {
-		assets: "assets",
-	},
+  build: {
+    assets: "assets",
+  },
 
-	vite: {
-		ssr: {
-			// noExternal: ["simple-icons-astro"],
-		},
-		optimizeDeps: {
-			exclude: [
-				// "@fontsource/lato",
-			],
-		},
-		plugins: [
-			// Only generate bundle analysis in production builds
-			process.env.NODE_ENV === "production" &&
-				visualizer({
-					filename: "dist/bundle-analysis.html",
-					open: false,
-					gzipSize: true,
-					brotliSize: true,
-					template: "treemap", // treemap, sunburst, network
-				}),
-		].filter(Boolean),
-	},
+  vite: {
+    ssr: {
+      // noExternal: ["simple-icons-astro"],
+    },
+    optimizeDeps: {
+      exclude: [
+        // "@fontsource/lato",
+      ],
+    },
+    plugins: [
+      // Only generate bundle analysis in production builds
+      process.env.NODE_ENV === "production" &&
+        visualizer({
+          filename: "dist/bundle-analysis.html",
+          open: false,
+          gzipSize: true,
+          brotliSize: true,
+          template: "treemap", // treemap, sunburst, network
+        }),
+    ].filter(Boolean),
+  },
 });

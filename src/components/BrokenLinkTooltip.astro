@@ -3,49 +3,47 @@
 ---
 
 <script>
-  import { computePosition, flip, shift, offset } from '@floating-ui/dom';
+  import { computePosition, flip, shift, offset } from "@floating-ui/dom";
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Find all broken links and add tooltip functionality
     const brokenLinks = document.querySelectorAll('a[data-broken="true"]');
 
-    brokenLinks.forEach(link => {
-      const url = link.getAttribute('data-broken-url') || (link as HTMLAnchorElement).href;
+    brokenLinks.forEach((link) => {
+      const url =
+        link.getAttribute("data-broken-url") ||
+        (link as HTMLAnchorElement).href;
 
       // Create tooltip element
-      const tooltip = document.createElement('div');
-      tooltip.className = 'broken-link-tooltip';
+      const tooltip = document.createElement("div");
+      tooltip.className = "broken-link-tooltip";
       tooltip.innerHTML = `
         <div class="tooltip-content">
           <strong>🔗 Link no longer available</strong>
           <div class="tooltip-url">${url}</div>
         </div>
       `;
-      tooltip.style.display = 'none';
+      tooltip.style.display = "none";
       document.body.appendChild(tooltip);
 
       // Show tooltip on hover
-      link.addEventListener('mouseenter', async () => {
-        tooltip.style.display = 'block';
+      link.addEventListener("mouseenter", async () => {
+        tooltip.style.display = "block";
 
         // Use Floating UI to position tooltip
         const { x, y } = await computePosition(link, tooltip, {
-          placement: 'top',
-          middleware: [
-            offset(10),
-            flip(),
-            shift({ padding: 8 })
-          ]
+          placement: "top",
+          middleware: [offset(10), flip(), shift({ padding: 8 })],
         });
 
         Object.assign(tooltip.style, {
           left: `${x}px`,
-          top: `${y}px`
+          top: `${y}px`,
         });
       });
 
-      link.addEventListener('mouseleave', () => {
-        tooltip.style.display = 'none';
+      link.addEventListener("mouseleave", () => {
+        tooltip.style.display = "none";
       });
     });
   });
@@ -62,10 +60,12 @@
     line-height: 1.6;
     max-width: 320px;
     z-index: 10000;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5),
-                0 4px 10px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Lato", sans-serif;
+    box-shadow:
+      0 10px 25px rgba(0, 0, 0, 0.5),
+      0 4px 10px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", "Lato", sans-serif;
     font-weight: 400;
     letter-spacing: 0.2px;
     border: 1px solid rgba(255, 255, 255, 0.15);

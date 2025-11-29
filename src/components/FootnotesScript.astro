@@ -13,6 +13,12 @@ import "littlefoot/dist/littlefoot.css";
 <!-- Custom footnote styles -->
 <style is:global>
   /* Littlefoot.js customizations */
+
+  /* Fix z-index layering issues with blockquotes and other content */
+  .littlefoot {
+    --popover-z-index: 1000;
+  }
+
   .littlefoot-footnote__wrapper {
     max-width: 400px;
     z-index: 1000;

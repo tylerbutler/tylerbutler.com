@@ -19,9 +19,14 @@
       "recommended": true
     }
   },
+  "css": {
+    "parser": {
+      "cssModules": true
+    }
+  },
   "html": {
-		// Doesn't support styles in astro files, apparently
-    "experimentalFullSupportEnabled": true,
+    // Doesn't support styles in astro files, apparently
+    "experimentalFullSupportEnabled": false,
     "formatter": {
       "enabled": true,
       "indentScriptAndStyle": true

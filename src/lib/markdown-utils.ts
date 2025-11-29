@@ -76,7 +76,8 @@ function createMarkdownProcessor(headingLevel?: number) {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkSmartypants)
-    .use(remarkMermaid)
+    // Disabled since mermaid is not used
+    // .use(remarkMermaidConfigured, { destinationSubdir: "diagrams" }),
     .use(remarkGithubBlockquoteAlert, { tagName: "blockquote" });
 
   // Add heading normalization with optional override

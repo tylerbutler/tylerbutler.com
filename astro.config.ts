@@ -101,7 +101,8 @@ export default defineConfig({
         remarkLazyLinks,
         remarkGfm,
         remarkSmartypants,
-        [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
+        // Disabled since mermaid is not used
+        // [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
         [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
         remarkNormalizeHeadings,
       ],
@@ -137,7 +138,8 @@ export default defineConfig({
       remarkLazyLinks,
       remarkGfm,
       remarkSmartypants,
-      [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
+      // Disabled since mermaid is not used
+      // [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
       [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
       remarkNormalizeHeadings,
     ],

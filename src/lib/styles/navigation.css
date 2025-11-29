@@ -1,0 +1,285 @@
+/* Navigation system */
+
+/* Navigation container */
+nav {
+  text-align: center;
+  padding: 12px 0;
+  display: block; /* Always visible in header */
+  width: 100%; /* Use full width */
+
+  & ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  & a {
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--nav-links);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding: 8px 4px;
+
+    &:hover,
+    &.active {
+      color: var(--accent-hover);
+    }
+
+    &:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+}
+
+/* Small header navigation styles */
+.site-header--small nav {
+  padding: 8px 0;
+
+  & a {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+  }
+
+  & ul {
+    gap: 15px;
+  }
+}
+
+/* Wide screen navigation - extension of the header box */
+@media (min-width: 1200px) {
+  /* Make header relative for nav positioning */
+  header,
+  banner {
+    position: relative;
+  }
+
+  /* Position nav as an extension of the header with proportional scaling */
+  header nav,
+  banner nav {
+    position: absolute;
+    /* Reduced navigation width: 150px at 763px = 19.6% */
+    left: calc(-1 * clamp(125px, 19.6vw, 150px)); /* Responsive left position */
+    top: 0; /* Align with header top */
+    bottom: 0; /* Align with header bottom */
+    width: clamp(125px, 19.6vw, 150px); /* Smaller responsive container width */
+    background: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0; /* Remove padding - let inner container handle it */
+    box-sizing: border-box;
+    z-index: 100;
+    overflow: hidden; /* Clip content if needed */
+
+    & ul {
+      width: 100%;
+      height: 100%;
+      padding: 0 clamp(8px, 2vw, 15px); /* Adjusted padding for narrower nav width */
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: clamp(4px, 0.8vw, 8px); /* Responsive vertical gap */
+      margin: 0;
+      list-style: none;
+
+      & li {
+        width: 100%;
+
+        & a {
+          font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+          font-size: clamp(
+            10px,
+            1.4vw,
+            14px
+          ); /* Proportional font size scaling with nav width */
+          font-weight: 400;
+          line-height: 1.2;
+          letter-spacing: clamp(
+            0.2px,
+            0.2vw,
+            2px
+          ); /* Proportional letter spacing */
+          text-transform: uppercase;
+          color: white !important;
+          text-decoration: none;
+          transition: color 0.2s ease;
+          padding: clamp(3px, 0.7vw, 8px) clamp(1px, 0.4vw, 4px); /* Proportional padding */
+          display: block;
+          width: 100%;
+          text-align: left;
+          white-space: nowrap; /* Prevent text wrapping */
+          overflow: hidden; /* Hide overflow if still needed */
+          text-overflow: ellipsis; /* Show ... if text is still too long */
+
+          &:hover {
+            color: var(--accent-hover);
+          }
+
+          &:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 2px;
+          }
+
+          &.active {
+            color: var(--accent) !important;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  /* Tighter spacing for small headers to fit in reduced height */
+  .site-header--small nav ul {
+    gap: clamp(
+      2px,
+      0.5vw,
+      5px
+    ) !important; /* Much smaller gap for compact header */
+
+    & li a {
+      font-size: clamp(
+        8px,
+        1vw,
+        12px
+      ) !important; /* Smaller font for compact header */
+      letter-spacing: clamp(
+        0.1px,
+        0.15vw,
+        1.5px
+      ) !important; /* Match horizontal nav letter spacing */
+      padding: clamp(2px, 0.4vw, 4px) clamp(1px, 0.3vw, 3px) !important; /* Tighter padding */
+      line-height: 1.1 !important; /* Tighter line height */
+    }
+  }
+
+  /* Active state for dark theme - ensure proper contrast */
+  .dark header nav ul li a.active,
+  .dark banner nav ul li a.active {
+    color: var(--accent) !important;
+    font-weight: 600;
+  }
+
+  /* Social navigation styles for sidebar - only show on large screens */
+  .social-nav-item {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    width: 100%;
+
+    & .social-nav-container {
+      flex-direction: row !important;
+    }
+  }
+
+  /* Hide sidebar social nav on medium screens */
+  @media (max-width: 1199px) {
+    .social-nav-item {
+      display: none;
+    }
+  }
+
+  .social-nav-container {
+    display: flex;
+    flex-direction: row !important;
+    gap: 4px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: clamp(8px, 1vw, 11px);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+
+    &:hover {
+      color: var(--accent-hover, #d4af37);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:focus {
+      outline: 2px solid var(--accent, #d4af37);
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+  }
+
+  .social-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* Screen reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Smaller social nav for small headers */
+  .site-header--small .social-nav-item {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+
+  .site-header--small .social-nav-container {
+    gap: 6px;
+  }
+
+  .site-header--small .social-link {
+    padding: 2px 4px;
+    font-size: clamp(7px, 0.8vw, 9px);
+  }
+
+  .site-header--small .social-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Mobile navigation */
+@media (max-width: 480px) {
+  nav a {
+    font-size: 12px; /* Smaller font for mobile horizontal layout */
+    letter-spacing: 1px;
+    padding: 8px 4px; /* Tighter padding for single line */
+  }
+
+  nav ul {
+    flex-direction: row; /* Keep horizontal on mobile */
+    gap: 8px; /* Smaller gap to fit all items */
+    flex-wrap: nowrap; /* Force single line */
+    justify-content: center;
+    width: 100%; /* Use full width */
+  }
+}

@@ -25,6 +25,7 @@
     "build": "cross-env GITHUB_REPO_OWNER=tylerbutler GITHUB_REPO_NAME=private-resources astro build",
     "check": "astro check --minimumSeverity warning",
     "dev": "astro dev",
+    "format": "biome format --write",
     "install:python": "pip install -r requirements.txt",
     "linkcheck": "start-server-and-test dev http://localhost:4321 'cat complete-urls.txt | xargs lychee'",
     "optimize:fonts": "node scripts/optimize-fonts.mjs",
@@ -78,6 +79,7 @@
     "cross-env": "^10.1.0",
     "pa11y-ci": "^4.0.1",
     "pagefind": "^1.4.0",
+    "postcss-nesting": "^13.0.2",
     "rollup-plugin-visualizer": "^6.0.5",
     "start-server-and-test": "^2.1.3",
     "typescript": "^5.9.3"

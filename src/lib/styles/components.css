@@ -1,0 +1,225 @@
+/* Component styles - alerts, tables, code blocks */
+
+/* GitHub-style Alert Boxes */
+.markdown-alert {
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-left: 4px solid;
+  border-radius: 0 4px 4px 0;
+  background: var(--code-bg);
+}
+
+.markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 600;
+  margin-bottom: 0.5em !important;
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(14px, 2.5vw, 15px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  & .octicon {
+    flex-shrink: 0;
+  }
+}
+
+/* Dark theme - invert SVG icons for better visibility */
+.dark .markdown-alert-title .octicon {
+  filter: invert(1);
+}
+
+/* Note alert - Info blue */
+.markdown-alert-note {
+  border-left-color: var(--info);
+  background: color-mix(in srgb, var(--info) 10%, var(--light-bg));
+
+  & .markdown-alert-title {
+    color: var(--info);
+  }
+}
+
+/* Tip alert - Success green */
+.markdown-alert-tip {
+  border-left-color: var(--success);
+  background: color-mix(in srgb, var(--success) 10%, var(--light-bg));
+
+  & .markdown-alert-title {
+    color: var(--success);
+  }
+}
+
+/* Important alert - Purple/violet */
+.markdown-alert-important {
+  border-left-color: var(--important);
+  background: color-mix(in srgb, var(--important) 10%, var(--light-bg));
+
+  & .markdown-alert-title {
+    color: var(--important);
+  }
+}
+
+/* Warning alert - Warning orange */
+.markdown-alert-warning {
+  border-left-color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 10%, var(--light-bg));
+
+  & .markdown-alert-title {
+    color: var(--warning);
+  }
+}
+
+/* Caution alert - Error red */
+.markdown-alert-caution {
+  border-left-color: var(--error);
+  background: color-mix(in srgb, var(--error) 10%, var(--light-bg));
+
+  & .markdown-alert-title {
+    color: var(--error);
+  }
+}
+
+/* Dark theme alert adjustments */
+.dark .markdown-alert {
+  background: var(--dark-bg);
+}
+
+.dark .markdown-alert-note {
+  background: color-mix(in srgb, var(--info) 15%, var(--dark-bg));
+}
+
+.dark .markdown-alert-tip {
+  background: color-mix(in srgb, var(--success) 15%, var(--dark-bg));
+}
+
+.dark .markdown-alert-important {
+  background: color-mix(in srgb, var(--important) 15%, var(--dark-bg));
+}
+
+.dark .markdown-alert-warning {
+  background: color-mix(in srgb, var(--warning) 15%, var(--dark-bg));
+}
+
+.dark .markdown-alert-caution {
+  background: color-mix(in srgb, var(--error) 15%, var(--dark-bg));
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-family: adelle, Georgia, serif;
+  font-size: 14px;
+  line-height: 1.6;
+
+  & th,
+  & td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    vertical-align: top;
+  }
+
+  & th {
+    background-color: #f5f3f0;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  & tr:nth-child(even) {
+    background-color: #fbfaf9;
+  }
+
+  & tr:hover {
+    background-color: #f7f5f2;
+  }
+}
+
+/* Dark theme table styles */
+.dark table {
+  & th {
+    background-color: #0f1419;
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+
+  & th,
+  & td {
+    border-color: #1f2937;
+  }
+
+  & tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  & tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Table responsive behavior */
+@media (max-width: 768px) {
+  table {
+    font-size: 12px;
+
+    & th,
+    & td {
+      padding: 6px 8px;
+    }
+  }
+}
+
+/* ExpressiveCode frame styling - keep frames dark in both light and dark modes */
+/* Frame headers and titles */
+.expressive-code .header,
+.expressive-code [data-header],
+.expressive-code .title,
+.expressive-code [data-title],
+.expressive-code .frame-title {
+  background-color: #1f2328 !important;
+  color: #e6e8eb !important;
+  border-bottom-color: #30363d !important;
+}
+
+/* Tab bars and tabs */
+.expressive-code .tab-bar,
+.expressive-code [data-tab-bar],
+.expressive-code .tabs {
+  background-color: #1f2328 !important;
+  border-bottom-color: #30363d !important;
+}
+
+.expressive-code .tab,
+.expressive-code [data-tab] {
+  color: #7d8590 !important;
+  background-color: transparent !important;
+}
+
+.expressive-code .tab.active,
+.expressive-code .tab[data-active],
+.expressive-code [data-tab].active {
+  color: #e6e8eb !important;
+  background-color: #0d1117 !important;
+}
+
+.light .expressive-code .header,
+.light .expressive-code [data-header],
+.light .expressive-code .title,
+.light .expressive-code .frame-title,
+.dark .expressive-code .header,
+.dark .expressive-code [data-header],
+.dark .expressive-code .title,
+.dark .expressive-code .frame-title {
+  background-color: #1f2328 !important;
+  color: #e6e8eb !important;
+}
+
+.light .expressive-code .tab-bar,
+.light .expressive-code [data-tab-bar],
+.dark .expressive-code .tab-bar,
+.dark .expressive-code [data-tab-bar] {
+  background-color: #1f2328 !important;
+}

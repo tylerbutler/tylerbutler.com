@@ -1,0 +1,165 @@
+/* Import fonts with font-display optimization */
+@import "@fontsource/lato/400.css";
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+/* Font loading optimization */
+@font-face {
+  font-family: "westgate";
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "adelle";
+  font-display: swap;
+}
+
+/* Reset and base styles with typography optimization */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Improved text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: common-ligatures contextual discretionary-ligatures;
+  font-kerning: auto;
+}
+
+body {
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-variant-ligatures: common-ligatures contextual;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--light-bg);
+  position: relative;
+}
+
+/* Fixed background image - prevents distortion on long pages */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/bg.jpg"); /* Fallback for older browsers */
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Dark mode overlay for background image */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dark body::after {
+  opacity: 1;
+}
+
+/* Use AVIF for supporting browsers (best compression) */
+@supports (
+    background-image: url("data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgABogQEAwgMg8f8D///8WfhwB8+ErK42A=")
+  ) {
+  body::before {
+    background-image: url("/bg.avif"); /* Standard AVIF - 250KB */
+  }
+
+  /* High-quality AVIF for large screens */
+  @media (min-width: 1200px) {
+    body::before {
+      background-image: url("/bg-hq.avif"); /* High-quality AVIF - 435KB */
+    }
+  }
+
+  /* Hide background on mobile for cleaner experience */
+  @media (max-width: 768px) {
+    body::before,
+    body::after {
+      display: none; /* Hide both background and overlay on mobile */
+    }
+  }
+}
+
+/* Use WebP for supporting browsers (fallback from AVIF) */
+@supports (
+    background-image: url("data:image/webp;base64,UklGRh4AAABXRUJQVlA4IBYAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=")
+  ) {
+  body::before {
+    background-image: url("/bg.webp"); /* Standard WebP - 274KB */
+  }
+
+  /* High-quality WebP for large screens */
+  @media (min-width: 1200px) {
+    body::before {
+      background-image: url("/bg-hq.webp"); /* High-quality WebP - 484KB */
+    }
+  }
+
+  /* Hide background on mobile for cleaner experience */
+  @media (max-width: 768px) {
+    body::before,
+    body::after {
+      display: none; /* Hide both background and overlay on mobile */
+    }
+  }
+}
+
+/* Accessibility improvements */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Expressive Code theme switching support */
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  /* Hide background image on mobile for all formats */
+  body::before,
+  body::after {
+    display: none !important; /* Hide both background and overlay on mobile */
+  }
+
+  body {
+    background-color: #000000; /* Solid black background on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 16px; /* Increased for better mobile readability */
+  }
+}

@@ -98,6 +98,14 @@ export function transformFootnotesForLittlefoot(tree: Root, options: FootnoteOpt
     if (node.tagName === 'section' &&
         node.properties?.['data-footnotes'] !== undefined) {
 
+      // Remove the "Footnotes" heading if it exists
+      node.children = node.children.filter((child: any) => {
+        if (child.type !== 'element') return true;
+        if (child.tagName !== 'h2') return true;
+        if (child.properties?.id !== 'footnote-label') return true;
+        return false; // Remove this h2 with id="footnote-label"
+      });
+
       // Find all footnote list items within this section
       visit(node, 'element', (listItem: Element) => {
         if (listItem.tagName === 'li' && listItem.properties?.id &&

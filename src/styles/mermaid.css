@@ -15,12 +15,25 @@
 }
 
 /* Dark mode adjustments for mermaid diagrams */
-.dark .mermaid {
-  filter: invert(1) hue-rotate(180deg);
+.dark .mermaid svg {
+  /* Invert colors but keep hues correct */
+  filter: invert(0.9) hue-rotate(180deg) brightness(1.1) contrast(1.1);
+  background-color: transparent;
 }
 
-.dark .mermaid svg {
-  background-color: transparent;
+/* Enhance line visibility in dark mode */
+.dark .mermaid svg .flowchart-link,
+.dark .mermaid svg .messageLine0,
+.dark .mermaid svg .messageLine1,
+.dark .mermaid svg path,
+.dark .mermaid svg line {
+  stroke-width: 2px !important;
+  opacity: 1 !important;
+}
+
+/* Alternatively, set diagram background to match dark theme */
+.dark .mermaid svg[style*="background"] {
+  background-color: var(--background-color, #1a1a1a) !important;
 }
 
 /* Responsive mermaid diagrams */

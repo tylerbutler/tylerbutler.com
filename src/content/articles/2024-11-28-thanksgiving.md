@@ -20,17 +20,17 @@ This year, though, has been extremely hard, following several other years that I
 
 This year, a different Rumi poem rings true:
 
-> Who makes these changes?<br/>
-> I shoot an arrow right.<br/>
-> It lands left.<br/>
-> I ride after a deer and find myself<br/>
-> Chased by a hog.<br/>
-> I plot to get what I want<br/>
-> And end up in prison.<br/>
-> I dig pits to trap others<br/>
+> Who makes these changes?\
+> I shoot an arrow right.\
+> It lands left.\
+> I ride after a deer and find myself\
+> Chased by a hog.\
+> I plot to get what I want\
+> And end up in prison.\
+> I dig pits to trap others\
 > And fall in.
 >
-> I should be suspicious<br/>
+> I should be suspicious\
 > Of what I want.
 
 [tg]: /tags/thanksgiving/

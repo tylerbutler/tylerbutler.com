@@ -10,11 +10,11 @@ import { downloadFonts } from "./scripts/download-fonts.ts";
 import { optimizeFonts } from "./scripts/optimize-fonts.ts";
 import remarkGfm from "remark-gfm";
 import remarkSmartypants from "remark-smartypants";
-import remarkMermaid from "remark-mermaid";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
 import { remarkNormalizeHeadings } from "./src/lib/remark-normalize-headings.ts";
 import { remarkLazyLinks } from "./src/lib/remark-lazy-links.ts";
+import { remarkMermaidConfigured } from "./src/lib/remark-mermaid-config.ts";
 import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
 import { rehypeFootnotes } from "./src/lib/footnotes.js";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
@@ -72,10 +72,7 @@ const pagefindIntegration = () => ({
 				});
 				console.log("✅ Pagefind search index built successfully");
 			} catch (error) {
-				console.error(
-					"❌ Pagefind indexing failed:",
-					(error as Error).message,
-				);
+				console.error("❌ Pagefind indexing failed:", (error as Error).message);
 				throw error;
 			}
 		},
@@ -104,8 +101,8 @@ export default defineConfig({
 				remarkLazyLinks,
 				remarkGfm,
 				remarkSmartypants,
-				remarkMermaid,
-				remarkGithubBlockquoteAlert,
+				[remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
+				[remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
 				remarkNormalizeHeadings,
 			],
 			rehypePlugins: [
@@ -130,7 +127,7 @@ export default defineConfig({
 	],
 	image: {
 		responsiveStyles: true,
-		layout: 'constrained', // Generates srcset for responsive images
+		layout: "constrained", // Generates srcset for responsive images
 	},
 	markdown: {
 		syntaxHighlight: false, // Disable Astro's built-in syntax highlighting to use Expressive Code
@@ -140,8 +137,8 @@ export default defineConfig({
 			remarkLazyLinks,
 			remarkGfm,
 			remarkSmartypants,
-			remarkMermaid,
-			remarkGithubBlockquoteAlert,
+			[remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
+			[remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
 			remarkNormalizeHeadings,
 		],
 		rehypePlugins: [

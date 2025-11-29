@@ -35,6 +35,13 @@
   --code-text: #B8722A;    /* Orange accent color for inline code text */
   --code-border: rgba(184, 114, 42, 0.2); /* Subtle border using accent color */
 
+  /* Alert/Status colors */
+  --success: #4A7C59;      /* Muted green for success states */
+  --info: #4A6B8A;         /* Blue-gray for informational messages */
+  --warning: #D4842A;      /* Warm orange for warnings */
+  --error: #B85A4A;        /* Muted red for errors */
+  --important: #8B5A9D;    /* Muted purple for important alerts */
+
   /* Layout measurements - matching mockup innerWrapper */
   --container-width: clamp(636px, 90vw, 763px);
   --content-width: 380px;
@@ -66,6 +73,13 @@
   --code-bg: #2d3748;      /* Dark blue-gray background for inline code */
   --code-text: #e2e8f0;    /* Light text for good contrast */
   --code-border: rgba(212, 175, 55, 0.3); /* Subtle golden border using dark theme accent */
+
+  /* Dark theme alert/status colors */
+  --success: #6B9D7A;      /* Lighter muted green for dark backgrounds */
+  --info: #6B8AAA;         /* Lighter blue-gray for dark backgrounds */
+  --warning: #E69A4A;      /* Lighter warm orange for dark backgrounds */
+  --error: #D47A6A;        /* Lighter muted red for dark backgrounds */
+  --important: #A67AB8;    /* Lighter muted purple for dark backgrounds */
 
   /* Dark theme specific */
   --site-container-bg: #1a2332; /* Container background matching dark-bg */
@@ -239,6 +253,19 @@ body::after {
   --flow-space: 1em;
   margin-bottom: 0.4em;
 }
+
+/* Drop letter styling for article first paragraph */
+/* .article-content > p:first-letter {
+  font-size: 3rem;
+  font-family: var(--code-font);
+  float: left;
+  line-height: 110%;
+  margin-right: 0.2em;
+
+  padding: 0.2em 0.5em;
+  border-radius: 10%;
+  background-color: var(--info);
+} */
 
 /* Typography system - exact mockup specifications */
 
@@ -720,17 +747,24 @@ blockquote {
   margin: 1.5em 0;
   padding: 1em 1.5em;
   border-left: 4px solid var(--accent);
-  background: #F5F3F0;
+  background: var(--code-bg);
   font-style: italic;
   font-size: clamp(16px, 3vw, 18px);
   line-height: 1.5;
-  color: var(--text-light);
+  /* color: var(--text-light); */
+  color: var(--code-text);
   border-radius: 0 4px 4px 0;
   position: relative;
-  max-width: 60ch;
+  /* max-width: 60ch; */
 }
 
-blockquote::before {
+blockquote > blockquote {
+  border-top: 1px solid var(--code-border);
+  border-right: 1px solid var(--code-border);
+  border-bottom: 1px solid var(--code-border);
+}
+
+/* blockquote::before {
   content: "\201C";
   font-family: Georgia, serif;
   font-size: 48px;
@@ -739,7 +773,7 @@ blockquote::before {
   left: 0.5em;
   top: 0.2em;
   opacity: 0.3;
-}
+} */
 
 blockquote p {
   margin: 0;
@@ -755,15 +789,131 @@ blockquote p:last-child {
   margin-bottom: 0;
 }
 
+blockquote footer {
+  /* margin-top: 0.75em; */
+  font-size: 0.8em;
+  color: var(--text-light);
+}
+
+blockquote footer::before {
+  content: "— ";
+  font-style: italic;
+}
+
 /* Dark theme blockquote styles */
 .dark blockquote {
-  background: #0c1116;
-  color: #cccccc;
+  background: var(--dark-bg);
+  color: var(--text-light);
   border-left-color: var(--accent);
 }
 
-.dark blockquote::before {
+/* .dark blockquote::before {
   color: var(--accent);
+} */
+
+/* GitHub-style Alert Boxes */
+.markdown-alert {
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-left: 4px solid;
+  border-radius: 0 4px 4px 0;
+  background: var(--code-bg);
+}
+
+.markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 600;
+  margin-bottom: 0.5em !important;
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(14px, 2.5vw, 15px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.markdown-alert-title .octicon {
+  flex-shrink: 0;
+}
+
+/* Dark theme - invert SVG icons for better visibility */
+.dark .markdown-alert-title .octicon {
+  filter: invert(1);
+}
+
+/* Note alert - Info blue */
+.markdown-alert-note {
+  border-left-color: var(--info);
+  background: color-mix(in srgb, var(--info) 10%, var(--light-bg));
+}
+
+.markdown-alert-note .markdown-alert-title {
+  color: var(--info);
+}
+
+/* Tip alert - Success green */
+.markdown-alert-tip {
+  border-left-color: var(--success);
+  background: color-mix(in srgb, var(--success) 10%, var(--light-bg));
+}
+
+.markdown-alert-tip .markdown-alert-title {
+  color: var(--success);
+}
+
+/* Important alert - Purple/violet */
+.markdown-alert-important {
+  border-left-color: var(--important);
+  background: color-mix(in srgb, var(--important) 10%, var(--light-bg));
+}
+
+.markdown-alert-important .markdown-alert-title {
+  color: var(--important);
+}
+
+/* Warning alert - Warning orange */
+.markdown-alert-warning {
+  border-left-color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 10%, var(--light-bg));
+}
+
+.markdown-alert-warning .markdown-alert-title {
+  color: var(--warning);
+}
+
+/* Caution alert - Error red */
+.markdown-alert-caution {
+  border-left-color: var(--error);
+  background: color-mix(in srgb, var(--error) 10%, var(--light-bg));
+}
+
+.markdown-alert-caution .markdown-alert-title {
+  color: var(--error);
+}
+
+/* Dark theme alert adjustments */
+.dark .markdown-alert {
+  background: var(--dark-bg);
+}
+
+.dark .markdown-alert-note {
+  background: color-mix(in srgb, var(--info) 15%, var(--dark-bg));
+}
+
+.dark .markdown-alert-tip {
+  background: color-mix(in srgb, var(--success) 15%, var(--dark-bg));
+}
+
+.dark .markdown-alert-important {
+  background: color-mix(in srgb, var(--important) 15%, var(--dark-bg));
+}
+
+.dark .markdown-alert-warning {
+  background: color-mix(in srgb, var(--warning) 15%, var(--dark-bg));
+}
+
+.dark .markdown-alert-caution {
+  background: color-mix(in srgb, var(--error) 15%, var(--dark-bg));
 }
 
 /* HR styling - render as three centered hash symbols */

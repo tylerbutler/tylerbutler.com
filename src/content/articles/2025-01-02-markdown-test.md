@@ -79,15 +79,26 @@ Reference-style links[^1] with footnotes.
 
 > This is a simple blockquote.
 > It can span multiple lines.
+> And they will be formatted as a single paragraph.
 
-> **Note**
+> A quote from someone.
+>
+> <footer>Use a footer for a reference, <a href="https://tylerbutler.com">and maybe a link</a></footer>
+
+> [!NOTE]
 > This is a GitHub-style note alert.
 
-> **Warning**
+> [!TIP]
+> This is a GitHub-style tip alert.
+
+> [!IMPORTANT]
+> This is a GitHub-style important alert.
+
+> [!WARNING]
 > This is a GitHub-style warning alert.
 
-> **Important**
-> This is a GitHub-style important alert.
+> [!CAUTION]
+> This is a GitHub-style caution alert.
 
 > Nested blockquotes:
 > > This is nested
@@ -102,9 +113,9 @@ Plain text code block
 No syntax highlighting
 ```
 
-### JavaScript with Line Numbers
+### JavaScript with Title and Line Numbers
 
-```js showLineNumbers
+```js title="fibonacci.js" showLineNumbers
 // JavaScript with automatic line numbers
 function fibonacci(n) {
   if (n <= 1) return n;
@@ -115,17 +126,18 @@ const result = fibonacci(10);
 console.log(`Fibonacci(10) = ${result}`);
 ```
 
-### TypeScript with Line Numbers
+### TypeScript with Highlighting
 
-```ts
-// TypeScript with automatic line numbers
+```ts title="src/types/User.ts" {3, 8-10}
+// TypeScript with line highlighting
 interface User {
-  id: number;
+  id: number; // Highlighted line
   name: string;
   email: string;
 }
 
 function greetUser(user: User): string {
+  // These lines are highlighted
   return `Hello, ${user.name}!`;
 }
 
@@ -136,14 +148,15 @@ const user: User = {
 };
 ```
 
-### Python with Line Numbers
+### Python with Diff Markers (ins/del)
 
-```python
-# Python with automatic line numbers
+```python title="quicksort.py" del={5} ins={6}
+# Python with insertions and deletions
 def quicksort(arr):
     if len(arr) <= 1:
         return arr
     pivot = arr[len(arr) // 2]
+    pivot = arr[0]  # Using first element as pivot
     left = [x for x in arr if x < pivot]
     middle = [x for x in arr if x == pivot]
     right = [x for x in arr if x > pivot]
@@ -154,14 +167,14 @@ sorted_numbers = quicksort(numbers)
 print(sorted_numbers)
 ```
 
-### Rust with Line Numbers
+### Rust with Text Markers
 
-```rust
-// Rust with automatic line numbers
+```rust title="factorial.rs"
+// Rust with inline text markers
 fn factorial(n: u64) -> u64 {
     match n {
         0 => 1,
-        _ => n * factorial(n - 1),
+        _ => n * factorial(n - 1),  // Recursive call
     }
 }
 
@@ -171,10 +184,10 @@ fn main() {
 }
 ```
 
-### C# with Line Numbers
+### C# with Multiple Features
 
-```csharp
-// C# with automatic line numbers
+```csharp title="Program.cs" showLineNumbers {9-10}
+// C# with title, line numbers, and highlighting
 using System;
 using System.Linq;
 
@@ -182,12 +195,39 @@ public class Program
 {
     public static void Main()
     {
+        // These two lines are highlighted
         var numbers = Enumerable.Range(1, 10);
         var evens = numbers.Where(n => n % 2 == 0);
 
         Console.WriteLine("Even numbers: " + string.Join(", ", evens));
     }
 }
+```
+
+### Code with Focus (Neutral Highlighting)
+
+```js title="api.js" {3, 6}
+// Highlighting important lines
+async function fetchUser(id) {
+  const response = await fetch(`/api/users/${id}`);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch user');
+  }
+
+  return response.json();
+}
+```
+
+### Diff Example with Syntax Highlighting
+
+```diff lang="js"
+  function calculateTotal(items) {
+-   return items.reduce((sum, item) => sum + item.price, 0);
++   // Add tax calculation
++   const subtotal = items.reduce((sum, item) => sum + item.price, 0);
++   return subtotal * 1.08;
+  }
 ```
 
 ### HTML with Line Numbers
@@ -446,8 +486,6 @@ Copyright © Trademark ™ Registered ®
 
 ## Mermaid Diagrams
 
-<!-- TODO: Re-enable once mermaid SVG generation is fixed on Netlify -->
-<!--
 ```mermaid
 graph TD
     A[Start] --> B{Is it working?}
@@ -467,16 +505,17 @@ sequenceDiagram
     Server->>Browser: HTML Response
     Browser->>User: Render page
 ```
--->
 
-## Definition Lists (if supported)
+## Definition Lists
 
-Term 1
-: Definition 1a
-: Definition 1b
+<dl>
+  <dt>Term 1</dt>
+  <dd>Definition 1a</dd>
+  <dd>Definition 1b</dd>
 
-Term 2
-: Definition 2
+  <dt>Term 2</dt>
+  <dd>Definition 2</dd>
+</dl>
 
 ## Abbreviations
 
@@ -557,14 +596,22 @@ This test article includes:
 - ✅ Text formatting (bold, italic, strikethrough, code)
 - ✅ Links (inline, reference, automatic)
 - ✅ Lists (ordered, unordered, task, nested)
-- ✅ Blockquotes (simple, nested, GitHub alerts)
-- ✅ Code blocks (10+ languages with various features)
+- ✅ Blockquotes (simple, nested, GitHub alerts with colors)
+- ✅ Code blocks with Expressive Code features:
+  - Syntax highlighting for 10+ languages
+  - Titles/filenames
+  - Line numbers
+  - Line highlighting
+  - Diff markers (ins/del)
+  - Multiple features combined
 - ✅ Tables (basic and aligned)
 - ✅ Horizontal rules
 - ✅ Images
 - ✅ Inline HTML
 - ✅ Special characters and typography
 - ✅ Mermaid diagrams
+- ✅ Definition lists (HTML)
+- ✅ Abbreviations (via `remark-abbr` plugin)
 - ✅ Footnotes
 - ✅ Combined features
 

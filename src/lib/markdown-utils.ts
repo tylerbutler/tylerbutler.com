@@ -74,7 +74,7 @@ function createMarkdownProcessor(headingLevel?: number) {
     .use(remarkGfm)
     .use(remarkSmartypants)
     .use(remarkMermaid)
-    .use(remarkGithubBlockquoteAlert);
+    .use(remarkGithubBlockquoteAlert, { tagName: "blockquote" });
 
   // Add heading normalization with optional override
   if (headingLevel !== undefined) {

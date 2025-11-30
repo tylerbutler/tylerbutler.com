@@ -2,7 +2,3 @@
 	path = themes/dark_rainbow
 	url = https://github.com/tylerbutler/dark_rainbow_hugo.git
 	branch = master
-[submodule "azure-hugo"]
-	path = azure-hugo
-	url = https://github.com/tylerbutler/azure-hugo.git
-	branch = master

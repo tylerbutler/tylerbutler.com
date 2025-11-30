@@ -1,7 +1,0 @@
-SUPER: base.yaml
-
-SITE_URL: 'http://tylerbutler.github.io'
-OUTPUT_DIR: './output/github.io/'
-
-FINALIZE_METADATA: no
-POST_RENAME_ENABLED: no

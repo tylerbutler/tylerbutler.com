@@ -80,6 +80,7 @@
     "@playwright/test": "^1.57.0",
     "cross-env": "^10.1.0",
     "pa11y-ci": "^4.0.1",
+    "sharp": "^0.34.4",
     "pagefind": "^1.4.0",
     "postcss-nesting": "^13.0.2",
     "rehype-footnotes": "^0.1.0",

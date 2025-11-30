@@ -51,7 +51,7 @@
     "@expressive-code/plugin-line-numbers": "^0.41.3",
     "@floating-ui/dom": "^1.7.4",
     "@fontsource/lato": "^5.2.7",
-    "@lucide/astro": "^0.544.0",
+    "@lucide/astro": "^0.555.0",
     "astro": "^5.16.3",
     "astro-broken-links-checker": "github:imazen/astro-broken-link-checker",
     "astro-expressive-code": "^0.41.3",

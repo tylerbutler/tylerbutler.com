@@ -130,7 +130,11 @@
       "mcp__serena__read_memory",
       "Bash(pnpm astro check:*)",
       "Bash(pnpm build:*)",
-      "Bash(wait:*)"
+      "Bash(wait:*)",
+      "mcp__serena__find_referencing_symbols",
+      "Bash(open \"https://github.com/tylerbutler/tools-monorepo/issues/new?title=rehype-footnotes:%20Footnote%20references%20don%27t%20work%20with%20Littlefoot%20due%20to%20href/id%20mismatch\")",
+      "Bash(gh issue create:*)",
+      "Bash(gh auth:*)"
     ],
     "deny": [],
     "ask": []

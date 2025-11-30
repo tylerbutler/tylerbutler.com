@@ -1,5 +1,5 @@
+import path from "pathe";
 import remarkMermaid from "remark-mermaid";
-import path from "node:path";
 import type { Plugin } from "unified";
 
 export interface RemarkMermaidOptions {

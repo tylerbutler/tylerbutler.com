@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn } from "child_process";
-import { readFile, writeFile, unlink } from "fs/promises";
+import { readFile, unlink, writeFile } from "fs/promises";
 import { URL } from "url";
 
 /**
@@ -153,7 +153,7 @@ interface ParsedArgs {
 function parseArgs(): ParsedArgs {
   const args = process.argv.slice(2);
   let baseUrl = "https://tylerbutler.com";
-  let newHost: string | undefined = undefined;
+  let newHost: string | undefined;
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];

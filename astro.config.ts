@@ -1,24 +1,22 @@
-import { defineConfig } from "astro/config";
-import sitemap from "@astrojs/sitemap";
+import { execSync } from "node:child_process";
 import mdx from "@astrojs/mdx";
-import { visualizer } from "rollup-plugin-visualizer";
 import netlify from "@astrojs/netlify";
-import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
+import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
 import brokenLinksChecker from "astro-broken-links-checker";
-
-import { downloadFonts } from "./scripts/download-fonts.ts";
-import { optimizeFonts } from "./scripts/optimize-fonts.ts";
-import remarkGfm from "remark-gfm";
-import remarkSmartypants from "remark-smartypants";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
-import { remarkNormalizeHeadings } from "./src/lib/remark-normalize-headings.ts";
-import { remarkLazyLinks } from "./src/lib/remark-lazy-links.ts";
-import { remarkMermaidConfigured } from "./src/lib/remark-mermaid-config.ts";
-import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
-import { rehypeFootnotes } from "./src/lib/footnotes.js";
+import { rehypeFootnotes } from "rehype-footnotes";
+import remarkGfm from "remark-gfm";
+import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
+import { remarkLazyLinks } from "remark-lazy-links";
+import { remarkShiftHeadings } from "remark-shift-headings";
+import remarkSmartypants from "remark-smartypants";
+import { visualizer } from "rollup-plugin-visualizer";
+import { downloadFonts } from "./scripts/download-fonts.ts";
+import { optimizeFonts } from "./scripts/optimize-fonts.ts";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
-import { execSync } from "node:child_process";
+import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
 
 const fontDownloader = () => ({
   name: "font-downloader",
@@ -104,7 +102,7 @@ export default defineConfig({
         // Disabled since mermaid is not used
         // [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
         [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
-        remarkNormalizeHeadings,
+        remarkShiftHeadings,
       ],
       rehypePlugins: [
         rehypeFootnotes,
@@ -141,7 +139,7 @@ export default defineConfig({
       // Disabled since mermaid is not used
       // [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
       [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
-      remarkNormalizeHeadings,
+      remarkShiftHeadings,
     ],
     rehypePlugins: [
       rehypeFootnotes,

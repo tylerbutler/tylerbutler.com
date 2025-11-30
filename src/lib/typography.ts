@@ -1,7 +1,7 @@
-import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkSmartypants from "remark-smartypants";
 import remarkStringify from "remark-stringify";
+import { unified } from "unified";
 
 /**
  * Shared remark typography pipeline configuration

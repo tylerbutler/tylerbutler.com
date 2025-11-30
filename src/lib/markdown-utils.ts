@@ -1,19 +1,18 @@
-import rehypeExpressiveCode, {
-  ExpressiveCodeTheme,
-  type ExpressiveCodeConfig,
-} from "rehype-expressive-code";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkSmartypants from "remark-smartypants";
-import remarkMermaid from "remark-mermaid";
-import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
-import remarkRehype from "remark-rehype";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeExpressiveCode, {
+  type ExpressiveCodeConfig,
+  ExpressiveCodeTheme,
+} from "rehype-expressive-code";
+import { rehypeFootnotes } from "rehype-footnotes";
 import rehypeStringify from "rehype-stringify";
-import { remarkNormalizeHeadings } from "./remark-normalize-headings.ts";
-import { rehypeFootnotes } from "./footnotes.js";
+import remarkGfm from "remark-gfm";
+import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { remarkShiftHeadings } from "remark-shift-headings";
+import remarkSmartypants from "remark-smartypants";
+import { unified } from "unified";
 
 // Load themes
 import ayuLightJson from "./themes/ayu-light.json";
@@ -82,12 +81,12 @@ function createMarkdownProcessor(headingLevel?: number) {
 
   // Add heading normalization with optional override
   if (headingLevel !== undefined) {
-    processor.use(remarkNormalizeHeadings, {
+    processor.use(remarkShiftHeadings, {
       defaultCollectionLevel: headingLevel,
       defaultPageLevel: headingLevel,
     });
   } else {
-    processor.use(remarkNormalizeHeadings);
+    processor.use(remarkShiftHeadings);
   }
 
   return processor

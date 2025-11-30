@@ -1,8 +1,8 @@
-import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
+import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
-import type { APIContext } from "astro";
 
 export async function GET(context: APIContext) {
   const articles = await getCollection("articles", ({ data }) => {

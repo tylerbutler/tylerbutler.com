@@ -1,10 +1,10 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
+import { ExternalLink } from "@lucide/astro";
+import type { TocItem } from "astro-toc";
+import { TOC } from "astro-toc";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatTitle } from "../lib/typography";
-import { ExternalLink } from "@lucide/astro";
-import { TOC } from "astro-toc";
-import type { TocItem } from "astro-toc";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles", ({ data }) => {

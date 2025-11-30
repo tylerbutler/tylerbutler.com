@@ -21,7 +21,9 @@
       "Bash(npx sonda:*)",
       "Bash(npm run test:images:*)",
       "Bash(node:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git config:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []

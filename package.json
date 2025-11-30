@@ -26,7 +26,6 @@
     "check": "astro check --minimumSeverity warning",
     "dev": "astro dev",
     "format": "biome check --write --linter-enabled=false",
-    "install:python": "pip install -r requirements.txt",
     "linkcheck": "start-server-and-test dev http://localhost:4321 'cat complete-urls.txt | xargs lychee'",
     "optimize:fonts": "node scripts/optimize-fonts.mjs",
     "preview": "astro preview",

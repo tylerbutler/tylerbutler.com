@@ -1,2 +1,0 @@
-fonttools>=4.0.0
-brotli>=1.0.0

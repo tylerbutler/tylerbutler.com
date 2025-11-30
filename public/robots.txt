@@ -1,4 +1,7 @@
+# www.robotstxt.org/
+
 User-agent: *
 Allow: /
+Disallow:
 
 Sitemap: https://tylerbutler.com/sitemap-index.xml

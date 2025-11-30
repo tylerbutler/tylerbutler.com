@@ -12,7 +12,7 @@
   publish = "dist"
 
   # Default build command.
-  command = "pip install -r requirements.txt && npm run build"
+  command = "pnpm build"
 
 # Subfont optimization plugin (runs after Astro build)
 # Disabled - using manual font management

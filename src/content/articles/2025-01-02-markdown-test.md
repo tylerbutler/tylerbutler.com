@@ -7,7 +7,7 @@ tags:
   - markdown
   - formatting
 excerpt: 'A comprehensive test article demonstrating all supported markdown formatting features including headings, lists, code blocks, blockquotes, tables, and more.'
-draft: false
+draft: true
 ---
 
 This is a comprehensive test article to verify all markdown formatting features are working correctly. It includes examples of every supported markdown element.

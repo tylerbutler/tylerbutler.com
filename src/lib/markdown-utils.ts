@@ -123,12 +123,29 @@ export async function renderMarkdownWithPipeline(
 }
 
 /**
+ * Extracts markdown reference link definitions from content.
+ * Reference links are defined as [id]: url or [id]: url "title"
+ * These need to be preserved when creating excerpts so links can be resolved.
+ *
+ * @param markdownContent - Full markdown content
+ * @returns String containing all reference link definitions
+ */
+function extractReferenceLinkDefinitions(markdownContent: string): string {
+  // Match reference link definitions: [id]: url or [id]: url "title"
+  // Pattern: start of line, [identifier]: URL (optional "title")
+  const refLinkPattern = /^\[([^\]]+)\]:\s*(\S+)(?:\s+"[^"]*")?$/gm;
+  const matches = markdownContent.match(refLinkPattern);
+  return matches ? matches.join("\n") : "";
+}
+
+/**
  * Creates a preview version of article content with shifted headings for homepage display
  * This ensures proper heading hierarchy when article content appears under h2 article titles
  * Uses the full Astro markdown pipeline including ExpressiveCode and all other plugins
  *
  * Supports <!--more--> separator for excerpts:
  * - Content before <!--more--> is shown on homepage
+ * - Reference link definitions from the full content are preserved so links resolve correctly
  * - Footnote markers are stripped from excerpts (footnotes only appear in full articles)
  * - Returns full content if no <!--more--> separator is found
  *
@@ -150,6 +167,13 @@ export async function createHomepagePreview(
   const excerpt = markdownContent.substring(0, moreIndex);
   const excerptWithoutFootnotes = excerpt.replace(/\[\^(\w+)\]/g, "");
 
-  const html = await renderMarkdownWithPipeline(excerptWithoutFootnotes, 3);
+  // Extract reference link definitions from full content and append to excerpt
+  // This ensures reference-style links in the excerpt can be resolved
+  const refLinks = extractReferenceLinkDefinitions(markdownContent);
+  const excerptWithRefLinks = refLinks
+    ? `${excerptWithoutFootnotes}\n\n${refLinks}`
+    : excerptWithoutFootnotes;
+
+  const html = await renderMarkdownWithPipeline(excerptWithRefLinks, 3);
   return { html, isTruncated: true };
 }

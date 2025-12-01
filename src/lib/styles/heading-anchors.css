@@ -16,7 +16,7 @@
 .heading-anchor:hover::before {
   content: "#";
   position: absolute;
-  left: -.8em;
+  left: -0.8em;
   color: var(--color-text-secondary, #666);
   font-weight: normal;
   opacity: 0.6;

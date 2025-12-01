@@ -8,41 +8,28 @@
 }
 
 .heading-anchor:hover {
+  color: inherit;
   text-decoration: none;
 }
 
-/* Add a subtle link icon on hover */
-.heading-anchor:hover::after {
+/* Show # to the left on hover */
+.heading-anchor:hover::before {
   content: "#";
   position: absolute;
-  right: -1.2em;
-  top: 0;
-  color: #666;
+  left: -.8em;
+  color: var(--color-text-secondary, #666);
   font-weight: normal;
-  font-size: 0.8em;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
+  opacity: 0.6;
 }
 
-.heading-anchor:hover::after:hover {
-  opacity: 1;
-  color: #0066cc;
+.dark .heading-anchor:hover::before {
+  color: var(--color-text-secondary, #999);
 }
 
-/* Dark mode support */
-.dark .heading-anchor:hover::after {
-  color: #999;
-}
-
-.dark .heading-anchor:hover::after:hover {
-  color: #66b3ff;
-}
-
-/* Responsive adjustments */
+/* Responsive - hide on small screens where there's no left margin */
 @media (max-width: 768px) {
-  .heading-anchor:hover::after {
-    right: -1em;
-    font-size: 0.7em;
+  .heading-anchor:hover::before {
+    display: none;
   }
 }
 

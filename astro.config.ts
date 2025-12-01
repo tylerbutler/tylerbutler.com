@@ -6,6 +6,7 @@ import { defineConfig } from "astro/config";
 import brokenLinksChecker from "astro-broken-links-checker";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
+import rehypeSlug from "rehype-slug";
 import { rehypeFootnotes } from "rehype-footnotes";
 import remarkGfm from "remark-gfm";
 import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
@@ -106,6 +107,7 @@ export default defineConfig({
       ],
       rehypePlugins: [
         rehypeFootnotes,
+        rehypeSlug,
         [
           rehypeAutolinkHeadings,
           {
@@ -143,6 +145,7 @@ export default defineConfig({
     ],
     rehypePlugins: [
       rehypeFootnotes,
+      rehypeSlug,
       [
         rehypeAutolinkHeadings,
         {

@@ -5,6 +5,7 @@ import rehypeExpressiveCode, {
   ExpressiveCodeTheme,
 } from "rehype-expressive-code";
 import { rehypeFootnotes } from "rehype-footnotes";
+import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
 import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
@@ -92,6 +93,7 @@ function createMarkdownProcessor(headingLevel?: number) {
   return processor
     .use(remarkRehype)
     .use(rehypeFootnotes)
+    .use(rehypeSlug)
     .use(rehypeAutolinkHeadings, {
       behavior: "wrap",
       properties: {

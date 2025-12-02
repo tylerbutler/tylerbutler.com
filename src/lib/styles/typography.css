@@ -174,19 +174,14 @@ a {
   }
 }
 
-/* Broken link styling with semantic <del> wrapper */
-del a[data-broken="true"] {
+/* Broken link styling */
+a[data-broken="true"] {
   color: var(--text-light);
   opacity: 0.6;
   cursor: help;
-  text-decoration: line-through;
-  position: relative;
 
-  &::after {
-    content: " 🔗";
-    font-size: 0.85em;
-    opacity: 0.5;
-    vertical-align: super;
+  &:hover {
+    color: var(--text);
   }
 }
 

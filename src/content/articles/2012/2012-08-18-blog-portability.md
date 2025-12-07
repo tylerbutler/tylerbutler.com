@@ -3,7 +3,7 @@
 title: Blog Portability
 date: '2012-08-18T20:37:00-07:00'
 teaser: true
-link: http://www.macdrifter.com/2012/07/things-i-have-learned-about-blog-portability.html
+link: https://www.macdrifter.com/2012/07/things-i-have-learned-about-blog-portability.html
 via: Collin Donnell
 vialink: http://collindonnell.com/2012/07/31/macdrifter-on-blog-portability/
 slug: blog-portability
@@ -63,7 +63,7 @@ Because Engineer doesn't use tags for any primary navigation or organization, th
 
 When I wrote this originally, my response for this tip was simply, "There are systems that don't do this? WTF?" Before I hit 'publish,' though, I decided to double-check my assumption that [Pygments][] already did this. Unfortunately, I was wrong.
 
-It looks like Pygments' [default HTML formatter](http://pygments.org/docs/formatters/) outputs `<pre>` tags with `<span>` tags inside -- not `<pre><code>` like I thought. However, on the bright side, there's a relatively simple way to write a customized formatter (there's even an example on the Pygments site), so assuming I can get it wired up properly to [Python-Markdown][], I should be able to add it. I've [put it on the (ever-growing) list](https://trello.com/c/QeelOqyG).
+It looks like Pygments' [default HTML formatter](https://pygments.org/docs/formatters/) outputs `<pre>` tags with `<span>` tags inside -- not `<pre><code>` like I thought. However, on the bright side, there's a relatively simple way to write a customized formatter (there's even an example on the Pygments site), so assuming I can get it wired up properly to [Python-Markdown][], I should be able to add it. I've [put it on the (ever-growing) list](https://trello.com/c/QeelOqyG).
 
 
 **9. Don't hard-code formatting into a post.**
@@ -78,5 +78,5 @@ Since Engineer doesn't support comments, this doesn't really apply. If you add y
 
 All in all not too bad! Engineer sites should be very portable, and with some more compatibility work, you should be able to switch pretty easily to and from Jekyll if you want. Consider giving Engineer a try... you might like what you see!
 
-[Pygments]: http://pygments.org/
+[Pygments]: https://pygments.org/
 [Python-Markdown]: http://packages.python.org/Markdown/index.html

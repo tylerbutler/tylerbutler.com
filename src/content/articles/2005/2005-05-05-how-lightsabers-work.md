@@ -40,4 +40,4 @@ lightsaber around the home or office.
 There are also some excellent pictures with captions.
   
 
-   [1]: http://www.howstuffworks.com/lightsaber.htm
+   [1]: https://www.howstuffworks.com/lightsaber.htm

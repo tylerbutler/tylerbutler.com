@@ -43,7 +43,7 @@ bad it failed to become popular (for various reasons).
 
 
    [1]: http://www.hawktour.net
-   [2]: http://64.233.179.104/search?q=cache:m1-41ZtamDcJ:mpt.phrasewise.com/stories/storyReader$374&hl=en&lr=&ie=UTF-8&strip=1
-   [3]: http://daringfireball.net/2004/08/parlay
+   [2]: http://mpt.mirror.theinfo.org/stories/storyReader$374
+   [3]: https://daringfireball.net/2004/08/parlay
    [4]: http://joesacher.com/documents/commandline.php?Page=ETRE
 

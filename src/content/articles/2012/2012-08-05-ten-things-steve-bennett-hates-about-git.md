@@ -3,7 +3,7 @@
 title: Ten Things Steve Bennett Hates About Git
 date: '2012-08-05T15:08:00-07:00'
 teaser: true
-link: https://steveko.wordpress.com/2012/02/24/10-things-i-hate-about-git/
+link: https://stevebennett.me/2012/02/24/10-things-i-hate-about-git/
 via: Jeff Atwood
 vialink: https://twitter.com/codinghorror/statuses/231982243109822464
 slug: ten-things-steve-bennett-hates-about-git
@@ -51,7 +51,7 @@ Now let's talk about the places where I disagree with Bennett.
 
 OK, this is blatant emotional manipulation. "Git is unsafe!" "Git will eat all of your code and you'll never ever be able to get it back!" "Arghhh! Run for the hills!" Come on. I read a headline like "Unsafe version control" and I feel like I am watching an 11 o'clock news report about "Escalators: The silent killer."
 
-In his [Google tech talk](http://www.youtube.com/watch?v=4XpnKHJAok8), Torvalds talks a lot about the fact that Git's decentralization means that often changes you might have eradicated will still exist in another person's clone of your repository. OK, fine, that's true, (and can be a good or bad thing depending on one's perspective) but I don't think that relying on there being another clone with changes that you care about puts many people's minds at ease. In fact, I would say fairly confidently, though I don't have any data to back this up, that the lion's share of projects stored in Git do *not* have a great volume of clones sitting on computers around the world. Relying on other people's clones is not good backup practice in my opinion.
+In his [Google tech talk](https://www.youtube.com/watch?v=4XpnKHJAok8), Torvalds talks a lot about the fact that Git's decentralization means that often changes you might have eradicated will still exist in another person's clone of your repository. OK, fine, that's true, (and can be a good or bad thing depending on one's perspective) but I don't think that relying on there being another clone with changes that you care about puts many people's minds at ease. In fact, I would say fairly confidently, though I don't have any data to back this up, that the lion's share of projects stored in Git do *not* have a great volume of clones sitting on computers around the world. Relying on other people's clones is not good backup practice in my opinion.
 
 However, Git has a *ton* of safeguards in place to prevent you from doing damage. First, if you don't push, no one even sees your mistake. Second, if you try to push, Git by default won't let you if you have divergent changes (as you will if you do a `rebase` in many cases, for example). You have to explicitly tell it to force push in that scenario. Those are two rather silly examples, but there are others. The reflog itself can help you correct damage you've done.
 
@@ -104,7 +104,7 @@ Whatever defaults Git chooses (even if it miraculously became consistent overnig
 
 "But couldn't they add a mode to Git that would emulate Subversion for SVN users and Mercurial for Mercurial users etc. etc," you might say? Perhaps, though [I'm not sure it would work out that well][expert mode]. [Easy GIT](http://people.gnome.org/~newren/eg/) seems like an effort for Subversion folks that's worth looking at more deeply, but its mere existence serves as proof that the notion of 'intelligent defaults' depends a heck of a lot on your perspective.
 
-Having written all of this, I think Bennett has an excellent point when he writes -- in [his reponse to a comment](https://steveko.wordpress.com/2012/02/24/10-things-i-hate-about-git/#comment-82):
+Having written all of this, I think Bennett has an excellent point when he writes -- in [his reponse to a comment](https://stevebennett.me/2012/02/24/10-things-i-hate-about-git/#comment-82):
 
 > The annoying thing about VCS, compared to say, an editor, is that the basic rule of “if you don’t like it, use something else” doesn’t apply. (So in my case, since I never start open source projects, I’ll never get to choose a Git alternative.)
 
@@ -140,7 +140,7 @@ At this point I have digressed quite a bit. But let me leave you with one final 
 
 There is no excuse. It is a basic tool of your profession. Few carpenters get by without learning how to use a lathe; you can't get by without understanding DVCS. I don't care if you love SVN, or you use TFS at work, or you think Git is terrible because its command line is an exercise in insanity. **Learn something.** Mercurial is fine. Git is fine. Heck, even Bazaar is fine as far as I'm concerned. But, for just a moment, forget everything you know about version control and get a grasp of some of the basic concepts of DVCS.
 
-Joel Spolsy's [Hg Init][] site is a good place to start. Yeah, it's Mercurial-centric, but that's fine. The concepts are similar to Git or any other DVCS. And if you like what you see, perhaps you'll try using Mercurial instead of Git. That's OK too. For the brain-damaged among you, Joel even has [a section](http://hginit.com/00.html) for folks with a Subversion background:
+Joel Spolsy's [Hg Init][] site is a good place to start. Yeah, it's Mercurial-centric, but that's fine. The concepts are similar to Git or any other DVCS. And if you like what you see, perhaps you'll try using Mercurial instead of Git. That's OK too. For the brain-damaged among you, Joel even has [a section](https://hginit.github.io//00.html) for folks with a Subversion background:
 
 > It turns out that if you’ve been using Subversion, your brain is a little bit, um, how can I say this politely? You’re brain damaged. No, that’s not polite. You need a little re-education. I walked around brain damaged for six months thinking that Mercurial was more complicated than Subversion, but that was only because I didn’t understand how it really worked, and once I did, it turns out—hey presto!—it’s really kind of simple.
 
@@ -157,7 +157,7 @@ The future is waiting. Go meet it.
     > To reset every file in your working directory to its committed state:
     >     git reset --hard
 
-[^2]: I *know* that closed-source software has this same problem. How do you bring a new developer up to speed on the codebase? Every software development shop has to solve that problem *somehow.* However, in those cases, the problem is not publically evident since we, the public, don't see the 'internal developer documentation,' if it exists.
+[^2]: I *know* that closed-source software has this same problem. How do you bring a new developer up to speed on the codebase? Every software development shop has to solve that problem *somehow.* However, in those cases, the problem is not publicly evident since we, the public, don't see the 'internal developer documentation,' if it exists.
 
 [^3]: In fact, I've thought about trying to wrap my development process in some scripts, sort of like git-flow, but it's likely overkill. I find it hard to believe I'm the only person in the world that works this way, but maybe I am. No other developer codes on more than one machine? Goodness gracious.
 
@@ -165,4 +165,4 @@ The future is waiting. Go meet it.
 [Engineer]: /projects/engineer/
 [expert mode]: http://blogs.msdn.com/b/oldnewthing/archive/2003/07/28/54583.aspx
 [WebFaction]: http://www.webfaction.com/?affiliate=tylerbutler
-[Hg Init]: http://hginit.com
+[Hg Init]: https://hginit.github.io/

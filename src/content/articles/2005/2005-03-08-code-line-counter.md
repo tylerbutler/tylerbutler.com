@@ -44,6 +44,6 @@ Pretty simple, isn't it? It just works in the current directory, but you can
 change that pretty easily. Also, if you want to add more extensions to count
 then just add them to the extensions list.
 
-   [1]: http://www.eclipse.org
-   [2]: http://www.python.org
+   [1]: https://www.eclipse.org
+   [2]: https://www.python.org
 

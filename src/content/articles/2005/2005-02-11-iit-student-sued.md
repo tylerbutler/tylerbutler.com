@@ -22,8 +22,8 @@ misuse of the law nonetheless. Maybe the [EFF][4] should take a look? Oh, and
 by the way... the guy that runs (or ran, since it's now offline) the site
 lives in State Street Village and attends IIT. Cool!
 
-   [1]: http://games.slashdot.org/games/05/02/10/0347222.shtml?tid=211&tid=123 (Tecmo Sues Game Hackers Under DMCA)
-   [2]: http://www.slashdot.org (Ahhh, Slashdot... home of geek news... and trolls.)
-   [3]: http://www.counter-strike.net/ (Counter-Strike's official website.)
-   [4]: http://www.eff.org/ (Help save the Electronic Frontier!)
+   [1]: https://games.slashdot.org/games/05/02/10/0347222.shtml?tid=211&tid=123 (Tecmo Sues Game Hackers Under DMCA)
+   [2]: https://www.slashdot.org (Ahhh, Slashdot... home of geek news... and trolls.)
+   [3]: https://www.counter-strike.net/ (Counter-Strike's official website.)
+   [4]: https://www.eff.org/ (Help save the Electronic Frontier!)
 

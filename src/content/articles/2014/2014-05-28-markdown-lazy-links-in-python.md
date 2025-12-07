@@ -16,7 +16,7 @@ One of the things I am most excited about in [Engineer 0.5.0][1] is the new supp
 
 [1]: /2014/05/engineer-v0-5-0-released/
 [3]: https://engineer.readthedocs.org/en/master/bundled_plugins.html#lazy-links-plugin
-[5]: http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/
+[5]: https://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/
 
 It took some time to unpack Brett's elegant regular expression into the Python form, mostly because Ruby is very foreign to me, and its regex engine has some default behaviors that differ from Python's. In particular, it took some time to figure out exactly what flags to pass in so that things behaved appropriately. I'm still not sure I got it completely right, though my unit tests seem to pass and I've been using the plugin for some time so I think it's stable.
 
@@ -30,7 +30,7 @@ I chose to use the [VERBOSE][2] regular expression form so it's clearer how the 
 ```python
 class LazyMarkdownLinksPlugin(PostProcessor):
   # Inspired by Brett Terpstra:
-  # http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/
+  # https://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/
   _link_regex = re.compile(r'''
     (       # Start group 1, which is the actual link text
       \[      # Match a literal [

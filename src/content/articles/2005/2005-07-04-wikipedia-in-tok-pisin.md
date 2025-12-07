@@ -21,6 +21,6 @@ on Wikibooks][3] with more about the grammatical structure. Of course, nothing
 beats hearing it spoken for real, so give me a call and listen to the real
 deal!
 
-   [1]: http://tpi.wikipedia.org/wiki/Main_Page
+   [1]: https://tpi.wikipedia.org/wiki/Main_Page
    [2]: http://en.wikipedia.org/wiki/Tok_Pisin
-   [3]: http://en.wikibooks.org/wiki/Tok_Pisin
+   [3]: https://en.wikibooks.org/wiki/Tok_Pisin

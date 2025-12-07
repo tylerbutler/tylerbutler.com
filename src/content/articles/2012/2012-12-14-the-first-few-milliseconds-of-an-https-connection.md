@@ -2,7 +2,7 @@
 
 title: The First Few Milliseconds of an HTTPS Connection
 date: '2012-12-14T13:49:00-08:00'
-link: http://www.moserware.com/2009/06/first-few-milliseconds-of-https.html
+link: https://www.moserware.com/2009/06/first-few-milliseconds-of-https.html
 via: Tim Bray
 vialink: https://www.tbray.org/ongoing/When/201x/2012/12/02/HTTPS
 slug: the-first-few-milliseconds-of-an-https-connection

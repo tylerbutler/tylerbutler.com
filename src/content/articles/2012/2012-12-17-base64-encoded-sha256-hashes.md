@@ -62,7 +62,7 @@ static string Base64SHA256(string filePath)
 
 ### Python
 
-Finally, the same thing in Python. This function is a bit more involved than the other examples because it takes advantage of Python's dynamic typing. You can pass it a string or any object with a `read` attribute. Note that this function relies on the [path.py](http://pypi.python.org/pypi/path.py/2.4.1) module, though you can remove that dependency pretty easily.
+Finally, the same thing in Python. This function is a bit more involved than the other examples because it takes advantage of Python's dynamic typing. You can pass it a string or any object with a `read` attribute. Note that this function relies on the [path.py](https://pypi.python.org/pypi/path.py/2.4.1) module, though you can remove that dependency pretty easily.
 
 ```python title="PYTHON"
 import hashlib, base64
@@ -94,4 +94,4 @@ def calc_sha(obj):
     return r
 ```
 
-This particular implementation can also be found in my [propane](http://pypi.python.org/pypi/propane/0.1.2) utility library (in the `filetools` module).
+This particular implementation can also be found in my [propane](https://pypi.python.org/pypi/propane/0.1.2) utility library (in the `filetools` module).

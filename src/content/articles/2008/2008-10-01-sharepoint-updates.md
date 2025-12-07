@@ -25,5 +25,5 @@ be resolved ASAP.
 More details on this [SharePoint blog post][1] and [KB article 953878][2].
 
    [1]: http://blogs.msdn.com/sharepoint/archive/2008/09/29/announcing-august-cumulative-update-for-office-sharepoint-server-2007-and-windows-sharepoint-services-3-0.aspx
-   [2]: http://support.microsoft.com/kb/953878
+   [2]: https://support.microsoft.com/kb/953878
 

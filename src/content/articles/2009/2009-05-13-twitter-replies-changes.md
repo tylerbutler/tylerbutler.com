@@ -53,14 +53,14 @@ You can see the protests/commentary on Twitter itself by
 this writing.
 
    [1]: http://blog.twitter.com/2009/05/small-settings-update.html
-   [2]: http://twitter.com/Biz
+   [2]: https://twitter.com/Biz
    [3]: http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html
    [4]: http://www.readwriteweb.com/archives/is_this_why_twitter_changed_its_replies_policy.php
    [5]: http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html#comment-9291130
    [6]: http://www.atebits.com/tweetie-mac/
    [7]: http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284540316&mt=8
-   [8]: http://twitter.com/Lincolnator
-   [9]: http://twitter.com/MajorLB
+   [8]: https://twitter.com/Lincolnator
+   [9]: https://twitter.com/MajorLB
    [10]: http://blog.twitter.com/2009/05/we-learned-lot.html
    [11]: http://search.twitter.com/search?q=%23Fixreplies
 

@@ -2,9 +2,9 @@
 
 title: Software Hatred
 date: '2009-07-23T20:22:00-07:00'
-link: http://www.codinghorror.com/blog/archives/001289.html
+link: https://blog.codinghorror.com/nobody-hates-software-more-than-software-developers/
 via: Jeff Atwood
-vialink: http://www.codinghorror.com/
+vialink: https://blog.codinghorror.com/
 slug: software-hatred
 tags:
 - design
@@ -45,5 +45,5 @@ your microwave. The ice dispenser on your fridge. Your washing machine. Your
 car's on-board computer. All of these are running software in some fashion
 most likely, and they all kind of suck.
 
-   [1]: http://www.codinghorror.com/blog/archives/001289.html
+   [1]: https://blog.codinghorror.com/nobody-hates-software-more-than-software-developers/
 

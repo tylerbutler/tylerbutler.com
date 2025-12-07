@@ -50,7 +50,7 @@ That is very very awesome, and works especially well for built-in Engineer plugi
 
 Luckily, with some help from the Pygments source, I was able to find out about setuptools' [entry points][setuptools], which work perfectly for this purpose. If you're developing an Engineer plugin, you can notify Engineer about your plugin modules using the `engineer.plugins` entrypoint.
 
-This is covered in more detail in the [Engineer documentation](http://engineer.readthedocs.org/en/latest/dev/plugins.html#loading-plugins), but basically you'd add something like this to your plugin's `setup.py` file:
+This is covered in more detail in the [Engineer documentation](https://engineer.readthedocs.org/en/latest/dev/plugins.html#loading-plugins), but basically you'd add something like this to your plugin's `setup.py` file:
 
 ```python
 entry_points = {
@@ -72,7 +72,7 @@ Despite these limitations, the general plugin model is quite useable as-is, and 
 
 When I started developing Engineer, I was heavily inspired by [Jekyll][] and [Octopress][] (as well as [Hyde][] and [Second Crack][]). There are a number of things I don't like or find hard to understand about those applications, but they certainly do many things right.
 
-But one of the biggest things Jekyll and Octopress have going for them is relative ubiquity, at least amongst the people that use static site generators (a much smaller crowd than it should be!). I honestly hadn't considered doing any specific compatibility work, though, until I used [Marked](http://markedapp.com) on the Mac. Marked is basically a Markdown previewer for the Mac. You type Markdown in one window, Marked shows you the output in another. Now it does other things too but that's the core thing it does.
+But one of the biggest things Jekyll and Octopress have going for them is relative ubiquity, at least amongst the people that use static site generators (a much smaller crowd than it should be!). I honestly hadn't considered doing any specific compatibility work, though, until I used [Marked](https://markedapp.com) on the Mac. Marked is basically a Markdown previewer for the Mac. You type Markdown in one window, Marked shows you the output in another. Now it does other things too but that's the core thing it does.
 
 Anyway, there are other Markdown previewers/editors -- notably [MarkdownPad](http://markdownpad.com/) for Windows -- but Marked has a unique feature that you can turn on that will ignore Jekyll metadata for the purposes of previewing a document. That means that if you're editing a Jekyll post, Marked will hide the post metadata (Jekyll calls this 'front matter') in its preview. Contrast this to MarkdownPad, for example, which assumes the metadata is part of the document and renders it as Markdown.
 
@@ -101,14 +101,14 @@ And if you have a website, consider using Engineer!
 [^eng1]: I actually ended up implementing this solution anyway since it seemed useful. See the [PLUGINS setting][].
 
 
-[v0.3.0]: http://engineer.readthedocs.org/en/latest/changelog.html#version-0-3-0-july-22-2012
-[v0.2.4]: http://engineer.readthedocs.org/en/latest/changelog.html#version-0-2-4-may-27-2012
+[v0.3.0]: https://engineer.readthedocs.org/en/latest/changelog.html#version-0-3-0-july-22-2012
+[v0.2.4]: https://engineer.readthedocs.org/en/latest/changelog.html#version-0-2-4-may-27-2012
 [allchin]: http://martyalchin.com/2008/jan/10/simple-plugin-framework/
 [Django]: https://docs.djangoproject.com/en/1.4/ref/settings/#std:setting-INSTALLED_APPS
 [setuptools]: http://peak.telecommunity.com/DevCenter/setuptools#extensible-applications-and-frameworks
-[PLUGINS setting]: http://engineer.readthedocs.org/en/latest/settings.html#engineer.conf.EngineerConfiguration.PLUGINS
+[PLUGINS setting]: https://engineer.readthedocs.org/en/latest/settings.html#engineer.conf.EngineerConfiguration.PLUGINS
 [plugins.py]: https://github.com/tylerbutler/engineer/blob/master/engineer/plugins.py
-[Jekyll]: http://jekyllrb.com/
-[Octopress]: http://octopress.org/
+[Jekyll]: https://jekyllrb.com/
+[Octopress]: https://octopress.org/
 [Second Crack]: https://github.com/marcoarment/secondcrack
 [Hyde]: http://hyde.github.com/

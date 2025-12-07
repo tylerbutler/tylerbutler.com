@@ -34,7 +34,7 @@ Now, [Linus might consider me an idiot][linus], and I no doubt am by his standar
 
 Hardcore Git zealots strike me as sort of like your neighbor who's always trying to get you to drive a standard (or manual for the true Yanks) transmission car and change your own oil. "You'll save so much cash, man!" "You have so much more control on the road, dude!" I get that it's good to know how things work, and that a high degree of control has a lot of benefits, but frankly, sometimes I just need to *drive somewhere*.[^git1]
 
-This attitude is why many Git guides and tutorials start with stuff like how the index and the reflog work and what garbage collection is etc. etc. For example, see this [humorously titled guide by Charles Duan](http://www.sbf5.com/~cduan/technical/git/). Tommi Virtanen's [Git for Computer Scientists](http://eagain.net/articles/git-for-computer-scientists/) is a similar example, though I give Virtanen a pass since the guide's explicit goal is to explain how Git works internally, not how to *use* Git.
+This attitude is why many Git guides and tutorials start with stuff like how the index and the reflog work and what garbage collection is etc. etc. For example, see this [humorously titled guide by Charles Duan](https://www.sbf5.com/~cduan/technical/git/). Tommi Virtanen's [Git for Computer Scientists](https://eagain.net/articles/git-for-computer-scientists/) is a similar example, though I give Virtanen a pass since the guide's explicit goal is to explain how Git works internally, not how to *use* Git.
 
 I get why that stuff is important -- and useful, potentially[^git2] -- but that approach is sort of like teaching someone to drive by first explaining how the engine works. It's simply not necessary to use the car.
 
@@ -106,17 +106,17 @@ For now, I'm happy with the workflow and toolset I have (I'll share more details
 [^git4]: In case you've found your way here via a search engine and are in dire need of the actual command to delete a remote branch, here it is: `git push origin :branch-to-delete`. Oh, don't feel bad; I'm sure you would have figured it out on your own.
 
 
-[1]: http://www.zorched.net/2008/04/14/start-a-new-branch-on-your-remote-git-repository/
+[1]: https://www.zorched.net/2008/04/14/start-a-new-branch-on-your-remote-git-repository/
 [PortableGit]: https://code.google.com/p/msysgit/downloads/list?can=3&q=official+Git
 [git-utils]: https://github.com/ddollar/git-utils
 [github]: https://github.com
-[githubwin]: https://github.com/blog/1127-github-for-windows
-[linus]: http://www.youtube.com/watch?v=4XpnKHJAok8
-[TEALS]: http://tealsk12.org
-[losh]: http://stevelosh.com/blog/2009/08/a-guide-to-branching-in-mercurial/
+[githubwin]: https://github.blog/news-insights/the-library/github-for-windows/
+[linus]: https://www.youtube.com/watch?v=4XpnKHJAok8
+[TEALS]: https://tealsk12.org
+[losh]: https://stevelosh.com/blog/2009/08/a-guide-to-branching-in-mercurial/
 [gitutils]: https://github.com/ddollar/git-utils
-[pycharm]: http://www.jetbrains.com/pycharm/
-[Git Extensions]: http://code.google.com/p/gitextensions/
+[pycharm]: https://www.jetbrains.com/pycharm/
+[Git Extensions]: https://code.google.com/p/gitextensions/
 [Kiln]: http://www.fogcreek.com/kiln/
 [histedit]: http://mercurial.selenic.com/wiki/HisteditExtension
 [posh-git]: https://github.com/dahlbyk/posh-git

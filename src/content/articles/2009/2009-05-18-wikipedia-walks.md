@@ -26,4 +26,4 @@ just how far off the beaten path you've gotten.
 
 To start, I'd suggest the article on [Game Theory][2].
 
-   [2]: http://en.wikipedia.org/wiki/Game_theory
+   [2]: https://en.wikipedia.org/wiki/Game_theory

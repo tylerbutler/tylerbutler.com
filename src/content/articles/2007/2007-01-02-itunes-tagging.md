@@ -62,6 +62,6 @@ And of course **none** of this does anything on my iPod. Heck, **it** can't
 even understand playlist folders, which is super _super **super**_ dumb.
 Actually, I have a lot of gripes about the iPod UI...
 
-   [1]: http://www.pandora.com/ ()
-   [2]: http://www.last.fm/ ()
+   [1]: https://www.pandora.com/ ()
+   [2]: https://www.last.fm/ ()
    [3]: http://www.lifehacker.com/software/itunes/tag-your-songs-in-itunes-153970.php ()

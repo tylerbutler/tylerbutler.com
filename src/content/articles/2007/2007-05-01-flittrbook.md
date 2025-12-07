@@ -19,4 +19,4 @@ briefly in my first MIX post is available at
 [http://blogs.msdn.com/karstenj/archive/2007/04/30/the-debut-of-
 flittrbook.aspx][1].
 
-   [1]: http://blogs.msdn.com/karstenj/archive/2007/04/30/the-debut-of-flittrbook.aspx
+   [1]: https://blogs.msdn.com/karstenj/archive/2007/04/30/the-debut-of-flittrbook.aspx

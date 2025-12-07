@@ -51,6 +51,6 @@ part inside a zone, but I've heard reports that the property gets reset every
 time you change properties on the web part in the browser, which you can't do
 for parts that live outside zones.
 
-   [1]: http://blogs.msdn.com/ecm/archive/2006/10/30/building-tylerbutler-com-part-1-planning-and-basic-branding.aspx
-   [2]: http://blogs.msdn.com/ecm/archive/2007/01/16/building-tylerbutler-com-part-6-what-was-tough-and-what-s-to-come.aspx#1512810 ()
+   [1]: https://blogs.msdn.com/ecm/archive/2006/10/30/building-tylerbutler-com-part-1-planning-and-basic-branding.aspx
+   [2]: https://blogs.msdn.com/ecm/archive/2007/01/16/building-tylerbutler-com-part-6-what-was-tough-and-what-s-to-come.aspx#1512810 ()
 

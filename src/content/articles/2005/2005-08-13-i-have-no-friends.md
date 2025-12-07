@@ -24,4 +24,4 @@ _Lest some of you get the wrong idea... All of the above is mostly sarcastic.
 I have lots of friends. I just thought the fact that Netflix would blatantly
 say "No friends yet" on their website was funny._
 
-   [2]: http://www.netflix.com/ ()
+   [2]: https://www.netflix.com/ ()

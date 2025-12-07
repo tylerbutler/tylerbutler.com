@@ -86,9 +86,9 @@ I hope this helps you figure out how to get started building out your site
 look and feel. There is a growing number of live custom sites on top of MOSS,
 and it's exciting to see what people are able to build with this product!
 
-   [1]: http://www.fifteen.net
-   [2]: http://www.shareview.co.uk/
-   [3]: http://www.hedkandi.com/
-   [4]: http://msdn2.microsoft.com/en-us/library/aa660698.aspx
+   [1]: https://www.fifteen.net
+   [2]: https://www.shareview.co.uk/
+   [3]: https://www.hedkandi.com/
+   [4]: https://msdn2.microsoft.com/en-us/library/aa660698.aspx
    [5]: http://heathersolomon.com/blog/archive/2007/01/26/6153.aspx
 

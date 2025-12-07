@@ -19,4 +19,4 @@ prank phone calls using it. Hysterical! Anyway, here is a funny article
 outlining a "conversation" with the Jeeves search engine of Ask.com. Prepare
 to laugh.
 
-   [1]: http://www.the-underdogs.org/game.php?id=330
+   [1]: https://www.the-underdogs.org/game.php?id=330

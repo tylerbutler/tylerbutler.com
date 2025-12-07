@@ -14,7 +14,7 @@ engineer:
 
 ---
 
-Learning new things every day... Mark Longair describes some [sitations in which `git push` won't do what you want or expect](http://longair.net/blog/2011/02/27/an-asymmetry-between-git-pull-and-git-push/):
+Learning new things every day... Mark Longair describes some [sitations in which `git push` won't do what you want or expect](https://longair.net/blog/2011/02/27/an-asymmetry-between-git-pull-and-git-push/):
 
 > So, what happens when you want to push your changes back to the upstream branch?  You might hope that because this association exists in your config, then typing any of the following three commands while you’re on the `add-menu` branch would work:
 >

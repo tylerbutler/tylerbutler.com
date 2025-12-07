@@ -11,7 +11,7 @@ engineer:
 
 ---
 
-A [longstanding issue][1] in the Engineer issue tracker concerns documenting some of the free/low-cost hosting options one has to host an Engineer site. [GitHub Pages](http://pages.github.com/) is a common request, and documenting that process is definitely on my to-do list, but I think there's a better option: Azure.
+A [longstanding issue][1] in the Engineer issue tracker concerns documenting some of the free/low-cost hosting options one has to host an Engineer site. [GitHub Pages](https://pages.github.com/) is a common request, and documenting that process is definitely on my to-do list, but I think there's a better option: Azure.
 
 [1]: https://github.com/tylerbutler/engineer/issues/51
 
@@ -76,10 +76,10 @@ If you prefer, you can remove the `.deployment` file altogether and configure th
 
 That is *very* cool. Scott has more details in [his post on the topic][2].
 
-[2]: http://www.hanselman.com/blog/DeployingTWOWebsitesToWindowsAzureFromOneGitRepository.aspx
+[2]: https://www.hanselman.com/blog/DeployingTWOWebsitesToWindowsAzureFromOneGitRepository.aspx
 
 Hopefully this helps you get your Engineer site up and running on Azure. As I mentioned before, I am going to be incorporating this information into the official Engineer docs as well. I've also gotten Engineer sites running on GitHub Pages, so I'll cover that in a future post.
 
 <!--
-In particular, GitHub offers a service called [GitHub Pages](http://pages.github.com/) that integrates wonderfully with Jekyll. Of course, if you're using Engineer, you're not using Jekyll,
+In particular, GitHub offers a service called [GitHub Pages](https://pages.github.com/) that integrates wonderfully with Jekyll. Of course, if you're using Engineer, you're not using Jekyll,
 -->

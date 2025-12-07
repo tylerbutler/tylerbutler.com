@@ -27,7 +27,7 @@ Now, that's all fine and dandy, but what is pip? And what is this virtualenv thi
 
 If you're new to Python, getting up and running with pip and virtualenv can be a challenge, especially on Windows. Many guides I've seen out there assume either *a)* you're working on Linux or UNIX or *b)* you already have pip/setuptools installed, or you know how to install packages and manage virtualenv. Heck, when I was learning this I didn't even know what pip *was!* Having gone through this process several times now, I decided to write it all down from the beginning in the hopes that it'll be useful to someone in the future.
 
-[1]: http://engineer.readthedocs.org/en/latest/installation.html#installing-using-pip
+[1]: https://engineer.readthedocs.org/en/latest/installation.html#installing-using-pip
 
 <!--more-->
 
@@ -54,7 +54,7 @@ this system. Please see "get-help about_signing" for more details.
 
 First things first -- get Python! You can get the Python 2.7.8 (the current Python 2.x version as of this writing) 32-bit installer from <https://www.python.org/downloads/windows/>. There is a 64-bit version of Python as well, but I have personally found it to be more hassle than it's worth. Some packages won't have 64-bit versions available, and I personally haven't found any need for the 64-bit version in any project I've worked on. Feel free to go with the 64-bit version if you'd like, but this guide assumes you're using the 32-bit one.
 
-Recent Python installers include an explicit option to add `C:\Python27\` to your path. I find checking that option to be the easiest thing to do, and it's generally what you want. It's not selected by default, though, so watch for it and enable it if you want. If you don't do that, and you need to do it manually later, the [Using Python on Windows](http://docs.python.org/using/windows.html) documentation includes more details.
+Recent Python installers include an explicit option to add `C:\Python27\` to your path. I find checking that option to be the easiest thing to do, and it's generally what you want. It's not selected by default, though, so watch for it and enable it if you want. If you don't do that, and you need to do it manually later, the [Using Python on Windows](https://docs.python.org/using/windows.html) documentation includes more details.
 
 Unfortunately, the installer does *not* add the `Scripts` (i.e. `C:\Python27\Scripts`) subdirectory, which is also really needed, since that's where pip will end up being installed. So even if you check that box chances are you'll need to edit your path anyway.
 
@@ -258,7 +258,7 @@ Anyway, if you want to use an existing virtualenv, you'll need to tell PyCharm a
 After all of that's done you should be good to go! You can pop open a PowerShell window and create/switch to virtualenvs as needed and install packages using pip. At this point you should have most of what you need to follow the installation instructions for most Python packages (except those that require C extension compilation, but that's a topic for another post).
 
 
-[3]: http://www.jetbrains.com/pycharm/webhelp/creating-virtual-environment.html
-[4]: http://www.jetbrains.com/pycharm/webhelp/configuring-local-python-interpreters.html
-[PyCharm]: http://www.jetbrains.com/pycharm/
-[Notepad++]: http://notepad-plus-plus.org/
+[3]: https://www.jetbrains.com/pycharm/webhelp/creating-virtual-environment.html
+[4]: https://www.jetbrains.com/pycharm/webhelp/configuring-local-python-interpreters.html
+[PyCharm]: https://www.jetbrains.com/pycharm/
+[Notepad++]: https://notepad-plus-plus.org/

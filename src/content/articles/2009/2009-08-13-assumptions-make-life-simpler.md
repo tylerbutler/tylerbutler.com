@@ -48,5 +48,5 @@ far easier to solve. Of course, the key is making sure the assumptions are
 valid, or being prepared to handle edge cases where these assumptions prove
 false.
 
-   [1]: http://sudokugrab.blogspot.com/2009/07/how-does-it-all-work.html
+   [1]: https://sudokugrab.blogspot.com/2009/07/how-does-it-all-work.html
 

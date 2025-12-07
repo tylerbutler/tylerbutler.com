@@ -2,7 +2,7 @@
 
 title: On Intelligent Interfaces
 date: '2009-07-10T04:50:00-07:00'
-link: http://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html
+link: https://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html
 slug: on-intelligent-interfaces
 tags:
 - design
@@ -24,6 +24,6 @@ Wolfram's giant electronic brain which has to run ten million lines of code to
 figure this out. Inside your _own_ brain, it is written on glowing letters
 across your forehead.
 
-   [1]: http://www82.wolframalpha.com/input/?i=two+cups+of+flour+and+two+eggs
-   [2]: http://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html
+   [1]: https://www82.wolframalpha.com/input/?i=two+cups+of+flour+and+two+eggs
+   [2]: https://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html
  

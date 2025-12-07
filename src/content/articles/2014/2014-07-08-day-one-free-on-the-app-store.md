@@ -13,6 +13,6 @@ I've been using [Day One][1] for the past few months to encourage my own journal
 
 If you pick it up, you might also check out [Slogger][3].
 
-[1]: http://dayoneapp.com/
+[1]: https://dayoneapp.com/
 [2]: https://itunes.apple.com/us/app/day-one-journal-diary/id421706526?mt=8&uo=4&11l9Ct
-[3]: http://brettterpstra.com/projects/slogger/
+[3]: https://brettterpstra.com/projects/slogger/

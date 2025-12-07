@@ -22,7 +22,7 @@ not!) and their history. Thank God for [Wikipedia][2]! Oh, and there's also a
 decent screenshot archive at
 [http://www.aci.com.pl/mwichary/guidebook/interfaces][3].
 
-   [1]: http://arstechnica.com/articles/paedia/gui.ars
-   [2]: http://www.wikipedia.org
+   [1]: https://arstechnica.com/articles/paedia/gui.ars
+   [2]: https://www.wikipedia.org
    [3]: http://www.aci.com.pl/mwichary/guidebook/interfaces
 

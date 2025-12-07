@@ -40,7 +40,7 @@ rationalizations for putting stuff in specific places in our UI. Maybe there
 are alternative methods for making these decisions that we haven't considered
 yet…
 
-   [1]: http://twitter.com/atebits
+   [1]: https://twitter.com/atebits
    [2]: http://twitter.com
    [3]: http://www.atebits.com/software/tweetie/
    [4]: http://blog.atebits.com/2009/02/there-is-method-to-my-madness/

@@ -27,9 +27,9 @@ Roses were good. Despite good reviews on CitySearch, the [J&M Café][6] left a l
    [1]: http://www.sanbornsbreakfast.com/
    [2]: http://portland.citysearch.com/profile/41730035/portland_or/sanborn_s.html
    [3]: http://maps.google.com/maps?ie=UTF8&oe=utf-8&client=firefox-a&q=sanborn's&near=Portland,+OR&fb=1&cid=45500264,-122654239,7769840636633970985&li=lmd&z=14&iwloc=A&om=1
-   [4]: http://www.lucystable.com/
-   [5]: http://www.google.com/maps?hl=en&q=Lucy's+Table&fb=1&near=Portland,+OR&cd=1&cid=0,0,2498161026904030545&li=lmd&ie=UTF8&z=14&iwloc=A&om=1
-   [6]: http://www.google.com/url?sa=t&ct=res&cd=2&url=http://portland.citysearch.com/profile/8470102/portland_or/j_m_cafe.html&ei=F-2_Rt7KOJTshQPp7PHtCw&usg=AFQjCNH9s9ncpZ9VZT_leK3fVMu9YQe7kA&sig2=gBiGHh4kr9purLuxpfy2ng
+   [4]: https://www.lucystable.com/
+   [5]: https://www.google.com/maps?hl=en&q=Lucy's+Table&fb=1&near=Portland,+OR&cd=1&cid=0,0,2498161026904030545&li=lmd&ie=UTF8&z=14&iwloc=A&om=1
+   [6]: https://www.google.com/url?sa=t&ct=res&cd=2&url=http://portland.citysearch.com/profile/8470102/portland_or/j_m_cafe.html&ei=F-2_Rt7KOJTshQPp7PHtCw&usg=AFQjCNH9s9ncpZ9VZT_leK3fVMu9YQe7kA&sig2=gBiGHh4kr9purLuxpfy2ng
    [7]: http://maps.google.com/maps?ie=UTF8&oe=utf-8&client=firefox-a&q=j%26m+cafe&near=Portland,+OR&fb=1&cid=45521510,-122660348,15020775365542286785&li=lmd&z=14&iwloc=A&om=1
    [8]: http://www.sonicdrivein.com/
 

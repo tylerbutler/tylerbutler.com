@@ -63,7 +63,7 @@ Overall, I'm very pleased, despite the minor issues above. With any device, *rea
 
 [^1]: I am aware that I could simply turn the iPad around so that the Smart Cover hinge was on the bottom and everything would be oriented the way I am accustomed to. However, the Smart Cover just doesn't seem to play well when held that way -- everything just feels awkward.
 
-[Compass]: http://twelvesouth.com/products/compass/
-[waterfield]: http://sfbags.com/products/ipad-cases/suedejacket-ipad.php
+[Compass]: https://twelvesouth.com/products/compass/
+[waterfield]: https://sfbags.com/products/ipad-cases/suedejacket-ipad.php
 [the ad]: http://www.apple.com/ipad/smart-cover/
-[1]: http://www.codinghorror.com/blog/2012/03/welcome-to-the-post-pc-era.html
+[1]: https://blog.codinghorror.com/welcome-to-the-post-pc-era/

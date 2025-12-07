@@ -14,7 +14,7 @@ guid: http://www.tylerbutler.com/?p=522
 
 Just made a minor fix to the site... I noticed that dates weren't showing up for
 some posts. Took me about 5 minutes to figure out that the Wordpress
-[the_date()](http://codex.wordpress.org/Template_Tags/the_date) function had changed:
+[the_date()](https://codex.wordpress.org/Template_Tags/the_date) function had changed:
 
 > When there are multiple posts on a page published under the SAME DAY,
 `the_date()` only displays the date for the first post (that is, the first

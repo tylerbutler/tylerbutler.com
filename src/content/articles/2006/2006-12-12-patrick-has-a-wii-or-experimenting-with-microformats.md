@@ -70,9 +70,9 @@ places on my site, so keep your eyes peeled.
 
    [1]: http://patrick.wagstrom.net/
    [2]: http://patrick.wagstrom.net/weblog/wii/wiik-wiith-wii.xml
-   [3]: http://www.target.com/
+   [3]: https://www.target.com/
    [4]: http://microformats.org/
-   [5]: http://www.quirksmode.org/css/beforeafter.html
+   [5]: https://www.quirksmode.org/css/beforeafter.html
    [6]: http://inside.glnetworks.de/2006/06/05/microformats-have-arrived-in-firefox-15-greasemonkey-06/
    [7]: http://greasemonkey.mozdev.org/
    [10]: http://technorati.com/contacts/http://www.tylerbutler.com/geekdom/Pages/PatrickHasaWii,or,ExperimentingwithMicroformats.aspx

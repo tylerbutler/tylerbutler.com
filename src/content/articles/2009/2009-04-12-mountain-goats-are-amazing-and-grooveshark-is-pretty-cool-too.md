@@ -31,5 +31,5 @@ songs and embed them on the web is _killer_. The UI is a bit weird and awkward
 
    [1]: http://www.mountain-goats.com
    [2]: http://en.wikipedia.org/wiki/John_Darnielle
-   [3]: http://twitter.com/vandrijevik
+   [3]: https://twitter.com/vandrijevik
    [4]: http://www.grooveshark.com

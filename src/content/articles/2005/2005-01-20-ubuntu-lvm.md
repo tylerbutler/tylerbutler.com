@@ -48,5 +48,5 @@ through the commercials manually. Such is life.
 
    [1]: http://www.ubuntu-linux.org (Ubuntu, a Debian distro for the masses.  All the cool people do it.)
    [2]: http://mythtv.org (MythTV, the best PVR there is... if you can get it running...)
-   [3]: http://www.google.com (Google, I still love you...)
+   [3]: https://www.google.com (Google, I still love you...)
    [4]: http://lists.suse.com/archive/suse-linux-e/2001-Nov/1413.html (Too bad I didn't come across this about 6 hours earlier...)

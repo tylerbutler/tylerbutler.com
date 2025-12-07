@@ -2,7 +2,7 @@
 
 title: The Right to Read
 date: '2004-08-31T21:15:00-07:00'
-link: http://www.gnu.org/philosophy/right-to-read.html#References
+link: https://www.gnu.org/philosophy/right-to-read.html#References
 slug: the-right-to-read
 engineer:
   slug: the-right-to-read

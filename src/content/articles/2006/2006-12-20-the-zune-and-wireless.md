@@ -58,5 +58,5 @@ that feature. But hey, that's what we PM's get paid for, right?
 
    [1]: http://www.zune.net/
    [2]: http://en.wikipedia.org/wiki/USB_2.0#Transfer_speed
-   [3]: http://en.wikipedia.org/wiki/802.11g#802.11g
+   [3]: https://en.wikipedia.org/wiki/802.11g#802.11g
 

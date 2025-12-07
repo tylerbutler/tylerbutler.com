@@ -23,5 +23,5 @@ Engineer-based site looks like under the covers.
 
 Licensed under the MIT license.
 
-[Markdown]: http://daringfireball.net/projects/markdown/
+[Markdown]: https://daringfireball.net/projects/markdown/
 [1]: https://github.com/tylerbutler/tylerbutler.com

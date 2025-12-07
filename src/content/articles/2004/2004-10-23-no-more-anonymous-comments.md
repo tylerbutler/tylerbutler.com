@@ -28,5 +28,5 @@ and anyone else who indulges me by reading this, please just set yourself up an
 account and post your comments -- I really do like it when you post comments.
 It makes me feel all warm and bubbly inside.
 
-   [1]: http://www.geeklog.net/
+   [1]: https://www.geeklog.net/
    [2]: /2002/04/april-16-2002/

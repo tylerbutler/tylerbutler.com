@@ -36,6 +36,6 @@ goes:
 
 I guess it's kind of short, but it's my list.
 
-   [1]: http://marcoandkristin.blogspot.com/2005/11/my-favourite-things.html
-   [2]: http://marcoandkristin.blogspot.com/
-   [3]: http://marcoandkristin.blogspot.com/2005/11/well-it-is-sunday-night-and-i-felt.html
+   [1]: https://marcoandkristin.blogspot.com/2005/11/my-favourite-things.html
+   [2]: https://marcoandkristin.blogspot.com/
+   [3]: https://marcoandkristin.blogspot.com/2005/11/well-it-is-sunday-night-and-i-felt.html

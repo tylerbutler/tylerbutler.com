@@ -21,7 +21,7 @@ I've used the Python flavor of [html5lib][] in a couple of different projects no
 
 Of course, it'd be understandable for you to think otherwise. If you visit the Github repo, you're provided with some simple examples of creating a parser and parsing some documents. These examples are pretty standard fare -- they give you a taste of what to expect but don't give you enough to actually use the library.
 
-You're happily informed that "More documentation is available at [http://html5lib.readthedocs.org/](http://html5lib.readthedocs.org/)" but if you head over there you'll notice that there isn't really much more there. The "more documentation" they speak of is a *single page* with information about "the moving parts" which just doesn't do much to help you know how to actually use the API to do anything really meaningful.
+You're happily informed that "More documentation is available at [https://html5lib.readthedocs.org/](https://html5lib.readthedocs.org/)" but if you head over there you'll notice that there isn't really much more there. The "more documentation" they speak of is a *single page* with information about "the moving parts" which just doesn't do much to help you know how to actually use the API to do anything really meaningful.
 
 <!--more-->
 
@@ -30,7 +30,7 @@ The only reason I cared at all about html5lib this evening was because I set up 
 
 ## Documentation is incredibly important
 
-The number one comment I've received from people trying out Engineer is, "Thanks, this is one of the best-documented systems I've looked at!" I'm very proud of that. One of the major contributing factors to me building Engineer in the first place was that I couldn't get [Hyde](http://hyde.github.io/) to actually work for my purposes, and the docs were either out of date or non-existent (and [still are](https://github.com/hyde/hyde/issues/209), apparently). I decided if I was going to build something I was going to at least write down how to use it. It took -- and still takes -- a lot of time, but it is totally worth it.
+The number one comment I've received from people trying out Engineer is, "Thanks, this is one of the best-documented systems I've looked at!" I'm very proud of that. One of the major contributing factors to me building Engineer in the first place was that I couldn't get [Hyde](https://hyde.github.io/) to actually work for my purposes, and the docs were either out of date or non-existent (and [still are](https://github.com/hyde/hyde/issues/209), apparently). I decided if I was going to build something I was going to at least write down how to use it. It took -- and still takes -- a lot of time, but it is totally worth it.
 
 [James Hague][], in his recent post *Organizational Skills Beat Algorithmic Wizardry*, writes:
 
@@ -54,8 +54,8 @@ When I think about good documentation, narrative docs are what I imagine. Narrat
 
 That's what I consider *real* documentation. Organizing docs in an intelligent and manageable way is surprisingly difficult, and I suggest diving into some other examples before trying to put your own stuff together. Luckily there are a number of great examples to check out for inspiration. Some good places to start:
 
-- [Celery](http://docs.celeryproject.org/en/latest/index.html#)
-- [Flask](http://flask.pocoo.org/docs/) (frankly pretty much anything from Armin Ronacher is solid)
+- [Celery](https://docs.celeryproject.org/en/latest/index.html#)
+- [Flask](https://flask.palletsprojects.com/en/stable/) (frankly pretty much anything from Armin Ronacher is solid)
 - [Engineer][] (yeah, I'm shameless)
 
 My basic policy is pretty simple: I assume the quality of your code is at best no better than the quality of your documentation, and I don't invest in learning to use anything that's not reasonably documented. No more excuses, people. Take the time to write quality documentation.
@@ -68,10 +68,10 @@ My basic policy is pretty simple: I assume the quality of your code is at best n
 
 
 
-[Engineer]: http://engineer.readthedocs.org
-[xkcd2]: http://xkcd2.com
-[James Hague]: http://prog21.dadgum.com/177.html
+[Engineer]: https://engineer.readthedocs.org
+[xkcd2]: https://xkcd2.com
+[James Hague]: https://prog21.dadgum.com/177.html
 [Peter Fein]: http://i.wearpants.org/blog/from-good-code-to-great/
-[rubber ducking]: http://en.wikipedia.org/wiki/Rubber_duck_debugging
-[Scheherazade]: http://en.wikipedia.org/wiki/Scheherazade
+[rubber ducking]: https://en.wikipedia.org/wiki/Rubber_duck_debugging
+[Scheherazade]: https://en.wikipedia.org/wiki/Scheherazade
 [html5lib]: https://github.com/html5lib/html5lib-python

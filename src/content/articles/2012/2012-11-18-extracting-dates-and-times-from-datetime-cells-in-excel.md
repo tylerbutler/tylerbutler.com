@@ -72,8 +72,8 @@ I hope we can all agree there is sufficient compelling evidence that math is *aw
 
 [^excel2]: It appears that Chrome does support MHTML, and I think Firefox does with an extension. Regardless, the PDF is likely easier.
 
-[explanation]: http://office.microsoft.com/en-us/excel-help/redir/AM010288575.aspx?CTT=5&origin=HA010287495
+[explanation]: https://office.microsoft.com/en-us/excel-help/redir/AM010288575.aspx?CTT=5&origin=HA010287495
 [pdf]: https://dl.dropbox.com/u/12062432/tylerbutler.com/excel_date_times_explanation.pdf
-[TRUNC]: http://office.microsoft.com/en-us/excel-help/trunc-function-HP010342970.aspx
+[TRUNC]: https://office.microsoft.com/en-us/excel-help/trunc-function-HP010342970.aspx
 [modulo operation]: https://en.wikipedia.org/wiki/Modulo_operation
-[MOD]: http://office.microsoft.com/en-us/excel-help/mod-function-HP010342698.aspx
+[MOD]: https://office.microsoft.com/en-us/excel-help/mod-function-HP010342698.aspx

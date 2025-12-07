@@ -9,6 +9,6 @@ engineer:
 
 ---
 
-Courtesy [Marco Arment](http://www.marco.org/), a [simple test for image retention problems][1] in your Retina iPad Mini. I found no problem with mine, but it seems reasonable to test so you can exchange it if needed.
+Courtesy [Marco Arment](https://www.marco.org/), a [simple test for image retention problems][1] in your Retina iPad Mini. I found no problem with mine, but it seems reasonable to test so you can exchange it if needed.
 
-[1]: http://www.marco.org/rmbp-irtest.html
+[1]: https://www.marco.org/rmbp-irtest.html

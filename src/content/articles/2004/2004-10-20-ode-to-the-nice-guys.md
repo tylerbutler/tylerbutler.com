@@ -109,5 +109,5 @@ well deserved vindication is coming.
 > Fu-zu Jen, SEAS/WH, 2003
 
    [1]: http://www.stwing.upenn.edu/~jenf/writing/rant04.html
-   [2]: http://www.intellectualwhores.com/
+   [2]: https://www.intellectualwhores.com/
 

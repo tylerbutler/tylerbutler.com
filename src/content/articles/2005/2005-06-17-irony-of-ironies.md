@@ -36,4 +36,4 @@ just to make the company pay for the postage. Take **that** suckers!
 
    [1]: http://www.nytimes.com/2005/03/15/nyregion/15annoyances.html
    [2]: http://www.bugmenot.com
-   [3]: http://roachfiend.com/archives/2005/02/07/bugmenot/
+   [3]: https://roachfiend.com/archives/2005/02/07/bugmenot/

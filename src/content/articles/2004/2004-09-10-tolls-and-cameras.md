@@ -89,6 +89,6 @@ choice, but the government shouldn't be allowed to charge me for my freedom.
   
 For what it's worth.
 
-   [1]: http://www.google.com/search?q=cache:B6k2O8uaf5sJ:www.suntimes.com/output/news/cst-nws-toll26.html&hl=en
-   [2]: http://www.illinoistollway.com/portal/page?_pageid=53,34586,53_34725:53_34734&_dad=portal&_schema=PORTAL
-   [3]: http://yro.slashdot.org/article.pl?sid=04/09/09/2217232&tid=158&tid=103&tid=1&tid=17
+   [1]: https://www.google.com/search?q=cache:B6k2O8uaf5sJ:www.suntimes.com/output/news/cst-nws-toll26.html&hl=en
+   [2]: https://www.illinoistollway.com/portal/page?_pageid=53,34586,53_34725:53_34734&_dad=portal&_schema=PORTAL
+   [3]: https://yro.slashdot.org/article.pl?sid=04/09/09/2217232&tid=158&tid=103&tid=1&tid=17

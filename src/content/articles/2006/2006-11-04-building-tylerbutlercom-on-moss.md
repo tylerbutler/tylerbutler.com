@@ -34,6 +34,6 @@ look wrong. Feel free to send me bug reports if you find something that
 looks wrong.
 
 
-   [4]: http://www.geeklog.net/ ()
-   [5]: http://blogs.msdn.com/ecm/archive/2006/10/30/building-tylerbutler-com-part-1-planning-and-basic-branding.aspx ()
-   [6]: http://blogs.msdn.com/ecm ()
+   [4]: https://www.geeklog.net/ ()
+   [5]: https://learn.microsoft.com/en-us/archive/blogs/ecm/building-tylerbutler-com-part-1-planning-and-basic-branding ()
+   [6]: https://blogs.msdn.com/ecm ()

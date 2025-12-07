@@ -2,9 +2,9 @@
 
 title: The Monochrome Trend
 date: '2012-04-23T14:13:00-07:00'
-link: http://www.literatureandlatte.com/blog/?p=271
+link: https://www.literatureandlatte.com/blog/?p=271
 via: Lukas Mathis
-vialink: http://ignorethecode.net/blog/2012/04/05/the_monochrome_trend/
+vialink: https://ignorethecode.net/blog/2012/04/05/the_monochrome_trend/
 slug: the-monochrome-trend
 engineer:
   slug: the-monochrome-trend
@@ -26,7 +26,7 @@ On a related note, I have noticed I also have trouble with UI elements that are 
 
 [^color1]: The fact that my current site design arguably does not use color 'tastefully' or 'correctly' is not lost on me. I realize that the current 'unicorn vomit' color explosion is probably overkill and needs some adjustment.
 
-[1]: http://www.literatureandlatte.com/blog/?p=271
-[his own book]: http://pragprog.com/book/lmuse/designed-for-use
-[Inception]: http://www.inception-explained.com/
+[1]: https://www.literatureandlatte.com/blog/?p=271
+[his own book]: https://pragprog.com/book/lmuse/designed-for-use
+[Inception]: https://www.inception-explained.com/
 [2]: https://www.microsoft.com/typography/ctfonts/WordRecognition.aspx

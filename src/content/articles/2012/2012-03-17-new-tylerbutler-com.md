@@ -18,5 +18,5 @@ I haven't decided whether to migrate any of my old posts over or not. There's fr
 Anyway, here's hoping I'll be writing more often soon. I have no excuses!
 
 [engineer]: /projects/engineer/
-[markdown]: http://daringfireball.net/projects/markdown/
-[dropbox]: http://www.dropbox.com
+[markdown]: https://daringfireball.net/projects/markdown/
+[dropbox]: https://www.dropbox.com

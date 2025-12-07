@@ -2,7 +2,7 @@
 
 title: Science is Fun!
 date: '2009-05-18T13:50:00-07:00'
-link: http://xkcd2.com/585/
+link: https://xkcd2.com/585/
 slug: science-is-fun
 engineer:
   slug: science-is-fun

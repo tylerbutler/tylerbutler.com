@@ -190,8 +190,8 @@ sucks, but it is kinda cool to realize that 8-10 machines can destroy a
 network connection serving a university of 3000 people. _Kinda_ cool.
 
    [1]: http://www.iit.edu (The Illinois Institute of Technology homepage, the virtual home of the distinguished learning institution I call my own.)
-   [2]: http://www.howstuffworks.com (Find out how stuff works!  Go on, learn a little!)
+   [2]: https://www.howstuffworks.com (Find out how stuff works!  Go on, learn a little!)
    [3]: http://computer.howstuffworks.com/router.htm (How routers work.)
-   [4]: http://computer.howstuffworks.com/firewall.htm (How firewalls work.)
-   [5]: http://computer.howstuffworks.com/internet-infrastructure.htm (How the internet works.)
+   [4]: https://computer.howstuffworks.com/firewall.htm (How firewalls work.)
+   [5]: https://computer.howstuffworks.com/internet-infrastructure.htm (How the internet works.)
 

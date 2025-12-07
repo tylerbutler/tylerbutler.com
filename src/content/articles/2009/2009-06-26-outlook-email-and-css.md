@@ -154,12 +154,12 @@ and this one wound up cheaper. They made a cut. They made a tradeoff. And we
 disagree with the tradeoff.
 
    [1]: http://fixoutlook.org
-   [2]: http://twitter.com/vandrijevik
+   [2]: https://twitter.com/vandrijevik
    [3]: http://www.email-standards.org/blog/entry/microsoft-respond-to-our-call-for-standards-support/
-   [4]: http://www.zeldman.com/2009/06/24/sour-outlook/
-   [5]: http://blogs.msdn.com/oldnewthing/
-   [6]: http://farm4.static.flickr.com/3322/3637814200_a2aa59bc89_o.jpg
-   [7]: http://steve-yegge.blogspot.com/2009/04/have-you-ever-legalized-marijuana.html
+   [4]: https://www.zeldman.com/2009/06/24/sour-outlook/
+   [5]: https://blogs.msdn.com/oldnewthing/
+   [6]: https://farm4.static.flickr.com/3322/3637814200_a2aa59bc89_o.jpg
+   [7]: https://steve-yegge.blogspot.com/2009/04/have-you-ever-legalized-marijuana.html
    [8]: http://www.email-standards.org/clients/microsoft-outlook-2007/
    [9]: http://www.email-standards.org/acid-test/
 

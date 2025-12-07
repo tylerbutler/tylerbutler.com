@@ -11,7 +11,7 @@ engineer:
 
 ---
 
-This afternoon I installed Node.js version 0.10.30 (the most recent according to <http://nodejs.org/>) on a new Windows box. Unfortunately, after installing, using `npm` was, uhhh, not good:
+This afternoon I installed Node.js version 0.10.30 (the most recent according to <https://nodejs.org/>) on a new Windows box. Unfortunately, after installing, using `npm` was, uhhh, not good:
 
 ```ps1
 C:\Users\tyler> npm

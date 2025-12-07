@@ -396,7 +396,7 @@ comprehensive system. I am looking forward to continuing to use it for as long
 as I can, and I hope to be able to completely switch over to it in the near
 future.
 
-   [3]: http://www.google.com/
+   [3]: https://www.google.com/
    [6]: http://www.plaxo.com/
    [7]: http://jaybe.org/info.htm
    [8]: http://www.marklyon.org/gmail/default.htm

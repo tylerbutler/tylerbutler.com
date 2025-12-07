@@ -28,5 +28,5 @@ book, comment in this post or send me an email. I really want feedback...
 seriously. It's the only way to improve.
 
    [1]: /tags/novel/ (Yup, it's finished! You should read it!)
-   [2]: http://www.nanowrimo.org/ (National Novel Writing Month)
+   [2]: https://www.nanowrimo.org/ (National Novel Writing Month)
 

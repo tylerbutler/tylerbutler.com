@@ -84,4 +84,4 @@ Haven't gotten into Twilight Princess yet myself. Elebits should be here from
 Truck at the top of my queue instead. Oh well, way too many awesome games
 these days to get to. I still work occasionally, you know.
 
-   [1]: http://www.gamefly.com/
+   [1]: https://www.gamefly.com/

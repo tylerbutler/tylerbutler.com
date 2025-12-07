@@ -53,6 +53,6 @@ specifically the Outlook team. Here's hoping for some quality HTML+CSS email
 rendering in the future.
 
    [1]: /2009/06/outlook-email-and-css/
-   [2]: http://www.zeldman.com/2009/06/24/sour-outlook/#comment-43712
+   [2]: https://www.zeldman.com/2009/06/24/sour-outlook/#comment-43712
    [3]: /2009/06/outlook-email-and-css/comment-page-1/#comment-137
 

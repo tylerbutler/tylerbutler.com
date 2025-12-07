@@ -36,6 +36,6 @@ Anyway, all of this is just prologue to my real point, which is that you should 
 [png]: https://en.wikipedia.org/wiki/Papua_New_Guinea
 [Chloroquine]: https://en.wikipedia.org/wiki/Chloroquine
 [Quinine]: https://en.wikipedia.org/wiki/Quinine
-[gf]: http://www.gatesfoundation.org/malaria/Pages/home.aspx
+[gf]: https://www.gatesfoundation.org/malaria/Pages/home.aspx
 [Malarious]: http://www.collegehumor.com/malarious
 [aids]: https://en.wikipedia.org/wiki/HIV/AIDS_in_Papua_New_Guinea

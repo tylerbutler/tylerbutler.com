@@ -2,7 +2,7 @@
 
 title: Getting Rich
 date: '2004-09-29T20:24:00-07:00'
-link: http://paulgraham.com/bubble.html
+link: https://paulgraham.com/bubble.html
 slug: getting-rich
 engineer:
   slug: getting-rich
@@ -77,5 +77,5 @@ for the believers in speech, in life, in love, in faith and in purity.
 
 Take **_that!_**
 
-   [1]: http://www.paulgraham.com/nerdad.html
+   [1]: https://www.paulgraham.com/nerdad.html
    [2]: http://www.biblegateway.net/cgi-bin/bible?passage=1TIM+4:12&language=english&version=NIV&showfn=on&showxref=on

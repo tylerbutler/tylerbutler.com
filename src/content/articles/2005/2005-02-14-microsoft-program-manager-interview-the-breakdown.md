@@ -40,7 +40,7 @@ I did a simple Google search for "Microsoft interview questions" and wound up wi
 
 *   <http://www.sellsbrothers.com/fun/msiview/>
 *   <http://blog.mattgoyer.com/stories/ftjobintinseattle.html>
-*   <http://blogs.msdn.com/adamu/archive/2004/06/18/159130.aspx>
+*   <https://blogs.msdn.com/adamu/archive/2004/06/18/159130.aspx>
 *   <http://blogs.msdn.com/jobsblog>
 
 
@@ -48,7 +48,7 @@ I did a simple Google search for "Microsoft interview questions" and wound up wi
 I had heard the Microsoft was fond of asking brain teaser questions, so I looked around for a few of those as well. Even though I had been told that they really no longer asked these questions, I was interested in trying to solve them anyway. They proved to be very stimulating bar conversation on my weekly Thursday-night outing to John Barleycorn's with the guys. Also, they helped to focus my nervous energy into something mentally stimulating, and provided hours of amusement at work. Here are a couple of the sites that had a lot of interesting problems:
 
 *   <http://halcyon.usc.edu/~kiran/msqs.html>
-*   <http://www.cut-the-knot.org/algebra.shtml>
+*   <https://www.cut-the-knot.org/algebra.shtml>
 
 It should be noted that these brain-teasers provided me **absolutely no useful information for my interview!** I was not asked any of these questions, nor any others that were similar. Their only value was in keeping my mind off of my nervousness and making me the life of the party at Barleycorn's.
 
@@ -181,7 +181,7 @@ I came out of the interview pretty confident that I would get an offer. I felt t
 [HawkTour]: http://www.hawktour.net
 [OneNote]: http://www.microsoft.com/office/onenote/prodinfo/default.mspx
 [Program Manager]: http://www.microsoft.com/college/ft_pm.mspx
-[RPI]: http://www.rpi.edu/
+[RPI]: https://www.rpi.edu/
 [2]: #hr
 [3]: #pub1
 [4]: #pub2

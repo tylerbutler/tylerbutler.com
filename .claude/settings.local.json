@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "mcp__serena__find_file"
+      "mcp__serena__find_file",
+      "Bash(/tmp/test_https.sh)",
+      "Bash(/tmp/update_urls.sh:*)",
+      "Bash(/tmp/test_urls.sh)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(perl -i -pe:*)"
     ],
     "deny": [],
     "ask": []

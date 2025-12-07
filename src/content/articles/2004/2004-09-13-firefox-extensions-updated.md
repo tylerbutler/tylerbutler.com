@@ -24,8 +24,8 @@ thought I'd share them.
   * WeatherFox: [http://weatherfox.mozdev.org/][7]
   * Dictionary Search: [http://dictionarysearch.mozdev.org/][8]
   * Target Alert: [http://www.bolinfest.com/targetalert/][9]
-  * Mozilla Calendar: [http://www.mozilla.org/projects/calendar/][10]
-  * Foxy Tunes: [http://www.iosart.com/foxytunes/firefox/][11]
+  * Mozilla Calendar: [https://www.mozilla.org/projects/calendar/][10]
+  * Foxy Tunes: [https://www.iosart.com/foxytunes/firefox/][11]
   * Cute Menus: [http://cute.mozdev.org/][12]
   * Disable Targets for Downloads: [http://www.cusser.net/][13]
   * Download Manager Tweak: [http://dmextension.mozdev.org/][14]
@@ -61,8 +61,8 @@ problems when a new version is released.
    [7]: http://weatherfox.mozdev.org/
    [8]: http://dictionarysearch.mozdev.org/
    [9]: http://www.bolinfest.com/targetalert/
-   [10]: http://www.mozilla.org/projects/calendar/
-   [11]: http://www.iosart.com/foxytunes/firefox/
+   [10]: https://www.mozilla.org/projects/calendar/
+   [11]: https://www.iosart.com/foxytunes/firefox/
    [12]: http://cute.mozdev.org/
    [13]: http://www.cusser.net/
    [14]: http://dmextension.mozdev.org/

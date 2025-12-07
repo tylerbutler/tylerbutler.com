@@ -21,7 +21,9 @@
       "Bash(curl:*)",
       "mcp__sequential-thinking__sequentialthinking",
       "Bash(pnpm add:*)",
-      "Bash(pnpm test:lighthouse:*)"
+      "Bash(pnpm test:lighthouse:*)",
+      "mcp__serena__list_memories",
+      "mcp__serena__think_about_collected_information"
     ],
     "deny": [],
     "ask": []

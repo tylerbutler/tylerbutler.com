@@ -2,33 +2,14 @@ Crawling...
 
 Access to these URLs denied by robots.txt, so we couldn't check them:
 - http://64.233.179.104/search?q=cache:m1-41ZtamDcJ:mpt.phrasewise.com/stories/storyReader$374&hl=en&lr=&ie=UTF-8&strip=1
-- http://news.com.com/8301-10784_3-9714669-7.html
-- http://search.twitter.com/search?q=%23Fixreplies
-- http://twitter.com/
-- http://twitter.com/Biz
-- http://twitter.com/Lincolnator
-- http://twitter.com/MajorLB
-- http://twitter.com/atebits
-- http://twitter.com/tylerbutler
-- http://twitter.com/vandrijevik
 - http://www.cnn.com/2004/US/West/08/18/bear.beer.reut/index.html
 - http://www.flickr.com/photos/76037594@N06/7206331966/
 - http://www.flickr.com/photos/76037594@N06/7213096382/
 - http://www.google.com/search?q=cache:B6k2O8uaf5sJ:www.suntimes.com/output/news/cst-nws-toll26.html&hl=en
+- http://www.netflix.com/
 - http://www.washingtonpost.com/wp-dyn/content/article/2009/03/05/AR2009030504104.html?hpid=topnews
 - http://www82.wolframalpha.com/input/?i=two+cups+of+flour+and+two+eggs
-- https://analytics.umami.is/script.js
 - https://embed.spotify.com/?uri=spotify%3Atrack%3A4OjKHySJHstsImlUW3qfml
-- https://trello.com/c/GIYzDoMz
-- https://trello.com/c/QeelOqyG
-- https://trello.com/c/rR6cRubk
-- https://twitter.com/BillGates/statuses/248936929175953408
-- https://twitter.com/ID_AA_Carmack
-- https://twitter.com/codinghorror/statuses/231982243109822464
-- https://twitter.com/cssdeck
-- https://twitter.com/jnkboy/statuses/460508315747749888
-- https://twitter.com/rainnwilson/statuses/239163978813698048
-- https://twitter.com/romero
 
 https://tylerbutler.com
 - (315:74) 'is being..' => https://www.washingtonpost.com/business/coke-zero-gets-makeover-as-coke-zero-sugar/2017/07/26/69c65010-7214-11e7-8c17-533c52b2f014_story.html?utm_term=.f6a83466de55 (connection failed)
@@ -45,6 +26,9 @@ https://tylerbutler.com/
   - redirect path:
     - http://wgntv.com/2016/08/24/white-sox-announce-name-change-to-ballpark/ (308)
     - https://wgntv.com/2016/08/24/white-sox-announce-name-change-to-ballpark/ (403)
+
+https://tylerbutler.com/2004/05/unproduced-screenplays/
+- (170:12) 'http://w..' => http://www.kuro5hin.org/story/2004/5/8/73755/86297 (connection failed)
 
 https://tylerbutler.com/2004/05/wait-matches-burn/
 - (162:8) 'Wait, Ma..' => http://www.cpsc.gov/cpscpub/prerel/prhtml04/04138.html (HTTP 301 => 404)
@@ -63,70 +47,80 @@ https://tylerbutler.com/2004/07/dropboxxer/
 - (182:0) 'Omega' => http://omega.cs.iit.edu/ (connection failed)
 
 https://tylerbutler.com/2004/07/ebay-scams-are-funny/
+- (180:11) 'P-P-P-Po..' => http://www.p-p-p-powerbook.com/ (connection failed)
 - (191:63) 'P-P-P-Po..' => http://bu.dotsomething.net/powerbook/ppppstore.html (connection failed)
 
 https://tylerbutler.com/2004/07/gmail-a-review-updated/
 - (250:46) 'Plaxo' => http://www.plaxo.com/ (connection failed)
+- (284:103) 'MBox Cle..' => http://www.marklyon.org/gmail/cleanmbox.zip (connection failed)
+- (463:0) 'http://g..' => http://gmail.google.com/support/bin/answer.py?answer=6603 (connection failed)
 
 https://tylerbutler.com/2004/07/mailinator-to-the-rescue/
 - (167:41) 'Mailinat..' => http://www.mailinator.net (connection failed)
+
+https://tylerbutler.com/2004/08/a-short-history-of-video-games/
+- (167:11) '1Up.com' => http://www.1up.com (connection failed)
+- (167:78) 'The Esse..' => http://www.1up.com/do/feature?cId=3116290 (connection failed)
 
 https://tylerbutler.com/2004/08/the-right-to-read/
 - (162:8) 'The Righ..' => http://www.gnu.org/philosophy/right-to-read.html#References (HTTP 200 but missing anchor)
 
 https://tylerbutler.com/2004/08/word-of-the-day-cruft/
 - (171:22) 'HawkTour' => http://www.hawktour.net (connection failed)
+- (178:31) 'The Art ..' => http://daringfireball.net/2004/08/parlay (connection failed)
 - (183:47) 'In the B..' => http://joesacher.com/documents/commandline.php?Page=ETRE (connection failed)
 
 https://tylerbutler.com/2004/09/firefox-extensions-updated/
 - (171:13) 'http://a..' => http://adblock.mozdev.org/ (connection failed)
 - (172:16) 'http://w..' => http://white.sakura.ne.jp/~piro/xul/_tabextensions.html.en (HTTP 404)
 - (174:23) 'http://e..' => http://extensions.roachfiend.com/index.php (HTTP 404)
-- (175:25) 'http://w..' => http://www.chrispederick.com/work/firefox/useragentswitcher/ (connection failed)
+- (175:25) 'http://w..' => http://www.chrispederick.com/work/firefox/useragentswitcher/ (HTTP 301 -> 301 -> 301 -> 301 => 206)
+  - redirect path:
+    - http://www.chrispederick.com/work/firefox/useragentswitcher/ (301)
+    - https://www.chrispederick.com/work/firefox/useragentswitcher/ (301)
+    - https://chrispederick.com/work/firefox/useragentswitcher/ (301)
+    - /work/useragentswitcher/ (301)
+    - /work/user-agent-switcher/ (206)
 - (176:16) 'http://w..' => http://weatherfox.mozdev.org/ (connection failed)
 - (177:23) 'http://d..' => http://dictionarysearch.mozdev.org/ (connection failed)
-- (178:18) 'http://w..' => http://www.bolinfest.com/targetalert/ (connection failed)
-- (179:22) 'http://w..' => http://www.mozilla.org/projects/calendar/ (connection failed)
-- (180:16) 'http://w..' => http://www.iosart.com/foxytunes/firefox/ (connection failed)
 - (181:16) 'http://c..' => http://cute.mozdev.org/ (connection failed)
-- (182:35) 'http://w..' => http://www.cusser.net/ (connection failed)
+- (182:35) 'http://w..' => http://www.cusser.net/ (HTTP 301 -> 301 -> 301 => 526)
+  - redirect path:
+    - http://www.cusser.net/ (301)
+    - https://www.cusser.net/ (301)
+    - https://www.poseurink.com/ (301)
+    - https://www.palancar.net/ (526)
 - (183:28) 'http://d..' => http://dmextension.mozdev.org/ (connection failed)
 - (196:28) 'http://w..' => http://www.pryan.org/mozilla/site/TheOneKEA/tabprefs/ (connection failed)
 - (197:10) 'http://e..' => http://extensionroom.mozdev.org/more-info/tabx (connection failed)
 - (198:20) 'http://w..' => http://www.twannos-extensions.tk/ (connection failed)
 
-https://tylerbutler.com/2004/09/getting-rich/
-- (162:8) 'Getting ..' => http://paulgraham.com/bubble.html (connection failed)
-- (177:52) 'rich' => http://www.paulgraham.com/nerdad.html (connection failed)
-
 https://tylerbutler.com/2004/09/tolls-and-cameras/
 - (174:39) 'FAQ' => http://www.illinoistollway.com/portal/page?_pageid=53,34586,53_34725:53_34734&_dad=portal&_schema=PORTAL (connection failed)
 - (176:29) 'www.geti..' => https://www.getipass.com (connection failed)
 - (178:0) 'www.illi..' => https://www.illinoistollway.com (connection failed)
-- (222:26) 'this story' => http://yro.slashdot.org/article.pl?sid=04/09/09/2217232&tid=158&tid=103&tid=1&tid=17 (connection failed)
 
 https://tylerbutler.com/2004/10/fun-with-text-to-speech/
-- (195:38) 'Windows ..' => http://www.microsoft.com/speech/download/sdk51/ (connection failed)
-
-https://tylerbutler.com/2004/10/homeland-security/
-- (169:9) 'Yahoo Ne..' => http://story.news.yahoo.com/news?tmpl=story&cid=816&e=1&u=/ap/20041028/ap_on_fe_st/toy_store_homeland_security (connection failed)
+- (195:38) 'Windows ..' => http://www.microsoft.com/speech/download/sdk51/ (HTTP 307 -> 301 => 404)
+  - redirect path:
+    - http://www.microsoft.com/speech/download/sdk51/ (307)
+    - https://casoneroutegold-prod-bggfgca0dkaag8a8.b01.azurefd.net/speech/download/sdk51/ (301)
+    - https://www.bing.com/dev/speech (404)
 
 https://tylerbutler.com/2004/10/interview-with-microsoft/
 - (169:26) 'my IPRO' => http://www.hawktour.net/ (connection failed)
-
-https://tylerbutler.com/2004/10/no-more-anonymous-comments/
-- (170:57) 'Geeklog' => http://www.geeklog.net/ (connection failed)
 
 https://tylerbutler.com/2004/10/ode-to-the-nice-guys/
 - (168:10) 'http://w..' => http://www.stwing.upenn.edu/~jenf/writing/rant04.html (connection failed)
 - (169:79) 'Intellec..' => http://www.intellectualwhores.com/ (connection failed)
 
 https://tylerbutler.com/2004/10/playing-with-ubuntu/
-- (191:0) 'Ubuntu' => http://www.ubuntu-linux.org (connection failed)
 - (195:51) 'NDiswrap..' => http://ndiswrapper.sf.net (connection failed)
 - (200:60) 'Tomboy' => http://beatniksoftware.com/tomboy/ (connection failed)
-- (202:0) 'Beagle' => http://www.gnome.org/projects/beagle/ (connection failed)
-- (209:10) 'iFolder' => http://forge.novell.com/modules/xfmod/project/?ifolder (connection failed)
+- (202:0) 'Beagle' => http://www.gnome.org/projects/beagle/ (HTTP 302 => 404)
+  - redirect path:
+    - http://www.gnome.org/projects/beagle/ (302)
+    - https://www.gnome.org/projects/beagle/ (404)
 
 https://tylerbutler.com/2004/11/turducken/
 - (189:33) 'CajunGro..' => http://www.cajungrocer.com/product_info.php?cPath=15_24&products_id=340 (connection failed)
@@ -138,10 +132,10 @@ https://tylerbutler.com/2004/11/tyler-a-novelist/
 
 https://tylerbutler.com/2004/12/official-comments/
 - (189:46) 'my novel..' => https://tylerbutler.com/tag/novel/ (HTTP 404)
-- (190:26) 'NaNoWriMo' => http://www.nanowrimo.org/ (connection failed)
 
 https://tylerbutler.com/2004/12/the-internet-is-down/
 - (172:16) 'HowStuff..' => http://www.howstuffworks.com (connection failed)
+- (173:35) 'routers' => http://computer.howstuffworks.com/router.htm (connection failed)
 - (173:129) 'firewalls' => http://computer.howstuffworks.com/firewall.htm (connection failed)
 - (174:7) 'Internet..' => http://computer.howstuffworks.com/internet-infrastructure.htm (connection failed)
 
@@ -157,7 +151,6 @@ https://tylerbutler.com/2005/01/c-messagebox-strangeness/
 - (170:3) <img> => https://tylerbutler.com/SiteCollectionImages/Post%20Images/messagebox.png (HTTP 404)
 
 https://tylerbutler.com/2005/01/ubuntu-lvm/
-- (181:35) 'Ubuntu' => http://www.ubuntu-linux.org (connection failed)
 - (182:38) 'MythTV' => http://mythtv.org (connection failed)
 - (195:80) 'Google' => http://www.google.com (connection failed)
 - (200:43) 'this for..' => http://lists.suse.com/archive/suse-linux-e/2001-Nov/1413.html (connection failed)
@@ -169,44 +162,45 @@ https://tylerbutler.com/2005/02/iit-student-sued/
 - (173:41) 'EFF' => http://www.eff.org/ (connection failed)
 
 https://tylerbutler.com/2005/02/microsoft-program-manager-interview-the-breakdown/
-- (167:44) 'Program ..' => http://www.microsoft.com/college/ft_pm.mspx (connection failed)
+- (167:44) 'Program ..' => http://www.microsoft.com/college/ft_pm.mspx (server reported no mime type)
 - (190:4) 'http://w..' => http://www.sellsbrothers.com/fun/msiview/ (connection failed)
 - (191:4) 'http://b..' => http://blog.mattgoyer.com/stories/ftjobintinseattle.html (connection failed)
 - (192:4) 'http://b..' => http://blogs.msdn.com/adamu/archive/2004/06/18/159130.aspx (connection failed)
-- (193:4) 'http://b..' => http://blogs.msdn.com/jobsblog (connection failed)
+- (193:4) 'http://b..' => http://blogs.msdn.com/jobsblog (HTTP 302 -> 301 => 404)
+  - redirect path:
+    - http://blogs.msdn.com/jobsblog (302)
+    - https://blogs.msdn.com/jobsblog (301)
+    - https://learn.microsoft.com/en-us/archive/blogs/jobsblog (404)
 - (198:4) 'http://h..' => http://halcyon.usc.edu/~kiran/msqs.html (connection failed)
 - (199:4) 'http://w..' => http://www.cut-the-knot.org/algebra.shtml (connection failed)
 - (205:227) 'HawkTour' => http://www.hawktour.net (connection failed)
-- (229:71) 'OneNote' => http://www.microsoft.com/office/onenote/prodinfo/default.mspx (server reported no mime type)
-- (246:175) 'RPI' => http://www.rpi.edu/ (connection failed)
+- (229:71) 'OneNote' => http://www.microsoft.com/office/onenote/prodinfo/default.mspx (connection failed)
 
 https://tylerbutler.com/2005/02/yiddish-curses/
 - (192:5) 'http://w..' => http://www.signonsandiego.com/uniontrib/20040401/news_1c1yiddish.html (connection failed)
 - (193:5) 'http://w..' => http://www.yiddishradioproject.org/exhibits/stutchkoff/curses.php3?pg=3 (connection failed)
 
-https://tylerbutler.com/2005/03/code-line-counter/
-- (191:14) 'Eclipse' => http://www.eclipse.org (connection failed)
-- (192:49) 'Python' => http://www.python.org (connection failed)
-
 https://tylerbutler.com/2005/04/congratulations-hawktour/
-- (175:22) 'IPRO 329' => http://www.iit.edu/~ipro329s05/ (connection failed)
+- (175:22) 'IPRO 329' => http://www.iit.edu/~ipro329s05/ (HTTP 301 => 404)
+  - redirect path:
+    - http://www.iit.edu/~ipro329s05/ (301)
+    - https://www.iit.edu/~ipro329s05/ (404)
 - (184:48) 'Hawktour..' => http://www.hawktour.net/ (connection failed)
 
 https://tylerbutler.com/2005/04/delicious-rss-feed/
 - (167:25) 'Del.icio..' => http://del.icio.us/ (connection failed)
 - (168:42) 'as many' => http://del.icio.us/pridkett (connection failed)
 
-https://tylerbutler.com/2005/05/how-lightsabers-work/
-- (168:23) 'how ligh..' => http://www.howstuffworks.com/lightsaber.htm (connection failed)
-
 https://tylerbutler.com/2005/05/the-history-of-the-gui/
-- (167:28) 'this art..' => http://arstechnica.com/articles/paedia/gui.ars (connection failed)
-- (173:39) 'Wikipedia' => http://www.wikipedia.org (connection failed)
+- (167:28) 'this art..' => http://arstechnica.com/articles/paedia/gui.ars (HTTP 404)
 - (175:0) 'http://w..' => http://www.aci.com.pl/mwichary/guidebook/interfaces (connection failed)
 
 https://tylerbutler.com/2005/05/what-have-you-done-for-your-country-lately/
 - (172:77) 'F. James..' => http://www.house.gov/sensenbrenner/index.htm (connection failed)
 - (218:28) 'http://w..' => http://www.unrealid.com (connection failed)
+
+https://tylerbutler.com/2005/06/bad-product-designs/
+- (175:8) 'Bad Prod..' => http://www.baddesigns.com/examples.html (connection failed)
 
 https://tylerbutler.com/2005/06/interview-with-a-search-engine/
 - (162:8) 'Intervie..' => http://www.satirewire.com/features/satire-jeevesinterview.shtml (connection failed)
@@ -223,9 +217,6 @@ https://tylerbutler.com/2005/07/wikipedia-in-tok-pisin/
 - (171:22) 'main Wik..' => http://en.wikipedia.org/wiki/Tok_Pisin (connection failed)
 - (171:115) 'an entry..' => http://en.wikibooks.org/wiki/Tok_Pisin (connection failed)
 
-https://tylerbutler.com/2005/08/i-have-no-friends/
-- (167:11) 'Netflix' => http://www.netflix.com/ (connection failed)
-
 https://tylerbutler.com/2005/08/most-recent-songs-in-itunes/
 - (192:63) 'nowplayi..' => https://tylerbutler.com/SiteCollectionDocuments/Post%20Content/nowplaying.xml (HTTP 404)
 - (194:46) 'XSLT its..' => https://tylerbutler.com/SiteCollectionDocuments/Post%20Content/fullview.xsl (HTTP 404)
@@ -236,13 +227,13 @@ https://tylerbutler.com/2005/08/thunder-thunder-thunder-thundercats-ho/
 https://tylerbutler.com/2005/10/java-memory-allocation/
 - (166:8) 'Java Mem..' => http://www-128.ibm.com/developerworks/java/library/j-jtp09275.html?ca=dgr-lnxw01JavaUrbanLegends (connection failed)
 
-https://tylerbutler.com/2005/10/nanowrimo-2005/
-- (181:3) 'NaNoWriMo' => http://www.nanowrimo.org/ (connection failed)
+https://tylerbutler.com/2005/10/operation-look-good-feel-good/
+- (180:50) 'Microsoft' => http://www.microsoft.com (connection failed)
+- (182:74) 'Pro Club' => http://www.proclub.com/ (connection failed)
 
 https://tylerbutler.com/2005/11/giving-thanks/
 - (190:19) 'Kristin’..' => http://marcoandkristin.blogspot.com/2005/11/my-favourite-things.html (connection failed)
 - (190:135) 'her and ..' => http://marcoandkristin.blogspot.com/ (connection failed)
-- (191:66) 'baking p..' => http://marcoandkristin.blogspot.com/2005/11/well-it-is-sunday-night-and-i-felt.html (connection failed)
 
 https://tylerbutler.com/2005/11/harsh-reality/
 - (171:44) 'Konfabul..' => http://www.konfabulator.com/ (connection failed)
@@ -254,20 +245,26 @@ https://tylerbutler.com/2005/11/new-music/
 - (195:96) 'direct l..' => http://www.morningwoodrocks.com/music.asp (connection failed)
 - (202:19) 'The Books' => http://www.rollingstone.com/artist/_/id/7292717 (connection failed)
 
+https://tylerbutler.com/2006/02/xbox-360-r0x0rs/
+- (170:0) 'unt1tled..' => http://untitlednet.com/ (connection failed)
+- (178:39) 'Geometry..' => http://www.xbox.com/en-US/games/g/geometrywarsevolvedlivearcadexbox360/default.htm (HTTP 301 => 404)
+  - redirect path:
+    - http://www.xbox.com/en-US/games/g/geometrywarsevolvedlivearcadexbox360/default.htm (301)
+    - https://www.xbox.com/en-US/games/g/geometrywarsevolvedlivearcadexbox360/default.htm (404)
+- (193:26) 'visit my..' => http://live.xbox.com/en-US/profile/profile.aspx (connection failed)
+- (233:52) 'Diametrix' => http://live.xbox.com/en-US/profile/profile.aspx?pp=0&GamerTag=Diametrix (connection failed)
+
 https://tylerbutler.com/2006/05/content-deployment/
 - (180:33) 'entry' => http://blogs.msdn.com/sharepoint/archive/2006/05/02/588140.aspx (connection failed)
 
 https://tylerbutler.com/2006/11/building-tylerbutlercom-on-moss/
-- (172:12) 'GeekLog' => http://www.geeklog.net/ (connection failed)
 - (176:54) 'my first..' => http://blogs.msdn.com/ecm/archive/2006/10/30/building-tylerbutler-com-part-1-planning-and-basic-branding.aspx (connection failed)
 - (177:15) 'Enterpri..' => http://blogs.msdn.com/ecm (connection failed)
 
 https://tylerbutler.com/2006/12/patrick-has-a-wii-or-experimenting-with-microformats/
-- (167:83) 'get his ..' => http://patrick.wagstrom.net/weblog/wii/wiik-wiith-wii.xml (server reported no mime type)
-  - redirect path:
-    - http://patrick.wagstrom.net/weblog/wii/wiik-wiith-wii.xml (308)
-    - https://patrick.wagstrom.net/weblog/wii/wiik-wiith-wii.xml (404)
+- (167:83) 'get his ..' => http://patrick.wagstrom.net/weblog/wii/wiik-wiith-wii.xml (connection failed)
 - (170:0) 'Target' => http://www.target.com/ (connection failed)
+- (172:52) 'Microfor..' => http://microformats.org/ (connection failed)
 - (180:80) 'IE doesn..' => http://www.quirksmode.org/css/beforeafter.html (connection failed)
 - (183:25) 'http://i..' => http://inside.glnetworks.de/2006/06/05/microformats-have-arrived-in-firefox-15-greasemonkey-06/ (connection failed)
 - (184:65) 'Greasemo..' => http://greasemonkey.mozdev.org/ (connection failed)
@@ -283,13 +280,7 @@ https://tylerbutler.com/2006/12/the-zune-and-wireless/
 https://tylerbutler.com/2007/01/itunes-tagging/
 - (185:24) 'Pandora' => http://www.pandora.com/ (connection failed)
 - (185:83) 'Last.fm' => http://www.last.fm/ (connection failed)
-- (189:21) 'This pos..' => http://www.lifehacker.com/software/itunes/tag-your-songs-in-itunes-153970.php (HTTP 301 => 404)
-  - redirect path:
-    - http://www.lifehacker.com/software/itunes/tag-your-songs-in-itunes-153970.php (301)
-    - https://lifehacker.com/software/itunes/tag-your-songs-in-itunes-153970.php (404)
-
-https://tylerbutler.com/2007/01/rizzy-on-the-wii/
-- (239:0) 'Gamefly' => http://www.gamefly.com/ (connection failed)
+- (189:21) 'This pos..' => http://www.lifehacker.com/software/itunes/tag-your-songs-in-itunes-153970.php (connection failed)
 
 https://tylerbutler.com/2007/02/building-moss-master-pages/
 - (181:11) 'don’t' => http://www.fifteen.net (connection failed)
@@ -302,91 +293,113 @@ https://tylerbutler.com/2007/02/corrections-on-nav-samples-in-my-ecm-blog-posts/
 - (180:33) 'part 1' => http://blogs.msdn.com/ecm/archive/2006/10/30/building-tylerbutler-com-part-1-planning-and-basic-branding.aspx (connection failed)
 - (201:50) 'a comment' => http://blogs.msdn.com/ecm/archive/2007/01/16/building-tylerbutler-com-part-6-what-was-tough-and-what-s-to-come.aspx#1512810 (connection failed)
 
+https://tylerbutler.com/2007/04/at-mix/
+- (187:0) 'Twitter' => http://twitter.com/ (connection failed)
+
 https://tylerbutler.com/2007/04/net-browser-integration-demos/
 - (197:11) 'http://s..' => http://silverlight.metaliq.com/topbanana/ (connection failed)
 
 https://tylerbutler.com/2007/04/speaking-at-mix/
 - (180:41) 'MIX ‘07' => http://www.visitmix.com/ (connection failed)
 
+https://tylerbutler.com/2007/04/twitter/
+- (181:25) 'Twitter' => http://twitter.com (connection failed)
+- (182:0) 'http://t..' => http://twitter.com/tylerbutler (HTTP 520)
+
 https://tylerbutler.com/2007/05/flittrbook/
 - (191:0) 'http://b..' => http://blogs.msdn.com/karstenj/archive/2007/04/30/the-debut-of-flittrbook.aspx (connection failed)
 
 https://tylerbutler.com/2007/05/pidgin/
-- (142:13) 'Lifehacker' => http://www.lifehacker.com/software/download-of-the-day/pidgin-instant+messaging-client-windowslinux-257028.php (HTTP 301 => 404)
-  - redirect path:
-    - http://www.lifehacker.com/software/download-of-the-day/pidgin-instant+messaging-client-windowslinux-257028.php (301)
-    - https://lifehacker.com/software/download-of-the-day/pidgin-instant+messaging-client-windowslinux-257028.php (404)
+- (142:13) 'Lifehacker' => http://www.lifehacker.com/software/download-of-the-day/pidgin-instant+messaging-client-windowslinux-257028.php (connection failed)
 - (174:48) 'Neo-Mela..' => http://en.wikipedia.org/wiki/Tok_Pisin (connection failed)
+- (175:18) 'vernacular' => http://en.wikipedia.org/wiki/Vernacular (connection failed)
+- (183:0) 'lingua f..' => http://en.wikipedia.org/wiki/Lingua_franca (connection failed)
+- (191:3) 'Pidgin 2..' => http://sourceforge.net/project/showfiles.php?group_id=235&package_id=230234&release_id=504761 (connection failed)
+
+https://tylerbutler.com/2007/05/silverlight-coming-to-linux-courtesy-mono/
+- (180:24) 'an artic..' => http://news.com.com/8301-10784_3-9714669-7.html (connection failed)
+- (180:119) 'Mono pro..' => http://www.mono-project.com/Main_Page (connection failed)
 
 https://tylerbutler.com/2007/06/gettin-famous/
 - (180:11) 'George' => http://zorba.members.winisp.net/ (connection failed)
 - (180:71) 'this art..' => http://searchvb.techtarget.com/originalContent/0,289142,sid8_gci1256720,00.html (connection failed)
-- (180:225) 'MIX ‘07 ..' => http://sessions.visitmix.com/default.asp?event=1011&session=2012&pid=DEV06&disc=&id=1515&year=2007&search=DEV06 (server reported no mime type)
+- (180:225) 'MIX ‘07 ..' => http://sessions.visitmix.com/default.asp?event=1011&session=2012&pid=DEV06&disc=&id=1515&year=2007&search=DEV06 (connection failed)
 
 https://tylerbutler.com/2007/08/correlation-causation/
-- (170:20) 'The Simp..' => http://en.wikipedia.org/wiki/The_Simpsons: (HTTP 301 => 404)
-  - redirect path:
-    - http://en.wikipedia.org/wiki/The_Simpsons: (301)
-    - https://en.wikipedia.org/wiki/The_Simpsons: (404)
+- (169:59) 'Wikipedi..' => http://en.wikipedia.org/wiki/Correlation_does_not_imply_causation (connection failed)
+- (170:20) 'The Simp..' => http://en.wikipedia.org/wiki/The_Simpsons: (connection failed)
 
 https://tylerbutler.com/2007/08/in-portland-get-breakfast/
+- (167:68) 'Sanborn’s' => http://www.sanbornsbreakfast.com/ (connection failed)
 - (173:36) 'Lucy’s T..' => http://www.lucystable.com/ (connection failed)
+- (177:57) 'J&M Café' => http://www.google.com/url?sa=t&ct=res&cd=2&url=http://portland.citysearch.com/profile/8470102/portland_or/j_m_cafe.html&ei=F-2_Rt7KOJTshQPp7PHtCw&usg=AFQjCNH9s9ncpZ9VZT_leK3fVMu9YQe7kA&sig2=gBiGHh4kr9purLuxpfy2ng (connection failed)
+- (177:468) 'Sonic' => http://www.sonicdrivein.com/ (connection failed)
+
+https://tylerbutler.com/2008/09/and-were-back-with-comments/
+- (174:61) 'Disqus' => http://disqus.com/ (connection failed)
 
 https://tylerbutler.com/2008/09/but-why-0-but-why-but-why/
-- (208:0) 'DadHacke..' => http://www.dadhacker.com/ (HTTP 302 => 404)
-  - redirect path:
-    - http://www.dadhacker.com/ (302)
-    - http://dadhacker-125488.ingress-alpha.easywp.com/ (404)
-- (210:32) 'Donkey K..' => http://www.dadhacker.com/blog/?p=987 (server reported no mime type)
+- (196:22) 'folklore..' => http://www.folklore.org/ (connection failed)
+- (196:109) 'Andy Her..' => http://en.wikipedia.org/wiki/Andy_Hertzfeld (connection failed)
+- (197:115) 'Rejected' => http://en.wikipedia.org/wiki/Rejected (connection failed)
+- (208:0) 'DadHacke..' => http://www.dadhacker.com/ (connection failed)
+- (210:32) 'Donkey K..' => http://www.dadhacker.com/blog/?p=987 (connection failed)
+- (213:0) 'Clippy' => http://en.wikipedia.org/wiki/Clippy (connection failed)
 
 https://tylerbutler.com/2008/10/sharepoint-updates/
 - (187:24) 'SharePoi..' => http://blogs.msdn.com/sharepoint/archive/2008/09/29/announcing-august-cumulative-update-for-office-sharepoint-server-2007-and-windows-sharepoint-services-3-0.aspx (connection failed)
 - (187:226) 'KB artic..' => http://support.microsoft.com/kb/953878 (connection failed)
 
 https://tylerbutler.com/2009/03/accessibility-insanity/
-- (190:47) 'a post' => http://diveintomark.org/archives/2009/03/18/if-it-fails-for-some (HTTP 301 => 404)
-  - redirect path:
-    - http://diveintomark.org/archives/2009/03/18/if-it-fails-for-some (301)
-    - https://diveintomark.org/archives/2009/03/18/if-it-fails-for-some (404)
+- (186:61) 'can’t cr..' => http://validator.w3.org/docs/help.html#validandconform (connection failed)
+- (190:47) 'a post' => http://diveintomark.org/archives/2009/03/18/if-it-fails-for-some (connection failed)
 
 https://tylerbutler.com/2009/03/all-grown-up/
+- (142:13) 'Jason Ko..' => http://www.kottke.org/09/03/grownup-calvin-and-hobbes (connection failed)
 - (172:48) 'Complete..' => https://www.amazon.com/dp/0740748475?tag=tylerbutlerco-20&camp=0&creative=0&linkCode=as4&creativeASIN=0740748475&adid=0G5WH77B5B39AK3368E8& (connection failed)
 
 https://tylerbutler.com/2009/03/finding-meaning-in-ui/
+- (180:11) 'Loren Br..' => http://twitter.com/atebits (connection failed)
+- (180:97) 'Twitter' => http://twitter.com (connection failed)
+- (181:0) 'Tweetie' => http://www.atebits.com/software/tweetie/ (connection failed)
 - (182:63) 'The post..' => http://blog.atebits.com/2009/02/there-is-method-to-my-madness/ (connection failed)
 
 https://tylerbutler.com/2009/03/linq-confusion/
 - (185:6) 'some art..' => http://www.dailycoding.com/Posts/random_sort_a_list_using_linq.aspx (connection failed)
 
 https://tylerbutler.com/2009/03/more-accessibility/
-- (166:8) 'More Acc..' => http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress (HTTP 301 => 404)
-  - redirect path:
-    - http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress (301)
-    - https://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress (404)
+- (166:8) 'More Acc..' => http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress (connection failed)
+
+https://tylerbutler.com/2009/03/syfy/
+- (169:0) 'http://w..' => http://www.underconsideration.com/brandnew/archives/weird_syence.php (connection failed)
 
 https://tylerbutler.com/2009/04/experimental-firefox-extensions-no-longer-require-login/
-- (166:8) 'Experime..' => http://lifehacker.com/5207411/experimental-firefox-extensions-no-longer-require-login (HTTP 308 -> 301 => 410)
-  - redirect path:
-    - http://lifehacker.com/5207411/experimental-firefox-extensions-no-longer-require-login (308)
-    - https://lifehacker.com/5207411/experimental-firefox-extensions-no-longer-require-login (301)
-    - https://lifehacker.com/experimental-firefox-extensions-no-longer-require-login-5207411 (410)
+- (166:8) 'Experime..' => http://lifehacker.com/5207411/experimental-firefox-extensions-no-longer-require-login (connection failed)
 - (171:80) 'BugMeNot' => http://www.bugmenot.com (connection failed)
 
 https://tylerbutler.com/2009/04/mountain-goats-are-amazing-and-grooveshark-is-pretty-cool-too/
+- (167:45) 'Mountain..' => http://www.mountain-goats.com (connection failed)
+- (174:53) 'Vlad' => http://twitter.com/vandrijevik (HTTP 520)
 - (176:38) 'Groovesh..' => http://www.grooveshark.com (connection failed)
+
+https://tylerbutler.com/2009/04/quick-and-nimble-not-in-the-app-store/
+- (162:8) 'Quick an..' => http://log.maniacalrage.net/post/98510137/a-little-over-a-week-and-a-half-ago-google (connection failed)
+
+https://tylerbutler.com/2009/05/cmon-iphone-be-serious/
+- (180:11) 'Warren S..' => http://junctionpoint.wordpress.com/2009/04/06/ive-joined-a-cult-the-iphone-cult/ (connection failed)
 
 https://tylerbutler.com/2009/05/computer-security-x-ray-specs/
 - (142:13) 'John Gru..' => http://daringfireball.net/linked/2009/04/28/mogull-tips (connection failed)
 - (166:8) 'Computer..' => http://db.tidbits.com/article/10218 (connection failed)
 
 https://tylerbutler.com/2009/05/mark-pilgrim-on-web-fonts/
-- (166:8) 'Mark Pil..' => http://diveintomark.org/archives/2009/04/21/fuck-the-foundries (HTTP 301 => 404)
-  - redirect path:
-    - http://diveintomark.org/archives/2009/04/21/fuck-the-foundries (301)
-    - https://diveintomark.org/archives/2009/04/21/fuck-the-foundries (404)
+- (166:8) 'Mark Pil..' => http://diveintomark.org/archives/2009/04/21/fuck-the-foundries (connection failed)
 
 https://tylerbutler.com/2009/05/office-2010-the-movie/
 - (162:8) 'Office 2..' => http://www.office2010themovie.com/ (connection failed)
+
+https://tylerbutler.com/2009/05/respect-religion/
+- (162:8) 'Respect ..' => http://www.marco.org/50630064 (connection failed)
 
 https://tylerbutler.com/2009/05/science-is-fun/
 - (162:8) 'Science ..' => http://xkcd2.com/585/ (connection failed)
@@ -396,55 +409,40 @@ https://tylerbutler.com/2009/05/sharepoint-permissions-cheat-sheet/
 - (230:0) <iframe> => https://skydrive.live.com/embed?cid=016388EDBC1188FA&resid=16388EDBC1188FA%211657&authkey=AO9sXmDvE0c07ZA&em=2&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True (connection failed)
 
 https://tylerbutler.com/2009/05/twitter-replies-changes/
-- (180:67) 'poorly h..' => http://blog.twitter.com/2009/05/small-settings-update.html (HTTP 301 -> 301 -> 301 => 403)
-  - redirect path:
-    - http://blog.twitter.com/2009/05/small-settings-update.html (301)
-    - https://blog.twitter.com/2009/05/small-settings-update.html (301)
-    - https://blog.x.com/2009/05/small-settings-update.html (301)
-    - https://blog.x.com/2009/small-settings-update (403)
-- (191:10) 'This com..' => http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html#comment-9291130 (HTTP 200 but missing anchor)
-  - redirect path:
-    - http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html (301)
-    - http://scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html (200)
+- (180:67) 'poorly h..' => http://blog.twitter.com/2009/05/small-settings-update.html (connection failed)
+- (184:19) '@biz' => http://twitter.com/Biz (connection failed)
+- (186:60) 'a good s..' => http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html (connection failed)
+- (190:18) 'descript..' => http://www.readwriteweb.com/archives/is_this_why_twitter_changed_its_replies_policy.php (connection failed)
+- (191:10) 'This com..' => http://www.scripting.com/stories/2009/05/13/lessonsFromTheChangesInTwi.html#comment-9291130 (connection failed)
+- (199:38) 'Tweetie' => http://www.atebits.com/tweetie-mac/ (connection failed)
 - (199:100) 'Twitterr..' => http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284540316&mt=8 (connection failed)
-- (208:3) 'The prop..' => http://blog.twitter.com/2009/05/we-learned-lot.html (HTTP 301 -> 301 => 403)
-  - redirect path:
-    - http://blog.twitter.com/2009/05/we-learned-lot.html (301)
-    - https://blog.twitter.com/2009/05/we-learned-lot.html (301)
-    - https://blog.x.com/2009/05/we-learned-lot.html (403)
+- (205:78) '@Lincoln..' => http://twitter.com/Lincolnator (connection failed)
+- (206:8) '@MajorLB' => http://twitter.com/MajorLB (HTTP 520)
+- (208:3) 'The prop..' => http://blog.twitter.com/2009/05/we-learned-lot.html (connection failed)
+- (213:0) 'searchin..' => http://search.twitter.com/search?q=%23Fixreplies (connection failed)
 
 https://tylerbutler.com/2009/05/who-watches-the-watchman/
 - (142:13) 'John Gru..' => http://daringfireball.net/linked/2009/05/04/fahey-watchman-design (connection failed)
-- (166:8) 'Who Watc..' => http://www.graphpaper.com/2009/05-02_who_watches_the_watchman (HTTP 404)
-
-https://tylerbutler.com/2009/05/wikipedia-walks/
-- (177:46) 'Game The..' => http://en.wikipedia.org/wiki/Game_theory (connection failed)
-
-https://tylerbutler.com/2009/06/effing-hail/
-- (169:3) 'http://j..' => http://jiggmin.com/play_game.php?title=Effing+Hail (connection failed)
-
-https://tylerbutler.com/2009/06/love/
-- (162:8) 'Love' => http://batteriesfeelincluded.blogspot.com/2009/05/309.html (connection failed)
+- (166:8) 'Who Watc..' => http://www.graphpaper.com/2009/05-02_who_watches_the_watchman (connection failed)
 
 https://tylerbutler.com/2009/06/outlook-email-and-css/
 - (173:68) 'campaign..' => http://fixoutlook.org (connection failed)
+- (176:0) 'Vlad' => http://twitter.com/vandrijevik (HTTP 520)
 - (185:0) 'their up..' => http://www.email-standards.org/blog/entry/microsoft-respond-to-our-call-for-standards-support/ (connection failed)
 - (203:66) 'Raymond ..' => http://blogs.msdn.com/oldnewthing/ (connection failed)
-- (222:35) 'example ..' => http://farm4.static.flickr.com/3322/3637814200_a2aa59bc89_o.jpg (connection failed)
-- (230:41) 'Have you..' => http://steve-yegge.blogspot.com/2009/04/have-you-ever-legalized-marijuana.html (connection failed)
 - (256:66) 'Email St..' => http://www.email-standards.org/clients/microsoft-outlook-2007/ (connection failed)
 - (259:16) 'email ac..' => http://www.email-standards.org/acid-test/ (connection failed)
 - (263:0) 'acid tes..' => http://www.email-standards.org/acid-test/ (connection failed)
 
 https://tylerbutler.com/2009/06/powershell-for-fun-and-profit/
 - (189:63) 'some com..' => http://blogs.technet.com/stefan_gossner/pages/content-deployment-best-practices.aspx (connection failed)
-- (232:38) 'Pimp My ..' => http://blogs.technet.com/stefan_gossner/archive/2008/05/28/pimp-my-content-deployment-job.aspx (connection failed)
-
-https://tylerbutler.com/2009/06/teachers-are-important/
-- (162:8) 'Teachers..' => http://www.zephoria.org/thoughts/archives/2009/05/27/when_teachers_a.html (connection failed)
-
-https://tylerbutler.com/2009/07/dates-in-posts-fixed/
-- (169:0) 'the_date()' => http://codex.wordpress.org/Template_Tags/the_date (connection failed)
+- (232:38) 'Pimp My ..' => http://blogs.technet.com/stefan_gossner/archive/2008/05/28/pimp-my-content-deployment-job.aspx (HTTP 302 -> 301 -> 301 -> 302 => 404)
+  - redirect path:
+    - http://blogs.technet.com/stefan_gossner/archive/2008/05/28/pimp-my-content-deployment-job.aspx (302)
+    - https://blogs.technet.com/stefan_gossner/archive/2008/05/28/pimp-my-content-deployment-job.aspx (301)
+    - https://blogs.technet.microsoft.com/b/stefan_gossner/archive/2008/05/28/pimp-my-content-deployment-job.aspx (301)
+    - https://learn.microsoft.com/archive/blogs/b/stefan_gossner/archive/pimp-my-content-deployment-job.aspx (302)
+    - /en-us/archive/blogs/b/stefan_gossner/archive/pimp-my-content-deployment-job.aspx (404)
 
 https://tylerbutler.com/2009/07/follow-up-on-outlook-htmlcss-post/
 - (172:34) 'Zeldman ..' => http://www.zeldman.com/2009/06/24/sour-outlook/#comment-43712 (HTTP 200 but missing anchor)
@@ -453,10 +451,6 @@ https://tylerbutler.com/2009/07/follow-up-on-outlook-htmlcss-post/
     - https://www.zeldman.com/2009/06/24/sour-outlook/ (301)
     - https://zeldman.com/2009/06/24/sour-outlook/ (200)
 - (179:10) 'responded' => https://tylerbutler.com/2009/06/outlook-email-and-css/comment-page-1/#comment-137 (HTTP 404)
-
-https://tylerbutler.com/2009/07/on-intelligent-interfaces/
-- (175:8) 'On Intel..' => http://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html (connection failed)
-- (180:11) 'Mencius ..' => http://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html (connection failed)
 
 https://tylerbutler.com/2009/07/software-hatred/
 - (142:13) 'Jeff Atw..' => http://www.codinghorror.com/ (connection failed)
@@ -479,18 +473,13 @@ https://tylerbutler.com/2012/03/mies/
 - (167:206) 'Crown Hall' => http://en.wikipedia.org/wiki/S.R._Crown_Hall (connection failed)
 - (167:314) 'Ludwig M..' => http://en.wikipedia.org/wiki/Ludwig_Mies_van_der_Rohe (connection failed)
 
-https://tylerbutler.com/2012/03/new-tylerbutler-com/
-- (167:403) 'Dropbox' => http://www.dropbox.com (connection failed)
-
 https://tylerbutler.com/2012/03/thoughts-on-the-new-ipad/
 - (187:13) 'Compass' => http://twelvesouth.com/products/compass/ (connection failed)
 - (194:70) 'the ad' => http://www.apple.com/ipad/smart-cover/ (connection failed)
-- (198:74) 'Waterfie..' => http://sfbags.com/products/ipad-cases/suedejacket-ipad.php (connection failed)
 - (205:445) 'makes a ..' => http://www.codinghorror.com/blog/2012/03/welcome-to-the-post-pc-era.html (connection failed)
 
 https://tylerbutler.com/2012/04/convergence/
 - (142:13) 'Dan Prov..' => http://www.therussiansusedapencil.com/post/21738046940/anything-can-be-forced-to-converge-but-the (connection failed)
-- (184:32) 'Tim Cook' => http://www.macstories.net/news/apple-q2-2012-results-39-2-billion-revenue-35-1-million-iphones-11-8-million-ipads-sold/ (connection failed)
 
 https://tylerbutler.com/2012/04/lukas-mathis/
 - (162:8) 'Lukas Ma..' => http://ignorethecode.net (connection failed)
@@ -507,22 +496,21 @@ https://tylerbutler.com/2012/04/the-monochrome-trend/
 
 https://tylerbutler.com/2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/
 - (215:126) 'that read' => http://engineer.readthedocs.org/en/latest/installation.html#installing-using-pip (connection failed)
+- (227:314) 'a great ..' => http://technet.microsoft.com/en-us/library/ee176949.aspx (connection failed)
 - (231:145) 'https://..' => https://www.python.org/downloads/windows/ (connection failed)
 - (232:358) 'Using Py..' => http://docs.python.org/using/windows.html (connection failed)
 - (243:53) 'get-pip.py' => https://raw.github.com/pypa/pip/master/contrib/get-pip.py (connection failed)
 - (251:145) 'the pip ..' => http://www.pip-installer.org/en/latest/installing.html#using-the-installer (connection failed)
-- (312:415) 'requirem..' => http://www.pip-installer.org/en/latest/requirements.html (HTTP 301 -> 302 => 404)
-  - redirect path:
-    - http://www.pip-installer.org/en/latest/requirements.html (301)
-    - https://pip.pypa.io/en/latest/requirements.html (302)
-    - https://pip.pypa.io/en/latest/requirements/ (404)
+- (312:415) 'requirem..' => http://www.pip-installer.org/en/latest/requirements.html (connection failed)
 - (333:261) 'Notepad++' => http://notepad-plus-plus.org/ (connection failed)
 - (333:334) 'PyCharm' => http://www.jetbrains.com/pycharm/ (connection failed)
-- (334:96) 'create v..' => http://www.jetbrains.com/pycharm/webhelp/creating-virtual-environment.html (connection failed)
 - (335:102) 'PyCharm ..' => http://www.jetbrains.com/pycharm/webhelp/configuring-local-python-interpreters.html (connection failed)
 
 https://tylerbutler.com/2012/05/psget/
 - (180:71) 'PSGet' => http://psget.net/ (connection failed)
+
+https://tylerbutler.com/2012/05/xkcd-2/
+- (210:55) 'httplib2' => http://code.google.com/p/httplib2/ (connection failed)
 
 https://tylerbutler.com/2012/06/git-vs-mercurial-again/
 - (189:120) 'GitHub f..' => https://github.com/blog/1127-github-for-windows (connection failed)
@@ -535,7 +523,6 @@ https://tylerbutler.com/2012/06/git-vs-mercurial-again/
 - (206:184) 'branchin..' => http://stevelosh.com/blog/2009/08/a-guide-to-branching-in-mercurial/ (connection failed)
 - (217:169) 'portable..' => https://code.google.com/p/msysgit/downloads/list?can=3&q=official+Git (connection failed)
 - (218:157) 'this one' => http://www.zorched.net/2008/04/14/start-a-new-branch-on-your-remote-git-repository/ (connection failed)
-- (219:16) 'helpful ..' => https://github.com/ddollar/git-utils (connection failed)
 - (219:730) 'posh-git' => https://github.com/dahlbyk/posh-git (connection failed)
 - (226:576) 'histedit' => http://mercurial.selenic.com/wiki/HisteditExtension (connection failed)
 - (227:221) 'PyCharm' => http://www.jetbrains.com/pycharm/ (connection failed)
@@ -547,7 +534,9 @@ https://tylerbutler.com/2012/06/ruthless/
 - (166:8) 'Ruthless' => http://playswithfire.com/blog/2012/02/19/you-are-not-ruthless-enough/ (connection failed)
 
 https://tylerbutler.com/2012/07/max-css/
+- (142:13) 'CSSDeck' => https://twitter.com/cssdeck (connection failed)
 - (166:8) 'Max CSS' => http://daneden.me/max-css/ (connection failed)
+- (175:149) 'added this' => https://trello.com/c/rR6cRubk (connection failed)
 
 https://tylerbutler.com/2012/08/blog-portability/
 - (142:13) 'Collin D..' => http://collindonnell.com/2012/07/31/macdrifter-on-blog-portability/ (connection failed)
@@ -555,6 +544,7 @@ https://tylerbutler.com/2012/08/blog-portability/
 - (203:222) 'Pygments' => http://pygments.org/ (connection failed)
 - (204:33) 'default ..' => http://pygments.org/docs/formatters/ (connection failed)
 - (204:452) 'Python-M..' => http://packages.python.org/Markdown/index.html (connection failed)
+- (204:569) 'put it o..' => https://trello.com/c/QeelOqyG (connection failed)
 
 https://tylerbutler.com/2012/08/engineer-0-3-1-released/
 - (190:12) 'release ..' => http://engineer.readthedocs.org/en/latest/changelog.html#version-0-3-0-july-22-2012 (connection failed)
@@ -564,15 +554,19 @@ https://tylerbutler.com/2012/08/engineer-0-3-1-released/
 - (206:534) 'Marty’s ..' => http://martyalchin.com/2008/jan/10/simple-plugin-framework/ (connection failed)
 - (206:696) 'plugins.py' => https://github.com/tylerbutler/engineer/blob/master/engineer/plugins.py (connection failed)
 - (207:242) 'PLUGINS ..' => http://engineer.readthedocs.org/en/latest/settings.html#engineer.conf.EngineerConfiguration.PLUGINS (connection failed)
+- (208:100) 'entry po..' => http://peak.telecommunity.com/DevCenter/setuptools#extensible-applications-and-frameworks (connection failed)
 - (209:41) 'Engineer..' => http://engineer.readthedocs.org/en/latest/dev/plugins.html#loading-plugins (connection failed)
 - (222:65) 'Jekyll' => http://jekyllrb.com/ (connection failed)
 - (222:111) 'Octopress' => http://octopress.org/ (connection failed)
 - (222:169) 'Hyde' => http://hyde.github.com/ (connection failed)
 - (222:216) 'Second C..' => https://github.com/marcoarment/secondcrack (connection failed)
 - (223:294) 'Marked' => http://markedapp.com (connection failed)
+- (224:71) 'Markdown..' => http://markdownpad.com/ (connection failed)
+- (237:312) 'optional..' => https://trello.com/c/GIYzDoMz (connection failed)
 - (243:89) 'PLUGINS ..' => http://engineer.readthedocs.org/en/latest/settings.html#engineer.conf.EngineerConfiguration.PLUGINS (connection failed)
 
 https://tylerbutler.com/2012/08/ten-things-steve-bennett-hates-about-git/
+- (142:13) 'Jeff Atw..' => https://twitter.com/codinghorror/statuses/231982243109822464 (connection failed)
 - (179:8) 'Ten Thin..' => https://steveko.wordpress.com/2012/02/24/10-things-i-hate-about-git/ (connection failed)
 - (200:10) 'Google t..' => http://www.youtube.com/watch?v=4XpnKHJAok8 (connection failed)
 - (234:407) 'an overv..' => http://mercurial.selenic.com/wiki/MultipleCommitters (connection failed)
@@ -584,6 +578,7 @@ https://tylerbutler.com/2012/08/ten-things-steve-bennett-hates-about-git/
 - (257:359) 'a section' => http://hginit.com/00.html (connection failed)
 
 https://tylerbutler.com/2012/09/malarious/
+- (142:13) 'Rainn Wi..' => https://twitter.com/rainnwilson/statuses/239163978813698048 (connection failed)
 - (171:39) 'malaria' => https://en.wikipedia.org/wiki/malaria (connection failed)
 - (171:113) 'a country' => https://en.wikipedia.org/wiki/Papua_New_Guinea (connection failed)
 - (172:224) 'focused ..' => http://www.gatesfoundation.org/malaria/Pages/home.aspx (connection failed)
@@ -656,7 +651,6 @@ https://tylerbutler.com/2013/06/the-importance-of-documentation/
 - (182:146) 'xkcd2' => http://xkcd2.com (connection failed)
 - (182:187) 'Engineer' => http://engineer.readthedocs.org (connection failed)
 - (184:80) 'http://h..' => http://html5lib.readthedocs.org/ (connection failed)
-- (185:814) 'cauteriz..' => https://github.com/tylerbutler/engineer/issues/63 (connection failed)
 - (187:310) 'Hyde' => http://hyde.github.io/ (connection failed)
 - (187:444) 'still are' => https://github.com/hyde/hyde/issues/209 (connection failed)
 - (188:3) 'James Ha..' => http://prog21.dadgum.com/177.html (connection failed)
@@ -667,12 +661,7 @@ https://tylerbutler.com/2013/06/the-importance-of-documentation/
 - (202:4) 'Flask' => http://flask.pocoo.org/docs/ (connection failed)
 - (203:4) 'Engineer' => http://engineer.readthedocs.org (connection failed)
 
-https://tylerbutler.com/2013/08/axe-cop/
-- (162:8) 'Axe Cop' => http://www.youtube.com/watch?v=YHGfSBr2FrY (connection failed)
-
 https://tylerbutler.com/2013/10/pycharm-3-0/
-- (180:51) 'excellen..' => http://www.jetbrains.com/pycharm/download/index.html (connection failed)
-- (180:414) 'edition ..' => http://www.jetbrains.com/pycharm/features/editions_comparison_matrix.html (connection failed)
 - (181:195) 'Xamarin' => https://store.xamarin.com/ (connection failed)
 - (181:472) 'xkcd2' => http://www.xkcd2.com (connection failed)
 - (182:100) 'Engineer' => https://github.com/tylerbutler/engineer/ (connection failed)
@@ -685,12 +674,10 @@ https://tylerbutler.com/2013/12/made-by-bees/
 
 https://tylerbutler.com/2013/12/retina-ipad-mini-image-retention-test/
 - (167:20) 'Marco Ar..' => http://www.marco.org/ (connection failed)
+- (167:72) 'simple t..' => http://www.marco.org/rmbp-irtest.html (connection failed)
 
 https://tylerbutler.com/2013/12/the-wolf-among-us/
 - (142:13) 'Polygon' => http://www.polygon.com/2013/12/24/5241066/the-wolf-among-us-episode-1-free-on-xbox-live-marketplace (connection failed)
-- (179:8) 'The Wolf..' => http://marketplace.xbox.com/en-CA/Product/The-Wolf-Among-Us/66acd000-77fe-1000-9115-d80258411216 (connection failed)
-- (184:387) 'Polygon ..' => http://www.polygon.com/2013/10/10/4824252/fables-the-wolf-among-us (connection failed)
-- (184:512) 'try out ..' => http://marketplace.xbox.com/en-CA/Product/The-Wolf-Among-Us/66acd000-77fe-1000-9115-d80258411216 (connection failed)
 - (185:70) 'Steam' => http://store.steampowered.com/app/250320/?snr=1_5_9__205 (connection failed)
 - (185:207) 'iOS' => https://itunes.apple.com/us/app/the-wolf-among-us/id716238885?mt=8 (connection failed)
 
@@ -704,7 +691,10 @@ https://tylerbutler.com/2014/04/aerobie/
 - (171:289) 'Aeropress' => http://www.amazon.com/gp/product/B0047BIWSK/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B0047BIWSK&linkCode=as2&tag=tylerbutlerco-20 (connection failed)
 
 https://tylerbutler.com/2014/04/carmack-romero/
+- (172:54) '@romero' => https://twitter.com/romero (connection failed)
+- (172:107) '@ID_AA_C..' => https://twitter.com/ID_AA_Carmack (connection failed)
 - (172:205) 'pic.twit..' => http://t.co/tJHwuwrrGM (connection failed)
+- (172:298) 'April 27..' => https://twitter.com/jnkboy/statuses/460508315747749888 (connection failed)
 - (175:67) 'Masters ..' => http://www.amazon.com/gp/product/0812972155/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0812972155&linkCode=as2&tag=tylerbutlerco-20 (connection failed)
 
 https://tylerbutler.com/2014/05/deploying-engineer-sites-to-azure/
@@ -719,8 +709,9 @@ https://tylerbutler.com/2014/05/markdown-lazy-links-in-python/
 - (198:143) 'Markdown..' => https://engineer.readthedocs.org/en/master/bundled_plugins.html#lazy-links-plugin (connection failed)
 - (198:308) 'Brett Te..' => http://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/ (connection failed)
 - (200:22) 'VERBOSE' => https://docs.python.org/2/library/re.html#re.VERBOSE (connection failed)
-- (200:329) 'GitHub r..' => https://github.com/tylerbutler/engineer/blob/dev/engineer/plugins/bundled.py#L306 (connection failed)
+- (200:329) 'GitHub r..' => https://github.com/tylerbutler/engineer/blob/dev/engineer/plugins/bundled.py#L306 (HTTP 200 but missing anchor)
 - (200:521) 'Engineer..' => https://engineer.readthedocs.org/en/master/dev/plugins.html#post-processor-plugins (connection failed)
+- (200:769) 'file an ..' => https://github.com/tylerbutler/engineer/issues (connection failed)
 
 https://tylerbutler.com/2014/07/day-one-free-on-the-app-store/
 - (180:33) 'Day One' => http://dayoneapp.com/ (connection failed)
@@ -738,16 +729,8 @@ https://tylerbutler.com/2014/10/stack-traces/
 https://tylerbutler.com/2014/12/installing-binary-python-packages-on-windows/
 - (205:353) 'Dulwich' => https://www.samba.org/~jelmer/dulwich/ (connection failed)
 - (212:487) 'this que..' => http://stackoverflow.com/questions/2817869/error-unable-to-find-vcvarsall-bat (connection failed)
-- (215:348) 'a packag..' => https://www.microsoft.com/en-us/download/details.aspx?id=44266 (HTTP 302 -> 301 => 404)
-  - redirect path:
-    - https://www.microsoft.com/en-us/download/details.aspx?id=44266 (302)
-    - https://www.microsoft.com/en-us/download/404Error.aspx (301)
-    - https://www.microsoft.com/en-us/download/404-page (404)
-- (216:10) 'download..' => https://www.microsoft.com/en-us/download/details.aspx?id=44266 (HTTP 302 -> 301 => 404)
-  - redirect path:
-    - https://www.microsoft.com/en-us/download/details.aspx?id=44266 (302)
-    - https://www.microsoft.com/en-us/download/404Error.aspx (301)
-    - https://www.microsoft.com/en-us/download/404-page (404)
+- (215:348) 'a packag..' => https://www.microsoft.com/en-us/download/details.aspx?id=44266 (connection failed)
+- (216:10) 'download..' => https://www.microsoft.com/en-us/download/details.aspx?id=44266 (connection failed)
 - (221:300) 'separate..' => http://engineer.readthedocs.org/en/master/upgrade.html (connection failed)
 - (242:126) 'Engineer..' => http://engineer.readthedocs.org/en/master/upgrade.html (connection failed)
 - (247:128) 'Dulwich' => https://www.samba.org/~jelmer/dulwich/ (connection failed)
@@ -757,8 +740,16 @@ https://tylerbutler.com/2014/12/installing-binary-python-packages-on-windows/
 - (252:268) 'dulwich-..' => https://pypi.python.org/pypi/dulwich-windows (connection failed)
 
 https://tylerbutler.com/2015/01/loot-tables/
-- (162:8) 'Loot Tab..' => http://www.lostgarden.com/2014/12/loot-drop-tables.html (connection failed)
-- (167:33) 'more tha..' => http://www.lostgarden.com/2014/12/loot-drop-tables.html (connection failed)
+- (162:8) 'Loot Tab..' => http://www.lostgarden.com/2014/12/loot-drop-tables.html (HTTP 301 -> 301 => 404)
+  - redirect path:
+    - http://www.lostgarden.com/2014/12/loot-drop-tables.html (301)
+    - https://www.lostgarden.com/2014/12/loot-drop-tables.html (301)
+    - https://lostgarden.com/2014/12/loot-drop-tables.html (404)
+- (167:33) 'more tha..' => http://www.lostgarden.com/2014/12/loot-drop-tables.html (HTTP 301 -> 301 => 404)
+  - redirect path:
+    - http://www.lostgarden.com/2014/12/loot-drop-tables.html (301)
+    - https://www.lostgarden.com/2014/12/loot-drop-tables.html (301)
+    - https://lostgarden.com/2014/12/loot-drop-tables.html (404)
 
 https://tylerbutler.com/2016/08/comiskey-park/
 - (167:67) 'renamed ..' => http://wgntv.com/2016/08/24/white-sox-announce-name-change-to-ballpark/ (HTTP 308 => 403)
@@ -769,27 +760,20 @@ https://tylerbutler.com/2016/08/comiskey-park/
 https://tylerbutler.com/2017/08/coke-zero-ii-the-review/
 - (168:74) 'is being..' => https://www.washingtonpost.com/business/coke-zero-gets-makeover-as-coke-zero-sugar/2017/07/26/69c65010-7214-11e7-8c17-533c52b2f014_story.html?utm_term=.f6a83466de55 (connection failed)
 
-https://tylerbutler.com/articles/
-- (2433:8) 'Acrobat ..' => https://tylerbutler.com/2007/01/acrobat-reader-8-sucks-less/ (connection failed)
-- (2452:8) 'I Hate S..' => https://tylerbutler.com/2007/01/i-hate-security-questions/ (connection failed)
-- (2518:8) 'Web Site..' => https://tylerbutler.com/2006/12/web-site-intro-pages/ (connection failed)
-- (2537:8) 'Buying T..' => https://tylerbutler.com/2006/12/buying-toothpaste/ (connection failed)
-- (2556:8) 'Nintendo..' => https://tylerbutler.com/2006/12/nintendo-wii/ (connection failed)
-- (2670:8) 'XBox 360..' => https://tylerbutler.com/2006/02/xbox-360-r0x0rs/ (connection failed)
-- (2812:8) 'Operatio..' => https://tylerbutler.com/2005/10/operation-look-good-feel-good/ (connection failed)
-- (2831:8) 'Celebrat..' => https://tylerbutler.com/2005/09/celebrating-30-years-of-papua-new-guinean-independence/ (connection failed)
-- (3211:8) 'Title Dr..' => https://tylerbutler.com/2005/02/title-droppers/ (connection failed)
-- (3230:8) 'Parsing ..' => https://tylerbutler.com/2005/01/parsing-xfdf-in-php/ (connection failed)
-
 https://tylerbutler.com/colophon/
 - (200:33) 'Foundati..' => http://foundation.zurb.com/ (connection failed)
+- (201:13) 'Museo Slab' => https://typekit.com/fonts/museo-slab (connection failed)
+- (201:76) 'Myriad Pro' => https://typekit.com/fonts/myriad-pro (connection failed)
+- (201:139) 'Anonymou..' => https://typekit.com/fonts/anonymous-pro (connection failed)
+- (201:212) 'Kulturis..' => https://typekit.com/fonts/kulturista-web (connection failed)
+- (202:15) 'Typekit' => https://typekit.com (connection failed)
 - (203:46) 'WebFaction' => http://www.webfaction.com/?affiliate=tylerbutler (connection failed)
 
 
 Stats:
-    5862 links
-     691 destination URLs
-      33 URLs ignored
-     377 warnings
-     363 errors
+    6086 links
+     718 destination URLs
+      14 URLs ignored
+     395 warnings
+     384 errors
 

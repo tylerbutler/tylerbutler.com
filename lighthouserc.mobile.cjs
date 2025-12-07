@@ -1,7 +1,7 @@
 module.exports = {
   ci: {
     collect: {
-      url: ["http://localhost:4173/", "http://localhost:4173/articles/"],
+      url: ["http://localhost:4171/", "http://localhost:4171/articles/"],
       numberOfRuns: 3,
       settings: {
         preset: "mobile",
@@ -34,8 +34,8 @@ module.exports = {
       target: "temporary-public-storage",
     },
     server: {
-      command: "npm run preview",
-      port: 4173,
+      command: "npm run dev",
+      port: 4171,
       wait: 3000,
     },
   },

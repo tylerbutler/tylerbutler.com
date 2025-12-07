@@ -3,8 +3,8 @@ module.exports = {
     collect: {
       // Test both homepage and an article page
       url: [
-        "http://localhost:4173/",
-        "http://localhost:4173/articles/", // Will test articles page
+        "http://localhost:4171/",
+        "http://localhost:4171/articles/", // Will test articles page
       ],
       numberOfRuns: 3, // Run multiple times for consistent results
       settings: {
@@ -51,9 +51,9 @@ module.exports = {
       target: "temporary-public-storage",
     },
     server: {
-      command: "npm run preview",
-      port: 4173,
-      wait: 3000, // Wait for server to start
+      command: "npm run dev",
+      port: 4171,
+      wait: 3000,
     },
   },
 };

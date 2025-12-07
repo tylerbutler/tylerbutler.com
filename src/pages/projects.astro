@@ -4,10 +4,10 @@ import { BookOpen, ExternalLink, Github } from "@lucide/astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatTitle } from "../lib/typography";
 
-// Get all projects (excluding index files)
+// Get all projects (excluding index files and drafts)
 const projects = await getCollection(
   "projects",
-  ({ id }) => !id.startsWith("_"),
+  ({ id, data }) => !id.startsWith("_") && !data.draft,
 );
 
 // Sort projects by date (newest first)

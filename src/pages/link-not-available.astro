@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const url = Astro.url.searchParams.get("url") || "Unknown URL";
+import BrokenUrlDisplay from "../components/BrokenUrlDisplay.astro";
 ---
 
 <BaseLayout
@@ -14,27 +13,35 @@ const url = Astro.url.searchParams.get("url") || "Unknown URL";
     <h1>Link Not Available</h1>
 
     <p class="explanation">
-      The link you're trying to access is no longer available. This is likely
-      due to:
+      Over the years, many of the URLs I have linked to have rotted away. In some cases, I have been able to redirect to appropriate URLs in the Internet Archive.
+    </p>
+    <p class="explanation">
+      Sadly, this is not one of those URLs.
     </p>
 
-    <ul class="reasons">
-      <li>Content migration from an older version of this site</li>
-      <li>External resources that have been removed or relocated</li>
-      <li>Deprecated URLs from previous site architectures</li>
-    </ul>
-
-    <div class="url-box">
-      <p class="url-label">Original URL:</p>
-      <code class="broken-url">{url}</code>
-    </div>
+    <BrokenUrlDisplay />
 
     <div class="actions">
-      <a href="/" class="button primary">Go to Home</a>
-      <a href="/articles" class="button secondary">Browse Articles</a>
+      <a href="#" class="button primary" onclick="history.back(); return false;">← Go back</a>
+      <a href="#" class="button secondary" id="try-original-link">Try original link anyway</a>
     </div>
   </article>
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    const tryOriginalLink = document.getElementById("try-original-link");
+    if (tryOriginalLink) {
+      const params = new URLSearchParams(window.location.search);
+      const url = params.get("url");
+      if (url) {
+        tryOriginalLink.href = url;
+      } else {
+        tryOriginalLink.style.display = "none";
+      }
+    }
+  })();
+</script>
 
 <style>
   .link-not-available {
@@ -76,36 +83,6 @@ const url = Astro.url.searchParams.get("url") || "Unknown URL";
 
   .reasons li {
     margin-bottom: 0.5em;
-  }
-
-  .url-box {
-    background: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 1.5em;
-    margin: 2em 0;
-  }
-
-  .url-label {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #666;
-    margin: 0 0 0.5em 0;
-  }
-
-  .broken-url {
-    display: block;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 0.75em;
-    font-family: "Pragmata Pro Mono", "Courier New", monospace;
-    font-size: 13px;
-    color: #333;
-    word-break: break-all;
-    text-align: left;
   }
 
   .actions {

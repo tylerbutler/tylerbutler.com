@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatTitle } from "../../lib/typography";
+import { getArticleUrl } from "../../lib/article-utils";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles", ({ data }) => {
@@ -63,14 +64,11 @@ const description = `All articles tagged with "${tag}"`;
     <div class="articles-list">
       {articles.map(article => {
         const date = new Date(article.data.date);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const slug = article.data.slug || article.slug;
 
         return (
           <article class="article-item">
             <h2>
-              <a href={`/${year}/${month}/${slug}/`}>
+              <a href={getArticleUrl(article)}>
                 {article.formattedTitle}
               </a>
             </h2>

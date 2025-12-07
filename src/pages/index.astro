@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { createHomepagePreview } from "../lib/markdown-utils";
 import { formatTitle } from "../lib/typography";
+import { getArticleUrl } from "../lib/article-utils";
 
 // Get recent articles (latest 5, non-draft)
 const articles = await getCollection("articles", ({ data }) => {
@@ -41,15 +42,12 @@ const recentArticles = await Promise.all(
       <ul class="recent-articles">
         {recentArticles.map((article) => {
           const date = new Date(article.data.date);
-          const year = date.getFullYear();
-          const month = String(date.getMonth() + 1).padStart(2, '0');
-          const slug = article.data.slug || article.slug;
 
           return (
             <li>
               <article class="article-preview">
                 <h2>
-                  <a href={`/${year}/${month}/${slug}`}>
+                  <a href={getArticleUrl(article)}>
                     {article.formattedTitle}
                   </a>
                 </h2>
@@ -65,7 +63,7 @@ const recentArticles = await Promise.all(
                 <div class="article-content" set:html={article.transformedHtml}></div>
                 {article.isTruncated && (
                   <p class="read-more">
-                    <a href={`/${year}/${month}/${slug}`}>Read More →</a>
+                    <a href={getArticleUrl(article)}>Read More →</a>
                   </p>
                 )}
               </article>

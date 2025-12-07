@@ -26,7 +26,11 @@ const redirectPathPattern = /^\s+- (https?:\/\/[^\s]+) \(\d+\)$/;
 
 for (const line of lines) {
   // Skip empty lines and section headers
-  if (!line.trim() || line.startsWith("Crawling") || line.startsWith("Stats:")) {
+  if (
+    !line.trim() ||
+    line.startsWith("Crawling") ||
+    line.startsWith("Stats:")
+  ) {
     continue;
   }
 

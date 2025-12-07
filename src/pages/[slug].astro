@@ -4,8 +4,12 @@ import { ExternalLink } from "@lucide/astro";
 import type { TocItem } from "astro-toc";
 import { TOC } from "astro-toc";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  getArticleSlug,
+  getArticleUrl,
+  validateArticleSlugs,
+} from "../lib/article-utils";
 import { formatTitle } from "../lib/typography";
-import { getArticleUrl, getArticleSlug, validateArticleSlugs } from "../lib/article-utils";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles", ({ data }) => {

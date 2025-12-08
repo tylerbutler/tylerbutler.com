@@ -1,0 +1,196 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { ExternalLink } from "@lucide/astro";
+import type { TocItem } from "astro-toc";
+import { TOC } from "astro-toc";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { formatTitle } from "../lib/typography";
+import "../lib/styles/article-page.css";
+
+interface Props {
+  article: CollectionEntry<"articles">;
+  prevArticle: CollectionEntry<"articles"> | null;
+  nextArticle: CollectionEntry<"articles"> | null;
+  prevUrl: string | null;
+  nextUrl: string | null;
+  canonicalUrl?: string;
+}
+
+const { article, prevArticle, nextArticle, prevUrl, nextUrl, canonicalUrl } = Astro.props;
+const { Content, headings } = await article.render();
+
+// Check if this is a guide article and prepare TOC data
+const isGuide = article.data.type === "guide";
+const tocData: TocItem[] = isGuide
+  ? headings
+      .filter((h) => h.depth >= 2 && h.depth <= 3) // Only h2 and h3
+      .map((h) => ({
+        depth: h.depth,
+        title: h.text,
+        url: `#${h.slug}`,
+      }))
+  : [];
+
+const date = new Date(article.data.date);
+const formattedDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+// Calculate if article is old enough to show age aside (>10 years)
+const currentYear = new Date().getFullYear();
+const articleYear = date.getFullYear();
+const yearsSinceWritten = currentYear - articleYear;
+const shouldShowAgeAside = yearsSinceWritten > 10;
+
+// Determine age period when article was written
+function getAgePeriod(year: number): string {
+  const decade = Math.floor(year / 10) * 10;
+  const yearInDecade = year % 10;
+
+  // Determine age range based on decade
+  let ageDecade: number;
+  if (decade >= 2000 && decade < 2010) {
+    ageDecade = 20;
+  } else if (decade >= 2010 && decade < 2020) {
+    ageDecade = 30;
+  } else if (decade >= 2020 && decade < 2030) {
+    ageDecade = 40;
+  } else {
+    // For older articles, continue the pattern backwards
+    ageDecade = 20 - ((2000 - decade) / 10) * 10;
+  }
+
+  // Determine early/mid/late
+  let period: string;
+  if (yearInDecade <= 3) {
+    period = "early";
+  } else if (yearInDecade <= 6) {
+    period = "mid";
+  } else {
+    period = "late";
+  }
+
+  return `${period} ${ageDecade}s`;
+}
+
+const agePeriod = shouldShowAgeAside ? getAgePeriod(articleYear) : null;
+const isLinkPost = article.data.articleType === "link";
+---
+
+<BaseLayout
+  title={`${article.data.title} - Tyler Butler`}
+  description={article.data.excerpt}
+  headerSize="small"
+  canonicalUrl={canonicalUrl}
+>
+  <div class="article-layout" class:list={{ 'with-toc': isGuide && tocData.length > 0 }}>
+    <article class="article" class:list={{ 'link-post': isLinkPost }}>
+      <header class="article-header">
+        <h1>{await formatTitle(article.data.title)}</h1>
+        <div class="article-meta">
+          <time datetime={article.data.date.toISOString()} class="article-date">
+            {formattedDate}
+            {agePeriod && <span class="age-aside"> <em>(I wrote this in my {agePeriod})</em></span>}
+          </time>
+          {!isLinkPost && article.data.via && article.data.vialink && (
+            <span class="article-via">
+              via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
+                {article.data.via}
+                <ExternalLink size={12} class="external-icon" />
+              </a>
+            </span>
+          )}
+        </div>
+      </header>
+
+      {isLinkPost && article.data.link && (
+        <div class="link-post-reference">
+          <div class="link-wrapper">
+            <a href={article.data.link} target="_blank" rel="noopener noreferrer" class="external-article-link">
+              {await formatTitle(article.data.title)}
+              <ExternalLink size={16} class="external-icon" />
+            </a>
+            {article.data.via && article.data.vialink && (
+              <cite class="link-via">
+                via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
+                  {article.data.via}
+                  <ExternalLink size={12} class="external-icon" />
+                </a>
+              </cite>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* TOC for narrow screens - inline at top */}
+      {isGuide && tocData.length > 0 && (
+        <nav class="toc-narrow" aria-label="Table of Contents">
+          <h2 class="toc-title">Contents</h2>
+          <TOC toc={tocData} depth={2} maxDepth={3} class="toc-list" />
+        </nav>
+      )}
+
+      <div class="article-content">
+        <Content />
+      </div>
+
+      {article.data.tags && article.data.tags.length > 0 && (
+        <div class="article-tags">
+          {article.data.tags.map(tag => (
+            <a href={`/tags/${tag}/`} class="tag" data-pagefind-filter="tag">#{tag}</a>
+          ))}
+        </div>
+      )}
+    </article>
+
+    {/* TOC for medium+ screens - sidebar on right */}
+    {isGuide && tocData.length > 0 && (
+      <aside class="toc-sidebar" aria-label="Table of Contents">
+        <h2 class="toc-title">Contents</h2>
+        <TOC toc={tocData} depth={2} maxDepth={3} class="toc-list" />
+      </aside>
+    )}
+  </div>
+
+  <nav class="article-nav">
+    {prevArticle && prevUrl && (
+      <a href={prevUrl} class="nav-link">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">{await formatTitle(prevArticle.data.title)}</span>
+      </a>
+    )}
+
+    {nextArticle && nextUrl && (
+      <a href={nextUrl} class="nav-link nav-link-next">
+        <span class="nav-text">{await formatTitle(nextArticle.data.title)}</span>
+        <span class="nav-arrow">→</span>
+      </a>
+    )}
+  </nav>
+</BaseLayout>
+
+<script>
+  // Handle TOC positioning: start at header bottom, stick to top when scrolling
+  const tocSidebar = document.querySelector('.toc-sidebar');
+  if (tocSidebar) {
+    const header = document.querySelector('header');
+    if (header) {
+      const updateTocPosition = () => {
+        const headerBottom = header.getBoundingClientRect().bottom;
+        // If header is still visible, position TOC at header bottom
+        // Otherwise, stick to top of viewport with small padding
+        const topPosition = Math.max(20, headerBottom);
+        (tocSidebar as HTMLElement).style.top = `${topPosition}px`;
+      };
+
+      // Update on scroll and resize
+      window.addEventListener('scroll', updateTocPosition, { passive: true });
+      window.addEventListener('resize', updateTocPosition, { passive: true });
+
+      // Initial position
+      updateTocPosition();
+    }
+  }
+</script>

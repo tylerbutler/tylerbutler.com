@@ -1,7 +1,7 @@
 /* Navigation system */
 
-/* Navigation container */
-nav {
+/* Site header navigation container */
+.site-header nav {
   text-align: center;
   padding: 12px 0;
   display: block; /* Always visible in header */
@@ -57,14 +57,12 @@ nav {
 /* Wide screen navigation - extension of the header box */
 @media (min-width: 1200px) {
   /* Make header relative for nav positioning */
-  header,
-  banner {
+  .site-header {
     position: relative;
   }
 
   /* Position nav as an extension of the header with proportional scaling */
-  header nav,
-  banner nav {
+  .site-header nav {
     position: absolute;
     /* Reduced navigation width: 150px at 763px = 19.6% */
     left: calc(-1 * clamp(125px, 19.6vw, 150px)); /* Responsive left position */
@@ -167,8 +165,7 @@ nav {
   }
 
   /* Active state for dark theme - ensure proper contrast */
-  .dark header nav ul li a.active,
-  .dark banner nav ul li a.active {
+  .dark .site-header nav ul li a.active {
     color: var(--accent) !important;
     font-weight: 600;
   }
@@ -269,13 +266,13 @@ nav {
 
 /* Mobile navigation */
 @media (max-width: 480px) {
-  nav a {
+  .site-header nav a {
     font-size: 12px; /* Smaller font for mobile horizontal layout */
     letter-spacing: 1px;
     padding: 8px 4px; /* Tighter padding for single line */
   }
 
-  nav ul {
+  .site-header nav ul {
     flex-direction: row; /* Keep horizontal on mobile */
     gap: 8px; /* Smaller gap to fit all items */
     flex-wrap: nowrap; /* Force single line */

@@ -14,7 +14,6 @@
   margin-bottom: 2em;
   padding: 1.5em;
   background: var(--code-bg);
-  border-radius: 5px;
   border-left: 3px solid var(--accent);
 }
 
@@ -23,7 +22,6 @@
   display: none;
   padding: 1.5em;
   background: var(--code-bg);
-  border-radius: 5px;
   border-left: 3px solid var(--accent);
 }
 
@@ -91,13 +89,11 @@
     display: none;
   }
 
-  /* Show sidebar TOC on wide screens - only positioning and inverted colors */
+  /* Show sidebar TOC on wide screens */
   .toc-sidebar {
     display: block;
-    /* Light mode: dark background, light text (inverted) */
-    background: var(--dark-bg);
-    color: var(--nav-links);
-    border-radius: 0 5px 5px 0; /* Round right corners */
+    background: var(--light-bg);
+    color: var(--text);
     position: fixed;
     top: 0; /* At viewport top - JavaScript will adjust dynamically */
     /* Position so LEFT edge aligns with header's RIGHT edge */
@@ -108,27 +104,12 @@
     z-index: 1; /* Low priority so code blocks overlay when scrolling */
   }
 
-  /* Dark mode: light background, dark text (inverted from page) */
-  .dark .toc-sidebar {
-    background: #faf8f6; /* Light warm white */
-    color: #2a4a47; /* Deep teal-gray text */
-  }
-
-  /* Inverted color overrides for sidebar */
   .toc-sidebar .toc-title {
-    color: var(--nav-links);
-  }
-
-  .dark .toc-sidebar .toc-title {
-    color: #2a4a47;
+    color: var(--text);
   }
 
   .toc-sidebar .toc-list a:hover {
-    color: var(--nav-links);
-  }
-
-  .dark .toc-sidebar .toc-list a:hover {
-    color: #2a4a47;
+    color: var(--accent);
   }
 }
 

@@ -181,8 +181,8 @@ const isLinkPost = article.data.articleType === "link";
       const updateTocPosition = () => {
         const headerBottom = header.getBoundingClientRect().bottom;
         // If header is still visible, position TOC at header bottom
-        // Otherwise, stick to top of viewport with small padding
-        const topPosition = Math.max(20, headerBottom);
+        // Otherwise, stick to top of viewport
+        const topPosition = Math.max(0, headerBottom);
         (tocSidebar as HTMLElement).style.top = `${topPosition}px`;
       };
 

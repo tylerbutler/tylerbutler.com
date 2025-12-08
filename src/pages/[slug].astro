@@ -194,12 +194,34 @@ const isLinkPost = article.data.articleType === "link";
   </nav>
 </BaseLayout>
 
+<script>
+  // Handle TOC positioning: start at header bottom, stick to top when scrolling
+  const tocSidebar = document.querySelector('.toc-sidebar');
+  if (tocSidebar) {
+    const header = document.querySelector('header');
+    if (header) {
+      const updateTocPosition = () => {
+        const headerBottom = header.getBoundingClientRect().bottom;
+        // If header is still visible, position TOC at header bottom
+        // Otherwise, stick to top of viewport with small padding
+        const topPosition = Math.max(20, headerBottom);
+        (tocSidebar as HTMLElement).style.top = `${topPosition}px`;
+      };
+
+      // Update on scroll and resize
+      window.addEventListener('scroll', updateTocPosition, { passive: true });
+      window.addEventListener('resize', updateTocPosition, { passive: true });
+
+      // Initial position
+      updateTocPosition();
+    }
+  }
+</script>
+
 <style>
   /* Article layout container */
   .article-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
+    display: block;
   }
 
   .article {
@@ -234,11 +256,14 @@ const isLinkPost = article.data.articleType === "link";
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .toc-narrow :global(.toc-list li),
   .toc-sidebar :global(.toc-list li) {
     margin: 0.5em 0;
+    display: block;
   }
 
   .toc-narrow :global(.toc-list li ul),
@@ -261,34 +286,58 @@ const isLinkPost = article.data.articleType === "link";
     color: var(--text);
   }
 
-  /* Medium+ screens: TOC positioned to the right */
-  @media (min-width: 1024px) {
-    /* Hide narrow TOC on medium+ screens */
+  /* Wide screens: fixed sidebar TOC */
+  @media (min-width: 1200px) {
+    /* Hide narrow TOC on wide screens */
     .toc-narrow {
       display: none;
     }
 
-    /* Show sidebar TOC on medium+ screens - positioned outside content-inner */
+    /* Show sidebar TOC on wide screens */
     .toc-sidebar {
       display: block;
-      float: right;
-      width: clamp(200px, 25vw, 280px);
-      /* Position outside content-inner using negative left margin */
-      margin-left: 2em;
-      margin-right: calc(-1 * (clamp(200px, 25vw, 280px) + 35px + 2em));
       padding: 1.5em;
-      background: var(--code-bg);
-      border-radius: 5px;
+      /* Light mode: dark background, light text (inverted) */
+      background: var(--dark-bg);
+      color: var(--nav-links);
+      border-radius: 0 5px 5px 0; /* Round right corners */
       border-left: 3px solid var(--accent);
-      position: sticky;
-      top: 2em;
-      max-height: calc(100vh - 4em);
+      position: fixed;
+      top: 0; /* At viewport top */
+      /* Position so LEFT edge aligns with header's RIGHT edge */
+      left: calc(50vw + var(--container-width) / 2);
+      max-height: 100vh;
       overflow-y: auto;
+      width: 250px;
+      z-index: 1; /* Low priority so code blocks overlay when scrolling */
+    }
+
+    /* Dark mode: light background, dark text (inverted from page) */
+    :global(.dark) .toc-sidebar {
+      background: #faf8f6; /* Light warm white */
+      color: #2a4a47; /* Deep teal-gray text */
+    }
+
+    .toc-sidebar :global(.toc-list a) {
+      color: var(--accent);
+    }
+
+    .toc-sidebar :global(.toc-list a:hover) {
+      color: var(--nav-links);
+    }
+
+    :global(.dark) .toc-sidebar :global(.toc-list a:hover) {
+      color: #2a4a47;
     }
 
     .toc-sidebar .toc-title {
       font-size: 16px;
       margin-bottom: 0.75em;
+      color: var(--nav-links);
+    }
+
+    :global(.dark) .toc-sidebar .toc-title {
+      color: #2a4a47;
     }
 
     .toc-sidebar :global(.toc-list li) {

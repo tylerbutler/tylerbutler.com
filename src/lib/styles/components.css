@@ -173,6 +173,12 @@ table {
 }
 
 /* ExpressiveCode frame styling - keep frames dark in both light and dark modes */
+/* Ensure code blocks overlay the TOC sidebar when scrolling */
+.expressive-code {
+  position: relative;
+  z-index: 2;
+}
+
 /* Frame headers and titles */
 .expressive-code .header,
 .expressive-code [data-header],

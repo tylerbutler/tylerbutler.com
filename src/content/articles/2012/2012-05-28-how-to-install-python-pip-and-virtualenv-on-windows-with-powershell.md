@@ -29,6 +29,7 @@ If you're new to Python, getting up and running with pip and virtualenv can be a
 
 [1]: https://engineer.readthedocs.org/en/latest/installation.html#installing-using-pip
 
+<div id="toc"></div>
 <!--more-->
 
 ## Before We Start

@@ -173,7 +173,7 @@ const isLinkPost = article.data.articleType === "link";
 </BaseLayout>
 
 <script>
-  // Handle TOC positioning: start at header bottom, stick to top when scrolling
+  // Handle TOC sidebar positioning: start at header bottom, stick to top when scrolling
   const tocSidebar = document.querySelector('.toc-sidebar');
   if (tocSidebar) {
     const header = document.querySelector('header');
@@ -193,5 +193,13 @@ const isLinkPost = article.data.articleType === "link";
       // Initial position
       updateTocPosition();
     }
+  }
+
+  // Handle narrow TOC relocation: move to marker if present in content
+  const tocNarrow = document.querySelector('.toc-narrow');
+  const tocMarker = document.querySelector('#toc');
+  if (tocNarrow && tocMarker) {
+    // Move the narrow TOC to the marker location
+    tocMarker.replaceWith(tocNarrow);
   }
 </script>

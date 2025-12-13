@@ -30,7 +30,10 @@
       "mcp__playwright__browser_take_screenshot",
       "mcp__playwright__browser_evaluate",
       "mcp__playwright__browser_click",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Skill(frontend-design:frontend-design)",
+      "mcp__playwright__browser_close",
+      "mcp__playwright__browser_wait_for"
     ],
     "deny": [],
     "ask": []

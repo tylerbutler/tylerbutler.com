@@ -13,7 +13,7 @@ const { size = "large" } = Astro.props;
 const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
 ---
 
-<header class="site-header" id="site-header">
+<header class="site-header">
   <div class="theme-toggle-wrapper">
     <ThemeToggle/>
   </div>
@@ -28,21 +28,11 @@ const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
 </header>
 
 <script define:vars={{ headlines }}>
-  // Set random headline
   const taglineElement = document.getElementById("random-headline");
   if (taglineElement) {
     const randomHeadline =
       headlines[Math.floor(Math.random() * headlines.length)];
     taglineElement.textContent = randomHeadline + "\u00A0"; // \u00A0 is &nbsp;
-  }
-
-  // Trigger header entrance animation
-  const header = document.getElementById("site-header");
-  if (header) {
-    // Small delay to ensure CSS is loaded and avoid flash
-    requestAnimationFrame(() => {
-      header.classList.add("animate-in");
-    });
   }
 </script>
 

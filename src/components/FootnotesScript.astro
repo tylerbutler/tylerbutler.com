@@ -27,7 +27,7 @@ import "littlefoot/dist/littlefoot.css";
   .littlefoot-footnote__content {
     font-size: 0.9em;
     line-height: 1.4;
-    color: #333;
+    color: var(--text);
   }
 
   /* Dark mode support - directly style littlefoot elements */
@@ -66,7 +66,7 @@ import "littlefoot/dist/littlefoot.css";
   /* Style footnote references */
   a[rel="footnote"] {
     text-decoration: none;
-    color: #0066cc;
+    color: var(--accent);
     font-weight: 500;
     padding: 0.1em 0.3em;
     border-radius: 3px;
@@ -78,27 +78,15 @@ import "littlefoot/dist/littlefoot.css";
   }
 
   a[rel="footnote"]:hover {
-    background-color: #f0f8ff;
+    background-color: var(--code-bg);
     text-decoration: none;
-  }
-
-  .dark a[rel="footnote"] {
-    color: #66b3ff;
-  }
-
-  .dark a[rel="footnote"]:hover {
-    background-color: #1a3040;
   }
 
   /* Hide the footnote section when Littlefoot is active */
   .footnotes-section {
-    border-top: 1px solid #e1e1e1;
+    border-top: 1px solid var(--code-border);
     margin-top: 2rem;
     padding-top: 1rem;
-  }
-
-  .dark .footnotes-section {
-    border-top-color: #444;
   }
 
   /* Hide footnotes section if JavaScript is enabled and Littlefoot loads */

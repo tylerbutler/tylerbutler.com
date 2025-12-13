@@ -84,7 +84,7 @@ const recentArticles = await Promise.all(
   .links-nav {
     margin: -40px 0 0 0;
     padding: 0.5em 0;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--code-border);
   }
 
   .horizontal-links {
@@ -137,7 +137,7 @@ const recentArticles = await Promise.all(
   .article-preview {
     margin-bottom: 1.5em;
     padding-bottom: 1em;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--code-border);
   }
 
   .article-preview:last-child {
@@ -169,7 +169,7 @@ const recentArticles = await Promise.all(
 
   .article-preview time {
     font-size: 12px;
-    color: #666;
+    color: var(--text-light);
     text-transform: uppercase;
     letter-spacing: 1px;
     flex-shrink: 0;
@@ -179,14 +179,14 @@ const recentArticles = await Promise.all(
     margin: 0.5em 0;
     font-size: 13px;
     line-height: 1.6;
-    color: #555;
+    color: var(--text-light);
   }
 
   .article-content {
     margin: 0.5em 0;
     font-size: 13px;
     line-height: 1.6;
-    color: #555;
+    color: var(--text-light);
   }
 
   .article-content h1,
@@ -209,7 +209,7 @@ const recentArticles = await Promise.all(
 
   .article-content pre,
   .article-content code {
-    background: #f5f5f5;
+    background: var(--code-bg);
     padding: 0.2em 0.4em;
     border-radius: 3px;
     font-size: 12px;

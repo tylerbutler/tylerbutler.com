@@ -40,20 +40,29 @@ body {
   position: relative;
 }
 
-/* Fixed background image - prevents distortion on long pages */
+/* Parallax offset custom property - set by JavaScript */
+:root {
+  --parallax-offset: 0px;
+}
+
+/* Fixed background image with parallax effect */
 body::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  /* Extend height to allow for parallax movement */
+  height: calc(100vh + 200px);
   background-image: url("/bg.jpg"); /* Fallback for older browsers */
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
   pointer-events: none;
   z-index: -2;
+  /* Apply parallax transform */
+  transform: translateY(var(--parallax-offset));
+  will-change: transform;
 }
 
 /* Dark mode overlay for background image */
@@ -90,13 +99,7 @@ body::after {
     }
   }
 
-  /* Hide background on mobile for cleaner experience */
-  @media (max-width: 768px) {
-    body::before,
-    body::after {
-      display: none; /* Hide both background and overlay on mobile */
-    }
-  }
+  /* Mobile uses gradient defined in responsive section - no override needed */
 }
 
 /* Use WebP for supporting browsers (fallback from AVIF) */
@@ -114,13 +117,7 @@ body::after {
     }
   }
 
-  /* Hide background on mobile for cleaner experience */
-  @media (max-width: 768px) {
-    body::before,
-    body::after {
-      display: none; /* Hide both background and overlay on mobile */
-    }
-  }
+  /* Mobile uses gradient defined in responsive section - no override needed */
 }
 
 /* Accessibility improvements */
@@ -147,14 +144,49 @@ html.light {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  /* Hide background image on mobile for all formats */
-  body::before,
+  /* Replace background image with gradient capturing the sunset colors on mobile */
+  body::before {
+    background-image: linear-gradient(
+      180deg,
+      #1a2332 0%,
+      #2d4a5c 15%,
+      #4a6b7c 25%,
+      #8b6b5a 40%,
+      #c4875a 55%,
+      #e6a855 70%,
+      #f4c76a 85%,
+      #fad47a 100%
+    ) !important;
+    background-size: cover !important;
+    display: block !important;
+    height: 100vh !important;
+    transform: none !important;
+  }
+
+  /* Reset overlay for mobile - will be controlled separately */
   body::after {
-    display: none !important; /* Hide both background and overlay on mobile */
+    display: block !important;
+    background-color: transparent !important;
+    background: none !important;
+    opacity: 0 !important;
   }
 
   body {
-    background-color: #000000; /* Solid black background on mobile */
+    background-color: #1a2332;
+  }
+}
+
+/* Mobile dark mode overlay - separate rule for proper specificity */
+@media (max-width: 768px) {
+  .dark body::after {
+    display: block !important;
+    background: linear-gradient(
+      180deg,
+      rgba(15, 20, 25, 0.75) 0%,
+      rgba(15, 20, 25, 0.6) 50%,
+      rgba(15, 20, 25, 0.75) 100%
+    ) !important;
+    opacity: 1 !important;
   }
 }
 

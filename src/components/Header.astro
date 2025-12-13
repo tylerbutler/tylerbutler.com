@@ -30,9 +30,27 @@ const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
 <script define:vars={{ headlines }}>
   const taglineElement = document.getElementById("random-headline");
   if (taglineElement) {
-    const randomHeadline =
-      headlines[Math.floor(Math.random() * headlines.length)];
-    taglineElement.textContent = randomHeadline + "\u00A0"; // \u00A0 is &nbsp;
+    let currentIndex = Math.floor(Math.random() * headlines.length);
+    taglineElement.textContent = headlines[currentIndex] + "\u00A0";
+
+    // Rotate headline every 60 seconds with crossfade
+    setInterval(() => {
+      // Pick a different headline
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * headlines.length);
+      } while (newIndex === currentIndex && headlines.length > 1);
+      currentIndex = newIndex;
+
+      // Fade out
+      taglineElement.classList.add("fading");
+
+      // After fade out, change text and fade in
+      setTimeout(() => {
+        taglineElement.textContent = headlines[currentIndex] + "\u00A0";
+        taglineElement.classList.remove("fading");
+      }, 300);
+    }, 60000);
   }
 </script>
 
@@ -55,6 +73,21 @@ const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
   .site-header h1 {
     margin-top: 0px !important;
     margin-bottom: 3px !important;
+  }
+
+  /* Headline rotation crossfade */
+  .tagline {
+    transition: opacity 0.3s ease;
+  }
+
+  .tagline.fading {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tagline {
+      transition: none;
+    }
   }
 
   /* Screen reader only text */

@@ -33,7 +33,8 @@
       "WebFetch(domain:github.com)",
       "Skill(frontend-design:frontend-design)",
       "mcp__playwright__browser_close",
-      "mcp__playwright__browser_wait_for"
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_press_key"
     ],
     "deny": [],
     "ask": []

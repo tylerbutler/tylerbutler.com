@@ -40,30 +40,20 @@ body {
   position: relative;
 }
 
-/* Parallax custom properties - set by JavaScript */
-:root {
-  --parallax-offset: 0px;
-  --background-height: 300vh; /* Fallback; JavaScript calculates exact value */
-}
-
-/* Fixed background image with parallax effect */
+/* Fixed background image */
 body::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  /* Height set dynamically by JavaScript to cover full page with parallax */
-  height: var(--background-height);
+  height: 100vh;
   background-image: url("/bg.jpg"); /* Fallback for older browsers */
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
   pointer-events: none;
   z-index: -2;
-  /* Apply parallax transform */
-  transform: translateY(var(--parallax-offset));
-  will-change: transform;
 }
 
 /* Dark mode overlay for background image */

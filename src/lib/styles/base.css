@@ -40,9 +40,10 @@ body {
   position: relative;
 }
 
-/* Parallax offset custom property - set by JavaScript */
+/* Parallax custom properties - set by JavaScript */
 :root {
   --parallax-offset: 0px;
+  --background-height: 300vh; /* Fallback; JavaScript calculates exact value */
 }
 
 /* Fixed background image with parallax effect */
@@ -52,8 +53,8 @@ body::before {
   top: 0;
   left: 0;
   width: 100vw;
-  /* Extend height to allow for parallax movement */
-  height: calc(100vh + 200px);
+  /* Height set dynamically by JavaScript to cover full page with parallax */
+  height: var(--background-height);
   background-image: url("/bg.jpg"); /* Fallback for older browsers */
   background-size: cover;
   background-position: top center;

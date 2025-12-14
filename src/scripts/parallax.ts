@@ -18,10 +18,23 @@ if (!prefersReducedMotion) {
   let ticking = false;
   let lastScrollY = 0;
 
+  // Calculate and set the required background height to cover full page with parallax
+  const updateBackgroundHeight = () => {
+    const documentHeight = document.documentElement.scrollHeight;
+    const viewportHeight = window.innerHeight;
+    const maxScroll = documentHeight - viewportHeight;
+    const maxParallaxOffset = maxScroll * PARALLAX_SPEED;
+    // Background needs to cover viewport + max parallax movement + buffer
+    const requiredHeight = viewportHeight + maxParallaxOffset + 100;
+    document.documentElement.style.setProperty(
+      "--background-height",
+      `${requiredHeight}px`,
+    );
+  };
+
   // Get the background pseudo-element via CSS custom property
   const updateParallax = () => {
     const scrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
 
     // Calculate parallax offset
     // Negative value moves background up as user scrolls down
@@ -52,6 +65,7 @@ if (!prefersReducedMotion) {
     if (window.innerWidth > MOBILE_BREAKPOINT) {
       window.addEventListener("scroll", onScroll, { passive: true });
       // Initial update
+      updateBackgroundHeight();
       updateParallax();
     }
   };
@@ -65,6 +79,7 @@ if (!prefersReducedMotion) {
       // Re-add listener if we're on desktop
       window.removeEventListener("scroll", onScroll); // Prevent duplicates
       window.addEventListener("scroll", onScroll, { passive: true });
+      updateBackgroundHeight();
       updateParallax();
     }
   };

@@ -1,6 +1,6 @@
 /* Import fonts with font-display optimization */
 @import "@fontsource/lato/400.css";
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+/* JetBrains Mono loaded async via BaseLayout.astro for code blocks */
 
 /* Font loading optimization */
 @font-face {

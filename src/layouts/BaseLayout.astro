@@ -4,7 +4,6 @@ import Footer from "../components/Footer.astro";
 import FootnoteScript from "../components/FootnotesScript.astro";
 import Header from "../components/Header.astro";
 import "../lib/styles/global.css";
-import "../styles/fonts.css";
 
 export interface Props {
   title?: string;
@@ -30,14 +29,30 @@ const {
     <title>{title}</title>
     <meta name="description" content={description}>
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    <link rel="stylesheet" href="https://use.typekit.net/zsx5vsn.css">
-    <link
-      rel="preload"
-      href="/fonts/PragmataPro_Mono_R_liga_0902.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    >
+
+    <!-- Preconnect to font origins for faster loading -->
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Critical CSS inlined for above-the-fold content -->
+    <style is:inline>
+      /* Minimal critical styles for initial render */
+      *{box-sizing:border-box;margin:0;padding:0}
+      html{text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+      body{font-family:"adelle","Baskerville",Georgia,serif;font-size:16px;line-height:1.6;background-color:#faf8f6}
+      .site-container{max-width:clamp(636px,90vw,763px);margin:30px auto;background:#faf8f6;border-radius:8px}
+      @media(prefers-color-scheme:dark){body{background-color:#0f1419}.site-container{background:#0f1419}}
+    </style>
+
+    <!-- Typekit fonts - loaded with higher priority but non-blocking -->
+    <link rel="stylesheet" href="https://use.typekit.net/zsx5vsn.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://use.typekit.net/zsx5vsn.css"></noscript>
+
+    <!-- JetBrains Mono for code - loaded async (fallback font for PragmataPro) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
   </head>
   <body>
     <div class="site-container">
@@ -51,5 +66,19 @@ const {
     </div>
     <FootnoteScript/>
     <BrokenLinkTooltip/>
+
+    <!-- Lazy load PragmataPro font only when code blocks are present -->
+    <script>
+      (function() {
+        // Check if there are code blocks on the page
+        if (document.querySelector('pre, code, .expressive-code')) {
+          // Create and inject the font stylesheet
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = '/styles/fonts.css';
+          document.head.appendChild(link);
+        }
+      })();
+    </script>
   </body>
 </html>

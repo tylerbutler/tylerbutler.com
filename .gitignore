@@ -33,3 +33,4 @@ public/fonts/
 # Local mise config files
 .mise.local.toml
 mise.local.toml
+**/.claude/settings.local.json

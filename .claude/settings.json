@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx @biomejs/biome check --write --linter-enabled=false $CLAUDE_FILE_PATHS"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo $CLAUDE_FILE_PATHS | tr ' ' '\\n' | grep -qE 'pnpm-lock\\.yaml$' && echo 'BLOCK: Do not edit lock files directly. Use pnpm install.' && exit 1 || exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

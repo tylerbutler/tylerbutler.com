@@ -136,7 +136,9 @@
           &.active {
             color: var(--accent) !important;
             /* Use text-shadow instead of font-weight to prevent layout shift */
-            text-shadow: 0 0 0.5px currentColor, 0 0 0.5px currentColor;
+            text-shadow:
+              0 0 0.5px currentColor,
+              0 0 0.5px currentColor;
           }
         }
       }
@@ -170,7 +172,9 @@
   /* Active state for dark theme - ensure proper contrast */
   .dark .site-header nav ul li a.active {
     color: var(--accent) !important;
-    text-shadow: 0 0 0.5px currentColor, 0 0 0.5px currentColor;
+    text-shadow:
+      0 0 0.5px currentColor,
+      0 0 0.5px currentColor;
   }
 
   /* Social navigation styles for sidebar - only show on large screens */

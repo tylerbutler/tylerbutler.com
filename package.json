@@ -52,6 +52,7 @@
     "astro-broken-links-checker": "github:imazen/astro-broken-link-checker",
     "astro-expressive-code": "^0.41.6",
     "astro-toc": "^0.2.0",
+    "badge-maker": "^5.0.2",
     "expressive-code-twoslash": "^0.5.3",
     "littlefoot": "^4.1.3",
     "pathe": "^2.0.3",

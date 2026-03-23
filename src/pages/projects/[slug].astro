@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { ExternalLink, Github } from "@lucide/astro";
+import ProjectBadges from "../../components/ProjectBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatTitle } from "../../lib/typography";
 
@@ -27,12 +29,23 @@ const { Content } = await project.render();
 >
   <article class="article">
     <header class="article-header">
+      {project.data.logo && (
+        <Image src={project.data.logo} alt={`${project.data.title} logo`} class="project-logo"/>
+      )}
       <h1>{await formatTitle(project.data.title)}</h1>
+      <div class="article-badges">
+        <ProjectBadges
+          crate={project.data.crate}
+          hex={project.data.hex}
+          hexDocs={project.data.hexDocs}
+          license={project.data.license}
+          programmingLanguage={project.data.programmingLanguage}
+        />
+      </div>
       {project.data.description && (
         <p class="project-description">{project.data.description}</p>
       )}
     </header>
-
     <div class="article-content">
       <Content/>
     </div>
@@ -156,6 +169,25 @@ const { Content } = await project.render();
     margin: 1em 0;
   }
 
+  .article-content a,
+  .content-inner a:not(.tag):not(.nav-link):not(.badge):not(.blank) {
+    position: relative;
+    text-decoration: none;
+    background-image: none;
+    /* background-position: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    transition:
+      background-size 0.3s ease,
+      color 0.2s ease; */
+  }
+
+/* .article-content a:hover, */
+  .content-inner a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(#overview):hover {
+  background-size: 0% 1px;
+  background-position: 100% 0%;
+} */
+
   /* Project-specific styles */
   .project-description {
     font-style: italic;
@@ -190,4 +222,10 @@ const { Content } = await project.render();
     background-color: var(--accent);
     color: white;
   }
+
+  .project-logo {
+    width: 96px;
+    float: left; 
+  }
+
 </style>

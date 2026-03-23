@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { BookOpen, ExternalLink, Github } from "@lucide/astro";
+import ProjectBadges from "../components/ProjectBadges.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatTitle } from "../lib/typography";
 
@@ -42,7 +44,24 @@ const sortedProjects = await Promise.all(
           return (
             <li class="project-item">
               <article>
+                {project.data.logo && (
+                  <Image
+                    src={project.data.logo}
+                    alt={`${project.data.title} logo`}
+                    class="project-logo"
+                    width={48}
+                  />
+                )}
                 <h2>{project.formattedTitle}</h2>
+                    <div class="article-badges">
+                      <ProjectBadges
+                        crate={project.data.crate}
+                        hex={project.data.hex}
+                        hexDocs={project.data.hexDocs}
+                        license={project.data.license}
+                        programmingLanguage={project.data.programmingLanguage}
+                      />
+                    </div>
                 {project.data.description && (
                   <p class="description">{project.data.description}</p>
                 )}
@@ -113,19 +132,24 @@ const sortedProjects = await Promise.all(
     height: 16px;
   }
 
-  .project-links a {
+  .project-links a,
+  .article-badges a {
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
     margin-right: 1em;
-    color: var(--accent);
     text-decoration: none;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
 
-  .project-links a:hover {
+  .article-badges a {
+    margin-right: 0.5em;
+  }
+
+  .project-links a:hover,
+  .article-badges a:hover {
     text-decoration: none;
     opacity: 0.8;
   }
@@ -136,5 +160,11 @@ const sortedProjects = await Promise.all(
 
   .external-link {
     opacity: 0.8;
+  }
+
+  .project-logo {
+    width: 96px;
+    float: left;
+    margin-right: 1em;
   }
 </style>

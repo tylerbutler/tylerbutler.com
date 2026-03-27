@@ -174,19 +174,12 @@ const { Content } = await project.render();
     position: relative;
     text-decoration: none;
     background-image: none;
-    /* background-position: 100% 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 1px;
-    transition:
-      background-size 0.3s ease,
-      color 0.2s ease; */
   }
 
-/* .article-content a:hover, */
   .content-inner a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(#overview):hover {
-  background-size: 0% 1px;
-  background-position: 100% 0%;
-} */
+    background-size: 0% 1px;
+    background-position: 100% 0%;
+  }
 
   /* Project-specific styles */
   .project-description {
@@ -225,7 +218,6 @@ const { Content } = await project.render();
 
   .project-logo {
     width: 96px;
-    float: left; 
+    float: left;
   }
-
 </style>

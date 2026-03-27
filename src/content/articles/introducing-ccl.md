@@ -3,6 +3,7 @@ title: 'Introducing CCL'
 date: '2026-03-27T13:27:00-07:00'
 tags:
 - config
+draft: false
 ---
 
 In [package.json considered harmful](./2026-03-26-package.json-considered-harmful.md), I made the case that JSON is a
@@ -59,13 +60,13 @@ dash for items. If something belongs under another item, you'd indent further. M
 ```txt
 Errands
 - Groceries
-  - Fruit
+  Fruit
     - Apples - 2 lb
     - Bananas - 1 bunch
   - Crudite platter
   - Cereal
   - Milk
-- Vet - meds for Spot
+- Vet - Spot's surgery ($500 deposit, ask about "recovery diet")
 ```
 
 Here's what a basic CCL config looks like:
@@ -79,7 +80,7 @@ Groceries =
   = Crudite platter
   = Cereal
   = Milk
-Vet = meds for Spot
+Vet = Spot's surgery ($500 deposit, ask about "recovery diet")
 ```
 
 That's it. Keys and values separated by `=`. Comments are just entries with `/` as the key -- not special syntax, just a

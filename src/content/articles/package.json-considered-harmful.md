@@ -4,7 +4,7 @@ title: 'package.json considered harmful'
 date: '2026-03-26T15:32:00-07:00'
 tags:
 - config
-
+type: guide
 ---
 
 Any web developer over the last 15 years or so has encountered [JSON][]. It stands for JavaScript Object Notation, and
@@ -31,13 +31,36 @@ created largely by machines.
 
 Sounds reasonable, no? The problem is that we don't use it for that.
 
+## To be fair to JSON
+
+None of this is to say JSON is a bad format. It's genuinely good at what it was designed for, and it's worth being clear
+about that before I make the case against its misuse.
+
+The security argument for JSON is real. Because JSON can only represent data -- strings, numbers, booleans, arrays,
+objects -- there's nothing to execute. You parse it, you get a data structure, and that's the end of the story. Compare
+that to executable config formats like vite.config.ts or [Dhall][], where loading the config means running code. That's
+a meaningful attack surface, and JSON simply doesn't have it.
+
+JSON is also genuinely universal. Every language has a JSON parser, and they all agree on the format. That
+interoperability is not something you get for free -- it's the result of a simple, stable spec that hasn't changed in
+decades. When you need two systems written in different languages to exchange data reliably, JSON is still the
+lowest-friction option most of the time.
+
+And the tooling is exceptional. JSON Schema, formatters, validators, editor support -- the ecosystem around JSON is
+mature in a way that most config formats can't match. If you need to validate the structure of a file, or provide IDE
+autocomplete for it, JSON has a well-worn path for that.
+
+So JSON is fast to parse, safe to load, universally supported, and well-tooled. The problem isn't JSON. The problem is
+that none of those strengths matter much when you're hand-authoring a config file that you'll be maintaining for years.
+For that job, the things JSON is good at are largely irrelevant, and the thing it's missing -- comments -- is not.
+
 ## Original Sin
 
 The most prevalent place you'll find JSON files in the JavaScript ecosystem is `package.json` -- the formal location for
 package metadata in [npm][]. And "package metadata" might *sound* like machine-generated data, except almost nothing in
 `package.json` is machine-managed. The package name, the version, the keywords, the description, the scripts, the
-dependencies -- all hand-authored. All human-maintained. This is not machine-Maxine data exchange. And then there's the sprawl of tool configurations that have
-followed npm's example, carrying this cursed seed to far-off lands.
+dependencies -- all hand-authored. All human-maintained. This is not machine-machine data exchange. And then there's the
+sprawl of tool configurations that have followed npm's example, carrying this cursed seed to far-off lands.
 
 This is the original sin: npm chose a comment-less serialization format as the *de facto* config format for an entire
 ecosystem, before anyone realized what that would cost over time.
@@ -121,12 +144,12 @@ tradeoff that I think is underappreciated.
 
 Executable config is executable. That means it can only be loaded in an environment that can run JavaScript. I opened a
 PR on a project once to add CommonJS config support, and it was rejected for two legitimate reasons: the tool ran in
-environments where JavaScript might not be available, and -- more interestingly -- there's a genuine security concern
-about executing arbitrary code during config loading. That's a fair point. Config shouldn't require a runtime.
+environments where JavaScript might not be available, and as I mentioned, executing arbitrary code during config loading
+is a real security concern, not just a theoretical one.
 
 This is also, incidentally, part of why I'm skeptical of [PKL][] and similar "programmable configuration languages." At
 the point where your config language is sophisticated enough to need a runtime and an execution model, the honest
-question is: why aren't you just using a programming language? The complexity cost is there; the power isn't
+question is: why aren't you just using a programming language? The complexity cost is there, but the power isn't
 meaningfully greater than just writing code.
 
 ## A simple test
@@ -160,7 +183,12 @@ environment. The developer experience is genuinely excellent.
 **Use TOML or YAML** for static config that needs to be portable or loaded outside a JavaScript context. Either one
 supports comments. Neither one is JSON.
 
-**If you're stuck with JSON**, my honest advice is to accept the limitation and compensate elsewhere. Some teams work around it with special comment fields -- "_comment" or "field_name_comment" -- but these suffer from the same fundamental problem as JSONC: they're fragile conventions, not first-class features. Any tool that rewrites the file may drop them, reorder them away from the thing they're annotating, or simply not recognize them. For configuration that genuinely needs annotation, put that documentation in your README or a docs/ file and link to it. It's not elegant, but it's more durable than workarounds that depend on every tool in your chain playing along.
+**If you're stuck with JSON**, my honest advice is to accept the limitation and compensate elsewhere. Some teams work
+around it with special comment fields -- "_comment" or "field_name_comment" -- but these suffer from the same
+fundamental problem as JSONC: they're fragile conventions, not first-class features. Any tool that rewrites the file may
+drop them, reorder them away from the thing they're annotating, or simply not recognize them. For configuration that
+genuinely needs annotation, put that documentation in your README or a docs/ file and link to it. It's not elegant, but
+it's more durable than workarounds that depend on every tool in your chain playing along.
 
 The honest bottom line is that `package.json` is a blight on the Node ecosystem -- not because JSON is a bad format, but
 because it's a format that was pressed into service it was never meant for. We made an early choice that calcified into
@@ -175,6 +203,7 @@ almost seems like it shouldn't work -- but it does. More on that next time.
 [JSON]: https://www.json.org
 [pickle]: https://docs.python.org/3/library/pickle.html
 [npm]: https://www.npmjs.com
+[Dhall]: https://dhall-lang.org
 [JSONC]: https://code.visualstudio.com/docs/languages/json#_json-with-comments
 [JSON5]: https://json5.org
 [NX]: https://nx.dev

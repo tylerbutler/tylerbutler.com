@@ -1,10 +1,8 @@
 ---
-
 title: 'Introducing CCL'
-date: '2026-03-31T11:27:00-07:00'
+date: '2026-03-27T13:27:00-07:00'
 tags:
 - config
-draft: true
 ---
 
 In [package.json considered harmful](./2026-03-26-package.json-considered-harmful.md), I made the case that JSON is a
@@ -19,9 +17,9 @@ gets it right -- or at least, gets closer than anything else I've tried.
 
 ## The second criterion
 
-I said in my earlier essay that comment support is the minimum bar for a config language. But there's a second criterion
-I didn't spend much time on: **simplicity**. It needs to be simple to hand-author, simple to read, and simple to
-understand.
+I said in [package.json considered harmful](./2026-03-26-package.json-considered-harmful.md) that comment support is the
+minimum bar for a config language. But there's a second criterion I didn't spend much time on: **simplicity**. It needs
+to be simple to hand-author, simple to read, and simple to understand.
 
 This sounds obvious, but it's surprisingly easy to fail. Which brings me to my first encounter on the road to finding
 something better.
@@ -64,7 +62,7 @@ Errands
   - Fruit
     - Apples - 2 lb
     - Bananas - 1 bunch
-  - Crudite platter - 2
+  - Crudite platter
   - Cereal
   - Milk
 - Vet - meds for Spot
@@ -75,17 +73,17 @@ Here's what a basic CCL config looks like:
 ```ccl
 /= Errands
 Groceries =
-  = Fruit
+  Fruit =
     Apples = 2 lb
     Bananas = 1 bunch
-  = Crudite platter - 2
+  = Crudite platter
   = Cereal
   = Milk
 Vet = meds for Spot
 ```
 
 That's it. Keys and values separated by `=`. Comments are just entries with `/` as the key -- not special syntax, just a
-convention. Nested values are indented. Lists are create by empty keys -- much like the human-made list light use a dash
+convention. Nested values are indented. Lists are created by empty keys -- much like the human-made list might use a dash
 to denote a list item. There's nothing else to learn.
 
 I know there's a cohort of programmers for whom significant indentation is an unforgivable sin. I have genuinely mixed feelings about YAML, which also uses indentation for structure, and I understand the frustration. But in CCL, the indentation is doing something different -- and the distinction matters.
@@ -139,7 +137,7 @@ I also built a [comprehensive test suite]() that I continue to improve and a web
 [ccl.tylerbutler.com](https://ccl.tylerbutler.com) including LLM prompts for folks who want to explore LLM coding agents
 on a "real project."
 
-If you find CCL interesting, take a look. The spec is simple enough that you could implement a parser in an afternoon in whatever language you know best. That's kind of the point.
+If you find CCL interesting, take a look and get in touch! The spec is simple enough that you could implement a parser in an afternoon in whatever language you know best. That's kind of the point.
 
 [CCL]: https://chshersh.com/blog/2025-01-06-the-most-elegant-configuration-language.html
 [PKL]: https://pkl-lang.org

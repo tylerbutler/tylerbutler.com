@@ -1,6 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode, {
@@ -17,21 +14,11 @@ import remarkRehype from "remark-rehype";
 import { remarkShiftHeadings } from "remark-shift-headings";
 import remarkSmartypants from "remark-smartypants";
 import { unified } from "unified";
-
-// Load themes
+// Load themes and grammars
+import cclGrammar from "./ccl.tmLanguage.json";
 import ayuLightJson from "./themes/ayu-light.json";
 import ayuMirageJson from "./themes/ayu-mirage.json";
 import oneDarkJson from "./themes/OneDark.json";
-
-const cclGrammar = JSON.parse(
-  fs.readFileSync(
-    path.join(
-      path.dirname(fileURLToPath(import.meta.url)),
-      "ccl.tmLanguage.json",
-    ),
-    "utf-8",
-  ),
-);
 
 const ayuLight = new ExpressiveCodeTheme(ayuLightJson);
 const ayuMirage = new ExpressiveCodeTheme(ayuMirageJson);
@@ -48,7 +35,8 @@ const themes = [
  */
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
   shiki: {
-    langs: [cclGrammar],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    langs: [cclGrammar as any],
     langAlias: {
       ccl: "CCL",
     },

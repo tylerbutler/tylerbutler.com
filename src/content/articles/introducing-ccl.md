@@ -3,7 +3,7 @@ title: 'Introducing CCL'
 date: '2026-03-27T13:27:00-07:00'
 tags:
 - config
-draft: false
+# type: guide
 ---
 
 In [package.json considered harmful](./2026-03-26-package.json-considered-harmful.md), I made the case that JSON is a
@@ -119,24 +119,50 @@ It's very easy to configure in CCL with no weird escaping rules to explain.
 ## Building with LLMs
 
 The other reason I found CCL interesting is that it's been a fun project to explore with LLMs and different programming
-languages. I have an interest in lots of languages (being from Papua New Guinea may have something to do with that), but
-I'm not fluent in all of them. I can read code and understand what the code does, but I couldn't necessarily write it
-from scratch without a lot of references.
+languages. I have an interest in lots of languages but I'm not fluent in all of them. I can read code and understand
+what the code does, but I couldn't necessarily write it from scratch without a lot of references.
 
-So I had fun creating a [library of test cases](), then a test harness, then instructions for how to build a test
+So I had fun creating a [library of test cases](https://github.com/CatConfLang/ccl-test-data), then a test harness, then instructions for how to build a test
 harness in any language. I used that harness to build CCL parser implementations in Rust, Gleam, Go, and TypeScript.
 Each one was a chance to learn something about the language while also building something genuinely useful.
+
+## CCL isn't competing with JSON
+
+Before I go further, I want to be direct about something: I'm not arguing that CCL should replace JSON. That's not the
+point, and it's not a realistic claim.
+
+JSON's ubiquity comes from being a data interchange format — something every language can produce and consume, with a
+spec stable enough that parsers written a decade apart still agree. That's genuinely valuable, and CCL doesn't offer it.
+CCL has no ambitions there, and it shouldn't. The two formats are solving different problems.
+
+The argument I'm making is narrower: when you're choosing a config language and you actually have a choice, CCL deserves
+serious consideration. Most of the time when we reach for JSON as a config format, we're not making a deliberate choice
+— we're just following the path of least resistance. npm did it, the tools around npm did it, and now the question feels
+settled before it's been asked.
+
+But there are plenty of contexts where the question isn't settled. You're building a new tool. You're designing the
+config format for an app you own. You're starting a project that isn't already embedded in the JSON ecosystem. In those
+moments, you have a real choice, and the default answer isn't necessarily the right one.
+
+CCL will likely never be as popular as JSON, and that's fine. Popularity follows adoption, and adoption follows
+ecosystem gravity — JSON has decades of that. What CCL has instead is a set of properties that make it genuinely
+well-suited to the specific job of human-authored configuration: minimal syntax, no escaping problems, comments as a
+first-class concept. Those properties don't help you interchange data between microservices. They do help you write and
+maintain config files that real people have to read and edit.
+
+That's a smaller job than what JSON does. It's also the job JSON has always been bad at.
 
 ## What's next
 
 After spending time with this, I wanted to do more than just build parsers for my own use. I've created a GitHub
-organization -- [CatConfLang](https://github.com/CatConfLang) -- to collect CCL implementations across languages and build
-out the ecosystem a bit. The reference implementation is [Dmitrii's OCaml version](), but there are now parsers in Rust,
-Go, TypeScript, and Gleam, each developed against a shared test suite so behavior stays consistent.
+organization -- [CatConfLang](https://github.com/CatConfLang) -- to collect CCL implementations across languages and
+build out the ecosystem a bit. The reference implementation is [Dmitrii's OCaml
+version](https://github.com/chshersh/ccl), but there are now parsers in Rust, Go, TypeScript, and Gleam, each developed
+against a shared test suite so behavior stays consistent.
 
-I also built a [comprehensive test suite]() that I continue to improve and a website,
-[ccl.tylerbutler.com](https://ccl.tylerbutler.com) including LLM prompts for folks who want to explore LLM coding agents
-on a "real project."
+I also built a [comprehensive test suite](https://github.com/CatConfLang/ccl-test-data) that I continue to improve and a
+website, [ccl.tylerbutler.com](https://ccl.tylerbutler.com) including LLM prompts for folks who want to explore LLM
+coding agents on a "real project."
 
 If you find CCL interesting, take a look and get in touch! The spec is simple enough that you could implement a parser in an afternoon in whatever language you know best. That's kind of the point.
 

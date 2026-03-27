@@ -4,7 +4,7 @@ title: 'package.json considered harmful'
 date: '2026-03-26T15:32:00-07:00'
 tags:
 - config
-type: guide
+# type: guide
 ---
 
 Any web developer over the last 15 years or so has encountered [JSON][]. It stands for JavaScript Object Notation, and

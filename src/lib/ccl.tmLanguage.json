@@ -1,0 +1,127 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "CCL",
+  "scopeName": "source.ccl",
+  "fileTypes": ["ccl"],
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#entry"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.ccl",
+          "begin": "^(\\s*)(/=)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.comment.ccl"
+            }
+          },
+          "end": "(?=^(?!\\1\\s+))",
+          "patterns": [
+            {
+              "match": ".*",
+              "name": "comment.line.ccl"
+            }
+          ]
+        }
+      ]
+    },
+    "entry": {
+      "patterns": [
+        {
+          "include": "#list-item"
+        },
+        {
+          "include": "#key-value-pair"
+        }
+      ]
+    },
+    "list-item": {
+      "name": "meta.list-item.ccl",
+      "match": "^(\\s*)(=)\\s*(.*)$",
+      "captures": {
+        "2": {
+          "name": "keyword.operator.assignment.ccl"
+        },
+        "3": {
+          "name": "string.unquoted.ccl"
+        }
+      }
+    },
+    "key-value-pair": {
+      "patterns": [
+        {
+          "name": "meta.entry.single-line.ccl",
+          "begin": "^(\\s*)([^\\s=\\n/][^\\n\\r=]*?)\\s*(=)",
+          "beginCaptures": {
+            "2": {
+              "name": "variable.other.property.ccl"
+            },
+            "3": {
+              "name": "keyword.operator.assignment.ccl"
+            }
+          },
+          "end": "$",
+          "patterns": [
+            {
+              "name": "string.unquoted.value.ccl",
+              "match": ".*"
+            }
+          ]
+        },
+        {
+          "name": "meta.entry.nested.ccl",
+          "begin": "^(\\s*)([^\\s=\\n/][^\\n\\r=]*?)\\s*(=)\\s*$",
+          "beginCaptures": {
+            "2": {
+              "name": "variable.other.property.ccl"
+            },
+            "3": {
+              "name": "keyword.operator.assignment.ccl"
+            }
+          },
+          "end": "(?=^(?!\\1\\s+))",
+          "patterns": [
+            {
+              "include": "#comment"
+            },
+            {
+              "include": "#entry"
+            },
+            {
+              "name": "string.unquoted.multiline.ccl",
+              "match": ".*"
+            }
+          ]
+        },
+        {
+          "name": "meta.entry.multiline-key.ccl",
+          "begin": "^(\\s*)([^\\s=\\n/][^\\n\\r=]*?)$",
+          "beginCaptures": {
+            "2": {
+              "name": "variable.other.property.ccl"
+            }
+          },
+          "end": "^(\\1\\s+)([^\\n\\r=]+)\\s*(=)\\s*(.*)$",
+          "endCaptures": {
+            "2": {
+              "name": "variable.other.property.continuation.ccl"
+            },
+            "3": {
+              "name": "keyword.operator.assignment.ccl"
+            },
+            "4": {
+              "name": "string.unquoted.ccl"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

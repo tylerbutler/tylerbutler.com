@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode, {
@@ -20,6 +23,16 @@ import ayuLightJson from "./themes/ayu-light.json";
 import ayuMirageJson from "./themes/ayu-mirage.json";
 import oneDarkJson from "./themes/OneDark.json";
 
+const cclGrammar = JSON.parse(
+  fs.readFileSync(
+    path.join(
+      path.dirname(fileURLToPath(import.meta.url)),
+      "ccl.tmLanguage.json",
+    ),
+    "utf-8",
+  ),
+);
+
 const ayuLight = new ExpressiveCodeTheme(ayuLightJson);
 const ayuMirage = new ExpressiveCodeTheme(ayuMirageJson);
 const oneDark = new ExpressiveCodeTheme(oneDarkJson);
@@ -34,6 +47,12 @@ const themes = [
  * Used by astro.config.mjs for consistent syntax highlighting across the site
  */
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
+  shiki: {
+    langs: [cclGrammar],
+    langAlias: {
+      ccl: "CCL",
+    },
+  },
   themes,
   useDarkModeMediaQuery: false,
   themeCssSelector: (theme: ExpressiveCodeTheme) => {

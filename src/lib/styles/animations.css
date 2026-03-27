@@ -26,7 +26,6 @@ select,
     opacity 0.2s ease;
 }
 
-
 /* Link underline animation */
 .article-content a,
 .content-inner a:not(.tag):not(.nav-link) {

@@ -4,7 +4,7 @@ title: 'Introducing CCL'
 date: '2026-03-31T11:27:00-07:00'
 tags:
 - config
-
+draft: true
 ---
 
 In [package.json considered harmful](./2026-03-26-package.json-considered-harmful.md), I made the case that JSON is a

@@ -1,0 +1,13 @@
+/* The Humans Responsible for This Site */
+/* humanstxt.org */
+
+/* TEAM */
+  Tyler Butler
+  Site: http://tylerbutler.com
+  GitHub: tylerbutler
+  Location: Kenmore, WA, USA
+
+/* SITE */
+  Doctype: HTML5
+  Language: IDE
+  IDE: Visual Studio Code

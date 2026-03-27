@@ -1,0 +1,128 @@
+/* Layout system - site structure and spacing */
+
+/* Site container - matching mockup layout architecture */
+.site-container {
+  width: var(--container-width);
+  margin: var(--container-margin);
+  background-color: var(--light-bg);
+  box-shadow: 0 0 20px var(--overlay);
+}
+
+/* Dark theme site container */
+.dark .site-container {
+  background-color: var(--site-container-bg, #1a1a1a);
+}
+
+/* Header section - dark background */
+.site-header {
+  background-color: var(--dark-bg);
+  padding: var(--header-padding);
+  text-align: center;
+}
+
+/* Content section - light background */
+.content-section {
+  background-color: var(--light-bg);
+  padding: var(--content-padding);
+}
+
+.content-inner {
+  margin: var(--inner-content-margins);
+  width: calc(100% - 70px); /* Use full container width minus margins */
+}
+
+/* Better content spacing system - headings closer to following content */
+.content-inner > * + *,
+.article-content * + * {
+  margin-top: var(--flow-space, 1em);
+}
+
+/* Headings: very tight spacing with stronger preference for following content */
+.article-content h2 {
+  --flow-space: 1.1em;
+  margin-bottom: 0.5em;
+}
+
+.article-content h3 {
+  --flow-space: 1em;
+  margin-bottom: 0.5em;
+}
+
+.article-content h4 {
+  --flow-space: 1em;
+  margin-bottom: 0.4em;
+}
+
+.article-content h5 {
+  --flow-space: 1em;
+  margin-bottom: 0.4em;
+}
+
+.article-content h6 {
+  --flow-space: 1em;
+  margin-bottom: 0.4em;
+}
+
+/* Footer section */
+.site-footer {
+  background-color: #f2f0ed;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-light);
+
+  & a {
+    color: var(--accent);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Dark theme footer - match header background */
+.dark .site-footer {
+  background-color: var(--dark-bg);
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+  .site-container {
+    max-width: 90vw;
+    width: auto;
+  }
+
+  .content-inner {
+    width: auto;
+    margin: 0 20px;
+  }
+}
+
+/* Wide screen layout */
+@media (min-width: 1200px) {
+  /* Center the main site container content, independent of nav extension */
+  .site-container {
+    margin-left: calc(50vw - var(--container-width) / 2);
+    margin-right: calc(50vw - var(--container-width) / 2);
+  }
+
+  /* Wide screen code block extension - let content dictate expansion */
+  .expressive-code {
+    /* Content-driven width with expansion capability */
+    min-width: 100%;
+    max-width: calc(100% + 180px);
+    width: fit-content;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    & pre,
+    & code {
+      white-space: pre;
+      overflow-x: visible;
+      min-width: 100%;
+      width: max-content;
+    }
+  }
+}

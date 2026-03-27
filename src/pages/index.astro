@@ -1,0 +1,238 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getArticleUrl } from "../lib/article-utils";
+import { createHomepagePreview } from "../lib/markdown-utils";
+import { formatTitle } from "../lib/typography";
+
+// Get recent articles (latest 5, non-draft)
+const articles = await getCollection("articles", ({ data }) => {
+  return !data.draft;
+});
+
+// Sort by date (newest first) and take first 5
+const sortedArticles = articles
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  )
+  .slice(0, 5);
+
+// Render articles with full markdown pipeline and h3 headings for homepage
+const recentArticles = await Promise.all(
+  sortedArticles.map(async (article) => {
+    const { html, isTruncated } = await createHomepagePreview(article.body);
+
+    return {
+      ...article,
+      transformedHtml: html,
+      isTruncated,
+      formattedTitle: await formatTitle(article.data.title),
+    };
+  }),
+);
+---
+
+<BaseLayout
+  title="Tyler Butler - Personal Website"
+  description="Personal website and blog of Tyler Butler, featuring articles on technology, programming, and more."
+>
+  <div class="homepage-layout">
+    <main class="main-content">
+      {recentArticles.length > 0 && (
+      <ul class="recent-articles">
+        {recentArticles.map((article) => {
+          const date = new Date(article.data.date);
+
+          return (
+            <li>
+              <article class="article-preview">
+                <h2>
+                  <a href={getArticleUrl(article)}>
+                    {article.formattedTitle}
+                  </a>
+                </h2>
+                <div class="article-meta">
+                  <time datetime={article.data.date.toISOString()}>
+                    {date.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                </div>
+                <div class="article-content" set:html={article.transformedHtml}></div>
+                {article.isTruncated && (
+                  <p class="read-more">
+                    <a href={getArticleUrl(article)}>Read More →</a>
+                  </p>
+                )}
+              </article>
+            </li>
+          );
+        })}
+      </ul>
+    )}
+
+      <p>
+        <a href="/articles/">View All Articles</a>
+      </p>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .links-nav {
+    margin: -40px 0 0 0;
+    padding: 0.5em 0;
+    border-bottom: 1px solid var(--code-border);
+  }
+
+  .horizontal-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5em;
+    justify-content: center;
+  }
+
+  .horizontal-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    font-family: Lato, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .horizontal-links a:hover {
+    color: var(--accent);
+  }
+
+  .homepage-layout {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .horizontal-links {
+      flex-direction: row; /* Keep horizontal on mobile */
+      gap: 0.8em; /* Smaller gap to fit all items */
+      flex-wrap: nowrap; /* Force single line */
+      justify-content: center;
+    }
+
+    .horizontal-links a {
+      font-size: 12px; /* Smaller font to match top nav */
+      padding: 8px 4px; /* Tighter padding for single line */
+    }
+  }
+
+  .recent-articles {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0;
+  }
+
+  .article-preview {
+    margin-bottom: 1.5em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid var(--code-border);
+  }
+
+  .article-preview:last-child {
+    border-bottom: none;
+  }
+
+  .article-preview h2 {
+    margin: 0 0 0.5em 0;
+    font-family: adelle, Georgia, serif;
+    font-size: 30px;
+    font-weight: 300;
+  }
+
+  .article-preview h2 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .article-preview h2 a:hover {
+    color: var(--accent);
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  .article-preview time {
+    font-size: 12px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .excerpt {
+    margin: 0.5em 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-light);
+  }
+
+  .article-content {
+    margin: 0.5em 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-light);
+  }
+
+  .article-content h1,
+  .article-content h2,
+  .article-content h3,
+  .article-content h4,
+  .article-content h5,
+  .article-content h6 {
+    color: var(--text);
+    margin: 1em 0 0.5em 0;
+  }
+
+  .article-content p {
+    margin: 0.5em 0;
+  }
+
+  .article-content a {
+    color: var(--accent);
+  }
+
+  .article-content pre,
+  .article-content code {
+    background: var(--code-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+
+  .read-more {
+    margin: 1em 0 0 0;
+  }
+
+  .read-more a {
+    display: inline-block;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--text-light);
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+  .read-more a:hover {
+    background: var(--accent);
+    color: var(--light-bg);
+  }
+</style>

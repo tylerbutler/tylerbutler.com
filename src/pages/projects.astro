@@ -1,0 +1,140 @@
+---
+import { getCollection } from "astro:content";
+import { BookOpen, ExternalLink, Github } from "@lucide/astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { formatTitle } from "../lib/typography";
+
+// Get all projects (excluding index files and drafts)
+const projects = await getCollection(
+  "projects",
+  ({ id, data }) => !id.startsWith("_") && !data.draft,
+);
+
+// Sort projects by date (newest first)
+const sortedProjects = await Promise.all(
+  projects
+    .filter((p) => p.data.date)
+    .sort(
+      (a, b) =>
+        new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime(),
+    )
+    .map(async (project) => ({
+      ...project,
+      formattedTitle: await formatTitle(project.data.title),
+    })),
+);
+---
+
+<BaseLayout
+  title="Projects - Tyler Butler"
+  description="Projects by Tyler Butler - open source and personal projects."
+>
+  <section>
+    <h1>Projects</h1>
+    <p>
+      A collection of projects I've worked on over the years, including open
+      source contributions and personal experiments.
+    </p>
+
+    {sortedProjects.length > 0 ? (
+      <ul class="projects-list">
+        {sortedProjects.map(project => {
+          return (
+            <li class="project-item">
+              <article>
+                <h2>{project.formattedTitle}</h2>
+                {project.data.description && (
+                  <p class="description">{project.data.description}</p>
+                )}
+                <div class="project-links">
+                  <a href={`/projects/${project.slug}`} class="read-more">
+                    <BookOpen class="icon" />
+                    Read More
+                  </a>
+                  {project.data.url && (
+                    <a href={project.data.url} target="_blank" rel="noopener" class="external-link">
+                      <ExternalLink class="icon" />
+                      View Project
+                    </a>
+                  )}
+                  {project.data.github && (
+                    <a href={project.data.github} target="_blank" rel="noopener" class="external-link">
+                      <Github class="icon" />
+                      GitHub
+                    </a>
+                  )}
+                </div>
+              </article>
+            </li>
+          );
+        })}
+      </ul>
+    ) : (
+      <p>More projects coming soon...</p>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-list {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0;
+  }
+
+  .project-item {
+    margin-bottom: 2.5em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid var(--code-border);
+  }
+
+  .project-item:last-child {
+    border-bottom: none;
+  }
+
+  .project-item h2 {
+    margin: 0 0 0.5em 0;
+    color: var(--text);
+  }
+
+  .description {
+    font-style: italic;
+    color: var(--text-light);
+    margin: 0.5em 0 1em 0;
+    line-height: 1.5;
+  }
+
+  .project-links {
+    margin-top: 1em;
+  }
+
+  .project-links .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-right: 1em;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .project-links a:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  .read-more {
+    font-weight: 500;
+  }
+
+  .external-link {
+    opacity: 0.8;
+  }
+</style>

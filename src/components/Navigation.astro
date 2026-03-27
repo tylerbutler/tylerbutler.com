@@ -1,0 +1,38 @@
+---
+// Navigation items matching the current site structure
+const navItems = [
+  { href: "/articles/", label: "Articles" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/colophon", label: "Colophon" },
+];
+
+// Helper to normalize paths (remove trailing slash for comparison, except root)
+function normalizePath(path: string): string {
+  if (path === "/") return path;
+  return path.endsWith("/") ? path.slice(0, -1) : path;
+}
+
+// Get current path for active state
+const currentPath = Astro.url.pathname;
+const normalizedCurrentPath = normalizePath(currentPath);
+---
+
+<nav>
+  <ul>
+    {navItems.map(item => {
+      const isActive = normalizedCurrentPath === normalizePath(item.href);
+      return (
+        <li>
+          <a
+            href={item.href}
+            class={isActive ? 'active' : ''}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>

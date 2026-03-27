@@ -1,0 +1,105 @@
+---
+import headlinesRaw from "../data/headlines.txt?raw";
+import Navigation from "./Navigation.astro";
+import SocialIconsBelow from "./SocialIconsBelow.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+export interface Props {
+  size?: "large" | "small";
+}
+
+const { size = "large" } = Astro.props;
+
+const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
+---
+
+<header class="site-header">
+  <div class="theme-toggle-wrapper">
+    <ThemeToggle/>
+  </div>
+
+  <Navigation/>
+  <h1>
+    <a href="/">Tyler Butler</a>
+  </h1>
+  <p class="tagline" id="random-headline"></p>
+
+  <SocialIconsBelow/>
+</header>
+
+<script define:vars={{ headlines }}>
+  const taglineElement = document.getElementById("random-headline");
+  if (taglineElement) {
+    let currentIndex = Math.floor(Math.random() * headlines.length);
+    taglineElement.textContent = headlines[currentIndex] + "\u00A0";
+
+    // Rotate headline every 60 seconds with crossfade
+    setInterval(() => {
+      // Pick a different headline
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * headlines.length);
+      } while (newIndex === currentIndex && headlines.length > 1);
+      currentIndex = newIndex;
+
+      // Fade out
+      taglineElement.classList.add("fading");
+
+      // After fade out, change text and fade in
+      setTimeout(() => {
+        taglineElement.textContent = headlines[currentIndex] + "\u00A0";
+        taglineElement.classList.remove("fading");
+      }, 300);
+    }, 60000);
+  }
+</script>
+
+<style>
+  .site-header {
+    position: relative;
+    /* Reduce top and bottom padding */
+    padding-top: 25px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .theme-toggle-wrapper {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+  }
+
+  /* Reduce spacing for title */
+  .site-header h1 {
+    margin-top: 0px !important;
+    margin-bottom: 3px !important;
+  }
+
+  /* Headline rotation crossfade */
+  .tagline {
+    transition: opacity 0.3s ease;
+  }
+
+  .tagline.fading {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tagline {
+      transition: none;
+    }
+  }
+
+  /* Screen reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

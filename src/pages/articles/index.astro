@@ -1,0 +1,226 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getArticleUrl } from "../../lib/article-utils";
+import { formatTitle } from "../../lib/typography";
+
+// Get all articles (non-draft)
+const articles = await getCollection("articles", ({ data }) => {
+  return !data.draft;
+});
+
+// Sort by date (newest first) and format titles
+const sortedArticles = await Promise.all(
+  articles
+    .sort(
+      (a, b) =>
+        new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+    )
+    .map(async (article) => ({
+      ...article,
+      formattedTitle: await formatTitle(article.data.title),
+    })),
+);
+
+// Group articles by year
+const articlesByYear = sortedArticles.reduce(
+  (acc, article) => {
+    const year = new Date(article.data.date).getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(article);
+    return acc;
+  },
+  {} as Record<number, typeof sortedArticles>,
+);
+
+const years = Object.keys(articlesByYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+---
+
+<BaseLayout
+  title="Articles - Tyler Butler"
+  description="All articles by Tyler Butler."
+>
+  <section>
+    <h1>Articles</h1>
+
+    <nav class="year-navigation">
+      <ul class="year-nav-list">
+        {years.map((year, index) => (
+          <li class="year-nav-item">
+            <a href={`#${year}`} class="year-nav-link">{year}</a>
+            {index < years.length - 1 && <span class="year-separator">/</span>}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <main class="articles-main">
+      {years.map(year => (
+        <section class="year-section" id={year.toString()}>
+          <h2 class="year-heading">{year}</h2>
+          <div class="articles-container">
+            {articlesByYear[year].map(article => {
+              const date = new Date(article.data.date);
+
+              return (
+                <article class="article-item">
+                  <time class="article-date" datetime={article.data.date.toISOString()}>
+                    {date.toLocaleDateString('en-US', {
+                      day: '2-digit',
+                      month: 'short'
+                    })}
+                  </time>
+                  <h3 class="article-title">
+                    <a href={getArticleUrl(article)} class="article-link">
+                      {article.formattedTitle}
+                    </a>
+                  </h3>
+                  {article.data.excerpt && (
+                    <p class="excerpt">{article.data.excerpt}</p>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </main>
+  </section>
+</BaseLayout>
+
+<style>
+  .year-navigation {
+    margin-bottom: 2rem;
+  }
+
+  .year-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+  }
+
+  .year-nav-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .year-nav-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .year-nav-link:hover {
+    text-decoration: underline;
+  }
+
+  .year-separator {
+    margin: 0 0.5rem;
+    color: var(--text);
+  }
+
+  .articles-main {
+    margin-top: 2rem;
+  }
+
+  .year-section {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .year-heading {
+    margin: 0;
+    flex-shrink: 0;
+    width: 120px;
+    text-align: right;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    background: var(--background);
+    padding: 0.5rem 0;
+    z-index: 10;
+  }
+
+  .articles-container {
+    flex: 1;
+  }
+
+  .article-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: start;
+  }
+
+  .article-date {
+    flex-shrink: 0;
+    width: 60px;
+    font-size: 13px;
+    color: var(--text-light);
+    font-variant-numeric: tabular-nums;
+    text-align: left;
+    align-self: center;
+  }
+
+  .article-title {
+    margin: 0;
+  }
+
+  .article-link {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .article-link:hover {
+    color: var(--accent);
+  }
+
+  .excerpt {
+    margin: 0.5em 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-light);
+  }
+
+  /* Smaller headings for articles page */
+  .year-heading {
+    font-size: clamp(24px, 4vw, 28px); /* Use h3 size */
+  }
+
+  .article-title {
+    font-size: 24px; /* Use h4 size */
+  }
+
+  /* Mobile responsive layout */
+  @media (max-width: 768px) {
+    .year-section {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .year-heading {
+      width: auto;
+      text-align: left;
+    }
+
+    .article-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .article-date {
+      width: auto;
+      align-self: flex-start;
+    }
+  }
+</style>

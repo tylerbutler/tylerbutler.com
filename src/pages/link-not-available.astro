@@ -1,0 +1,138 @@
+---
+import BrokenUrlDisplay from "../components/BrokenUrlDisplay.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Link Not Available - Tyler Butler"
+  description="This link is no longer available"
+  headerSize="small"
+>
+  <article class="link-not-available">
+    <div class="icon">🔗💔</div>
+    <h1>Link Not Available</h1>
+
+    <p class="explanation">
+      Over the years, many of the URLs I have linked to have rotted away. In some cases, I have been able to redirect to appropriate URLs in the Internet Archive.
+    </p>
+    <p class="explanation">
+      Sadly, this is not one of those URLs.
+    </p>
+
+    <BrokenUrlDisplay />
+
+    <div class="actions">
+      <a href="#" class="button primary" onclick="history.back(); return false;">← Go back</a>
+      <a href="#" class="button secondary" id="try-original-link">Try original link anyway</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    const tryOriginalLink = document.getElementById("try-original-link");
+    if (tryOriginalLink) {
+      const params = new URLSearchParams(window.location.search);
+      const url = params.get("url");
+      if (url) {
+        tryOriginalLink.href = url;
+      } else {
+        tryOriginalLink.style.display = "none";
+      }
+    }
+  })();
+</script>
+
+<style>
+  .link-not-available {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em 1em;
+  }
+
+  .icon {
+    font-size: 4em;
+    margin-bottom: 0.5em;
+    opacity: 0.8;
+  }
+
+  h1 {
+    font-family: adelle, Georgia, serif;
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--text);
+    margin: 0 0 1em 0;
+  }
+
+  .explanation {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 1em;
+  }
+
+  .reasons {
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto 2em;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .reasons li {
+    margin-bottom: 0.5em;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 2em;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .button.primary {
+    background: var(--accent);
+    color: white;
+    border: 2px solid var(--accent);
+  }
+
+  .button.primary:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  .button.secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+  }
+
+  .button.secondary:hover {
+    background: var(--accent);
+    color: white;
+  }
+
+  @media (max-width: 600px) {
+    .actions {
+      flex-direction: column;
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+</style>

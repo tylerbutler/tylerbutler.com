@@ -1,0 +1,70 @@
+/* ============================================
+   Animation System
+   Transitions and hover effects
+   ============================================ */
+
+/* ----------------------------------------
+   Global Transition Defaults
+   ---------------------------------------- */
+
+/* Smooth transitions for all interactive elements */
+a,
+button,
+input,
+textarea,
+select,
+.tag,
+.nav-link,
+.article-preview,
+.social-link {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+/* Link underline animation */
+.article-content a,
+.content-inner a:not(.tag):not(.nav-link) {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition:
+    background-size 0.3s ease,
+    color 0.2s ease;
+}
+
+.article-content a:hover,
+.content-inner a:not(.tag):not(.nav-link):hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+
+/* Tag hover enhancement */
+.tag {
+  transform: translateY(0);
+}
+
+.tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ----------------------------------------
+   Reduced Motion Support
+   ---------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

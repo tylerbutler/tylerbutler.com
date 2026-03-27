@@ -1,0 +1,4 @@
+.*/tags/.*
+.*/page/.*
+.*www.googletagmanager.com*.
+.*platform.twitter.com*.

@@ -1,27 +1,36 @@
-# Created by https://www.toptal.com/developers/gitignore/api/hugo
-# Edit at https://www.toptal.com/developers/gitignore?templates=hugo
-
-### Hugo ###
-# Generated files by hugo
-/public/
-/resources/_gen/
-/assets/jsconfig.json
-hugo_stats.json
-
-# Executable may be added to repository
-hugo.exe
-hugo.darwin
-hugo.linux
-
-# Temporary lock file while building
-/.hugo_build.lock
-
-# End of https://www.toptal.com/developers/gitignore/api/hugo
-
 node_modules/
+
+# Astro
+dist/
+.astro/
 
 # Playwright Testing
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+.playwright-mcp
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local Netlify folder
+.netlify
+
+# Private webfonts shouldn't be committed
+public/fonts/
+
+# Local mise config files
+.mise.local.toml
+mise.local.toml
+**/.claude/settings.local.json

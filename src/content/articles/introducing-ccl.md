@@ -6,7 +6,7 @@ tags:
 # type: guide
 ---
 
-In [package.json considered harmful](./2026-03-26-package.json-considered-harmful.md), I made the case that JSON is a
+In [package.json considered harmful](/packagejson-considered-harmful/), I made the case that JSON is a
 poor config format and that JSONC and JSON5 don't actually fix the problem -- they just extend the lifespan of a bad bet.
 If comments are a requirement (and I think they are), and if simplicity matters, then the JavaScript ecosystem's default
 config story is genuinely broken.
@@ -18,7 +18,7 @@ gets it right -- or at least, gets closer than anything else I've tried.
 
 ## The second criterion
 
-I said in [package.json considered harmful](./2026-03-26-package.json-considered-harmful.md) that comment support is the
+I said in [package.json considered harmful](/packagejson-considered-harmful/) that comment support is the
 minimum bar for a config language. But there's a second criterion I didn't spend much time on: **simplicity**. It needs
 to be simple to hand-author, simple to read, and simple to understand.
 

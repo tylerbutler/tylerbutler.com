@@ -43,6 +43,8 @@
     "@astrojs/netlify": "^6.6.4",
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
+    "@benjifs/github-store": "^0.2.0",
+    "@benjifs/micropub": "^2.0.1",
     "@expressive-code/plugin-line-numbers": "^0.41.6",
     "@floating-ui/dom": "^1.7.5",
     "@fontsource/lato": "^5.2.7",

@@ -23,6 +23,15 @@ const articles = defineCollection({
     })),
 });
 
+const notes = defineCollection({
+  type: "content",
+  schema: z.object({
+    date: z.coerce.date(),
+    tags: z.array(z.string()).optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 const projects = defineCollection({
   type: "content",
   schema: z.object({
@@ -36,4 +45,4 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { articles, projects };
+export const collections = { articles, notes, projects };

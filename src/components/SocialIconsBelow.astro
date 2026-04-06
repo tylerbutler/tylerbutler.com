@@ -8,18 +8,21 @@ const socialItems = [
     label: "GitHub",
     icon: "github",
     external: true,
+    me: true,
   },
   {
     href: "mailto:tyler@tylerbutler.com",
     label: "Email",
     icon: "email",
     external: false,
+    me: true,
   },
   {
     href: "/feed.xml",
     label: "Feed",
     icon: "feed",
     external: false,
+    me: false,
   },
 ];
 ---
@@ -31,7 +34,7 @@ const socialItems = [
       class={`social-link social-link--${item.icon}`}
       title={item.label}
       target={item.external ? '_blank' : undefined}
-      rel={item.external ? 'noopener' : undefined}
+      rel={[item.external && 'noopener', item.me && 'me'].filter(Boolean).join(' ') || undefined}
     >
       {item.icon === 'github' && (
         <Github class="social-icon" />

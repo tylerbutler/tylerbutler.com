@@ -10,12 +10,10 @@
 //     run when loaded via <object>, which gives the SVG its own document
 //     context with a CSS engine.
 //
-// Background blending strategy (mirrors AnimatedIcon.astro for video):
-//   Light mode: mix-blend-mode:multiply on wrapper removes white remnants
-//   Dark mode:  filter:invert(1) on object flips dark outlines → light;
-//               mix-blend-mode:screen on wrapper removes the now-black bg.
-//   Filter and blend-mode must stay on separate elements — filter creates
-//   an isolated stacking context that breaks mix-blend-mode if combined.
+// Light mode: mix-blend-mode:multiply removes any white remnants from the
+//   transparent SVG against the white page background.
+// Dark mode: no blend mode — SVG background is transparent, original icon
+//   colors render directly on the dark page.
 
 interface Props {
   name: string;
@@ -52,11 +50,4 @@ const svgSrc = `/vids/${name}.svg`;
     display: block;
   }
 
-  :global(.dark) .animated-svg-wrapper {
-    mix-blend-mode: screen;
-  }
-
-  :global(.dark) .animated-svg-icon {
-    filter: invert(1);
-  }
 </style>

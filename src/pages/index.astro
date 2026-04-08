@@ -71,13 +71,16 @@ const recentArticles = await Promise.all(
             <>
               {index === 0 && (
                 <li class="article-divider svg-experiment" aria-hidden="true">
-                  <object
-                    type="image/svg+xml"
-                    data="/vids/astronaut-animated.svg"
-                    width="128"
-                    height="128"
-                    aria-label=""
-                  ></object>
+                  <span class="svg-icon-wrapper">
+                    <object
+                      class="svg-icon"
+                      type="image/svg+xml"
+                      data="/vids/astronaut-animated.svg"
+                      width="128"
+                      height="128"
+                      aria-label=""
+                    ></object>
+                  </span>
                 </li>
               )}
               {index > 0 && (
@@ -191,6 +194,25 @@ const recentArticles = await Promise.all(
     justify-content: center;
     margin: 1em 0 4em;
     list-style: none;
+  }
+
+  /* SVG <object> blend mode — mirrors AnimatedIcon wrapper/filter pattern */
+  .svg-icon-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    mix-blend-mode: multiply;
+  }
+
+  .svg-icon {
+    display: block;
+  }
+
+  :global(.dark) .svg-icon-wrapper {
+    mix-blend-mode: screen;
+  }
+
+  :global(.dark) .svg-icon {
+    filter: invert(1);
   }
 
   .article-preview h2 {

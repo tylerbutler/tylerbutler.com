@@ -76,7 +76,6 @@ const recentArticles = await Promise.all(
                     alt=""
                     size={64}
                     playCount={3}
-                    class={index === 1 ? "blend-multiply" : undefined}
                   />
                 </li>
               )}
@@ -181,12 +180,6 @@ const recentArticles = await Promise.all(
     justify-content: center;
     margin: 2em 0;
     list-style: none;
-  }
-
-  /* A/B comparison: forces the MP4's white background to blend with the
-     page background via multiply. Applied to the first divider only. */
-  .article-divider :global(.blend-multiply) {
-    mix-blend-mode: multiply;
   }
 
   .article-preview h2 {

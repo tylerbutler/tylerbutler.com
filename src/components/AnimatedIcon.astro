@@ -43,9 +43,18 @@ const loop = playCount === undefined;
   .animated-icon {
     display: inline-block;
     vertical-align: middle;
+    /* Blends the icon's white background with the page background.
+       Colorful content gets slightly darkened in dark mode; see the
+       :global(.dark) rule below for the dark-mode color fix. */
+    mix-blend-mode: multiply;
   }
   .animated-icon--interactive {
     cursor: pointer;
+  }
+  /* In dark mode, invert colors so dark content becomes light against
+     the dark page. Stacks with multiply above. */
+  :global(.dark) .animated-icon {
+    filter: invert(1);
   }
 </style>
 

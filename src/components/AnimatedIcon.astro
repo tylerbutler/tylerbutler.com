@@ -2,12 +2,20 @@
 // AnimatedIcon — renders an animated icon from /public/vids/ as a <video>.
 //
 // Conventions:
-//   - Expects /public/vids/{name}.webm (VP8 with alpha) and {name}.mp4 (fallback)
+//   - Expects /public/vids/{name}.mp4
 //   - `playCount` undefined → loops forever (uses native `loop`)
 //   - `playCount` finite    → plays that many times, then rests on the
 //     first frame. After that, hover/tap replays the animation once.
 //   - On prefers-reduced-motion the video never plays; the first frame is
 //     shown (via preload) so the icon is still visible as a static image.
+//
+// Background blending strategy (icons have white backgrounds):
+//   Light mode: wrapper mix-blend-mode:multiply blends white bg away
+//   Dark mode:  video filter:invert(1) flips dark→light, white→black;
+//               wrapper mix-blend-mode:screen removes the black bg,
+//               keeping the now-light content visible.
+//   These must be on separate elements — applying filter and mix-blend-mode
+//   to the same element breaks both (filter creates an isolated stacking context).
 
 interface Props {
   name: string;
@@ -19,40 +27,49 @@ interface Props {
 
 const { name, alt, size = 128, class: className, playCount } = Astro.props;
 
-const webmSrc = `/vids/${name}.webm`;
 const mp4Src = `/vids/${name}.mp4`;
 const loop = playCount === undefined;
 ---
 
-<video
-  class:list={["animated-icon", className]}
-  width={size}
-  height={size}
-  muted
-  playsinline
-  preload="auto"
-  loop={loop}
-  aria-label={alt}
-  role="img"
-  data-play-count={playCount}>
-  <source src={webmSrc} type="video/webm" />
-  <source src={mp4Src} type="video/mp4" />
-</video>
+<span class:list={["animated-icon-wrapper", className]}>
+  <video
+    class="animated-icon"
+    width={size}
+    height={size}
+    muted
+    playsinline
+    preload="auto"
+    loop={loop}
+    aria-label={alt}
+    role="img"
+    data-play-count={playCount}>
+    <source src={mp4Src} type="video/mp4" />
+  </video>
+</span>
 
 <style>
-  .animated-icon {
+  .animated-icon-wrapper {
     display: inline-block;
     vertical-align: middle;
-    /* Blends the icon's white background with the page background.
-       Colorful content gets slightly darkened in dark mode; see the
-       :global(.dark) rule below for the dark-mode color fix. */
+    /* Light mode: white bg × page bg = page bg (bg disappears) */
     mix-blend-mode: multiply;
   }
-  .animated-icon--interactive {
+
+  .animated-icon {
+    display: block;
+  }
+
+  .animated-icon-wrapper.animated-icon--interactive {
     cursor: pointer;
   }
-  /* In dark mode, invert colors so dark content becomes light against
-     the dark page. Stacks with multiply above. */
+
+  /* Dark mode: invert on the video (separate from blend mode on wrapper
+     to avoid stacking context breakage), then screen on the wrapper
+     so the now-black bg disappears against the dark page. */
+  :global(.dark) .animated-icon-wrapper {
+    mix-blend-mode: screen;
+  }
+
   :global(.dark) .animated-icon {
     filter: invert(1);
   }
@@ -83,13 +100,14 @@ const loop = playCount === undefined;
           : Number.parseInt(raw, 10);
 
       if (!Number.isFinite(maxPlays)) {
-        // Native loop attribute handles infinite playback — just start it.
         void video.play();
         continue;
       }
 
       let plays = 0;
       let onDemand = false;
+
+      const wrapper = video.closest<HTMLElement>(".animated-icon-wrapper");
 
       const resetToStart = () => {
         video.currentTime = 0;
@@ -118,9 +136,9 @@ const loop = playCount === undefined;
         // Finished initial playback: rest on first frame, enable replay.
         onDemand = true;
         resetToStart();
-        video.classList.add("animated-icon--interactive");
-        video.addEventListener("mouseenter", replayOnce);
-        video.addEventListener("click", replayOnce);
+        wrapper?.classList.add("animated-icon--interactive");
+        wrapper?.addEventListener("mouseenter", replayOnce);
+        wrapper?.addEventListener("click", replayOnce);
       });
 
       void video.play();

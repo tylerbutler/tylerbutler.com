@@ -25,23 +25,8 @@ import sys
 import tempfile
 from pathlib import Path
 
-# ---------------------------------------------------------------------------
-# SVGO config — disables removeHiddenElems so opacity:0 frame groups survive
-# ---------------------------------------------------------------------------
-SVGO_CONFIG = """\
-module.exports = {
-  plugins: [
-    {
-      name: 'preset-default',
-      params: {
-        overrides: {
-          removeHiddenElems: false,
-        },
-      },
-    },
-  ],
-};
-"""
+# SVGO config lives alongside this script; fall back to a temp file if missing.
+SVGO_CONFIG_PATH = Path(__file__).parent / "svgo-animated.config.cjs"
 
 
 def check_deps():
@@ -127,9 +112,9 @@ def assemble_svg(svgs_dir: Path, fps: int, out_path: Path):
     out_path.write_text("\n".join(lines))
 
 
-def optimize_svg(svg_path: Path, config_path: Path) -> int:
+def optimize_svg(svg_path: Path) -> int:
     result = subprocess.run(
-        ["svgo", str(svg_path), "-o", str(svg_path), "--config", str(config_path)],
+        ["svgo", str(svg_path), "-o", str(svg_path), "--config", str(SVGO_CONFIG_PATH)],
         capture_output=True, text=True,
     )
     if result.returncode != 0:
@@ -189,9 +174,9 @@ def main():
 
         if not args.no_optimize:
             print("[4/4] Optimizing with SVGO...")
-            config_path = tmp_path / "svgo.config.js"
-            config_path.write_text(SVGO_CONFIG)
-            final_bytes = optimize_svg(args.output, config_path)
+            if not SVGO_CONFIG_PATH.exists():
+                sys.exit(f"SVGO config not found: {SVGO_CONFIG_PATH}")
+            final_bytes = optimize_svg(args.output)
             final_kb = final_bytes // 1024
             saved_pct = round((1 - final_bytes / (assembled_kb * 1024)) * 100)
             print(f"      optimized: {final_kb}k (saved ~{saved_pct}%)")

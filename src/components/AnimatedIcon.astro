@@ -2,7 +2,7 @@
 // AnimatedIcon — renders an animated icon from /public/vids/ as a <video>.
 //
 // Conventions:
-//   - Expects /public/vids/{name}.mp4
+//   - Expects /public/vids/{name}.webm (VP8 with alpha) and {name}.mp4 (fallback)
 //   - `playCount` undefined → loops forever (uses native `loop`)
 //   - `playCount` finite    → plays that many times, then rests on the
 //     first frame. After that, hover/tap replays the animation once.
@@ -19,13 +19,13 @@ interface Props {
 
 const { name, alt, size = 128, class: className, playCount } = Astro.props;
 
-const src = `/vids/${name}.mp4`;
+const webmSrc = `/vids/${name}.webm`;
+const mp4Src = `/vids/${name}.mp4`;
 const loop = playCount === undefined;
 ---
 
 <video
   class:list={["animated-icon", className]}
-  src={src}
   width={size}
   height={size}
   muted
@@ -34,7 +34,10 @@ const loop = playCount === undefined;
   loop={loop}
   aria-label={alt}
   role="img"
-  data-play-count={playCount}></video>
+  data-play-count={playCount}>
+  <source src={webmSrc} type="video/webm" />
+  <source src={mp4Src} type="video/mp4" />
+</video>
 
 <style>
   .animated-icon {

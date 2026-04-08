@@ -4,13 +4,13 @@ Convert an MP4 animation to an optimized animated SVG.
 
 Pipeline:
   1. Extract frames from MP4 at target FPS (ffmpeg)
-  2. Remove white background from each frame (Pillow) → transparent PNG
-  3. Vectorize each frame (vtracer)
+  2. Vectorize each frame against white background (vtracer)
+  3. Strip white-fill paths from each SVG frame (transparent background)
   4. Assemble into a single SVG with CSS frame cycling
   5. Optimize with SVGO (removeHiddenElems disabled)
 
 Requirements:
-  ffmpeg, vtracer, svgo (npm -g), python3, Pillow + numpy (pip install pillow numpy)
+  ffmpeg, vtracer, svgo (npm -g), python3
 
 Usage:
   python3 scripts/mp4-to-svg.py public/vids/astronaut.mp4 public/vids/astronaut-animated.svg
@@ -26,8 +26,6 @@ import sys
 import tempfile
 from pathlib import Path
 
-import numpy as np
-from PIL import Image
 
 # SVGO config lives alongside this script; fall back to a temp file if missing.
 SVGO_CONFIG_PATH = Path(__file__).parent / "svgo-animated.config.cjs"
@@ -50,23 +48,6 @@ def extract_frames(mp4: Path, frames_dir: Path, fps: int) -> int:
     )
     return len(list(frames_dir.glob("frame_*.png")))
 
-
-def remove_white_backgrounds(frames_dir: Path, threshold: int = 240):
-    """Make white backgrounds transparent in-place.
-
-    Pixels brighter than `threshold` on all channels become transparent.
-    The alpha is then binarized (fully opaque or fully transparent) so
-    vtracer sees clean hard edges rather than semi-transparent gradients,
-    which would produce an explosion of paths.
-    """
-    for png in sorted(frames_dir.glob("frame_*.png")):
-        img = Image.open(png).convert("RGBA")
-        arr = np.array(img, dtype=np.uint8)
-        r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
-        # Pixel is background if all channels are above threshold
-        is_bg = (r >= threshold) & (g >= threshold) & (b >= threshold)
-        arr[:, :, 3] = np.where(is_bg, 0, 255)
-        Image.fromarray(arr).save(png)
 
 
 def vectorize_frames(frames_dir: Path, svgs_dir: Path, speckle: int, color_precision: int):
@@ -126,7 +107,7 @@ def assemble_svg(svgs_dir: Path, fps: int, out_path: Path):
 </style>""")
 
     for i, frame in enumerate(frames):
-        inner = extract_inner(frame)
+        inner = strip_white_paths(extract_inner(frame))
         delay = -(duration - i * duration / n)
         # All animation props inlined: SVGO cannot strip them.
         # opacity:0 initial state keeps frames hidden until the animation
@@ -189,26 +170,23 @@ def main():
             frames_dir = Path(f"/tmp/{stem}-frames")
             svgs_dir = Path(f"/tmp/{stem}-svgs")
 
-        print(f"[1/5] Extracting frames at {args.fps}fps...")
+        print(f"[1/4] Extracting frames at {args.fps}fps...")
         n_frames = extract_frames(args.input, frames_dir, args.fps)
         duration = n_frames / args.fps
         print(f"      {n_frames} frames ({duration:.1f}s)")
 
-        print("[2/5] Removing white backgrounds...")
-        remove_white_backgrounds(frames_dir)
-
-        print(f"[3/5] Vectorizing with vtracer (speckle={args.speckle}, precision={args.color_precision})...")
+        print(f"[2/4] Vectorizing with vtracer (speckle={args.speckle}, precision={args.color_precision})...")
         vectorize_frames(frames_dir, svgs_dir, args.speckle, args.color_precision)
         raw_kb = sum(f.stat().st_size for f in svgs_dir.glob("*.svg")) // 1024
         print(f"      raw SVG frames: {raw_kb}k")
 
-        print("[4/5] Assembling animated SVG...")
+        print("[3/4] Assembling animated SVG...")
         assemble_svg(svgs_dir, args.fps, args.output)
         assembled_kb = args.output.stat().st_size // 1024
         print(f"      assembled: {assembled_kb}k")
 
         if not args.no_optimize:
-            print("[5/5] Optimizing with SVGO...")
+            print("[4/4] Optimizing with SVGO...")
             if not SVGO_CONFIG_PATH.exists():
                 sys.exit(f"SVGO config not found: {SVGO_CONFIG_PATH}")
             final_bytes = optimize_svg(args.output)

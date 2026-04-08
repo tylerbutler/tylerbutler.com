@@ -82,31 +82,40 @@ def strip_white_paths(content: str) -> str:
 def assemble_svg(svgs_dir: Path, fps: int, out_path: Path):
     frames = sorted(svgs_dir.glob("frame_*.svg"))
     n = len(frames)
-    interval_ms = round(1000 / fps)
+    duration = n / fps
+    pct = 100.0 / n  # % of total duration each frame is visible
 
     lines = ['<?xml version="1.0" encoding="UTF-8"?>']
     lines.append('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">')
 
+    # Only @keyframes lives in <style> — all other animation props are inlined
+    # on each element so SVGO's inlineStyles plugin can't strip them.
+    # prefers-reduced-motion handled here instead of via JS.
+    lines.append(f"""<style>
+@keyframes sf {{
+  0%, {pct:.4f}% {{ opacity: 1; }}
+  {pct + 0.01:.4f}%, 100% {{ opacity: 0; }}
+}}
+@media (prefers-reduced-motion: reduce) {{
+  [data-frame] {{ animation: none !important; }}
+  [data-frame="0"] {{ opacity: 1 !important; }}
+}}
+</style>""")
+
     for i, frame in enumerate(frames):
         inner = strip_white_paths(extract_inner(frame))
-        # inline opacity:0 — class-based opacity causes SVGO to strip groups as dead nodes
-        # data-frame attribute is how JS selects frames (survives SVGO)
-        lines.append(f'<g data-frame="{i}" style="opacity:0">{inner}</g>')
+        delay = -(duration - i * duration / n)
+        # All animation props inlined: SVGO cannot strip them.
+        # opacity:0 initial state keeps frames hidden until the animation
+        # takes over; removeHiddenElems is disabled in svgo config so
+        # SVGO won't remove these elements.
+        style = (
+            f"opacity:0;"
+            f"animation:sf {duration:.4f}s linear infinite;"
+            f"animation-delay:{delay:.4f}s"
+        )
+        lines.append(f'<g data-frame="{i}" style="{style}">{inner}</g>')
 
-    lines.append(f"""\
-<script>
-  var fs = document.querySelectorAll("[data-frame]");
-  var n = fs.length;
-  var cur = 0;
-  fs[0].style.opacity = "1";
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {{
-    setInterval(function() {{
-      fs[cur].style.opacity = "0";
-      cur = (cur + 1) % n;
-      fs[cur].style.opacity = "1";
-    }}, {interval_ms});
-  }}
-</script>""")
     lines.append("</svg>")
 
     out_path.write_text("\n".join(lines))

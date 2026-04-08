@@ -1,0 +1,180 @@
+---
+// AnimatedIcon — renders an animated icon from /public/vids/ as a <video>.
+//
+// Conventions:
+//   - Expects /public/vids/{name}.mp4
+//   - `playCount` undefined → loops forever (uses native `loop`)
+//   - `playCount` finite    → plays that many times, then rests on the
+//     first frame. After that, hover/tap replays the animation once.
+//   - On prefers-reduced-motion the video never plays; the first frame is
+//     shown (via preload) so the icon is still visible as a static image.
+//
+// Background blending strategy (icons have white backgrounds):
+//   Light mode: wrapper mix-blend-mode:multiply blends white bg away
+//   Dark mode:  video filter:invert(1) flips dark→light, white→black;
+//               wrapper mix-blend-mode:screen removes the black bg,
+//               keeping the now-light content visible.
+//   These must be on separate elements — applying filter and mix-blend-mode
+//   to the same element breaks both (filter creates an isolated stacking context).
+
+interface Props {
+  name: string;
+  alt: string;
+  size?: number;
+  class?: string;
+  playCount?: number;
+}
+
+const { name, alt, size = 128, class: className, playCount } = Astro.props;
+
+const mp4Src = `/vids/${name}.mp4`;
+const loop = playCount === undefined;
+---
+
+<span class:list={["animated-icon-wrapper", className]}>
+  <video
+    class="animated-icon"
+    width={size}
+    height={size}
+    muted
+    playsinline
+    preload="auto"
+    loop={loop}
+    aria-label={alt}
+    role="img"
+    data-play-count={playCount}>
+    <source src={mp4Src} type="video/mp4" />
+  </video>
+</span>
+
+<style>
+  .animated-icon-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    /* Light mode: white bg × page bg = page bg (bg disappears) */
+    mix-blend-mode: multiply;
+  }
+
+  .animated-icon {
+    display: block;
+  }
+
+  .animated-icon-wrapper.animated-icon--interactive {
+    cursor: pointer;
+  }
+
+  /* Dark mode: invert on the video (separate from blend mode on wrapper
+     to avoid stacking context breakage), then screen on the wrapper
+     so the now-black bg disappears against the dark page. */
+  :global(.dark) .animated-icon-wrapper {
+    mix-blend-mode: screen;
+  }
+
+  :global(.dark) .animated-icon {
+    filter: invert(1);
+  }
+</style>
+
+<script>
+  function initAnimatedIcons() {
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const videos = document.querySelectorAll<HTMLVideoElement>(
+      "video.animated-icon:not([data-init])",
+    );
+
+    for (const video of videos) {
+      video.dataset.init = "true";
+
+      if (reduced) {
+        // Leave paused; `preload="auto"` ensures the first frame renders.
+        continue;
+      }
+
+      const raw = video.dataset.playCount;
+      const maxPlays =
+        raw === undefined || raw === ""
+          ? Number.POSITIVE_INFINITY
+          : Number.parseInt(raw, 10);
+
+      const wrapper = video.closest<HTMLElement>(".animated-icon-wrapper");
+
+      const resetToStart = () => {
+        video.currentTime = 0;
+        video.pause();
+      };
+
+      const replayOnce = () => {
+        if (!video.paused) return;
+        video.currentTime = 0;
+        void video.play();
+      };
+
+      if (!Number.isFinite(maxPlays)) {
+        // Infinite loop: play when visible, pause when not (saves resources).
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) void video.play();
+              else video.pause();
+            }
+          },
+          { threshold: 0.1 },
+        );
+        observer.observe(video);
+        continue;
+      }
+
+      // Finite playCount: IntersectionObserver starts the initial sequence
+      // when the icon enters view, and replays once on each subsequent entry.
+      let plays = 0;
+      let onDemand = false;
+
+      video.addEventListener("ended", () => {
+        if (onDemand) {
+          resetToStart();
+          return;
+        }
+
+        plays += 1;
+        if (plays < maxPlays) {
+          video.currentTime = 0;
+          void video.play();
+          return;
+        }
+
+        // Initial sequence done: rest on first frame, enable replay.
+        onDemand = true;
+        resetToStart();
+        wrapper?.classList.add("animated-icon--interactive");
+        wrapper?.addEventListener("mouseenter", replayOnce);
+        wrapper?.addEventListener("click", replayOnce);
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              // Re-entering view after initial sequence → replay once.
+              // First entry → start the initial sequence.
+              if (onDemand) replayOnce();
+              else void video.play();
+            } else if (!onDemand) {
+              // Scrolled away mid-sequence: pause so it resumes from
+              // where it left off when scrolled back in.
+              video.pause();
+            }
+          }
+        },
+        { threshold: 0.5 },
+      );
+
+      observer.observe(video);
+    }
+  }
+
+  initAnimatedIcons();
+  document.addEventListener("astro:page-load", initAnimatedIcons);
+</script>

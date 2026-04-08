@@ -1,9 +1,33 @@
 ---
 import { getCollection } from "astro:content";
+import AnimatedIcon from "../components/AnimatedIcon.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getArticleUrl } from "../lib/article-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
 import { formatTitle } from "../lib/typography";
+
+// Decorative animated icons inserted between article previews.
+const ICONS = [
+  "astronaut",
+  "falling-stars",
+  "galaxy",
+  "launch",
+  "meteor-rain",
+  "rocket",
+  "rocket-2",
+  "space-launch",
+  "supernova",
+  "uranus",
+] as const;
+
+// Deterministic pick so a given article always gets the same companion icon.
+function pickIcon(seed: string): (typeof ICONS)[number] {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    hash = (hash * 31 + seed.charCodeAt(i)) | 0;
+  }
+  return ICONS[Math.abs(hash) % ICONS.length];
+}
 
 // Get recent articles (latest 5, non-draft)
 const articles = await getCollection("articles", ({ data }) => {
@@ -40,10 +64,21 @@ const recentArticles = await Promise.all(
     <main class="main-content">
       {recentArticles.length > 0 && (
       <ul class="recent-articles">
-        {recentArticles.map((article) => {
+        {recentArticles.map((article, index) => {
           const date = new Date(article.data.date);
 
           return (
+            <>
+              {index > 0 && (
+                <li class="article-divider" aria-hidden="true">
+                  <AnimatedIcon
+                    name={pickIcon(article.id)}
+                    alt=""
+                    size={64}
+                    playCount={3}
+                  />
+                </li>
+              )}
             <li>
               <article class="article-preview">
                 <h2>
@@ -68,6 +103,7 @@ const recentArticles = await Promise.all(
                 )}
               </article>
             </li>
+            </>
           );
         })}
       </ul>
@@ -137,11 +173,13 @@ const recentArticles = await Promise.all(
   .article-preview {
     margin-bottom: 1.5em;
     padding-bottom: 1em;
-    border-bottom: 1px solid var(--code-border);
   }
 
-  .article-preview:last-child {
-    border-bottom: none;
+  .article-divider {
+    display: flex;
+    justify-content: center;
+    margin: 1em 0 2em;
+    list-style: none;
   }
 
   .article-preview h2 {

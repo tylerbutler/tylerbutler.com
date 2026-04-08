@@ -93,8 +93,9 @@ def assemble_svg(svgs_dir: Path, fps: int, out_path: Path):
     # prefers-reduced-motion handled here instead of via JS.
     lines.append(f"""<style>
 @keyframes sf {{
-  0%, {pct:.4f}% {{ opacity: 1; }}
-  {pct + 0.01:.4f}%, 100% {{ opacity: 0; }}
+  0% {{ opacity: 1; animation-timing-function: step-end; }}
+  {pct:.4f}% {{ opacity: 0; }}
+  100% {{ opacity: 0; }}
 }}
 @media (prefers-reduced-motion: reduce) {{
   [data-frame] {{ animation: none !important; }}

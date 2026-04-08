@@ -99,14 +99,6 @@ const loop = playCount === undefined;
           ? Number.POSITIVE_INFINITY
           : Number.parseInt(raw, 10);
 
-      if (!Number.isFinite(maxPlays)) {
-        void video.play();
-        continue;
-      }
-
-      let plays = 0;
-      let onDemand = false;
-
       const wrapper = video.closest<HTMLElement>(".animated-icon-wrapper");
 
       const resetToStart = () => {
@@ -119,6 +111,26 @@ const loop = playCount === undefined;
         video.currentTime = 0;
         void video.play();
       };
+
+      if (!Number.isFinite(maxPlays)) {
+        // Infinite loop: play when visible, pause when not (saves resources).
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) void video.play();
+              else video.pause();
+            }
+          },
+          { threshold: 0.1 },
+        );
+        observer.observe(video);
+        continue;
+      }
+
+      // Finite playCount: IntersectionObserver starts the initial sequence
+      // when the icon enters view, and replays once on each subsequent entry.
+      let plays = 0;
+      let onDemand = false;
 
       video.addEventListener("ended", () => {
         if (onDemand) {
@@ -133,7 +145,7 @@ const loop = playCount === undefined;
           return;
         }
 
-        // Finished initial playback: rest on first frame, enable replay.
+        // Initial sequence done: rest on first frame, enable replay.
         onDemand = true;
         resetToStart();
         wrapper?.classList.add("animated-icon--interactive");
@@ -141,7 +153,25 @@ const loop = playCount === undefined;
         wrapper?.addEventListener("click", replayOnce);
       });
 
-      void video.play();
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              // Re-entering view after initial sequence → replay once.
+              // First entry → start the initial sequence.
+              if (onDemand) replayOnce();
+              else void video.play();
+            } else if (!onDemand) {
+              // Scrolled away mid-sequence: pause so it resumes from
+              // where it left off when scrolled back in.
+              video.pause();
+            }
+          }
+        },
+        { threshold: 0.5 },
+      );
+
+      observer.observe(video);
     }
   }
 

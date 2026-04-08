@@ -69,6 +69,17 @@ const recentArticles = await Promise.all(
 
           return (
             <>
+              {index === 0 && (
+                <li class="article-divider svg-experiment" aria-hidden="true">
+                  <object
+                    type="image/svg+xml"
+                    data="/vids/astronaut-animated.svg"
+                    width="128"
+                    height="128"
+                    aria-label=""
+                  ></object>
+                </li>
+              )}
               {index > 0 && (
                 <li class="article-divider" aria-hidden="true">
                   <AnimatedIcon

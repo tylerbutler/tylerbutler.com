@@ -3,20 +3,12 @@
 //
 // Conventions:
 //   - Expects /public/vids/{name}.svg (produced by scripts/mp4-to-svg.py)
-//   - The SVG file contains its own JS frame-cycling animation.
-//   - prefers-reduced-motion is handled inside the SVG's own script.
+//   - The SVG has a transparent background (white removed during conversion).
+//   - CSS frame cycling animation is embedded in the SVG itself.
+//   - prefers-reduced-motion is handled via media query inside the SVG.
 //   - <object> is required (not <img>) — CSS animations inside SVG only
 //     run when loaded via <object>, which gives the SVG its own document
-//     context with JS access.
-//
-// Background blending strategy (icons have white backgrounds):
-//   Same approach as AnimatedIcon — blend modes on the wrapper, filter on
-//   the object. These must stay on separate elements (filter creates an
-//   isolated stacking context that breaks mix-blend-mode if combined).
-//
-//   Light mode: wrapper mix-blend-mode:multiply blends white bg away
-//   Dark mode:  object filter:invert(1) flips the colors;
-//               wrapper mix-blend-mode:screen removes the now-black bg.
+//     context with a CSS engine.
 
 interface Props {
   name: string;
@@ -46,14 +38,9 @@ const svgSrc = `/vids/${name}.svg`;
   .animated-svg-wrapper {
     display: inline-block;
     vertical-align: middle;
-    mix-blend-mode: multiply;
   }
 
   .animated-svg-icon {
     display: block;
-  }
-
-  :global(.dark) .animated-svg-wrapper {
-    mix-blend-mode: screen;
   }
 </style>

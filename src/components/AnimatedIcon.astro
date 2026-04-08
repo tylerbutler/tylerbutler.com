@@ -1,0 +1,120 @@
+---
+// AnimatedIcon — renders an animated icon from /public/vids/ as a <video>.
+//
+// Conventions:
+//   - Expects /public/vids/{name}.mp4
+//   - `playCount` undefined → loops forever (uses native `loop`)
+//   - `playCount` finite    → plays that many times, then rests on the
+//     first frame. After that, hover/tap replays the animation once.
+//   - On prefers-reduced-motion the video never plays; the first frame is
+//     shown (via preload) so the icon is still visible as a static image.
+
+interface Props {
+  name: string;
+  alt: string;
+  size?: number;
+  class?: string;
+  playCount?: number;
+}
+
+const { name, alt, size = 128, class: className, playCount } = Astro.props;
+
+const src = `/vids/${name}.mp4`;
+const loop = playCount === undefined;
+---
+
+<video
+  class:list={["animated-icon", className]}
+  src={src}
+  width={size}
+  height={size}
+  muted
+  playsinline
+  preload="auto"
+  loop={loop}
+  aria-label={alt}
+  role="img"
+  data-play-count={playCount}></video>
+
+<style>
+  .animated-icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .animated-icon--interactive {
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  function initAnimatedIcons() {
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const videos = document.querySelectorAll<HTMLVideoElement>(
+      "video.animated-icon:not([data-init])",
+    );
+
+    for (const video of videos) {
+      video.dataset.init = "true";
+
+      if (reduced) {
+        // Leave paused; `preload="auto"` ensures the first frame renders.
+        continue;
+      }
+
+      const raw = video.dataset.playCount;
+      const maxPlays =
+        raw === undefined || raw === ""
+          ? Number.POSITIVE_INFINITY
+          : Number.parseInt(raw, 10);
+
+      if (!Number.isFinite(maxPlays)) {
+        // Native loop attribute handles infinite playback — just start it.
+        void video.play();
+        continue;
+      }
+
+      let plays = 0;
+      let onDemand = false;
+
+      const resetToStart = () => {
+        video.currentTime = 0;
+        video.pause();
+      };
+
+      const replayOnce = () => {
+        if (!video.paused) return;
+        video.currentTime = 0;
+        void video.play();
+      };
+
+      video.addEventListener("ended", () => {
+        if (onDemand) {
+          resetToStart();
+          return;
+        }
+
+        plays += 1;
+        if (plays < maxPlays) {
+          video.currentTime = 0;
+          void video.play();
+          return;
+        }
+
+        // Finished initial playback: rest on first frame, enable replay.
+        onDemand = true;
+        resetToStart();
+        video.classList.add("animated-icon--interactive");
+        video.addEventListener("mouseenter", replayOnce);
+        video.addEventListener("click", replayOnce);
+      });
+
+      void video.play();
+    }
+  }
+
+  initAnimatedIcons();
+  document.addEventListener("astro:page-load", initAnimatedIcons);
+</script>

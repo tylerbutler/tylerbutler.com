@@ -61,6 +61,34 @@ python3 scripts/mp4-to-svg.py input.mp4 out.svg --no-optimize
 python3 scripts/mp4-to-svg.py input.mp4 out.svg --keep-temp
 ```
 
+### Examples
+
+```
+$ python3 scripts/mp4-to-svg.py public/vids/astronaut.mp4 public/vids/astronaut-animated.svg
+[1/4] Extracting frames at 24fps...
+      72 frames (3.0s)
+[2/4] Vectorizing with vtracer (speckle=8, precision=6)...
+      raw SVG frames: 1652k
+[3/4] Assembling animated SVG...
+      assembled: 1643k
+[4/4] Optimizing with SVGO...
+      optimized: 916k (saved ~44%)
+
+Done: public/vids/astronaut-animated.svg (916k vs 127k MP4 = 7.2×)
+
+$ python3 scripts/mp4-to-svg.py public/vids/rocket.mp4 public/vids/rocket-animated.svg
+[1/4] Extracting frames at 24fps...
+      72 frames (3.0s)
+[2/4] Vectorizing with vtracer (speckle=8, precision=6)...
+      raw SVG frames: 1265k
+[3/4] Assembling animated SVG...
+      assembled: 1256k
+[4/4] Optimizing with SVGO...
+      optimized: 834k (saved ~34%)
+
+Done: public/vids/rocket-animated.svg (834k vs 92k MP4 = 9.1×)
+```
+
 ### Options
 
 | Flag | Default | Description |
@@ -85,31 +113,23 @@ Typical results for a 3-second, 512×512 icon animation:
 
 MP4 H.264 uses temporal compression (only encoding changes between frames) which SVG cannot match. The SVG advantage is infinite scalability and no codec dependency.
 
-### Using the output in HTML
+### Using the output in Astro
 
-CSS animations inside SVG files only work when loaded via `<object>` (not `<img>`). To also handle light/dark mode blending, wrap it the same way as `AnimatedIcon.astro`:
+Use the `AnimatedSvgIcon` component (`src/components/AnimatedSvgIcon.astro`), which handles the `<object>` tag and light/dark mode blending automatically:
 
-```html
-<!-- Light mode: multiply blend removes white background -->
-<!-- Dark mode: screen blend + invert(1) keeps icon visible -->
-<span class="svg-wrapper">
-  <object class="svg-icon" type="image/svg+xml"
-    data="/vids/astronaut-animated.svg"
-    width="128" height="128" aria-label="Astronaut animation">
-  </object>
-</span>
+```astro
+---
+import AnimatedSvgIcon from "../components/AnimatedSvgIcon.astro";
+---
 
-<style>
-  .svg-wrapper {
-    display: inline-block;
-    mix-blend-mode: multiply;
-  }
-  .svg-icon { display: block; }
-
-  :global(.dark) .svg-wrapper { mix-blend-mode: screen; }
-  :global(.dark) .svg-icon { filter: invert(1); }
-</style>
+<AnimatedSvgIcon name="astronaut-animated" alt="Astronaut" size={128} />
 ```
+
+The `name` prop maps to `/public/vids/{name}.svg`. Size defaults to 128.
+
+**Why `<object>` and not `<img>`:** CSS animations inside SVG files only execute when loaded via `<object>`, which gives the SVG its own document context with JS access. An `<img>` tag sandboxes the SVG and prevents scripts and CSS animations from running.
+
+**Blend mode pattern:** The component applies `mix-blend-mode: multiply` in light mode (removes the white background) and `mix-blend-mode: screen` + `filter: invert(1)` in dark mode — the same approach as `AnimatedIcon.astro` for MP4 videos. The filter and blend mode must stay on separate elements, since `filter` creates a stacking context that breaks `mix-blend-mode` when both are on the same element.
 
 ### SVGO configuration
 

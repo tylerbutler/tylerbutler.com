@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import AnimatedIcon from "../components/AnimatedIcon.astro";
+import AnimatedSvgIcon from "../components/AnimatedSvgIcon.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getArticleUrl } from "../lib/article-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
@@ -70,17 +71,10 @@ const recentArticles = await Promise.all(
           return (
             <>
               {index === 0 && (
-                <li class="article-divider svg-experiment" aria-hidden="true">
-                  <span class="svg-icon-wrapper">
-                    <object class="svg-icon" type="image/svg+xml"
-                      data="/vids/astronaut-animated-12fps.svg"
-                      width="128" height="128" aria-label=""></object>
-                  </span>
-                  <span class="svg-icon-wrapper">
-                    <object class="svg-icon" type="image/svg+xml"
-                      data="/vids/astronaut-animated-24fps.svg"
-                      width="128" height="128" aria-label=""></object>
-                  </span>
+                <li class="article-divider" aria-hidden="true">
+                  <AnimatedSvgIcon name="astronaut-animated-12fps" alt="" size={128} />
+                  <AnimatedSvgIcon name="astronaut-animated-24fps" alt="" size={128} />
+                  <AnimatedSvgIcon name="rocket-animated" alt="" size={128} />
                 </li>
               )}
               {index > 0 && (
@@ -196,24 +190,6 @@ const recentArticles = await Promise.all(
     list-style: none;
   }
 
-  /* SVG <object> blend mode — mirrors AnimatedIcon wrapper/filter pattern */
-  .svg-icon-wrapper {
-    display: inline-block;
-    vertical-align: middle;
-    mix-blend-mode: multiply;
-  }
-
-  .svg-icon {
-    display: block;
-  }
-
-  :global(.dark) .svg-icon-wrapper {
-    mix-blend-mode: screen;
-  }
-
-  :global(.dark) .svg-icon {
-    filter: invert(1);
-  }
 
   .article-preview h2 {
     margin: 0 0 0.5em 0;

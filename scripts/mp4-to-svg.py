@@ -89,7 +89,7 @@ def assemble_svg(svgs_dir: Path, fps: int, out_path: Path):
     pct = 100.0 / n  # % of total duration each frame is visible
 
     lines = ['<?xml version="1.0" encoding="UTF-8"?>']
-    lines.append('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">')
+    lines.append('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" style="background:transparent">')
 
     # Only @keyframes lives in <style> — all other animation props are inlined
     # on each element so SVGO's inlineStyles plugin can't strip them.

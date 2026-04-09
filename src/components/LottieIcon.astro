@@ -1,40 +1,39 @@
 ---
 // LottieIcon — renders a Lottie JSON animation from /public/vids/lottie/.
 //
-// Uses lottie-web to load and animate the JSON file client-side.
-// Multiple instances on the same page are all initialized by a single
-// shared module script that queries by data attribute.
+// Behavior (mirrors AnimatedIcon with playCount=3):
+//   - IntersectionObserver starts the animation when scrolled into view.
+//   - Plays 3 times, then rests on frame 0.
+//   - After the initial sequence, replays once on hover, click, or
+//     re-entering the viewport.
+//   - prefers-reduced-motion: shows frame 0 statically, never animates.
 //
-// prefers-reduced-motion: animation is not started if the user has
-// requested reduced motion.
+// lottie-web is UMD-only, so we use a dynamic import to force evaluation
+// in the browser (not in Vite's Node context where `document` is undefined).
+// JSON is pre-fetched and passed as `animationData` to bypass lottie's
+// internal XHR loader.
 
 interface Props {
   name: string;
   alt: string;
   size?: number;
-  loop?: boolean;
   class?: string;
 }
 
-const { name, alt, size = 128, loop = true, class: className } = Astro.props;
+const { name, alt, size = 128, class: className } = Astro.props;
 const src = `/vids/lottie/${name}.json`;
 ---
 
 <div
   class:list={["lottie-icon-wrapper", className]}
   data-lottie-src={src}
-  data-lottie-loop={loop ? "true" : "false"}
   style={`width:${size}px;height:${size}px`}
   role="img"
   aria-label={alt}
 ></div>
 
 <script>
-  // lottie-web is UMD-only. Vite may evaluate the factory in a Node context
-  // where `document` is undefined, causing the module to export {}. To work
-  // around this, we use a dynamic import so the module is evaluated in the
-  // browser, and we pre-fetch the JSON ourselves and pass `animationData`
-  // instead of `path` to avoid lottie's internal XHR loader.
+  const PLAY_COUNT = 3;
 
   async function initLottieIcons() {
     const { default: lottie } = await import("lottie-web");
@@ -48,13 +47,71 @@ const src = `/vids/lottie/${name}.json`;
       Array.from(els).map(async (el) => {
         el.dataset.lottieInit = "true";
         const animationData = await fetch(el.dataset.lottieSrc!).then((r) => r.json());
-        lottie.loadAnimation({
+
+        const anim = lottie.loadAnimation({
           container: el,
           renderer: "svg",
-          loop: el.dataset.lottieLoop === "true",
-          autoplay: !reduced,
+          loop: false,
+          autoplay: false,
           animationData,
         });
+
+        // Reduced motion: show first frame statically.
+        if (reduced) {
+          anim.goToAndStop(0, true);
+          return;
+        }
+
+        let plays = 0;
+        let onDemand = false;
+
+        const resetToStart = () => anim.goToAndStop(0, true);
+
+        const replayOnce = () => {
+          if (!anim.isPaused) return;
+          resetToStart();
+          anim.play();
+        };
+
+        anim.addEventListener("complete", () => {
+          if (onDemand) {
+            resetToStart();
+            return;
+          }
+
+          plays += 1;
+          if (plays < PLAY_COUNT) {
+            resetToStart();
+            anim.play();
+            return;
+          }
+
+          // Initial sequence done — rest on frame 0, switch to on-demand mode.
+          onDemand = true;
+          resetToStart();
+          el.style.cursor = "pointer";
+          el.addEventListener("mouseenter", replayOnce);
+          el.addEventListener("click", replayOnce);
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                // First entry starts the initial sequence;
+                // subsequent entries replay once.
+                if (onDemand) replayOnce();
+                else anim.play();
+              } else if (!onDemand) {
+                // Scrolled away mid-sequence: pause so it resumes on re-entry.
+                anim.pause();
+              }
+            }
+          },
+          { threshold: 0.5 },
+        );
+
+        observer.observe(el);
       }),
     );
   }

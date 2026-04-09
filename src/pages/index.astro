@@ -6,36 +6,20 @@ import { getArticleUrl } from "../lib/article-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
 import { formatTitle } from "../lib/typography";
 
-// Constellation lottie icons used as decorative dividers between article previews.
-const LOTTIE_ICONS = [
-  "aquarius",
-  "aries",
-  "berenices-hair",
-  "camelopardus",
-  "cancer",
-  "cepheus",
-  "crater",
-  "crow",
-  "crux",
-  "dolphin",
-  "gemini",
-  "harp",
-  "leo",
-  "libra",
-  "little-bear",
-  "pavo",
-  "pisces",
-  "queen-cassiopeia",
-  "sagittarius",
-  "scorpio",
-  "southern-fish",
-  "taurus",
-  "telescopium",
-  "triangulum-australe",
-  "ursa-minor",
-  "virgo",
-  "volans",
-] as const;
+// Constellation lottie files — Vite resolves these to hashed URLs at build time.
+// Only constellation files are imported; other/ files are not bundled unless used.
+const constellationModules = import.meta.glob<string>(
+  "../lottie/constellations/*.json",
+  { query: "?url", import: "default", eager: true },
+);
+
+// name → URL map (e.g. "aquarius" → "/assets/aquarius-Bc3xKL.json")
+const constellationUrls: Record<string, string> = Object.fromEntries(
+  Object.entries(constellationModules).map(([path, url]) => [
+    path.split("/").pop()!.replace(".json", ""),
+    url,
+  ]),
+);
 
 function hashStr(s: string): number {
   let h = 0;
@@ -43,19 +27,19 @@ function hashStr(s: string): number {
   return Math.abs(h);
 }
 
+const CONSTELLATION_NAMES = Object.keys(constellationUrls);
+
 // Assign icons with no duplicates. Each article is processed in hash order
 // so its slot is determined independently of display order — adding a new
 // article only displaces others if it lands in an already-taken slot.
-function assignIcons(
-  ids: string[],
-): Map<string, (typeof LOTTIE_ICONS)[number]> {
-  const result = new Map<string, (typeof LOTTIE_ICONS)[number]>();
+function assignIcons(ids: string[]): Map<string, string> {
+  const result = new Map<string, string>();
   const used = new Set<number>();
   for (const id of [...ids].sort((a, b) => hashStr(a) - hashStr(b))) {
-    let idx = hashStr(id) % LOTTIE_ICONS.length;
-    while (used.has(idx)) idx = (idx + 1) % LOTTIE_ICONS.length;
+    let idx = hashStr(id) % CONSTELLATION_NAMES.length;
+    while (used.has(idx)) idx = (idx + 1) % CONSTELLATION_NAMES.length;
     used.add(idx);
-    result.set(id, LOTTIE_ICONS[idx]);
+    result.set(id, constellationUrls[CONSTELLATION_NAMES[idx]]);
   }
   return result;
 }
@@ -104,7 +88,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
             <>
               {index > 0 && (
                 <li class="article-divider" aria-hidden="true">
-                  <LottieIcon name={iconAssignments.get(article.id)!} alt="" size={64} />
+                  <LottieIcon src={iconAssignments.get(article.id)!} alt="" size={64} />
                 </li>
               )}
             <li>

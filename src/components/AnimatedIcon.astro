@@ -59,11 +59,7 @@ const loop = playCount === undefined;
     display: block;
   }
 
-  .animated-icon-wrapper.animated-icon--interactive {
-    cursor: pointer;
-  }
-
-  /* Dark mode: invert on the video (separate from blend mode on wrapper
+/* Dark mode: invert on the video (separate from blend mode on wrapper
      to avoid stacking context breakage), then screen on the wrapper
      so the now-black bg disappears against the dark page. */
   :global(.dark) .animated-icon-wrapper {
@@ -76,10 +72,10 @@ const loop = playCount === undefined;
 </style>
 
 <script>
+  import { attachPlayOnceObserver } from "../lib/play-once-observer";
+
   function initAnimatedIcons() {
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const videos = document.querySelectorAll<HTMLVideoElement>(
       "video.animated-icon:not([data-init])",
@@ -99,19 +95,6 @@ const loop = playCount === undefined;
           ? Number.POSITIVE_INFINITY
           : Number.parseInt(raw, 10);
 
-      const wrapper = video.closest<HTMLElement>(".animated-icon-wrapper");
-
-      const resetToStart = () => {
-        video.currentTime = 0;
-        video.pause();
-      };
-
-      const replayOnce = () => {
-        if (!video.paused) return;
-        video.currentTime = 0;
-        void video.play();
-      };
-
       if (!Number.isFinite(maxPlays)) {
         // Infinite loop: play when visible, pause when not (saves resources).
         const observer = new IntersectionObserver(
@@ -127,51 +110,21 @@ const loop = playCount === undefined;
         continue;
       }
 
-      // Finite playCount: IntersectionObserver starts the initial sequence
-      // when the icon enters view, and replays once on each subsequent entry.
-      let plays = 0;
-      let onDemand = false;
+      const wrapper = video.closest<HTMLElement>(".animated-icon-wrapper");
 
-      video.addEventListener("ended", () => {
-        if (onDemand) {
-          resetToStart();
-          return;
-        }
-
-        plays += 1;
-        if (plays < maxPlays) {
-          video.currentTime = 0;
-          void video.play();
-          return;
-        }
-
-        // Initial sequence done: rest on first frame, enable replay.
-        onDemand = true;
-        resetToStart();
-        wrapper?.classList.add("animated-icon--interactive");
-        wrapper?.addEventListener("mouseenter", replayOnce);
-        wrapper?.addEventListener("click", replayOnce);
-      });
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              // Re-entering view after initial sequence → replay once.
-              // First entry → start the initial sequence.
-              if (onDemand) replayOnce();
-              else void video.play();
-            } else if (!onDemand) {
-              // Scrolled away mid-sequence: pause so it resumes from
-              // where it left off when scrolled back in.
-              video.pause();
-            }
-          }
+      attachPlayOnceObserver(
+        video,
+        {
+          resume: () => { void video.play(); },
+          play: () => { video.currentTime = 0; void video.play(); },
+          pause: () => video.pause(),
+          stop: () => { video.currentTime = 0; video.pause(); },
+          get isPaused() { return video.paused; },
+          onPassComplete: (cb) => video.addEventListener("ended", cb),
         },
-        { threshold: 0.5 },
+        maxPlays,
+        wrapper ?? video,
       );
-
-      observer.observe(video);
     }
   }
 

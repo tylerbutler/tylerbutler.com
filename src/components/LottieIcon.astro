@@ -14,26 +14,27 @@
 // internal XHR loader.
 
 interface Props {
-  name: string;
+  src: string;
   alt: string;
   size?: number;
+  playCount?: number;
   class?: string;
 }
 
-const { name, alt, size = 128, class: className } = Astro.props;
-const src = `/vids/lottie/${name}.json`;
+const { src, alt, size = 128, playCount = 3, class: className } = Astro.props;
 ---
 
 <div
   class:list={["lottie-icon-wrapper", className]}
   data-lottie-src={src}
+  data-lottie-play-count={playCount}
   style={`width:${size}px;height:${size}px`}
   role="img"
   aria-label={alt}
 ></div>
 
 <script>
-  const PLAY_COUNT = 3;
+  import { attachPlayOnceObserver } from "../lib/play-once-observer";
 
   async function initLottieIcons() {
     const { default: lottie } = await import("lottie-web");
@@ -62,49 +63,17 @@ const src = `/vids/lottie/${name}.json`;
           return;
         }
 
-        let plays = 0;
-        let onDemand = false;
-
-        const replayOnce = () => {
-          if (!anim.isPaused) return;
-          anim.goToAndStop(0, true);
-          anim.play();
-        };
+        const playCount = parseInt(el.dataset.lottiePlayCount ?? "3", 10);
 
         // loopComplete fires reliably after each full pass (loop:true).
-        // After PLAY_COUNT passes, stop and switch to on-demand mode.
-        // In on-demand mode, stop after one pass.
-        anim.addEventListener("loopComplete", () => {
-          plays += 1;
-          if (!onDemand && plays < PLAY_COUNT) return;
-
-          anim.stop(); // resets to frame 0
-          if (!onDemand) {
-            onDemand = true;
-            el.style.cursor = "pointer";
-            el.addEventListener("mouseenter", replayOnce);
-            el.addEventListener("click", replayOnce);
-          }
-        });
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (entry.isIntersecting) {
-                // First entry starts the initial sequence;
-                // subsequent entries replay once.
-                if (onDemand) replayOnce();
-                else anim.play();
-              } else if (!onDemand) {
-                // Scrolled away mid-sequence: pause so it resumes on re-entry.
-                anim.pause();
-              }
-            }
-          },
-          { threshold: 0.5 },
-        );
-
-        observer.observe(el);
+        attachPlayOnceObserver(el, {
+          resume: () => anim.play(),
+          play: () => {}, // lottie loops automatically between passes
+          pause: () => anim.pause(),
+          stop: () => anim.stop(),
+          get isPaused() { return anim.isPaused; },
+          onPassComplete: (cb) => anim.addEventListener("loopComplete", cb),
+        }, playCount);
       }),
     );
   }

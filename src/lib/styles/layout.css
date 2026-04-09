@@ -127,44 +127,43 @@
     }
 
     /* Paper-fold animation: the overflow portion beyond the column boundary
-       "unfolds" from under the right edge of the page as the user scrolls.
+       "unfolds" from the right edge of the page as the user scrolls.
        Uses container query units (100cqi) to know where the column boundary is.
-       Combines clip-path reveal with 3D perspective rotation for paper-fold depth. */
+       The clip-path creates a geometric fold illusion: the overflow starts
+       vertically compressed at the column edge (as if seen edge-on) and
+       expands both rightward and to full height as it unfolds. */
     @supports (animation-timeline: view()) {
       animation: code-unfold linear both;
       animation-timeline: view();
-      animation-range: entry 40% entry 70%;
-      transform-origin: 0% center;
-      perspective: 1200px;
-      will-change: clip-path, transform;
+      animation-range: cover 35% cover 50%;
+      will-change: clip-path;
     }
   }
 }
 
-/* Paper-fold: reveals the overflow with a 3D fold effect.
-   The clip-path expands from column-width to full width (right to left reveal).
-   The rotateY creates a paper-fold hinge at the left edge — the overflow
-   portion swings out from "under" the page with perspective depth. */
+/* Paper-fold: geometric fold illusion for the overflow portion.
+   6-point polygon: points 1,2,5,6 form the column rectangle (always visible).
+   Points 3,4 define the overflow — they start compressed at the column edge
+   (folded edge-on) and expand to full width and height (unfolded flat). */
 @keyframes code-unfold {
   from {
     clip-path: polygon(
       0% 0%,
       100cqi 0%,
+      100cqi 35%,
+      100cqi 65%,
       100cqi 100%,
       0% 100%
     );
-    transform: rotateY(-35deg);
-  }
-  60% {
-    transform: rotateY(0deg);
   }
   to {
     clip-path: polygon(
       0% 0%,
+      100cqi 0%,
       100% 0%,
       100% 100%,
+      100cqi 100%,
       0% 100%
     );
-    transform: rotateY(0deg);
   }
 }

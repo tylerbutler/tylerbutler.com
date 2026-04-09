@@ -132,6 +132,15 @@
       animation-range: cover 35% cover 50%;
       overflow: clip;
       will-change: max-width;
+
+      /* Force the inner frame to match the animating parent width
+         so its borders wrap at the current telescope size */
+      & > .frame,
+      & > figure {
+        width: 100%;
+        max-width: 100%;
+        overflow: clip;
+      }
     }
   }
 }

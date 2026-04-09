@@ -1,0 +1,5162 @@
+{
+  "v": "5.10.2",
+  "fr": 25,
+  "ip": 0,
+  "op": 75,
+  "w": 500,
+  "h": 500,
+  "nm": "24 Recorder",
+  "ddd": 0,
+  "assets": [],
+  "layers": [
+    {
+      "ddd": 0,
+      "ind": 1,
+      "ty": 3,
+      "nm": "Main Stroke width - Color Ctrl",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 0, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [250, 250, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [50, 50, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ef": [
+        {
+          "ty": 5,
+          "nm": "Stroke width",
+          "np": 3,
+          "mn": "ADBE Slider Control",
+          "ix": 1,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 0,
+              "nm": "Slider",
+              "mn": "ADBE Slider Control-0001",
+              "ix": 1,
+              "v": { "a": 0, "k": 16, "ix": 1 }
+            }
+          ]
+        },
+        {
+          "ty": 5,
+          "nm": "Base Color",
+          "np": 3,
+          "mn": "ADBE Color Control",
+          "ix": 2,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 2,
+              "nm": "Color",
+              "mn": "ADBE Color Control-0001",
+              "ix": 1,
+              "v": {
+                "a": 0,
+                "k": [0.019607843831, 0.164705887437, 0.458823531866, 1],
+                "ix": 1
+              }
+            }
+          ]
+        },
+        {
+          "ty": 5,
+          "nm": "Highlight",
+          "np": 3,
+          "mn": "ADBE Color Control",
+          "ix": 3,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 2,
+              "nm": "Color",
+              "mn": "ADBE Color Control-0001",
+              "ix": 1,
+              "v": {
+                "a": 0,
+                "k": [0.992156863213, 0.796078443527, 0.313725501299, 1],
+                "ix": 1
+              }
+            }
+          ]
+        },
+        {
+          "ty": 5,
+          "nm": "Highlight 2",
+          "np": 3,
+          "mn": "ADBE Color Control",
+          "ix": 4,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 2,
+              "nm": "Color",
+              "mn": "ADBE Color Control-0001",
+              "ix": 1,
+              "v": {
+                "a": 0,
+                "k": [0.57647061348, 0.698039233685, 0.956862747669, 1],
+                "ix": 1
+              }
+            }
+          ]
+        },
+        {
+          "ty": 5,
+          "nm": "Highlight 3",
+          "np": 3,
+          "mn": "ADBE Color Control",
+          "ix": 5,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 2,
+              "nm": "Color",
+              "mn": "ADBE Color Control-0001",
+              "ix": 1,
+              "v": { "a": 0, "k": [1, 1, 1, 1], "ix": 1 }
+            }
+          ]
+        },
+        {
+          "ty": 5,
+          "nm": "Highlight 4",
+          "np": 3,
+          "mn": "ADBE Color Control",
+          "ix": 6,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 2,
+              "nm": "Color",
+              "mn": "ADBE Color Control-0001",
+              "ix": 1,
+              "v": {
+                "a": 0,
+                "k": [0.992156922817, 0.376470625401, 0.313725501299, 1],
+                "ix": 1
+              }
+            }
+          ]
+        },
+        {
+          "ty": 5,
+          "nm": "Stroke width details",
+          "np": 3,
+          "mn": "ADBE Slider Control",
+          "ix": 7,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 0,
+              "nm": "Slider",
+              "mn": "ADBE Slider Control-0001",
+              "ix": 1,
+              "v": { "a": 0, "k": 18, "ix": 1 }
+            }
+          ]
+        }
+      ],
+      "ip": 0,
+      "op": 75.8333333333333,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 2,
+      "ty": 4,
+      "nm": "panel2",
+      "parent": 4,
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [249.999, 157.25, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [249.999, 157.25, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [281.499, 110], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 0.423,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 1.334,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 4.978,
+                    "s": [100]
+                  },
+                  { "t": 5.888671875, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 1",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 110], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 4.978,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 5.889,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 9.532,
+                    "s": [100]
+                  },
+                  { "t": 10.443359375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 2",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 2,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [218.5, 110], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 9.532,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 10.443,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 14.087,
+                    "s": [100]
+                  },
+                  { "t": 14.998046875, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 3",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 3,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [312.999, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 14.087,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 14.998,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 18.642,
+                    "s": [100]
+                  },
+                  { "t": 19.552734375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 4",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 4,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [281.499, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 18.642,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 19.553,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 23.196,
+                    "s": [100]
+                  },
+                  { "t": 24.107421875, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 5",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 5,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 23.196,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 24.107,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 27.752,
+                    "s": [100]
+                  },
+                  { "t": 28.6630859375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 6",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 6,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [187, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 27.752,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 28.663,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 32.306,
+                    "s": [100]
+                  },
+                  { "t": 33.216796875, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 7",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 7,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [218.5, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 32.306,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 33.217,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 36.86,
+                    "s": [100]
+                  },
+                  { "t": 37.771484375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 8",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 8,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [281.499, 204.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 36.86,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 37.771,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 41.416,
+                    "s": [100]
+                  },
+                  { "t": 42.3271484375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 9",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 9,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [312.999, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 41.416,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 42.327,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 45.97,
+                    "s": [100]
+                  },
+                  { "t": 46.880859375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 10",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 10,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [281.499, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 45.97,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 46.881,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 50.525,
+                    "s": [100]
+                  },
+                  { "t": 51.4365234375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 11",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 11,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 204.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 50.525,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 51.437,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 55.079,
+                    "s": [100]
+                  },
+                  { "t": 55.990234375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 12",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 12,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 55.079,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 55.99,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 59.635,
+                    "s": [100]
+                  },
+                  { "t": 60.5458984375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 13",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 13,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [218.5, 204.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 59.635,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 60.546,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 64.189,
+                    "s": [100]
+                  },
+                  { "t": 65.1005859375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 14",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 14,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [187, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 64.12,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 65.031,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 68.675,
+                    "s": [100]
+                  },
+                  { "t": 69.5859375, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 15",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 15,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 4')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = $bm_sum(thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider'), 2);"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [218.5, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 69,
+                    "s": [0]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 69.911,
+                    "s": [100]
+                  },
+                  {
+                    "i": { "x": [0.833], "y": [0.833] },
+                    "o": { "x": [0.167], "y": [0.167] },
+                    "t": 73.555,
+                    "s": [100]
+                  },
+                  { "t": 74.4658203125, "s": [0] }
+                ],
+                "ix": 7
+              },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 16",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 16,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 75,
+      "st": 0,
+      "ct": 1,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 3,
+      "ty": 4,
+      "nm": "panel",
+      "parent": 4,
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [249.999, 157.25, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [249.999, 157.25, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [281.499, 110], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 1",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 110], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 2",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 2,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [218.5, 110], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 3",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 3,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [312.999, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 4",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 4,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [281.499, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 5",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 5,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 6",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 6,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [187, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 7",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 7,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [218.5, 141.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 8",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 8,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [281.499, 204.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 9",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 9,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [312.999, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 10",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 10,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [281.499, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 11",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 11,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 204.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 12",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 12,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 13",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 13,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [218.5, 204.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 14",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 14,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [187, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 15",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 15,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0]],
+                  "v": [[-0.003, 0], [0.003, 0]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 2')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [218.5, 173], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 16",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 16,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 75,
+      "st": 0,
+      "ct": 1,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 4,
+      "ty": 4,
+      "nm": "recorder",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": 0.667, "y": 1 },
+              "o": { "x": 0.333, "y": 0 },
+              "t": 5,
+              "s": [249.999, 249.999, 0],
+              "to": [0, -5, 0],
+              "ti": [0, -5, 0]
+            },
+            {
+              "i": { "x": 0.667, "y": 1 },
+              "o": { "x": 0.333, "y": 0 },
+              "t": 20,
+              "s": [249.999, 219.999, 0],
+              "to": [0, 5, 0],
+              "ti": [0, -1.667, 0]
+            },
+            {
+              "i": { "x": 0.667, "y": 1 },
+              "o": { "x": 0.333, "y": 0 },
+              "t": 35,
+              "s": [249.999, 279.999, 0],
+              "to": [0, 1.667, 0],
+              "ti": [0, 5, 0]
+            },
+            {
+              "i": { "x": 0.667, "y": 1 },
+              "o": { "x": 0.333, "y": 0 },
+              "t": 50,
+              "s": [249.999, 229.999, 0],
+              "to": [0, -5, 0],
+              "ti": [0, -3.333, 0]
+            },
+            { "t": 65, "s": [249.999, 249.999, 0] }
+          ],
+          "ix": 2,
+          "l": 2
+        },
+        "a": { "a": 0, "k": [249.999, 249.999, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "v": [[-63, 59.5], [63, 59.5], [63, -59.5], [-63, -59.5]],
+                  "c": true
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Base Color')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 295.499], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 1",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "v": [[63, -15.75], [63, 15.75], [-63, 15.75], [-63, -15.75]],
+                  "c": false
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Base Color')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 405.749], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 2",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 2,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [
+                    [-11.55, 0],
+                    [0, 0],
+                    [0, -11.55],
+                    [0, 0],
+                    [11.55, 0],
+                    [0, 0],
+                    [0, 11.55],
+                    [0, 0]
+                  ],
+                  "o": [
+                    [0, 0],
+                    [11.55, 0],
+                    [0, 0],
+                    [0, 11.55],
+                    [0, 0],
+                    [-11.55, 0],
+                    [0, 0],
+                    [0, -11.55]
+                  ],
+                  "v": [
+                    [-77, -154],
+                    [77, -154],
+                    [98, -133],
+                    [98, 133],
+                    [77, 154],
+                    [-77, 154],
+                    [-98, 133],
+                    [-98, -133]
+                  ],
+                  "c": true
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0, 0, 0, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Base Color')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 232.499], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 3",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 3,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 75,
+      "st": 0,
+      "ct": 1,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 5,
+      "ty": 4,
+      "nm": "mask",
+      "parent": 4,
+      "td": 1,
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [249.999, 295.499, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [0, 0, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "v": [[-63, 59.5], [63, 59.5], [63, -59.5], [-63, -59.5]],
+                  "c": true
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": { "a": 0, "k": [1, 0, 0, 1], "ix": 4 },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [0, 0], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 1",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 75,
+      "st": 0,
+      "ct": 1,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 6,
+      "ty": 4,
+      "nm": "wave",
+      "parent": 4,
+      "tt": 1,
+      "tp": 5,
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": 0.833, "y": 0.833 },
+              "o": { "x": 0.167, "y": 0.167 },
+              "t": 0,
+              "s": [495.607, 295.499, 0],
+              "to": [-81.833, 0, 0],
+              "ti": [81.833, 0, 0]
+            },
+            { "t": 75, "s": [4.607, 295.499, 0] }
+          ],
+          "ix": 2,
+          "l": 2
+        },
+        "a": { "a": 0, "k": [495.607, 295.499, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ty": "rc",
+              "d": 1,
+              "s": { "a": 0, "k": [939, 253], "ix": 2 },
+              "p": { "a": 0, "k": [0, 0], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 4 },
+              "nm": "Rectangle Path 1",
+              "mn": "ADBE Vector Shape - Rect",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": { "a": 0, "k": [0.2, 0.8, 0.8, 1], "ix": 3 },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": { "a": 0, "k": 16, "ix": 5 },
+              "lc": 1,
+              "lj": 1,
+              "ml": 4,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": { "a": 0, "k": [1, 0, 0, 1], "ix": 4 },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [370.5, 294.5], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 0, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Rectangle 1",
+          "np": 3,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 0,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.098, -8.1],
+                          [0, 8.1],
+                          [30.098, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 19,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 38,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 56,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-29.81, -60.1],
+                          [0, 8.1],
+                          [30.099, -28.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "t": 75,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  }
+                ],
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 3')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [741.214, 295.499], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 1",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 2,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 0,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.098, -8.1],
+                          [0, 8.1],
+                          [30.098, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 19,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 38,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.168, 14.1],
+                          [-30.099, -8.1],
+                          [0.227, 56.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 56,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-29.81, -12.1],
+                          [0, 8.1],
+                          [30.099, -28.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "t": 75,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  }
+                ],
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 3')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [618.41, 295.499], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 2",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 3,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 0,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.098, -8.1],
+                          [0, 8.1],
+                          [30.098, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 19,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.584, -16.1],
+                          [0, 8.1],
+                          [30.099, -28.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 38,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 28.1],
+                          [-30.099, -8.1],
+                          [0, 28.1],
+                          [30.099, -8.1],
+                          [60.227, 14.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 56,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.584, -32.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "t": 75,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  }
+                ],
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 3')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [495.607, 295.499], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 3",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 4,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 0,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.098, -8.1],
+                          [0, 8.1],
+                          [30.098, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 19,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.584, -16.1],
+                          [0, 8.1],
+                          [30.099, -28.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 38,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 28.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 56,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "t": 75,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.099, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  }
+                ],
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 3')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [372.803, 295.499], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 4",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 5,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 0,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.098, -8.1],
+                          [0, 8.1],
+                          [30.098, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 19,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.098, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 38,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.098, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 56,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.098, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "t": 75,
+                    "s": [
+                      {
+                        "i": [
+                          [0, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0],
+                          [-14.544, 0]
+                        ],
+                        "o": [
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [14.544, 0],
+                          [0, 0]
+                        ],
+                        "v": [
+                          [-60.197, 8.1],
+                          [-30.098, -8.1],
+                          [0, 8.1],
+                          [30.099, -8.1],
+                          [60.197, 8.1]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  }
+                ],
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Highlight 3')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 295.499], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 5",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 6,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 75,
+      "st": 0,
+      "ct": 1,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 7,
+      "ty": 4,
+      "nm": "recorder",
+      "parent": 4,
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [249.999, 249.999, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [249.999, 249.999, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0], [0, 0], [4.663, 44.722]],
+                  "o": [[0, 0], [0, 0], [-26.079, -33.756], [0, 0]],
+                  "v": [
+                    [-34.08, -59.743],
+                    [-34.08, 59.743],
+                    [34.08, 59.743],
+                    [-13.807, -59.743]
+                  ],
+                  "c": true
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [0.152941182256, 0.635294139385, 0.800000011921, 1],
+                "ix": 4
+              },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [220.822, 295.685], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 1",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "v": [
+                    [-63.257, -59.743],
+                    [-63.257, 59.743],
+                    [63.257, 59.743],
+                    [63.257, -59.743]
+                  ],
+                  "c": true
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [0.403921574354, 0.800000011921, 0.819607853889, 1],
+                "ix": 4
+              },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 295.685], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 2",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 2,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [
+                    [-26.025, 37.955],
+                    [0, 0],
+                    [0, -11.597],
+                    [0, -89.029],
+                    [-11.597, 0],
+                    [0, 0],
+                    [0, 69.867]
+                  ],
+                  "o": [
+                    [0, 0],
+                    [-11.597, 0],
+                    [0, 89.029],
+                    [0, 11.597],
+                    [0, 0],
+                    [-48.223, -43.238],
+                    [0, -49.496]
+                  ],
+                  "v": [
+                    [29.04, -154.628],
+                    [-45.263, -154.628],
+                    [-66.349, -133.543],
+                    [-66.349, 133.543],
+                    [-45.263, 154.628],
+                    [66.349, 154.628],
+                    [-12.223, -21.246]
+                  ],
+                  "c": true
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [0.823529422283, 0.86274510622, 0.992156863213, 1],
+                "ix": 4
+              },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [217.948, 232.428], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 3",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 3,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                  "v": [
+                    [63.257, -17.572],
+                    [-63.257, -17.572],
+                    [-63.257, 17.572],
+                    [63.257, 17.572]
+                  ],
+                  "c": true
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [0.57647061348, 0.698039233685, 0.956862747669, 1],
+                "ix": 4
+              },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 404.628], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 4",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 4,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 0,
+                "k": {
+                  "i": [
+                    [11.597, 0],
+                    [0, 0],
+                    [0, -11.597],
+                    [0, -89.029],
+                    [-11.597, 0],
+                    [0, 0],
+                    [0, 11.597],
+                    [0, 89.029]
+                  ],
+                  "o": [
+                    [0, 0],
+                    [-11.597, 0],
+                    [0, 89.029],
+                    [0, 11.597],
+                    [0, 0],
+                    [11.597, 0],
+                    [0, -89.029],
+                    [0, -11.597]
+                  ],
+                  "v": [
+                    [77.314, -154.628],
+                    [-77.314, -154.628],
+                    [-98.4, -133.543],
+                    [-98.4, 133.543],
+                    [-77.314, 154.628],
+                    [77.314, 154.628],
+                    [98.4, 133.543],
+                    [98.4, -133.543]
+                  ],
+                  "c": true
+                },
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": { "a": 0, "k": [1, 1, 1, 1], "ix": 4 },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [249.999, 232.428], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 5",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 5,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 75,
+      "st": 0,
+      "ct": 1,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 8,
+      "ty": 4,
+      "nm": "button3",
+      "parent": 4,
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [134.499, 251.749, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [0, 0, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 5,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -15.75],
+                          [-14, -15.75],
+                          [-14, 15.75],
+                          [14, 15.75]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 15,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -15.75],
+                          [3, -15.75],
+                          [3, 15.75],
+                          [14, 15.75]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 25,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -15.75],
+                          [-14, -15.75],
+                          [-14, 15.75],
+                          [14, 15.75]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 40,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -15.75],
+                          [-14, -15.75],
+                          [-14, 15.75],
+                          [14, 15.75]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 45,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -15.75],
+                          [3, -15.75],
+                          [3, 15.75],
+                          [14, 15.75]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 50,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -15.75],
+                          [-14, -15.75],
+                          [-14, 15.75],
+                          [14, 15.75]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 55,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -15.75],
+                          [3, -15.75],
+                          [3, 15.75],
+                          [14, 15.75]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "t": 60,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -15.75],
+                          [-14, -15.75],
+                          [-14, 15.75],
+                          [14, 15.75]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  }
+                ],
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Base Color')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [0.576470588235, 0.698039215686, 0.956862745098, 1],
+                "ix": 4
+              },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [0, 0], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 1",
+          "np": 3,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 75,
+      "st": 0,
+      "ct": 1,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 9,
+      "ty": 4,
+      "nm": "button2",
+      "parent": 4,
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [365.499, 172.095, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [0, 0, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 15,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [-14, -32.404],
+                          [14, -32.404],
+                          [14, 32.404],
+                          [-14, 32.404]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 25,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [-14, -32.404],
+                          [-3.5, -32.213],
+                          [-3.5, 32.595],
+                          [-14, 32.404]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.833, "y": 1 },
+                    "o": { "x": 0.167, "y": 0 },
+                    "t": 35,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [-14, -32.404],
+                          [14, -32.404],
+                          [14, 32.404],
+                          [-14, 32.404]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 55,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [-14, -32.404],
+                          [14, -32.404],
+                          [14, 32.404],
+                          [-14, 32.404]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.833, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 60,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [-14, -32.404],
+                          [-3.5, -32.213],
+                          [-3.5, 32.595],
+                          [-14, 32.404]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 65,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [-14, -32.404],
+                          [14, -32.404],
+                          [14, 32.404],
+                          [-14, 32.404]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 70,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [-14, -32.404],
+                          [-3.5, -32.213],
+                          [-3.5, 32.595],
+                          [-14, 32.404]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "t": 75,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [-14, -32.404],
+                          [14, -32.404],
+                          [14, 32.404],
+                          [-14, 32.404]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  }
+                ],
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Base Color')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [0.576470588235, 0.698039215686, 0.956862745098, 1],
+                "ix": 4
+              },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [0, 0], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 1",
+          "np": 3,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 75,
+      "st": 0,
+      "ct": 1,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 10,
+      "ty": 4,
+      "nm": "button1",
+      "parent": 4,
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [134.499, 328.749, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [0, 0, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ind": 0,
+              "ty": "sh",
+              "ix": 1,
+              "ks": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 10,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -26.25],
+                          [-14, -26.25],
+                          [-14, 26.25],
+                          [14, 26.25]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 20,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -26.25],
+                          [3, -26.251],
+                          [3, 26.249],
+                          [14, 26.25]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.833, "y": 1 },
+                    "o": { "x": 0.167, "y": 0 },
+                    "t": 30,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -26.25],
+                          [-14, -26.25],
+                          [-14, 26.25],
+                          [14, 26.25]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 45,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -26.25],
+                          [-14, -26.25],
+                          [-14, 26.25],
+                          [14, 26.25]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "i": { "x": 0.667, "y": 1 },
+                    "o": { "x": 0.333, "y": 0 },
+                    "t": 50,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -26.25],
+                          [3, -26.251],
+                          [3, 26.249],
+                          [14, 26.25]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  },
+                  {
+                    "t": 55,
+                    "s": [
+                      {
+                        "i": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "o": [[0, 0], [0, 0], [0, 0], [0, 0]],
+                        "v": [
+                          [14, -26.25],
+                          [-14, -26.25],
+                          [-14, 26.25],
+                          [14, 26.25]
+                        ],
+                        "c": false
+                      }
+                    ]
+                  }
+                ],
+                "ix": 2
+              },
+              "nm": "Path 1",
+              "mn": "ADBE Vector Shape - Group",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [0.20000000298, 0.800000011921, 0.800000011921, 1],
+                "ix": 3,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Base Color')('Color');"
+              },
+              "o": { "a": 0, "k": 100, "ix": 4 },
+              "w": {
+                "a": 0,
+                "k": 16,
+                "ix": 5,
+                "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Main Stroke width - Color Ctrl').effect('Stroke width')('Slider');"
+              },
+              "lc": 2,
+              "lj": 2,
+              "bm": 0,
+              "nm": "Stroke 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [0.992156862745, 0.376470588235, 0.313725490196, 1],
+                "ix": 4
+              },
+              "o": { "a": 0, "k": 100, "ix": 5 },
+              "r": 1,
+              "bm": 0,
+              "nm": "Fill 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": { "a": 0, "k": [0, 0], "ix": 2 },
+              "a": { "a": 0, "k": [0, 0], "ix": 1 },
+              "s": { "a": 0, "k": [100, 100], "ix": 3 },
+              "r": { "a": 0, "k": 0, "ix": 6 },
+              "o": { "a": 0, "k": 100, "ix": 7 },
+              "sk": { "a": 0, "k": 0, "ix": 4 },
+              "sa": { "a": 0, "k": 0, "ix": 5 },
+              "nm": "Transform"
+            }
+          ],
+          "nm": "Group 1",
+          "np": 3,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 75,
+      "st": 0,
+      "ct": 1,
+      "bm": 0
+    }
+  ],
+  "markers": []
+}

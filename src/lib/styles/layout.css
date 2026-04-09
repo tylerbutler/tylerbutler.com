@@ -124,105 +124,25 @@
       width: max-content;
     }
 
-    /* Paper-fold animation: the overflow portion beyond the column boundary
-       "unfolds" from the right edge of the page as the user scrolls.
-       The clip-path creates a geometric fold illusion: the overflow starts
-       vertically compressed at the container edge (as if seen edge-on) and
-       expands both rightward and to full height as it unfolds. */
+    /* Telescope animation: the code block box itself expands rightward,
+       borders visible throughout, revealing content as it grows. */
     @supports (animation-timeline: view()) {
-      animation: code-unfold linear both;
+      animation: code-telescope linear both;
       animation-timeline: view();
       animation-range: cover 35% cover 50%;
-      will-change: clip-path;
-
-      /* Elevated shadow + border only on extending blocks */
-      box-shadow:
-        0 0 4px rgba(0, 0, 0, 0.15),
-        0 0 16px rgba(0, 0, 0, 0.2),
-        0 0 40px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      border-radius: 6px;
-
-      /* Origami fold lines — subtle diagonal creases on the overflow area */
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 728px;
-        right: 0;
-        pointer-events: none;
-        z-index: 3;
-        background:
-          repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 14px,
-            rgba(255, 255, 255, 0.15) 14px,
-            rgba(255, 255, 255, 0.15) 15px
-          );
-        animation: fold-lines-fade linear both;
-        animation-timeline: view();
-        animation-range: cover 35% cover 50%;
-      }
-
-      /* Dark mode: stronger shadow and visible border */
-      .dark & {
-        box-shadow:
-          0 0 6px rgba(0, 0, 0, 0.4),
-          0 0 20px rgba(0, 0, 0, 0.5),
-          0 0 48px rgba(0, 0, 0, 0.4);
-        border-color: rgba(255, 255, 255, 0.1);
-
-        &::before {
-          background:
-            repeating-linear-gradient(
-              -45deg,
-              transparent,
-              transparent 14px,
-              rgba(255, 255, 255, 0.2) 14px,
-              rgba(255, 255, 255, 0.2) 15px
-            );
-        }
-      }
+      overflow: clip;
+      will-change: max-width;
     }
   }
 }
 
-/* Paper-fold: geometric fold illusion for the overflow portion.
-   6-point polygon: points 1,2,5,6 form the column rectangle (always visible).
-   Points 3,4 define the overflow — they start compressed at the container edge
-   (folded edge-on) and expand to full width and height (unfolded flat).
-   728px = content-inner width (693px) + right margin (35px) = site-container edge. */
-@keyframes code-unfold {
+/* Telescope: box expands from column width to full content width.
+   The border wraps the box at every stage, creating a telescoping effect. */
+@keyframes code-telescope {
   from {
-    clip-path: polygon(
-      0px 0%,
-      728px 0%,
-      728px 35%,
-      728px 65%,
-      728px 100%,
-      0px 100%
-    );
+    max-width: 100%;
   }
   to {
-    clip-path: polygon(
-      0px 0%,
-      728px 0%,
-      100% 0%,
-      100% 100%,
-      728px 100%,
-      0px 100%
-    );
-  }
-}
-
-/* Fold lines: visible during unfold, fade out as block flattens */
-@keyframes fold-lines-fade {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
+    max-width: calc(100% + 180px);
   }
 }

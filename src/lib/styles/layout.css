@@ -125,21 +125,21 @@
     }
 
     /* Telescope animation: the code block box itself expands rightward,
-       borders visible throughout, revealing content as it grows. */
+       borders visible throughout, revealing content as it grows.
+       Animation is on the inner frame so its native border/shadow telescope. */
     @supports (animation-timeline: view()) {
+      will-change: max-width;
       animation: code-telescope linear both;
       animation-timeline: view();
       animation-range: cover 35% cover 50%;
-      overflow: clip;
-      will-change: max-width;
 
-      /* Force the inner frame to match the animating parent width
-         so its borders wrap at the current telescope size */
       & > .frame,
       & > figure {
-        width: 100%;
         max-width: 100%;
         overflow: clip;
+        animation: code-telescope linear both;
+        animation-timeline: view();
+        animation-range: cover 35% cover 50%;
       }
     }
   }

@@ -32,14 +32,17 @@ const CONSTELLATION_NAMES = Object.keys(constellationUrls);
 // Assign icons with no duplicates. Each article is processed in hash order
 // so its slot is determined independently of display order — adding a new
 // article only displaces others if it lands in an already-taken slot.
-function assignIcons(ids: string[]): Map<string, string> {
-  const result = new Map<string, string>();
+function assignIcons(
+  ids: string[],
+): Map<string, { url: string; slug: string }> {
+  const result = new Map<string, { url: string; slug: string }>();
   const used = new Set<number>();
   for (const id of [...ids].sort((a, b) => hashStr(a) - hashStr(b))) {
     let idx = hashStr(id) % CONSTELLATION_NAMES.length;
     while (used.has(idx)) idx = (idx + 1) % CONSTELLATION_NAMES.length;
     used.add(idx);
-    result.set(id, constellationUrls[CONSTELLATION_NAMES[idx]]);
+    const slug = CONSTELLATION_NAMES[idx];
+    result.set(id, { url: constellationUrls[slug], slug });
   }
   return result;
 }
@@ -87,11 +90,10 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
           return (
             <>
               {index > 0 && (() => {
-                const src = iconAssignments.get(article.id)!;
-                const slug = src.split("/").pop()!.replace(/\.[A-Za-z0-9_-]+\.json$/, "");
+                const { url, slug } = iconAssignments.get(article.id)!;
                 return (
                   <li class="article-divider" aria-hidden="true">
-                    <ConstellationIcon src={src} slug={slug} size={64} />
+                    <ConstellationIcon src={url} slug={slug} size={64} />
                   </li>
                 );
               })()}

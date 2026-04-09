@@ -37,13 +37,27 @@ const LOTTIE_ICONS = [
   "volans",
 ] as const;
 
-// Deterministic pick so a given article always gets the same companion icon.
-function pickIcon(seed: string): (typeof LOTTIE_ICONS)[number] {
-  let hash = 0;
-  for (let i = 0; i < seed.length; i++) {
-    hash = (hash * 31 + seed.charCodeAt(i)) | 0;
+function hashStr(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+// Assign icons with no duplicates. Each article is processed in hash order
+// so its slot is determined independently of display order — adding a new
+// article only displaces others if it lands in an already-taken slot.
+function assignIcons(
+  ids: string[],
+): Map<string, (typeof LOTTIE_ICONS)[number]> {
+  const result = new Map<string, (typeof LOTTIE_ICONS)[number]>();
+  const used = new Set<number>();
+  for (const id of [...ids].sort((a, b) => hashStr(a) - hashStr(b))) {
+    let idx = hashStr(id) % LOTTIE_ICONS.length;
+    while (used.has(idx)) idx = (idx + 1) % LOTTIE_ICONS.length;
+    used.add(idx);
+    result.set(id, LOTTIE_ICONS[idx]);
   }
-  return LOTTIE_ICONS[Math.abs(hash) % LOTTIE_ICONS.length];
+  return result;
 }
 
 // Get recent articles (latest 5, non-draft)
@@ -71,6 +85,8 @@ const recentArticles = await Promise.all(
     };
   }),
 );
+
+const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
 ---
 
 <BaseLayout
@@ -88,7 +104,7 @@ const recentArticles = await Promise.all(
             <>
               {index > 0 && (
                 <li class="article-divider" aria-hidden="true">
-                  <LottieIcon name={pickIcon(article.id)} alt="" size={64} />
+                  <LottieIcon name={iconAssignments.get(article.id)!} alt="" size={64} />
                 </li>
               )}
             <li>

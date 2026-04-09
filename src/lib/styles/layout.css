@@ -29,6 +29,7 @@
 .content-inner {
   margin: var(--inner-content-margins);
   width: calc(100% - 70px); /* Use full container width minus margins */
+  container-type: inline-size;
 }
 
 /* Better content spacing system - headings closer to following content */
@@ -125,59 +126,41 @@
       width: max-content;
     }
 
-    /* 3D paper-fold animation: code blocks "unfold" from beneath the page edge
-       as the user scrolls to them. The left edge is the hinge (page boundary),
-       and the overflow portion swings out from behind like a paper flap. */
+    /* Paper-fold animation: the overflow portion beyond the column boundary
+       "unfolds" from below as the user scrolls to the code block.
+       Uses container query units (100cqi) to know exactly where the column
+       boundary is, so only the overflow portion animates. */
     @supports (animation-timeline: view()) {
       animation: code-unfold linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 80%;
-      transform-origin: left center;
-      will-change: transform;
-
-      /* Fold-line crease: subtle vertical shadow at the column boundary */
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        width: 180px;
-        pointer-events: none;
-        background: linear-gradient(
-          to right,
-          rgba(0, 0, 0, 0.06) 0%,
-          transparent 8px,
-          transparent 100%
-        );
-        opacity: 0;
-        animation: fold-crease-fade linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 60%;
-        z-index: 1;
-      }
+      animation-range: contain 0% contain 15%;
+      will-change: clip-path;
     }
   }
 }
 
-/* Paper-fold unfold animation: rotates from folded-behind to flat */
+/* Paper-fold: reveals the overflow portion from bottom to top.
+   Points 1-2 and 5-6 define the column portion (always visible).
+   Points 3-4 define the overflow top edge, animated from bottom to top. */
 @keyframes code-unfold {
   from {
-    transform: perspective(1200px) rotateY(-50deg);
-    opacity: 0.6;
+    clip-path: polygon(
+      0% 0%,
+      100cqi 0%,
+      100cqi 100%,
+      100% 100%,
+      100% 100%,
+      0% 100%
+    );
   }
   to {
-    transform: perspective(1200px) rotateY(0deg);
-    opacity: 1;
-  }
-}
-
-/* Fold crease shadow: appears during fold and fades as block flattens */
-@keyframes fold-crease-fade {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
+    clip-path: polygon(
+      0% 0%,
+      100cqi 0%,
+      100cqi 0%,
+      100% 0%,
+      100% 100%,
+      0% 100%
+    );
   }
 }

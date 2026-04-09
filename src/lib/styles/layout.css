@@ -141,6 +141,24 @@
         animation-timeline: view();
         animation-range: cover 35% cover 50%;
       }
+
+      /* Scroll arrow: hints that content extends beyond the visible box.
+         Flashes inward 3×, then flips to point outward and settles. */
+      &::after {
+        content: "›";
+        position: absolute;
+        right: 4px;
+        top: 50%;
+        translate: 0 -50%;
+        font-size: 1.4rem;
+        line-height: 1;
+        color: var(--ec-brdCol, rgba(128, 128, 128, 0.5));
+        pointer-events: none;
+        opacity: 0;
+        animation: code-arrow linear both;
+        animation-timeline: view();
+        animation-range: cover 48% cover 80%;
+      }
     }
   }
 }
@@ -153,5 +171,45 @@
   }
   to {
     max-width: calc(100% + 180px);
+  }
+}
+
+/* Arrow hint: flash inward 3 times, flip outward, settle */
+@keyframes code-arrow {
+  0% {
+    opacity: 0;
+    scale: -1 1;
+  }
+  8% {
+    opacity: 0.7;
+    scale: -1 1;
+  }
+  16% {
+    opacity: 0;
+    scale: -1 1;
+  }
+  24% {
+    opacity: 0.7;
+    scale: -1 1;
+  }
+  32% {
+    opacity: 0;
+    scale: -1 1;
+  }
+  40% {
+    opacity: 0.7;
+    scale: -1 1;
+  }
+  48% {
+    opacity: 0;
+    scale: -1 1;
+  }
+  60% {
+    opacity: 0.5;
+    scale: 1 1;
+  }
+  100% {
+    opacity: 0.35;
+    scale: 1 1;
   }
 }

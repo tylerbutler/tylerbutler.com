@@ -32,19 +32,28 @@ const src = `/vids/lottie/${name}.json`;
 <script>
   import lottie from "lottie-web";
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function initLottieIcons() {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  document
-    .querySelectorAll<HTMLElement>(".lottie-icon-wrapper[data-lottie-src]")
-    .forEach((el) => {
-      lottie.loadAnimation({
-        container: el,
-        renderer: "svg",
-        loop: el.dataset.lottieLoop === "true",
-        autoplay: !reduced,
-        path: el.dataset.lottieSrc!,
+    document
+      .querySelectorAll<HTMLElement>(".lottie-icon-wrapper[data-lottie-src]:not([data-lottie-init])")
+      .forEach((el) => {
+        el.dataset.lottieInit = "true";
+        lottie.loadAnimation({
+          container: el,
+          renderer: "svg",
+          loop: el.dataset.lottieLoop === "true",
+          autoplay: !reduced,
+          path: el.dataset.lottieSrc!,
+        });
       });
-    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLottieIcons);
+  } else {
+    initLottieIcons();
+  }
 </script>
 
 <style>

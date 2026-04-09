@@ -6,16 +6,35 @@ import { getArticleUrl } from "../lib/article-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
 import { formatTitle } from "../lib/typography";
 
-// Lottie icons used as decorative dividers between article previews.
+// Constellation lottie icons used as decorative dividers between article previews.
 const LOTTIE_ICONS = [
-  "astronaut",
-  "meteor-rain",
-  "solar-system",
-  "moon",
-  "satellite",
-  "black-hole",
-  "supernova",
-  "observatory",
+  "aquarius",
+  "aries",
+  "berenices-hair",
+  "camelopardus",
+  "cancer",
+  "cepheus",
+  "crater",
+  "crow",
+  "crux",
+  "dolphin",
+  "gemini",
+  "harp",
+  "leo",
+  "libra",
+  "little-bear",
+  "pavo",
+  "pisces",
+  "queen-cassiopeia",
+  "sagittarius",
+  "scorpio",
+  "southern-fish",
+  "taurus",
+  "telescopium",
+  "triangulum-australe",
+  "ursa-minor",
+  "virgo",
+  "volans",
 ] as const;
 
 // Deterministic pick so a given article always gets the same companion icon.
@@ -67,18 +86,6 @@ const recentArticles = await Promise.all(
 
           return (
             <>
-              {index === 0 && (
-                <li class="article-divider" aria-hidden="true">
-                  <LottieIcon name="astronaut" alt="" size={128} />
-                  <LottieIcon name="black-hole" alt="" size={128} />
-                  <LottieIcon name="solar-system" alt="" size={128} />
-                  <LottieIcon name="meteor-rain" alt="" size={128} />
-                  <LottieIcon name="satellite" alt="" size={128} />
-                  <LottieIcon name="moon" alt="" size={128} />
-                  <LottieIcon name="supernova" alt="" size={128} />
-                  <LottieIcon name="observatory" alt="" size={128} />
-                </li>
-              )}
               {index > 0 && (
                 <li class="article-divider" aria-hidden="true">
                   <LottieIcon name={pickIcon(article.id)} alt="" size={64} />

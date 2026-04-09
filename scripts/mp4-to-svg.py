@@ -78,8 +78,17 @@ def extract_inner(svg_path: Path) -> str:
 
 
 def strip_white_paths(content: str) -> str:
-    """Remove near-white filled paths (background rectangles from vtracer)."""
-    return re.sub(r'<path\s+fill="#(?:fff(?:fff)?|fefefe|fdfdfd)"[^/]*/>', "", content)
+    """Remove near-white filled paths (background rectangles from vtracer).
+
+    vtracer outputs fill as a non-first attribute (e.g. <path d="..." fill="#FEFEFE" .../>)
+    and uses uppercase hex, so we match fill anywhere in the element with IGNORECASE.
+    """
+    return re.sub(
+        r'<path\b[^>]*\bfill="#(?:fff(?:fff)?|fefefe|fdfdfd)"[^/]*/>',
+        "",
+        content,
+        flags=re.IGNORECASE,
+    )
 
 
 def assemble_svg(svgs_dir: Path, fps: int, out_path: Path):

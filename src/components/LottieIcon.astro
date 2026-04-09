@@ -30,23 +30,33 @@ const src = `/vids/lottie/${name}.json`;
 ></div>
 
 <script>
-  import lottie from "lottie-web";
+  // lottie-web is UMD-only. Vite may evaluate the factory in a Node context
+  // where `document` is undefined, causing the module to export {}. To work
+  // around this, we use a dynamic import so the module is evaluated in the
+  // browser, and we pre-fetch the JSON ourselves and pass `animationData`
+  // instead of `path` to avoid lottie's internal XHR loader.
 
-  function initLottieIcons() {
+  async function initLottieIcons() {
+    const { default: lottie } = await import("lottie-web");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    document
-      .querySelectorAll<HTMLElement>(".lottie-icon-wrapper[data-lottie-src]:not([data-lottie-init])")
-      .forEach((el) => {
+    const els = document.querySelectorAll<HTMLElement>(
+      ".lottie-icon-wrapper[data-lottie-src]:not([data-lottie-init])",
+    );
+
+    await Promise.all(
+      Array.from(els).map(async (el) => {
         el.dataset.lottieInit = "true";
+        const animationData = await fetch(el.dataset.lottieSrc!).then((r) => r.json());
         lottie.loadAnimation({
           container: el,
           renderer: "svg",
           loop: el.dataset.lottieLoop === "true",
           autoplay: !reduced,
-          path: el.dataset.lottieSrc!,
+          animationData,
         });
-      });
+      }),
+    );
   }
 
   if (document.readyState === "loading") {

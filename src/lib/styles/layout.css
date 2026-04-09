@@ -116,10 +116,10 @@
     position: relative;
     box-sizing: border-box;
     box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.08),
-      0 4px 12px rgba(0, 0, 0, 0.12),
-      0 12px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+      0 2px 4px rgba(0, 0, 0, 0.15),
+      0 6px 16px rgba(0, 0, 0, 0.2),
+      0 16px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 6px;
 
     & pre,
@@ -141,32 +141,41 @@
       animation-range: cover 35% cover 50%;
       will-change: clip-path;
     }
+
+    /* Dark mode: stronger shadow and border for visibility */
+    .dark & {
+      box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.4),
+        0 8px 20px rgba(0, 0, 0, 0.5),
+        0 20px 48px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
   }
 }
 
 /* Paper-fold: geometric fold illusion for the overflow portion.
    6-point polygon: points 1,2,5,6 form the column rectangle (always visible).
-   Points 3,4 define the overflow — they start compressed at the column edge
+   Points 3,4 define the overflow — they start compressed at the container edge
    (folded edge-on) and expand to full width and height (unfolded flat).
-   693px = container-width (763px) minus inner-content-margins (2 × 35px). */
+   728px = content-inner width (693px) + right margin (35px) = site-container edge. */
 @keyframes code-unfold {
   from {
     clip-path: polygon(
       0px 0%,
-      693px 0%,
-      693px 35%,
-      693px 65%,
-      693px 100%,
+      728px 0%,
+      728px 35%,
+      728px 65%,
+      728px 100%,
       0px 100%
     );
   }
   to {
     clip-path: polygon(
       0px 0%,
-      693px 0%,
+      728px 0%,
       100% 0%,
       100% 100%,
-      693px 100%,
+      728px 100%,
       0px 100%
     );
   }

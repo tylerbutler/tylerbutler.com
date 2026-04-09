@@ -137,9 +137,9 @@
 
       /* Elevated shadow + border only on extending blocks */
       box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.15),
-        0 6px 16px rgba(0, 0, 0, 0.2),
-        0 16px 40px rgba(0, 0, 0, 0.15);
+        0 0 4px rgba(0, 0, 0, 0.15),
+        0 0 16px rgba(0, 0, 0, 0.2),
+        0 0 40px rgba(0, 0, 0, 0.15);
       border: 1px solid rgba(0, 0, 0, 0.12);
       border-radius: 6px;
 
@@ -169,9 +169,9 @@
       /* Dark mode: stronger shadow and visible border */
       .dark & {
         box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.4),
-          0 8px 20px rgba(0, 0, 0, 0.5),
-          0 20px 48px rgba(0, 0, 0, 0.4);
+          0 0 6px rgba(0, 0, 0, 0.4),
+          0 0 20px rgba(0, 0, 0, 0.5),
+          0 0 48px rgba(0, 0, 0, 0.4);
         border-color: rgba(255, 255, 255, 0.1);
 
         &::before {

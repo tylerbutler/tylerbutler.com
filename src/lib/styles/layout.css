@@ -157,9 +157,9 @@
           repeating-linear-gradient(
             -45deg,
             transparent,
-            transparent 18px,
-            rgba(255, 255, 255, 0.04) 18px,
-            rgba(255, 255, 255, 0.04) 19px
+            transparent 14px,
+            rgba(255, 255, 255, 0.15) 14px,
+            rgba(255, 255, 255, 0.15) 15px
           );
         animation: fold-lines-fade linear both;
         animation-timeline: view();
@@ -179,9 +179,9 @@
             repeating-linear-gradient(
               -45deg,
               transparent,
-              transparent 18px,
-              rgba(255, 255, 255, 0.06) 18px,
-              rgba(255, 255, 255, 0.06) 19px
+              transparent 14px,
+              rgba(255, 255, 255, 0.2) 14px,
+              rgba(255, 255, 255, 0.2) 15px
             );
         }
       }

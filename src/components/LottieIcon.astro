@@ -67,10 +67,10 @@ const { src, alt, size = 128, playCount = 3, class: className } = Astro.props;
 
         // loopComplete fires reliably after each full pass (loop:true).
         attachPlayOnceObserver(el, {
-          resume: () => anim.play(),
-          play: () => {}, // lottie loops automatically between passes
-          pause: () => anim.pause(),
-          stop: () => anim.stop(),
+          resume: () => { el.dataset.playing = "true"; anim.play(); },
+          play: () => {},
+          pause: () => { el.dataset.playing = "false"; anim.pause(); },
+          stop: () => { el.dataset.playing = "false"; anim.stop(); },
           get isPaused() { return anim.isPaused; },
           onPassComplete: (cb) => anim.addEventListener("loopComplete", cb),
         }, playCount);

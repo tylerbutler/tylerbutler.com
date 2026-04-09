@@ -29,7 +29,6 @@
 .content-inner {
   margin: var(--inner-content-margins);
   width: calc(100% - 70px); /* Use full container width minus margins */
-  container-type: inline-size;
 }
 
 /* Better content spacing system - headings closer to following content */
@@ -118,6 +117,9 @@
     box-sizing: border-box;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
+    /* Column width for clip-path fold animation (parent's computed width) */
+    --column-width: calc(var(--container-width) - 70px);
+
     & pre,
     & code {
       white-space: pre;
@@ -128,7 +130,6 @@
 
     /* Paper-fold animation: the overflow portion beyond the column boundary
        "unfolds" from the right edge of the page as the user scrolls.
-       Uses container query units (100cqi) to know where the column boundary is.
        The clip-path creates a geometric fold illusion: the overflow starts
        vertically compressed at the column edge (as if seen edge-on) and
        expands both rightward and to full height as it unfolds. */
@@ -144,25 +145,26 @@
 /* Paper-fold: geometric fold illusion for the overflow portion.
    6-point polygon: points 1,2,5,6 form the column rectangle (always visible).
    Points 3,4 define the overflow — they start compressed at the column edge
-   (folded edge-on) and expand to full width and height (unfolded flat). */
+   (folded edge-on) and expand to full width and height (unfolded flat).
+   Uses --column-width to identify the column boundary within the code block. */
 @keyframes code-unfold {
   from {
     clip-path: polygon(
       0% 0%,
-      100cqi 0%,
-      100cqi 35%,
-      100cqi 65%,
-      100cqi 100%,
+      var(--column-width) 0%,
+      var(--column-width) 35%,
+      var(--column-width) 65%,
+      var(--column-width) 100%,
       0% 100%
     );
   }
   to {
     clip-path: polygon(
       0% 0%,
-      100cqi 0%,
+      var(--column-width) 0%,
       100% 0%,
       100% 100%,
-      100cqi 100%,
+      var(--column-width) 100%,
       0% 100%
     );
   }

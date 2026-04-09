@@ -1,0 +1,55 @@
+---
+// LottieIcon — renders a Lottie JSON animation from /public/vids/lottie/.
+//
+// Uses lottie-web to load and animate the JSON file client-side.
+// Multiple instances on the same page are all initialized by a single
+// shared module script that queries by data attribute.
+//
+// prefers-reduced-motion: animation is not started if the user has
+// requested reduced motion.
+
+interface Props {
+  name: string;
+  alt: string;
+  size?: number;
+  loop?: boolean;
+  class?: string;
+}
+
+const { name, alt, size = 128, loop = true, class: className } = Astro.props;
+const src = `/vids/lottie/${name}.json`;
+---
+
+<div
+  class:list={["lottie-icon-wrapper", className]}
+  data-lottie-src={src}
+  data-lottie-loop={loop ? "true" : "false"}
+  style={`width:${size}px;height:${size}px`}
+  role="img"
+  aria-label={alt}
+></div>
+
+<script>
+  import lottie from "lottie-web";
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document
+    .querySelectorAll<HTMLElement>(".lottie-icon-wrapper[data-lottie-src]")
+    .forEach((el) => {
+      lottie.loadAnimation({
+        container: el,
+        renderer: "svg",
+        loop: el.dataset.lottieLoop === "true",
+        autoplay: !reduced,
+        path: el.dataset.lottieSrc!,
+      });
+    });
+</script>
+
+<style>
+  .lottie-icon-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>

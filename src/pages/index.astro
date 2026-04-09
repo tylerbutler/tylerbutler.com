@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import AnimatedIcon from "../components/AnimatedIcon.astro";
 import AnimatedSvgIcon from "../components/AnimatedSvgIcon.astro";
+import LottieIcon from "../components/LottieIcon.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getArticleUrl } from "../lib/article-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
@@ -80,6 +81,16 @@ const recentArticles = await Promise.all(
                   <AnimatedSvgIcon name="space-launch-animated" alt="" size={128} />
                   <AnimatedSvgIcon name="supernova-animated" alt="" size={128} />
                   <AnimatedSvgIcon name="uranus-animated" alt="" size={128} />
+                </li>
+                <li class="article-divider" aria-hidden="true">
+                  <LottieIcon name="astronaut" alt="" size={128} />
+                  <LottieIcon name="black-hole" alt="" size={128} />
+                  <LottieIcon name="solar-system" alt="" size={128} />
+                  <LottieIcon name="meteor-rain" alt="" size={128} />
+                  <LottieIcon name="satellite" alt="" size={128} />
+                  <LottieIcon name="moon" alt="" size={128} />
+                  <LottieIcon name="supernova" alt="" size={128} />
+                  <LottieIcon name="observatory" alt="" size={128} />
                 </li>
               )}
               {index > 0 && (

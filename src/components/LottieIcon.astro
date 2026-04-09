@@ -51,7 +51,7 @@ const src = `/vids/lottie/${name}.json`;
         const anim = lottie.loadAnimation({
           container: el,
           renderer: "svg",
-          loop: false,
+          loop: true,
           autoplay: false,
           animationData,
         });
@@ -65,33 +65,26 @@ const src = `/vids/lottie/${name}.json`;
         let plays = 0;
         let onDemand = false;
 
-        const resetToStart = () => anim.goToAndStop(0, true);
-
         const replayOnce = () => {
           if (!anim.isPaused) return;
-          resetToStart();
+          anim.goToAndStop(0, true);
           anim.play();
         };
 
-        anim.addEventListener("complete", () => {
-          if (onDemand) {
-            resetToStart();
-            return;
-          }
-
+        // loopComplete fires reliably after each full pass (loop:true).
+        // After PLAY_COUNT passes, stop and switch to on-demand mode.
+        // In on-demand mode, stop after one pass.
+        anim.addEventListener("loopComplete", () => {
           plays += 1;
-          if (plays < PLAY_COUNT) {
-            resetToStart();
-            anim.play();
-            return;
-          }
+          if (!onDemand && plays < PLAY_COUNT) return;
 
-          // Initial sequence done — rest on frame 0, switch to on-demand mode.
-          onDemand = true;
-          resetToStart();
-          el.style.cursor = "pointer";
-          el.addEventListener("mouseenter", replayOnce);
-          el.addEventListener("click", replayOnce);
+          anim.stop(); // resets to frame 0
+          if (!onDemand) {
+            onDemand = true;
+            el.style.cursor = "pointer";
+            el.addEventListener("mouseenter", replayOnce);
+            el.addEventListener("click", replayOnce);
+          }
         });
 
         const observer = new IntersectionObserver(

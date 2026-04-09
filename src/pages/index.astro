@@ -1,34 +1,30 @@
 ---
 import { getCollection } from "astro:content";
-import AnimatedIcon from "../components/AnimatedIcon.astro";
-import AnimatedSvgIcon from "../components/AnimatedSvgIcon.astro";
 import LottieIcon from "../components/LottieIcon.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getArticleUrl } from "../lib/article-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
 import { formatTitle } from "../lib/typography";
 
-// Decorative animated icons inserted between article previews.
-const ICONS = [
+// Lottie icons used as decorative dividers between article previews.
+const LOTTIE_ICONS = [
   "astronaut",
-  "falling-stars",
-  "galaxy",
-  "launch",
   "meteor-rain",
-  "rocket",
-  "rocket-2",
-  "space-launch",
+  "solar-system",
+  "moon",
+  "satellite",
+  "black-hole",
   "supernova",
-  "uranus",
+  "observatory",
 ] as const;
 
 // Deterministic pick so a given article always gets the same companion icon.
-function pickIcon(seed: string): (typeof ICONS)[number] {
+function pickIcon(seed: string): (typeof LOTTIE_ICONS)[number] {
   let hash = 0;
   for (let i = 0; i < seed.length; i++) {
     hash = (hash * 31 + seed.charCodeAt(i)) | 0;
   }
-  return ICONS[Math.abs(hash) % ICONS.length];
+  return LOTTIE_ICONS[Math.abs(hash) % LOTTIE_ICONS.length];
 }
 
 // Get recent articles (latest 5, non-draft)
@@ -73,16 +69,6 @@ const recentArticles = await Promise.all(
             <>
               {index === 0 && (
                 <li class="article-divider" aria-hidden="true">
-                  <AnimatedSvgIcon name="astronaut-animated" alt="" size={128} />
-                  <AnimatedSvgIcon name="rocket-2-animated" alt="" size={128} />
-                  <AnimatedSvgIcon name="falling-stars-animated" alt="" size={128} />
-                  <AnimatedSvgIcon name="galaxy-animated" alt="" size={128} />
-                  <AnimatedSvgIcon name="meteor-rain-animated" alt="" size={128} />
-                  <AnimatedSvgIcon name="space-launch-animated" alt="" size={128} />
-                  <AnimatedSvgIcon name="supernova-animated" alt="" size={128} />
-                  <AnimatedSvgIcon name="uranus-animated" alt="" size={128} />
-                </li>
-                <li class="article-divider" aria-hidden="true">
                   <LottieIcon name="astronaut" alt="" size={128} />
                   <LottieIcon name="black-hole" alt="" size={128} />
                   <LottieIcon name="solar-system" alt="" size={128} />
@@ -95,12 +81,7 @@ const recentArticles = await Promise.all(
               )}
               {index > 0 && (
                 <li class="article-divider" aria-hidden="true">
-                  <AnimatedIcon
-                    name={pickIcon(article.id)}
-                    alt=""
-                    size={64}
-                    playCount={3}
-                  />
+                  <LottieIcon name={pickIcon(article.id)} alt="" size={64} />
                 </li>
               )}
             <li>

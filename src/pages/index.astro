@@ -13,7 +13,7 @@ const constellationModules = import.meta.glob<string>(
   { query: "?url", import: "default", eager: true },
 );
 
-// name → URL map (e.g. "aquarius" → "/assets/aquarius-Bc3xKL.json")
+// name → URL map (e.g. "aquarius" → "/assets/aquarius.B9uJRUL3.json")
 const constellationUrls: Record<string, string> = Object.fromEntries(
   Object.entries(constellationModules).map(([path, url]) => [
     path.split("/").pop()!.replace(".json", ""),
@@ -88,7 +88,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
             <>
               {index > 0 && (() => {
                 const src = iconAssignments.get(article.id)!;
-                const slug = src.split("/").pop()!.replace(/-[A-Za-z0-9]+\.json$/, "");
+                const slug = src.split("/").pop()!.replace(/\.[A-Za-z0-9_-]+\.json$/, "");
                 return (
                   <li class="article-divider" aria-hidden="true">
                     <ConstellationIcon src={src} slug={slug} size={64} />

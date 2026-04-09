@@ -1,0 +1,54 @@
+---
+import { getConstellationName } from "../lib/constellation-names";
+import LottieIcon from "./LottieIcon.astro";
+
+interface Props {
+  src: string;
+  slug: string;
+  size?: number;
+}
+
+const { src, slug, size = 64 } = Astro.props;
+const name = getConstellationName(slug);
+---
+
+<div class="constellation-icon">
+  <LottieIcon src={src} alt={name} size={size} />
+  <span class="constellation-label" aria-hidden="true">{name}</span>
+</div>
+
+<style>
+  .constellation-icon {
+    position: relative;
+    display: inline-block;
+  }
+
+  .constellation-label {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    font-family: "westgate", "Trajan Pro", "Copperplate", serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--header-accent);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  @keyframes constellation-float {
+    0%, 100% { transform: translate(0, 0); }
+    33%       { transform: translate(1px, -3px); }
+    66%       { transform: translate(-1px, -2px); }
+  }
+
+  .constellation-icon:has(.lottie-icon-wrapper[data-playing="true"]) .constellation-label {
+    animation: constellation-float 3s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .constellation-icon:has(.lottie-icon-wrapper[data-playing="true"]) .constellation-label {
+      animation: none;
+    }
+  }
+</style>

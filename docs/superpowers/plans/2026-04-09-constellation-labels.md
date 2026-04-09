@@ -256,7 +256,7 @@ Replace with:
 ```astro
 {index > 0 && (() => {
   const src = iconAssignments.get(article.id)!;
-  const slug = src.split("/").pop()!.replace(/-[A-Za-z0-9]+\.json$/, "");
+  const slug = src.split("/").pop()!.replace(/\.[A-Za-z0-9_-]+\.json$/, "");
   return (
     <li class="article-divider" aria-hidden="true">
       <ConstellationIcon src={src} slug={slug} size={64} />

@@ -115,12 +115,6 @@
     width: fit-content;
     position: relative;
     box-sizing: border-box;
-    box-shadow:
-      0 2px 4px rgba(0, 0, 0, 0.15),
-      0 6px 16px rgba(0, 0, 0, 0.2),
-      0 16px 40px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 6px;
 
     & pre,
     & code {
@@ -133,22 +127,64 @@
     /* Paper-fold animation: the overflow portion beyond the column boundary
        "unfolds" from the right edge of the page as the user scrolls.
        The clip-path creates a geometric fold illusion: the overflow starts
-       vertically compressed at the column edge (as if seen edge-on) and
+       vertically compressed at the container edge (as if seen edge-on) and
        expands both rightward and to full height as it unfolds. */
     @supports (animation-timeline: view()) {
       animation: code-unfold linear both;
       animation-timeline: view();
       animation-range: cover 35% cover 50%;
       will-change: clip-path;
-    }
 
-    /* Dark mode: stronger shadow and border for visibility */
-    .dark & {
+      /* Elevated shadow + border only on extending blocks */
       box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.4),
-        0 8px 20px rgba(0, 0, 0, 0.5),
-        0 20px 48px rgba(0, 0, 0, 0.4);
-      border-color: rgba(255, 255, 255, 0.1);
+        0 2px 4px rgba(0, 0, 0, 0.15),
+        0 6px 16px rgba(0, 0, 0, 0.2),
+        0 16px 40px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 6px;
+
+      /* Origami fold lines — subtle diagonal creases on the overflow area */
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 728px;
+        right: 0;
+        pointer-events: none;
+        z-index: 3;
+        background:
+          repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 18px,
+            rgba(255, 255, 255, 0.04) 18px,
+            rgba(255, 255, 255, 0.04) 19px
+          );
+        animation: fold-lines-fade linear both;
+        animation-timeline: view();
+        animation-range: cover 35% cover 50%;
+      }
+
+      /* Dark mode: stronger shadow and visible border */
+      .dark & {
+        box-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.4),
+          0 8px 20px rgba(0, 0, 0, 0.5),
+          0 20px 48px rgba(0, 0, 0, 0.4);
+        border-color: rgba(255, 255, 255, 0.1);
+
+        &::before {
+          background:
+            repeating-linear-gradient(
+              -45deg,
+              transparent,
+              transparent 18px,
+              rgba(255, 255, 255, 0.06) 18px,
+              rgba(255, 255, 255, 0.06) 19px
+            );
+        }
+      }
     }
   }
 }
@@ -178,5 +214,15 @@
       728px 100%,
       0px 100%
     );
+  }
+}
+
+/* Fold lines: visible during unfold, fade out as block flattens */
+@keyframes fold-lines-fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

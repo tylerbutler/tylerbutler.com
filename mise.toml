@@ -1,6 +1,2 @@
-[settings]
-node_version_file = true
-
 [tools]
 gh = "latest"
-node = "file:.node-version"

@@ -6,11 +6,11 @@ import tablerLinkedinRaw from "@tabler/icons/outline/brand-linkedin.svg?raw";
 import tablerMailRaw from "@tabler/icons/outline/mail.svg?raw";
 import tablerRssRaw from "@tabler/icons/outline/rss.svg?raw";
 
-// Set explicit size and strip tabler classes; bypasses Astro CSS scoping
+// Strip tabler-specific attributes; sizing handled via .tabler-icon svg CSS
 const cleanTabler = (raw: string) =>
   raw
-    .replace(/\s+width="\d+"/, ' width="16"')
-    .replace(/\s+height="\d+"/, ' height="16"')
+    .replace(/\s+width="\d+"/, "")
+    .replace(/\s+height="\d+"/, "")
     .replace(/ class="[^"]*"/, "");
 
 const tablerGithub = cleanTabler(tablerGithubRaw);
@@ -29,11 +29,11 @@ const tablerRss = cleanTabler(tablerRssRaw);
     <span class="sr-only">GitHub</span>
   </a>
   <a href="mailto:tyler@tylerbutler.com" class="social-link social-link--email" title="Email" rel="me">
-    <Fragment set:html={tablerMail} />
+    <span class="tabler-icon"><Fragment set:html={tablerMail} /></span>
     <span class="sr-only">Email</span>
   </a>
   <a href="/feed.xml" class="social-link social-link--feed" title="Feed">
-    <Fragment set:html={tablerRss} />
+    <span class="tabler-icon"><Fragment set:html={tablerRss} /></span>
     <span class="sr-only">Feed</span>
   </a>
 </div>
@@ -42,15 +42,15 @@ const tablerRss = cleanTabler(tablerRssRaw);
 <div class="social-icons-below social-icons-comparison">
   <span class="comparison-label">Tabler →</span>
   <a href="https://github.com/tylerbutler" class="social-link" title="GitHub (Tabler)" target="_blank" rel="noopener me">
-    <Fragment set:html={tablerGithub} />
+    <span class="tabler-icon"><Fragment set:html={tablerGithub} /></span>
     <span class="sr-only">GitHub (Tabler)</span>
   </a>
   <a href="https://linkedin.com/in/tylerbutler" class="social-link" title="LinkedIn (Tabler)" target="_blank" rel="noopener me">
-    <Fragment set:html={tablerLinkedin} />
+    <span class="tabler-icon"><Fragment set:html={tablerLinkedin} /></span>
     <span class="sr-only">LinkedIn (Tabler)</span>
   </a>
   <a href="https://letterboxd.com/tylerbutler" class="social-link" title="Letterboxd (Tabler)" target="_blank" rel="noopener me">
-    <Fragment set:html={tablerLetterboxd} />
+    <span class="tabler-icon"><Fragment set:html={tablerLetterboxd} /></span>
     <span class="sr-only">Letterboxd (Tabler)</span>
   </a>
 </div>
@@ -86,7 +86,11 @@ const tablerRss = cleanTabler(tablerRssRaw);
     border-radius: 3px;
   }
 
-  .social-icon {
+  .tabler-icon {
+    display: contents;
+  }
+
+  .tabler-icon svg {
     width: 16px;
     height: 16px;
     flex-shrink: 0;

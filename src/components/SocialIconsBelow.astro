@@ -1,58 +1,57 @@
 ---
 // Simple social icons component for positioning below subtitle
 import { Mail, Rss } from "@lucide/astro";
+import tablerGithubRaw from "@tabler/icons/outline/brand-github.svg?raw";
+import tablerLetterboxdRaw from "@tabler/icons/outline/brand-letterboxd.svg?raw";
+import tablerLinkedinRaw from "@tabler/icons/outline/brand-linkedin.svg?raw";
 import Github from "simple-icons-astro/Github";
 
-const socialItems = [
-  {
-    href: "https://github.com/tylerbutler",
-    label: "GitHub",
-    icon: "github",
-    external: true,
-    me: true,
-  },
-  {
-    href: "mailto:tyler@tylerbutler.com",
-    label: "Email",
-    icon: "email",
-    external: false,
-    me: true,
-  },
-  {
-    href: "/feed.xml",
-    label: "Feed",
-    icon: "feed",
-    external: false,
-    me: false,
-  },
-];
+// Strip width/height/class so CSS controls sizing, add social-icon class
+const cleanTabler = (raw: string) =>
+  raw
+    .replace(/ width="\d+"/, "")
+    .replace(/ height="\d+"/, "")
+    .replace(/ class="[^"]*"/, ' class="social-icon"');
+
+const tablerGithub = cleanTabler(tablerGithubRaw);
+const tablerLinkedin = cleanTabler(tablerLinkedinRaw);
+const tablerLetterboxd = cleanTabler(tablerLetterboxdRaw);
 ---
 
 <div class="social-icons-below">
-  {socialItems.map(item => (
-    <a
-      href={item.href}
-      class={`social-link social-link--${item.icon}`}
-      title={item.label}
-      target={item.external ? '_blank' : undefined}
-      rel={[item.external && 'noopener', item.me && 'me'].filter(Boolean).join(' ') || undefined}
-    >
-      {item.icon === 'github' && (
-        <Github class="social-icon" />
-      )}
+  <!-- Current icons -->
+  <a href="https://github.com/tylerbutler" class="social-link social-link--github" title="GitHub (current: simple-icons)" target="_blank" rel="noopener me">
+    <Github class="social-icon" />
+    <span class="sr-only">GitHub</span>
+  </a>
+  <a href="mailto:tyler@tylerbutler.com" class="social-link social-link--email" title="Email" rel="me">
+    <Mail class="social-icon" />
+    <span class="sr-only">Email</span>
+  </a>
+  <a href="/feed.xml" class="social-link social-link--feed" title="Feed">
+    <Rss class="social-icon" />
+    <span class="sr-only">Feed</span>
+  </a>
+</div>
 
-      {item.icon === 'email' && (
-        <Mail class="social-icon" />
-      )}
-
-      {item.icon === 'feed' && (
-        <Rss class="social-icon" />
-      )}
-
-
-      <span class="sr-only">{item.label}</span>
-    </a>
-  ))}
+<!-- TEMPORARY: Tabler icon comparison -->
+<div class="social-icons-below social-icons-comparison">
+  <span class="comparison-label">Tabler →</span>
+  <!-- Tabler: brand-github -->
+  <a href="https://github.com/tylerbutler" class="social-link" title="GitHub (Tabler)" target="_blank" rel="noopener me">
+    <Fragment set:html={tablerGithub} />
+    <span class="sr-only">GitHub (Tabler)</span>
+  </a>
+  <!-- Tabler: brand-linkedin -->
+  <a href="https://linkedin.com/in/tylerbutler" class="social-link" title="LinkedIn (Tabler)" target="_blank" rel="noopener me">
+    <Fragment set:html={tablerLinkedin} />
+    <span class="sr-only">LinkedIn (Tabler)</span>
+  </a>
+  <!-- Tabler: brand-letterboxd -->
+  <a href="https://letterboxd.com/tylerbutler" class="social-link" title="Letterboxd (Tabler)" target="_blank" rel="noopener me">
+    <Fragment set:html={tablerLetterboxd} />
+    <span class="sr-only">Letterboxd (Tabler)</span>
+  </a>
 </div>
 
 <style>
@@ -90,6 +89,12 @@ const socialItems = [
     width: 14px;
     height: 14px;
     flex-shrink: 0;
+  }
+
+  .comparison-label {
+    font-size: 10px;
+    opacity: 0.5;
+    font-family: monospace;
   }
 
   /* Screen reader only text */

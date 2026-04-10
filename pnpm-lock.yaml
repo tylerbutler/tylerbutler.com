@@ -53,6 +53,9 @@ importers:
       '@netlify/api':
         specifier: ^14.0.18
         version: 14.0.18
+      '@tabler/icons':
+        specifier: ^3.41.1
+        version: 3.41.1
       astro:
         specifier: ^6.1.5
         version: 6.1.5(@netlify/blobs@10.7.4)(@types/node@24.9.2)(jiti@2.6.1)(rollup@4.60.1)(terser@5.44.0)(typescript@6.0.2)(yaml@2.8.3)
@@ -1491,6 +1494,9 @@ packages:
     resolution: {integrity: sha512-lVJX6qEgs/4DOcRTpo56tmKzVPtoWAaVbL4hfO7t7NVwl9AAXzQR6cihesW1BmNMPl+bK6dreu2sOKBP2Q9CIA==}
     peerDependencies:
       acorn: ^8.9.0
+
+  '@tabler/icons@3.41.1':
+    resolution: {integrity: sha512-OaRnVbRmH2nHtFeg+RmMJ/7m2oBIF9XCJAUD5gQnMrpK9f05ydj8MZrAf3NZQqOXyxGN1UBL0D5IKLLEUfr74Q==}
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -7467,6 +7473,8 @@ snapshots:
   '@sveltejs/acorn-typescript@1.0.9(acorn@8.15.0)':
     dependencies:
       acorn: 8.15.0
+
+  '@tabler/icons@3.41.1': {}
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 

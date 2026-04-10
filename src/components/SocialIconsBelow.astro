@@ -1,8 +1,6 @@
 ---
 // Simple social icons component for positioning below subtitle
 import tablerGithubRaw from "@tabler/icons/outline/brand-github.svg?raw";
-import tablerLetterboxdRaw from "@tabler/icons/outline/brand-letterboxd.svg?raw";
-import tablerLinkedinRaw from "@tabler/icons/outline/brand-linkedin.svg?raw";
 import tablerMailRaw from "@tabler/icons/outline/mail.svg?raw";
 import tablerRssRaw from "@tabler/icons/outline/rss.svg?raw";
 
@@ -14,44 +12,22 @@ const cleanTabler = (raw: string) =>
     .replace(/ class="[^"]*"/, "");
 
 const tablerGithub = cleanTabler(tablerGithubRaw);
-const tablerLinkedin = cleanTabler(tablerLinkedinRaw);
-const tablerLetterboxd = cleanTabler(tablerLetterboxdRaw);
 const tablerMail = cleanTabler(tablerMailRaw);
 const tablerRss = cleanTabler(tablerRssRaw);
 ---
 
 <div class="social-icons-below">
-  <!-- Lucide/Feather inline GitHub SVG matches outline style -->
-  <a href="https://github.com/tylerbutler" class="social-link social-link--github" title="GitHub" target="_blank" rel="noopener me">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-    </svg>
+  <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me">
+    <span class="tabler-icon"><Fragment set:html={tablerGithub} /></span>
     <span class="sr-only">GitHub</span>
   </a>
-  <a href="mailto:tyler@tylerbutler.com" class="social-link social-link--email" title="Email" rel="me">
+  <a href="mailto:tyler@tylerbutler.com" class="social-link" title="Email" rel="me">
     <span class="tabler-icon"><Fragment set:html={tablerMail} /></span>
     <span class="sr-only">Email</span>
   </a>
-  <a href="/feed.xml" class="social-link social-link--feed" title="Feed">
+  <a href="/feed.xml" class="social-link" title="Feed">
     <span class="tabler-icon"><Fragment set:html={tablerRss} /></span>
     <span class="sr-only">Feed</span>
-  </a>
-</div>
-
-<!-- TEMPORARY: Tabler icon comparison (GitHub, LinkedIn, Letterboxd) -->
-<div class="social-icons-below social-icons-comparison">
-  <span class="comparison-label">Tabler →</span>
-  <a href="https://github.com/tylerbutler" class="social-link" title="GitHub (Tabler)" target="_blank" rel="noopener me">
-    <span class="tabler-icon"><Fragment set:html={tablerGithub} /></span>
-    <span class="sr-only">GitHub (Tabler)</span>
-  </a>
-  <a href="https://linkedin.com/in/tylerbutler" class="social-link" title="LinkedIn (Tabler)" target="_blank" rel="noopener me">
-    <span class="tabler-icon"><Fragment set:html={tablerLinkedin} /></span>
-    <span class="sr-only">LinkedIn (Tabler)</span>
-  </a>
-  <a href="https://letterboxd.com/tylerbutler" class="social-link" title="Letterboxd (Tabler)" target="_blank" rel="noopener me">
-    <span class="tabler-icon"><Fragment set:html={tablerLetterboxd} /></span>
-    <span class="sr-only">Letterboxd (Tabler)</span>
   </a>
 </div>
 
@@ -94,12 +70,6 @@ const tablerRss = cleanTabler(tablerRssRaw);
     width: 16px;
     height: 16px;
     flex-shrink: 0;
-  }
-
-  .comparison-label {
-    font-size: 10px;
-    opacity: 0.5;
-    font-family: monospace;
   }
 
   /* Screen reader only text */

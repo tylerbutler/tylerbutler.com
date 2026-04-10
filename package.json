@@ -35,6 +35,7 @@
     "test:lighthouse:mobile": "lhci autorun --config=lighthouserc.mobile.cjs",
     "test:performance": "npm run test:lighthouse",
     "test:update": "playwright test --update-snapshots",
+    "test:unit": "vitest run --passWithNoTests",
     "test:visual": "playwright test tests/visual"
   },
   "dependencies": {
@@ -89,7 +90,8 @@
     "serve": "^14.2.5",
     "sharp": "^0.34.5",
     "start-server-and-test": "^2.1.3",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
   },
   "packageManager": "pnpm@10.30.0"
 }

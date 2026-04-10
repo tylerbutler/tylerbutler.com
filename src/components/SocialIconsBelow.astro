@@ -1,32 +1,18 @@
 ---
-// Simple social icons component for positioning below subtitle
-import tablerGithubRaw from "@tabler/icons/outline/brand-github.svg?raw";
-import tablerMailRaw from "@tabler/icons/outline/mail.svg?raw";
-import tablerRssRaw from "@tabler/icons/outline/rss.svg?raw";
-
-// Set explicit size and strip tabler classes
-const cleanTabler = (raw: string) =>
-  raw
-    .replace(/\s+width="\d+"/, ' width="16"')
-    .replace(/\s+height="\d+"/, ' height="16"')
-    .replace(/ class="[^"]*"/, "");
-
-const tablerGithub = cleanTabler(tablerGithubRaw);
-const tablerMail = cleanTabler(tablerMailRaw);
-const tablerRss = cleanTabler(tablerRssRaw);
+import { Icon } from "astro-icon/components";
 ---
 
 <div class="social-icons-below">
   <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me">
-    <span class="tabler-icon"><Fragment set:html={tablerGithub} /></span>
+    <Icon name="iconoir:github" aria-hidden="true" />
     <span class="sr-only">GitHub</span>
   </a>
   <a href="mailto:tyler@tylerbutler.com" class="social-link" title="Email" rel="me">
-    <span class="tabler-icon"><Fragment set:html={tablerMail} /></span>
+    <Icon name="iconoir:mail" aria-hidden="true" />
     <span class="sr-only">Email</span>
   </a>
   <a href="/feed.xml" class="social-link" title="Feed">
-    <span class="tabler-icon"><Fragment set:html={tablerRss} /></span>
+    <Icon name="iconoir:rss-feed" aria-hidden="true" />
     <span class="sr-only">Feed</span>
   </a>
 </div>
@@ -62,11 +48,7 @@ const tablerRss = cleanTabler(tablerRssRaw);
     border-radius: 3px;
   }
 
-  .tabler-icon {
-    display: contents;
-  }
-
-  .tabler-icon svg {
+  .social-link [data-icon] {
     width: 16px;
     height: 16px;
     flex-shrink: 0;

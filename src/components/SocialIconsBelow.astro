@@ -4,11 +4,11 @@ import tablerGithubRaw from "@tabler/icons/outline/brand-github.svg?raw";
 import tablerMailRaw from "@tabler/icons/outline/mail.svg?raw";
 import tablerRssRaw from "@tabler/icons/outline/rss.svg?raw";
 
-// Strip tabler-specific attributes; sizing handled via .tabler-icon svg CSS
+// Set explicit size and strip tabler classes
 const cleanTabler = (raw: string) =>
   raw
-    .replace(/\s+width="\d+"/, "")
-    .replace(/\s+height="\d+"/, "")
+    .replace(/\s+width="\d+"/, ' width="16"')
+    .replace(/\s+height="\d+"/, ' height="16"')
     .replace(/ class="[^"]*"/, "");
 
 const tablerGithub = cleanTabler(tablerGithubRaw);

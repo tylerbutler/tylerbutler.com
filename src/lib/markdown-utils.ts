@@ -1,4 +1,5 @@
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
+import { pluginCodeFold } from "./ec-plugins/ec-fold-plugin.ts";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode, {
   type ExpressiveCodeConfig,
@@ -62,7 +63,7 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
       },
     },
   },
-  plugins: [pluginLineNumbers()],
+  plugins: [pluginLineNumbers(), pluginCodeFold()],
   styleOverrides: {
     codeFontFamily: "var(--code-font)",
     codeFontSize: "var(--code-font-size)",

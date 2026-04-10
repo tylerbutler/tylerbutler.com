@@ -17,6 +17,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { downloadFonts } from "./scripts/download-fonts.ts";
 import { optimizeFonts } from "./scripts/optimize-fonts.ts";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
+import { rehypeCodeFold } from "./src/lib/rehype/rehype-code-fold.ts";
 import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
 
 const fontDownloader = () => ({
@@ -119,6 +120,7 @@ export default defineConfig({
           },
         ],
         [rehypeExpressiveCode, expressiveCodeConfig],
+        rehypeCodeFold,
         rehypeMarkBrokenLinks,
       ],
     }),
@@ -157,6 +159,7 @@ export default defineConfig({
         },
       ],
       [rehypeExpressiveCode, expressiveCodeConfig],
+      rehypeCodeFold,
       rehypeMarkBrokenLinks,
     ],
   },

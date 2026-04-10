@@ -14,13 +14,23 @@ export function rehypeCodeFold() {
         return;
       }
 
+      const foldPanel: Element = {
+        type: "element",
+        tagName: "div",
+        properties: {
+          className: ["ec-fold-panel"],
+          ariaHidden: "true",
+        },
+        children: [],
+      };
+
       const wrapper: Element = {
         type: "element",
         tagName: "div",
         properties: {
           className: ["ec-fold-wrapper"],
         },
-        children: [node],
+        children: [node, foldPanel],
       };
 
       parent.children[index] = wrapper;

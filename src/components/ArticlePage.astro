@@ -203,3 +203,8 @@ const isLinkPost = article.data.articleType === "link";
     tocMarker.replaceWith(tocNarrow);
   }
 </script>
+
+<script>
+  import { initCodeFolds } from "../lib/scripts/code-fold.ts";
+  initCodeFolds();
+</script>

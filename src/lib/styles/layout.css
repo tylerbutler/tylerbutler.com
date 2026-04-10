@@ -130,15 +130,23 @@
     overflow: visible;
   }
 
-  .ec-fold-panel {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: 180px;
-    height: 100%;
-    background-color: #0d1117;
+  /* Scroll-driven fold-out animation for wide code blocks.
+     The block unfolds from the left edge as it enters the viewport. */
+  .ec-fold-wrapper.fold-active {
     transform-origin: left center;
-    z-index: 1;
-    pointer-events: none;
+    animation: code-unfold linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+
+  @keyframes code-unfold {
+    from {
+      transform: perspective(1200px) rotateY(-75deg);
+      opacity: 0.2;
+    }
+    to {
+      transform: perspective(1200px) rotateY(0deg);
+      opacity: 1;
+    }
   }
 }

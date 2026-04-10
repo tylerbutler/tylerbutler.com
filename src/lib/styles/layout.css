@@ -107,9 +107,8 @@
     margin-right: calc(50vw - var(--container-width) / 2);
   }
 
-  /* Wide screen code block extension - let content dictate expansion */
+  /* Wide screen code block extension */
   .expressive-code {
-    /* Content-driven width with expansion capability */
     min-width: 100%;
     max-width: calc(100% + 180px);
     width: fit-content;
@@ -123,93 +122,23 @@
       min-width: 100%;
       width: max-content;
     }
+  }
 
-    /* Telescope animation: the code block box itself expands rightward,
-       borders visible throughout, revealing content as it grows.
-       Animation is on the inner frame so its native border/shadow telescope. */
-    @supports (animation-timeline: view()) {
-      will-change: max-width;
-      animation: code-telescope linear both;
-      animation-timeline: view();
-      animation-range: cover 35% cover 50%;
+  .ec-fold-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+  }
 
-      & > .frame,
-      & > figure {
-        max-width: 100%;
-        overflow: clip;
-        animation: code-telescope linear both;
-        animation-timeline: view();
-        animation-range: cover 35% cover 50%;
-      }
-
-      /* Scroll arrow: hints that content extends beyond the visible box.
-         Flashes inward 3×, then flips to point outward and settles. */
-      &::after {
-        content: "›";
-        position: absolute;
-        right: 4px;
-        top: 50%;
-        translate: 0 -50%;
-        font-size: 1.4rem;
-        line-height: 1;
-        color: var(--ec-brdCol, rgba(128, 128, 128, 0.5));
-        pointer-events: none;
-        opacity: 0;
-        animation: code-arrow linear both;
-        animation-timeline: view();
-        animation-range: cover 48% cover 80%;
-      }
-    }
-  }
-}
-
-/* Telescope: box expands from column width to full content width.
-   The border wraps the box at every stage, creating a telescoping effect. */
-@keyframes code-telescope {
-  from {
-    max-width: 100%;
-  }
-  to {
-    max-width: calc(100% + 180px);
-  }
-}
-
-/* Arrow hint: flash inward 3 times, flip outward, settle */
-@keyframes code-arrow {
-  0% {
-    opacity: 0;
-    scale: -1 1;
-  }
-  8% {
-    opacity: 0.7;
-    scale: -1 1;
-  }
-  16% {
-    opacity: 0;
-    scale: -1 1;
-  }
-  24% {
-    opacity: 0.7;
-    scale: -1 1;
-  }
-  32% {
-    opacity: 0;
-    scale: -1 1;
-  }
-  40% {
-    opacity: 0.7;
-    scale: -1 1;
-  }
-  48% {
-    opacity: 0;
-    scale: -1 1;
-  }
-  60% {
-    opacity: 0.5;
-    scale: 1 1;
-  }
-  100% {
-    opacity: 0.35;
-    scale: 1 1;
+  .ec-fold-panel {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 180px;
+    height: 100%;
+    background-color: #0d1117;
+    transform-origin: left center;
+    z-index: 1;
+    pointer-events: none;
   }
 }

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import { ExternalLink, Github } from "@lucide/astro";
+import { ExternalLink } from "@lucide/astro";
+import Github from "simple-icons-astro/Github";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatTitle } from "../../lib/typography";
 
@@ -11,13 +12,14 @@ export async function getStaticPaths() {
   );
 
   return projects.map((project) => ({
-    params: { slug: project.slug },
+    params: { slug: project.id },
     props: { project },
   }));
 }
 
 const { project } = Astro.props;
-const { Content } = await project.render();
+import { render } from "astro:content";
+const { Content } = await render(project);
 ---
 
 <BaseLayout

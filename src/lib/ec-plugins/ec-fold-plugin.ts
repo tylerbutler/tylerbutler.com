@@ -78,7 +78,7 @@ export function pluginCodeFold() {
   testEl.addEventListener("click", function (e) {
     e.preventDefault();
     if (testFolded) {
-      testOri.unfold();
+      testOri.accordion(0);
       testFolded = false;
     } else {
       testOri.accordion(20);
@@ -127,11 +127,24 @@ export function pluginCodeFold() {
     if (ec._oriDomi) return; // already initialized
 
     var rect = ec.getBoundingClientRect();
-    ec.style.height = rect.height + "px";
-    ec.style.width = rect.width + "px";
-    ec.style.overflow = "hidden";
 
-    var ori = new window.OriDomi(ec, {
+    // Wrap the EC block in a plain div. OriDomi is initialized on this
+    // wrapper so that its structural elements (.oridomi-holder, panels,
+    // masks) live *outside* any .expressive-code scope. This prevents
+    // EC's destructive "all: revert" rule from interfering with 3D
+    // transforms. The EC block is cloned into each panel's
+    // .oridomi-content as a child, keeping its own styling intact.
+    var wrapper = document.createElement("div");
+    wrapper.style.cssText =
+      "width:" + rect.width + "px;" +
+      "height:" + rect.height + "px;" +
+      "overflow:hidden;" +
+      "position:relative;" +
+      "cursor:pointer";
+    ec.parentNode.insertBefore(wrapper, ec);
+    wrapper.appendChild(ec);
+
+    var ori = new window.OriDomi(wrapper, {
       vPanels:      3,
       hPanels:      1,
       ripple:       true,
@@ -140,10 +153,9 @@ export function pluginCodeFold() {
       touchEnabled: false,
     });
 
-    // Remove .expressive-code so OriDomi structural elements escape
-    // EC's destructive ".expressive-code * { all: revert }" rule.
-    // Content clones keep the class via OriDomi's class copying.
-    ec.classList.remove("expressive-code");
+    // Store reference on both the original element and the wrapper
+    ec._oriDomi = ori;
+    wrapper._oriDomi = ori;
 
     var isFolded = false;
     setTimeout(function () {
@@ -151,18 +163,17 @@ export function pluginCodeFold() {
       isFolded = true;
     }, 300);
 
-    ec.addEventListener("click", function (e) {
+    wrapper.addEventListener("click", function (e) {
       e.preventDefault();
+      e.stopPropagation();
       if (isFolded) {
-        ori.unfold();
+        ori.accordion(0);
         isFolded = false;
       } else {
         ori.accordion(20);
         isFolded = true;
       }
     });
-
-    ec._oriDomi = ori;
   }
 
   var observer = new IntersectionObserver(function (entries) {

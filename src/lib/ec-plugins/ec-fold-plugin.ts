@@ -1,19 +1,12 @@
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { definePlugin, addClassName } from "@expressive-code/core";
-import { h } from "@expressive-code/core/hast";
 
 /**
  * Threshold in characters — lines longer than this trigger the fold animation.
  * Tuned to roughly match when code overflows a 693px-wide column at typical font size.
  */
 const LONG_LINE_THRESHOLD = 80;
-
-/**
- * Width in pixels of the fold panel that sits at the column edge.
- * Must stay in sync with the CSS and the JS animation.
- */
-const FOLD_PANEL_WIDTH = 180;
 
 /**
  * Read OriDomi source at build time so it can be inlined into the EC jsModule.
@@ -32,99 +25,90 @@ export function pluginCodeFold() {
     name: "CodeFold",
 
     baseStyles: () => `
-      /* Fold-capable blocks get relative positioning for the fold panel */
+      /* The wrapper div we inject from JS clips OriDomi's 3D overflow */
       &.has-long-lines {
-        position: relative;
-        overflow: visible;
-      }
-
-      /* Fold panel: hidden by default, shown on wide screens */
-      .ec-fold-panel {
-        display: none;
-      }
-
-      @media (min-width: 1200px) {
-        &.has-long-lines .ec-fold-panel {
-          display: block;
-          position: absolute;
-          top: 0;
-          left: 100%;
-          width: ${FOLD_PANEL_WIDTH}px;
-          height: 100%;
-          background-color: #0d1117;
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        /* OriDomi creates child elements inside .ec-fold-panel — let them inherit */
-        &.has-long-lines .ec-fold-panel * {
-          all: revert;
-        }
+        /* No special styles needed here — the JS wrapper handles clipping */
       }
     `,
 
     jsModules: [
       // First module: inline OriDomi library (sets window.OriDomi)
       oriDomiSource,
-      // Second module: scroll-driven fold animation using OriDomi
+      // Second module: IntersectionObserver-triggered fold animation on entire code block
       `
-// ── OriDomi scroll-driven fold animation ────────────────────────────
+// ── OriDomi fold animation ──────────────────────────────────────────
 (function initCodeFolds() {
   if (typeof window.OriDomi === "undefined") return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  if (!window.matchMedia("(min-width: 1200px)").matches) return;
 
-  var FOLD_PX = ${FOLD_PANEL_WIDTH};
+  var FOLD_ANGLE = -8;   // gentle fold angle per panel
+  var PANELS     = 6;    // number of vertical panels
+  var UNFOLD_MS  = 1200; // animation duration in ms
 
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function calcProgress(bottom, vh) {
-    var start = vh * 0.65;
-    var end   = vh * 0.5;
-    return Math.max(0, Math.min(1, (start - bottom) / (start - end)));
-  }
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
   document.querySelectorAll(".expressive-code.has-long-lines").forEach(function (ec) {
-    var foldPanel = ec.querySelector(".ec-fold-panel");
-    if (!foldPanel) return;
+    // Capture original height BEFORE OriDomi modifies the DOM
+    var origHeight = ec.offsetHeight;
 
-    // Runtime check: skip blocks that actually fit within parent column
-    var parent = ec.parentElement;
-    if (parent && ec.getBoundingClientRect().width <= parent.clientWidth) {
-      foldPanel.style.display = "none";
-      return;
-    }
+    // Double-wrapper: outer clips 3D overflow, inner absorbs OriDomi's preserve-3d
+    var outerClip = document.createElement("div");
+    outerClip.className = "ec-fold-clip";
+    outerClip.style.cssText = "clip-path:inset(0);overflow:hidden;position:relative;height:" + origHeight + "px";
 
-    // Initialize OriDomi on the fold panel for paper-fold effect
-    var ori = new window.OriDomi(foldPanel, {
-      vPanels: 2,
-      shading: true,
-      speed: 0
+    var innerWrap = document.createElement("div");
+    innerWrap.className = "ec-fold-inner";
+
+    ec.parentNode.insertBefore(outerClip, ec);
+    outerClip.appendChild(innerWrap);
+    innerWrap.appendChild(ec);
+
+    var ori = new window.OriDomi(ec, {
+      vPanels: PANELS, hPanels: 1, speed: 0, shading: false,
     });
 
-    // Initial state: folded closed, code clipped
-    ori.accordion(-90);
-    ec.style.clipPath = "inset(0 " + FOLD_PX + "px 0 0)";
+    // OriDomi creates a clone (hidden original) + holder (visible panels).
+    // The clone takes layout space, pushing the holder below the clip region.
+    // Fix: hide clone, absolutely position holder at top.
+    var clone = ec.querySelector(".oridomi-clone");
+    var holder = ec.querySelector(".oridomi-holder");
+    if (clone) clone.style.display = "none";
+    if (holder) {
+      holder.style.cssText = "position:absolute;top:0;left:0;width:100%";
+    }
+    ec.style.position = "relative";
 
-    var ticking = false;
-    function update() {
-      var rect = ec.getBoundingClientRect();
-      var p = calcProgress(rect.bottom, window.innerHeight);
-      var foldAngle = lerp(-90, 0, p);
-      var clipRight = Math.round(lerp(FOLD_PX, 0, p));
+    // Start fully folded
+    ori.accordion(FOLD_ANGLE);
 
-      ori.accordion(foldAngle);
-      ec.style.clipPath = clipRight > 0
-        ? "inset(0 " + clipRight + "px 0 0)"
-        : "none";
-      ticking = false;
+    var unfolded = false;
+
+    function animateUnfold() {
+      var start = performance.now();
+      function tick(now) {
+        var t = Math.min(1, (now - start) / UNFOLD_MS);
+        ori.accordion(FOLD_ANGLE * (1 - easeOutCubic(t)));
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          ori.accordion(0);
+        }
+      }
+      requestAnimationFrame(tick);
     }
 
-    window.addEventListener("scroll", function () {
-      if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
+    // Trigger unfold once when 10% of the block enters the viewport
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !unfolded) {
+          unfolded = true;
+          observer.disconnect();
+          animateUnfold();
+        }
+      });
+    }, { threshold: 0.1 });
 
-    update();
+    observer.observe(outerClip);
   });
 })();
 `,
@@ -138,12 +122,7 @@ export function pluginCodeFold() {
 
         if (!anyOverflow) return;
 
-        const groupAst = renderData.groupAst;
-        addClassName(groupAst, "has-long-lines");
-
-        // Append fold panel as a child of .expressive-code
-        const foldPanel = h("div", { class: "ec-fold-panel", "aria-hidden": "true" });
-        groupAst.children.push(foldPanel);
+        addClassName(renderData.groupAst, "has-long-lines");
       },
     },
   });

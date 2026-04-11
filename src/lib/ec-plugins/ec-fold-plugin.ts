@@ -41,11 +41,9 @@ export function pluginCodeFold() {
   if (typeof window.OriDomi === "undefined") return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  var FOLD_ANGLE = -8;   // gentle fold angle per panel
-  var PANELS     = 6;    // number of vertical panels
-  var UNFOLD_MS  = 1200; // animation duration in ms
-
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  var FOLD_ANGLE = 20;   // matches oriDomi demo: accordion(20)
+  var PANELS     = 4;    // 4 vertical folds like the demo
+  var UNFOLD_MS  = 1200; // animation speed in ms
 
   document.querySelectorAll(".expressive-code.has-long-lines").forEach(function (ec) {
     // Capture original height BEFORE OriDomi modifies the DOM
@@ -63,8 +61,13 @@ export function pluginCodeFold() {
     outerClip.appendChild(innerWrap);
     innerWrap.appendChild(ec);
 
+    // Init with speed:0 so initial fold is instant
     var ori = new window.OriDomi(ec, {
-      vPanels: PANELS, hPanels: 1, speed: 0, shading: false,
+      vPanels: PANELS,
+      hPanels: 1,
+      speed:   0,
+      ripple:  true,
+      shading: true,
     });
 
     // OriDomi creates a clone (hidden original) + holder (visible panels).
@@ -78,24 +81,10 @@ export function pluginCodeFold() {
     }
     ec.style.position = "relative";
 
-    // Start fully folded
+    // Start fully folded (instant, speed is 0)
     ori.accordion(FOLD_ANGLE);
 
     var unfolded = false;
-
-    function animateUnfold() {
-      var start = performance.now();
-      function tick(now) {
-        var t = Math.min(1, (now - start) / UNFOLD_MS);
-        ori.accordion(FOLD_ANGLE * (1 - easeOutCubic(t)));
-        if (t < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          ori.accordion(0);
-        }
-      }
-      requestAnimationFrame(tick);
-    }
 
     // Trigger unfold once when 10% of the block enters the viewport
     var observer = new IntersectionObserver(function (entries) {
@@ -103,7 +92,8 @@ export function pluginCodeFold() {
         if (entry.isIntersecting && !unfolded) {
           unfolded = true;
           observer.disconnect();
-          animateUnfold();
+          // Switch to animated speed, then unfold to flat
+          ori.setSpeed(UNFOLD_MS).accordion(0);
         }
       });
     }, { threshold: 0.1 });

@@ -86,19 +86,18 @@ export function pluginCodeFold() {
     }
   });
 
-  // ── Code block fold animation ─────────────────────────────────────
-  targets.forEach(function (ec) {
-    // Lock the element to its current dimensions before OriDomi modifies the DOM.
+  // ── Code block fold animation (lazy via IntersectionObserver) ──────
+  // Only initialize OriDomi when a block enters the viewport. This avoids
+  // creating all 3D-cloned DOM at once, preventing Safari GPU memory crashes.
+
+  function initFold(ec) {
+    if (ec._oriDomi) return; // already initialized
+
     var rect = ec.getBoundingClientRect();
     ec.style.height = rect.height + "px";
     ec.style.width = rect.width + "px";
     ec.style.overflow = "hidden";
 
-    // Initialize OriDomi with minimal DOM footprint to avoid Safari crashes.
-    // OriDomi clones the entire content for every panel across all 4 stages,
-    // so EC blocks with many syntax-highlighted spans create massive DOM trees.
-    // hPanels: 1 minimizes unused horizontal stages; shading: false skips
-    // shader overlay elements; touchEnabled: false avoids extra event listeners.
     var ori = new window.OriDomi(ec, {
       vPanels:      3,
       hPanels:      1,
@@ -108,23 +107,17 @@ export function pluginCodeFold() {
       touchEnabled: false,
     });
 
-    // KEY FIX: Remove .expressive-code from the outer wrapper AFTER OriDomi init.
-    // OriDomi copies the source element's classes onto each .oridomi-content div,
-    // so EC content styles (which need .expressive-code ancestor) still apply.
-    // But OriDomi's structural elements (.oridomi-holder, .oridomi-stage,
-    // .oridomi-panel, .oridomi-mask) are NOT inside .oridomi-content, so they
-    // escape EC's destructive ".expressive-code * { all: revert }" rule.
+    // Remove .expressive-code so OriDomi structural elements escape
+    // EC's destructive ".expressive-code * { all: revert }" rule.
+    // Content clones keep the class via OriDomi's class copying.
     ec.classList.remove("expressive-code");
 
-    // Call accordion(20) after a short delay to let OriDomi finish setup,
-    // matching the demo pattern: setTimeout(() => demos[0].accordion(30), 1000)
     var isFolded = false;
     setTimeout(function () {
       ori.accordion(20);
       isFolded = true;
-    }, 500);
+    }, 300);
 
-    // Click to toggle fold/unfold
     ec.addEventListener("click", function (e) {
       e.preventDefault();
       if (isFolded) {
@@ -135,6 +128,21 @@ export function pluginCodeFold() {
         isFolded = true;
       }
     });
+
+    ec._oriDomi = ori;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        initFold(entry.target);
+        observer.unobserve(entry.target); // one-shot: init once, keep alive
+      }
+    });
+  }, { rootMargin: "200px 0px" }); // init slightly before entering viewport
+
+  targets.forEach(function (ec) {
+    observer.observe(ec);
   });
 })();
 `,

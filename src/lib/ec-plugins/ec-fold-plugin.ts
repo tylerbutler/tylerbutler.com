@@ -113,8 +113,8 @@ export function pluginCodeFold() {
     ec.classList.remove("expressive-code");
 
     // Fix vertical misalignment: the site's ".article-content * + *" lobotomized
-    // owl selector adds margin-top to OriDomi's nested panels. Reset it.
-    ec.querySelectorAll(".oridomi-panel, .oridomi-mask, .oridomi-stage").forEach(function (el) {
+    // owl selector adds margin-top to OriDomi's internal elements. Reset on all.
+    ec.querySelectorAll("[class*='oridomi-']").forEach(function (el) {
       el.style.margin = "0";
     });
 

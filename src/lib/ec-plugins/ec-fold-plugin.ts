@@ -86,6 +86,39 @@ export function pluginCodeFold() {
     }
   });
 
+  // Inject a style tag to reset margins/padding on all OriDomi elements and
+  // their descendants. The site's ".article-content * + *" owl selector adds
+  // margin-top to adjacent siblings, which breaks OriDomi's panel alignment.
+  // In Safari, the cascade between "all: revert" and the owl selector resolves
+  // differently than Chromium, so we need an explicit !important override.
+  var fixStyle = document.createElement("style");
+  fixStyle.textContent = [
+    "/* Reset all spacing inside OriDomi wrappers */",
+    ".oridomi-active * + * {",
+    "  margin-top: 0 !important;",
+    "}",
+    ".oridomi-active .oridomi-holder,",
+    ".oridomi-active .oridomi-clone,",
+    ".oridomi-active .oridomi-stage,",
+    ".oridomi-active .oridomi-panel,",
+    ".oridomi-active .oridomi-mask,",
+    ".oridomi-active .oridomi-content,",
+    ".oridomi-active [class*='oridomi-shader'] {",
+    "  margin: 0 !important;",
+    "  padding: 0 !important;",
+    "}",
+    "/* Fold-line visual cues: subtle border between panels */",
+    ".oridomi-active .oridomi-panel-v {",
+    "  border-left: 1px solid rgba(0, 0, 0, 0.12);",
+    "  box-sizing: border-box;",
+    "}",
+    "/* Boost shader visibility for clearer fold depth */",
+    ".oridomi-active [class*='oridomi-shader'] {",
+    "  opacity: 0.18 !important;",
+    "}",
+  ].join("\\n");
+  document.head.appendChild(fixStyle);
+
   // ── Code block fold animation (lazy via IntersectionObserver) ──────
   // Only initialize OriDomi when a block enters the viewport. This avoids
   // creating all 3D-cloned DOM at once, preventing Safari GPU memory crashes.
@@ -103,7 +136,7 @@ export function pluginCodeFold() {
       hPanels:      1,
       ripple:       true,
       speed:        700,
-      shading:      false,
+      shading:      true,
       touchEnabled: false,
     });
 
@@ -111,12 +144,6 @@ export function pluginCodeFold() {
     // EC's destructive ".expressive-code * { all: revert }" rule.
     // Content clones keep the class via OriDomi's class copying.
     ec.classList.remove("expressive-code");
-
-    // Fix vertical misalignment: the site's ".article-content * + *" lobotomized
-    // owl selector adds margin-top to OriDomi's internal elements. Reset on all.
-    ec.querySelectorAll("[class*='oridomi-']").forEach(function (el) {
-      el.style.margin = "0";
-    });
 
     var isFolded = false;
     setTimeout(function () {

@@ -116,6 +116,14 @@ export function pluginCodeFold() {
     ".oridomi-active [class*='oridomi-shader'] {",
     "  opacity: 0.18 !important;",
     "}",
+    "/* Ensure 3D context in Safari (webkit prefix) */",
+    ".oridomi-active,",
+    ".oridomi-active .oridomi-holder,",
+    ".oridomi-active .oridomi-stage,",
+    ".oridomi-active .oridomi-panel {",
+    "  -webkit-transform-style: preserve-3d !important;",
+    "  transform-style: preserve-3d !important;",
+    "}",
   ].join("\\n");
   document.head.appendChild(fixStyle);
 
@@ -128,23 +136,45 @@ export function pluginCodeFold() {
 
     var rect = ec.getBoundingClientRect();
 
-    // Wrap the EC block in a plain div. OriDomi is initialized on this
-    // wrapper so that its structural elements (.oridomi-holder, panels,
-    // masks) live *outside* any .expressive-code scope. This prevents
-    // EC's destructive "all: revert" rule from interfering with 3D
-    // transforms. The EC block is cloned into each panel's
-    // .oridomi-content as a child, keeping its own styling intact.
-    var wrapper = document.createElement("div");
-    wrapper.style.cssText =
+    // Extract visual properties from the EC block to build a matching proxy.
+    var codeEl = ec.querySelector("code");
+    var preEl = ec.querySelector("pre");
+    var bgColor = preEl
+      ? getComputedStyle(preEl).backgroundColor
+      : "#1e293b";
+    var textColor = codeEl
+      ? getComputedStyle(codeEl).color
+      : "#e2e8f0";
+    var fontSize = codeEl
+      ? getComputedStyle(codeEl).fontSize
+      : "14px";
+    var lineHeight = codeEl
+      ? getComputedStyle(codeEl).lineHeight
+      : "1.6";
+    var codeText = codeEl ? codeEl.textContent : "";
+
+    // Build a simple proxy <pre> that looks like the code block but has no
+    // .expressive-code classes. OriDomi folds this reliably (proven by the
+    // test element) because it's free of EC's "all: revert" interference.
+    var proxy = document.createElement("pre");
+    proxy.style.cssText =
       "width:" + rect.width + "px;" +
       "height:" + rect.height + "px;" +
-      "overflow:hidden;" +
-      "position:relative;" +
-      "cursor:pointer";
-    ec.parentNode.insertBefore(wrapper, ec);
-    wrapper.appendChild(ec);
+      "margin:0;padding:1rem;box-sizing:border-box;" +
+      "overflow:hidden;white-space:pre;cursor:pointer;" +
+      "background:" + bgColor + ";" +
+      "color:" + textColor + ";" +
+      "font-size:" + fontSize + ";" +
+      "line-height:" + lineHeight + ";" +
+      "font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,monospace;" +
+      "border-radius:8px";
+    proxy.textContent = codeText;
 
-    var ori = new window.OriDomi(wrapper, {
+    // Insert proxy before the EC block, hide the EC block
+    ec.parentNode.insertBefore(proxy, ec);
+    ec.style.display = "none";
+
+    var ori = new window.OriDomi(proxy, {
       vPanels:      3,
       hPanels:      1,
       ripple:       true,
@@ -153,9 +183,8 @@ export function pluginCodeFold() {
       touchEnabled: false,
     });
 
-    // Store reference on both the original element and the wrapper
     ec._oriDomi = ori;
-    wrapper._oriDomi = ori;
+    proxy._ecBlock = ec;
 
     var isFolded = false;
     setTimeout(function () {
@@ -163,16 +192,33 @@ export function pluginCodeFold() {
       isFolded = true;
     }, 300);
 
-    wrapper.addEventListener("click", function (e) {
+    // Click toggles between folded proxy and original scrollable EC block
+    proxy.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
       if (isFolded) {
+        // Unfold: animate proxy flat, then swap to real EC block
         ori.accordion(0);
         isFolded = false;
+        setTimeout(function () {
+          proxy.style.display = "none";
+          ec.style.display = "";
+        }, 750); // slightly longer than animation speed (700ms)
       } else {
         ori.accordion(20);
         isFolded = true;
       }
+    });
+
+    // Click on real EC block re-folds
+    ec.addEventListener("click", function (e) {
+      // Don't intercept clicks on interactive elements (copy button, links)
+      if (e.target.closest("button, a")) return;
+      e.preventDefault();
+      ec.style.display = "none";
+      proxy.style.display = "";
+      ori.accordion(20);
+      isFolded = true;
     });
   }
 

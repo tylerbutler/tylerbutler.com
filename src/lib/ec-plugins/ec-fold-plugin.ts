@@ -36,14 +36,9 @@ export function pluginCodeFold() {
       oriDomiSource,
       // Second module: IntersectionObserver-triggered fold animation on entire code block
       `
-// ── OriDomi fold animation ──────────────────────────────────────────
+// ── OriDomi drag-to-fold on code blocks ─────────────────────────────
 (function initCodeFolds() {
   if (typeof window.OriDomi === "undefined") return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  var FOLD_ANGLE = 20;   // matches oriDomi demo: accordion(20)
-  var PANELS     = 4;    // 4 vertical folds like the demo
-  var UNFOLD_MS  = 1200; // animation speed in ms
 
   document.querySelectorAll(".expressive-code.has-long-lines").forEach(function (ec) {
     // Capture original height BEFORE OriDomi modifies the DOM
@@ -61,17 +56,17 @@ export function pluginCodeFold() {
     outerClip.appendChild(innerWrap);
     innerWrap.appendChild(ec);
 
-    // Init with speed:0 so initial fold is instant
+    // OriDomi with touch/drag enabled — no programmatic animation
     var ori = new window.OriDomi(ec, {
-      vPanels: PANELS,
-      hPanels: 1,
-      speed:   0,
-      ripple:  true,
-      shading: true,
+      vPanels:      4,
+      hPanels:      1,
+      speed:        700,
+      ripple:       true,
+      shading:      true,
+      touchEnabled: true,
     });
 
-    // OriDomi creates a clone (hidden original) + holder (visible panels).
-    // The clone takes layout space, pushing the holder below the clip region.
+    // OriDomi creates a clone + holder that break layout.
     // Fix: hide clone, absolutely position holder at top.
     var clone = ec.querySelector(".oridomi-clone");
     var holder = ec.querySelector(".oridomi-holder");
@@ -80,25 +75,6 @@ export function pluginCodeFold() {
       holder.style.cssText = "position:absolute;top:0;left:0;width:100%";
     }
     ec.style.position = "relative";
-
-    // Start fully folded (instant, speed is 0)
-    ori.accordion(FOLD_ANGLE);
-
-    var unfolded = false;
-
-    // Trigger unfold once when 10% of the block enters the viewport
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting && !unfolded) {
-          unfolded = true;
-          observer.disconnect();
-          // Switch to animated speed, then unfold to flat
-          ori.setSpeed(UNFOLD_MS).accordion(0);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    observer.observe(outerClip);
   });
 })();
 `,

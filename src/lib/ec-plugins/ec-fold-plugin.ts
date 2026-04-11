@@ -94,13 +94,18 @@ export function pluginCodeFold() {
     ec.style.width = rect.width + "px";
     ec.style.overflow = "hidden";
 
-    // Initialize OriDomi matching the first demo: 5 vertical panels, ripple enabled
+    // Initialize OriDomi with minimal DOM footprint to avoid Safari crashes.
+    // OriDomi clones the entire content for every panel across all 4 stages,
+    // so EC blocks with many syntax-highlighted spans create massive DOM trees.
+    // hPanels: 1 minimizes unused horizontal stages; shading: false skips
+    // shader overlay elements; touchEnabled: false avoids extra event listeners.
     var ori = new window.OriDomi(ec, {
-      vPanels:      5,
+      vPanels:      3,
+      hPanels:      1,
       ripple:       true,
       speed:        700,
-      shading:      true,
-      touchEnabled: true,
+      shading:      false,
+      touchEnabled: false,
     });
 
     // KEY FIX: Remove .expressive-code from the outer wrapper AFTER OriDomi init.

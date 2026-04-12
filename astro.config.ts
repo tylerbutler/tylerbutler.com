@@ -18,6 +18,7 @@ import { downloadFonts } from "./scripts/download-fonts.ts";
 import { optimizeFonts } from "./scripts/optimize-fonts.ts";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
 import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
+import { viteDotLottie } from "./src/lib/vite-plugin-dotlottie.ts";
 
 const fontDownloader = () => ({
   name: "font-downloader",
@@ -175,6 +176,7 @@ export default defineConfig({
       ],
     },
     plugins: [
+      viteDotLottie(),
       // Only generate bundle analysis in production builds
       process.env.NODE_ENV === "production" &&
         visualizer({

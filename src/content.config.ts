@@ -12,7 +12,7 @@ const articles = defineCollection({
       title: z.string(),
       date: z.coerce.date(),
       tags: z.array(z.string()).optional(),
-      slug: z.string(),
+      slug: z.string().optional(),
       excerpt: z.string().optional(),
       draft: z.boolean().default(false),
       link: z.string().optional(),

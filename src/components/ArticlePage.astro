@@ -7,6 +7,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getArticleUrl } from "../lib/article-utils";
 import { formatTitle } from "../lib/typography";
 import "../lib/styles/article-page.css";
+import KudosButton from "./KudosButton.astro";
 
 interface Props {
   article: CollectionEntry<"articles">;
@@ -147,16 +148,7 @@ const kudosPath = getArticleUrl(article);
         </div>
       )}
 
-      <div class="article-kudos">
-        <span class="article-kudos-label">I like this</span>
-        <button
-          class="tinylytics_kudos"
-          data-path={kudosPath}
-          type="button"
-          aria-label="I like this"
-        ></button>
-        <span class="kudos-suffix" hidden>— and so do <span class="kudos-count"></span> others</span>
-      </div>
+      <KudosButton path={kudosPath} variant="article" />
     </article>
 
     {/* TOC for medium+ screens - sidebar on right */}

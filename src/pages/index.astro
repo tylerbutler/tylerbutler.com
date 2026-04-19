@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ConstellationIcon from "../components/ConstellationIcon.astro";
+import KudosButton from "../components/KudosButton.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getArticleUrl } from "../lib/article-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
@@ -118,16 +119,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
                   {article.isTruncated && (
                     <a href={getArticleUrl(article)} class="read-more-link">Read More →</a>
                   )}
-                  <span class="preview-kudos">
-                    <span class="preview-kudos-label">I like this</span>
-                    <button
-                      class="tinylytics_kudos"
-                      data-path={getArticleUrl(article)}
-                      type="button"
-                      aria-label="I like this"
-                    ></button>
-                    <span class="kudos-suffix" hidden>— and so do <span class="kudos-count"></span> others</span>
-                  </span>
+                  <KudosButton path={getArticleUrl(article)} variant="preview" />
                 </p>
               </article>
             </li>

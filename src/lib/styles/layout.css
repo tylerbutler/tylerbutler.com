@@ -79,15 +79,6 @@
       text-decoration: underline;
     }
   }
-
-  & p {
-    margin: 0;
-  }
-
-  & .site-hits {
-    margin-top: 4px;
-    opacity: 0.75;
-  }
 }
 
 /* Dark theme footer - match header background */

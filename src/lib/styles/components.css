@@ -258,3 +258,12 @@ table {
   color: white;
   border-color: var(--accent);
 }
+
+.kudos-suffix {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.kudos-suffix[hidden] {
+  display: none;
+}

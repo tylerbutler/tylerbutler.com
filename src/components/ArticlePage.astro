@@ -148,13 +148,14 @@ const kudosPath = getArticleUrl(article);
       )}
 
       <div class="article-kudos">
+        <span class="article-kudos-label">I like this</span>
         <button
           class="tinylytics_kudos"
           data-path={kudosPath}
           type="button"
           aria-label="I like this"
         ></button>
-        <span class="article-kudos-label">I like this</span>
+        <span class="kudos-suffix" hidden>— and so do <span class="kudos-count"></span> others</span>
       </div>
     </article>
 

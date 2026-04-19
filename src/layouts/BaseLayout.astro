@@ -63,24 +63,35 @@ const {
     <FootnoteScript/>
     <BrokenLinkTooltip/>
     <script>
-      // Hide tinylytics kudos count unless it's greater than this threshold.
-      // The rocket emoji is rendered via a CSS ::before pseudo-element, so
-      // clearing the button's text content still leaves the icon visible.
+      // The rocket emoji is a ::before pseudo-element, so clearing the button's
+      // text never hides it. When tinylytics injects a count, we always strip it
+      // from the button and — if it clears the threshold — re-render it as
+      // "— and so do N others" in the sibling suffix span.
       const KUDOS_THRESHOLD = 10;
 
-      function updateKudosVisibility(btn: HTMLElement) {
+      function updateKudos(btn: HTMLElement) {
         const text = btn.textContent?.trim() ?? "";
+        const parent = btn.parentElement;
+        const suffix = parent?.querySelector<HTMLElement>(".kudos-suffix") ?? null;
+        const countEl = parent?.querySelector<HTMLElement>(".kudos-count") ?? null;
         const match = text.match(/\d+/);
-        if (!match) return;
+        if (!match) {
+          if (suffix) suffix.hidden = true;
+          return;
+        }
         const count = Number.parseInt(match[0], 10);
-        if (count <= KUDOS_THRESHOLD && text.length > 0) {
-          btn.textContent = "";
+        if (text.length > 0) btn.textContent = "";
+        if (count > KUDOS_THRESHOLD && suffix && countEl) {
+          countEl.textContent = String(count);
+          suffix.hidden = false;
+        } else if (suffix) {
+          suffix.hidden = true;
         }
       }
 
       for (const btn of document.querySelectorAll<HTMLElement>(".tinylytics_kudos")) {
-        updateKudosVisibility(btn);
-        const observer = new MutationObserver(() => updateKudosVisibility(btn));
+        updateKudos(btn);
+        const observer = new MutationObserver(() => updateKudos(btn));
         observer.observe(btn, { childList: true, characterData: true, subtree: true });
       }
     </script>

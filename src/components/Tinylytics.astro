@@ -1,28 +1,31 @@
 ---
-interface Props {
-  embedCode: string;
-  kudos?: boolean | "custom";
-  hits?: boolean | "unique";
-  webmention?: boolean;
+type Props =
+  | { embedCode: string; webmention: true; kudos?: never; hits?: never }
+  | {
+      embedCode: string;
+      webmention?: false;
+      kudos?: boolean | "custom";
+      hits?: boolean | "unique";
+    };
+
+const props = Astro.props;
+const { embedCode } = props;
+
+let webmentionHref: string | null = null;
+let scriptSrc: string | null = null;
+
+if (props.webmention === true) {
+  webmentionHref = `https://tinylytics.app/webmention/${embedCode}`;
+} else {
+  const flags: string[] = [];
+  if (props.kudos === "custom") flags.push("kudos=custom");
+  else if (props.kudos === true) flags.push("kudos");
+  if (props.hits === "unique") flags.push("hits=unique");
+  else if (props.hits === true) flags.push("hits");
+  const query = flags.length > 0 ? `?${flags.join("&")}` : "";
+  scriptSrc = `https://tinylytics.app/embed/${embedCode}.js${query}`;
 }
-
-const {
-  embedCode,
-  kudos = false,
-  hits = false,
-  webmention = false,
-} = Astro.props;
-
-const flags: string[] = [];
-if (kudos === "custom") flags.push("kudos=custom");
-else if (kudos === true) flags.push("kudos");
-if (hits === "unique") flags.push("hits=unique");
-else if (hits === true) flags.push("hits");
-
-const query = flags.length > 0 ? `?${flags.join("&")}` : "";
-const scriptSrc = `https://tinylytics.app/embed/${embedCode}.js${query}`;
-const webmentionHref = `https://tinylytics.app/webmention/${embedCode}`;
 ---
 
-{webmention && <link rel="webmention" href={webmentionHref} />}
-<script src={scriptSrc} defer is:inline></script>
+{webmentionHref && <link rel="webmention" href={webmentionHref} />}
+{scriptSrc && <script src={scriptSrc} defer is:inline />}

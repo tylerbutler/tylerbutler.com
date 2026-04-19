@@ -119,13 +119,13 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
                     <a href={getArticleUrl(article)} class="read-more-link">Read More →</a>
                   )}
                   <span class="preview-kudos">
-                    <span class="preview-kudos-label">I like this</span>
                     <button
                       class="tinylytics_kudos"
                       data-path={getArticleUrl(article)}
                       type="button"
                       aria-label="I like this"
                     ></button>
+                    <span class="preview-kudos-label">I like this</span>
                   </span>
                 </p>
               </article>

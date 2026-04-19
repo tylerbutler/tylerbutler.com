@@ -232,23 +232,6 @@
   font-style: italic;
 }
 
-.article-kudos .tinylytics_kudos {
-  font: inherit;
-  color: var(--text);
-  background: var(--code-bg);
-  border: 1px solid var(--text-light);
-  border-radius: 4px;
-  padding: 4px 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.article-kudos .tinylytics_kudos:hover {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
-
 .tag {
   display: inline-block;
   background: var(--code-bg);

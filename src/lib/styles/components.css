@@ -229,3 +229,32 @@ table {
 .dark .expressive-code [data-tab-bar] {
   background-color: #1f2328 !important;
 }
+
+/* Tinylytics kudos button — shared across article and homepage contexts.
+   Pseudo-element keeps the rocket even if the script rewrites innerHTML. */
+.tinylytics_kudos {
+  font: inherit;
+  color: var(--text);
+  background: var(--code-bg);
+  border: 1px solid var(--text-light);
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tinylytics_kudos::before {
+  content: "🚀";
+}
+
+/* Count rendered by tinylytics sits inside the button as a text node;
+   a small gap separates it from the rocket pseudo-element. */
+.tinylytics_kudos:not(:empty)::before {
+  margin-right: 0.35em;
+}
+
+.tinylytics_kudos:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}

@@ -62,5 +62,27 @@ const {
     </div>
     <FootnoteScript/>
     <BrokenLinkTooltip/>
+    <script>
+      // Hide tinylytics kudos count unless it's greater than this threshold.
+      // The rocket emoji is rendered via a CSS ::before pseudo-element, so
+      // clearing the button's text content still leaves the icon visible.
+      const KUDOS_THRESHOLD = 10;
+
+      function updateKudosVisibility(btn: HTMLElement) {
+        const text = btn.textContent?.trim() ?? "";
+        const match = text.match(/\d+/);
+        if (!match) return;
+        const count = Number.parseInt(match[0], 10);
+        if (count <= KUDOS_THRESHOLD && text.length > 0) {
+          btn.textContent = "";
+        }
+      }
+
+      for (const btn of document.querySelectorAll<HTMLElement>(".tinylytics_kudos")) {
+        updateKudosVisibility(btn);
+        const observer = new MutationObserver(() => updateKudosVisibility(btn));
+        observer.observe(btn, { childList: true, characterData: true, subtree: true });
+      }
+    </script>
   </body>
 </html>

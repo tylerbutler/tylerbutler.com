@@ -148,8 +148,13 @@ const kudosPath = getArticleUrl(article);
       )}
 
       <div class="article-kudos">
-        <span class="article-kudos-label">Enjoyed this?</span>
-        <button class="tinylytics_kudos" data-path={kudosPath} type="button"></button>
+        <span class="article-kudos-label">I like this</span>
+        <button
+          class="tinylytics_kudos"
+          data-path={kudosPath}
+          type="button"
+          aria-label="I like this"
+        ></button>
       </div>
     </article>
 

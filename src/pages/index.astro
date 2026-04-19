@@ -118,7 +118,15 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
                   {article.isTruncated && (
                     <a href={getArticleUrl(article)} class="read-more-link">Read More →</a>
                   )}
-                  <button class="tinylytics_kudos" data-path={getArticleUrl(article)} type="button"></button>
+                  <span class="preview-kudos">
+                    <span class="preview-kudos-label">I like this</span>
+                    <button
+                      class="tinylytics_kudos"
+                      data-path={getArticleUrl(article)}
+                      type="button"
+                      aria-label="I like this"
+                    ></button>
+                  </span>
                 </p>
               </article>
             </li>
@@ -298,5 +306,17 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   .preview-actions :global(.tinylytics_kudos) {
     font-size: 13px;
     padding: 2px 8px;
+  }
+
+  .preview-kudos {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+
+  .preview-kudos-label {
+    font-size: 13px;
+    color: var(--text-light);
+    font-style: italic;
   }
 </style>

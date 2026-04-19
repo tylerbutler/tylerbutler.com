@@ -4,6 +4,7 @@ import { ExternalLink } from "@lucide/astro";
 import type { TocItem } from "astro-toc";
 import { TOC } from "astro-toc";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getArticleUrl } from "../lib/article-utils";
 import { formatTitle } from "../lib/typography";
 import "../lib/styles/article-page.css";
 
@@ -78,6 +79,7 @@ function getAgePeriod(year: number): string {
 
 const agePeriod = shouldShowAgeAside ? getAgePeriod(articleYear) : null;
 const isLinkPost = article.data.articleType === "link";
+const kudosPath = getArticleUrl(article);
 ---
 
 <BaseLayout
@@ -144,6 +146,11 @@ const isLinkPost = article.data.articleType === "link";
           ))}
         </div>
       )}
+
+      <div class="article-kudos">
+        <span class="article-kudos-label">Enjoyed this?</span>
+        <button class="tinylytics_kudos" data-path={kudosPath} type="button"></button>
+      </div>
     </article>
 
     {/* TOC for medium+ screens - sidebar on right */}

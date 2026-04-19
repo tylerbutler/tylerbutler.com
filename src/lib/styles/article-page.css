@@ -217,6 +217,38 @@
   margin: 1.5em 0;
 }
 
+.article-kudos {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin: 2em 0;
+  padding-top: 1.5em;
+  border-top: 1px dashed var(--text-light);
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.article-kudos-label {
+  font-style: italic;
+}
+
+.article-kudos .tinylytics_kudos {
+  font: inherit;
+  color: var(--text);
+  background: var(--code-bg);
+  border: 1px solid var(--text-light);
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.article-kudos .tinylytics_kudos:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
 .tag {
   display: inline-block;
   background: var(--code-bg);

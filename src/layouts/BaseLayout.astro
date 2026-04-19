@@ -3,6 +3,7 @@ import BrokenLinkTooltip from "../components/BrokenLinkTooltip.astro";
 import Footer from "../components/Footer.astro";
 import FootnoteScript from "../components/FootnotesScript.astro";
 import Header from "../components/Header.astro";
+import Tinylytics from "../components/Tinylytics.astro";
 import "../lib/styles/global.css";
 import "../styles/fonts.css";
 
@@ -43,12 +44,16 @@ const {
     <link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
     <!-- IndieWeb endpoints -->
     <link rel="micropub" href="https://tylerbutler.com/micropub" />
-    <link rel="webmention" href="https://tinylytics.app/webmention/7vP3rWZsVnwMyLpSbFxs" />
     <!-- rel="me" for IndieAuth identity verification -->
     <link rel="me" href="https://github.com/tylerbutler" />
     <link rel="me" href="mailto:tyler@tylerbutler.com" />
-    <!-- Analytics -->
-    <script src="https://tinylytics.app/embed/7vP3rWZsVnwMyLpSbFxs.js?kudos=custom&hits" defer></script>
+    <!-- Analytics + webmention endpoint -->
+    <Tinylytics
+      embedCode="7vP3rWZsVnwMyLpSbFxs"
+      kudos="custom"
+      hits
+      webmention
+    />
   </head>
   <body>
     <div class="site-container">

@@ -73,5 +73,16 @@ const wrapperClass = variant === "article" ? "article-kudos" : "preview-kudos";
       characterData: true,
       subtree: true,
     });
+
+    btn.addEventListener("click", () => {
+      btn.classList.remove("is-launching");
+      void btn.offsetWidth;
+      btn.classList.add("is-launching");
+    });
+    btn.addEventListener("animationend", (event) => {
+      if (event.animationName === "kudos-rocket-launch") {
+        btn.classList.remove("is-launching");
+      }
+    });
   }
 </script>

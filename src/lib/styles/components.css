@@ -271,7 +271,7 @@ table {
     opacity: 0;
   }
   41% {
-    transform: translate(0, 2em);
+    transform: translate(-2em, 2em);
     opacity: 0;
   }
   100% {

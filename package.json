@@ -49,6 +49,7 @@
     "@floating-ui/dom": "^1.7.6",
     "@fontsource/lato": "^5.2.7",
     "@iconify-json/iconoir": "^1.2.10",
+    "@lottiefiles/dotlottie-web": "^0.70.0",
     "@lucide/astro": "^1.8.0",
     "@netlify/api": "^14.0.18",
     "astro": "^6.1.5",
@@ -58,7 +59,6 @@
     "astro-toc": "^0.2.0",
     "expressive-code-twoslash": "^0.6.1",
     "littlefoot": "^4.1.3",
-    "lottie-web": "^5.13.0",
     "pathe": "^2.0.3",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-expressive-code": "^0.41.7",
@@ -79,6 +79,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.11",
+    "@dotlottie/dotlottie-js": "^1.6.3",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.59.1",
     "cross-env": "^10.1.0",

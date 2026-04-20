@@ -1,5 +1,6 @@
 ---
-// LottieIcon — renders a Lottie JSON animation from /public/vids/lottie/.
+// LottieIcon — renders a dotLottie or Lottie JSON animation using the
+// @lottiefiles/dotlottie-web player (Canvas-based, WASM-accelerated).
 //
 // Behavior (mirrors AnimatedIcon with playCount=3):
 //   - IntersectionObserver starts the animation when scrolled into view.
@@ -7,9 +8,6 @@
 //   - After the initial sequence, replays once on hover, click, or
 //     re-entering the viewport.
 //   - prefers-reduced-motion: shows frame 0 statically, never animates.
-//
-// JSON is pre-fetched and passed as `animationData` to bypass lottie's
-// internal XHR loader.
 
 interface Props {
   src: string;
@@ -29,51 +27,58 @@ const { src, alt, size = 128, playCount = 3, class: className } = Astro.props;
   style={`width:${size}px;height:${size}px`}
   role="img"
   aria-label={alt}
-></div>
+>
+  <canvas width={size} height={size} style="width:100%;height:100%"></canvas>
+</div>
 
 <script>
-  import lottie from "lottie-web/build/player/esm/lottie_svg.min.js";
+  import { DotLottie } from "@lottiefiles/dotlottie-web";
   import { attachPlayOnceObserver } from "../lib/play-once-observer";
 
-  async function initLottieIcons() {
+  function initLottieIcons() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const els = document.querySelectorAll<HTMLElement>(
       ".lottie-icon-wrapper[data-lottie-src]:not([data-lottie-init])",
     );
 
-    await Promise.all(
-      Array.from(els).map(async (el) => {
-        el.dataset.lottieInit = "true";
-        const animationData = await fetch(el.dataset.lottieSrc!).then((r) => r.json());
+    for (const el of els) {
+      el.dataset.lottieInit = "true";
+      const canvas = el.querySelector("canvas");
+      if (!canvas) continue;
 
-        const anim = lottie.loadAnimation({
-          container: el,
-          renderer: "svg",
-          loop: true,
-          autoplay: false,
-          animationData,
+      const anim = new DotLottie({
+        canvas,
+        src: el.dataset.lottieSrc!,
+        loop: true,
+        autoplay: false,
+        renderConfig: {
+          autoResize: true,
+        },
+      });
+
+      // Reduced motion: show first frame statically.
+      if (reduced) {
+        anim.addEventListener("ready", () => {
+          anim.setFrame(0);
+          anim.stop();
         });
+        continue;
+      }
 
-        // Reduced motion: show first frame statically.
-        if (reduced) {
-          anim.goToAndStop(0, true);
-          return;
-        }
+      const playCount = parseInt(el.dataset.lottiePlayCount ?? "3", 10);
 
-        const playCount = parseInt(el.dataset.lottiePlayCount ?? "3", 10);
-
-        // loopComplete fires reliably after each full pass (loop:true).
+      anim.addEventListener("ready", () => {
         attachPlayOnceObserver(el, {
           resume: () => { el.dataset.playing = "true"; anim.play(); },
           play: () => {},
           pause: () => { el.dataset.playing = "false"; anim.pause(); },
           stop: () => { el.dataset.playing = "false"; anim.stop(); },
           get isPaused() { return anim.isPaused; },
-          onPassComplete: (cb) => anim.addEventListener("loopComplete", cb),
+          onPassComplete: (cb) => anim.addEventListener("loop", cb),
         }, playCount);
-      }),
-    );
+      });
+    }
   }
 
   if (document.readyState === "loading") {

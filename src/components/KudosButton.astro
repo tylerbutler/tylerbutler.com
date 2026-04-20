@@ -1,0 +1,88 @@
+---
+interface Props {
+  path: string;
+  variant?: "article" | "preview";
+}
+
+const { path, variant = "article" } = Astro.props;
+const Tag = variant === "article" ? "div" : "span";
+const wrapperClass = variant === "article" ? "article-kudos" : "preview-kudos";
+---
+
+<Tag class={wrapperClass}>
+  <button class="tinylytics_kudos" data-path={path} type="button">
+    <span class="kudos-label">I like this</span>
+  </button>
+  <span class="kudos-suffix" hidden>
+    — and so do <span class="kudos-count"></span> others
+  </span>
+</Tag>
+
+<script>
+  const KUDOS_THRESHOLD = 10;
+
+  function ensureLabelOnly(btn: HTMLElement) {
+    btn.replaceChildren();
+    const label = document.createElement("span");
+    label.className = "kudos-label";
+    label.textContent = "I like this";
+    btn.appendChild(label);
+  }
+
+  function processKudos(btn: HTMLElement) {
+    const digits = btn.textContent?.match(/\d+/)?.[0];
+    const parent = btn.parentElement;
+    const suffix = parent?.querySelector<HTMLElement>(".kudos-suffix") ?? null;
+    const countEl = parent?.querySelector<HTMLElement>(".kudos-count") ?? null;
+
+    if (digits === undefined) {
+      if (!btn.querySelector(".kudos-label")) {
+        ensureLabelOnly(btn);
+      }
+      return;
+    }
+
+    const count = Number.parseInt(digits, 10);
+    if (!Number.isFinite(count)) return;
+
+    ensureLabelOnly(btn);
+
+    if (count > KUDOS_THRESHOLD && suffix && countEl) {
+      countEl.textContent = String(count);
+      suffix.hidden = false;
+    } else if (suffix) {
+      suffix.hidden = true;
+    }
+  }
+
+  for (const btn of document.querySelectorAll<HTMLElement>(
+    ".tinylytics_kudos",
+  )) {
+    processKudos(btn);
+    const observer = new MutationObserver(() => {
+      observer.disconnect();
+      processKudos(btn);
+      observer.observe(btn, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    });
+    observer.observe(btn, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+
+    btn.addEventListener("click", () => {
+      btn.classList.remove("is-launching");
+      void btn.offsetWidth;
+      btn.classList.add("is-launching");
+    });
+    btn.addEventListener("animationend", (event) => {
+      if (event.animationName === "kudos-rocket-launch") {
+        btn.classList.remove("is-launching");
+      }
+    });
+  }
+</script>

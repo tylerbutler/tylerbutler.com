@@ -107,15 +107,13 @@
     margin-right: calc(50vw - var(--container-width) / 2);
   }
 
-  /* Wide screen code block extension - let content dictate expansion */
+  /* Wide screen code block extension */
   .expressive-code {
-    /* Content-driven width with expansion capability */
     min-width: 100%;
     max-width: calc(100% + 180px);
     width: fit-content;
     position: relative;
     box-sizing: border-box;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
     & pre,
     & code {

@@ -3,9 +3,9 @@ import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
+import astroExpressiveCode from "astro-expressive-code";
 import brokenLinksChecker from "astro-broken-links-checker";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeExpressiveCode from "rehype-expressive-code";
 import { rehypeFootnotes } from "rehype-footnotes";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
@@ -17,6 +17,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { downloadFonts } from "./scripts/download-fonts.ts";
 import { optimizeFonts } from "./scripts/optimize-fonts.ts";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
+
 import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
 
 const fontDownloader = () => ({
@@ -93,6 +94,7 @@ export default defineConfig({
     // fontOptimizer(),
     pagefindIntegration(),
     sitemap(),
+    astroExpressiveCode(expressiveCodeConfig),
     mdx({
       remarkPlugins: [
         // Process lazy links first, before other transformations
@@ -118,7 +120,6 @@ export default defineConfig({
             },
           },
         ],
-        [rehypeExpressiveCode, expressiveCodeConfig],
         rehypeMarkBrokenLinks,
       ],
     }),
@@ -131,7 +132,6 @@ export default defineConfig({
     layout: "constrained", // Generates srcset for responsive images
   },
   markdown: {
-    syntaxHighlight: false, // Disable Astro's built-in syntax highlighting to use Expressive Code
     remarkPlugins: [
       // Process lazy links first, before other transformations
       // Use [remarkLazyLinks, { persist: true }] to write changes back to source files
@@ -156,7 +156,6 @@ export default defineConfig({
           },
         },
       ],
-      [rehypeExpressiveCode, expressiveCodeConfig],
       rehypeMarkBrokenLinks,
     ],
   },

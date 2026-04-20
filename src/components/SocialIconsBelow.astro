@@ -1,11 +1,20 @@
 ---
 import { Icon } from "astro-icon/components";
+import Bluesky from "simple-icons-astro/Bluesky";
 ---
 
 <div class="social-icons-below">
   <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me">
     <Icon name="iconoir:github" aria-hidden="true" />
     <span class="sr-only">GitHub</span>
+  </a>
+  <a href="https://hachyderm.io/@tyler" class="social-link" title="Mastodon" target="_blank" rel="noopener me">
+    <Icon name="iconoir:mastodon" aria-hidden="true" />
+    <span class="sr-only">Mastodon</span>
+  </a>
+  <a href="https://bsky.app/profile/tylerbutler.bsky.social" class="social-link" title="Bluesky" target="_blank" rel="noopener me">
+    <Bluesky fill="currentColor" aria-hidden="true" />
+    <span class="sr-only">Bluesky</span>
   </a>
   <a href="mailto:tyler@tylerbutler.com" class="social-link" title="Email" rel="me">
     <Icon name="iconoir:mail" aria-hidden="true" />
@@ -48,7 +57,7 @@ import { Icon } from "astro-icon/components";
     border-radius: 3px;
   }
 
-  .social-link [data-icon] {
+  .social-link svg {
     width: 16px;
     height: 16px;
     flex-shrink: 0;

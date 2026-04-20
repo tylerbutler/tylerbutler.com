@@ -8,8 +8,6 @@
 //     re-entering the viewport.
 //   - prefers-reduced-motion: shows frame 0 statically, never animates.
 //
-// lottie-web is UMD-only, so we use a dynamic import to force evaluation
-// in the browser (not in Vite's Node context where `document` is undefined).
 // JSON is pre-fetched and passed as `animationData` to bypass lottie's
 // internal XHR loader.
 
@@ -34,10 +32,10 @@ const { src, alt, size = 128, playCount = 3, class: className } = Astro.props;
 ></div>
 
 <script>
+  import lottie from "lottie-web/build/player/esm/lottie_svg.min.js";
   import { attachPlayOnceObserver } from "../lib/play-once-observer";
 
   async function initLottieIcons() {
-    const { default: lottie } = await import("lottie-web");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const els = document.querySelectorAll<HTMLElement>(

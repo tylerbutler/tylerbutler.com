@@ -2,6 +2,7 @@
 
 title: 'package.json considered harmful'
 date: '2026-03-26T15:32:00-07:00'
+slug: packagejson-considered-harmful
 tags:
 - config
 # type: guide

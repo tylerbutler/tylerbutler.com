@@ -1,57 +1,29 @@
 ---
-// Simple social icons component for positioning below subtitle
-import { Github, Mail, Rss } from "@lucide/astro";
-
-const socialItems = [
-  {
-    href: "https://github.com/tylerbutler",
-    label: "GitHub",
-    icon: "github",
-    external: true,
-    me: true,
-  },
-  {
-    href: "mailto:tyler@tylerbutler.com",
-    label: "Email",
-    icon: "email",
-    external: false,
-    me: true,
-  },
-  {
-    href: "/feed.xml",
-    label: "Feed",
-    icon: "feed",
-    external: false,
-    me: false,
-  },
-];
+import { Icon } from "astro-icon/components";
+import Bluesky from "simple-icons-astro/Bluesky";
 ---
 
 <div class="social-icons-below">
-  {socialItems.map(item => (
-    <a
-      href={item.href}
-      class={`social-link social-link--${item.icon}`}
-      title={item.label}
-      target={item.external ? '_blank' : undefined}
-      rel={[item.external && 'noopener', item.me && 'me'].filter(Boolean).join(' ') || undefined}
-    >
-      {item.icon === 'github' && (
-        <Github class="social-icon" />
-      )}
-
-      {item.icon === 'email' && (
-        <Mail class="social-icon" />
-      )}
-
-      {item.icon === 'feed' && (
-        <Rss class="social-icon" />
-      )}
-
-
-      <span class="sr-only">{item.label}</span>
-    </a>
-  ))}
+  <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me">
+    <Icon name="iconoir:github" aria-hidden="true" />
+    <span class="sr-only">GitHub</span>
+  </a>
+  <a href="https://hachyderm.io/@tyler" class="social-link" title="Mastodon" target="_blank" rel="noopener me">
+    <Icon name="iconoir:mastodon" aria-hidden="true" />
+    <span class="sr-only">Mastodon</span>
+  </a>
+  <a href="https://bsky.app/profile/tylerbutler.bsky.social" class="social-link" title="Bluesky" target="_blank" rel="noopener me">
+    <Bluesky fill="currentColor" aria-hidden="true" />
+    <span class="sr-only">Bluesky</span>
+  </a>
+  <a href="mailto:tyler@tylerbutler.com" class="social-link" title="Email" rel="me">
+    <Icon name="iconoir:mail" aria-hidden="true" />
+    <span class="sr-only">Email</span>
+  </a>
+  <a href="/feed.xml" class="social-link" title="Feed">
+    <Icon name="iconoir:rss-feed" aria-hidden="true" />
+    <span class="sr-only">Feed</span>
+  </a>
 </div>
 
 <style>
@@ -85,9 +57,9 @@ const socialItems = [
     border-radius: 3px;
   }
 
-  .social-icon {
-    width: 14px;
-    height: 14px;
+  .social-link svg {
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
   }
 

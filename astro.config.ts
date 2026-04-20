@@ -4,6 +4,7 @@ import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import brokenLinksChecker from "astro-broken-links-checker";
+import icon from "astro-icon";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
 import { rehypeFootnotes } from "rehype-footnotes";
@@ -89,6 +90,7 @@ export default defineConfig({
   output: "static",
 
   integrations: [
+    icon(),
     fontDownloader(),
     // TODO: Re-enable font optimizer once Chrome/Puppeteer is configured for glyphhanger
     // fontOptimizer(),

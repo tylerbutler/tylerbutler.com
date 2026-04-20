@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import { BookOpen, ExternalLink, Github } from "@lucide/astro";
+import { BookOpen, ExternalLink } from "@lucide/astro";
+import Github from "simple-icons-astro/Github";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatTitle } from "../lib/typography";
 
@@ -47,7 +48,7 @@ const sortedProjects = await Promise.all(
                   <p class="description">{project.data.description}</p>
                 )}
                 <div class="project-links">
-                  <a href={`/projects/${project.slug}`} class="read-more">
+                  <a href={`/projects/${project.id}`} class="read-more">
                     <BookOpen class="icon" />
                     Read More
                   </a>

@@ -1,6 +1,7 @@
 ---
 title: 'Introducing CCL'
 date: '2026-03-27T13:27:00-07:00'
+slug: introducing-ccl
 tags:
 - config
 # type: guide

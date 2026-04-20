@@ -5,60 +5,48 @@ interface Props {
 }
 
 const { path, variant = "article" } = Astro.props;
+const Tag = variant === "article" ? "div" : "span";
 const wrapperClass = variant === "article" ? "article-kudos" : "preview-kudos";
-const labelClass =
-  variant === "article" ? "article-kudos-label" : "preview-kudos-label";
 ---
 
-{
-  variant === "article" ? (
-    <div class={wrapperClass}>
-      <span class={labelClass}>I like this</span>
-      <button
-        class="tinylytics_kudos"
-        data-path={path}
-        type="button"
-        aria-label="I like this"
-      />
-      <span class="kudos-suffix" hidden>
-        — and so do <span class="kudos-count" /> others
-      </span>
-    </div>
-  ) : (
-    <span class={wrapperClass}>
-      <span class={labelClass}>I like this</span>
-      <button
-        class="tinylytics_kudos"
-        data-path={path}
-        type="button"
-        aria-label="I like this"
-      />
-      <span class="kudos-suffix" hidden>
-        — and so do <span class="kudos-count" /> others
-      </span>
-    </span>
-  )
-}
+<Tag class={wrapperClass}>
+  <button class="tinylytics_kudos" data-path={path} type="button">
+    <span class="kudos-label">I like this</span>
+  </button>
+  <span class="kudos-suffix" hidden>
+    — and so do <span class="kudos-count"></span> others
+  </span>
+</Tag>
 
 <script>
-  // Tinylytics is configured with ?kudos=custom, so the script injects
-  // only the count into the button. We move it to the sibling suffix
-  // span when it clears the threshold; the rocket emoji is a CSS
-  // ::before pseudo-element and is unaffected by clearing the button.
   const KUDOS_THRESHOLD = 10;
 
-  function updateKudos(btn: HTMLElement) {
-    const text = btn.textContent?.trim() ?? "";
+  function ensureLabelOnly(btn: HTMLElement) {
+    btn.replaceChildren();
+    const label = document.createElement("span");
+    label.className = "kudos-label";
+    label.textContent = "I like this";
+    btn.appendChild(label);
+  }
+
+  function processKudos(btn: HTMLElement) {
+    const digits = btn.textContent?.match(/\d+/)?.[0];
     const parent = btn.parentElement;
     const suffix = parent?.querySelector<HTMLElement>(".kudos-suffix") ?? null;
     const countEl = parent?.querySelector<HTMLElement>(".kudos-count") ?? null;
-    if (text === "") {
-      if (suffix) suffix.hidden = true;
+
+    if (digits === undefined) {
+      if (!btn.querySelector(".kudos-label")) {
+        ensureLabelOnly(btn);
+      }
       return;
     }
-    const count = Number.parseInt(text, 10);
+
+    const count = Number.parseInt(digits, 10);
     if (!Number.isFinite(count)) return;
-    btn.textContent = "";
+
+    ensureLabelOnly(btn);
+
     if (count > KUDOS_THRESHOLD && suffix && countEl) {
       countEl.textContent = String(count);
       suffix.hidden = false;
@@ -70,8 +58,16 @@ const labelClass =
   for (const btn of document.querySelectorAll<HTMLElement>(
     ".tinylytics_kudos",
   )) {
-    updateKudos(btn);
-    const observer = new MutationObserver(() => updateKudos(btn));
+    processKudos(btn);
+    const observer = new MutationObserver(() => {
+      observer.disconnect();
+      processKudos(btn);
+      observer.observe(btn, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    });
     observer.observe(btn, {
       childList: true,
       characterData: true,

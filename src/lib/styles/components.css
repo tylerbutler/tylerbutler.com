@@ -231,9 +231,11 @@ table {
 }
 
 /* Tinylytics kudos button — shared across article and homepage contexts.
-   Pseudo-element keeps the rocket even if the script rewrites innerHTML. */
+   The rocket lives in a pseudo-element so it survives Tinylytics rewriting
+   the button's text content with the kudos count. */
 .tinylytics_kudos {
   font: inherit;
+  font-style: italic;
   color: var(--text);
   background: var(--code-bg);
   border: 1px solid var(--text-light);
@@ -244,13 +246,8 @@ table {
 }
 
 .tinylytics_kudos::before {
-  content: "🚀";
-}
-
-/* Count rendered by tinylytics sits inside the button as a text node;
-   a small gap separates it from the rocket pseudo-element. */
-.tinylytics_kudos:not(:empty)::before {
-  margin-right: 0.35em;
+  content: "🚀\00a0";
+  font-style: normal;
 }
 
 .tinylytics_kudos:hover {

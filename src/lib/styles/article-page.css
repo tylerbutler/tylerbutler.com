@@ -228,10 +228,6 @@
   color: var(--text-light);
 }
 
-.article-kudos-label {
-  font-style: italic;
-}
-
 .tag {
   display: inline-block;
   background: var(--code-bg);

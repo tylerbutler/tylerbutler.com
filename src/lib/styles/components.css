@@ -229,3 +229,68 @@ table {
 .dark .expressive-code [data-tab-bar] {
   background-color: #1f2328 !important;
 }
+
+/* Tinylytics kudos button — shared across article and homepage contexts.
+   The rocket lives in a pseudo-element so it survives Tinylytics rewriting
+   the button's text content with the kudos count. */
+.tinylytics_kudos {
+  font: inherit;
+  font-style: italic;
+  color: var(--text);
+  background: var(--code-bg);
+  border: 1px solid var(--text-light);
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tinylytics_kudos::before {
+  content: "🚀\00a0";
+  font-style: normal;
+  display: inline-block;
+}
+
+.tinylytics_kudos:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.tinylytics_kudos.is-launching::before {
+  animation: kudos-rocket-launch 750ms ease-in-out;
+}
+
+@keyframes kudos-rocket-launch {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(2em, -2em);
+    opacity: 0;
+  }
+  41% {
+    transform: translate(-2em, 2em);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tinylytics_kudos.is-launching::before {
+    animation: none;
+  }
+}
+
+.kudos-suffix {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.kudos-suffix[hidden] {
+  display: none;
+}

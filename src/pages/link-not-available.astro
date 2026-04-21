@@ -30,16 +30,32 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <script is:inline>
   (function () {
+    const params = new URLSearchParams(window.location.search);
+    const url = params.get("url");
+
     const tryOriginalLink = document.getElementById("try-original-link");
     if (tryOriginalLink) {
-      const params = new URLSearchParams(window.location.search);
-      const url = params.get("url");
       if (url) {
         tryOriginalLink.href = url;
       } else {
         tryOriginalLink.style.display = "none";
       }
     }
+
+    // Fire a tinylytics event after the deferred tinylytics script has loaded
+    window.addEventListener("load", function () {
+      var eventValue = url || "unknown";
+      if (document.referrer) {
+        eventValue += " (from: " + document.referrer + ")";
+      }
+      var beacon = document.createElement("span");
+      beacon.setAttribute("data-tinylytics-event", "link.not-found");
+      beacon.setAttribute("data-tinylytics-event-value", eventValue);
+      beacon.style.display = "none";
+      document.body.appendChild(beacon);
+      beacon.click();
+      beacon.remove();
+    });
   })();
 </script>
 

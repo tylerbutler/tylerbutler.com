@@ -10,14 +10,14 @@ import { formatTitle } from "../lib/typography";
 // Constellation lottie files — Vite resolves these to hashed URLs at build time.
 // Only constellation files are imported; other/ files are not bundled unless used.
 const constellationModules = import.meta.glob<string>(
-  "../lottie/constellations/*.json",
+  "../lottie/constellations/*.lottie",
   { query: "?url", import: "default", eager: true },
 );
 
-// name → URL map (e.g. "aquarius" → "/assets/aquarius.B9uJRUL3.json")
+// name → URL map (e.g. "aquarius" → "/assets/aquarius.B9uJRUL3.lottie")
 const constellationUrls: Record<string, string> = Object.fromEntries(
   Object.entries(constellationModules).map(([path, url]) => [
-    path.split("/").pop()!.replace(".json", ""),
+    path.split("/").pop()!.replace(".lottie", ""),
     url,
   ]),
 );

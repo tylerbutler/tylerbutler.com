@@ -3,15 +3,17 @@ interface Props {
   embedCode: string;
   kudos?: boolean | "custom";
   hits?: boolean | "unique";
+  events?: boolean;
 }
 
-const { embedCode, kudos, hits } = Astro.props;
+const { embedCode, kudos, hits, events } = Astro.props;
 
 const flags: string[] = [];
 if (kudos === "custom") flags.push("kudos=custom");
 else if (kudos === true) flags.push("kudos");
 if (hits === "unique") flags.push("hits=unique");
 else if (hits === true) flags.push("hits");
+if (events) flags.push("events");
 
 const query = flags.length > 0 ? `?${flags.join("&")}` : "";
 const scriptSrc = `https://tinylytics.app/embed/${embedCode}.js${query}`;

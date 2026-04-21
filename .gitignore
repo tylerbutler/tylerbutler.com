@@ -34,3 +34,6 @@ public/fonts/
 .mise.local.toml
 mise.local.toml
 **/.claude/settings.local.json
+
+# Generated dotLottie files (built from JSON sources)
+src/lottie/constellations/*.lottie

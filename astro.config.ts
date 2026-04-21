@@ -177,6 +177,14 @@ export default defineConfig({
         // "@fontsource/lato",
       ],
     },
+    build: {
+      assetsInlineLimit(filePath: string) {
+        // Never inline .lottie files — they're binary (ZIP) and should be
+        // served as separate assets with proper caching.
+        if (filePath.endsWith(".lottie")) return 0;
+        return undefined; // default for everything else
+      },
+    },
     plugins: [
       viteDotLottie(),
       // Only generate bundle analysis in production builds

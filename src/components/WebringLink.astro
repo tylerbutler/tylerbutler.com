@@ -1,13 +1,19 @@
 ---
 interface Props {
   label?: string;
+  size?: "small" | "large";
   class?: string;
 }
 
-const { label = "Visit a random site →", class: className } = Astro.props;
+const { label = "Visit a random site →", size = "small", class: className } = Astro.props;
 ---
 
-<a href="#" target="_blank" class:list={["tinylytics_webring", className]} rel="noopener">
+<a
+  href="#"
+  target="_blank"
+  class:list={["tinylytics_webring", `webring-${size}`, className]}
+  rel="noopener"
+>
   <img class="tinylytics_webring_avatar" src="" style="display: none" alt="" aria-hidden="true" />
   <span class="webring-label">{label}</span>
 </a>
@@ -20,10 +26,31 @@ const { label = "Visit a random site →", class: className } = Astro.props;
   }
 
   .tinylytics_webring_avatar {
-    width: 32px;
-    height: 32px;
     border-radius: 50%;
     object-fit: cover;
     vertical-align: middle;
   }
+
+  .webring-small .tinylytics_webring_avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .webring-large {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .webring-large .tinylytics_webring_avatar {
+    width: 96px;
+    height: 96px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .webring-large .webring-label {
+    font-size: 1.15rem;
+    font-style: italic;
+  }
 </style>
+

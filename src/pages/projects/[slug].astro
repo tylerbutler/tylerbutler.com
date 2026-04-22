@@ -48,13 +48,13 @@ const { Content } = await render(project);
 
     <div class="project-links">
       {project.data.url && (
-        <a href={project.data.url} target="_blank" rel="noopener" class="project-link">
+        <a href={project.data.url} target="_blank" rel="noopener" class="project-link" data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
           <ExternalLink size={16} />
           View Project
         </a>
       )}
       {project.data.github && (
-        <a href={project.data.github} target="_blank" rel="noopener" class="project-link">
+        <a href={project.data.github} target="_blank" rel="noopener" class="project-link" data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
           <Github size={16} />
           GitHub
         </a>

@@ -13,6 +13,8 @@ const { label = "Visit a random site →", size = "small", class: className } = 
   target="_blank"
   class:list={["tinylytics_webring", `webring-${size}`, className]}
   rel="noopener"
+  data-tinylytics-event="webring.click"
+  data-tinylytics-event-value="random"
 >
   <img class="tinylytics_webring_avatar" src="" style="display: none" alt="" aria-hidden="true" />
   <span class="webring-label">{label}</span>

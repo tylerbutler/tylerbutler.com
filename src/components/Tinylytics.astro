@@ -4,9 +4,10 @@ interface Props {
   kudos?: boolean | "custom";
   hits?: boolean | "unique";
   events?: boolean;
+  webring?: boolean;
 }
 
-const { embedCode, kudos, hits, events } = Astro.props;
+const { embedCode, kudos, hits, events, webring } = Astro.props;
 
 const flags: string[] = [];
 if (kudos === "custom") flags.push("kudos=custom");
@@ -14,6 +15,7 @@ else if (kudos === true) flags.push("kudos");
 if (hits === "unique") flags.push("hits=unique");
 else if (hits === true) flags.push("hits");
 if (events) flags.push("events");
+if (webring) flags.push("webring");
 
 const query = flags.length > 0 ? `?${flags.join("&")}` : "";
 const scriptSrc = `https://tinylytics.app/embed/${embedCode}.js${query}`;

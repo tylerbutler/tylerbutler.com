@@ -19,6 +19,7 @@ import { downloadFonts } from "./scripts/download-fonts.ts";
 import { optimizeFonts } from "./scripts/optimize-fonts.ts";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
 import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
+import { rehypeTagExternalLinks } from "./src/lib/rehype-tag-external-links.ts";
 import { viteDotLottie } from "./src/lib/vite-plugin-dotlottie.ts";
 
 const fontDownloader = () => ({
@@ -123,6 +124,7 @@ export default defineConfig({
         ],
         [rehypeExpressiveCode, expressiveCodeConfig],
         rehypeMarkBrokenLinks,
+        rehypeTagExternalLinks,
       ],
     }),
     brokenLinksChecker({
@@ -161,6 +163,7 @@ export default defineConfig({
       ],
       [rehypeExpressiveCode, expressiveCodeConfig],
       rehypeMarkBrokenLinks,
+      rehypeTagExternalLinks,
     ],
   },
 

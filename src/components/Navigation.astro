@@ -1,10 +1,10 @@
 ---
 // Navigation items matching the current site structure
 const navItems = [
-  { href: "/articles/", label: "Articles" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/colophon", label: "Colophon" },
+  { href: "/articles/", label: "Articles", slug: "articles" },
+  { href: "/projects", label: "Projects", slug: "projects" },
+  { href: "/about", label: "About", slug: "about" },
+  { href: "/colophon", label: "Colophon", slug: "colophon" },
 ];
 
 // Helper to normalize paths (remove trailing slash for comparison, except root)
@@ -28,6 +28,8 @@ const normalizedCurrentPath = normalizePath(currentPath);
             href={item.href}
             class={isActive ? 'active' : ''}
             aria-current={isActive ? 'page' : undefined}
+            data-tinylytics-event={`nav.${item.slug}`}
+            data-tinylytics-event-value={item.href}
           >
             {item.label}
           </a>

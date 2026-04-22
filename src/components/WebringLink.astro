@@ -1,24 +1,36 @@
 ---
+import { Webring } from "../lib/tinylytics";
+
 interface Props {
   label?: string;
   size?: "small" | "large";
   class?: string;
 }
 
-const { label = "Visit a random site →", size = "small", class: className } = Astro.props;
+const {
+  label = "Visit a random site →",
+  size = "small",
+  class: className,
+} = Astro.props;
 ---
 
-<a
-  href="#"
-  target="_blank"
-  class:list={["tinylytics_webring", `webring-${size}`, className]}
-  rel="noopener"
-  data-tinylytics-event="webring.click"
-  data-tinylytics-event-value="random"
+<Webring
+  avatar
+  class:list={[`webring-${size}`, className]}
 >
-  <img class="tinylytics_webring_avatar" src="" style="display: none" alt="" aria-hidden="true" />
   <span class="webring-label">{label}</span>
-</a>
+</Webring>
+
+<script>
+  // Augment each webring link with event-tracking attributes after render so
+  // a click is also captured as a Tinylytics event.
+  for (const el of document.querySelectorAll<HTMLElement>(".tinylytics_webring")) {
+    if (!el.dataset.tinylyticsEvent) {
+      el.dataset.tinylyticsEvent = "webring.click";
+      el.dataset.tinylyticsEventValue = "random";
+    }
+  }
+</script>
 
 <style>
   .tinylytics_webring {
@@ -55,4 +67,3 @@ const { label = "Visit a random site →", size = "small", class: className } = 
     font-style: italic;
   }
 </style>
-

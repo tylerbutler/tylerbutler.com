@@ -1,4 +1,6 @@
 ---
+import { Kudos } from "../lib/tinylytics";
+
 interface Props {
   path: string;
   variant?: "article" | "preview";
@@ -10,9 +12,9 @@ const wrapperClass = variant === "article" ? "article-kudos" : "preview-kudos";
 ---
 
 <Tag class={wrapperClass}>
-  <button class="tinylytics_kudos" data-path={path} type="button">
+  <Kudos path={path}>
     <span class="kudos-label">I like this</span>
-  </button>
+  </Kudos>
   <span class="kudos-suffix" hidden>
     — and so do <span class="kudos-count"></span> others
   </span>

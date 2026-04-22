@@ -1,0 +1,29 @@
+---
+interface Props {
+  label?: string;
+  class?: string;
+}
+
+const { label = "Visit a random site →", class: className } = Astro.props;
+---
+
+<a href="#" target="_blank" class:list={["tinylytics_webring", className]} rel="noopener">
+  <img class="tinylytics_webring_avatar" src="" style="display: none" alt="" aria-hidden="true" />
+  <span class="webring-label">{label}</span>
+</a>
+
+<style>
+  .tinylytics_webring {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tinylytics_webring_avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+  }
+</style>

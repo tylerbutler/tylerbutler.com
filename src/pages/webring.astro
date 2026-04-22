@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import WebringLink from "../components/WebringLink.astro";
 ---
 
 <BaseLayout
@@ -12,60 +13,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     <p>
       This site is part of a <a href="https://tinylytics.app/webring" target="_blank" rel="noopener">webring</a> — a
-      hand-curated collection of personal websites connected together. Click below to visit a random site in the ring
-      and discover something new.
+      hand-curated collection of personal websites connected together. <WebringLink /> to discover something new.
     </p>
-
-    <div class="webring-card">
-      <a href="#" target="_blank" class="tinylytics_webring" rel="noopener">
-        <img class="tinylytics_webring_avatar" src="" style="display: none" alt="Site avatar" />
-        <span class="webring-visit">Visit a random site →</span>
-      </a>
-    </div>
   </section>
 </BaseLayout>
 
 <style>
   .webring-page {
     max-width: 600px;
-  }
-
-  .webring-card {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    border: 1px solid var(--text-light);
-    border-radius: 8px;
-    text-align: center;
-    transition: border-color 0.2s ease;
-  }
-
-  .webring-card:hover {
-    border-color: var(--accent);
-  }
-
-  .tinylytics_webring {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    text-decoration: none;
-    color: var(--text);
-  }
-
-  .tinylytics_webring_avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
-  .webring-visit {
-    font-style: italic;
-    color: var(--accent);
-    font-size: 1.1rem;
-  }
-
-  .tinylytics_webring:hover .webring-visit {
-    text-decoration: underline;
   }
 </style>

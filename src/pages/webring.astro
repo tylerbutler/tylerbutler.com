@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import WebringLink from "../components/WebringLink.astro";
+---
+
+<BaseLayout
+  title="Webring - Tyler Butler"
+  description="Discover other personal websites through the tinylytics webring."
+  headerSize="small"
+>
+  <section class="webring-page">
+    <h1>Webring</h1>
+
+    <p>
+      This site is part of a <a href="https://tinylytics.app/webring" target="_blank" rel="noopener">webring</a> — a
+      hand-curated collection of personal websites connected together. The avatar below previews the next random site
+      in the ring; click it to visit.
+    </p>
+
+    <div class="webring-next">
+      <WebringLink size="large" label="Next stop →" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .webring-page {
+    max-width: 600px;
+  }
+
+  .webring-next {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0;
+  }
+</style>

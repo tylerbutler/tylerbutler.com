@@ -251,10 +251,16 @@ table {
   display: inline-block;
 }
 
-.tinylytics_kudos:hover {
+.tinylytics_kudos:hover:not(:disabled) {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
+}
+
+.tinylytics_kudos.did_select {
+  border-color: var(--accent);
+  opacity: 0.8;
+  cursor: default;
 }
 
 .tinylytics_kudos.is-launching::before {

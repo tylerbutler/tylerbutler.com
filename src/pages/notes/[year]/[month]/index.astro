@@ -1,0 +1,184 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { includeDraft } from "../../../../lib/draft-utils";
+import {
+  getNoteMonthUrl,
+  getNotePathParts,
+  getNoteUrl,
+  getNoteYearUrl,
+  monthLabel,
+  plaintextExcerpt,
+} from "../../../../lib/note-utils";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
+
+  const byKey = new Map<
+    string,
+    {
+      year: string;
+      month: string;
+      items: Array<{ note: (typeof notes)[number]; day: string }>;
+    }
+  >();
+  for (const note of notes) {
+    const { year, month, day } = getNotePathParts(note);
+    const key = `${year}-${month}`;
+    if (!byKey.has(key)) byKey.set(key, { year, month, items: [] });
+    byKey.get(key)!.items.push({ note, day });
+  }
+
+  const keys = [...byKey.keys()].sort();
+
+  return keys.map((key, idx) => {
+    const { year, month, items } = byKey.get(key)!;
+    items.sort(
+      (a, b) => b.note.data.date.getTime() - a.note.data.date.getTime(),
+    );
+    const prev = idx > 0 ? byKey.get(keys[idx - 1])! : null;
+    const next = idx < keys.length - 1 ? byKey.get(keys[idx + 1])! : null;
+    return {
+      params: { year, month },
+      props: {
+        items,
+        prev: prev ? { year: prev.year, month: prev.month } : null,
+        next: next ? { year: next.year, month: next.month } : null,
+      },
+    };
+  });
+}
+
+const { year, month } = Astro.params;
+const { items, prev, next } = Astro.props;
+
+const heading = `${monthLabel(month)} ${year}`;
+---
+
+<BaseLayout
+  title={`Notes from ${heading} - Tyler Butler`}
+  description={`Short-form notes from ${heading}.`}
+>
+  <section class="notes-page">
+    <nav class="archive-crumbs">
+      <a href="/notes/">Notes</a> /{" "}
+      <a href={getNoteYearUrl(year)}>{year}</a> /{" "}
+      <span>{monthLabel(month)}</span>
+    </nav>
+    <h1>{heading}</h1>
+    <p class="archive-count">
+      {items.length} note{items.length === 1 ? "" : "s"}
+    </p>
+
+    <ul class="archive-list">
+      {
+        items.map(({ note, day }) => {
+          const url = getNoteUrl(note);
+          const isoDate = note.data.date.toISOString();
+          const label =
+            note.data.title ||
+            plaintextExcerpt(note.body ?? "", 100) ||
+            "(untitled)";
+          return (
+            <li class="archive-item">
+              <time class="archive-date" datetime={isoDate}>
+                {monthLabel(month)} {Number.parseInt(day, 10)}
+              </time>
+              <a href={url} class="archive-link">
+                {label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <nav class="article-nav">
+      {
+        prev && (
+          <a
+            href={getNoteMonthUrl(prev.year, prev.month)}
+            class="nav-link"
+          >
+            <span class="nav-arrow">←</span>
+            <span class="nav-text">
+              {monthLabel(prev.month)} {prev.year}
+            </span>
+          </a>
+        )
+      }
+      {
+        next && (
+          <a
+            href={getNoteMonthUrl(next.year, next.month)}
+            class="nav-link nav-link-next"
+          >
+            <span class="nav-text">
+              {monthLabel(next.month)} {next.year}
+            </span>
+            <span class="nav-arrow">→</span>
+          </a>
+        )
+      }
+    </nav>
+  </section>
+</BaseLayout>
+
+<style>
+  .notes-page {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .archive-crumbs {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .archive-crumbs a {
+    color: var(--text-light);
+    text-decoration: none;
+  }
+
+  .archive-crumbs a:hover {
+    color: var(--accent);
+  }
+
+  .archive-count {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-top: -0.5rem;
+  }
+
+  .archive-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+
+  .archive-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.4rem 0;
+    line-height: 1.4;
+  }
+
+  .archive-date {
+    color: var(--text-light);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    min-width: 7em;
+  }
+
+  .archive-link {
+    color: var(--accent);
+    text-decoration: none;
+    flex: 1;
+  }
+
+  .archive-link:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -7,6 +7,21 @@ const PT_DATE_FORMATTER = new Intl.DateTimeFormat("en-CA", {
   day: "2-digit",
 });
 
+const MONTH_NAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 export interface NotePathParts {
   year: string;
   month: string;
@@ -26,4 +41,29 @@ export function getNotePathParts(
 export function getNoteUrl(note: CollectionEntry<"notes">): string {
   const { year, month, day, slug } = getNotePathParts(note);
   return `/notes/${year}/${month}/${day}/${slug}`;
+}
+
+export function getNoteYearUrl(year: string): string {
+  return `/notes/${year}`;
+}
+
+export function getNoteMonthUrl(year: string, month: string): string {
+  return `/notes/${year}/${month}`;
+}
+
+export function monthLabel(month: string): string {
+  return MONTH_NAMES[Number.parseInt(month, 10) - 1] ?? month;
+}
+
+export function plaintextExcerpt(body: string, maxChars: number): string {
+  const plain = body
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/<https?:\/\/[^>]+>/g, "")
+    .replace(/<([^>]+)>/g, "$1")
+    .replace(/[*_`>#]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (plain.length <= maxChars) return plain;
+  return `${plain.slice(0, maxChars).trimEnd()}…`;
 }

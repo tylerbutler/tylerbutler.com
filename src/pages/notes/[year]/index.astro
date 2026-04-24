@@ -1,0 +1,190 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { includeDraft } from "../../../lib/draft-utils";
+import {
+  getNoteMonthUrl,
+  getNotePathParts,
+  getNoteUrl,
+  getNoteYearUrl,
+  monthLabel,
+  plaintextExcerpt,
+} from "../../../lib/note-utils";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
+
+  const byYear = new Map<
+    string,
+    Array<{ note: (typeof notes)[number]; month: string; day: string }>
+  >();
+  for (const note of notes) {
+    const { year, month, day } = getNotePathParts(note);
+    if (!byYear.has(year)) byYear.set(year, []);
+    byYear.get(year)!.push({ note, month, day });
+  }
+
+  const years = [...byYear.keys()].sort();
+
+  return years.map((year, idx) => {
+    const items = byYear
+      .get(year)!
+      .sort((a, b) => b.note.data.date.getTime() - a.note.data.date.getTime());
+    return {
+      params: { year },
+      props: {
+        items,
+        prevYear: idx > 0 ? years[idx - 1] : null,
+        nextYear: idx < years.length - 1 ? years[idx + 1] : null,
+      },
+    };
+  });
+}
+
+const { year } = Astro.params;
+const { items, prevYear, nextYear } = Astro.props;
+
+const groupedByMonth = new Map<string, typeof items>();
+for (const item of items) {
+  if (!groupedByMonth.has(item.month)) groupedByMonth.set(item.month, []);
+  groupedByMonth.get(item.month)!.push(item);
+}
+const months = [...groupedByMonth.keys()].sort().reverse();
+---
+
+<BaseLayout
+  title={`Notes from ${year} - Tyler Butler`}
+  description={`Short-form notes from ${year}.`}
+>
+  <section class="notes-page">
+    <nav class="archive-crumbs">
+      <a href="/notes/">Notes</a> / <span>{year}</span>
+    </nav>
+    <h1>Notes from {year}</h1>
+    <p class="archive-count">{items.length} note{items.length === 1 ? "" : "s"}</p>
+
+    {months.map((month) => {
+      const monthItems = groupedByMonth.get(month)!;
+      const monthUrl = getNoteMonthUrl(year, month);
+      return (
+        <section class="archive-month">
+          <h2>
+            <a href={monthUrl}>{monthLabel(month)}</a>
+          </h2>
+          <ul class="archive-list">
+            {monthItems.map(({ note, day }) => {
+              const url = getNoteUrl(note);
+              const isoDate = note.data.date.toISOString();
+              const label =
+                note.data.title ||
+                plaintextExcerpt(note.body ?? "", 100) ||
+                "(untitled)";
+              return (
+                <li class="archive-item">
+                  <time class="archive-date" datetime={isoDate}>
+                    {monthLabel(month)} {Number.parseInt(day, 10)}
+                  </time>
+                  <a href={url} class="archive-link">{label}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      );
+    })}
+
+    <nav class="article-nav">
+      {prevYear && (
+        <a href={getNoteYearUrl(prevYear)} class="nav-link">
+          <span class="nav-arrow">←</span>
+          <span class="nav-text">{prevYear}</span>
+        </a>
+      )}
+      {nextYear && (
+        <a href={getNoteYearUrl(nextYear)} class="nav-link nav-link-next">
+          <span class="nav-text">{nextYear}</span>
+          <span class="nav-arrow">→</span>
+        </a>
+      )}
+    </nav>
+  </section>
+</BaseLayout>
+
+<style>
+  .notes-page {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .archive-crumbs {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .archive-crumbs a {
+    color: var(--text-light);
+    text-decoration: none;
+  }
+
+  .archive-crumbs a:hover {
+    color: var(--accent);
+  }
+
+  .archive-count {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-top: -0.5rem;
+  }
+
+  .archive-month {
+    margin-top: 2rem;
+  }
+
+  .archive-month h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+    border-bottom: 1px solid var(--border, #ddd);
+    padding-bottom: 0.25rem;
+  }
+
+  .archive-month h2 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .archive-month h2 a:hover {
+    color: var(--accent);
+  }
+
+  .archive-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .archive-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.4rem 0;
+    line-height: 1.4;
+  }
+
+  .archive-date {
+    color: var(--text-light);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    min-width: 7em;
+  }
+
+  .archive-link {
+    color: var(--accent);
+    text-decoration: none;
+    flex: 1;
+  }
+
+  .archive-link:hover {
+    text-decoration: underline;
+  }
+</style>

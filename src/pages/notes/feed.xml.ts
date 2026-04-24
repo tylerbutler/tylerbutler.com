@@ -4,20 +4,7 @@ import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
 import { includeDraft } from "../../lib/draft-utils";
-import { getNoteUrl } from "../../lib/note-utils";
-
-function plaintextExcerpt(body: string, maxChars: number): string {
-  const plain = body
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
-    .replace(/<https?:\/\/[^>]+>/g, "")
-    .replace(/<([^>]+)>/g, "$1")
-    .replace(/[*_`>#]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-  if (plain.length <= maxChars) return plain;
-  return `${plain.slice(0, maxChars).trimEnd()}…`;
-}
+import { getNoteUrl, plaintextExcerpt } from "../../lib/note-utils";
 
 export async function GET(context: APIContext) {
   const notes = await getCollection("notes", ({ data }) => includeDraft(data));

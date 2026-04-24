@@ -1,0 +1,7 @@
+---
+date: 2012-07-07T16:35:48.000Z
+originalUrl: "https://twitter.com/tylerbutler/status/221643689095729152"
+draft: true
+---
+
+The Right Woman: http://www.tylerbutler.com/2012/07/07/the-right-woman/

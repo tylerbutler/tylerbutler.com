@@ -1,0 +1,7 @@
+---
+date: 2008-08-27T20:58:51.000Z
+originalUrl: "https://twitter.com/tylerbutler/status/900927674"
+draft: true
+---
+
+I am so SICK AND TIRED of having to restart my computer to install freaking UPDATES. ARGGGHHHH!!!

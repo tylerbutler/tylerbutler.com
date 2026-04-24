@@ -1,0 +1,15 @@
+/* Pagefind Component UI theming. Components use `all: initial`, so they only
+   pick up styles via `--pf-*` custom properties. Site theme vars already flip
+   under `.dark`, so a single `:root` block tracks both themes. */
+:root {
+  --pf-background: var(--light-bg);
+  --pf-text: var(--text);
+  --pf-text-secondary: var(--text-light);
+  --pf-border: var(--code-border);
+  --pf-border-focus: var(--accent);
+  --pf-hover: var(--overlay);
+  --pf-mark: var(--accent);
+  --pf-outline-focus: var(--accent);
+
+  --pf-modal-max-width: 640px;
+}

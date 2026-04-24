@@ -1,0 +1,60 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button id="searchToggle" aria-label="Open search" aria-keyshortcuts="Meta+K Control+K">
+  <Icon name="iconoir:search" aria-hidden="true" />
+</button>
+
+<style>
+  #searchToggle {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #searchToggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  #searchToggle:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  #searchToggle svg {
+    width: 18px;
+    height: 18px;
+    color: var(--nav-links);
+    transition: color 0.2s ease;
+  }
+
+  :global(.dark) #searchToggle:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<script is:inline>
+  const handleSearchClick = () => {
+    const modal = document.querySelector("pagefind-modal");
+    if (modal && typeof modal.open === "function") {
+      modal.open();
+    }
+  };
+
+  document
+    .getElementById("searchToggle")
+    ?.addEventListener("click", handleSearchClick);
+
+  document.addEventListener("astro:after-swap", () => {
+    document
+      .getElementById("searchToggle")
+      ?.addEventListener("click", handleSearchClick);
+  });
+</script>

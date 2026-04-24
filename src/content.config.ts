@@ -32,6 +32,9 @@ const notes = defineCollection({
   loader: glob({
     pattern: "**/[^_]*.{md,mdx}",
     base: "./src/content/notes",
+    // Derive id from filename. The default uses frontmatter `slug`, which
+    // collides across notes that share a slug on different dates.
+    generateId: ({ entry }) => entry.replace(/\.[^.]+$/, ""),
   }),
   schema: z.object({
     date: z.coerce.date(),

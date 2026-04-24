@@ -3,6 +3,7 @@ import rss, { type RSSFeedItem } from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
+import { includeDraft } from "../../lib/draft-utils";
 import { getNoteUrl } from "../../lib/note-utils";
 
 function plaintextExcerpt(body: string, maxChars: number): string {
@@ -19,7 +20,7 @@ function plaintextExcerpt(body: string, maxChars: number): string {
 }
 
 export async function GET(context: APIContext) {
-  const notes = await getCollection("notes", ({ data }) => !data.draft);
+  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
 
   const sortedNotes = notes.sort(
     (a, b) => b.data.date.getTime() - a.data.date.getTime(),

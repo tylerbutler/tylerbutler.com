@@ -1,9 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { includeDraft } from "../../lib/draft-utils";
 import { getNoteUrl } from "../../lib/note-utils";
 
-const notes = await getCollection("notes", ({ data }) => !data.draft);
+const notes = await getCollection("notes", ({ data }) => includeDraft(data));
 
 const sortedNotes = notes.sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),

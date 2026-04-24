@@ -1,5 +1,6 @@
 ---
 date: 2009-08-03T14:40:06.000Z
+slug: "i-dream-of-a-day"
 originalUrl: "https://twitter.com/tylerbutler/status/3105013308"
 draft: true
 ---

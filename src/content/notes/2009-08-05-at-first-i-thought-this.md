@@ -1,5 +1,6 @@
 ---
 date: 2009-08-05T17:33:37.000Z
+slug: "at-first-i-thought-this"
 originalUrl: "https://twitter.com/tylerbutler/status/3149191380"
 draft: true
 ---

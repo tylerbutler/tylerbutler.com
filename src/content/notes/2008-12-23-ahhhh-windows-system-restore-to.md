@@ -1,5 +1,6 @@
 ---
 date: 2008-12-23T02:08:20.000Z
+slug: "ahhhh-windows-system-restore-to"
 originalUrl: "https://twitter.com/tylerbutler/status/1073484030"
 draft: true
 ---

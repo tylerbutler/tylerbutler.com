@@ -1,5 +1,6 @@
 ---
 date: 2008-12-18T17:58:48.000Z
+slug: "my-current-out-of-office"
 originalUrl: "https://twitter.com/tylerbutler/status/1065379241"
 draft: true
 ---

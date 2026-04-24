@@ -1,5 +1,6 @@
 ---
 date: 2009-04-23T06:37:29.000Z
+slug: "just-a-quick-unobtrusive-tweet"
 originalUrl: "https://twitter.com/tylerbutler/status/1592216327"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2007-09-17T08:01:09.000Z
+slug: "tyler-is-done-with-legend"
 originalUrl: "https://twitter.com/tylerbutler/status/273817802"
 draft: true
 ---

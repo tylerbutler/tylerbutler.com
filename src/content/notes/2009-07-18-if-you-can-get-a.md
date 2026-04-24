@@ -1,5 +1,6 @@
 ---
 date: 2009-07-18T22:07:31.000Z
+slug: "if-you-can-get-a"
 originalUrl: "https://twitter.com/tylerbutler/status/2712347592"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-03-18T17:45:34.000Z
+slug: "wiki-is-the-xml-of"
 originalUrl: "https://twitter.com/tylerbutler/status/1349536105"
 draft: true
 ---

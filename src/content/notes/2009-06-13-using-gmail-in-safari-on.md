@@ -1,5 +1,6 @@
 ---
 date: 2009-06-13T07:35:01.000Z
+slug: "using-gmail-in-safari-on"
 originalUrl: "https://twitter.com/tylerbutler/status/2151673171"
 draft: true
 ---

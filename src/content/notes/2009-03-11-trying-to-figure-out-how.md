@@ -1,5 +1,6 @@
 ---
 date: 2009-03-11T01:20:54.000Z
+slug: "trying-to-figure-out-how"
 originalUrl: "https://twitter.com/tylerbutler/status/1308441688"
 draft: true
 ---

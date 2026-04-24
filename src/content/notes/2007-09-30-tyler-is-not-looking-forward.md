@@ -1,5 +1,6 @@
 ---
 date: 2007-09-30T22:04:01.000Z
+slug: "tyler-is-not-looking-forward"
 originalUrl: "https://twitter.com/tylerbutler/status/303679702"
 draft: true
 ---

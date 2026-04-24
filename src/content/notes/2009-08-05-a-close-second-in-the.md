@@ -1,5 +1,6 @@
 ---
 date: 2009-08-05T17:34:22.000Z
+slug: "a-close-second-in-the"
 originalUrl: "https://twitter.com/tylerbutler/status/3149204632"
 draft: true
 ---

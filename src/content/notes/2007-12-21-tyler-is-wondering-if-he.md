@@ -1,5 +1,6 @@
 ---
 date: 2007-12-21T08:30:37.000Z
+slug: "tyler-is-wondering-if-he"
 originalUrl: "https://twitter.com/tylerbutler/status/520463732"
 draft: true
 ---

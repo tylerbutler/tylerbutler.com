@@ -1,5 +1,6 @@
 ---
 date: 2008-11-20T17:27:48.000Z
+slug: "xna-games-tyler-butler-reworked"
 originalUrl: "https://twitter.com/tylerbutler/status/1015034288"
 draft: true
 ---

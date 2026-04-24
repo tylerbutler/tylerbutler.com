@@ -1,5 +1,6 @@
 ---
 date: 2009-03-10T02:51:28.000Z
+slug: "ahhh-yes-my-alma-mater"
 originalUrl: "https://twitter.com/tylerbutler/status/1303691626"
 draft: true
 ---

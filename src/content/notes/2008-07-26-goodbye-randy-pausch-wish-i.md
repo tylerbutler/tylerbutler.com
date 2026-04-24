@@ -1,5 +1,6 @@
 ---
 date: 2008-07-26T05:18:28.000Z
+slug: "goodbye-randy-pausch-wish-i"
 originalUrl: "https://twitter.com/tylerbutler/status/868773368"
 draft: true
 ---

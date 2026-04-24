@@ -1,5 +1,6 @@
 ---
 date: 2008-09-06T20:34:11.000Z
+slug: "random-thought-wouldn-t-it"
 originalUrl: "https://twitter.com/tylerbutler/status/912156275"
 draft: true
 ---

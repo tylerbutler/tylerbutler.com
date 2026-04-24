@@ -1,5 +1,6 @@
 ---
 date: 2009-05-15T17:27:24.000Z
+slug: "strike-anywhere-matches-refuse-to"
 originalUrl: "https://twitter.com/tylerbutler/status/1808154419"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-05-13T05:36:47.000Z
+slug: "if-the-flight-attendant-says"
 originalUrl: "https://twitter.com/tylerbutler/status/1781817800"
 draft: true
 ---

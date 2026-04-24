@@ -1,5 +1,6 @@
 ---
 date: 2009-08-13T23:12:24.000Z
+slug: "i-like-evernote-but-its"
 originalUrl: "https://twitter.com/tylerbutler/status/3296082931"
 draft: true
 ---

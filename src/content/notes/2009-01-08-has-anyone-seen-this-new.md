@@ -1,5 +1,6 @@
 ---
 date: 2009-01-08T05:24:26.000Z
+slug: "has-anyone-seen-this-new"
 originalUrl: "https://twitter.com/tylerbutler/status/1103747475"
 draft: true
 ---

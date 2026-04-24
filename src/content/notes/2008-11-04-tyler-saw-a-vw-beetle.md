@@ -1,5 +1,6 @@
 ---
 date: 2008-11-04T15:47:21.000Z
+slug: "tyler-saw-a-vw-beetle"
 originalUrl: "https://twitter.com/tylerbutler/status/989516356"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-01-19T14:50:10.000Z
+slug: "man-it-s-hard-to"
 originalUrl: "https://twitter.com/tylerbutler/status/1130541954"
 draft: true
 ---

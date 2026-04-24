@@ -1,5 +1,6 @@
 ---
 date: 2010-07-01T07:22:51.000Z
+slug: "any-jquery-gurus-know-why"
 originalUrl: "https://twitter.com/tylerbutler/status/17476396350"
 draft: true
 ---

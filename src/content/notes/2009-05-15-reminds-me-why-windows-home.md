@@ -1,5 +1,6 @@
 ---
 date: 2009-05-15T23:56:23.000Z
+slug: "reminds-me-why-windows-home"
 originalUrl: "https://twitter.com/tylerbutler/status/1811629224"
 draft: true
 ---

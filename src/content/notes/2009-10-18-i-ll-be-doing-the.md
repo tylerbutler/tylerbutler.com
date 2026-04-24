@@ -1,5 +1,6 @@
 ---
 date: 2009-10-18T21:20:22.000Z
+slug: "i-ll-be-doing-the"
 originalUrl: "https://twitter.com/tylerbutler/status/4974605562"
 draft: true
 ---

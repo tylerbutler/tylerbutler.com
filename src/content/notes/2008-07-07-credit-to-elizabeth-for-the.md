@@ -1,5 +1,6 @@
 ---
 date: 2008-07-07T05:42:06.000Z
+slug: "credit-to-elizabeth-for-the"
 originalUrl: "https://twitter.com/tylerbutler/status/851747232"
 draft: true
 ---

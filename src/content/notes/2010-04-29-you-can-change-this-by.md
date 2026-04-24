@@ -1,5 +1,6 @@
 ---
 date: 2010-04-29T16:57:29.000Z
+slug: "you-can-change-this-by"
 originalUrl: "https://twitter.com/tylerbutler/status/13078844647"
 draft: true
 ---

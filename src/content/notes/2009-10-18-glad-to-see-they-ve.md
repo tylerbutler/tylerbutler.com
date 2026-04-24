@@ -1,5 +1,6 @@
 ---
 date: 2009-10-18T21:33:32.000Z
+slug: "glad-to-see-they-ve"
 originalUrl: "https://twitter.com/tylerbutler/status/4974877587"
 draft: true
 ---

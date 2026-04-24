@@ -1,5 +1,6 @@
 ---
 date: 2008-02-09T22:31:32.000Z
+slug: "tyler-wishes-he-was-home"
 originalUrl: "https://twitter.com/tylerbutler/status/694588402"
 draft: true
 ---

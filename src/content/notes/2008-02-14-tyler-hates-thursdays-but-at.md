@@ -1,5 +1,6 @@
 ---
 date: 2008-02-14T18:32:07.000Z
+slug: "tyler-hates-thursdays-but-at"
 originalUrl: "https://twitter.com/tylerbutler/status/712653152"
 draft: true
 ---

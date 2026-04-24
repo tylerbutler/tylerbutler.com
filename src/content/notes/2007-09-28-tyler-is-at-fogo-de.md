@@ -1,5 +1,6 @@
 ---
 date: 2007-09-28T02:04:05.000Z
+slug: "tyler-is-at-fogo-de"
 originalUrl: "https://twitter.com/tylerbutler/status/297935292"
 draft: true
 ---

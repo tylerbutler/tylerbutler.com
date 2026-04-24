@@ -1,5 +1,6 @@
 ---
 date: 2008-08-03T23:03:44.000Z
+slug: "tyler-has-successfully-coded-a"
 originalUrl: "https://twitter.com/tylerbutler/status/876701164"
 draft: true
 ---

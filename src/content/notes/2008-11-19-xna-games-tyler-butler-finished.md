@@ -1,5 +1,6 @@
 ---
 date: 2008-11-19T05:46:03.000Z
+slug: "xna-games-tyler-butler-finished"
 originalUrl: "https://twitter.com/tylerbutler/status/1012441561"
 draft: true
 ---

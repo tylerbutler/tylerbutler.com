@@ -1,5 +1,6 @@
 ---
 date: 2009-06-13T15:58:14.000Z
+slug: "funniest-and-yet-saddest-pic"
 originalUrl: "https://twitter.com/tylerbutler/status/2154772052"
 draft: true
 ---

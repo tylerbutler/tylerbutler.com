@@ -1,5 +1,6 @@
 ---
 date: 2009-04-12T06:59:22.000Z
+slug: "the-perils-of-trying-to"
 originalUrl: "https://twitter.com/tylerbutler/status/1501812781"
 draft: true
 ---

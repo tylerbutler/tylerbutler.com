@@ -1,5 +1,6 @@
 ---
 date: 2010-04-14T07:42:31.000Z
+slug: "is-there-some-technical-reason"
 originalUrl: "https://twitter.com/tylerbutler/status/12151442966"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2008-12-19T20:02:57.000Z
+slug: "seatbelt-got-stuck-in-car"
 originalUrl: "https://twitter.com/tylerbutler/status/1067752701"
 draft: true
 ---

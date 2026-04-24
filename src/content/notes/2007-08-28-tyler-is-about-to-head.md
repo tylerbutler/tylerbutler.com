@@ -1,5 +1,6 @@
 ---
 date: 2007-08-28T06:17:00.000Z
+slug: "tyler-is-about-to-head"
 originalUrl: "https://twitter.com/tylerbutler/status/231787752"
 draft: true
 ---

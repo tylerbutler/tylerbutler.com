@@ -1,5 +1,6 @@
 ---
 date: 2008-09-28T16:42:01.000Z
+slug: "ok-that-s-it-i"
 originalUrl: "https://twitter.com/tylerbutler/status/938237897"
 draft: true
 ---

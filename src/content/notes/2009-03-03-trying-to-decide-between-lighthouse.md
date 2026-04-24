@@ -1,5 +1,6 @@
 ---
 date: 2009-03-03T17:13:49.000Z
+slug: "trying-to-decide-between-lighthouse"
 originalUrl: "https://twitter.com/tylerbutler/status/1274555188"
 draft: true
 ---

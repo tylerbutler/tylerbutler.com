@@ -1,5 +1,6 @@
 ---
 date: 2009-06-11T00:54:15.000Z
+slug: "getting-ready-to-head-out"
 originalUrl: "https://twitter.com/tylerbutler/status/2110834972"
 draft: true
 ---

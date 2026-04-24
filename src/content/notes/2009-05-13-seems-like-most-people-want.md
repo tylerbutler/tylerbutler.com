@@ -1,5 +1,6 @@
 ---
 date: 2009-05-13T20:39:33.000Z
+slug: "seems-like-most-people-want"
 originalUrl: "https://twitter.com/tylerbutler/status/1787782781"
 draft: true
 ---

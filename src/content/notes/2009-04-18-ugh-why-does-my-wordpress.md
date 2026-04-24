@@ -1,5 +1,6 @@
 ---
 date: 2009-04-18T05:45:53.000Z
+slug: "ugh-why-does-my-wordpress"
 originalUrl: "https://twitter.com/tylerbutler/status/1549022260"
 draft: true
 ---

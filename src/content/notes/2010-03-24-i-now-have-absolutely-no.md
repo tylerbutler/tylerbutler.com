@@ -1,5 +1,6 @@
 ---
 date: 2010-03-24T17:26:55.000Z
+slug: "i-now-have-absolutely-no"
 originalUrl: "https://twitter.com/tylerbutler/status/10989455934"
 draft: true
 ---

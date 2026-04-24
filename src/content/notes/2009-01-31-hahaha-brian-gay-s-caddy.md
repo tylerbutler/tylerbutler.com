@@ -1,5 +1,6 @@
 ---
 date: 2009-01-31T21:57:20.000Z
+slug: "hahaha-brian-gay-s-caddy"
 originalUrl: "https://twitter.com/tylerbutler/status/1165415229"
 draft: true
 ---

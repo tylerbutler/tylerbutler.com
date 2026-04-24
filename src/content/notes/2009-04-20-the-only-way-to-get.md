@@ -1,5 +1,6 @@
 ---
 date: 2009-04-20T14:36:50.000Z
+slug: "the-only-way-to-get"
 originalUrl: "https://twitter.com/tylerbutler/status/1565815518"
 draft: true
 ---

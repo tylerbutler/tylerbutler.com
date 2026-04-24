@@ -1,5 +1,6 @@
 ---
 date: 2008-07-27T16:18:09.000Z
+slug: "twitter-replies-are-retarded-there"
 originalUrl: "https://twitter.com/tylerbutler/status/869816181"
 draft: true
 ---

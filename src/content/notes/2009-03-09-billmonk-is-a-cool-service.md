@@ -1,5 +1,6 @@
 ---
 date: 2009-03-09T07:13:05.000Z
+slug: "billmonk-is-a-cool-service"
 originalUrl: "https://twitter.com/tylerbutler/status/1299410053"
 draft: true
 ---

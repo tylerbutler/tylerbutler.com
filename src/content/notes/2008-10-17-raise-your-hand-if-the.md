@@ -1,5 +1,6 @@
 ---
 date: 2008-10-17T17:50:05.000Z
+slug: "raise-your-hand-if-the"
 originalUrl: "https://twitter.com/tylerbutler/status/964146607"
 draft: true
 ---

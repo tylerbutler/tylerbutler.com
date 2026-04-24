@@ -1,5 +1,6 @@
 ---
 date: 2009-05-31T07:20:58.000Z
+slug: "setting-up-a-web-site"
 originalUrl: "https://twitter.com/tylerbutler/status/1978752608"
 draft: true
 ---

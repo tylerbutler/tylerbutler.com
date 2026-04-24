@@ -1,5 +1,6 @@
 ---
 date: 2009-02-14T18:03:17.000Z
+slug: "10am-ok-time-to-head"
 originalUrl: "https://twitter.com/tylerbutler/status/1210264771"
 draft: true
 ---

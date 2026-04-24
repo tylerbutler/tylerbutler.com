@@ -1,5 +1,6 @@
 ---
 date: 2009-01-11T23:56:30.000Z
+slug: "hmmm-i-think-i-am"
 originalUrl: "https://twitter.com/tylerbutler/status/1111896388"
 draft: true
 ---

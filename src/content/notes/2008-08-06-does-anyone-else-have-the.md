@@ -1,5 +1,6 @@
 ---
 date: 2008-08-06T15:45:01.000Z
+slug: "does-anyone-else-have-the"
 originalUrl: "https://twitter.com/tylerbutler/status/879437315"
 draft: true
 ---

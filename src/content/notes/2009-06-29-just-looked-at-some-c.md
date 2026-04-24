@@ -1,5 +1,6 @@
 ---
 date: 2009-06-29T21:29:40.000Z
+slug: "just-looked-at-some-c"
 originalUrl: "https://twitter.com/tylerbutler/status/2393726471"
 draft: true
 ---

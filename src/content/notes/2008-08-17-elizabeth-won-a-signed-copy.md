@@ -1,5 +1,6 @@
 ---
 date: 2008-08-17T20:32:08.000Z
+slug: "elizabeth-won-a-signed-copy"
 originalUrl: "https://twitter.com/tylerbutler/status/890442734"
 draft: true
 ---

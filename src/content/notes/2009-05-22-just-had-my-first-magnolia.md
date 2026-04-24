@@ -1,5 +1,6 @@
 ---
 date: 2009-05-22T20:06:23.000Z
+slug: "just-had-my-first-magnolia"
 originalUrl: "https://twitter.com/tylerbutler/status/1886239310"
 draft: true
 ---

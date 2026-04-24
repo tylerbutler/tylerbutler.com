@@ -1,5 +1,6 @@
 ---
 date: 2010-04-03T20:53:01.000Z
+slug: "i-m-pretty-sure-google"
 originalUrl: "https://twitter.com/tylerbutler/status/11552561887"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-01-31T21:49:44.000Z
+slug: "the-crowd-at-the-pga"
 originalUrl: "https://twitter.com/tylerbutler/status/1165399093"
 draft: true
 ---

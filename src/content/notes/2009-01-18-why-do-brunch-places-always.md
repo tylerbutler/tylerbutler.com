@@ -1,5 +1,6 @@
 ---
 date: 2009-01-18T17:14:27.000Z
+slug: "why-do-brunch-places-always"
 originalUrl: "https://twitter.com/tylerbutler/status/1128460493"
 draft: true
 ---

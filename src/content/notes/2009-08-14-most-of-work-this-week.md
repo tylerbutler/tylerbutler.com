@@ -1,5 +1,6 @@
 ---
 date: 2009-08-14T17:59:03.000Z
+slug: "most-of-work-this-week"
 originalUrl: "https://twitter.com/tylerbutler/status/3312178069"
 draft: true
 ---

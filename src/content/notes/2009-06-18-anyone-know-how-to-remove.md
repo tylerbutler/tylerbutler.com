@@ -1,5 +1,6 @@
 ---
 date: 2009-06-18T07:49:36.000Z
+slug: "anyone-know-how-to-remove"
 originalUrl: "https://twitter.com/tylerbutler/status/2219560885"
 draft: true
 ---

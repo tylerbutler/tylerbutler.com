@@ -1,5 +1,6 @@
 ---
 date: 2012-03-21T00:48:33.000Z
+slug: "mind-blown"
 originalUrl: "https://twitter.com/tylerbutler/status/182267416024326145"
 draft: true
 ---

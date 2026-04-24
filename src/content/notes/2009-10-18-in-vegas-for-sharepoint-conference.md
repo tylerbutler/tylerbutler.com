@@ -1,5 +1,6 @@
 ---
 date: 2009-10-18T21:19:58.000Z
+slug: "in-vegas-for-sharepoint-conference"
 originalUrl: "https://twitter.com/tylerbutler/status/4974597130"
 draft: true
 ---

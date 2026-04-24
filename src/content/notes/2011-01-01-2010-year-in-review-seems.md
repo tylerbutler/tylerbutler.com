@@ -1,5 +1,6 @@
 ---
 date: 2011-01-01T19:25:25.000Z
+slug: "2010-year-in-review-seems"
 originalUrl: "https://twitter.com/tylerbutler/status/21285887824367616"
 draft: true
 ---

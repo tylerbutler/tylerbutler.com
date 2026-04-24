@@ -1,5 +1,6 @@
 ---
 date: 2008-09-09T01:37:26.000Z
+slug: "the-load-times-on-eternal"
 originalUrl: "https://twitter.com/tylerbutler/status/914549079"
 draft: true
 ---

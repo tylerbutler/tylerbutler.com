@@ -1,5 +1,6 @@
 ---
 date: 2009-02-12T06:16:29.000Z
+slug: "is-there-anything-like-sparkle"
 originalUrl: "https://twitter.com/tylerbutler/status/1201815669"
 draft: true
 ---

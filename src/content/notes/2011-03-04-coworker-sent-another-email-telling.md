@@ -1,5 +1,6 @@
 ---
 date: 2011-03-04T18:02:59.000Z
+slug: "coworker-sent-another-email-telling"
 originalUrl: "https://twitter.com/tylerbutler/status/43733190417981440"
 draft: true
 ---

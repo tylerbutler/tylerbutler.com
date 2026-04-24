@@ -1,5 +1,6 @@
 ---
 date: 2009-05-31T03:41:41.000Z
+slug: "i-am-such-a-google"
 originalUrl: "https://twitter.com/tylerbutler/status/1977322279"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-06-26T20:03:03.000Z
+slug: "love-too-incredibly-brilliant-not"
 originalUrl: "https://twitter.com/tylerbutler/status/2349062780"
 draft: true
 ---

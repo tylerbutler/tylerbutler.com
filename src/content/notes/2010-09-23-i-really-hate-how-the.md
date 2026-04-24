@@ -1,5 +1,6 @@
 ---
 date: 2010-09-23T06:03:03.000Z
+slug: "i-really-hate-how-the"
 originalUrl: "https://twitter.com/tylerbutler/status/25283248966"
 draft: true
 ---

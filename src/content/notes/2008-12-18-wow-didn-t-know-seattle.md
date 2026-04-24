@@ -1,5 +1,6 @@
 ---
 date: 2008-12-18T18:04:17.000Z
+slug: "wow-didn-t-know-seattle"
 originalUrl: "https://twitter.com/tylerbutler/status/1065390550"
 draft: true
 ---

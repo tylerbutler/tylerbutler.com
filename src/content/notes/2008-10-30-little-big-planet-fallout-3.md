@@ -1,5 +1,6 @@
 ---
 date: 2008-10-30T03:09:32.000Z
+slug: "little-big-planet-fallout-3"
 originalUrl: "https://twitter.com/tylerbutler/status/981614967"
 draft: true
 ---

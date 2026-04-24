@@ -1,5 +1,6 @@
 ---
 date: 2008-10-15T21:47:23.000Z
+slug: "mildmannered-industries-blog-archive-mobileme"
 originalUrl: "https://twitter.com/tylerbutler/status/961265475"
 draft: true
 ---

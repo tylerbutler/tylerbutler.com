@@ -1,5 +1,6 @@
 ---
 date: 2009-07-17T16:07:12.000Z
+slug: "i-had-forgotten-just-how"
 originalUrl: "https://twitter.com/tylerbutler/status/2690537830"
 draft: true
 ---

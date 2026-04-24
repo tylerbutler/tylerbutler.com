@@ -1,5 +1,6 @@
 ---
 date: 2009-01-11T07:44:56.000Z
+slug: "ok-figured-out-why-twitter"
 originalUrl: "https://twitter.com/tylerbutler/status/1110620955"
 draft: true
 ---

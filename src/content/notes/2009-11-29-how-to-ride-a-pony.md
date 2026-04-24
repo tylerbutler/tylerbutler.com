@@ -1,5 +1,6 @@
 ---
 date: 2009-11-29T16:23:37.000Z
+slug: "how-to-ride-a-pony"
 originalUrl: "https://twitter.com/tylerbutler/status/6173191213"
 draft: true
 ---

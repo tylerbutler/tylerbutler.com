@@ -1,5 +1,6 @@
 ---
 date: 2010-06-19T05:27:43.000Z
+slug: "things-that-could-have-been"
 originalUrl: "https://twitter.com/tylerbutler/status/16524930315"
 draft: true
 ---

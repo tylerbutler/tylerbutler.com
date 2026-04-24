@@ -1,5 +1,6 @@
 ---
 date: 2010-03-24T16:06:13.000Z
+slug: "also-speaking-of-clippy-this"
 originalUrl: "https://twitter.com/tylerbutler/status/10986009316"
 draft: true
 ---

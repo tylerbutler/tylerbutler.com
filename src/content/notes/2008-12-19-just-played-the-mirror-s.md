@@ -1,5 +1,6 @@
 ---
 date: 2008-12-19T01:17:51.000Z
+slug: "just-played-the-mirror-s"
 originalUrl: "https://twitter.com/tylerbutler/status/1066161217"
 draft: true
 ---

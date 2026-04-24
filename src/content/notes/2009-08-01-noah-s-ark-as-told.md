@@ -1,5 +1,6 @@
 ---
 date: 2009-08-01T02:46:36.000Z
+slug: "noah-s-ark-as-told"
 originalUrl: "https://twitter.com/tylerbutler/status/3063556158"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-05-31T01:56:52.000Z
+slug: "sweet-action-squeezebox-is-a"
 originalUrl: "https://twitter.com/tylerbutler/status/1976746392"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-04-12T07:39:41.000Z
+slug: "i-hate-that-i-just"
 originalUrl: "https://twitter.com/tylerbutler/status/1501927797"
 draft: true
 ---

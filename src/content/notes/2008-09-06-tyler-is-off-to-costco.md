@@ -1,5 +1,6 @@
 ---
 date: 2008-09-06T20:04:30.000Z
+slug: "tyler-is-off-to-costco"
 originalUrl: "https://twitter.com/tylerbutler/status/912133843"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2008-12-09T03:17:44.000Z
+slug: "i-am-debating-whether-i"
 originalUrl: "https://twitter.com/tylerbutler/status/1046354375"
 draft: true
 ---

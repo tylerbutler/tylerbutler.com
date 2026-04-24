@@ -1,5 +1,6 @@
 ---
 date: 2009-05-31T03:14:57.000Z
+slug: "it-s-better-to-hang"
 originalUrl: "https://twitter.com/tylerbutler/status/1977158896"
 draft: true
 ---

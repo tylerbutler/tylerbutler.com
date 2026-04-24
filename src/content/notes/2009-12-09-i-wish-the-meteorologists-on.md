@@ -1,5 +1,6 @@
 ---
 date: 2009-12-09T07:59:51.000Z
+slug: "i-wish-the-meteorologists-on"
 originalUrl: "https://twitter.com/tylerbutler/status/6490810256"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-05-08T06:28:49.000Z
+slug: "decided-not-to-go-into"
 originalUrl: "https://twitter.com/tylerbutler/status/1735332849"
 draft: true
 ---

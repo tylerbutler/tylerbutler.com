@@ -1,5 +1,6 @@
 ---
 date: 2009-02-03T15:56:19.000Z
+slug: "i-really-hate-people-that"
 originalUrl: "https://twitter.com/tylerbutler/status/1173253540"
 draft: true
 ---

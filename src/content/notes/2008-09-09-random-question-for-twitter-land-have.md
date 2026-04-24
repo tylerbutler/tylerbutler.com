@@ -1,5 +1,6 @@
 ---
 date: 2008-09-09T16:12:33.000Z
+slug: "random-question-for-twitter-land-have"
 originalUrl: "https://twitter.com/tylerbutler/status/915240869"
 draft: true
 ---

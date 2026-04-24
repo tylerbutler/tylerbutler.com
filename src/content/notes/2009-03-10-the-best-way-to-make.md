@@ -1,5 +1,6 @@
 ---
 date: 2009-03-10T00:54:45.000Z
+slug: "the-best-way-to-make"
 originalUrl: "https://twitter.com/tylerbutler/status/1303241031"
 draft: true
 ---

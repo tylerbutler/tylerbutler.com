@@ -1,5 +1,6 @@
 ---
 date: 2008-08-16T01:04:24.000Z
+slug: "tyler-is-at-the-gencon"
 originalUrl: "https://twitter.com/tylerbutler/status/889026864"
 draft: true
 ---

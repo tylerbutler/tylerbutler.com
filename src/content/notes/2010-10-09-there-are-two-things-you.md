@@ -1,5 +1,6 @@
 ---
 date: 2010-10-09T18:20:18.000Z
+slug: "there-are-two-things-you"
 originalUrl: "https://twitter.com/tylerbutler/status/26865813545"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2007-12-21T07:30:13.000Z
+slug: "tyler-is-sitting-in-o"
 originalUrl: "https://twitter.com/tylerbutler/status/520348132"
 draft: true
 ---

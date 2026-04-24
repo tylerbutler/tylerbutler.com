@@ -1,5 +1,6 @@
 ---
 date: 2013-07-29T14:20:32.000Z
+slug: "i-won-the-one-second-stopwatch"
 originalUrl: "https://twitter.com/tylerbutler/status/361853755328708609"
 draft: true
 ---

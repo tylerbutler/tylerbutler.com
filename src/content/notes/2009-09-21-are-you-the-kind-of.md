@@ -1,5 +1,6 @@
 ---
 date: 2009-09-21T00:23:19.000Z
+slug: "are-you-the-kind-of"
 originalUrl: "https://twitter.com/tylerbutler/status/4135021643"
 draft: true
 ---

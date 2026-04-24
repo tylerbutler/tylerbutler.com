@@ -1,5 +1,6 @@
 ---
 date: 2008-07-20T15:12:00.000Z
+slug: "millennium-force-is-quite-possibly"
 originalUrl: "https://twitter.com/tylerbutler/status/863475819"
 draft: true
 ---

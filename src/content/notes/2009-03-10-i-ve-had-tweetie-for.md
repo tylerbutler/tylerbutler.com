@@ -1,5 +1,6 @@
 ---
 date: 2009-03-10T04:01:52.000Z
+slug: "i-ve-had-tweetie-for"
 originalUrl: "https://twitter.com/tylerbutler/status/1303937811"
 draft: true
 ---

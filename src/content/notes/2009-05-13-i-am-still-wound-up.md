@@ -1,5 +1,6 @@
 ---
 date: 2009-05-13T14:42:56.000Z
+slug: "i-am-still-wound-up"
 originalUrl: "https://twitter.com/tylerbutler/status/1784861237"
 draft: true
 ---

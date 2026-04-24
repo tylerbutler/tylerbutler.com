@@ -1,5 +1,6 @@
 ---
 date: 2008-12-20T07:06:59.000Z
+slug: "if-you-use-the-twitter"
 originalUrl: "https://twitter.com/tylerbutler/status/1068662686"
 draft: true
 ---

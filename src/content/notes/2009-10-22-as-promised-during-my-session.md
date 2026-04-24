@@ -1,5 +1,6 @@
 ---
 date: 2009-10-22T00:21:50.000Z
+slug: "as-promised-during-my-session"
 originalUrl: "https://twitter.com/tylerbutler/status/5056481638"
 draft: true
 ---

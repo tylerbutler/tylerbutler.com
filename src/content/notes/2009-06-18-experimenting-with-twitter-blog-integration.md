@@ -1,5 +1,6 @@
 ---
 date: 2009-06-18T20:06:37.000Z
+slug: "experimenting-with-twitter-blog-integration"
 originalUrl: "https://twitter.com/tylerbutler/status/2227368815"
 draft: true
 ---

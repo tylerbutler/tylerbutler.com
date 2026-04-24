@@ -1,5 +1,6 @@
 ---
 date: 2008-08-31T13:48:57.000Z
+slug: "find-scene-unclear-speech-please"
 originalUrl: "https://twitter.com/tylerbutler/status/904808301"
 draft: true
 ---

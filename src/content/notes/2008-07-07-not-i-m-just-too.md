@@ -1,5 +1,6 @@
 ---
 date: 2008-07-07T05:42:03.000Z
+slug: "not-i-m-just-too"
 originalUrl: "https://twitter.com/tylerbutler/status/851747207"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2008-07-19T19:33:31.000Z
+slug: "tyler-is-on-his-way"
 originalUrl: "https://twitter.com/tylerbutler/status/862909391"
 draft: true
 ---

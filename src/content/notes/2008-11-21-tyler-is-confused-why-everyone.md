@@ -1,5 +1,6 @@
 ---
 date: 2008-11-21T16:04:26.000Z
+slug: "tyler-is-confused-why-everyone"
 originalUrl: "https://twitter.com/tylerbutler/status/1016692749"
 draft: true
 ---

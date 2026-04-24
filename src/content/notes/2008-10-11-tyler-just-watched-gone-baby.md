@@ -1,5 +1,6 @@
 ---
 date: 2008-10-11T19:48:29.000Z
+slug: "tyler-just-watched-gone-baby"
 originalUrl: "https://twitter.com/tylerbutler/status/955771884"
 draft: true
 ---

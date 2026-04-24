@@ -1,5 +1,6 @@
 ---
 date: 2008-09-17T19:27:35.000Z
+slug: "so-stressed-out-i-am"
 originalUrl: "https://twitter.com/tylerbutler/status/925018896"
 draft: true
 ---

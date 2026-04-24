@@ -1,5 +1,6 @@
 ---
 date: 2010-06-28T16:58:31.000Z
+slug: "i-think-we-should-amend"
 originalUrl: "https://twitter.com/tylerbutler/status/17264904566"
 draft: true
 ---

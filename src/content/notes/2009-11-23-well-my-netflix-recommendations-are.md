@@ -1,5 +1,6 @@
 ---
 date: 2009-11-23T21:27:42.000Z
+slug: "well-my-netflix-recommendations-are"
 originalUrl: "https://twitter.com/tylerbutler/status/5988079360"
 draft: true
 ---

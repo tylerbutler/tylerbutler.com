@@ -1,5 +1,6 @@
 ---
 date: 2008-06-05T06:03:31.000Z
+slug: "tyler-thinks-this-whole-social"
 originalUrl: "https://twitter.com/tylerbutler/status/827432718"
 draft: true
 ---

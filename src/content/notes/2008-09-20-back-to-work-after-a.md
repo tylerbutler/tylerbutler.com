@@ -1,5 +1,6 @@
 ---
 date: 2008-09-20T02:16:01.000Z
+slug: "back-to-work-after-a"
 originalUrl: "https://twitter.com/tylerbutler/status/928009410"
 draft: true
 ---

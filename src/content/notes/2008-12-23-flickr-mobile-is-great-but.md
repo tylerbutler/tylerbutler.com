@@ -1,5 +1,6 @@
 ---
 date: 2008-12-23T23:54:46.000Z
+slug: "flickr-mobile-is-great-but"
 originalUrl: "https://twitter.com/tylerbutler/status/1075302659"
 draft: true
 ---

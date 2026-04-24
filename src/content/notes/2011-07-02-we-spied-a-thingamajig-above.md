@@ -1,5 +1,6 @@
 ---
 date: 2011-07-02T18:07:49.000Z
+slug: "we-spied-a-thingamajig-above"
 originalUrl: "https://twitter.com/tylerbutler/status/87220948620677120"
 draft: true
 ---

@@ -128,16 +128,29 @@ function uniqueFilename(base: string, used: Set<string>): string {
   return candidate;
 }
 
-function buildNote(t: Tweet): { filename: string; contents: string } | null {
+function buildNote(
+  t: Tweet,
+): { filenameBase: string; iso: string; body: string; url: string } | null {
   const expanded = expandUrls(t.full_text, t);
   const body = decodeHtmlEntities(expanded).trim();
   if (!body) return null;
   const { ymd, iso } = isoParts(t.created_at);
   const slugBase = makeSlug(body) || t.id_str;
   const url = `https://twitter.com/${HANDLE}/status/${t.id_str}`;
-  const fm = [
+  return { filenameBase: `${ymd}-${slugBase}`, iso, body, url };
+}
+
+function renderNote(
+  filename: string,
+  iso: string,
+  body: string,
+  url: string,
+): string {
+  const slug = filename.replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/\.md$/, "");
+  return [
     "---",
     `date: ${iso}`,
+    `slug: "${slug}"`,
     `originalUrl: "${url}"`,
     "draft: true",
     "---",
@@ -145,7 +158,6 @@ function buildNote(t: Tweet): { filename: string; contents: string } | null {
     body,
     "",
   ].join("\n");
-  return { filename: `${ymd}-${slugBase}`, contents: fm };
 }
 
 const tweets = loadTweets();
@@ -165,17 +177,18 @@ for (const t of candidates) {
     skippedEmpty++;
     continue;
   }
-  const filename = uniqueFilename(note.filename, used);
+  const filename = uniqueFilename(note.filenameBase, used);
   const fullPath = path.join(DEST, filename);
+  const contents = renderNote(filename, note.iso, note.body, note.url);
 
   if (mode === "dry") {
     if (written < previewMax) {
       console.log(`\n=== ${filename}`);
-      console.log(note.contents);
+      console.log(contents);
     }
     written++;
   } else {
-    writeFileSync(fullPath, note.contents);
+    writeFileSync(fullPath, contents);
     written++;
   }
 }

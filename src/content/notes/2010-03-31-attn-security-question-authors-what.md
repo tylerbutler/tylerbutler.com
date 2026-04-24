@@ -1,5 +1,6 @@
 ---
 date: 2010-03-31T17:11:45.000Z
+slug: "attn-security-question-authors-what"
 originalUrl: "https://twitter.com/tylerbutler/status/11376871462"
 draft: true
 ---

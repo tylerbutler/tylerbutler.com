@@ -1,5 +1,6 @@
 ---
 date: 2010-06-05T14:18:10.000Z
+slug: "i-m-going-to-be"
 originalUrl: "https://twitter.com/tylerbutler/status/15489579058"
 draft: true
 ---

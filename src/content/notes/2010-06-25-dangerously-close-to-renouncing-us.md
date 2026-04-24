@@ -1,5 +1,6 @@
 ---
 date: 2010-06-25T18:49:10.000Z
+slug: "dangerously-close-to-renouncing-us"
 originalUrl: "https://twitter.com/tylerbutler/status/17035851761"
 draft: true
 ---

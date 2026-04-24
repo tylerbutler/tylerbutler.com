@@ -1,5 +1,6 @@
 ---
 date: 2008-07-18T04:33:00.000Z
+slug: "tyler-is-heading-to-cedar"
 originalUrl: "https://twitter.com/tylerbutler/status/861617478"
 draft: true
 ---

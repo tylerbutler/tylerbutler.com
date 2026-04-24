@@ -1,5 +1,6 @@
 ---
 date: 2009-04-16T18:20:29.000Z
+slug: "product-idea-the-mcdonald-s"
 originalUrl: "https://twitter.com/tylerbutler/status/1535596526"
 draft: true
 ---

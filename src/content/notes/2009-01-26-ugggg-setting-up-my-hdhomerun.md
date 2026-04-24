@@ -1,5 +1,6 @@
 ---
 date: 2009-01-26T08:17:55.000Z
+slug: "ugggg-setting-up-my-hdhomerun"
 originalUrl: "https://twitter.com/tylerbutler/status/1148576351"
 draft: true
 ---

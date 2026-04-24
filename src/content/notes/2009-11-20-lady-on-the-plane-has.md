@@ -1,5 +1,6 @@
 ---
 date: 2009-11-20T15:33:41.000Z
+slug: "lady-on-the-plane-has"
 originalUrl: "https://twitter.com/tylerbutler/status/5892006903"
 draft: true
 ---

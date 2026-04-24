@@ -1,5 +1,6 @@
 ---
 date: 2013-09-21T16:57:44.000Z
+slug: "my-parents-taught-me-to"
 originalUrl: "https://twitter.com/tylerbutler/status/381462261274906624"
 draft: true
 ---

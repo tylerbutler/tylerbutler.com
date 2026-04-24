@@ -1,5 +1,6 @@
 ---
 date: 2010-09-17T15:30:46.000Z
+slug: "alternatively-if-you-know-a"
 originalUrl: "https://twitter.com/tylerbutler/status/24767895978"
 draft: true
 ---

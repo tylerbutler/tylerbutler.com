@@ -1,5 +1,6 @@
 ---
 date: 2009-10-23T17:07:26.000Z
+slug: "well-folks-spc09-is-at"
 originalUrl: "https://twitter.com/tylerbutler/status/5101564012"
 draft: true
 ---

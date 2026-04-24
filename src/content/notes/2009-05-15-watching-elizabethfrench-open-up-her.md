@@ -1,5 +1,6 @@
 ---
 date: 2009-05-15T21:37:26.000Z
+slug: "watching-elizabethfrench-open-up-her"
 originalUrl: "https://twitter.com/tylerbutler/status/1810513927"
 draft: true
 ---

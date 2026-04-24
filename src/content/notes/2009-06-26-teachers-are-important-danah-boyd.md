@@ -1,5 +1,6 @@
 ---
 date: 2009-06-26T19:02:45.000Z
+slug: "teachers-are-important-danah-boyd"
 originalUrl: "https://twitter.com/tylerbutler/status/2348237079"
 draft: true
 ---

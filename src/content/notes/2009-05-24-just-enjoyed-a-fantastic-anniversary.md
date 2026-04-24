@@ -1,5 +1,6 @@
 ---
 date: 2009-05-24T04:23:05.000Z
+slug: "just-enjoyed-a-fantastic-anniversary"
 originalUrl: "https://twitter.com/tylerbutler/status/1899928882"
 draft: true
 ---

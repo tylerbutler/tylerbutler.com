@@ -1,5 +1,6 @@
 ---
 date: 2009-03-15T21:57:03.000Z
+slug: "when-i-shut-my-laptop"
 originalUrl: "https://twitter.com/tylerbutler/status/1333224380"
 draft: true
 ---

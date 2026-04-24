@@ -1,5 +1,6 @@
 ---
 date: 2008-09-23T05:05:54.000Z
+slug: "i-am-becoming-a-total"
 originalUrl: "https://twitter.com/tylerbutler/status/931298769"
 draft: true
 ---

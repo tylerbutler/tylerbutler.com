@@ -1,5 +1,6 @@
 ---
 date: 2008-10-02T03:57:28.000Z
+slug: "attn-seattle-drivers-a-green"
 originalUrl: "https://twitter.com/tylerbutler/status/942835508"
 draft: true
 ---

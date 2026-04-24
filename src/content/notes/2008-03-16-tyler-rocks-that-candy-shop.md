@@ -1,5 +1,6 @@
 ---
 date: 2008-03-16T17:32:42.000Z
+slug: "tyler-rocks-that-candy-shop"
 originalUrl: "https://twitter.com/tylerbutler/status/772425687"
 draft: true
 ---

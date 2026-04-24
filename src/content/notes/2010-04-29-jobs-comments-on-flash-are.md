@@ -1,5 +1,6 @@
 ---
 date: 2010-04-29T16:55:17.000Z
+slug: "jobs-comments-on-flash-are"
 originalUrl: "https://twitter.com/tylerbutler/status/13078742180"
 draft: true
 ---

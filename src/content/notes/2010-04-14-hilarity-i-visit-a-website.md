@@ -1,5 +1,6 @@
 ---
 date: 2010-04-14T05:45:12.000Z
+slug: "hilarity-i-visit-a-website"
 originalUrl: "https://twitter.com/tylerbutler/status/12148005914"
 draft: true
 ---

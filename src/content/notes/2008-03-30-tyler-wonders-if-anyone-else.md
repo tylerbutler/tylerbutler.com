@@ -1,5 +1,6 @@
 ---
 date: 2008-03-30T18:32:36.000Z
+slug: "tyler-wonders-if-anyone-else"
 originalUrl: "https://twitter.com/tylerbutler/status/779738309"
 draft: true
 ---

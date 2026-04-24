@@ -1,5 +1,6 @@
 ---
 date: 2010-04-16T04:41:06.000Z
+slug: "until-a-man-is-twenty-five"
 originalUrl: "https://twitter.com/tylerbutler/status/12265074401"
 draft: true
 ---

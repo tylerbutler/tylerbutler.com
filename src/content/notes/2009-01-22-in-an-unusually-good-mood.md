@@ -1,5 +1,6 @@
 ---
 date: 2009-01-22T07:11:07.000Z
+slug: "in-an-unusually-good-mood"
 originalUrl: "https://twitter.com/tylerbutler/status/1138516441"
 draft: true
 ---

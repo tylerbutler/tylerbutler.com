@@ -1,5 +1,6 @@
 ---
 date: 2008-02-01T18:57:09.000Z
+slug: "tyler-is-dedicated-once-again"
 originalUrl: "https://twitter.com/tylerbutler/status/667296362"
 draft: true
 ---

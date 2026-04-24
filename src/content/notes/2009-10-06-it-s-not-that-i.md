@@ -1,5 +1,6 @@
 ---
 date: 2009-10-06T01:27:35.000Z
+slug: "it-s-not-that-i"
 originalUrl: "https://twitter.com/tylerbutler/status/4643731233"
 draft: true
 ---

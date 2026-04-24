@@ -1,5 +1,6 @@
 ---
 date: 2009-04-02T01:02:28.000Z
+slug: "there-s-some-bonnie-raitt"
 originalUrl: "https://twitter.com/tylerbutler/status/1435375129"
 draft: true
 ---

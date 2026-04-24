@@ -1,5 +1,6 @@
 ---
 date: 2009-04-01T18:31:30.000Z
+slug: "i-just-installed-digsby-for"
 originalUrl: "https://twitter.com/tylerbutler/status/1433121071"
 draft: true
 ---

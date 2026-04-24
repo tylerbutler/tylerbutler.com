@@ -1,5 +1,6 @@
 ---
 date: 2009-05-13T14:31:28.000Z
+slug: "despise-this-fixreplies-change-basically"
 originalUrl: "https://twitter.com/tylerbutler/status/1784758640"
 draft: true
 ---

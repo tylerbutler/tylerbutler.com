@@ -1,5 +1,6 @@
 ---
 date: 2009-06-26T17:15:24.000Z
+slug: "i-decided-twitter-wasn-t"
 originalUrl: "https://twitter.com/tylerbutler/status/2346709306"
 draft: true
 ---

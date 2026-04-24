@@ -1,5 +1,6 @@
 ---
 date: 2009-06-02T04:28:30.000Z
+slug: "simultaneous-netflix-viewing-on-your"
 originalUrl: "https://twitter.com/tylerbutler/status/2000131437"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-05-01T05:52:13.000Z
+slug: "checking-out-beak-a-new"
 originalUrl: "https://twitter.com/tylerbutler/status/1666994835"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-02-22T19:51:48.000Z
+slug: "rihanna-is-on-magazine-covers"
 originalUrl: "https://twitter.com/tylerbutler/status/1238003310"
 draft: true
 ---

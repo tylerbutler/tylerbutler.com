@@ -1,5 +1,6 @@
 ---
 date: 2009-07-15T07:21:30.000Z
+slug: "just-wrote-my-first-epic-length"
 originalUrl: "https://twitter.com/tylerbutler/status/2647564554"
 draft: true
 ---

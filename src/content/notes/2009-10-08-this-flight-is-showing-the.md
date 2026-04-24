@@ -1,5 +1,6 @@
 ---
 date: 2009-10-08T16:12:06.000Z
+slug: "this-flight-is-showing-the"
 originalUrl: "https://twitter.com/tylerbutler/status/4711607279"
 draft: true
 ---

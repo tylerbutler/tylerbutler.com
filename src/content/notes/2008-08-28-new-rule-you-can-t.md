@@ -1,5 +1,6 @@
 ---
 date: 2008-08-28T17:38:08.000Z
+slug: "new-rule-you-can-t"
 originalUrl: "https://twitter.com/tylerbutler/status/901915339"
 draft: true
 ---

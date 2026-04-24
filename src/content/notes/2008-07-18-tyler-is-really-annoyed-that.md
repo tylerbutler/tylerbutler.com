@@ -1,5 +1,6 @@
 ---
 date: 2008-07-18T16:03:47.000Z
+slug: "tyler-is-really-annoyed-that"
 originalUrl: "https://twitter.com/tylerbutler/status/861970584"
 draft: true
 ---

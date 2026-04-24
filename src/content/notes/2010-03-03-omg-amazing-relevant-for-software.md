@@ -1,5 +1,6 @@
 ---
 date: 2010-03-03T15:36:23.000Z
+slug: "omg-amazing-relevant-for-software"
 originalUrl: "https://twitter.com/tylerbutler/status/9928696960"
 draft: true
 ---

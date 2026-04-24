@@ -1,5 +1,6 @@
 ---
 date: 2008-12-19T23:08:33.000Z
+slug: "oh-man-mint-com-has"
 originalUrl: "https://twitter.com/tylerbutler/status/1068069629"
 draft: true
 ---

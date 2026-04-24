@@ -1,5 +1,6 @@
 ---
 date: 2010-02-15T16:44:22.000Z
+slug: "i-m-on-a-horse"
 originalUrl: "https://twitter.com/tylerbutler/status/9146940689"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2008-10-02T07:16:55.000Z
+slug: "tyler-thinks-every-female-friend"
 originalUrl: "https://twitter.com/tylerbutler/status/942979888"
 draft: true
 ---

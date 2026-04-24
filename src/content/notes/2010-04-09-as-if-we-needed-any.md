@@ -1,5 +1,6 @@
 ---
 date: 2010-04-09T21:19:03.000Z
+slug: "as-if-we-needed-any"
 originalUrl: "https://twitter.com/tylerbutler/status/11901764403"
 draft: true
 ---

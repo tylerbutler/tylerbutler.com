@@ -1,5 +1,6 @@
 ---
 date: 2009-04-19T01:39:14.000Z
+slug: "guy-just-stopped-me-in"
 originalUrl: "https://twitter.com/tylerbutler/status/1555042642"
 draft: true
 ---

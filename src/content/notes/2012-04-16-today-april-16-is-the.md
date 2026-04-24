@@ -1,5 +1,6 @@
 ---
 date: 2012-04-16T21:04:29.000Z
+slug: "today-april-16-is-the"
 originalUrl: "https://twitter.com/tylerbutler/status/191995503586721792"
 draft: true
 ---

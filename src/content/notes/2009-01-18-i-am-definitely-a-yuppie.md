@@ -1,5 +1,6 @@
 ---
 date: 2009-01-18T19:47:02.000Z
+slug: "i-am-definitely-a-yuppie"
 originalUrl: "https://twitter.com/tylerbutler/status/1128724260"
 draft: true
 ---

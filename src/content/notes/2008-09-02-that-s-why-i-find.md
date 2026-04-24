@@ -1,5 +1,6 @@
 ---
 date: 2008-09-02T05:02:25.000Z
+slug: "that-s-why-i-find"
 originalUrl: "https://twitter.com/tylerbutler/status/906469616"
 draft: true
 ---

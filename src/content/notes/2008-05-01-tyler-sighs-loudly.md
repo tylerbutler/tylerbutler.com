@@ -1,5 +1,6 @@
 ---
 date: 2008-05-01T16:33:15.000Z
+slug: "tyler-sighs-loudly"
 originalUrl: "https://twitter.com/tylerbutler/status/801291060"
 draft: true
 ---

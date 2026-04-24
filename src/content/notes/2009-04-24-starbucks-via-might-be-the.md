@@ -1,5 +1,6 @@
 ---
 date: 2009-04-24T02:55:54.000Z
+slug: "starbucks-via-might-be-the"
 originalUrl: "https://twitter.com/tylerbutler/status/1600385055"
 draft: true
 ---

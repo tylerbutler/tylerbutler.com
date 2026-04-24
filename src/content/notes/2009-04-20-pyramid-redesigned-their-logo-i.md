@@ -1,5 +1,6 @@
 ---
 date: 2009-04-20T15:42:07.000Z
+slug: "pyramid-redesigned-their-logo-i"
 originalUrl: "https://twitter.com/tylerbutler/status/1566336509"
 draft: true
 ---

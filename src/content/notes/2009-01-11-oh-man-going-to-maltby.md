@@ -1,5 +1,6 @@
 ---
 date: 2009-01-11T07:26:05.000Z
+slug: "oh-man-going-to-maltby"
 originalUrl: "https://twitter.com/tylerbutler/status/1110603502"
 draft: true
 ---

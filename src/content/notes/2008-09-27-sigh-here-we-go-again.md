@@ -1,5 +1,6 @@
 ---
 date: 2008-09-27T05:32:08.000Z
+slug: "sigh-here-we-go-again"
 originalUrl: "https://twitter.com/tylerbutler/status/936831497"
 draft: true
 ---

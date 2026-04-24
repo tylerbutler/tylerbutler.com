@@ -1,5 +1,6 @@
 ---
 date: 2008-12-22T08:59:29.000Z
+slug: "anybody-out-there-in-twitterland"
 originalUrl: "https://twitter.com/tylerbutler/status/1071951996"
 draft: true
 ---

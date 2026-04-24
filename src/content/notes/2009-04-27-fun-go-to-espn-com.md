@@ -1,5 +1,6 @@
 ---
 date: 2009-04-27T23:27:09.000Z
+slug: "fun-go-to-espn-com"
 originalUrl: "https://twitter.com/tylerbutler/status/1633746486"
 draft: true
 ---

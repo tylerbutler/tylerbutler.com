@@ -1,5 +1,6 @@
 ---
 date: 2008-10-09T19:55:53.000Z
+slug: "for-folks-that-care-thanks"
 originalUrl: "https://twitter.com/tylerbutler/status/953198126"
 draft: true
 ---

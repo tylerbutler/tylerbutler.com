@@ -1,5 +1,6 @@
 ---
 date: 2013-12-24T01:15:00.000Z
+slug: "get-pikmin-3-they-said"
 originalUrl: "https://twitter.com/tylerbutler/status/415289473811759105"
 draft: true
 ---

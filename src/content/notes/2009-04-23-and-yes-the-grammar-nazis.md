@@ -1,5 +1,6 @@
 ---
 date: 2009-04-23T07:12:52.000Z
+slug: "and-yes-the-grammar-nazis"
 originalUrl: "https://twitter.com/tylerbutler/status/1592360747"
 draft: true
 ---

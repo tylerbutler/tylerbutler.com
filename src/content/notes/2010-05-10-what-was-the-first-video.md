@@ -1,5 +1,6 @@
 ---
 date: 2010-05-10T21:09:43.000Z
+slug: "what-was-the-first-video"
 originalUrl: "https://twitter.com/tylerbutler/status/13747904874"
 draft: true
 ---

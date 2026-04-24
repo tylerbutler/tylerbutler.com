@@ -1,5 +1,6 @@
 ---
 date: 2009-04-20T16:29:12.000Z
+slug: "reminded-me-of-the-best"
 originalUrl: "https://twitter.com/tylerbutler/status/1566718833"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2010-05-13T17:14:14.000Z
+slug: "wow-adobe-has-taken-out"
 originalUrl: "https://twitter.com/tylerbutler/status/13924658767"
 draft: true
 ---

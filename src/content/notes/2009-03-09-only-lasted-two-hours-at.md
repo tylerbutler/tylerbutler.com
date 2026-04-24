@@ -1,5 +1,6 @@
 ---
 date: 2009-03-09T18:21:31.000Z
+slug: "only-lasted-two-hours-at"
 originalUrl: "https://twitter.com/tylerbutler/status/1301521177"
 draft: true
 ---

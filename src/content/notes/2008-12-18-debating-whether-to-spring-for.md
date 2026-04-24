@@ -1,5 +1,6 @@
 ---
 date: 2008-12-18T17:00:25.000Z
+slug: "debating-whether-to-spring-for"
 originalUrl: "https://twitter.com/tylerbutler/status/1065263023"
 draft: true
 ---

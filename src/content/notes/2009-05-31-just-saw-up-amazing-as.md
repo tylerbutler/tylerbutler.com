@@ -1,5 +1,6 @@
 ---
 date: 2009-05-31T00:21:52.000Z
+slug: "just-saw-up-amazing-as"
 originalUrl: "https://twitter.com/tylerbutler/status/1976453152"
 draft: true
 ---

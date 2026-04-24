@@ -1,5 +1,6 @@
 ---
 date: 2007-04-30T19:32:53.000Z
+slug: "using-a-mix-kiosk-machine"
 originalUrl: "https://twitter.com/tylerbutler/status/45205042"
 draft: true
 ---

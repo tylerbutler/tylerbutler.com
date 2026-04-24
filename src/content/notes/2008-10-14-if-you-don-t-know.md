@@ -1,5 +1,6 @@
 ---
 date: 2008-10-14T20:06:25.000Z
+slug: "if-you-don-t-know"
 originalUrl: "https://twitter.com/tylerbutler/status/959575409"
 draft: true
 ---

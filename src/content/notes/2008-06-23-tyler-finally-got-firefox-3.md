@@ -1,5 +1,6 @@
 ---
 date: 2008-06-23T03:03:01.000Z
+slug: "tyler-finally-got-firefox-3"
 originalUrl: "https://twitter.com/tylerbutler/status/841324033"
 draft: true
 ---

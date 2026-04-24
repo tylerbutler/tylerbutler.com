@@ -1,5 +1,6 @@
 ---
 date: 2008-08-14T20:15:01.000Z
+slug: "tyler-s-second-law-of"
 originalUrl: "https://twitter.com/tylerbutler/status/887762222"
 draft: true
 ---

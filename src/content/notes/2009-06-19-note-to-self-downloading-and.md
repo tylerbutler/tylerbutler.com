@@ -1,5 +1,6 @@
 ---
 date: 2009-06-19T14:58:25.000Z
+slug: "note-to-self-downloading-and"
 originalUrl: "https://twitter.com/tylerbutler/status/2238970924"
 draft: true
 ---

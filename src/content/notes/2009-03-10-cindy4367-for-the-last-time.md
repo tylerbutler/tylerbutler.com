@@ -1,5 +1,6 @@
 ---
 date: 2009-03-10T00:37:47.000Z
+slug: "cindy4367-for-the-last-time"
 originalUrl: "https://twitter.com/tylerbutler/status/1303174891"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-06-17T04:53:28.000Z
+slug: "especially-for-lincolnator-and-benoits"
 originalUrl: "https://twitter.com/tylerbutler/status/2202492756"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2010-04-24T05:40:15.000Z
+slug: "i-don-t-agree-with"
 originalUrl: "https://twitter.com/tylerbutler/status/12747782501"
 draft: true
 ---

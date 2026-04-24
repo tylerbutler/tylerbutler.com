@@ -1,5 +1,6 @@
 ---
 date: 2009-08-15T20:10:32.000Z
+slug: "don-t-ever-read-iphone"
 originalUrl: "https://twitter.com/tylerbutler/status/3333033074"
 draft: true
 ---

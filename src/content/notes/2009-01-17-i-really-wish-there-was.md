@@ -1,5 +1,6 @@
 ---
 date: 2009-01-17T08:00:54.000Z
+slug: "i-really-wish-there-was"
 originalUrl: "https://twitter.com/tylerbutler/status/1125799825"
 draft: true
 ---

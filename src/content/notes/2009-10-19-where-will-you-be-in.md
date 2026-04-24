@@ -1,5 +1,6 @@
 ---
 date: 2009-10-19T22:33:10.000Z
+slug: "where-will-you-be-in"
 originalUrl: "https://twitter.com/tylerbutler/status/5002509999"
 draft: true
 ---

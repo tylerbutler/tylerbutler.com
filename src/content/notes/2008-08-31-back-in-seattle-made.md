@@ -1,5 +1,6 @@
 ---
 date: 2008-08-31T17:54:22.000Z
+slug: "back-in-seattle-made"
 originalUrl: "https://twitter.com/tylerbutler/status/904978987"
 draft: true
 ---

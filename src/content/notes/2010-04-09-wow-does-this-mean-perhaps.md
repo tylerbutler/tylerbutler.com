@@ -1,5 +1,6 @@
 ---
 date: 2010-04-09T17:52:27.000Z
+slug: "wow-does-this-mean-perhaps"
 originalUrl: "https://twitter.com/tylerbutler/status/11892949858"
 draft: true
 ---

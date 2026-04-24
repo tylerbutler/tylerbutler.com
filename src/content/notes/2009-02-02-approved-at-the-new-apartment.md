@@ -1,5 +1,6 @@
 ---
 date: 2009-02-02T20:46:45.000Z
+slug: "approved-at-the-new-apartment"
 originalUrl: "https://twitter.com/tylerbutler/status/1170932615"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2008-08-06T16:01:26.000Z
+slug: "then-i-get-into-work"
 originalUrl: "https://twitter.com/tylerbutler/status/879453548"
 draft: true
 ---

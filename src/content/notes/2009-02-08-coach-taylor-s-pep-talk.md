@@ -1,5 +1,6 @@
 ---
 date: 2009-02-08T02:55:53.000Z
+slug: "coach-taylor-s-pep-talk"
 originalUrl: "https://twitter.com/tylerbutler/status/1187942126"
 draft: true
 ---

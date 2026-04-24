@@ -1,5 +1,6 @@
 ---
 date: 2012-08-05T17:43:42.000Z
+slug: "investigating-a-report-of-a"
 originalUrl: "https://twitter.com/tylerbutler/status/232170024545173504"
 draft: true
 ---

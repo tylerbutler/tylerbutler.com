@@ -1,5 +1,6 @@
 ---
 date: 2009-03-31T04:08:21.000Z
+slug: "are-you-trying-to-gain"
 originalUrl: "https://twitter.com/tylerbutler/status/1422395477"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2008-10-03T07:33:48.000Z
+slug: "it-s-late-and-i"
 originalUrl: "https://twitter.com/tylerbutler/status/944640470"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2010-04-08T18:07:00.000Z
+slug: "awww-no-multitasking-for-my"
 originalUrl: "https://twitter.com/tylerbutler/status/11836129557"
 draft: true
 ---

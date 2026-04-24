@@ -1,5 +1,6 @@
 ---
 date: 2009-06-17T04:23:47.000Z
+slug: "the-fact-that-tweetie-loads"
 originalUrl: "https://twitter.com/tylerbutler/status/2202197169"
 draft: true
 ---

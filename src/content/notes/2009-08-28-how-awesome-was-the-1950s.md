@@ -1,5 +1,6 @@
 ---
 date: 2009-08-28T14:25:06.000Z
+slug: "how-awesome-was-the-1950s"
 originalUrl: "https://twitter.com/tylerbutler/status/3603371822"
 draft: true
 ---

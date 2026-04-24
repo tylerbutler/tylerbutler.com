@@ -1,5 +1,6 @@
 ---
 date: 2009-02-20T08:39:27.000Z
+slug: "is-it-possible-to-configure"
 originalUrl: "https://twitter.com/tylerbutler/status/1229915818"
 draft: true
 ---

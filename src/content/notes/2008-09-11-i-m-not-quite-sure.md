@@ -1,5 +1,6 @@
 ---
 date: 2008-09-11T23:31:37.000Z
+slug: "i-m-not-quite-sure"
 originalUrl: "https://twitter.com/tylerbutler/status/918270738"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-01-05T19:13:12.000Z
+slug: "heading-into-the-gaping-maw"
 originalUrl: "https://twitter.com/tylerbutler/status/1097725398"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2009-01-11T08:07:09.000Z
+slug: "idea-browser-extension-or-bookmarklet"
 originalUrl: "https://twitter.com/tylerbutler/status/1110642085"
 draft: true
 ---

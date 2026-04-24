@@ -1,5 +1,6 @@
 ---
 date: 2009-01-05T21:21:02.000Z
+slug: "ok-the-severe-network-problems"
 originalUrl: "https://twitter.com/tylerbutler/status/1097981036"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2008-08-14T18:09:15.000Z
+slug: "i-am-not-even-remotely"
 originalUrl: "https://twitter.com/tylerbutler/status/887649614"
 draft: true
 ---

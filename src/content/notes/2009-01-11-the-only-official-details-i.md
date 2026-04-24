@@ -1,5 +1,6 @@
 ---
 date: 2009-01-11T07:54:39.000Z
+slug: "the-only-official-details-i"
 originalUrl: "https://twitter.com/tylerbutler/status/1110630068"
 draft: true
 ---

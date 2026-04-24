@@ -1,5 +1,6 @@
 ---
 date: 2010-04-18T15:09:53.000Z
+slug: "yeah-it-s-probably-a"
 originalUrl: "https://twitter.com/tylerbutler/status/12401860283"
 draft: true
 ---

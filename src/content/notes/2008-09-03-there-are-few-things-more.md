@@ -1,5 +1,6 @@
 ---
 date: 2008-09-03T21:49:11.000Z
+slug: "there-are-few-things-more"
 originalUrl: "https://twitter.com/tylerbutler/status/908595207"
 draft: true
 ---

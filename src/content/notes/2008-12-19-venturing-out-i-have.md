@@ -1,5 +1,6 @@
 ---
 date: 2008-12-19T19:53:23.000Z
+slug: "venturing-out-i-have"
 originalUrl: "https://twitter.com/tylerbutler/status/1067735332"
 draft: true
 ---

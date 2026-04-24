@@ -1,5 +1,6 @@
 ---
 date: 2012-03-24T18:57:42.000Z
+slug: "one-does-not-seriously-attack"
 originalUrl: "https://twitter.com/tylerbutler/status/183628674619289601"
 draft: true
 ---

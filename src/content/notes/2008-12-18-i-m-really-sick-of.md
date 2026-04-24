@@ -1,5 +1,6 @@
 ---
 date: 2008-12-18T15:42:43.000Z
+slug: "i-m-really-sick-of"
 originalUrl: "https://twitter.com/tylerbutler/status/1065103562"
 draft: true
 ---

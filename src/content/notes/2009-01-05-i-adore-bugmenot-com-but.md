@@ -1,5 +1,6 @@
 ---
 date: 2009-01-05T23:50:17.000Z
+slug: "i-adore-bugmenot-com-but"
 originalUrl: "https://twitter.com/tylerbutler/status/1098274453"
 draft: true
 ---

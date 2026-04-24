@@ -1,5 +1,6 @@
 ---
 date: 2012-08-07T10:24:54.000Z
+slug: "i-released-engineer-0-3"
 originalUrl: "https://twitter.com/tylerbutler/status/232784373139791872"
 draft: true
 ---

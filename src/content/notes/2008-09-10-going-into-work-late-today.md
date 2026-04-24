@@ -1,5 +1,6 @@
 ---
 date: 2008-09-10T16:47:57.000Z
+slug: "going-into-work-late-today"
 originalUrl: "https://twitter.com/tylerbutler/status/916609780"
 draft: true
 ---

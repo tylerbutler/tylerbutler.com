@@ -1,5 +1,6 @@
 ---
 date: 2008-09-15T03:22:49.000Z
+slug: "omg-awesome-you-need-to"
 originalUrl: "https://twitter.com/tylerbutler/status/921659698"
 draft: true
 ---

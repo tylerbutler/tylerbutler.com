@@ -1,5 +1,6 @@
 ---
 date: 2008-09-18T03:14:47.000Z
+slug: "yet-another-vista-update-made"
 originalUrl: "https://twitter.com/tylerbutler/status/925462755"
 draft: true
 ---

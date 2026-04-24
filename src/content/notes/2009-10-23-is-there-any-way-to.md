@@ -1,5 +1,6 @@
 ---
 date: 2009-10-23T17:05:57.000Z
+slug: "is-there-any-way-to"
 originalUrl: "https://twitter.com/tylerbutler/status/5101529315"
 draft: true
 ---

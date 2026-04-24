@@ -1,5 +1,6 @@
 ---
 date: 2009-08-30T05:59:20.000Z
+slug: "installing-wow-these-days-is"
 originalUrl: "https://twitter.com/tylerbutler/status/3640667994"
 draft: true
 ---

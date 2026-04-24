@@ -1,5 +1,6 @@
 ---
 date: 2009-05-12T17:51:56.000Z
+slug: "latest-thing-that-annoys-the"
 originalUrl: "https://twitter.com/tylerbutler/status/1775619583"
 draft: true
 ---

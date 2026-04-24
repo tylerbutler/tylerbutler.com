@@ -1,5 +1,6 @@
 ---
 date: 2008-03-04T01:32:05.000Z
+slug: "tyler-is-happy-that-he"
 originalUrl: "https://twitter.com/tylerbutler/status/766309413"
 draft: true
 ---

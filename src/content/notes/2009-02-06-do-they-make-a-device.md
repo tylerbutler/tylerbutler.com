@@ -1,5 +1,6 @@
 ---
 date: 2009-02-06T06:48:51.000Z
+slug: "do-they-make-a-device"
 originalUrl: "https://twitter.com/tylerbutler/status/1182441461"
 draft: true
 ---

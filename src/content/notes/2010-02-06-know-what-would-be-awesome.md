@@ -1,5 +1,6 @@
 ---
 date: 2010-02-06T05:25:55.000Z
+slug: "know-what-would-be-awesome"
 originalUrl: "https://twitter.com/tylerbutler/status/8711025651"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2010-10-22T15:24:18.000Z
+slug: "student-answer-to-web-design"
 originalUrl: "https://twitter.com/tylerbutler/status/28414588526"
 draft: true
 ---

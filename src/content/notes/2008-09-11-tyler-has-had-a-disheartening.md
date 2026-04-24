@@ -1,5 +1,6 @@
 ---
 date: 2008-09-11T01:14:32.000Z
+slug: "tyler-has-had-a-disheartening"
 originalUrl: "https://twitter.com/tylerbutler/status/917114013"
 draft: true
 ---

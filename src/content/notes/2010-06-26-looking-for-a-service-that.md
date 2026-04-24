@@ -1,5 +1,6 @@
 ---
 date: 2010-06-26T05:00:09.000Z
+slug: "looking-for-a-service-that"
 originalUrl: "https://twitter.com/tylerbutler/status/17069824995"
 draft: true
 ---

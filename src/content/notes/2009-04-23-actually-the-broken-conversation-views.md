@@ -1,5 +1,6 @@
 ---
 date: 2009-04-23T07:14:21.000Z
+slug: "actually-the-broken-conversation-views"
 originalUrl: "https://twitter.com/tylerbutler/status/1592366269"
 draft: true
 ---

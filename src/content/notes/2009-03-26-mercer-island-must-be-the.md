@@ -1,5 +1,6 @@
 ---
 date: 2009-03-26T18:18:19.000Z
+slug: "mercer-island-must-be-the"
 originalUrl: "https://twitter.com/tylerbutler/status/1395931573"
 draft: true
 ---

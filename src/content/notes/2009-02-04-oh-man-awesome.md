@@ -1,5 +1,6 @@
 ---
 date: 2009-02-04T20:14:32.000Z
+slug: "oh-man-awesome"
 originalUrl: "https://twitter.com/tylerbutler/status/1177422505"
 draft: true
 ---

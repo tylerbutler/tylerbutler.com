@@ -1,5 +1,6 @@
 ---
 date: 2010-05-06T13:05:12.000Z
+slug: "you-guys-remember-aol-keywords"
 originalUrl: "https://twitter.com/tylerbutler/status/13486212088"
 draft: true
 ---

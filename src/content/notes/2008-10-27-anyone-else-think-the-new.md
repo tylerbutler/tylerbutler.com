@@ -1,5 +1,6 @@
 ---
 date: 2008-10-27T04:06:37.000Z
+slug: "anyone-else-think-the-new"
 originalUrl: "https://twitter.com/tylerbutler/status/976940547"
 draft: true
 ---

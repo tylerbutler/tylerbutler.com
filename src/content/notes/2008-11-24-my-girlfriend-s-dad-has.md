@@ -1,5 +1,6 @@
 ---
 date: 2008-11-24T04:58:57.000Z
+slug: "my-girlfriend-s-dad-has"
 originalUrl: "https://twitter.com/tylerbutler/status/1020382888"
 draft: true
 ---

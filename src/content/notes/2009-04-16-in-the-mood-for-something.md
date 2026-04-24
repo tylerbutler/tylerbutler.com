@@ -1,5 +1,6 @@
 ---
 date: 2009-04-16T04:58:41.000Z
+slug: "in-the-mood-for-something"
 originalUrl: "https://twitter.com/tylerbutler/status/1531510812"
 draft: true
 ---

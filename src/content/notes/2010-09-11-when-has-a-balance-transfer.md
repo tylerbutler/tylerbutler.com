@@ -1,5 +1,6 @@
 ---
 date: 2010-09-11T20:08:18.000Z
+slug: "when-has-a-balance-transfer"
 originalUrl: "https://twitter.com/tylerbutler/status/24222517659"
 draft: true
 ---

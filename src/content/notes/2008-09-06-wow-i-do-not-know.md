@@ -1,5 +1,6 @@
 ---
 date: 2008-09-06T02:13:23.000Z
+slug: "wow-i-do-not-know"
 originalUrl: "https://twitter.com/tylerbutler/status/911446451"
 draft: true
 ---

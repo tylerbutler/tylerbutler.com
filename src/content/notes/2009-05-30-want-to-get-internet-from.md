@@ -1,5 +1,6 @@
 ---
 date: 2009-05-30T19:17:33.000Z
+slug: "want-to-get-internet-from"
 originalUrl: "https://twitter.com/tylerbutler/status/1974025495"
 draft: true
 ---

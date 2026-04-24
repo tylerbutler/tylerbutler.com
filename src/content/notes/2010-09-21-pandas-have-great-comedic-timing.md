@@ -1,5 +1,6 @@
 ---
 date: 2010-09-21T13:07:53.000Z
+slug: "pandas-have-great-comedic-timing"
 originalUrl: "https://twitter.com/tylerbutler/status/25116516437"
 draft: true
 ---

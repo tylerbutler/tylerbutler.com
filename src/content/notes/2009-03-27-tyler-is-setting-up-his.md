@@ -1,5 +1,6 @@
 ---
 date: 2009-03-27T01:30:15.000Z
+slug: "tyler-is-setting-up-his"
 originalUrl: "https://twitter.com/tylerbutler/status/1398256566"
 draft: true
 ---

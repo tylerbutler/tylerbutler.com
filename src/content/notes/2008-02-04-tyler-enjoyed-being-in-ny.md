@@ -1,5 +1,6 @@
 ---
 date: 2008-02-04T20:26:16.000Z
+slug: "tyler-enjoyed-being-in-ny"
 originalUrl: "https://twitter.com/tylerbutler/status/677470922"
 draft: true
 ---

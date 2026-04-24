@@ -1,5 +1,6 @@
 ---
 date: 2008-11-22T10:28:40.000Z
+slug: "xna-games-tyler-butler-added"
 originalUrl: "https://twitter.com/tylerbutler/status/1017963280"
 draft: true
 ---

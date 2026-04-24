@@ -1,5 +1,6 @@
 ---
 date: 2008-11-20T07:52:37.000Z
+slug: "xna-games-tyler-butler-better"
 originalUrl: "https://twitter.com/tylerbutler/status/1014368694"
 draft: true
 ---

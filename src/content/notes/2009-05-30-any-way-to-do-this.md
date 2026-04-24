@@ -1,5 +1,6 @@
 ---
 date: 2009-05-30T19:18:37.000Z
+slug: "any-way-to-do-this"
 originalUrl: "https://twitter.com/tylerbutler/status/1974034488"
 draft: true
 ---

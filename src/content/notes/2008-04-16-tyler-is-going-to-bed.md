@@ -1,5 +1,6 @@
 ---
 date: 2008-04-16T06:04:51.000Z
+slug: "tyler-is-going-to-bed"
 originalUrl: "https://twitter.com/tylerbutler/status/790087990"
 draft: true
 ---

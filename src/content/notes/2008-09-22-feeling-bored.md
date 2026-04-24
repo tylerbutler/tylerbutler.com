@@ -1,5 +1,6 @@
 ---
 date: 2008-09-22T01:12:02.000Z
+slug: "feeling-bored"
 originalUrl: "https://twitter.com/tylerbutler/status/929872061"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2008-11-27T18:14:52.000Z
+slug: "switched-back-to-twitterific-since"
 originalUrl: "https://twitter.com/tylerbutler/status/1026745577"
 draft: true
 ---

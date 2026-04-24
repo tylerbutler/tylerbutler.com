@@ -1,5 +1,6 @@
 ---
 date: 2008-12-18T16:52:12.000Z
+slug: "it-still-amazes-me-how"
 originalUrl: "https://twitter.com/tylerbutler/status/1065246302"
 draft: true
 ---

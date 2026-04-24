@@ -1,5 +1,6 @@
 ---
 date: 2012-06-09T16:52:35.000Z
+slug: "can-someone-with-more-dns"
 originalUrl: "https://twitter.com/tylerbutler/status/211501055438102529"
 draft: true
 ---

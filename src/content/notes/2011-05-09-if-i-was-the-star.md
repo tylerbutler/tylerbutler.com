@@ -1,5 +1,6 @@
 ---
 date: 2011-05-09T16:25:40.000Z
+slug: "if-i-was-the-star"
 originalUrl: "https://twitter.com/tylerbutler/status/67626298415132673"
 draft: true
 ---

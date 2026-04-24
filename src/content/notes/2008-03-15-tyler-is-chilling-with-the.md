@@ -1,5 +1,6 @@
 ---
 date: 2008-03-15T07:02:25.000Z
+slug: "tyler-is-chilling-with-the"
 originalUrl: "https://twitter.com/tylerbutler/status/771852614"
 draft: true
 ---

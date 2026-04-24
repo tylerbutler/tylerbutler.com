@@ -1,5 +1,6 @@
 ---
 date: 2010-04-17T22:51:22.000Z
+slug: "cat-stevens-i-love-my"
 originalUrl: "https://twitter.com/tylerbutler/status/12365129039"
 draft: true
 ---

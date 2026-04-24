@@ -1,5 +1,6 @@
 ---
 date: 2008-09-28T17:03:09.000Z
+slug: "ok-in-general-i-like"
 originalUrl: "https://twitter.com/tylerbutler/status/938255685"
 draft: true
 ---

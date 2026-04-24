@@ -1,5 +1,6 @@
 ---
 date: 2010-03-30T17:30:22.000Z
+slug: "omg-if-i-get-another"
 originalUrl: "https://twitter.com/tylerbutler/status/11319313168"
 draft: true
 ---

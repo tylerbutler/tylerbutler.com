@@ -1,5 +1,6 @@
 ---
 date: 2009-05-19T21:03:03.000Z
+slug: "facebook-added-groups-automatically-pisses"
 originalUrl: "https://twitter.com/tylerbutler/status/1851580398"
 draft: true
 ---

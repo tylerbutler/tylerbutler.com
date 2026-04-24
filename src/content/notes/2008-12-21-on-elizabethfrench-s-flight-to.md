@@ -1,5 +1,6 @@
 ---
 date: 2008-12-21T22:37:52.000Z
+slug: "on-elizabethfrench-s-flight-to"
 originalUrl: "https://twitter.com/tylerbutler/status/1071193887"
 draft: true
 ---

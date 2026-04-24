@@ -1,5 +1,6 @@
 ---
 date: 2008-12-29T22:42:28.000Z
+slug: "i-find-these-sorts-of"
 originalUrl: "https://twitter.com/tylerbutler/status/1084784414"
 draft: true
 ---

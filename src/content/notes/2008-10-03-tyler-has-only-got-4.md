@@ -1,5 +1,6 @@
 ---
 date: 2008-10-03T17:46:45.000Z
+slug: "tyler-has-only-got-4"
 originalUrl: "https://twitter.com/tylerbutler/status/945220825"
 draft: true
 ---

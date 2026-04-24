@@ -1,5 +1,6 @@
 ---
 date: 2018-07-15T19:44:16.000Z
+slug: "verifying-myself-i-am-tylerbutler"
 originalUrl: "https://twitter.com/tylerbutler/status/1018582035059752960"
 draft: true
 ---

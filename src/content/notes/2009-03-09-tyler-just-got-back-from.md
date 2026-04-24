@@ -1,5 +1,6 @@
 ---
 date: 2009-03-09T07:31:08.000Z
+slug: "tyler-just-got-back-from"
 originalUrl: "https://twitter.com/tylerbutler/status/1299442417"
 draft: true
 ---

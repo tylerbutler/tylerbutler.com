@@ -1,5 +1,6 @@
 ---
 date: 2008-09-16T22:16:50.000Z
+slug: "tyler-wishes-everyone-a-happy"
 originalUrl: "https://twitter.com/tylerbutler/status/923894756"
 draft: true
 ---

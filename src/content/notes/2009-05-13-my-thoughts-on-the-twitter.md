@@ -1,5 +1,6 @@
 ---
 date: 2009-05-13T21:16:57.000Z
+slug: "my-thoughts-on-the-twitter"
 originalUrl: "https://twitter.com/tylerbutler/status/1788154997"
 draft: true
 ---

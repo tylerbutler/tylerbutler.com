@@ -1,5 +1,6 @@
 ---
 date: 2010-10-05T17:41:48.000Z
+slug: "is-dropbox-down-for-anyone"
 originalUrl: "https://twitter.com/tylerbutler/status/26476889884"
 draft: true
 ---

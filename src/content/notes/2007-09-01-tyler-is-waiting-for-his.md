@@ -1,5 +1,6 @@
 ---
 date: 2007-09-01T00:21:01.000Z
+slug: "tyler-is-waiting-for-his"
 originalUrl: "https://twitter.com/tylerbutler/status/240171722"
 draft: true
 ---

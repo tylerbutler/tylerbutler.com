@@ -28,7 +28,7 @@ export async function GET(context: APIContext) {
           day: "numeric",
           timeZone: "America/Los_Angeles",
         });
-        const title = note.data.title || `Note — ${formattedDate}`;
+        const title = note.data.title || formattedDate;
 
         return {
           title,

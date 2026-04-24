@@ -1,8 +1,10 @@
 /* Import fonts with font-display optimization */
-@import "@fontsource/lato/400.css";
+@import "@fontsource/lato/latin-400.css";
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
-/* Font loading optimization */
+/* Empty @font-face declarations for families loaded externally via
+   Adobe Typekit (BaseLayout.astro). These declare the family to subfont
+   so it doesn't try to analyze/subset them, and set font-display: swap. */
 @font-face {
   font-family: "westgate";
   font-display: swap;

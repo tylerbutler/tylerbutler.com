@@ -93,8 +93,7 @@ export default defineConfig({
   integrations: [
     icon(),
     fontDownloader(),
-    // TODO: Re-enable font optimizer once Chrome/Puppeteer is configured for glyphhanger
-    // fontOptimizer(),
+    fontOptimizer(),
     pagefindIntegration(),
     sitemap(),
     mdx({

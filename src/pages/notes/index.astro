@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import NoteDate from "../../components/NoteDate.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { includeDraft } from "../../lib/draft-utils";
 import { getNoteUrl } from "../../lib/note-utils";
@@ -32,13 +33,6 @@ const renderedNotes = await Promise.all(
     <div class="notes-stream">
       {renderedNotes.map(({ note, Content }) => {
         const url = getNoteUrl(note);
-        const date = new Date(note.data.date);
-        const formattedDate = date.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        });
-        const isoDate = note.data.date.toISOString();
 
         return (
           <article class="note-item h-entry">
@@ -48,11 +42,7 @@ const renderedNotes = await Promise.all(
                   <a href={url} class="u-url">{note.data.title}</a>
                 </h2>
               )}
-              <a href={url} class="note-permalink u-url">
-                <time class="dt-published" datetime={isoDate}>
-                  {formattedDate}
-                </time>
-              </a>
+              <NoteDate note={note} className="note-permalink" />
             </header>
 
             <div class="note-item-content e-content">

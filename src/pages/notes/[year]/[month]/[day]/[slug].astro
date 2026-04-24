@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import NoteDate from "../../../../../components/NoteDate.astro";
 import BaseLayout from "../../../../../layouts/BaseLayout.astro";
 import { includeDraft } from "../../../../../lib/draft-utils";
 import { getNotePathParts, getNoteUrl } from "../../../../../lib/note-utils";
@@ -15,13 +16,11 @@ export async function getStaticPaths() {
 const { note } = Astro.props;
 const { Content } = await render(note);
 
-const date = new Date(note.data.date);
-const formattedDate = date.toLocaleDateString("en-US", {
+const formattedDate = note.data.date.toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
   day: "numeric",
 });
-const isoDate = note.data.date.toISOString();
 
 const canonicalUrl = `https://tylerbutler.com${getNoteUrl(note)}`;
 const pageTitle = note.data.title
@@ -38,9 +37,7 @@ const pageTitle = note.data.title
   <article class="note h-entry">
     <header class="note-header">
       {note.data.title && <h1 class="p-name">{note.data.title}</h1>}
-      <time class="note-date dt-published" datetime={isoDate}>
-        {formattedDate}
-      </time>
+      <NoteDate note={note} />
     </header>
 
     <div class="note-content e-content">

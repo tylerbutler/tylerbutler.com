@@ -1,5 +1,6 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
+import NoteDate from "../../../../components/NoteDate.astro";
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import { includeDraft } from "../../../../lib/draft-utils";
 import {
@@ -8,7 +9,6 @@ import {
   getNoteUrl,
   getNoteYearUrl,
   monthLabel,
-  plaintextExcerpt,
 } from "../../../../lib/note-utils";
 
 export async function getStaticPaths() {
@@ -53,13 +53,20 @@ const { year, month } = Astro.params;
 const { items, prev, next } = Astro.props;
 
 const heading = `${monthLabel(month)} ${year}`;
+
+const renderedItems = await Promise.all(
+  items.map(async (item) => {
+    const { Content } = await render(item.note);
+    return { ...item, Content };
+  }),
+);
 ---
 
 <BaseLayout
   title={`Notes from ${heading} - Tyler Butler`}
   description={`Short-form notes from ${heading}.`}
 >
-  <section class="notes-page">
+  <section class="notes-page h-feed">
     <nav class="archive-crumbs">
       <a href="/notes/">Notes</a> /{" "}
       <a href={getNoteYearUrl(year)}>{year}</a> /{" "}
@@ -70,28 +77,41 @@ const heading = `${monthLabel(month)} ${year}`;
       {items.length} note{items.length === 1 ? "" : "s"}
     </p>
 
-    <ul class="archive-list">
+    <div class="notes-stream">
       {
-        items.map(({ note, day }) => {
+        renderedItems.map(({ note, Content }) => {
           const url = getNoteUrl(note);
-          const isoDate = note.data.date.toISOString();
-          const label =
-            note.data.title ||
-            plaintextExcerpt(note.body ?? "", 100) ||
-            "(untitled)";
           return (
-            <li class="archive-item">
-              <time class="archive-date" datetime={isoDate}>
-                {monthLabel(month)} {Number.parseInt(day, 10)}
-              </time>
-              <a href={url} class="archive-link">
-                {label}
-              </a>
-            </li>
+            <article class="note-item h-entry">
+              <header class="note-item-header">
+                {note.data.title && (
+                  <h2 class="p-name">
+                    <a href={url} class="u-url">
+                      {note.data.title}
+                    </a>
+                  </h2>
+                )}
+                <NoteDate note={note} className="note-permalink" />
+              </header>
+
+              <div class="note-item-content e-content">
+                <Content />
+              </div>
+
+              {note.data.tags && note.data.tags.length > 0 && (
+                <div class="note-item-tags">
+                  {note.data.tags.map((tag) => (
+                    <a href={`/tags/${tag}/`} class="tag p-category">
+                      #{tag}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </article>
           );
         })
       }
-    </ul>
+    </div>
 
     <nav class="article-nav">
       {
@@ -151,34 +171,58 @@ const heading = `${monthLabel(month)} ${year}`;
     margin-top: -0.5rem;
   }
 
-  .archive-list {
-    list-style: none;
-    padding: 0;
-    margin: 1.5rem 0 0;
-  }
-
-  .archive-item {
+  .notes-stream {
     display: flex;
-    gap: 1rem;
-    padding: 0.4rem 0;
-    line-height: 1.4;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
   }
 
-  .archive-date {
-    color: var(--text-light);
-    font-size: 13px;
-    font-variant-numeric: tabular-nums;
-    flex-shrink: 0;
-    min-width: 7em;
+  .note-item {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border, #ddd);
   }
 
-  .archive-link {
+  .note-item:last-child {
+    border-bottom: none;
+  }
+
+  .note-item-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .note-item-header h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+  }
+
+  .note-item-header h2 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .note-item-header h2 a:hover {
+    color: var(--accent);
+  }
+
+  .note-item-content {
+    line-height: 1.6;
+  }
+
+  .note-item-tags {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
     color: var(--accent);
     text-decoration: none;
-    flex: 1;
+    font-size: 13px;
   }
 
-  .archive-link:hover {
+  .tag:hover {
     text-decoration: underline;
   }
 </style>

@@ -1,5 +1,6 @@
 ---
 date: 2020-08-05T07:56:23-07:00
+slug: "the-truth-is"
 originalUrl: "/2020/08/05/the-truth-is.html"
 draft: true
 ---

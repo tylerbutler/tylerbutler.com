@@ -1,5 +1,6 @@
 ---
 date: 2022-05-23T07:46:02-07:00
+slug: "in-eugene-ionesco"
 originalUrl: "/2022/05/23/in-eugene-ionesco.html"
 draft: true
 ---

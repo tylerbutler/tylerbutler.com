@@ -1,5 +1,6 @@
 ---
 date: 2025-07-10T10:23:49-07:00
+slug: "i-get-so-excited-when"
 originalUrl: "/2025/07/10/i-get-so-excited-when.html"
 draft: true
 ---

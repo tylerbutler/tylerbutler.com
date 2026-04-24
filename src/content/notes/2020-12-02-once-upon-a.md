@@ -1,5 +1,6 @@
 ---
 date: 2020-12-02T10:11:04-07:00
+slug: "once-upon-a"
 originalUrl: "/2020/12/02/once-upon-a.html"
 draft: true
 ---

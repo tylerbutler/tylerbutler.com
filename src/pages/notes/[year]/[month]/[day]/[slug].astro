@@ -1,0 +1,122 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../../../../layouts/BaseLayout.astro";
+import { getNotePathParts, getNoteUrl } from "../../../../../lib/note-utils";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes", ({ data }) => !data.draft);
+  return notes.map((note) => ({
+    params: getNotePathParts(note),
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+
+const date = new Date(note.data.date);
+const formattedDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const isoDate = note.data.date.toISOString();
+
+const canonicalUrl = `https://tylerbutler.com${getNoteUrl(note)}`;
+const pageTitle = note.data.title
+  ? `${note.data.title} - Tyler Butler`
+  : `Note - ${formattedDate} - Tyler Butler`;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={note.data.summary}
+  headerSize="small"
+  canonicalUrl={canonicalUrl}
+>
+  <article class="note h-entry">
+    <header class="note-header">
+      {note.data.title && <h1 class="p-name">{note.data.title}</h1>}
+      <time class="note-date dt-published" datetime={isoDate}>
+        {formattedDate}
+      </time>
+    </header>
+
+    <div class="note-content e-content">
+      <Content />
+    </div>
+
+    {note.data.tags && note.data.tags.length > 0 && (
+      <div class="note-tags">
+        {note.data.tags.map((tag) => (
+          <a href={`/tags/${tag}/`} class="tag p-category" data-pagefind-filter="tag">#{tag}</a>
+        ))}
+      </div>
+    )}
+
+    <a href={canonicalUrl} class="u-url" hidden>{canonicalUrl}</a>
+
+    <footer class="note-footer">
+      <a href="/notes/" class="back-link">← All notes</a>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .note {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .note-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .note-header h1 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .note-date {
+    font-size: 13px;
+    color: var(--text-light);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .note-content {
+    line-height: 1.6;
+  }
+
+  .note-tags {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .tag:hover {
+    text-decoration: underline;
+  }
+
+  .note-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border, #ddd);
+  }
+
+  .back-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>

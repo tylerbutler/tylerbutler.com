@@ -1,5 +1,6 @@
 ---
 date: 2020-06-17T09:10:38-07:00
+slug: "trump-really-doesnt"
 originalUrl: "/2020/06/17/trump-really-doesnt.html"
 draft: true
 ---

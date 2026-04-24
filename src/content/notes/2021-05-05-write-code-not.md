@@ -1,5 +1,6 @@
 ---
 date: 2021-05-05T21:53:13-07:00
+slug: "write-code-not"
 originalUrl: "/2021/05/05/write-code-not.html"
 draft: true
 ---

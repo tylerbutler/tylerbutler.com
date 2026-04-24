@@ -1,5 +1,6 @@
 ---
 date: 2020-08-28T18:07:05-07:00
+slug: "yearold-clinging-to"
 originalUrl: "/2020/08/28/yearold-clinging-to.html"
 draft: true
 ---

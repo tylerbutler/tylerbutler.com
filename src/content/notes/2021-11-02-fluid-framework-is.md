@@ -1,5 +1,6 @@
 ---
 date: 2021-11-02T13:40:39-07:00
+slug: "fluid-framework-is"
 originalUrl: "/2021/11/02/fluid-framework-is.html"
 draft: true
 ---

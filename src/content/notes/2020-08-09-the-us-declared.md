@@ -1,5 +1,6 @@
 ---
 date: 2020-08-09T06:55:48-07:00
+slug: "the-us-declared"
 originalUrl: "/2020/08/09/the-us-declared.html"
 draft: true
 ---

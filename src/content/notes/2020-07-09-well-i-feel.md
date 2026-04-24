@@ -1,5 +1,6 @@
 ---
 date: 2020-07-09T08:00:27-07:00
+slug: "well-i-feel"
 originalUrl: "/2020/07/09/well-i-feel.html"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2020-10-31T13:51:32-07:00
+slug: "seattle-was-as"
 originalUrl: "/2020/10/31/seattle-was-as.html"
 draft: true
 ---

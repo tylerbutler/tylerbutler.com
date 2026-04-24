@@ -1,5 +1,6 @@
 ---
 date: 2020-07-02T08:41:22-07:00
+slug: "how-special-register"
 originalUrl: "/2020/07/02/how-special-register.html"
 draft: true
 ---

@@ -1,3 +1,6 @@
 # Redirect singular /tag/ to plural /tags/
 # :splat captures the tag name and passes it through
 /tag/*  /tags/:splat  301
+
+# Redirect old micro.blog-shaped note URLs to the new /notes/YYYY/MM/DD/slug shape
+/:year/:month/:day/:slug.html  /notes/:year/:month/:day/:slug  301

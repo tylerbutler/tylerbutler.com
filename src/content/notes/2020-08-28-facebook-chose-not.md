@@ -1,5 +1,6 @@
 ---
 date: 2020-08-28T18:10:33-07:00
+slug: "facebook-chose-not"
 originalUrl: "/2020/08/28/facebook-chose-not.html"
 draft: true
 ---

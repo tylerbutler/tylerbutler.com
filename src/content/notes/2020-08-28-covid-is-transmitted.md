@@ -1,5 +1,6 @@
 ---
 date: 2020-08-28T07:30:35-07:00
+slug: "covid-is-transmitted"
 originalUrl: "/2020/08/28/covid-is-transmitted.html"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2020-07-05T08:40:17-07:00
+slug: "white-evangelicals-on"
 originalUrl: "/2020/07/05/white-evangelicals-on.html"
 draft: true
 ---

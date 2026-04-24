@@ -1,5 +1,6 @@
 ---
 date: 2021-04-27T20:47:08-07:00
+slug: "once-halt-sent"
 originalUrl: "/2021/04/27/once-halt-sent.html"
 draft: true
 ---

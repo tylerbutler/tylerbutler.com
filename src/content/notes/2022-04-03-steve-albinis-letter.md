@@ -1,5 +1,6 @@
 ---
 date: 2022-04-03T13:40:53-07:00
+slug: "steve-albinis-letter"
 originalUrl: "/2022/04/03/steve-albinis-letter.html"
 draft: true
 ---

@@ -1,5 +1,6 @@
 ---
 date: 2022-05-21T07:31:42-07:00
+slug: "excellent-interview-why"
 originalUrl: "/2022/05/21/excellent-interview-why.html"
 draft: true
 ---

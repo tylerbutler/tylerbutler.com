@@ -1,0 +1,151 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getNoteUrl } from "../../lib/note-utils";
+
+const notes = await getCollection("notes", ({ data }) => !data.draft);
+
+const sortedNotes = notes.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+
+const renderedNotes = await Promise.all(
+  sortedNotes.map(async (note) => {
+    const { Content } = await render(note);
+    return { note, Content };
+  }),
+);
+---
+
+<BaseLayout
+  title="Notes - Tyler Butler"
+  description="Short-form notes by Tyler Butler."
+>
+  <section class="notes-page h-feed">
+    <h1>Notes</h1>
+
+    {renderedNotes.length === 0 && (
+      <p class="empty-state">No notes published yet.</p>
+    )}
+
+    <div class="notes-stream">
+      {renderedNotes.map(({ note, Content }) => {
+        const url = getNoteUrl(note);
+        const date = new Date(note.data.date);
+        const formattedDate = date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+        const isoDate = note.data.date.toISOString();
+
+        return (
+          <article class="note-item h-entry">
+            <header class="note-item-header">
+              {note.data.title && (
+                <h2 class="p-name">
+                  <a href={url} class="u-url">{note.data.title}</a>
+                </h2>
+              )}
+              <a href={url} class="note-permalink u-url">
+                <time class="dt-published" datetime={isoDate}>
+                  {formattedDate}
+                </time>
+              </a>
+            </header>
+
+            <div class="note-item-content e-content">
+              <Content />
+            </div>
+
+            {note.data.tags && note.data.tags.length > 0 && (
+              <div class="note-item-tags">
+                {note.data.tags.map((tag) => (
+                  <a href={`/tags/${tag}/`} class="tag p-category">#{tag}</a>
+                ))}
+              </div>
+            )}
+          </article>
+        );
+      })}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notes-page {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .notes-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .note-item {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border, #ddd);
+  }
+
+  .note-item:last-child {
+    border-bottom: none;
+  }
+
+  .note-item-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .note-item-header h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+  }
+
+  .note-item-header h2 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .note-item-header h2 a:hover {
+    color: var(--accent);
+  }
+
+  .note-permalink {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .note-permalink:hover {
+    color: var(--accent);
+  }
+
+  .note-item-content {
+    line-height: 1.6;
+  }
+
+  .note-item-tags {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .tag:hover {
+    text-decoration: underline;
+  }
+
+  .empty-state {
+    color: var(--text-light);
+    font-style: italic;
+  }
+</style>

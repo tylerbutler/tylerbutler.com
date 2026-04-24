@@ -40,7 +40,11 @@ export const rehypeTagExternalLinks: Plugin<[], Root> = () => {
 
       try {
         const u = new URL(href);
-        if (u.host && u.host !== SITE_HOST && !u.host.endsWith(`.${SITE_HOST}`)) {
+        if (
+          u.host &&
+          u.host !== SITE_HOST &&
+          !u.host.endsWith(`.${SITE_HOST}`)
+        ) {
           node.properties["data-tinylytics-event"] = "link.external";
           node.properties["data-tinylytics-event-value"] = u.href;
         }

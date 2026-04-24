@@ -64,6 +64,8 @@ docs/superpowers/   # Implementation plans and specs
 
 Articles support `link` + `via`/`vialink` fields for link-style posts (auto-infers `articleType: "link"`). Use `headingStartLevel` to override remark-shift-headings behavior. Use `type: "guide"` to show a ToC.
 
+Notes are short-form posts (no `title` by convention). Schema accepts `date` (required), optional `lastmod`, `title`, `tags`, `summary`, `originalUrl`, and `draft`. `originalUrl` preserves the source path for content imported from other systems (e.g. the micro.blog archive). `lastmod` is only set when it differs from `date`.
+
 ## Linting
 
 Biome handles formatting and linting. `pnpm format` runs Biome with linter disabled (format-only). `pnpm check` runs `astro check` for TypeScript.

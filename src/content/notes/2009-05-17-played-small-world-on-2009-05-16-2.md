@@ -1,6 +1,6 @@
 ---
 date: 2009-05-17T03:11:02.000Z
-slug: "played-small-world-on-2009-05-16"
+slug: "played-small-world-on-2009-05-16-2"
 originalUrl: "https://twitter.com/tylerbutler/status/1822700987"
 draft: true
 ---

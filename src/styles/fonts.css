@@ -24,8 +24,8 @@
 
 @font-face {
   font-family: "PragmataPro";
-  src: url("/fonts/PragmataPro_Mono_I_liga_0902.woff2") format("woff2");
-  font-weight: normal;
+  src: url("/fonts/PragmataPro_Mono_Z_liga_0902.woff2") format("woff2");
+  font-weight: bold;
   font-style: italic;
   font-display: swap;
 }

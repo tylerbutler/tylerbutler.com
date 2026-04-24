@@ -23,6 +23,10 @@ GITHUB_REPO_OWNER=tylerbutler
 GITHUB_REPO_NAME=private-resources
 ```
 
+**Optional env vars**:
+
+- `SHOW_DRAFTS=1` — include `draft: true` content in collection queries, listing pages, and the feed. Off by default in dev and prod. Centralized in `src/lib/draft-utils.ts` (`includeDraft(data)`). Use `SHOW_DRAFTS=1 pnpm dev` (or `pnpm build`) to preview drafts.
+
 ## Architecture
 
 ```

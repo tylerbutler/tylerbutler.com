@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { getNoteCounts } from "../lib/note-counts";
 import {
   getNoteMonthUrl,
   getNotePathParts,
@@ -16,14 +17,22 @@ const { note, className } = Astro.props;
 const { year, month, day } = getNotePathParts(note);
 const isoDate = note.data.date.toISOString();
 const dayNumber = Number.parseInt(day, 10);
+
+const { yearCounts, monthCounts } = await getNoteCounts();
+const linkMonth = (monthCounts.get(`${year}-${month}`) ?? 0) > 1;
+const linkYear = (yearCounts.get(year) ?? 0) > 1;
 ---
 
 <time class:list={["note-date dt-published", className]} datetime={isoDate}>
-  <a href={getNoteMonthUrl(year, month)}>{monthLabel(month)}</a>
+  {linkMonth ? (
+    <a href={getNoteMonthUrl(year, month)}>{monthLabel(month)}</a>
+  ) : (
+    monthLabel(month)
+  )}
   {" "}
   {dayNumber},
   {" "}
-  <a href={getNoteYearUrl(year)}>{year}</a>
+  {linkYear ? <a href={getNoteYearUrl(year)}>{year}</a> : year}
 </time>
 
 <style>

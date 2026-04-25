@@ -5,6 +5,7 @@ import NotePermalink from "../../../components/NotePermalink.astro";
 import NoteSourceIcon from "../../../components/NoteSourceIcon.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { includeDraft } from "../../../lib/draft-utils";
+import "../../../lib/styles/page-nav.css";
 import {
   getNoteMonthUrl,
   getNotePathParts,
@@ -90,8 +91,8 @@ const renderedByMonth = await Promise.all(
             {monthItems.map(({ note, Content }) => {
               const url = getNoteUrl(note);
               return (
-                <article class="note-item h-entry">
-                  <header class="note-item-header">
+                <article class="note-card h-entry">
+                  <header class="note-card-header">
                     {note.data.title && (
                       <h3 class="p-name">
                         <a href={url} class="u-url">
@@ -106,12 +107,12 @@ const renderedByMonth = await Promise.all(
                     </span>
                   </header>
 
-                  <div class="note-item-content e-content">
+                  <div class="note-card-content e-content">
                     <Content />
                   </div>
 
                   {note.data.tags && note.data.tags.length > 0 && (
-                    <div class="note-item-tags">
+                    <div class="note-card-tags">
                       {note.data.tags.map((tag) => (
                         <a href={`/tags/${tag}/`} class="tag p-category">
                           #{tag}
@@ -175,7 +176,7 @@ const renderedByMonth = await Promise.all(
   .archive-count {
     color: var(--text-light);
     font-size: 14px;
-    margin-top: -0.5rem;
+    margin-top: 0.5rem;
   }
 
   .archive-month {
@@ -201,21 +202,34 @@ const renderedByMonth = await Promise.all(
   .notes-stream {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     margin-top: 1rem;
   }
 
-  .note-item {
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border, #ddd);
+  .note-card {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 8px;
+    padding: 1.1rem 1.35rem;
+    overflow: hidden;
   }
 
-  .note-item:last-child {
-    border-bottom: none;
-  }
-
-  .note-item-header {
+  .note-card-header {
     margin-bottom: 0.5rem;
+  }
+
+  .note-card-header h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.1rem;
+  }
+
+  .note-card-header h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .note-card-header h3 a:hover {
+    color: var(--accent);
   }
 
   .note-meta {
@@ -224,25 +238,20 @@ const renderedByMonth = await Promise.all(
     gap: 0.4rem;
   }
 
-  .note-item-header h3 {
-    margin: 0 0 0.25rem;
-    font-size: 1.1rem;
-  }
-
-  .note-item-header h3 a {
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .note-item-header h3 a:hover {
-    color: var(--accent);
-  }
-
-  .note-item-content {
+  .note-card-content {
     line-height: 1.6;
+    overflow-wrap: anywhere;
   }
 
-  .note-item-tags {
+  .note-card-content > :first-child {
+    margin-top: 0;
+  }
+
+  .note-card-content > :last-child {
+    margin-bottom: 0;
+  }
+
+  .note-card-tags {
     margin-top: 0.75rem;
     display: flex;
     flex-wrap: wrap;

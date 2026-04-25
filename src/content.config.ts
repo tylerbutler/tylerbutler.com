@@ -36,17 +36,31 @@ const notes = defineCollection({
     // collides across notes that share a slug on different dates.
     generateId: ({ entry }) => entry.replace(/\.[^.]+$/, ""),
   }),
-  schema: z.object({
-    date: z.coerce.date(),
-    lastmod: z.coerce.date().optional(),
-    slug: z.string(),
-    title: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    draft: z.boolean().default(false),
-    summary: z.string().optional(),
-    originalUrl: z.string().optional(),
-  }),
+  schema: z
+    .object({
+      date: z.coerce.date(),
+      lastmod: z.coerce.date().optional(),
+      slug: z.string(),
+      title: z.string().optional(),
+      tags: z.array(z.string()).optional(),
+      draft: z.boolean().default(false),
+      summary: z.string().optional(),
+      originalUrl: z.string().optional(),
+    })
+    .transform((data) => ({
+      ...data,
+      source: inferNoteSource(data.originalUrl),
+    })),
 });
+
+function inferNoteSource(
+  originalUrl: string | undefined,
+): "twitter" | "microblog" | undefined {
+  if (!originalUrl) return undefined;
+  if (originalUrl.startsWith("https://twitter.com/")) return "twitter";
+  if (originalUrl.startsWith("/")) return "microblog";
+  return undefined;
+}
 
 const projects = defineCollection({
   loader: glob({

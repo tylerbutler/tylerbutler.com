@@ -20,18 +20,21 @@ layer:
   `bookmarkOf`, `syndicateTo`, `syndicationUrls`) for ergonomic template
   access; kebab-case originals retained for h-entry serialization fidelity.
 
-**Layer 2 — Routes & h-entry (mostly done)**
+**Layer 2 — Routes & h-entry (done)**
 
 - ✅ Routes: `/notes/[...page]` (paginated index), `/notes/[year]`,
   `/notes/[year]/[month]`, `/notes/[year]/[month]/[day]/[slug]`. Year/month
   rollups go beyond the plan.
 - ✅ Microformats present: `h-feed`, `h-entry`, `p-name`, `e-content`,
-  `dt-published` (via `NoteDate`), `u-url`, `p-category` on tag links (detail
-  page; verify on listings).
-- ✅ Bonus components: `NoteSourceIcon`, `NotePermalink`, `NoteDate`.
-- ❌ No `p-author h-card` (no shared `HEntryAuthor` partial).
-- ❌ No `u-in-reply-to`, `u-like-of`, `u-repost-of`, `u-bookmark-of`, `u-photo`,
-  `u-syndication` (blocked on schema work in Layer 1).
+  `dt-published` (via `NoteDate`), `u-url`, `p-category` on tag links,
+  `p-author h-card` (via shared `HEntryAuthor.astro`), `u-photo`,
+  `u-in-reply-to`, `u-like-of`, `u-repost-of`, `u-bookmark-of`,
+  `u-syndication`, `p-rsvp` (all rendered by `NoteCard.astro` when
+  schema fields are present).
+- ✅ Reusable `NoteCard.astro` with `feed` / `detail` variants. The four
+  notes pages now share rendering, eliminating ~400 lines of duplication.
+- ✅ Bonus components: `NoteSourceIcon`, `NotePermalink`, `NoteDate`,
+  `HEntryAuthor`.
 
 **Layer 3 — Feeds (done)**
 
@@ -71,10 +74,9 @@ layer:
 
 1. **Schema**: ✅ done — Micropub fields added with kebab-case keys; camel-case
    array aliases derived; `postType` mirrors library logic.
-2. **h-entry author + post-type rendering**: add a shared `HEntryAuthor.astro`
-   (`p-author h-card` partial) and use it on listings + detail. Render
-   `u-photo`, reply/like/repost/bookmark context, and `u-syndication` once
-   schema fields exist. Verify with microformats.io.
+2. **h-entry author + post-type rendering**: ✅ done — `HEntryAuthor.astro`
+   added; `NoteCard.astro` renders all post-type contexts (reply/like/
+   repost/bookmark/rsvp), `u-photo`, `u-syndication`, and `p-author h-card`.
 3. **Feeds**: ✅ done — split feeds canonical; JSON Feeds added at
    `/feed.json` and `/notes/feed.json`; alternate `<link>` tags in
    `BaseLayout.astro`.

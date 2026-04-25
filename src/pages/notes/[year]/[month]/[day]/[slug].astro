@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import NoteDate from "../../../../../components/NoteDate.astro";
+import NoteSourceIcon from "../../../../../components/NoteSourceIcon.astro";
 import BaseLayout from "../../../../../layouts/BaseLayout.astro";
 import { includeDraft } from "../../../../../lib/draft-utils";
 import { getNotePathParts, getNoteUrl } from "../../../../../lib/note-utils";
@@ -37,7 +38,10 @@ const pageTitle = note.data.title
   <article class="note h-entry">
     <header class="note-header">
       {note.data.title && <h1 class="p-name">{note.data.title}</h1>}
-      <NoteDate note={note} />
+      <span class="note-meta">
+        <NoteSourceIcon source={note.data.source} />
+        <NoteDate note={note} />
+      </span>
     </header>
 
     <div class="note-content e-content">
@@ -73,6 +77,12 @@ const pageTitle = note.data.title
   .note-header h1 {
     margin: 0 0 0.5rem;
     font-size: 1.5rem;
+  }
+
+  .note-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
   .note-date {

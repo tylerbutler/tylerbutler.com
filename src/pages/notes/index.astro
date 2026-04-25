@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from "astro:content";
 import NoteDate from "../../components/NoteDate.astro";
+import NotePermalink from "../../components/NotePermalink.astro";
+import NoteSourceIcon from "../../components/NoteSourceIcon.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { includeDraft } from "../../lib/draft-utils";
 import { getNoteUrl } from "../../lib/note-utils";
@@ -42,7 +44,11 @@ const renderedNotes = await Promise.all(
                   <a href={url} class="u-url">{note.data.title}</a>
                 </h2>
               )}
-              <NoteDate note={note} className="note-permalink" />
+              <span class="note-meta">
+                <NoteSourceIcon source={note.data.source} />
+                <NoteDate note={note} className="note-permalink" />
+                <NotePermalink note={note} />
+              </span>
             </header>
 
             <div class="note-item-content e-content">
@@ -87,6 +93,12 @@ const renderedNotes = await Promise.all(
 
   .note-item-header {
     margin-bottom: 0.5rem;
+  }
+
+  .note-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
   .note-item-header h2 {

@@ -3,7 +3,6 @@ import type { CollectionEntry } from "astro:content";
 import {
   getNoteMonthUrl,
   getNotePathParts,
-  getNoteUrl,
   getNoteYearUrl,
   monthLabel,
 } from "../lib/note-utils";
@@ -22,7 +21,7 @@ const dayNumber = Number.parseInt(day, 10);
 <time class:list={["note-date dt-published", className]} datetime={isoDate}>
   <a href={getNoteMonthUrl(year, month)}>{monthLabel(month)}</a>
   {" "}
-  <a href={getNoteUrl(note)} class="u-url">{dayNumber}</a>,
+  {dayNumber},
   {" "}
   <a href={getNoteYearUrl(year)}>{year}</a>
 </time>

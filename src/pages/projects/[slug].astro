@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-import { ExternalLink, Github } from "@lucide/astro";
+import { getCollection, render } from "astro:content";
+import { ExternalLink } from "@lucide/astro";
+import Github from "simple-icons-astro/Github";
 import ProjectBadges from "../../components/ProjectBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatTitle } from "../../lib/typography";
@@ -13,13 +14,13 @@ export async function getStaticPaths() {
   );
 
   return projects.map((project) => ({
-    params: { slug: project.slug },
+    params: { slug: project.id },
     props: { project },
   }));
 }
 
 const { project } = Astro.props;
-const { Content } = await project.render();
+const { Content } = await render(project);
 ---
 
 <BaseLayout
@@ -60,13 +61,13 @@ const { Content } = await project.render();
 
     <div class="project-links">
       {project.data.url && (
-        <a href={project.data.url} target="_blank" rel="noopener" class="project-link">
+        <a href={project.data.url} target="_blank" rel="noopener" class="project-link" data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
           <ExternalLink size={16} />
           View Project
         </a>
       )}
       {project.data.github && (
-        <a href={project.data.github} target="_blank" rel="noopener" class="project-link">
+        <a href={project.data.github} target="_blank" rel="noopener" class="project-link" data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
           <Github size={16} />
           GitHub
         </a>

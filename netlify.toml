@@ -42,6 +42,17 @@
 #   # When set to `false` external font files will be created
 #   fallbacks = true
 
+# Micropub and media endpoint routing
+[[redirects]]
+  from = "/micropub"
+  to = "/.netlify/functions/micropub"
+  status = 200
+
+[[redirects]]
+  from = "/media"
+  to = "/.netlify/functions/media"
+  status = 200
+
 # Font protection headers
 [[headers]]
   for = "/fonts/*"

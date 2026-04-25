@@ -14,8 +14,8 @@ import remarkRehype from "remark-rehype";
 import { remarkShiftHeadings } from "remark-shift-headings";
 import remarkSmartypants from "remark-smartypants";
 import { unified } from "unified";
-
-// Load themes
+// Load themes and grammars
+import cclGrammar from "./ccl.tmLanguage.json";
 import ayuLightJson from "./themes/ayu-light.json";
 import ayuMirageJson from "./themes/ayu-mirage.json";
 import oneDarkJson from "./themes/OneDark.json";
@@ -34,6 +34,13 @@ const themes = [
  * Used by astro.config.mjs for consistent syntax highlighting across the site
  */
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
+  shiki: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    langs: [cclGrammar as any],
+    langAlias: {
+      ccl: "CCL",
+    },
+  },
   themes,
   useDarkModeMediaQuery: false,
   themeCssSelector: (theme: ExpressiveCodeTheme) => {

@@ -1,9 +1,12 @@
 import { execSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import brokenLinksChecker from "astro-broken-links-checker";
+import icon from "astro-icon";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
 import { rehypeFootnotes } from "rehype-footnotes";
@@ -18,6 +21,8 @@ import { downloadFonts } from "./scripts/download-fonts.ts";
 import { optimizeFonts } from "./scripts/optimize-fonts.ts";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
 import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
+import { rehypeTagExternalLinks } from "./src/lib/rehype-tag-external-links.ts";
+import { viteDotLottie } from "./src/lib/vite-plugin-dotlottie.ts";
 
 const fontDownloader = () => ({
   name: "font-downloader",
@@ -60,6 +65,52 @@ const fontOptimizer = () => ({
   },
 });
 
+const pagefindDevServer = () => ({
+  name: "pagefind-dev-server",
+  configureServer(server: {
+    middlewares: {
+      use: (
+        handler: (
+          req: { url?: string },
+          res: {
+            setHeader: (k: string, v: string) => void;
+          } & NodeJS.WritableStream,
+          next: () => void,
+        ) => void,
+      ) => void;
+    };
+  }) {
+    const pagefindDir = path.resolve("dist/pagefind");
+    const contentTypes: Record<string, string> = {
+      ".js": "application/javascript",
+      ".css": "text/css",
+      ".json": "application/json",
+      ".wasm": "application/wasm",
+    };
+    let warned = false;
+    server.middlewares.use((req, res, next) => {
+      if (!req.url?.startsWith("/pagefind/")) return next();
+      const rel = req.url.replace(/^\/pagefind\//, "").split("?")[0];
+      const filePath = path.join(pagefindDir, rel);
+      if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+        if (!warned) {
+          console.warn(
+            "⚠️  /pagefind/ not found — run `pnpm build` once to enable dev-mode search",
+          );
+          warned = true;
+        }
+        return next();
+      }
+      const ext = path.extname(filePath).toLowerCase();
+      res.setHeader(
+        "Content-Type",
+        contentTypes[ext] ?? "application/octet-stream",
+      );
+      fs.createReadStream(filePath).pipe(res);
+    });
+  },
+});
+
 const pagefindIntegration = () => ({
   name: "pagefind-integration",
   hooks: {
@@ -88,9 +139,9 @@ export default defineConfig({
   output: "static",
 
   integrations: [
+    icon(),
     fontDownloader(),
-    // TODO: Re-enable font optimizer once Chrome/Puppeteer is configured for glyphhanger
-    // fontOptimizer(),
+    fontOptimizer(),
     pagefindIntegration(),
     sitemap(),
     mdx({
@@ -120,6 +171,7 @@ export default defineConfig({
         ],
         [rehypeExpressiveCode, expressiveCodeConfig],
         rehypeMarkBrokenLinks,
+        rehypeTagExternalLinks,
       ],
     }),
     brokenLinksChecker({
@@ -158,6 +210,7 @@ export default defineConfig({
       ],
       [rehypeExpressiveCode, expressiveCodeConfig],
       rehypeMarkBrokenLinks,
+      rehypeTagExternalLinks,
     ],
   },
 
@@ -174,7 +227,17 @@ export default defineConfig({
         // "@fontsource/lato",
       ],
     },
+    build: {
+      assetsInlineLimit(filePath: string) {
+        // Never inline .lottie files — they're binary (ZIP) and should be
+        // served as separate assets with proper caching.
+        if (filePath.endsWith(".lottie")) return 0;
+        return undefined; // default for everything else
+      },
+    },
     plugins: [
+      viteDotLottie(),
+      pagefindDevServer(),
       // Only generate bundle analysis in production builds
       process.env.NODE_ENV === "production" &&
         visualizer({

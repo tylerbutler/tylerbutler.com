@@ -30,10 +30,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <script is:inline>
   (function () {
+    const params = new URLSearchParams(window.location.search);
+    const url = params.get("url");
+
     const tryOriginalLink = document.getElementById("try-original-link");
     if (tryOriginalLink) {
-      const params = new URLSearchParams(window.location.search);
-      const url = params.get("url");
       if (url) {
         tryOriginalLink.href = url;
       } else {

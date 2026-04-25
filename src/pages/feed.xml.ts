@@ -1,4 +1,4 @@
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
@@ -25,7 +25,7 @@ export async function GET(context: APIContext) {
     items: await Promise.all(
       sortedArticles.map(async (article) => {
         // Render the article content using Astro's unified markdown pipeline
-        const { Content } = await article.render();
+        const { Content } = await render(article);
         const html = await container.renderToString(Content);
 
         return {

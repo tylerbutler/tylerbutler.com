@@ -1,0 +1,57 @@
+---
+// AnimatedSvgIcon — renders an animated SVG icon from /public/vids/ via <object>.
+//
+// Conventions:
+//   - Expects /public/vids/{name}.svg (produced by scripts/mp4-to-svg.py)
+//   - SVG has transparent background (white paths stripped post-vtracer).
+//   - CSS frame cycling animation is embedded in the SVG itself.
+//   - prefers-reduced-motion is handled via media query inside the SVG.
+//   - <object> is required (not <img>) — CSS animations inside SVG only
+//     run when loaded via <object>, which gives the SVG its own document
+//     context with a CSS engine.
+//
+// Light mode: mix-blend-mode:multiply removes any white remnants from the
+//   transparent SVG against the white page background.
+// Dark mode: no blend mode — SVG background is transparent, original icon
+//   colors render directly on the dark page.
+
+interface Props {
+  name: string;
+  alt: string;
+  size?: number;
+  class?: string;
+}
+
+const { name, alt, size = 128, class: className } = Astro.props;
+
+const svgSrc = `/vids/${name}.svg`;
+---
+
+<span class:list={["animated-svg-wrapper", className]}>
+  <object
+    class="animated-svg-icon"
+    type="image/svg+xml"
+    data={svgSrc}
+    width={size}
+    height={size}
+    aria-label={alt}
+    role="img"
+  ></object>
+</span>
+
+<style>
+  .animated-svg-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    mix-blend-mode: multiply;
+  }
+
+  :global(.dark) .animated-svg-wrapper {
+    mix-blend-mode: normal;
+  }
+
+  .animated-svg-icon {
+    display: block;
+  }
+
+</style>

@@ -1,0 +1,96 @@
+---
+// LottieIcon — renders a dotLottie or Lottie JSON animation using the
+// @lottiefiles/dotlottie-web player (Canvas-based, WASM-accelerated).
+//
+// Behavior (mirrors AnimatedIcon with playCount=3):
+//   - IntersectionObserver starts the animation when scrolled into view.
+//   - Plays 3 times, then rests on frame 0.
+//   - After the initial sequence, replays once on hover, click, or
+//     re-entering the viewport.
+//   - prefers-reduced-motion: shows frame 0 statically, never animates.
+
+interface Props {
+  src: string;
+  alt: string;
+  size?: number;
+  playCount?: number;
+  class?: string;
+}
+
+const { src, alt, size = 128, playCount = 3, class: className } = Astro.props;
+---
+
+<div
+  class:list={["lottie-icon-wrapper", className]}
+  data-lottie-src={src}
+  data-lottie-play-count={playCount}
+  style={`width:${size}px;height:${size}px`}
+  role="img"
+  aria-label={alt}
+>
+  <canvas width={size} height={size} style="width:100%;height:100%"></canvas>
+</div>
+
+<script>
+  import { DotLottie } from "@lottiefiles/dotlottie-web";
+  import { attachPlayOnceObserver } from "../lib/play-once-observer";
+
+  function initLottieIcons() {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const els = document.querySelectorAll<HTMLElement>(
+      ".lottie-icon-wrapper[data-lottie-src]:not([data-lottie-init])",
+    );
+
+    for (const el of els) {
+      el.dataset.lottieInit = "true";
+      const canvas = el.querySelector("canvas");
+      if (!canvas) continue;
+
+      const anim = new DotLottie({
+        canvas,
+        src: el.dataset.lottieSrc!,
+        loop: true,
+        autoplay: false,
+        renderConfig: {
+          autoResize: true,
+        },
+      });
+
+      // Reduced motion: show first frame statically.
+      if (reduced) {
+        anim.addEventListener("ready", () => {
+          anim.setFrame(0);
+          anim.stop();
+        });
+        continue;
+      }
+
+      const playCount = parseInt(el.dataset.lottiePlayCount ?? "3", 10);
+
+      anim.addEventListener("ready", () => {
+        attachPlayOnceObserver(el, {
+          resume: () => { el.dataset.playing = "true"; anim.play(); },
+          play: () => {},
+          pause: () => { el.dataset.playing = "false"; anim.pause(); },
+          stop: () => { el.dataset.playing = "false"; anim.stop(); },
+          get isPaused() { return anim.isPaused; },
+          onPassComplete: (cb) => anim.addEventListener("loop", cb),
+        }, playCount);
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLottieIcons);
+  } else {
+    initLottieIcons();
+  }
+</script>
+
+<style>
+  .lottie-icon-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>

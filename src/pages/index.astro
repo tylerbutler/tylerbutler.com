@@ -1,9 +1,52 @@
 ---
 import { getCollection } from "astro:content";
+import ConstellationIcon from "../components/ConstellationIcon.astro";
+import KudosButton from "../components/KudosButton.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getArticleUrl } from "../lib/article-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
 import { formatTitle } from "../lib/typography";
+
+// Constellation lottie files — Vite resolves these to hashed URLs at build time.
+// Only constellation files are imported; other/ files are not bundled unless used.
+const constellationModules = import.meta.glob<string>(
+  "../lottie/constellations/*.lottie",
+  { query: "?url", import: "default", eager: true },
+);
+
+// name → URL map (e.g. "aquarius" → "/assets/aquarius.B9uJRUL3.lottie")
+const constellationUrls: Record<string, string> = Object.fromEntries(
+  Object.entries(constellationModules).map(([path, url]) => [
+    path.split("/").pop()!.replace(".lottie", ""),
+    url,
+  ]),
+);
+
+function hashStr(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+const CONSTELLATION_NAMES = Object.keys(constellationUrls);
+
+// Assign icons with no duplicates. Each article is processed in hash order
+// so its slot is determined independently of display order — adding a new
+// article only displaces others if it lands in an already-taken slot.
+function assignIcons(
+  ids: string[],
+): Map<string, { url: string; slug: string }> {
+  const result = new Map<string, { url: string; slug: string }>();
+  const used = new Set<number>();
+  for (const id of [...ids].sort((a, b) => hashStr(a) - hashStr(b))) {
+    let idx = hashStr(id) % CONSTELLATION_NAMES.length;
+    while (used.has(idx)) idx = (idx + 1) % CONSTELLATION_NAMES.length;
+    used.add(idx);
+    const slug = CONSTELLATION_NAMES[idx];
+    result.set(id, { url: constellationUrls[slug], slug });
+  }
+  return result;
+}
 
 // Get recent articles (latest 5, non-draft)
 const articles = await getCollection("articles", ({ data }) => {
@@ -30,6 +73,8 @@ const recentArticles = await Promise.all(
     };
   }),
 );
+
+const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
 ---
 
 <BaseLayout
@@ -40,10 +85,19 @@ const recentArticles = await Promise.all(
     <main class="main-content">
       {recentArticles.length > 0 && (
       <ul class="recent-articles">
-        {recentArticles.map((article) => {
+        {recentArticles.map((article, index) => {
           const date = new Date(article.data.date);
 
           return (
+            <>
+              {index > 0 && (() => {
+                const { url, slug } = iconAssignments.get(article.id)!;
+                return (
+                  <li class="article-divider" aria-hidden="true">
+                    <ConstellationIcon src={url} slug={slug} size={64} />
+                  </li>
+                );
+              })()}
             <li>
               <article class="article-preview">
                 <h2>
@@ -61,13 +115,15 @@ const recentArticles = await Promise.all(
                   </time>
                 </div>
                 <div class="article-content" set:html={article.transformedHtml}></div>
-                {article.isTruncated && (
-                  <p class="read-more">
-                    <a href={getArticleUrl(article)}>Read More →</a>
-                  </p>
-                )}
+                <p class="preview-actions">
+                  {article.isTruncated && (
+                    <a href={getArticleUrl(article)} class="read-more-link">Read More →</a>
+                  )}
+                  <KudosButton path={getArticleUrl(article)} variant="preview" />
+                </p>
               </article>
             </li>
+            </>
           );
         })}
       </ul>
@@ -137,12 +193,15 @@ const recentArticles = await Promise.all(
   .article-preview {
     margin-bottom: 1.5em;
     padding-bottom: 1em;
-    border-bottom: 1px solid var(--code-border);
   }
 
-  .article-preview:last-child {
-    border-bottom: none;
+  .article-divider {
+    display: flex;
+    justify-content: center;
+    margin: 1em 0 4em;
+    list-style: none;
   }
+
 
   .article-preview h2 {
     margin: 0 0 0.5em 0;
@@ -215,24 +274,38 @@ const recentArticles = await Promise.all(
     font-size: 12px;
   }
 
-  .read-more {
+  .preview-actions {
     margin: 1em 0 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
   }
 
-  .read-more a {
+  .read-more-link {
     display: inline-block;
     background: var(--code-bg);
     padding: 2px 6px;
-    margin-right: 6px;
-    margin-bottom: 4px;
     font-size: 13px;
     color: var(--text-light);
     border-radius: 3px;
     text-decoration: none;
   }
 
-  .read-more a:hover {
+  .read-more-link:hover {
     background: var(--accent);
     color: var(--light-bg);
+  }
+
+  .preview-actions :global(.tinylytics_kudos) {
+    font-size: 13px;
+    padding: 2px 8px;
+  }
+
+  .preview-kudos {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-size: 13px;
+    color: var(--text-light);
   }
 </style>

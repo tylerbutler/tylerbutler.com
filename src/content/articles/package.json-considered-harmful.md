@@ -1,0 +1,214 @@
+---
+
+title: 'package.json considered harmful'
+date: '2026-03-26T15:32:00-07:00'
+slug: packagejson-considered-harmful
+tags:
+- config
+# type: guide
+---
+
+Any web developer over the last 15 years or so has encountered [JSON][]. It stands for JavaScript Object Notation, and
+it is one of the most ubiquitous data formats on the web today. It is, as they say, literally everywhere.
+
+You'd be forgiven for thinking its ubiquity is evidence of its quality. You would be wrong.
+
+## What JSON is actually for
+
+Before I make that case, let's establish what JSON was designed to do, because value judgments need context.
+
+From Wikipedia:
+
+> JSON grew out of a need for a real-time server-to-browser session communication protocol without using
+> browser plugins such as Flash or Java applets, the dominant methods used in the early 2000s."
+
+JSON is JavaScript's serialization format. It's how JavaScript takes in-memory data and represents it as text, then
+converts that text back into an in-memory object. That's it. That's the job. It happens that a textual format for data interchange has use beyond JavaScript, and accordingly JSON has spread far beyond JavaScript, and far beyond the web.
+
+Lots of languages have something like this. Python has [pickle][] -- a binary format, notably not portable, and not designed
+for interchange between languages. Importantly, **JSON was not designed for humans**. Or at least not *primarily* for
+humans. It's a machine-to-machine format. It exists to transfer data between systems where that data is consumed and
+created largely by machines.
+
+Sounds reasonable, no? The problem is that we don't use it for that.
+
+## To be fair to JSON
+
+None of this is to say JSON is a bad format. It's genuinely good at what it was designed for, and it's worth being clear
+about that before I make the case against its misuse.
+
+The security argument for JSON is real. Because JSON can only represent data -- strings, numbers, booleans, arrays,
+objects -- there's nothing to execute. You parse it, you get a data structure, and that's the end of the story. Compare
+that to executable config formats like vite.config.ts or [Dhall][], where loading the config means running code. That's
+a meaningful attack surface, and JSON simply doesn't have it.
+
+JSON is also genuinely universal. Every language has a JSON parser, and they all agree on the format. That
+interoperability is not something you get for free -- it's the result of a simple, stable spec that hasn't changed in
+decades. When you need two systems written in different languages to exchange data reliably, JSON is still the
+lowest-friction option most of the time.
+
+And the tooling is exceptional. JSON Schema, formatters, validators, editor support -- the ecosystem around JSON is
+mature in a way that most config formats can't match. If you need to validate the structure of a file, or provide IDE
+autocomplete for it, JSON has a well-worn path for that.
+
+So JSON is fast to parse, safe to load, universally supported, and well-tooled. The problem isn't JSON. The problem is
+that none of those strengths matter much when you're hand-authoring a config file that you'll be maintaining for years.
+For that job, the things JSON is good at are largely irrelevant, and the thing it's missing -- comments -- is not.
+
+## Original Sin
+
+The most prevalent place you'll find JSON files in the JavaScript ecosystem is `package.json` -- the formal location for
+package metadata in [npm][]. And "package metadata" might *sound* like machine-generated data, except almost nothing in
+`package.json` is machine-managed. The package name, the version, the keywords, the description, the scripts, the
+dependencies -- all hand-authored. All human-maintained. This is not machine-machine data exchange. And then there's the
+sprawl of tool configurations that have followed npm's example, carrying this cursed seed to far-off lands.
+
+This is the original sin: npm chose a comment-less serialization format as the *de facto* config format for an entire
+ecosystem, before anyone realized what that would cost over time.
+
+## Comments are not optional
+
+Here's the core of my argument: **a config format without comment support cannot be a good config format**. Full stop.
+
+This sounds like a simple complaint, but follow it through. Configuration is rarely self-explanatory. There are settings
+that were made for very particular reasons -- learned by some engineer long before your time, under constraints you no
+longer remember. That context needs to live somewhere. It needs to be in the file, near the thing it explains, findable
+years later when someone is wondering why this dependency is pinned to a version three years old.
+
+The same rules apply to config that apply to code. If a programming language didn't support comments, we'd call it
+untenable. We'd refuse to use it in production. So why do we accept that from a config format? The implicit assumption
+is that config is somehow simpler or less important than code. It should be simpler -- but it is absolutely not less
+important.
+
+Let me give you a concrete example:
+
+You notice a dependency in `package.json` that looks outdated. Not just outdated... *three years old and deprecated!*
+Should it be upgraded? You don't know. There's nothing there to tell you. Nothing in the release notes seems like it
+applies to you. So you decide to try, briefly forgetting the Ferengi maxim, "No good deed goes unpunished." Hours later, after running CI and chasing down failures, you find a comment on a bug that
+seems completely unrelated to your issue but nonetheless contains the info you need.
+
+A gracious fellow engineer has found the key: your setup is one of the rare ones in which upgrading the dependency is a
+multi-day project. You weep in thanks. Who knew you would owe such a debt to *FroyoIsMyFirstLove37*? Who can count the
+number of engineers who came before you and learned this sad lesson -- not to mention *FroyoIsMyFirstLove37* themselves --
+but had no _obviously correct_ place to record what they learned? You count yourself lucky that *FroyoIsMyFirstLove37*
+wasn't, in that moment, lazy.
+
+Because software engineers, we're ultimately a lazy bunch, and often the comment doesn't get added because it's too much
+work to figure out where to put it. "Oh well!" is what many engineers will say. Don't fool yourself into thinking that
+this is just a cultural problem. When there aren't _obvious_ places to put things, many engineers will stall out. Even
+experienced ones. This scenario plays out every day, across repos and projects worldwide, involving countless engineers
+who likely know better but, like me, are lazy.
+
+Imagine if instead you saw a comment above that dependency -- *"pinned at 2.x, API incompatibility in 3.x, see issue
+#1234"* -- it probably would have saved all of that effort. And even without the bug number, it's still useful!
+
+## JSONC and JSON5 are not solutions
+
+You might be thinking: but what about [JSONC][]? What about [JSON5][]? These formats add comment support to JSON --
+doesn't that address the problem?
+
+No. And I argue they make it worse.
+
+The challenge is that JSON is now so embedded in the ecosystem that there are countless tools -- parsers, validators,
+formatters, editors -- that expect JSON to be JSON. When these tools add "support" for JSONC, they typically do it by
+stripping the comments before parsing. They're not actually treating your comments as meaningful data. They're
+discarding them and reading standard JSON underneath.
+
+This creates several downstream problems. Some tools support JSONC for reading but write back standard JSON, silently
+deleting every comment you've written. Hope you committed those comments before running the tool! (I'm looking at you, [NX][].) Others support JSON but not JSONC, forcing you to
+maintain comment-less files for compatibility. The fragmentation is real and ongoing.
+
+But the deeper issue is this: JSONC and JSON5 extend the lifespan of a bad bet. They let the ecosystem keep using an
+unsuitable format rather than forcing a reckoning. They are patches on a design that was wrong from the start.
+
+## Other ecosystems learned this
+
+The good news is that newer ecosystems largely got this right. Rust uses `Cargo.toml`. Gleam uses `gleam.toml`. Python
+has `pyproject.toml`. None of these chose a comment-less format for human-authored configuration.
+
+I'll be honest: I have complicated feelings about [TOML][]. It has a reputation for being obvious to Tom, and I am not
+Tom. I can never quite remember what double brackets mean without checking the docs. But at least it supports comments.
+At least I can write a note in `Cargo.toml` explaining why a particular version is pinned, and that note will still be
+there the next time I open the file, after other tools have already read and modified the file.
+
+I'd hoped [Deno][] represented a clean break from this history. They built a new JavaScript runtime and had the
+opportunity to make different choices. And then there are `deno.json` files. Here we go again.
+
+## The false comfort of executable config
+
+To be fair, the ecosystem has found one legitimate escape valve: executable config. Many modern tools allow
+configuration via a JavaScript or TypeScript module -- `vite.config.ts`, `eslint.config.js`, and so on. These formats
+support comments, obviously, and offer additional benefits: strong typing, IDE intelligence, composability.
+
+I actually prefer these when they're available, precisely because of those conveniences. But they come with a real
+tradeoff that I think is underappreciated.
+
+Executable config is executable. That means it can only be loaded in an environment that can run JavaScript. I opened a
+PR on a project once to add CommonJS config support, and it was rejected for two legitimate reasons: the tool ran in
+environments where JavaScript might not be available, and as I mentioned, executing arbitrary code during config loading
+is a real security concern, not just a theoretical one.
+
+This is also, incidentally, part of why I'm skeptical of [PKL][] and similar "programmable configuration languages." At
+the point where your config language is sophisticated enough to need a runtime and an execution model, the honest
+question is: why aren't you just using a programming language? The complexity cost is there, but the power isn't
+meaningfully greater than just writing code.
+
+## A simple test
+
+Here's a heuristic I've found useful for thinking about your own JSON usage.
+
+Ask yourself: could all of your JSON data be replaced by [MessagePack][] tomorrow, and would your workflows notice a
+significant difference?
+
+MessagePack is a binary format that's largely a drop-in replacement for JSON over the wire -- more compact, and without
+the human readability overhead. (Whether it's actually faster to parse in practice depends heavily on your runtime --
+V8's JSON handling is remarkably optimized -- but the size savings are real.) If you could make that swap without much
+disruption, your JSON usage is probably fine. You're using it for what it was designed for: machine-readable data
+exchange.
+
+But if that question fills you with dread -- if you're thinking "but we need to *read* those files" -- then you're relying
+on JSON as a human-readable format, and you should use a format fully designed for messy humans.
+
+There's also a more obvious tell: if your JSON data contains comment fields. You know the pattern -- `field_one_comment:
+"this value is set because..."`. If you've ever done that, or inherited a system that does, that's a distress signal.
+That's a human need (annotation) trying to escape through whatever cracks it can find in a format that didn't plan for
+it.
+
+## What to do instead
+
+If you're maintaining a JavaScript project and have any flexibility in your config choices, here's my rough hierarchy:
+
+**Use executable config** (TypeScript or ESM modules) when the tool supports it and you can guarantee a JavaScript
+environment. The developer experience is genuinely excellent.
+
+**Use TOML or YAML** for static config that needs to be portable or loaded outside a JavaScript context. Either one
+supports comments. Neither one is JSON.
+
+**If you're stuck with JSON**, my honest advice is to accept the limitation and compensate elsewhere. Some teams work
+around it with special comment fields -- "_comment" or "field_name_comment" -- but these suffer from the same
+fundamental problem as JSONC: they're fragile conventions, not first-class features. Any tool that rewrites the file may
+drop them, reorder them away from the thing they're annotating, or simply not recognize them. For configuration that
+genuinely needs annotation, put that documentation in your README or a docs/ file and link to it. It's not elegant, but
+it's more durable than workarounds that depend on every tool in your chain playing along.
+
+The honest bottom line is that `package.json` is a blight on the Node ecosystem -- not because JSON is a bad format, but
+because it's a format that was pressed into service it was never meant for. We made an early choice that calcified into
+infrastructure, and now we're all living with the consequences.
+
+Newer ecosystems know better. But even knowing better, the alternatives I've described are compromises: executable
+config ties you to a runtime, TOML is fine but never quite obvious, YAML trades one set of problems for another. None of
+them feel like the right answer -- they feel like the least-wrong answer. That nagging dissatisfaction is what led me to
+start looking harder, and eventually to a configuration language I'd never heard of that's built on an idea so simple it
+almost seems like it shouldn't work -- but it does. More on that next time.
+
+[JSON]: https://www.json.org
+[pickle]: https://docs.python.org/3/library/pickle.html
+[npm]: https://www.npmjs.com
+[Dhall]: https://dhall-lang.org
+[JSONC]: https://code.visualstudio.com/docs/languages/json#_json-with-comments
+[JSON5]: https://json5.org
+[NX]: https://nx.dev
+[TOML]: https://toml.io
+[Deno]: https://deno.com
+[PKL]: https://pkl-lang.org
+[MessagePack]: https://msgpack.org

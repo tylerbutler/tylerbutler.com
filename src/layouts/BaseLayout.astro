@@ -3,6 +3,7 @@ import BrokenLinkTooltip from "../components/BrokenLinkTooltip.astro";
 import Footer from "../components/Footer.astro";
 import FootnoteScript from "../components/FootnotesScript.astro";
 import Header from "../components/Header.astro";
+import Tinylytics from "../components/Tinylytics.astro";
 import "../lib/styles/global.css";
 import "../styles/fonts.css";
 
@@ -11,6 +12,7 @@ export interface Props {
   description?: string;
   headerSize?: "large" | "small";
   canonicalUrl?: string;
+  excludeFromSearch?: boolean;
 }
 
 const {
@@ -18,6 +20,7 @@ const {
   description = "Personal website and blog of Tyler Butler",
   headerSize = "large",
   canonicalUrl,
+  excludeFromSearch = false,
 } = Astro.props;
 ---
 
@@ -38,11 +41,27 @@ const {
       type="font/woff2"
       crossorigin
     >
+    <!-- IndieAuth -->
+    <link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+    <link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+    <!-- IndieWeb endpoints -->
+    <link rel="micropub" href="https://tylerbutler.com/micropub" />
+    <link rel="webmention" href="https://webmention.io/tylerbutler.com/webmention" />
+    <!-- rel="me" for IndieAuth identity verification -->
+    <link rel="me" href="https://github.com/tylerbutler" />
+    <link rel="me" href="https://hachyderm.io/@tyler" />
+    <link rel="me" href="https://bsky.app/profile/tylerbutler.bsky.social" />
+    <link rel="me" href="mailto:tyler@tylerbutler.com" />
+    <!-- Analytics -->
+    <Tinylytics embedCode="7vP3rWZsVnwMyLpSbFxs" kudos="custom" hits events beacon webring="avatars" />
+    <!-- Pagefind Component UI -->
+    <link href="/pagefind/pagefind-component-ui.css" rel="stylesheet" />
+    <script src="/pagefind/pagefind-component-ui.js" type="module"></script>
   </head>
   <body>
     <div class="site-container">
       <Header size={headerSize}/>
-      <main class="content-section" data-pagefind-body>
+      <main class="content-section" data-pagefind-body={excludeFromSearch ? undefined : true}>
         <div class="content-inner">
           <slot/>
         </div>
@@ -51,5 +70,7 @@ const {
     </div>
     <FootnoteScript/>
     <BrokenLinkTooltip/>
+    <pagefind-config bundle-path="/pagefind/" excerpt-length="30"></pagefind-config>
+    <pagefind-modal reset-on-close></pagefind-modal>
   </body>
 </html>

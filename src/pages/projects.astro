@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import { BookOpen, ExternalLink, Github } from "@lucide/astro";
+import { BookOpen, ExternalLink } from "@lucide/astro";
+import Github from "simple-icons-astro/Github";
 import ProjectBadges from "../components/ProjectBadges.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatTitle } from "../lib/typography";
@@ -66,18 +67,18 @@ const sortedProjects = await Promise.all(
                   <p class="description">{project.data.description}</p>
                 )}
                 <div class="project-links">
-                  <a href={`/projects/${project.slug}`} class="read-more">
+                  <a href={`/projects/${project.id}`} class="read-more" data-tinylytics-event="project.read-more" data-tinylytics-event-value={project.id}>
                     <BookOpen class="icon" />
                     Read More
                   </a>
                   {project.data.url && (
-                    <a href={project.data.url} target="_blank" rel="noopener" class="external-link">
+                    <a href={project.data.url} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
                       <ExternalLink class="icon" />
                       View Project
                     </a>
                   )}
                   {project.data.github && (
-                    <a href={project.data.github} target="_blank" rel="noopener" class="external-link">
+                    <a href={project.data.github} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
                       <Github class="icon" />
                       GitHub
                     </a>

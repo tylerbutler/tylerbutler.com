@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import NoteDate from "../../../../../components/NoteDate.astro";
-import NoteSourceIcon from "../../../../../components/NoteSourceIcon.astro";
+import NoteCard from "../../../../../components/NoteCard.astro";
 import BaseLayout from "../../../../../layouts/BaseLayout.astro";
 import { includeDraft } from "../../../../../lib/draft-utils";
 import { getNotePathParts, getNoteUrl } from "../../../../../lib/note-utils";
@@ -35,85 +34,19 @@ const pageTitle = note.data.title
   headerSize="small"
   canonicalUrl={canonicalUrl}
 >
-  <article class="note h-entry">
-    <header class="note-header">
-      {note.data.title && <h1 class="p-name">{note.data.title}</h1>}
-      <span class="note-meta">
-        <NoteSourceIcon source={note.data.source} />
-        <NoteDate note={note} />
-      </span>
-    </header>
+  <NoteCard note={note} variant="detail" titleLevel={1}>
+    <Content />
+  </NoteCard>
 
-    <div class="note-content e-content">
-      <Content />
-    </div>
-
-    {note.data.tags && note.data.tags.length > 0 && (
-      <div class="note-tags">
-        {note.data.tags.map((tag) => (
-          <a href={`/tags/${tag}/`} class="tag p-category" data-pagefind-filter="tag">#{tag}</a>
-        ))}
-      </div>
-    )}
-
-    <a href={canonicalUrl} class="u-url" hidden>{canonicalUrl}</a>
-
-    <footer class="note-footer">
-      <a href="/notes/" class="back-link">← All notes</a>
-    </footer>
-  </article>
+  <footer class="note-footer">
+    <a href="/notes/" class="back-link">← All notes</a>
+  </footer>
 </BaseLayout>
 
 <style>
-  .note {
-    max-width: 65ch;
-    margin: 0 auto;
-  }
-
-  .note-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .note-header h1 {
-    margin: 0 0 0.5rem;
-    font-size: 1.5rem;
-  }
-
-  .note-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .note-date {
-    font-size: 13px;
-    color: var(--text-light);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .note-content {
-    line-height: 1.6;
-  }
-
-  .note-tags {
-    margin-top: 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 13px;
-  }
-
-  .tag:hover {
-    text-decoration: underline;
-  }
-
   .note-footer {
-    margin-top: 2rem;
+    max-width: 65ch;
+    margin: 2rem auto 0;
     padding-top: 1rem;
     border-top: 1px solid var(--border, #ddd);
   }

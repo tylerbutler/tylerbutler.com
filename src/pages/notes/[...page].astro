@@ -1,12 +1,9 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import type { GetStaticPaths } from "astro";
-import NoteDate from "../../components/NoteDate.astro";
-import NotePermalink from "../../components/NotePermalink.astro";
-import NoteSourceIcon from "../../components/NoteSourceIcon.astro";
+import NoteCard from "../../components/NoteCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { includeDraft } from "../../lib/draft-utils";
-import { getNoteUrl } from "../../lib/note-utils";
 import "../../lib/styles/page-nav.css";
 
 const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
@@ -60,7 +57,6 @@ const pageTitle =
 
     <div class="notes-stream">
       {renderedNotes.map(({ note, Content }, i) => {
-        const url = getNoteUrl(note);
         const older = renderedNotes[i + 1];
         const gap = older
           ? Math.round(
@@ -72,32 +68,9 @@ const pageTitle =
 
         return (
           <Fragment>
-            <article class="note-card h-entry">
-              <header class="note-card-header">
-                {note.data.title && (
-                  <h3 class="p-name">
-                    <a href={url} class="u-url">{note.data.title}</a>
-                  </h3>
-                )}
-                <span class="note-meta">
-                  <NoteSourceIcon source={note.data.source} />
-                  <NoteDate note={note} className="note-permalink" />
-                  <NotePermalink note={note} />
-                </span>
-              </header>
-
-              <div class="note-card-content e-content">
-                <Content />
-              </div>
-
-              {note.data.tags && note.data.tags.length > 0 && (
-                <div class="note-card-tags">
-                  {note.data.tags.map((tag) => (
-                    <a href={`/tags/${tag}/`} class="tag p-category">#{tag}</a>
-                  ))}
-                </div>
-              )}
-            </article>
+            <NoteCard note={note}>
+              <Content />
+            </NoteCard>
 
             {showGap && (
               <div class="note-gap" role="separator">
@@ -145,79 +118,6 @@ const pageTitle =
     flex-direction: column;
     gap: 1rem;
     margin-top: 1.5rem;
-  }
-
-  .note-card {
-    background: var(--code-bg);
-    border: 1px solid var(--code-border);
-    border-radius: 8px;
-    padding: 1.1rem 1.35rem;
-    overflow: hidden;
-  }
-
-  .note-card-header {
-    margin-bottom: 0.5rem;
-  }
-
-  .note-card-header h3 {
-    margin: 0 0 0.25rem;
-    font-size: 1.1rem;
-  }
-
-  .note-card-header h3 a {
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .note-card-header h3 a:hover {
-    color: var(--accent);
-  }
-
-  .note-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .note-permalink {
-    color: var(--text-light);
-    text-decoration: none;
-    font-size: 13px;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .note-permalink:hover {
-    color: var(--accent);
-  }
-
-  .note-card-content {
-    line-height: 1.6;
-    overflow-wrap: anywhere;
-  }
-
-  .note-card-content > :first-child {
-    margin-top: 0;
-  }
-
-  .note-card-content > :last-child {
-    margin-bottom: 0;
-  }
-
-  .note-card-tags {
-    margin-top: 0.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 13px;
-  }
-
-  .tag:hover {
-    text-decoration: underline;
   }
 
   .note-gap {

@@ -1,15 +1,12 @@
 ---
 import { getCollection, render } from "astro:content";
-import NoteDate from "../../../components/NoteDate.astro";
-import NotePermalink from "../../../components/NotePermalink.astro";
-import NoteSourceIcon from "../../../components/NoteSourceIcon.astro";
+import NoteCard from "../../../components/NoteCard.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { includeDraft } from "../../../lib/draft-utils";
 import "../../../lib/styles/page-nav.css";
 import {
   getNoteMonthUrl,
   getNotePathParts,
-  getNoteUrl,
   getNoteYearUrl,
   monthLabel,
 } from "../../../lib/note-utils";
@@ -88,41 +85,11 @@ const renderedByMonth = await Promise.all(
             <a href={getNoteMonthUrl(year, month)}>{monthLabel(month)}</a>
           </h2>
           <div class="notes-stream">
-            {monthItems.map(({ note, Content }) => {
-              const url = getNoteUrl(note);
-              return (
-                <article class="note-card h-entry">
-                  <header class="note-card-header">
-                    {note.data.title && (
-                      <h3 class="p-name">
-                        <a href={url} class="u-url">
-                          {note.data.title}
-                        </a>
-                      </h3>
-                    )}
-                    <span class="note-meta">
-                      <NoteSourceIcon source={note.data.source} />
-                      <NoteDate note={note} className="note-permalink" />
-                      <NotePermalink note={note} />
-                    </span>
-                  </header>
-
-                  <div class="note-card-content e-content">
-                    <Content />
-                  </div>
-
-                  {note.data.tags && note.data.tags.length > 0 && (
-                    <div class="note-card-tags">
-                      {note.data.tags.map((tag) => (
-                        <a href={`/tags/${tag}/`} class="tag p-category">
-                          #{tag}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </article>
-              );
-            })}
+            {monthItems.map(({ note, Content }) => (
+              <NoteCard note={note}>
+                <Content />
+              </NoteCard>
+            ))}
           </div>
         </section>
       ))
@@ -204,67 +171,5 @@ const renderedByMonth = await Promise.all(
     flex-direction: column;
     gap: 1rem;
     margin-top: 1rem;
-  }
-
-  .note-card {
-    background: var(--code-bg);
-    border: 1px solid var(--code-border);
-    border-radius: 8px;
-    padding: 1.1rem 1.35rem;
-    overflow: hidden;
-  }
-
-  .note-card-header {
-    margin-bottom: 0.5rem;
-  }
-
-  .note-card-header h3 {
-    margin: 0 0 0.25rem;
-    font-size: 1.1rem;
-  }
-
-  .note-card-header h3 a {
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .note-card-header h3 a:hover {
-    color: var(--accent);
-  }
-
-  .note-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .note-card-content {
-    line-height: 1.6;
-    overflow-wrap: anywhere;
-  }
-
-  .note-card-content > :first-child {
-    margin-top: 0;
-  }
-
-  .note-card-content > :last-child {
-    margin-bottom: 0;
-  }
-
-  .note-card-tags {
-    margin-top: 0.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 13px;
-  }
-
-  .tag:hover {
-    text-decoration: underline;
   }
 </style>

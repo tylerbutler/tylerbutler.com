@@ -5,14 +5,20 @@
 Significant progress is already on the `notes-rendering` branch. Status by
 layer:
 
-**Layer 1 — Schema (partial)**
+**Layer 1 — Schema (done)**
 
 - ✅ Added `slug` (required), `title?`, `summary?`, `lastmod?`, `originalUrl?`,
   derived `source` ("twitter" | "microblog" | undefined). Custom `generateId`
   to avoid slug collisions across dates.
-- ❌ Still missing all Micropub-specific fields: `photo`, `replyTo`, `likeOf`,
-  `repostOf`, `bookmarkOf`, `syndicateTo`, `syndication`, `location`, `name`.
-  No `postType` derivation.
+- ✅ Added Micropub fields (kebab-case to match `@benjifs/micropub` output):
+  `photo`, `in-reply-to`, `like-of`, `repost-of`, `bookmark-of`,
+  `mp-syndicate-to`, `syndication`, `location`, `rsvp`, `client_id`,
+  `updated`.
+- ✅ `derivePostType()` mirrors `@benjifs/micropub`'s `postTypes()` logic.
+  Surfaced as `data.postType` (rsvp/reply/repost/like/bookmark/photo/article/note).
+- ✅ Camel-case array aliases (`photos`, `replyTo`, `likeOf`, `repostOf`,
+  `bookmarkOf`, `syndicateTo`, `syndicationUrls`) for ergonomic template
+  access; kebab-case originals retained for h-entry serialization fidelity.
 
 **Layer 2 — Routes & h-entry (mostly done)**
 
@@ -27,26 +33,25 @@ layer:
 - ❌ No `u-in-reply-to`, `u-like-of`, `u-repost-of`, `u-bookmark-of`, `u-photo`,
   `u-syndication` (blocked on schema work in Layer 1).
 
-**Layer 3 — Feeds (partial)**
+**Layer 3 — Feeds (done)**
 
-- ✅ Separate `/notes/feed.xml` added; main `/feed.xml` updated. Note: this is
-  a split-feed approach rather than the merged feed the original plan
-  proposed. Both are defensible IndieWeb patterns; **decide and document**
-  which is canonical.
-- ❌ No JSON Feed (`feed.json.ts`) and no
-  `<link rel="alternate" type="application/feed+json">` in `BaseLayout.astro`.
-  micro.blog prefers JSON Feed, so this is a real gap for the IndieWeb-full
-  goal.
+- ✅ **Decision: split feeds are canonical.** `/feed.xml` (articles) and
+  `/notes/feed.xml` (notes) remain separate. micro.blog supports multiple
+  feeds per account, so this enables per-feed cross-post rules without
+  blocking syndication.
+- ✅ JSON Feed v1.1 added at `/feed.json` and `/notes/feed.json`.
+- ✅ `<link rel="alternate">` tags for both RSS and JSON Feed (articles +
+  notes) added to `BaseLayout.astro`.
 
 **Layer 4 — Micropub config (not started)**
 
 - ❌ `netlify/config.js` is unchanged. `q=config` still does not advertise
   `media-endpoint`, `syndicate-to`, or `post-types`.
 - ⚠️ `formatSlug` produces `notes/YYYY-MM-DD-slug.md`, but routes derive the
-  URL path from `data.date`, not the filename prefix. The schema makes `slug`
-  required, but nothing prevents two same-day posts from colliding on slug.
-  Either: (a) tighten `formatSlug` to also include time / a short hash, or
-  (b) detect collisions client-side at posting time. Decide during this work.
+  URL path from `data.date`, not the filename prefix. **Decision: detect
+  slug collisions client-side at posting time** (rather than tightening
+  `formatSlug` with time/hash). Implementation lives in the Micropub
+  config/posting flow.
 
 **Layer 5 — End-to-end verification (not started)**
 
@@ -64,24 +69,23 @@ layer:
 
 ## Remaining work to finish the plan
 
-1. **Schema**: add `photo`, `replyTo`, `likeOf`, `repostOf`, `bookmarkOf`,
-   `syndicateTo`, `syndication`, `location`, `name`. Derive `postType` (note,
-   reply, like, repost, bookmark, photo, article).
+1. **Schema**: ✅ done — Micropub fields added with kebab-case keys; camel-case
+   array aliases derived; `postType` mirrors library logic.
 2. **h-entry author + post-type rendering**: add a shared `HEntryAuthor.astro`
    (`p-author h-card` partial) and use it on listings + detail. Render
    `u-photo`, reply/like/repost/bookmark context, and `u-syndication` once
    schema fields exist. Verify with microformats.io.
-3. **Feeds**: add `src/pages/feed.json.ts` (JSON Feed) with notes (and
-   articles, if the merged-feed decision is taken). Add the JSON Feed
-   `<link rel="alternate">` in `BaseLayout.astro`. Document the
-   merged-vs-split feed decision in the colophon or a note in
-   `src/pages/feed.xml.ts`.
+3. **Feeds**: ✅ done — split feeds canonical; JSON Feeds added at
+   `/feed.json` and `/notes/feed.json`; alternate `<link>` tags in
+   `BaseLayout.astro`.
 4. **Micropub `q=config`**: read `@benjifs/micropub` source, then extend
    `netlify/config.js` to advertise `media-endpoint`
    (`https://tylerbutler.com/media`), `syndicate-to`
    (`[{ uid: "https://micro.blog/", name: "micro.blog" }]`, structured for
-   future targets), and `post-types`. Revisit `formatSlug` to handle
-   same-day slug collisions.
+   future targets), and `post-types`. Implement client-side slug collision
+   detection at posting time (check repo for an existing
+   `notes/YYYY-MM-DD-slug.md`; if present, append `-2`, `-3`, … or a short
+   hash before commit).
 5. **E2E**: round-trip plain note, photo note, and reply from Quill + a
    micro.blog client. Validate with indiewebify.me + microformats.io. Confirm
    micro.blog can subscribe to the notes feed.

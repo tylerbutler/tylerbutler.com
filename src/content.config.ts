@@ -40,18 +40,92 @@ const notes = defineCollection({
     .object({
       date: z.coerce.date(),
       lastmod: z.coerce.date().optional(),
+      // `updated` is written by @benjifs/micropub when an existing post is
+      // edited (via mp-action=update); kept distinct from `lastmod` which
+      // is hand-authored.
+      updated: z.coerce.date().optional(),
       slug: z.string(),
       title: z.string().optional(),
       tags: z.array(z.string()).optional(),
       draft: z.boolean().default(false),
       summary: z.string().optional(),
       originalUrl: z.string().optional(),
+      // Micropub / Microformats2 fields. Keys are kebab-case to match what
+      // @benjifs/micropub writes to frontmatter (translateProps only renames
+      // name/category/published; everything else passes through unchanged).
+      photo: z.union([z.string(), z.array(z.string())]).optional(),
+      "in-reply-to": z.union([z.string(), z.array(z.string())]).optional(),
+      "like-of": z.union([z.string(), z.array(z.string())]).optional(),
+      "repost-of": z.union([z.string(), z.array(z.string())]).optional(),
+      "bookmark-of": z.union([z.string(), z.array(z.string())]).optional(),
+      "mp-syndicate-to": z
+        .union([z.string(), z.array(z.string())])
+        .optional(),
+      syndication: z.union([z.string(), z.array(z.string())]).optional(),
+      location: z.string().optional(),
+      rsvp: z.enum(["yes", "no", "maybe", "interested"]).optional(),
+      client_id: z.string().optional(),
     })
     .transform((data) => ({
       ...data,
       source: inferNoteSource(data.originalUrl),
+      postType: derivePostType(data),
+      // Camel-case, always-array aliases for ergonomic template access.
+      // Originals (kebab-case) are preserved for h-entry serialization
+      // fidelity, but components should prefer these.
+      photos: toArray(data.photo),
+      replyTo: toArray(data["in-reply-to"]),
+      likeOf: toArray(data["like-of"]),
+      repostOf: toArray(data["repost-of"]),
+      bookmarkOf: toArray(data["bookmark-of"]),
+      syndicateTo: toArray(data["mp-syndicate-to"]),
+      syndicationUrls: toArray(data.syndication),
     })),
 });
+
+function toArray<T>(v: T | T[] | undefined): T[] | undefined {
+  if (v === undefined) return undefined;
+  return Array.isArray(v) ? v : [v];
+}
+
+export type NotePostType =
+  | "rsvp"
+  | "reply"
+  | "repost"
+  | "like"
+  | "bookmark"
+  | "photo"
+  | "article"
+  | "note";
+
+// Mirrors @benjifs/micropub's postTypes() derivation, operating on our
+// kebab-case schema fields. Kept here (rather than re-exported from the
+// library) because the library does not persist the derived type in
+// frontmatter, so we re-derive at content-load time.
+function derivePostType(data: {
+  rsvp?: string;
+  "in-reply-to"?: string | string[];
+  "repost-of"?: string | string[];
+  "like-of"?: string | string[];
+  "bookmark-of"?: string | string[];
+  photo?: string | string[];
+  title?: string;
+}): NotePostType {
+  if (
+    data.rsvp &&
+    ["yes", "no", "maybe", "interested"].includes(data.rsvp) &&
+    data["in-reply-to"]
+  ) {
+    return "rsvp";
+  }
+  if (data["in-reply-to"]) return "reply";
+  if (data["repost-of"]) return "repost";
+  if (data["like-of"]) return "like";
+  if (data["bookmark-of"]) return "bookmark";
+  if (data.photo) return "photo";
+  if (data.title) return "article";
+  return "note";
+}
 
 function inferNoteSource(
   originalUrl: string | undefined,

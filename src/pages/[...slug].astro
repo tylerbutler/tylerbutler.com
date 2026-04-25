@@ -2,11 +2,12 @@
 import { getCollection } from "astro:content";
 import ArticlePage from "../components/ArticlePage.astro";
 import { getArticleUrl } from "../lib/article-utils";
+import { includeDraft } from "../lib/draft-utils";
 
 export async function getStaticPaths() {
-  const articles = await getCollection("articles", ({ data }) => {
-    return !data.draft;
-  });
+  const articles = await getCollection("articles", ({ data }) =>
+    includeDraft(data),
+  );
 
   // Sort articles by date (newest first)
   const sortedArticles = articles.sort(

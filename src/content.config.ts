@@ -33,12 +33,30 @@ const notes = defineCollection({
     pattern: "**/[^_]*.{md,mdx}",
     base: "./src/content/notes",
   }),
-  schema: z.object({
-    date: z.coerce.date(),
-    tags: z.array(z.string()).optional(),
-    draft: z.boolean().default(false),
-  }),
+  schema: z
+    .object({
+      date: z.coerce.date(),
+      lastmod: z.coerce.date().optional(),
+      title: z.string().optional(),
+      tags: z.array(z.string()).optional(),
+      draft: z.boolean().default(false),
+      summary: z.string().optional(),
+      originalUrl: z.string().optional(),
+    })
+    .transform((data) => ({
+      ...data,
+      source: inferNoteSource(data.originalUrl),
+    })),
 });
+
+function inferNoteSource(
+  originalUrl: string | undefined,
+): "twitter" | "microblog" | undefined {
+  if (!originalUrl) return undefined;
+  if (originalUrl.startsWith("https://twitter.com/")) return "twitter";
+  if (originalUrl.startsWith("/")) return "microblog";
+  return undefined;
+}
 
 const projects = defineCollection({
   loader: glob({

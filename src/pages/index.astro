@@ -4,6 +4,7 @@ import ConstellationIcon from "../components/ConstellationIcon.astro";
 import KudosButton from "../components/KudosButton.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getArticleUrl } from "../lib/article-utils";
+import { includeDraft } from "../lib/draft-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
 import { formatTitle } from "../lib/typography";
 
@@ -48,10 +49,10 @@ function assignIcons(
   return result;
 }
 
-// Get recent articles (latest 5, non-draft)
-const articles = await getCollection("articles", ({ data }) => {
-  return !data.draft;
-});
+// Get recent articles (latest 5; drafts hidden unless SHOW_DRAFTS=1)
+const articles = await getCollection("articles", ({ data }) =>
+  includeDraft(data),
+);
 
 // Sort by date (newest first) and take first 5
 const sortedArticles = articles

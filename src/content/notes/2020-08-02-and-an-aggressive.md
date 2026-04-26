@@ -1,7 +1,7 @@
 ---
 date: 2020-08-02T12:29:24-07:00
+slug: "and-an-aggressive"
 originalUrl: "/2020/08/02/and-an-aggressive.html"
-draft: true
 ---
 > And an aggressive multinational company whose business model is threatened by the bad man’s opponent is, at best, conflicted; at worst, complicit.
 

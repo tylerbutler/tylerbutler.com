@@ -45,6 +45,7 @@ migrate_one() {
     if [[ -n "$lastmod" && "$lastmod" != "$date" ]]; then
       printf "lastmod: %s\n" "$lastmod"
     fi
+    printf "slug: \"%s\"\n" "$slug"
     if [[ -n "$title" ]]; then
       # Escape any literal " in the title for the YAML double-quoted string.
       local escaped_title="${title//\"/\\\"}"

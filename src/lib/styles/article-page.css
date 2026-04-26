@@ -1,5 +1,7 @@
 /* Article page styles - shared between [slug].astro and [...slug].astro */
 
+@import "./page-nav.css";
+
 /* Article layout container */
 .article-layout {
   display: block;
@@ -321,64 +323,6 @@
 .article-content pre code {
   background: none;
   padding: 0;
-}
-
-.article-nav {
-  margin-top: 3em;
-  padding-top: 2em;
-  border-top: 1px solid var(--text-light);
-  display: flex;
-  justify-content: space-between;
-  gap: 2em;
-}
-
-.nav-link {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 14px;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5em;
-  line-height: 1.4;
-  max-width: 45%;
-}
-
-.nav-link:hover {
-  color: var(--text);
-}
-
-.nav-link-next {
-  align-self: flex-end;
-}
-
-.nav-link-next .nav-text {
-  text-align: right;
-}
-
-.nav-arrow {
-  flex-shrink: 0;
-  align-self: center;
-}
-
-.nav-text {
-  flex: 1;
-  text-align: left;
-  align-self: center;
-}
-
-@media (max-width: 768px) {
-  .article-nav {
-    flex-direction: column;
-    gap: 1em;
-  }
-
-  .nav-link {
-    max-width: 100%;
-  }
-
-  .nav-link-next .nav-text {
-    text-align: left;
-  }
 }
 
 @media (max-width: 480px) {

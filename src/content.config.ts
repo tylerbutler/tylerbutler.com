@@ -44,7 +44,10 @@ const notes = defineCollection({
       // edited (via mp-action=update); kept distinct from `lastmod` which
       // is hand-authored.
       updated: z.coerce.date().optional(),
-      slug: z.string(),
+      // Optional in frontmatter; derived from the entry id (filename) when
+      // absent so notes posted via Micropub (which doesn't write a slug
+      // field) still validate. Always a string after transform.
+      slug: z.string().optional(),
       title: z.string().optional(),
       tags: z.array(z.string()).optional(),
       draft: z.boolean().default(false),

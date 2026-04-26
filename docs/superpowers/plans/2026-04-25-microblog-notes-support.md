@@ -46,15 +46,32 @@ layer:
 - ✅ `<link rel="alternate">` tags for both RSS and JSON Feed (articles +
   notes) added to `BaseLayout.astro`.
 
-**Layer 4 — Micropub config (not started)**
+**Layer 4 — Micropub config (done)**
 
-- ❌ `netlify/config.js` is unchanged. `q=config` still does not advertise
-  `media-endpoint`, `syndicate-to`, or `post-types`.
-- ⚠️ `formatSlug` produces `notes/YYYY-MM-DD-slug.md`, but routes derive the
-  URL path from `data.date`, not the filename prefix. **Decision: detect
-  slug collisions client-side at posting time** (rather than tightening
-  `formatSlug` with time/hash). Implementation lives in the Micropub
-  config/posting flow.
+- ✅ `netlify/config.js` now passes a `config` block to `MicropubEndpoint`.
+  `GET /micropub?q=config` (and `?q=media-endpoint|syndicate-to|post-types`)
+  advertise:
+  - `media-endpoint: https://tylerbutler.com/media`
+  - `syndicate-to: [{ uid: "https://micro.blog/", name: "micro.blog" }]`
+    (structured for future targets)
+  - `post-types`: note, article, photo, reply, like, repost, bookmark, rsvp
+- ✅ `NoteSlugInjectingStore` (subclass of `GitHubStore` in `netlify/config.js`)
+  injects `slug: "<slug>"` into the frontmatter on commit, derived from the
+  `notes/YYYY-MM-DD-<slug>.md` filename produced by `formatSlug`. This is
+  required because `@benjifs/micropub` does not write a `slug` field, but
+  the notes schema and `getNoteUrl` helper expect one.
+- ✅ Defense in depth: the `slug` field on the notes schema is now optional
+  (`src/content.config.ts`); `noteSlug()` in `src/lib/note-utils.ts`
+  derives a fallback from the entry id when frontmatter `slug` is absent.
+- ⚠️ **Slug collision policy: keep library default rejection.** The library
+  throws `400 file exists` when two posts produce the same filename. The
+  earlier plan called for client-side auto-suffixing (`-2`, `-3`), but
+  implementing that correctly requires per-request state on the store
+  (concurrency-fragile on Netlify) or a pre-flight that re-parses the
+  request body (the library consumes the stream). Deferred as a follow-up.
+  Realistic collision surface is small: `generateSlug` already prepends
+  epoch seconds when no `mp-slug`/`name` is supplied, so collisions only
+  happen when a client explicitly reuses an `mp-slug` on the same UTC day.
 
 **Layer 5 — End-to-end verification (not started)**
 
@@ -80,14 +97,11 @@ layer:
 3. **Feeds**: ✅ done — split feeds canonical; JSON Feeds added at
    `/feed.json` and `/notes/feed.json`; alternate `<link>` tags in
    `BaseLayout.astro`.
-4. **Micropub `q=config`**: read `@benjifs/micropub` source, then extend
-   `netlify/config.js` to advertise `media-endpoint`
-   (`https://tylerbutler.com/media`), `syndicate-to`
-   (`[{ uid: "https://micro.blog/", name: "micro.blog" }]`, structured for
-   future targets), and `post-types`. Implement client-side slug collision
-   detection at posting time (check repo for an existing
-   `notes/YYYY-MM-DD-slug.md`; if present, append `-2`, `-3`, … or a short
-   hash before commit).
+4. **Micropub `q=config`**: ✅ done — `config` block (media-endpoint,
+   syndicate-to, post-types) added to `MicropubEndpoint` options.
+   `NoteSlugInjectingStore` injects `slug:` into frontmatter on commit;
+   schema makes `slug` optional with id-derived fallback in `note-utils`.
+   Slug collision auto-suffix deferred (see Layer 4 caveat above).
 5. **E2E**: round-trip plain note, photo note, and reply from Quill + a
    micro.blog client. Validate with indiewebify.me + microformats.io. Confirm
    micro.blog can subscribe to the notes feed.

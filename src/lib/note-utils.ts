@@ -35,7 +35,20 @@ export function getNotePathParts(
   const [year, month, day] = PT_DATE_FORMATTER.format(note.data.date).split(
     "-",
   );
-  return { year, month, day, slug: note.data.slug };
+  return { year, month, day, slug: noteSlug(note) };
+}
+
+// Derive slug from frontmatter when present; otherwise extract from the
+// entry id (filename without extension), which has the form
+// `YYYY-MM-DD-<slug>` for both migrated and Micropub-created notes. This
+// fallback exists because @benjifs/micropub does not write a `slug`
+// frontmatter field; the netlify store wrapper injects it on creation,
+// but we keep this fallback for defense in depth.
+export function noteSlug(note: CollectionEntry<"notes">): string {
+  if (note.data.slug) return note.data.slug;
+  const id = note.id;
+  const match = id.match(/^\d{4}-\d{2}-\d{2}-(.+)$/);
+  return match ? match[1] : id;
 }
 
 export function getNoteUrl(note: CollectionEntry<"notes">): string {

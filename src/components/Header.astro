@@ -1,6 +1,7 @@
 ---
 import headlinesRaw from "../data/headlines.txt?raw";
 import Navigation from "./Navigation.astro";
+import SearchButton from "./SearchButton.astro";
 import SocialIconsBelow from "./SocialIconsBelow.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
@@ -14,7 +15,8 @@ const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
 ---
 
 <header class="site-header">
-  <div class="theme-toggle-wrapper">
+  <div class="header-controls">
+    <SearchButton/>
     <ThemeToggle/>
   </div>
 
@@ -62,11 +64,14 @@ const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
     padding-bottom: 20px !important;
   }
 
-  .theme-toggle-wrapper {
+  .header-controls {
     position: absolute;
     top: 8px;
     right: 8px;
     z-index: 10;
+    display: flex;
+    gap: 4px;
+    align-items: center;
   }
 
   /* Reduce spacing for title */

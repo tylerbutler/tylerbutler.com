@@ -1,4 +1,6 @@
 import { execSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
@@ -60,6 +62,52 @@ const fontOptimizer = () => ({
         );
       }
     },
+  },
+});
+
+const pagefindDevServer = () => ({
+  name: "pagefind-dev-server",
+  configureServer(server: {
+    middlewares: {
+      use: (
+        handler: (
+          req: { url?: string },
+          res: {
+            setHeader: (k: string, v: string) => void;
+          } & NodeJS.WritableStream,
+          next: () => void,
+        ) => void,
+      ) => void;
+    };
+  }) {
+    const pagefindDir = path.resolve("dist/pagefind");
+    const contentTypes: Record<string, string> = {
+      ".js": "application/javascript",
+      ".css": "text/css",
+      ".json": "application/json",
+      ".wasm": "application/wasm",
+    };
+    let warned = false;
+    server.middlewares.use((req, res, next) => {
+      if (!req.url?.startsWith("/pagefind/")) return next();
+      const rel = req.url.replace(/^\/pagefind\//, "").split("?")[0];
+      const filePath = path.join(pagefindDir, rel);
+      if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+        if (!warned) {
+          console.warn(
+            "⚠️  /pagefind/ not found — run `pnpm build` once to enable dev-mode search",
+          );
+          warned = true;
+        }
+        return next();
+      }
+      const ext = path.extname(filePath).toLowerCase();
+      res.setHeader(
+        "Content-Type",
+        contentTypes[ext] ?? "application/octet-stream",
+      );
+      fs.createReadStream(filePath).pipe(res);
+    });
   },
 });
 
@@ -189,6 +237,7 @@ export default defineConfig({
     },
     plugins: [
       viteDotLottie(),
+      pagefindDevServer(),
       // Only generate bundle analysis in production builds
       process.env.NODE_ENV === "production" &&
         visualizer({

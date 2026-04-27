@@ -3,14 +3,15 @@ module.exports = {
     collect: {
       // Test both homepage and an article page
       url: [
-        "http://localhost:4171/",
-        "http://localhost:4171/articles/", // Will test articles page
+        "http://localhost:4173/",
+        "http://localhost:4173/articles/", // Will test articles page
       ],
       numberOfRuns: 3, // Run multiple times for consistent results
       settings: {
         // Use desktop and mobile configurations
         preset: "desktop",
-        chromeFlags: "--no-sandbox --headless",
+        chromeFlags:
+          "--no-sandbox --headless --allow-insecure-localhost --disable-features=HttpsFirstBalancedModeAutoEnable,HTTPS-FirstMode",
         emulatedFormFactor: "desktop",
         throttling: {
           rttMs: 40,
@@ -51,9 +52,9 @@ module.exports = {
       target: "temporary-public-storage",
     },
     server: {
-      command: "npm run dev",
-      port: 4171,
-      wait: 3000,
+      command: "pnpm build && pnpm serve",
+      port: 4173,
+      wait: 5000,
     },
   },
 };

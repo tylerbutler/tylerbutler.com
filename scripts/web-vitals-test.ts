@@ -45,7 +45,6 @@ test.describe("Web Vitals Performance Tests", () => {
       (window as any).vitalsData = [];
 
       // Import and configure web-vitals
-      // @ts-ignore - Dynamic CDN import
       import(
         "https://unpkg.com/web-vitals@5/dist/web-vitals.attribution.js"
       ).then(({ getCLS, getFID, getFCP, getLCP, getTTFB }: any) => {
@@ -91,7 +90,7 @@ test.describe("Web Vitals Performance Tests", () => {
 
   const testPages = [
     { name: "Homepage", url: "/" },
-    { name: "Article Page", url: "/posts/" }, // Will test first available post
+    { name: "Article Page", url: "/articles/" },
     { name: "About Page", url: "/about/" },
   ];
 
@@ -104,9 +103,12 @@ test.describe("Web Vitals Performance Tests", () => {
       // Wait for vitals to be collected
       await page.waitForTimeout(3000);
 
-      // If it's the posts page, click on first article
-      if (url === "/posts/") {
-        const firstArticle = page.locator("article h1 a").first();
+      // If it's the articles index, click into the first article
+      if (url === "/articles/") {
+        const firstArticle = page
+          .locator(".article-title a, article h2 a, article h3 a")
+          .first();
+
         if (await firstArticle.isVisible()) {
           await firstArticle.click();
           await page.waitForLoadState("networkidle");

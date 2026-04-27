@@ -34,6 +34,7 @@
     "test:lighthouse": "lhci autorun --config=lighthouserc.cjs",
     "test:lighthouse:mobile": "lhci autorun --config=lighthouserc.mobile.cjs",
     "test:performance": "npm run test:lighthouse",
+    "test:unit": "node --test 'netlify/**/*.test.mjs'",
     "test:update": "playwright test --update-snapshots",
     "test:visual": "playwright test tests/visual"
   },

@@ -61,9 +61,7 @@ const notes = defineCollection({
       "like-of": z.union([z.string(), z.array(z.string())]).optional(),
       "repost-of": z.union([z.string(), z.array(z.string())]).optional(),
       "bookmark-of": z.union([z.string(), z.array(z.string())]).optional(),
-      "mp-syndicate-to": z
-        .union([z.string(), z.array(z.string())])
-        .optional(),
+      "mp-syndicate-to": z.union([z.string(), z.array(z.string())]).optional(),
       syndication: z.union([z.string(), z.array(z.string())]).optional(),
       location: z.string().optional(),
       rsvp: z.enum(["yes", "no", "maybe", "interested"]).optional(),

@@ -1,10 +1,10 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { getNoteUrl } from "../lib/note-utils";
 import HEntryAuthor from "./HEntryAuthor.astro";
 import NoteDate from "./NoteDate.astro";
 import NotePermalink from "./NotePermalink.astro";
 import NoteSourceIcon from "./NoteSourceIcon.astro";
-import { getNoteUrl } from "../lib/note-utils";
 
 export interface Props {
   note: CollectionEntry<"notes">;
@@ -38,10 +38,18 @@ const contextRels: Array<{
   label: string;
   className: string;
 }> = [
-  { urls: data.replyTo ?? [], label: "In reply to", className: "u-in-reply-to" },
+  {
+    urls: data.replyTo ?? [],
+    label: "In reply to",
+    className: "u-in-reply-to",
+  },
   { urls: data.likeOf ?? [], label: "Liked", className: "u-like-of" },
   { urls: data.repostOf ?? [], label: "Reposted", className: "u-repost-of" },
-  { urls: data.bookmarkOf ?? [], label: "Bookmarked", className: "u-bookmark-of" },
+  {
+    urls: data.bookmarkOf ?? [],
+    label: "Bookmarked",
+    className: "u-bookmark-of",
+  },
 ];
 const hasContext = contextRels.some((c) => c.urls.length > 0);
 const isRsvp = data.postType === "rsvp" && data.rsvp;

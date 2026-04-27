@@ -14,7 +14,7 @@ const require = createRequire(import.meta.url);
 
 const CONSTELLATIONS_DIR = "src/lottie/constellations";
 
-export function viteDotLottie(): import("vite").Plugin {
+export function viteDotLottie() {
   return {
     name: "vite-plugin-dotlottie",
 

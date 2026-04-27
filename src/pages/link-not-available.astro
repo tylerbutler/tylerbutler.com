@@ -28,21 +28,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </article>
 </BaseLayout>
 
-<script is:inline>
-  (function () {
-    const params = new URLSearchParams(window.location.search);
-    const url = params.get("url");
-
-    const tryOriginalLink = document.getElementById("try-original-link");
-    if (tryOriginalLink) {
-      if (url) {
-        tryOriginalLink.href = url;
-      } else {
-        tryOriginalLink.style.display = "none";
-      }
-    }
-  })();
-</script>
+<script src="../scripts/link-not-available.ts"></script>
 
 <style>
   .link-not-available {

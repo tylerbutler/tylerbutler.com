@@ -17,12 +17,19 @@
       // Create tooltip element
       const tooltip = document.createElement("div");
       tooltip.className = "broken-link-tooltip";
-      tooltip.innerHTML = `
-        <div class="tooltip-content">
-          <strong>🔗 Link no longer available</strong>
-          <div class="tooltip-url">${url}</div>
-        </div>
-      `;
+
+      const content = document.createElement("div");
+      content.className = "tooltip-content";
+
+      const title = document.createElement("strong");
+      title.textContent = "🔗 Link no longer available";
+
+      const tooltipUrl = document.createElement("div");
+      tooltipUrl.className = "tooltip-url";
+      tooltipUrl.textContent = url;
+
+      content.append(title, tooltipUrl);
+      tooltip.appendChild(content);
       tooltip.style.display = "none";
       document.body.appendChild(tooltip);
 

@@ -114,7 +114,7 @@ const pagefindDevServer = () => ({
 const pagefindIntegration = () => ({
   name: "pagefind-integration",
   hooks: {
-    "astro:build:done": async ({ dir }) => {
+    "astro:build:done": async ({ dir }: { dir: URL }) => {
       try {
         console.log("🔍 Building Pagefind search index...");
         execSync(`npx pagefind --site "${dir.pathname}"`, {
@@ -150,7 +150,7 @@ export default defineConfig({
         // Use [remarkLazyLinks, { persist: true }] to write changes back to source files
         remarkLazyLinks,
         remarkGfm,
-        remarkSmartypants,
+        remarkSmartypants as never,
         // Disabled since mermaid is not used
         // [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
         [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
@@ -189,7 +189,7 @@ export default defineConfig({
       // Use [remarkLazyLinks, { persist: true }] to write changes back to source files
       remarkLazyLinks,
       remarkGfm,
-      remarkSmartypants,
+      remarkSmartypants as never,
       // Disabled since mermaid is not used
       // [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
       [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
@@ -231,7 +231,7 @@ export default defineConfig({
       assetsInlineLimit(filePath: string) {
         // Never inline .lottie files — they're binary (ZIP) and should be
         // served as separate assets with proper caching.
-        if (filePath.endsWith(".lottie")) return 0;
+        if (filePath.endsWith(".lottie")) return false;
         return undefined; // default for everything else
       },
     },

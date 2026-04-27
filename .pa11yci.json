@@ -1,6 +1,6 @@
 {
   "defaults": {
-    "concurrency": 4,
+    "concurrency": 1,
     "standard": "WCAG2AA",
     "runners": ["axe", "htmlcs"],
     "chromeLaunchConfig": {
@@ -8,7 +8,11 @@
     },
     "timeout": 30000,
     "wait": 1000,
-    "actions": ["wait for element body to be visible"]
+    "actions": ["wait for element body to be visible"],
+    "ignore": [
+      "color-contrast",
+      "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail"
+    ]
   },
   "urls": [
     "http://localhost:4173/",
@@ -19,10 +23,6 @@
   "sitemap": false,
   "sitemapFind": "https://tylerbutler.com",
   "sitemapReplace": "http://localhost:1314",
-  "ignore": [
-    "color-contrast",
-    "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail"
-  ],
   "includeNotices": false,
   "includeWarnings": true,
   "reporter": "json",

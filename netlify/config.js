@@ -6,11 +6,19 @@ import MicropubEndpoint from "@benjifs/micropub";
 // our notes schema and route helpers expect one. The slug is derived from
 // the date-prefixed filename produced by `formatSlug` below.
 class NoteSlugInjectingStore extends GitHubStore {
+  /**
+   * @param {string} filename
+   * @param {string} content
+   */
   async createFile(filename, content) {
     return super.createFile(filename, injectNoteSlug(filename, content));
   }
 }
 
+/**
+ * @param {string} filename
+ * @param {string} content
+ */
 function injectNoteSlug(filename, content) {
   const match = filename.match(/\/notes\/\d{4}-\d{2}-\d{2}-(.+)\.md$/);
   if (!match) return content;
@@ -33,6 +41,10 @@ export const micropub = new MicropubEndpoint({
   tokenEndpoint: "https://tokens.indieauth.com/token",
   contentDir: "src/content",
   mediaDir: "public/uploads",
+  /**
+   * @param {"article" | string} type
+   * @param {string} slug
+   */
   formatSlug: (type, slug) => {
     const today = new Date().toISOString().split("T")[0];
     if (type === "article") {
@@ -40,6 +52,10 @@ export const micropub = new MicropubEndpoint({
     }
     return `notes/${today}-${slug}`;
   },
+  /**
+   * @param {string} dir
+   * @param {string} slug
+   */
   formatFilename: (dir, slug) => `${dir}/${slug}.md`,
   translateProps: true,
   // Advertised via GET /micropub?q=config (and individual q=media-endpoint,

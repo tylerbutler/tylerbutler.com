@@ -14,7 +14,7 @@ const { size = "large" } = Astro.props;
 const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
 ---
 
-<header class="site-header">
+<header class:list={["site-header", size === "small" && "site-header--small"]}>
   <div class="header-controls">
     <SearchButton/>
     <ThemeToggle/>
@@ -24,35 +24,44 @@ const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
   <h1>
     <a href="/">Tyler Butler</a>
   </h1>
-  <p class="tagline" id="random-headline"></p>
+  <p
+    class="tagline"
+    id="random-headline"
+    data-headlines={JSON.stringify(headlines)}
+  ></p>
 
   <SocialIconsBelow/>
 </header>
 
-<script define:vars={{ headlines }}>
+<script>
   const taglineElement = document.getElementById("random-headline");
   if (taglineElement) {
-    let currentIndex = Math.floor(Math.random() * headlines.length);
-    taglineElement.textContent = headlines[currentIndex] + "\u00A0";
+    const rawHeadlines = taglineElement.getAttribute("data-headlines");
+    const headlines = rawHeadlines ? (JSON.parse(rawHeadlines) as string[]) : [];
 
-    // Rotate headline every 60 seconds with crossfade
-    setInterval(() => {
-      // Pick a different headline
-      let newIndex;
-      do {
-        newIndex = Math.floor(Math.random() * headlines.length);
-      } while (newIndex === currentIndex && headlines.length > 1);
-      currentIndex = newIndex;
+    if (headlines.length > 0) {
+      let currentIndex = Math.floor(Math.random() * headlines.length);
+      taglineElement.textContent = `${headlines[currentIndex]}\u00A0`;
 
-      // Fade out
-      taglineElement.classList.add("fading");
+      // Rotate headline every 60 seconds with crossfade
+      setInterval(() => {
+        // Pick a different headline
+        let newIndex = currentIndex;
+        while (newIndex === currentIndex && headlines.length > 1) {
+          newIndex = Math.floor(Math.random() * headlines.length);
+        }
+        currentIndex = newIndex;
 
-      // After fade out, change text and fade in
-      setTimeout(() => {
-        taglineElement.textContent = headlines[currentIndex] + "\u00A0";
-        taglineElement.classList.remove("fading");
-      }, 300);
-    }, 60000);
+        // Fade out
+        taglineElement.classList.add("fading");
+
+        // After fade out, change text and fade in
+        setTimeout(() => {
+          taglineElement.textContent = `${headlines[currentIndex]}\u00A0`;
+          taglineElement.classList.remove("fading");
+        }, 300);
+      }, 60000);
+    }
   }
 </script>
 

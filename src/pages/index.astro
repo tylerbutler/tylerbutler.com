@@ -64,7 +64,9 @@ const sortedArticles = articles
 // Render articles with full markdown pipeline and h3 headings for homepage
 const recentArticles = await Promise.all(
   sortedArticles.map(async (article) => {
-    const { html, isTruncated } = await createHomepagePreview(article.body);
+    const { html, isTruncated } = await createHomepagePreview(
+      article.body ?? "",
+    );
 
     return {
       ...article,

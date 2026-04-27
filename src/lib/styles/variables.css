@@ -7,9 +7,9 @@
   --overlay: rgba(26, 35, 50, 0.15); /* Subtle blue-gray overlay */
 
   /* Text Colors - WCAG AA compliant with mixed harmonies */
-  --accent: #b8722a; /* Deeper orange for links and accents */
-  --accent-light: #a3621f; /* Even deeper orange for contrast */
-  --accent-hover: #d4842a; /* Warm orange for interactions */
+  --accent: #6b2f00; /* High-contrast link color on light backgrounds */
+  --accent-light: #5a2500; /* Darker variant for high-contrast states */
+  --accent-hover: #8b4a16; /* Hover tone that still keeps strong contrast */
   --header-accent: #e6b35c; /* Golden yellow for headers from atmospheric layers */
   --text: #2a4a47; /* Deep teal-gray */
   --text-light: #4a6662; /* Lighter teal-gray for secondary text */
@@ -17,7 +17,7 @@
 
   /* Code styling variables */
   --code-bg: #f0ede8; /* Light warm background for inline code */
-  --code-text: #b8722a; /* Orange accent color for inline code text */
+  --code-text: #5a2500; /* Accessible inline code text color */
   --code-border: rgba(184, 114, 42, 0.2); /* Subtle border using accent color */
 
   /* Alert/Status colors */

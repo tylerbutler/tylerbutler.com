@@ -41,9 +41,15 @@ import { Icon } from "astro-icon/components";
 </style>
 
 <script is:inline>
+  /**
+   * @typedef {Element & { open?: () => void }} PagefindModalElement
+   */
+
   const handleSearchClick = () => {
-    const modal = document.querySelector("pagefind-modal");
-    if (modal && typeof modal.open === "function") {
+    const modal = /** @type {PagefindModalElement | null} */ (
+      document.querySelector("pagefind-modal")
+    );
+    if (modal?.open) {
       modal.open();
     }
   };

@@ -17,13 +17,13 @@
   content: "#";
   position: absolute;
   left: -0.8em;
-  color: var(--color-text-secondary, #666);
+  color: var(--text-light);
   font-weight: normal;
   opacity: 0.6;
 }
 
 .dark .heading-anchor:hover::before {
-  color: var(--color-text-secondary, #999);
+  color: var(--text-light);
 }
 
 /* Responsive - hide on small screens where there's no left margin */

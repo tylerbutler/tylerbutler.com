@@ -1,6 +1,6 @@
 ---
 title: lattice
-date: 2026-02-28
+date: 2026-04-22
 description: A library of CRDTs in pure Gleam.
 url: https://lattice.tylerbutler.com
 github: https://github.com/tylerbutler/lattice

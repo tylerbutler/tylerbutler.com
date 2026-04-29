@@ -1,6 +1,6 @@
 ---
 title: santa
-date: 2022-01-05
+date: 2026-04-27
 description: A modern package manager meta-tool in Rust.
 github: https://github.com/tylerbutler/santa
 programmingLanguage: rust

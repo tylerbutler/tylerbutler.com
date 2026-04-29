@@ -1,6 +1,6 @@
 ---
 title: tiny-update-check
-date: 2026-02-02
+date: 2026-04-27
 description: A minimal, lightweight crate update checker for Rust CLI applications.
 github: https://github.com/tylerbutler/tiny-update-check
 crate: tiny-update-check

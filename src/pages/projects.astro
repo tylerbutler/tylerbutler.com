@@ -14,23 +14,13 @@ const projects = await getCollection(
   ({ id, data }) => !id.startsWith("_") && includeDraft(data),
 );
 
-const maturityOrder: Record<string, number> = {
-  stable: 0,
-  unpublished: 1,
-  experimental: 2,
-};
-
 const withTitles = await Promise.all(
   projects
     .filter((p) => p.data.date)
-    .sort((a, b) => {
-      const aM = maturityOrder[a.data.maturity ?? "unpublished"] ?? 1;
-      const bM = maturityOrder[b.data.maturity ?? "unpublished"] ?? 1;
-      if (aM !== bM) return aM - bM;
-      return (
-        new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime()
-      );
-    })
+    .sort(
+      (a, b) =>
+        new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime(),
+    )
     .map(async (project) => ({
       ...project,
       formattedTitle: await formatTitle(project.data.title),

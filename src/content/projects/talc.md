@@ -1,6 +1,6 @@
 ---
 title: talc
-date: 2026-03-08
+date: 2026-03-26
 description: Publish npm packages from Gleam source code.
 github: https://github.com/tylerbutler/talc
 hex: talc

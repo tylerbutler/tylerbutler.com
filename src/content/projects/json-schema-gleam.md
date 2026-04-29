@@ -1,6 +1,6 @@
 ---
 title: json_schema_gleam
-date: 2026-01-15
+date: 2026-03-22
 description: Generate Gleam type definitions from JSON Schema definitions.
 github: https://github.com/tylerbutler/json-schema-gleam
 hex: json_schema_gleam

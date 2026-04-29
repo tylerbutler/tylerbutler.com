@@ -1,6 +1,6 @@
 ---
 title: svelte-radial
-date: 2025-09-25
+date: 2026-03-29
 description: Interactive radial and circular UI controls for Svelte 5.
 github: https://github.com/tylerbutler/svelte-radial
 programmingLanguage: typescript

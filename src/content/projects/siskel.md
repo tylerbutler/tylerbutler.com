@@ -1,6 +1,6 @@
 ---
 title: siskel
-date: 2025-11-25
+date: 2026-04-13
 description: A Python parser for CCL (Categorical Configuration Language).
 github: https://github.com/tylerbutler/siskel
 programmingLanguage: python

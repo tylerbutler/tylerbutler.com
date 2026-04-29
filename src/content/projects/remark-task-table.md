@@ -1,6 +1,6 @@
 ---
 title: remark-task-table
-date: 2024-05-14
+date: 2026-04-28
 description: Remark plugin to generate task tables from package.json scripts and justfile recipes.
 github: https://github.com/tylerbutler/tools-monorepo/tree/main/packages/remark-task-table
 programmingLanguage: typescript

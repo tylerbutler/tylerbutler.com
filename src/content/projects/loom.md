@@ -1,6 +1,6 @@
 ---
 title: loom
-date: 2026-04-17
+date: 2026-04-27
 description: A local-first distributed build farm CLI.
 github: https://github.com/tylerbutler/loom
 programmingLanguage: go

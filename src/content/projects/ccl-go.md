@@ -1,6 +1,6 @@
 ---
 title: CCL Go
-date: 2025-09-07
+date: 2026-03-29
 description: A Go implementation of the CCL (Categorical Configuration Language) parser.
 github: https://github.com/tylerbutler/ccl-go
 programmingLanguage: go

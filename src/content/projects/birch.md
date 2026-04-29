@@ -1,6 +1,6 @@
 ---
 title: birch
-date: 2026-01-06
+date: 2026-04-07
 description: Logs that gleam. ✨🪵✨
 url: https://birch.tylerbutler.com/
 github: https://github.com/tylerbutler/birch

@@ -1,6 +1,6 @@
 ---
 title: vestibule
-date: 2026-02-24
+date: 2026-04-10
 description: Strategy-based OAuth2 authentication for Gleam.
 github: https://github.com/tylerbutler/vestibule
 hex: vestibule

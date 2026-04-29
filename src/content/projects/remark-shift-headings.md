@@ -1,6 +1,6 @@
 ---
 title: remark-shift-headings
-date: 2024-05-14
+date: 2026-04-28
 description: Remark plugin to shift heading levels based on rendering context.
 github: https://github.com/tylerbutler/tools-monorepo/tree/main/packages/remark-shift-headings
 programmingLanguage: typescript

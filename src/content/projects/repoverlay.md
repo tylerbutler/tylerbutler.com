@@ -1,6 +1,6 @@
 ---
 title: repoverlay
-date: 2026-01-06
+date: 2026-04-27
 description: A command-line tool to overlay files on top of a git repo without committing them.
 url: https://repoverlay.tylerbutler.com/
 github: https://github.com/tylerbutler/repoverlay

@@ -1,6 +1,6 @@
 ---
 title: slate
-date: 2026-02-27
+date: 2026-04-25
 description: Type-safe Gleam wrapper for Erlang DETS (Disk Erlang Term Storage).
 url: https://slate.tylerbutler.com
 github: https://github.com/tylerbutler/slate

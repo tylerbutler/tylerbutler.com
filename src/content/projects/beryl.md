@@ -1,6 +1,6 @@
 ---
 title: beryl
-date: 2026-03-14
+date: 2026-04-21
 description: A pure Gleam abstraction of channels and rooms over websockets.
 url: https://beryl.tylerbutler.com/
 github: https://github.com/tylerbutler/beryl

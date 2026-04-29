@@ -1,6 +1,6 @@
 ---
 title: CCL TypeScript
-date: 2026-02-02
+date: 2026-04-19
 description: A TypeScript implementation of CCL (Categorical Configuration Language).
 github: https://github.com/CatConfLang/ccl-typescript
 programmingLanguage: typescript

@@ -1,6 +1,6 @@
 ---
 title: msgpack_gleam
-date: 2026-01-25
+date: 2026-04-11
 description: A pure Gleam implementation of MessagePack.
 github: https://github.com/tylerbutler/msgpack_gleam
 hex: msgpack_gleam

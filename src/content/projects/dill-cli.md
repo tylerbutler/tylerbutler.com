@@ -1,6 +1,6 @@
 ---
 title: dill
-date: 2024-05-14
+date: 2026-04-28
 description: Download and extract files from the command line.
 github: https://github.com/tylerbutler/tools-monorepo/tree/main/packages/dill-cli
 programmingLanguage: typescript

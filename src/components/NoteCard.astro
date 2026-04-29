@@ -1,0 +1,282 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getNoteUrl } from "../lib/note-utils";
+import HEntryAuthor from "./HEntryAuthor.astro";
+import NoteDate from "./NoteDate.astro";
+import NotePermalink from "./NotePermalink.astro";
+import NoteSourceIcon from "./NoteSourceIcon.astro";
+
+export interface Props {
+  note: CollectionEntry<"notes">;
+  /**
+   * "feed" — used in listings/streams (renders permalink icon).
+   * "detail" — used on the single-note page (omits the permalink icon since
+   *   the URL is already the canonical one).
+   */
+  variant?: "feed" | "detail";
+  /** Heading level for the title (when present). Defaults to h3 in feeds. */
+  titleLevel?: 1 | 2 | 3 | 4;
+}
+
+function hostnameOf(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
+const { note, variant = "feed", titleLevel = 3 } = Astro.props;
+const { data } = note;
+const url = getNoteUrl(note);
+const TitleTag = `h${titleLevel}` as "h1" | "h2" | "h3" | "h4";
+
+// Post-type context labels for reply/like/repost/bookmark. The mf2 class on
+// the link is what IndieWeb consumers parse; the visible label is for humans.
+const contextRels: Array<{
+  urls: string[];
+  label: string;
+  className: string;
+}> = [
+  {
+    urls: data.replyTo ?? [],
+    label: "In reply to",
+    className: "u-in-reply-to",
+  },
+  { urls: data.likeOf ?? [], label: "Liked", className: "u-like-of" },
+  { urls: data.repostOf ?? [], label: "Reposted", className: "u-repost-of" },
+  {
+    urls: data.bookmarkOf ?? [],
+    label: "Bookmarked",
+    className: "u-bookmark-of",
+  },
+];
+const hasContext = contextRels.some((c) => c.urls.length > 0);
+const isRsvp = data.postType === "rsvp" && data.rsvp;
+---
+
+<article class={`note-card h-entry note-card--${variant} note-card--${data.postType}`}>
+  <header class="note-card-header">
+    {data.title && (
+      <TitleTag class="p-name">
+        {variant === "feed" ? (
+          <a href={url} class="u-url">{data.title}</a>
+        ) : (
+          data.title
+        )}
+      </TitleTag>
+    )}
+    <span class="note-meta">
+      <NoteSourceIcon source={data.source} />
+      <NoteDate note={note} className="note-permalink" />
+      {variant === "feed" && <NotePermalink note={note} />}
+      <HEntryAuthor />
+    </span>
+  </header>
+
+  {hasContext && (
+    <div class="note-context">
+      {contextRels.map(
+        ({ urls, label, className }) =>
+          urls.length > 0 && (
+            <p class="note-context-line">
+              <span class="note-context-label">{label}</span>
+              {urls.map((u, i) => (
+                <Fragment>
+                  {i > 0 && ", "}
+                  <a class={className} href={u}>{u}</a>
+                </Fragment>
+              ))}
+            </p>
+          ),
+      )}
+      {isRsvp && (
+        <p class="note-context-line">
+          <span class="note-context-label">RSVP</span>
+          <data class="p-rsvp" value={data.rsvp}>{data.rsvp}</data>
+        </p>
+      )}
+    </div>
+  )}
+
+  <div class="note-card-content e-content">
+    <slot />
+    {data.photos && data.photos.length > 0 && (
+      <div class="note-photos">
+        {data.photos.map((src) => (
+          <img class="u-photo" src={src} alt="" loading="lazy" />
+        ))}
+      </div>
+    )}
+  </div>
+
+  {data.tags && data.tags.length > 0 && (
+    <div class="note-card-tags">
+      {data.tags.map((tag) => (
+        <a
+          href={`/tags/${tag}/`}
+          class="tag p-category"
+          data-pagefind-filter="tag"
+        >#{tag}</a>
+      ))}
+    </div>
+  )}
+
+  {data.syndicationUrls && data.syndicationUrls.length > 0 && (
+    <div class="note-syndication">
+      <span class="note-syndication-label">Also at:</span>
+      {data.syndicationUrls.map((u, i) => (
+        <Fragment>
+          {i > 0 && " · "}
+          <a class="u-syndication" href={u} rel="syndication">{hostnameOf(u)}</a>
+        </Fragment>
+      ))}
+    </div>
+  )}
+
+  {variant === "detail" && (
+    <a href={url} class="u-url" hidden>{url}</a>
+  )}
+</article>
+
+<style>
+  .note-card {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 8px;
+    padding: 1.1rem 1.35rem;
+    overflow: hidden;
+  }
+
+  .note-card--detail {
+    background: transparent;
+    border: none;
+    padding: 0;
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .note-card-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .note-card-header :is(h1, h2, h3, h4) {
+    margin: 0 0 0.25rem;
+    font-size: 1.1rem;
+  }
+
+  .note-card--detail .note-card-header :is(h1, h2, h3, h4) {
+    font-size: 1.5rem;
+  }
+
+  .note-card-header h3 a,
+  .note-card-header h4 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .note-card-header h3 a:hover,
+  .note-card-header h4 a:hover {
+    color: var(--accent);
+  }
+
+  .note-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .note-permalink {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .note-permalink:hover {
+    color: var(--accent);
+  }
+
+  .note-context {
+    margin: 0.25rem 0 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-left: 3px solid var(--accent, #888);
+    font-size: 13px;
+  }
+
+  .note-context-line {
+    margin: 0.15rem 0;
+    overflow-wrap: anywhere;
+  }
+
+  .note-context-label {
+    color: var(--text-light);
+    margin-right: 0.4rem;
+    font-style: italic;
+  }
+
+  .note-card-content {
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .note-card-content > :first-child {
+    margin-top: 0;
+  }
+
+  .note-card-content > :last-child {
+    margin-bottom: 0;
+  }
+
+  .note-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .note-photos img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+  }
+
+  .note-card-tags {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .tag:hover {
+    text-decoration: underline;
+  }
+
+  .note-syndication {
+    margin-top: 0.75rem;
+    color: var(--text-light);
+    font-size: 12px;
+  }
+
+  .note-syndication-label {
+    margin-right: 0.4rem;
+    font-style: italic;
+  }
+
+  .note-syndication a {
+    color: var(--text-light);
+    text-decoration: none;
+  }
+
+  .note-syndication a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+</style>

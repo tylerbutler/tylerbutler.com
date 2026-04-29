@@ -23,6 +23,10 @@ GITHUB_REPO_OWNER=tylerbutler
 GITHUB_REPO_NAME=private-resources
 ```
 
+**Optional env vars**:
+
+- `SHOW_DRAFTS=1` — include `draft: true` content in collection queries, listing pages, and the feed. Off by default in dev and prod. Centralized in `src/lib/draft-utils.ts` (`includeDraft(data)`). Use `SHOW_DRAFTS=1 pnpm dev` (or `pnpm build`) to preview drafts.
+
 ## Architecture
 
 ```
@@ -63,6 +67,8 @@ docs/superpowers/   # Implementation plans and specs
 ## Content Schemas
 
 Articles support `link` + `via`/`vialink` fields for link-style posts (auto-infers `articleType: "link"`). Use `headingStartLevel` to override remark-shift-headings behavior. Use `type: "guide"` to show a ToC.
+
+Notes are short-form posts (no `title` by convention). Schema accepts `date` (required), optional `lastmod`, `title`, `tags`, `summary`, `originalUrl`, and `draft`. `originalUrl` preserves the source path for content imported from other systems (e.g. the micro.blog archive). `lastmod` is only set when it differs from `date`.
 
 ## Linting
 

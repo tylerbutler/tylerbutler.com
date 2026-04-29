@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getNoteCounts } from "../lib/note-counts";
+import {
+  getNoteMonthUrl,
+  getNotePathParts,
+  getNoteYearUrl,
+  monthLabel,
+} from "../lib/note-utils";
+
+interface Props {
+  note: CollectionEntry<"notes">;
+  className?: string;
+}
+
+const { note, className } = Astro.props;
+const { year, month, day } = getNotePathParts(note);
+const isoDate = note.data.date.toISOString();
+const dayNumber = Number.parseInt(day, 10);
+
+const { yearCounts, monthCounts } = await getNoteCounts();
+const linkMonth = (monthCounts.get(`${year}-${month}`) ?? 0) > 1;
+const linkYear = (yearCounts.get(year) ?? 0) > 1;
+---
+
+<time class:list={["note-date dt-published", className]} datetime={isoDate}>
+  {linkMonth ? (
+    <a href={getNoteMonthUrl(year, month)}>{monthLabel(month)}</a>
+  ) : (
+    monthLabel(month)
+  )}
+  {" "}
+  {dayNumber},
+  {" "}
+  {linkYear ? <a href={getNoteYearUrl(year)}>{year}</a> : year}
+</time>
+
+<style>
+  .note-date {
+    font-size: 13px;
+    color: var(--text-light);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .note-date a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .note-date a:hover {
+    color: var(--accent);
+  }
+</style>

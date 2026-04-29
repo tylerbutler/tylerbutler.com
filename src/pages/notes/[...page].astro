@@ -1,0 +1,145 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import NoteCard from "../../components/NoteCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { includeDraft } from "../../lib/draft-utils";
+import "../../lib/styles/page-nav.css";
+
+const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
+  const sorted = notes.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
+  return paginate(sorted, { pageSize: 20 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props as {
+  page: {
+    data: CollectionEntry<"notes">[];
+    url: { prev?: string; next?: string; current: string };
+    currentPage: number;
+    lastPage: number;
+    total: number;
+  };
+};
+
+const renderedNotes = await Promise.all(
+  page.data.map(async (note) => {
+    const { Content } = await render(note);
+    return { note, Content };
+  }),
+);
+
+const pageTitle =
+  page.currentPage > 1
+    ? `Notes - Page ${page.currentPage} - Tyler Butler`
+    : "Notes - Tyler Butler";
+---
+
+<BaseLayout
+  title={pageTitle}
+  description="Short-form notes by Tyler Butler."
+>
+  <section class="notes-page h-feed">
+    <h1>Notes</h1>
+    {page.lastPage > 1 && (
+      <p class="page-indicator">
+        Page {page.currentPage} of {page.lastPage}
+      </p>
+    )}
+
+    {renderedNotes.length === 0 && (
+      <p class="empty-state">No notes published yet.</p>
+    )}
+
+    <div class="notes-stream">
+      {renderedNotes.map(({ note, Content }, i) => {
+        const older = renderedNotes[i + 1];
+        const gap = older
+          ? Math.round(
+              (note.data.date.getTime() - older.note.data.date.getTime()) /
+                MS_PER_YEAR,
+            )
+          : 0;
+        const showGap = gap >= 2;
+
+        return (
+          <Fragment>
+            <NoteCard note={note}>
+              <Content />
+            </NoteCard>
+
+            {showGap && (
+              <div class="note-gap" role="separator">
+                <span>{gap} years of silent reflection</span>
+              </div>
+            )}
+          </Fragment>
+        );
+      })}
+    </div>
+
+    {page.lastPage > 1 && (
+      <nav class="article-nav">
+        {page.url.prev && (
+          <a href={page.url.prev} class="nav-link">
+            <span class="nav-arrow">←</span>
+            <span class="nav-text">Newer notes</span>
+          </a>
+        )}
+        {page.url.next && (
+          <a href={page.url.next} class="nav-link nav-link-next">
+            <span class="nav-text">Older notes</span>
+            <span class="nav-arrow">→</span>
+          </a>
+        )}
+      </nav>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .notes-page {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .page-indicator {
+    color: var(--text-light);
+    font-size: 13px;
+    margin: 0.25rem 0 1.5rem;
+  }
+
+  .notes-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .note-gap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-light);
+    font-style: italic;
+    font-size: 13px;
+    text-align: center;
+    margin: 2rem 0 1rem;
+  }
+
+  .note-gap::before,
+  .note-gap::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--code-border);
+  }
+
+  .empty-state {
+    color: var(--text-light);
+    font-style: italic;
+  }
+</style>

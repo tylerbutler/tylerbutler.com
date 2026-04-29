@@ -6,7 +6,8 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!!**/dist", "!.lighthouseci"]
+    "includes": ["**", "!!**/dist", "!.lighthouseci"],
+    "maxSize": 2048000
   },
   "formatter": {
     "enabled": true,

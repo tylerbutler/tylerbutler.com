@@ -4,11 +4,12 @@ import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
 import { getArticleUrl } from "../lib/article-utils";
+import { includeDraft } from "../lib/draft-utils";
 
 export async function GET(context: APIContext) {
-  const articles = await getCollection("articles", ({ data }) => {
-    return !data.draft;
-  });
+  const articles = await getCollection("articles", ({ data }) =>
+    includeDraft(data),
+  );
 
   const sortedArticles = articles.sort(
     (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),

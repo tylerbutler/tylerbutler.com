@@ -5,12 +5,13 @@ import { BookOpen, ExternalLink } from "@lucide/astro";
 import Github from "simple-icons-astro/Github";
 import ProjectBadges from "../components/ProjectBadges.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { includeDraft } from "../lib/draft-utils";
 import { formatTitle } from "../lib/typography";
 
-// Get all projects (excluding index files and drafts)
+// Get all projects (excluding index files; drafts hidden unless SHOW_DRAFTS=1)
 const projects = await getCollection(
   "projects",
-  ({ id, data }) => !id.startsWith("_") && !data.draft,
+  ({ id, data }) => !id.startsWith("_") && includeDraft(data),
 );
 
 // Sort projects by date (newest first)

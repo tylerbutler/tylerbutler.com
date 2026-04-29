@@ -151,6 +151,7 @@ const projects = defineCollection({
       url: z.string().optional(),
       github: z.string().optional(),
       draft: z.boolean().default(false),
+      npm: z.string().optional(),
       crate: z.string().optional(),
       hex: z.string().optional(),
       hexDocs: z.string().optional(),

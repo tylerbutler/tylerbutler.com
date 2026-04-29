@@ -2,6 +2,7 @@
 import ShieldsBadge from "./ShieldsBadge.astro";
 
 interface Props {
+  npm?: string;
   crate?: string;
   hex?: string;
   hexDocs?: string;
@@ -9,7 +10,7 @@ interface Props {
   programmingLanguage?: string;
 }
 
-const { crate, hex, hexDocs, license, programmingLanguage } = Astro.props;
+const { npm, crate, hex, hexDocs, license, programmingLanguage } = Astro.props;
 
 const languageConfig: Record<string, { color: string; logo: string }> = {
   gleam: { color: "ffaff3", logo: "gleam" },
@@ -24,6 +25,11 @@ const { color, logo } =
   (programmingLanguage ? languageConfig[programmingLanguage] : undefined) ?? {};
 ---
 
+{npm && (
+  <a href={`https://www.npmjs.com/package/${npm}`} class="badge" target="_blank" rel="noopener">
+    <img src={`https://img.shields.io/npm/v/${npm}`} alt={`${npm} npm version`} />
+  </a>
+)}
 {programmingLanguage && (
     <img
     src={`https://img.shields.io/badge/written_in-${programmingLanguage}-${color ?? "grey"}.svg${logo ? `?logo=${logo}` : ""}`}

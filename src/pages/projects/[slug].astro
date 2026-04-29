@@ -36,6 +36,7 @@ const { Content } = await render(project);
       <h1 set:html={await formatTitle(project.data.title)} />
       <div class="article-badges">
         <ProjectBadges
+          npm={project.data.npm}
           crate={project.data.crate}
           hex={project.data.hex}
           hexDocs={project.data.hexDocs}

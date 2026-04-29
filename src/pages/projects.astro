@@ -59,6 +59,7 @@ const otherProjects = withTitles.filter((p) => !p.data.tags?.includes("ccl"));
                 <h2 set:html={project.formattedTitle} />
                     <div class="article-badges">
                       <ProjectBadges
+                        npm={project.data.npm}
                         crate={project.data.crate}
                         hex={project.data.hex}
                         hexDocs={project.data.hexDocs}
@@ -118,6 +119,7 @@ const otherProjects = withTitles.filter((p) => !p.data.tags?.includes("ccl"));
                   <h3 set:html={project.formattedTitle} />
                       <div class="article-badges">
                         <ProjectBadges
+                          npm={project.data.npm}
                           crate={project.data.crate}
                           hex={project.data.hex}
                           hexDocs={project.data.hexDocs}

@@ -28,7 +28,7 @@ select,
 
 /* Link underline animation */
 .article-content a,
-.content-inner a:not(.tag):not(.nav-link) {
+.content-inner a:not(.tag):not(.nav-link):not(.badge):not(.blank) {
   position: relative;
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);
@@ -41,7 +41,7 @@ select,
 }
 
 .article-content a:hover,
-.content-inner a:not(.tag):not(.nav-link):hover {
+.content-inner a:not(.tag):not(.nav-link):not(.badge):not(.blank):hover {
   background-size: 0% 1px;
   background-position: 100% 100%;
 }

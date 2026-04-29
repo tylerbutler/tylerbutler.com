@@ -142,15 +142,24 @@ const projects = defineCollection({
     pattern: "**/[^_]*.{md,mdx}",
     base: "./src/content/projects",
   }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date().optional(),
-    description: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    url: z.string().optional(),
-    github: z.string().optional(),
-    draft: z.boolean().default(false),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      date: z.coerce.date().optional(),
+      description: z.string().optional(),
+      tags: z.array(z.string()).optional(),
+      url: z.string().optional(),
+      github: z.string().optional(),
+      draft: z.boolean().default(false),
+      npm: z.string().optional(),
+      crate: z.string().optional(),
+      hex: z.string().optional(),
+      hexDocs: z.string().optional(),
+      programmingLanguage: z.string().optional(),
+      license: z.string().optional(),
+      maturity: z.enum(["stable", "unpublished", "experimental"]).optional(),
+      logo: image().optional(),
+    }),
 });
 
 export const collections = { articles, notes, projects };

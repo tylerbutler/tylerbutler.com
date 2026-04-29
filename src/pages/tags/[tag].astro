@@ -69,9 +69,7 @@ const description = `All articles tagged with "${tag}"`;
         return (
           <article class="article-item">
             <h2>
-              <a href={getArticleUrl(article)}>
-                {article.formattedTitle}
-              </a>
+              <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
             </h2>
             <div class="article-meta">
               <time datetime={article.data.date.toISOString()}>

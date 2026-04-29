@@ -14,8 +14,7 @@ const projects = await getCollection(
   ({ id, data }) => !id.startsWith("_") && includeDraft(data),
 );
 
-// Sort projects by date (newest first)
-const sortedProjects = await Promise.all(
+const withTitles = await Promise.all(
   projects
     .filter((p) => p.data.date)
     .sort(
@@ -27,6 +26,9 @@ const sortedProjects = await Promise.all(
       formattedTitle: await formatTitle(project.data.title),
     })),
 );
+
+const cclProjects = withTitles.filter((p) => p.data.tags?.includes("ccl"));
+const otherProjects = withTitles.filter((p) => !p.data.tags?.includes("ccl"));
 ---
 
 <BaseLayout
@@ -40,9 +42,9 @@ const sortedProjects = await Promise.all(
       source contributions and personal experiments.
     </p>
 
-    {sortedProjects.length > 0 ? (
+    {otherProjects.length > 0 ? (
       <ul class="projects-list">
-        {sortedProjects.map(project => {
+        {otherProjects.map(project => {
           return (
             <li class="project-item">
               <article>
@@ -93,6 +95,64 @@ const sortedProjects = await Promise.all(
     ) : (
       <p>More projects coming soon...</p>
     )}
+
+    {cclProjects.length > 0 && (
+      <div class="ccl-section">
+        <h2 class="section-heading">CCL Implementations</h2>
+        <p class="section-description">
+          <a href="https://ccl.tylerbutler.com/">CCL (Categorical Configuration Language)</a> is a configuration language with a small, consistent syntax. These are implementations and tools across multiple languages.
+        </p>
+        <ul class="projects-list">
+          {cclProjects.map(project => {
+            return (
+              <li class="project-item">
+                <article>
+                  {project.data.logo && (
+                    <Image
+                      src={project.data.logo}
+                      alt={`${project.data.title} logo`}
+                      class="project-logo"
+                      width={48}
+                    />
+                  )}
+                  <h3>{project.formattedTitle}</h3>
+                      <div class="article-badges">
+                        <ProjectBadges
+                          crate={project.data.crate}
+                          hex={project.data.hex}
+                          hexDocs={project.data.hexDocs}
+                          license={project.data.license}
+                          programmingLanguage={project.data.programmingLanguage}
+                        />
+                      </div>
+                  {project.data.description && (
+                    <p class="description">{project.data.description}</p>
+                  )}
+                  <div class="project-links">
+                    <a href={`/projects/${project.id}`} class="read-more" data-tinylytics-event="project.read-more" data-tinylytics-event-value={project.id}>
+                      <BookOpen class="icon" />
+                      Read More
+                    </a>
+                    {project.data.url && (
+                      <a href={project.data.url} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
+                        <ExternalLink class="icon" />
+                        View Project
+                      </a>
+                    )}
+                    {project.data.github && (
+                      <a href={project.data.github} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
+                        <Github class="icon" />
+                        GitHub
+                      </a>
+                    )}
+                  </div>
+                </article>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    )}
   </section>
 </BaseLayout>
 
@@ -113,7 +173,8 @@ const sortedProjects = await Promise.all(
     border-bottom: none;
   }
 
-  .project-item h2 {
+  .project-item h2,
+  .project-item h3 {
     margin: 0 0 0.5em 0;
     color: var(--text);
   }
@@ -168,5 +229,20 @@ const sortedProjects = await Promise.all(
     width: 96px;
     float: left;
     margin-right: 1em;
+  }
+
+  .ccl-section {
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 2px solid var(--code-border);
+  }
+
+  .section-heading {
+    margin-bottom: 0.5em;
+  }
+
+  .section-description {
+    color: var(--text-light);
+    margin-bottom: 1.5em;
   }
 </style>

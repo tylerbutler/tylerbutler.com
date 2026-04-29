@@ -7,6 +7,7 @@ hex: msgpack_gleam
 hexDocs: msgpack_gleam
 programmingLanguage: gleam
 license: MIT
+maturity: stable
 ---
 
 Encode and decode MessagePack binary serialization format in pure Gleam. Targets both the Erlang VM (BEAM) and JavaScript runtimes.

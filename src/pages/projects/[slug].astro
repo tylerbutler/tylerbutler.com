@@ -33,7 +33,7 @@ const { Content } = await render(project);
       {project.data.logo && (
         <Image src={project.data.logo} alt={`${project.data.title} logo`} class="project-logo"/>
       )}
-      <h1>{await formatTitle(project.data.title)}</h1>
+      <h1 set:html={await formatTitle(project.data.title)} />
       <div class="article-badges">
         <ProjectBadges
           crate={project.data.crate}

@@ -7,6 +7,7 @@ github: https://github.com/CatConfLang/ccl-test-data
 logo: ../../assets/ccl-badge.webp
 license: MIT
 tags: ["ccl"]
+maturity: experimental
 ---
 
 A test suite and accompanying documentation for CCL.

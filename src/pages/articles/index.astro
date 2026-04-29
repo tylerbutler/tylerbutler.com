@@ -76,9 +76,7 @@ const years = Object.keys(articlesByYear)
                     })}
                   </time>
                   <h3 class="article-title">
-                    <a href={getArticleUrl(article)} class="article-link">
-                      {article.formattedTitle}
-                    </a>
+                    <a href={getArticleUrl(article)} class="article-link" set:html={article.formattedTitle} />
                   </h3>
                   {article.data.excerpt && (
                     <p class="excerpt">{article.data.excerpt}</p>

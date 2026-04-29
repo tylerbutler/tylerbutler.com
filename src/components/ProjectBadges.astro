@@ -10,19 +10,23 @@ interface Props {
 }
 
 const { crate, hex, hexDocs, license, programmingLanguage } = Astro.props;
+
+const languageConfig: Record<string, { color: string; logo: string }> = {
+  gleam: { color: "ffaff3", logo: "gleam" },
+  rust: { color: "CE422B", logo: "rust" },
+  go: { color: "00ADD8", logo: "go" },
+  typescript: { color: "3178C6", logo: "typescript" },
+  python: { color: "3776AB", logo: "python" },
+  ocaml: { color: "EC6813", logo: "ocaml" },
+};
+
 const { color, logo } =
-  programmingLanguage === "rust"
-    ? { color: "orange", logo: "rust" }
-    : programmingLanguage === "python"
-      ? { color: "green", logo: "python" }
-      : programmingLanguage === "gleam"
-        ? { color: "ffaff3", logo: "gleam" }
-        : {};
+  (programmingLanguage ? languageConfig[programmingLanguage] : undefined) ?? {};
 ---
 
 {programmingLanguage && (
-    <img 
-    src={`https://img.shields.io/badge/written_in-${programmingLanguage}-${color}.svg${logo ? `?logo=${logo}` : ""}`} 
+    <img
+    src={`https://img.shields.io/badge/written_in-${programmingLanguage}-${color ?? "grey"}.svg${logo ? `?logo=${logo}` : ""}`}
     alt={`${programmingLanguage} programming language`} />
 )}
 {crate && (

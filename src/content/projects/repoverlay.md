@@ -5,7 +5,9 @@ description: A command-line tool to overlay files on top of a git repo without c
 url: https://repoverlay.tylerbutler.com/
 github: https://github.com/tylerbutler/repoverlay
 crate: repoverlay
+programmingLanguage: rust
 license: MIT
+maturity: stable
 ---
 
 ## Overview

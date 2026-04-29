@@ -8,6 +8,7 @@ hex: slate
 hexDocs: slate
 programmingLanguage: gleam
 license: MIT
+maturity: stable
 ---
 
 A type-safe Gleam API for DETS, Erlang's built-in persistent key-value store. Gives you persistent disk-backed tables without an external database.

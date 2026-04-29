@@ -156,6 +156,7 @@ const projects = defineCollection({
       hexDocs: z.string().optional(),
       programmingLanguage: z.string().optional(),
       license: z.string().optional(),
+      maturity: z.enum(["stable", "unpublished", "experimental"]).optional(),
       logo: image().optional(),
     }),
 });

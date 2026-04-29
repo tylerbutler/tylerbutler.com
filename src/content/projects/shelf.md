@@ -8,6 +8,7 @@ hex: shelf
 hexDocs: shelf
 programmingLanguage: gleam
 license: MIT
+maturity: stable
 ---
 
 Shelf wraps ETS and DETS to give you the speed of in-memory storage with automatic disk persistence. Your data survives restarts without any manual save/load logic.

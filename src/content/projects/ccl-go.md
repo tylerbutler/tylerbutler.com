@@ -6,6 +6,7 @@ github: https://github.com/tylerbutler/ccl-go
 programmingLanguage: go
 license: MIT
 tags: ["ccl"]
+maturity: experimental
 ---
 
 A Go implementation of the CCL parser with comprehensive functional architecture. Includes full parsing, hierarchy building, typed access, and integration with the ccl-test-data JSON test suite.

@@ -7,9 +7,10 @@
   --overlay: rgba(26, 35, 50, 0.15); /* Subtle blue-gray overlay */
 
   /* Text Colors - WCAG AA compliant with mixed harmonies */
-  --accent: #b8722a; /* Deeper orange for links and accents */
-  --accent-light: #a3621f; /* Even deeper orange for contrast */
-  --accent-hover: #d4842a; /* Warm orange for interactions */
+  --accent: #96591c; /* Deep burnt orange — 5.3:1 on --light-bg, 4.8:1 on --code-bg (AA) */
+  --accent-light: #a3621f; /* Slightly lighter variant */
+  --accent-hover: #7d4b17; /* Links darken on hover — 6.9:1 on --light-bg */
+  --nav-hover: #d4842a; /* Bright warm orange for hover on dark masthead surfaces — 5.4:1 on --dark-bg */
   --header-accent: #e6b35c; /* Golden yellow for headers from atmospheric layers */
   --text: #2a4a47; /* Deep teal-gray */
   --text-light: #4a6662; /* Lighter teal-gray for secondary text */
@@ -17,13 +18,13 @@
 
   /* Code styling variables */
   --code-bg: #f0ede8; /* Light warm background for inline code */
-  --code-text: #b8722a; /* Orange accent color for inline code text */
+  --code-text: #96591c; /* Deep orange for inline code text — 4.8:1 on --code-bg (AA) */
   --code-border: rgba(184, 114, 42, 0.2); /* Subtle border using accent color */
 
   /* Alert/Status colors */
   --success: #4a7c59; /* Muted green for success states */
   --info: #4a6b8a; /* Blue-gray for informational messages */
-  --warning: #d4842a; /* Warm orange for warnings */
+  --warning: #b8722a; /* Warm orange for warnings — 3.6:1 on --light-bg, passes 3:1 for bold alert titles */
   --error: #b85a4a; /* Muted red for errors */
   --important: #8b5a9d; /* Muted purple for important alerts */
 
@@ -37,6 +38,29 @@
 
   --code-font: "PragmataPro", "JetBrains Mono", mono;
   --code-font-size: 16px;
+
+  /* UI type scale — label roles only; body and heading sizes live in typography.css */
+  --font-size-ui: 14px; /* nav links, alert titles, tables */
+  --font-size-label: 13px; /* preview text, small buttons, permalinks, tags */
+  --font-size-meta: 12px; /* timestamps, fine print, tiny labels */
+
+  /* Radii */
+  --radius-sm: 3px; /* inline code, small controls, focus rings */
+  --radius-md: 4px; /* buttons, alerts, blockquote corners */
+  --radius-lg: 8px; /* cards */
+
+  /* Interaction washes for controls on dark/light surfaces */
+  --hover-wash-light: rgba(255, 255, 255, 0.1);
+  --hover-wash-dark: rgba(0, 0, 0, 0.2);
+
+  /* Scene: dark-mode dim layer over the painted backdrop */
+  --backdrop-dim: rgba(0, 0, 0, 0.4);
+
+  /* Tables */
+  --table-border: #ddd;
+  --table-header-bg: #f5f3f0;
+  --table-row-alt: #fbfaf9;
+  --table-row-hover: #f7f5f2;
 }
 
 /* Dark theme variables - inspired by 2012 blog backgrounds */
@@ -46,12 +70,13 @@
   --light-bg: #0f1419; /* Slightly darker content background for contrast */
   --overlay: rgba(255, 255, 255, 0.1); /* Light overlay for depth */
 
-  /* Dark theme text colors - keep readable neutrals */
+  /* Dark theme text colors - warmed neutrals so the dark cabin stays the
+     same paperback (was #e5e5e5/#ccc, the palette's only cold grays) */
   --accent: #d4af37; /* Keep the gold accent */
   --accent-light: #8b6f3a; /* Medium version for hover states */
   --accent-hover: #c4a366; /* Lighter golden for hover */
-  --text: #e5e5e5; /* Light gray text for readability */
-  --text-light: #cccccc; /* Secondary text color */
+  --text: #e8e4de; /* Warm light gray — 14.6:1 on --light-bg */
+  --text-light: #c9c4bc; /* Warm secondary — 10.7:1 on --light-bg, 9.1:1 on --dark-bg */
   --nav-links: #f0f0f0; /* Off-white navigation links */
 
   /* Dark theme code styling variables */
@@ -73,6 +98,12 @@
 
   /* Dark theme specific */
   --site-container-bg: #1a2332; /* Container background matching dark-bg */
+
+  /* Dark theme tables */
+  --table-border: #1f2937;
+  --table-header-bg: #0f1419;
+  --table-row-alt: rgba(255, 255, 255, 0.05);
+  --table-row-hover: rgba(255, 255, 255, 0.1);
 }
 
 /* Override media query with our custom class-based approach */

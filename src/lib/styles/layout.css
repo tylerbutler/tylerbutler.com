@@ -10,7 +10,7 @@
 
 /* Dark theme site container */
 .dark .site-container {
-  background-color: var(--site-container-bg, #1a1a1a);
+  background-color: var(--site-container-bg, var(--dark-bg));
 }
 
 /* Header section - dark background */
@@ -63,27 +63,83 @@
   margin-bottom: 0.4em;
 }
 
-/* Footer section */
+/* Footer section — the paperback's back cover: hull-dark in both themes,
+   closing the scene the masthead opens */
 .site-footer {
-  background-color: #f2f0ed;
-  padding: 15px 25px;
+  background-color: var(--dark-bg);
+  padding: 26px 25px 20px;
   text-align: center;
-  font-size: 11px;
-  color: var(--text-light);
+  color: var(--nav-links);
 
-  & a {
-    color: var(--accent);
-    text-decoration: none;
+  & .footer-constellation {
+    display: block;
+    margin: 0 auto 10px;
+    color: var(--nav-links);
+    opacity: 0.55;
+  }
 
-    &:hover {
+  & .footer-subscribe {
+    font-family: "adelle", "Baskerville", Georgia, serif;
+    font-style: italic;
+    font-size: var(--font-size-label);
+    color: var(--nav-links);
+    max-width: 60ch;
+    margin: 0 auto;
+
+    & a {
+      color: var(--nav-hover);
       text-decoration: underline;
+      text-underline-offset: 0.2em;
+      text-decoration-thickness: 0.08em;
+      transition:
+        text-decoration-color 0.3s ease,
+        color 0.2s ease;
+
+      &:hover {
+        text-decoration-color: transparent;
+      }
+
+      &:focus {
+        outline: 2px solid var(--header-accent);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
     }
   }
-}
 
-/* Dark theme footer - match header background */
-.dark .site-footer {
-  background-color: var(--dark-bg);
+  & .footer-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 14px 0 10px;
+
+    & a {
+      font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+      font-size: var(--font-size-meta);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--nav-links);
+      text-decoration: none;
+      padding: 4px;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--nav-hover);
+      }
+
+      &:focus {
+        outline: 2px solid var(--header-accent);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  & .footer-copyright {
+    font-size: var(--font-size-meta);
+    color: color-mix(in srgb, var(--nav-links) 65%, var(--dark-bg));
+    margin: 0;
+  }
 }
 
 /* Responsive layout adjustments */

@@ -19,7 +19,7 @@ const currentPath = Astro.url.pathname;
 const normalizedCurrentPath = normalizePath(currentPath);
 ---
 
-<nav>
+<nav aria-label="Main">
   <ul>
     {navItems.map(item => {
       const isActive = normalizedCurrentPath === normalizePath(item.href);

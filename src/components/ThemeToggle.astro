@@ -66,6 +66,13 @@
   :global(.dark)#themeToggle:hover {
     background-color: var(--hover-wash-dark);
   }
+
+  /* Touch: ≥40px hit area (18px icon + 11px padding each side) */
+  @media (pointer: coarse) {
+    #themeToggle {
+      padding: 11px;
+    }
+  }
 </style>
 
 <script is:inline>

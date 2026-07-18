@@ -89,6 +89,25 @@ import Bluesky from "simple-icons-astro/Bluesky";
     border-color: var(--nav-hover);
   }
 
+  /* Touch: grow every control in the row to a ≥40px hit area — the padding
+     provides the spacing, so the gap tightens to keep the row on one line */
+  @media (pointer: coarse) {
+    .social-icons-below {
+      gap: 4px;
+    }
+
+    .social-link {
+      box-sizing: border-box;
+      min-width: 40px;
+      min-height: 40px;
+      padding: 12px;
+    }
+
+    .feed-link {
+      padding: 12px 16px;
+    }
+  }
+
   /* Screen reader only text */
   .sr-only {
     position: absolute;

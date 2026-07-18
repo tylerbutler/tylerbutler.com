@@ -94,7 +94,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
               {index > 0 && (() => {
                 const { url, slug } = iconAssignments.get(article.id)!;
                 return (
-                  <li class="article-divider" aria-hidden="true">
+                  <li class="article-divider" role="presentation" aria-hidden="true">
                     <ConstellationIcon src={url} slug={slug} size={64} />
                   </li>
                 );

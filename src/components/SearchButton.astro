@@ -38,6 +38,13 @@ import { Icon } from "astro-icon/components";
   :global(.dark) #searchToggle:hover {
     background-color: var(--hover-wash-dark);
   }
+
+  /* Touch: ≥40px hit area (18px icon + 11px padding each side) */
+  @media (pointer: coarse) {
+    #searchToggle {
+      padding: 11px;
+    }
+  }
 </style>
 
 <script is:inline>

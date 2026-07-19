@@ -74,8 +74,6 @@
   & .footer-constellation {
     display: block;
     margin: 0 auto 10px;
-    color: var(--nav-links);
-    opacity: 0.55;
   }
 
   & .footer-subscribe {

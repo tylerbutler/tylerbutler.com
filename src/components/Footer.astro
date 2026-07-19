@@ -1,28 +1,18 @@
 ---
 // Footer.astro — the paperback's back cover
+import constellationUrl from "../lottie/constellations/ursa-minor.lottie?url";
+import LottieIcon from "./LottieIcon.astro";
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <svg
+  <LottieIcon
+    src={constellationUrl}
+    alt="Ursa Minor"
+    size={72}
     class="footer-constellation"
-    viewBox="0 0 120 28"
-    width="120"
-    height="28"
-    aria-hidden="true"
-  >
-    <path
-      d="M8 20 L34 9 L60 16 L86 6 L112 18"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="0.75"
-      opacity="0.5"></path>
-    <circle cx="8" cy="20" r="1.6" fill="currentColor"></circle>
-    <circle cx="34" cy="9" r="2.2" fill="currentColor"></circle>
-    <circle cx="60" cy="16" r="1.4" fill="currentColor"></circle>
-    <circle cx="86" cy="6" r="2" fill="currentColor"></circle>
-    <circle cx="112" cy="18" r="1.5" fill="currentColor"></circle>
-  </svg>
+  />
   <p class="footer-subscribe">
     New posts land here first — follow along via <a href="/feed.xml">RSS</a> or
     <a href="/feed.json">JSON feed</a>. No algorithm, just posts.

@@ -77,3 +77,7 @@ Biome handles formatting and linting. `pnpm format` runs Biome with linter disab
 ## Deployment
 
 Netlify. `pnpm build` is the build command; `dist/` is the publish directory. Pagefind search index is built post-build automatically.
+
+## Design Context
+
+`PRODUCT.md` (project root) captures the strategic design context: brand register, audience, positioning ("a programmer's home on the web"), personality, anti-references, and design principles. `DESIGN.md` captures the visual system — palette, typography, elevation, and components — under the north star "The Golden Age Paperback". Read both before any design or UI work; the retro-sci-fi identity (Westgate masthead, golden-hour palette, constellation dividers) is committed brand and should be preserved and deepened, not replaced.

@@ -1,7 +1,26 @@
 ---
-// Footer component
+// Footer.astro — the paperback's back cover
+import constellationUrl from "../lottie/constellations/ursa-minor.lottie?url";
+import LottieIcon from "./LottieIcon.astro";
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <p>© 2002-2025 Tyler Butler</p>
+  <LottieIcon
+    src={constellationUrl}
+    alt="Ursa Minor"
+    size={72}
+    class="footer-constellation"
+  />
+  <p class="footer-subscribe">
+    New posts land here first — follow along via <a href="https://feedpress.me/TylerButlerAllPosts.xml">RSS</a> or
+    <a href="https://feedpress.me/TylerButlerAllPosts.json">JSON feed</a>. No algorithm, just posts.
+  </p>
+  <nav class="footer-links" aria-label="Footer">
+    <a href="/about">About</a>
+    <a href="/colophon">Colophon</a>
+    <a href="/webring">Webring</a>
+  </nav>
+  <p class="footer-copyright">© 2002–{currentYear} Tyler Butler</p>
 </footer>

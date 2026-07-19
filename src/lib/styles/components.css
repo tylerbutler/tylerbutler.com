@@ -118,45 +118,45 @@ table {
   & td {
     padding: 8px 12px;
     text-align: left;
-    border: 1px solid #ddd;
+    border: 1px solid var(--table-border);
     vertical-align: top;
   }
 
   & th {
-    background-color: #f5f3f0;
+    background-color: var(--table-header-bg);
     font-weight: 600;
     color: var(--text);
     border-bottom: 2px solid var(--accent);
   }
 
   & tr:nth-child(even) {
-    background-color: #fbfaf9;
+    background-color: var(--table-row-alt);
   }
 
   & tr:hover {
-    background-color: #f7f5f2;
+    background-color: var(--table-row-hover);
   }
 }
 
 /* Dark theme table styles */
 .dark table {
   & th {
-    background-color: #0f1419;
+    background-color: var(--table-header-bg);
     color: var(--text);
     border-bottom-color: var(--accent);
   }
 
   & th,
   & td {
-    border-color: #1f2937;
+    border-color: var(--table-border);
   }
 
   & tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--table-row-alt);
   }
 
   & tr:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--table-row-hover);
   }
 }
 
@@ -177,6 +177,28 @@ table {
 .expressive-code {
   position: relative;
   z-index: 2;
+}
+
+/* Touch devices: signal horizontal code overflow with scroll shadows.
+   Local-attachment cover layers (in the frame's own background) slide with
+   the content and hide each shadow when that edge is fully scrolled, so the
+   shadow only shows while more code remains off-screen. */
+@media (pointer: coarse) {
+  .expressive-code pre {
+    background:
+      linear-gradient(to right, var(--ec-frm-edBg) 40%, transparent) left / 48px
+      100% no-repeat local,
+      linear-gradient(to left, var(--ec-frm-edBg) 40%, transparent) right / 48px
+      100% no-repeat local,
+      radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.5), transparent)
+      left / 16px 100% no-repeat scroll,
+      radial-gradient(
+        farthest-side at 100% 50%,
+        rgba(0, 0, 0, 0.5),
+        transparent
+      )
+      right / 16px 100% no-repeat scroll var(--ec-frm-edBg) !important;
+  }
 }
 
 /* Frame headers and titles */
@@ -239,7 +261,7 @@ table {
   color: var(--text);
   background: var(--code-bg);
   border: 1px solid var(--text-light);
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   padding: 4px 10px;
   cursor: pointer;
   transition: all 0.2s ease;

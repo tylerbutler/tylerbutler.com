@@ -204,7 +204,7 @@ const otherProjects = withTitles.filter((p) => !p.data.tags?.includes("ccl"));
     gap: 0.5em;
     margin-right: 1em;
     text-decoration: none;
-    font-size: 13px;
+    font-size: var(--font-size-label);
     text-transform: uppercase;
     letter-spacing: 1px;
   }
@@ -213,18 +213,15 @@ const otherProjects = withTitles.filter((p) => !p.data.tags?.includes("ccl"));
     margin-right: 0.5em;
   }
 
+  /* Color states, not opacity — dimmed accent text drops below AA contrast */
   .project-links a:hover,
   .article-badges a:hover {
     text-decoration: none;
-    opacity: 0.8;
+    color: var(--accent-hover);
   }
 
   .read-more {
     font-weight: 500;
-  }
-
-  .external-link {
-    opacity: 0.8;
   }
 
   .project-logo {

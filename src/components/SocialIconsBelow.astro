@@ -4,35 +4,46 @@ import Bluesky from "simple-icons-astro/Bluesky";
 ---
 
 <div class="social-icons-below">
-  <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me" data-tinylytics-event="social.github" data-tinylytics-event-value="https://github.com/tylerbutler">
-    <Icon name="iconoir:github" aria-hidden="true" />
-    <span class="sr-only">GitHub</span>
-  </a>
-  <a href="https://hachyderm.io/@tyler" class="social-link" title="Mastodon" target="_blank" rel="noopener me" data-tinylytics-event="social.mastodon" data-tinylytics-event-value="https://hachyderm.io/@tyler">
-    <Icon name="iconoir:mastodon" aria-hidden="true" />
-    <span class="sr-only">Mastodon</span>
-  </a>
-  <a href="https://bsky.app/profile/tylerbutler.bsky.social" class="social-link" title="Bluesky" target="_blank" rel="noopener me" data-tinylytics-event="social.bluesky" data-tinylytics-event-value="https://bsky.app/profile/tylerbutler.bsky.social">
-    <Bluesky fill="currentColor" aria-hidden="true" />
-    <span class="sr-only">Bluesky</span>
-  </a>
-  <a href="mailto:tyler@tylerbutler.com" class="social-link" title="Email" rel="me" data-tinylytics-event="social.email" data-tinylytics-event-value="tyler@tylerbutler.com">
-    <Icon name="iconoir:mail" aria-hidden="true" />
-    <span class="sr-only">Email</span>
-  </a>
-  <a href="/feed.xml" class="social-link feed-link" title="Subscribe via RSS" data-tinylytics-event="social.feed" data-tinylytics-event-value="/feed.xml">
-    <Icon name="iconoir:rss-feed" aria-hidden="true" />
-    <span class="feed-label">Subscribe</span>
-  </a>
+  <div class="social-icons-row">
+    <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me" data-tinylytics-event="social.github" data-tinylytics-event-value="https://github.com/tylerbutler">
+      <Icon name="iconoir:github" aria-hidden="true" />
+      <span class="sr-only">GitHub</span>
+    </a>
+    <a href="https://hachyderm.io/@tyler" class="social-link" title="Mastodon" target="_blank" rel="noopener me" data-tinylytics-event="social.mastodon" data-tinylytics-event-value="https://hachyderm.io/@tyler">
+      <Icon name="iconoir:mastodon" aria-hidden="true" />
+      <span class="sr-only">Mastodon</span>
+    </a>
+    <a href="https://bsky.app/profile/tylerbutler.bsky.social" class="social-link" title="Bluesky" target="_blank" rel="noopener me" data-tinylytics-event="social.bluesky" data-tinylytics-event-value="https://bsky.app/profile/tylerbutler.bsky.social">
+      <Bluesky fill="currentColor" aria-hidden="true" />
+      <span class="sr-only">Bluesky</span>
+    </a>
+    <a href="mailto:tyler@tylerbutler.com" class="social-link" title="Email" rel="me" data-tinylytics-event="social.email" data-tinylytics-event-value="tyler@tylerbutler.com">
+      <Icon name="iconoir:mail" aria-hidden="true" />
+      <span class="sr-only">Email</span>
+    </a>
+  </div>
+  <div class="social-icons-row">
+    <a href="http://feed.tylerbutler.com/AllPosts" class="social-link feed-link" title="Subscribe via RSS" data-tinylytics-event="social.feed" data-tinylytics-event-value="http://feed.tylerbutler.com/AllPosts">
+      <Icon name="iconoir:rss-feed" aria-hidden="true" />
+      <span class="feed-label">Subscribe</span>
+    </a>
+  </div>
 </div>
 
 <style>
   .social-icons-below {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0 4px 0;
+  }
+
+  .social-icons-row {
+    display: flex;
     gap: 8px;
     justify-content: center;
     align-items: center;
-    margin: 8px 0 4px 0;
   }
 
   .social-link {
@@ -88,7 +99,7 @@ import Bluesky from "simple-icons-astro/Bluesky";
   /* Touch: grow every control in the row to a ≥40px hit area — the padding
      provides the spacing, so the gap tightens to keep the row on one line */
   @media (pointer: coarse) {
-    .social-icons-below {
+    .social-icons-row {
       gap: 4px;
     }
 

@@ -22,7 +22,7 @@ It also surfaced two problems.
 
 **Releasing.** Publishing a multi-package workspace to Hex meant a pile of bash glue: computing publish order by hand, and -- the worst part -- rewriting each package's path dependencies into valid Hex version requirements at publish time, then putting the originals back afterward. That step was the most annoying and error-prone thing to automate, because a half-failed release leaves your repo in a rewritten state.
 
-I also initially struggled with how to handle versioning across the packages, which I believe should work a specific way: every user-facing change gets recorded as a small fragment file when it lands, and releases batch the accumulated fragments into version bumps and changelog entries. Fortunately there's an excellent tool called [changie](https://changie.dev/) that automates exactly this workflow, and I highly recommend it. I use it for my Rust projects -- including, as it happens, this one.
+I also initially struggled with how to handle versioning across the packages, which I believe should work a specific way: every user-facing change gets recorded as a small fragment file when it lands, and releases batch the accumulated fragments into version bumps and changelog entries. Fortunately there's an excellent tool called [Changie](https://changie.dev/) that automates exactly this workflow, and I highly recommend it. I use it for my Rust projects -- including, as it happens, this one.
 
 After running into my third project that needed the same Gleam workspace infrastructure, I decided it was time to solve the problem properly.
 
@@ -32,7 +32,7 @@ I happen to have quite a bit of professional experience in this area, so I wrote
 CLI, then dispatched Fable 5 to put it together.
 I was reasonably impressed with what it produced, and I'm already using it in my projects.
 
-The result is [trellis](trellis.tylerbutler.com) -- a trellis being, of course, the frame a lattice grows on.
+The result is [trellis](https://trellis.tylerbutler.com) -- a trellis being, of course, the frame a lattice grows on.
 
 The design principle: **configure nothing that can be derived, verify anything that must be duplicated.** There's no separate workspace config file. A `[tools.trellis]` table in the root `gleam.toml` marks the workspace and lists member globs; everything else -- the dependency graph, build order, publish order, change impact, the path-dep rewrite map -- is computed from the members' own `gleam.toml` files, never declared.
 
@@ -69,7 +69,7 @@ trellis publish --all-untagged                    # publish to Hex, in order
 
 Trellis is opinionated, but the pieces are modular, so you can adopt only the ones you want. If you just want `run` and
 `graph`, use those and keep your existing release process. I also built the changelog engine in as a native,
-changie-compatible feature -- fragments in `.changes/unreleased/`, configurable kinds and bump rules -- because it's
+Changie-compatible feature -- fragments in `.changes/unreleased/`, configurable kinds and bump rules -- because it's
 nice to have a single binary that handles the whole workspace scenario end to end, in CI and locally alike. But if you
 don't like how it works, sub it out.
 

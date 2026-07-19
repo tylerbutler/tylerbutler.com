@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [["html", { open: "never" }]],
   use: {
-    baseURL: "http://localhost:4321",
+    baseURL: "http://localhost:4327",
     trace: "on-first-retry",
   },
   projects: [
@@ -38,8 +38,10 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "astro dev --port 4321",
-    port: 4321,
+    // Serve the production build (per README, all tests run against `pnpm build` output);
+    // the dev server's toolbar animates and destabilizes screenshots
+    command: "serve dist -l 4327",
+    port: 4327,
     reuseExistingServer: !process.env.CI,
     stdout: "pipe",
     stderr: "pipe",

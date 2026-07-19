@@ -122,21 +122,18 @@ const sortedProjects = await Promise.all(
     margin-right: 1em;
     color: var(--accent);
     text-decoration: none;
-    font-size: 13px;
+    font-size: var(--font-size-label);
     text-transform: uppercase;
     letter-spacing: 1px;
   }
 
+  /* Color states, not opacity — dimmed accent text drops below AA contrast */
   .project-links a:hover {
     text-decoration: none;
-    opacity: 0.8;
+    color: var(--accent-hover);
   }
 
   .read-more {
     font-weight: 500;
-  }
-
-  .external-link {
-    opacity: 0.8;
   }
 </style>

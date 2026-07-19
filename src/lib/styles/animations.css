@@ -26,24 +26,33 @@ select,
     opacity 0.2s ease;
 }
 
-/* Link underline animation */
-.article-content a,
-.content-inner a:not(.tag):not(.nav-link) {
-  position: relative;
-  text-decoration: none;
-  background-image: linear-gradient(currentColor, currentColor);
-  background-position: 0% 100%;
-  background-repeat: no-repeat;
-  background-size: 100% 1px;
+/* Link underline animation — native text-decoration so the underline follows
+   wrapped lines and axe can compute contrast (background-image gradients
+   register as an undeterminable background and fail CI) */
+.article-content a:not(.heading-anchor),
+.content-inner a:not(.tag):not(.nav-link):not(.heading-anchor) {
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
   transition:
-    background-size 0.3s ease,
+    text-decoration-color 0.3s ease,
     color 0.2s ease;
 }
 
-.article-content a:hover,
-.content-inner a:not(.tag):not(.nav-link):hover {
-  background-size: 0% 1px;
-  background-position: 100% 100%;
+.article-content a:not(.heading-anchor):hover,
+.content-inner a:not(.tag):not(.nav-link):not(.heading-anchor):hover {
+  text-decoration-color: transparent;
+}
+
+/* Rollup/listing title links live inside heading tags. The heading type
+   already reads as the target, so skip the body-link underline there — each
+   selector carries an extra element over its global counterpart above so it
+   wins on specificity. Per-component hover styles handle the hover affordance. */
+.article-content :is(h1, h2, h3, h4, h5, h6) a:not(.heading-anchor),
+.content-inner
+  :is(h1, h2, h3, h4, h5, h6)
+  a:not(.tag):not(.nav-link):not(.heading-anchor) {
+  text-decoration: none;
 }
 
 /* Tag hover enhancement */

@@ -66,7 +66,7 @@ body::after {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--backdrop-dim);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -114,6 +114,37 @@ body::after {
 }
 
 /* Accessibility improvements */
+
+/* Skip link - hidden until keyboard-focused, then drops in from the top */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -110%);
+  z-index: 100;
+  background: var(--dark-bg);
+  color: var(--header-accent);
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--font-size-label);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+  outline: 2px solid var(--header-accent);
+  outline-offset: 2px;
+}
+
+/* Skip-link target: suppress the focus ring on the main region itself */
+#main-content:focus {
+  outline: none;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px !important;

@@ -12,23 +12,21 @@
   text-decoration: none;
 }
 
-/* Show # to the left on hover */
-.heading-anchor:hover::before {
+/* Show # to the left on hover or keyboard focus */
+.heading-anchor:hover::before,
+.heading-anchor:focus-visible::before {
   content: "#";
   position: absolute;
   left: -0.8em;
-  color: var(--color-text-secondary, #666);
+  color: var(--accent);
   font-weight: normal;
   opacity: 0.6;
 }
 
-.dark .heading-anchor:hover::before {
-  color: var(--color-text-secondary, #999);
-}
-
 /* Responsive - hide on small screens where there's no left margin */
 @media (max-width: 768px) {
-  .heading-anchor:hover::before {
+  .heading-anchor:hover::before,
+  .heading-anchor:focus-visible::before {
     display: none;
   }
 }
@@ -48,15 +46,16 @@
   scroll-margin-top: 2rem;
 }
 
-/* Style for when the heading is targeted via anchor link */
+/* Style for when the heading is targeted via anchor link — accent-tinted
+   wash matching the alert color-mix formula (10% light, 15% dark) */
 .heading-anchor:target {
-  background-color: rgba(255, 255, 0, 0.1);
-  border-radius: 4px;
+  background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-radius: var(--radius-md);
   padding: 0.2em 0.4em;
   margin: -0.2em -0.4em;
   transition: background-color 0.3s ease;
 }
 
 .dark .heading-anchor:target {
-  background-color: rgba(255, 255, 0, 0.05);
+  background-color: color-mix(in srgb, var(--accent) 15%, transparent);
 }

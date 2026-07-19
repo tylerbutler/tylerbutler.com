@@ -170,23 +170,16 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     margin: 0 0 0.5em 0;
   }
 
-  /* The primary CTA gets a resting link affordance: an accent underline that
-     fades on hover while the color deepens — the site's link grammar, scaled
-     optically for display size */
+  /* Stream titles read as headings first; no resting underline (consistent
+     with the article/note listing pages). Hover deepens to the accent. */
   .article-preview h2 a {
     color: var(--text);
-    text-decoration: underline;
-    text-decoration-color: var(--accent);
-    text-decoration-thickness: 0.06em;
-    text-underline-offset: 0.14em;
-    transition:
-      color 0.2s ease,
-      text-decoration-color 0.3s ease;
+    text-decoration: none;
+    transition: color 0.2s ease;
   }
 
   .article-preview h2 a:hover {
     color: var(--accent);
-    text-decoration-color: transparent;
   }
 
   .article-meta {

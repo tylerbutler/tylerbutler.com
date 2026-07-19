@@ -44,6 +44,17 @@ select,
   text-decoration-color: transparent;
 }
 
+/* Rollup/listing title links live inside heading tags. The heading type
+   already reads as the target, so skip the body-link underline there — each
+   selector carries an extra element over its global counterpart above so it
+   wins on specificity. Per-component hover styles handle the hover affordance. */
+.article-content :is(h1, h2, h3, h4, h5, h6) a:not(.heading-anchor),
+.content-inner
+  :is(h1, h2, h3, h4, h5, h6)
+  a:not(.tag):not(.nav-link):not(.heading-anchor) {
+  text-decoration: none;
+}
+
 /* Tag hover enhancement */
 .tag {
   transform: translateY(0);

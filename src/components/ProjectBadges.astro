@@ -1,0 +1,66 @@
+---
+import ShieldsBadge from "./ShieldsBadge.astro";
+
+interface Props {
+  npm?: string;
+  crate?: string;
+  hex?: string;
+  hexDocs?: string;
+  license?: string;
+  programmingLanguage?: string;
+}
+
+const { npm, crate, hex, hexDocs, license, programmingLanguage } = Astro.props;
+
+const languageConfig: Record<string, { color: string; logo: string }> = {
+  gleam: { color: "ffaff3", logo: "gleam" },
+  rust: { color: "CE422B", logo: "rust" },
+  go: { color: "00ADD8", logo: "go" },
+  typescript: { color: "3178C6", logo: "typescript" },
+  python: { color: "3776AB", logo: "python" },
+  ocaml: { color: "EC6813", logo: "ocaml" },
+};
+
+const { color, logo } =
+  (programmingLanguage ? languageConfig[programmingLanguage] : undefined) ?? {};
+---
+
+{npm && (
+  <a href={`https://www.npmjs.com/package/${npm}`} class="badge" target="_blank" rel="noopener">
+    <img src={`https://img.shields.io/npm/v/${npm}`} alt={`${npm} npm version`} />
+  </a>
+)}
+{programmingLanguage && (
+    <img
+    src={`https://img.shields.io/badge/written_in-${programmingLanguage}-${color ?? "grey"}.svg${logo ? `?logo=${logo}` : ""}`}
+    alt={`${programmingLanguage} programming language`} />
+)}
+{crate && (
+  <a href={`https://crates.io/crates/${crate}`} class="badge" target="_blank" rel="noopener">
+    <img src={`https://img.shields.io/crates/v/${crate}`} alt={`${crate} crate version`} />
+  </a>
+)}
+{hex && (
+  <a href={`https://hex.pm/packages/${hex}`} class="badge" target="_blank" rel="noopener">
+    <img src={`https://img.shields.io/hexpm/v/${hex}`} alt={`${hex} hex version`} />
+  </a>
+)}
+{hexDocs && (
+  <a href={`https://hexdocs.pm/${hexDocs}`} class="badge" target="_blank" rel="noopener">
+    <ShieldsBadge label="hex" message="docs" color="ffaff3" />
+  </a>
+)}
+{license && (
+  <a href={`https://opensource.org/licenses/${license}`} class="badge" target="_blank" rel="noopener">
+    <img
+      src={`https://img.shields.io/badge/license-${license}-blue.svg`}
+      alt={`${license} license`}
+    />
+  </a>
+)}
+
+<style>
+  img {
+    margin-right: 0.5em;
+  }
+</style>

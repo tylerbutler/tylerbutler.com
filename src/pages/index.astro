@@ -102,9 +102,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
             <li>
               <article class="article-preview">
                 <h2>
-                  <a href={getArticleUrl(article)}>
-                    {article.formattedTitle}
-                  </a>
+                  <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
                 </h2>
                 <div class="article-meta">
                   <time datetime={article.data.date.toISOString()}>

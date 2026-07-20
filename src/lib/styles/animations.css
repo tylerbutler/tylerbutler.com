@@ -30,7 +30,8 @@ select,
    wrapped lines and axe can compute contrast (background-image gradients
    register as an undeterminable background and fail CI) */
 .article-content a:not(.heading-anchor),
-.content-inner a:not(.tag):not(.nav-link):not(.heading-anchor) {
+.content-inner
+  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.heading-anchor) {
   text-decoration: underline;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.2em;
@@ -40,7 +41,10 @@ select,
 }
 
 .article-content a:not(.heading-anchor):hover,
-.content-inner a:not(.tag):not(.nav-link):not(.heading-anchor):hover {
+.content-inner
+  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(
+    .heading-anchor
+  ):hover {
   text-decoration-color: transparent;
 }
 

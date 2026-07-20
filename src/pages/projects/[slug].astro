@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import { ExternalLink } from "@lucide/astro";
 import Github from "simple-icons-astro/Github";
+import ProjectBadges from "../../components/ProjectBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatTitle } from "../../lib/typography";
 
@@ -28,12 +30,24 @@ const { Content } = await render(project);
 >
   <article class="article">
     <header class="article-header">
-      <h1>{await formatTitle(project.data.title)}</h1>
+      {project.data.logo && (
+        <Image src={project.data.logo} alt={`${project.data.title} logo`} class="project-logo"/>
+      )}
+      <h1 set:html={await formatTitle(project.data.title)} />
+      <div class="article-badges">
+        <ProjectBadges
+          npm={project.data.npm}
+          crate={project.data.crate}
+          hex={project.data.hex}
+          hexDocs={project.data.hexDocs}
+          license={project.data.license}
+          programmingLanguage={project.data.programmingLanguage}
+        />
+      </div>
       {project.data.description && (
         <p class="project-description">{project.data.description}</p>
       )}
     </header>
-
     <div class="article-content">
       <Content/>
     </div>
@@ -157,6 +171,18 @@ const { Content } = await render(project);
     margin: 1em 0;
   }
 
+  .article-content a,
+  .content-inner a:not(.tag):not(.nav-link):not(.badge):not(.blank) {
+    position: relative;
+    text-decoration: none;
+    background-image: none;
+  }
+
+  .content-inner a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(#overview):hover {
+    background-size: 0% 1px;
+    background-position: 100% 0%;
+  }
+
   /* Project-specific styles */
   .project-description {
     font-style: italic;
@@ -190,5 +216,10 @@ const { Content } = await render(project);
   .project-link:hover {
     background-color: var(--accent);
     color: white;
+  }
+
+  .project-logo {
+    width: 96px;
+    float: left;
   }
 </style>

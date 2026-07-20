@@ -1,0 +1,12 @@
+---
+title: repopo
+date: 2026-04-28
+description: Enforce policies on all or some of the files in a git repository.
+github: https://github.com/tylerbutler/tools-monorepo/tree/main/packages/repopo
+npm: repopo
+programmingLanguage: typescript
+license: MIT
+maturity: experimental
+---
+
+A repository policy enforcement tool. Define rules that files must satisfy — consistent headers, correct package.json fields, naming conventions — and repopo checks them all or automatically fixes them.

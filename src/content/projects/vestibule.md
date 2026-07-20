@@ -8,6 +8,8 @@ hexDocs: vestibule
 programmingLanguage: gleam
 license: MIT
 maturity: stable
+
+draft: true
 ---
 
 OAuth2 authentication in pure Gleam. Named for the entrance hall — the transitional space between outside (unauthenticated) and inside (authenticated). Uses a strategy pattern to support multiple OAuth providers.

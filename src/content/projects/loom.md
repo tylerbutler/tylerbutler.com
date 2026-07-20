@@ -6,6 +6,8 @@ github: https://github.com/tylerbutler/loom
 programmingLanguage: go
 license: MIT
 maturity: unpublished
+
+draft: true
 ---
 
 A unified interface for triggering, scheduling, and executing builds across a fleet of heterogeneous machines — from a developer's terminal, a CI pipeline, or any other trigger source.

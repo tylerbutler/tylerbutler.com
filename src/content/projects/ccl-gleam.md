@@ -7,6 +7,8 @@ programmingLanguage: gleam
 license: MIT
 tags: ["ccl"]
 maturity: experimental
+
+draft: true
 ---
 
 A Gleam implementation of CCL with an integrated test runner for the ccl-test-data JSON test suite. Runs on the Erlang VM (BEAM). Organized as a multi-package workspace with a core library and test runner CLI.

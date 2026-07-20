@@ -6,6 +6,8 @@ github: https://github.com/tylerbutler/santa
 programmingLanguage: rust
 license: MIT
 maturity: unpublished
+
+draft: true
 ---
 
 Install and manage packages across Homebrew, Cargo, APT, Pacman, Scoop, Nix, and more with a single command. Santa tracks what's installed, what's missing, and generates install scripts for bootstrapping new machines.

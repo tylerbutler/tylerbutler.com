@@ -3,6 +3,7 @@ title: sort-tsconfig
 date: 2026-04-28
 description: Sort TypeScript tsconfig files consistently.
 github: https://github.com/tylerbutler/tools-monorepo/tree/main/packages/sort-tsconfig
+npm: sort-tsconfig
 programmingLanguage: typescript
 license: MIT
 maturity: unpublished

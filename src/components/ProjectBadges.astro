@@ -35,44 +35,64 @@ const language = programmingLanguage
 // shields "flat" height to keep the row from shifting vertically as they load.
 ---
 
-{maturity && (
-  <ShieldsBadge label="status" message={maturityConfig[maturity].message} color={maturityConfig[maturity].color} />
-)}
-{npm && (
-  <a href={`https://www.npmjs.com/package/${npm}`} class="badge" target="_blank" rel="noopener">
-    <img src={`https://img.shields.io/npm/v/${npm}`} alt={`${npm} npm version`} height="20" loading="lazy" />
-  </a>
-)}
-{programmingLanguage && language && (
-  <ShieldsBadge
-    label="written in"
-    message={programmingLanguage}
-    color={language.color}
-    logoBase64={language.logoBase64}
-  />
-)}
-{crate && (
-  <a href={`https://crates.io/crates/${crate}`} class="badge" target="_blank" rel="noopener">
-    <img src={`https://img.shields.io/crates/v/${crate}`} alt={`${crate} crate version`} height="20" loading="lazy" />
-  </a>
-)}
-{hex && (
-  <a href={`https://hex.pm/packages/${hex}`} class="badge" target="_blank" rel="noopener">
-    <img src={`https://img.shields.io/hexpm/v/${hex}`} alt={`${hex} hex version`} height="20" loading="lazy" />
-  </a>
-)}
-{hexDocs && (
-  <a href={`https://hexdocs.pm/${hexDocs}`} class="badge" target="_blank" rel="noopener">
-    <ShieldsBadge label="hex" message="docs" color="ffaff3" />
-  </a>
-)}
-{license && (
-  <a href={`https://opensource.org/licenses/${license}`} class="badge" target="_blank" rel="noopener">
-    <ShieldsBadge label="license" message={license} color="blue" />
-  </a>
+{/* Row one: what this project is — status, published version, license. */}
+<div class="badge-row">
+  {maturity && (
+    <ShieldsBadge label="status" message={maturityConfig[maturity].message} color={maturityConfig[maturity].color} />
+  )}
+  {npm && (
+    <a href={`https://www.npmjs.com/package/${npm}`} class="badge" target="_blank" rel="noopener">
+      <img src={`https://img.shields.io/npm/v/${npm}`} alt={`${npm} npm version`} height="20" loading="lazy" />
+    </a>
+  )}
+  {crate && (
+    <a href={`https://crates.io/crates/${crate}`} class="badge" target="_blank" rel="noopener">
+      <img src={`https://img.shields.io/crates/v/${crate}`} alt={`${crate} crate version`} height="20" loading="lazy" />
+    </a>
+  )}
+  {hex && (
+    <a href={`https://hex.pm/packages/${hex}`} class="badge" target="_blank" rel="noopener">
+      <img src={`https://img.shields.io/hexpm/v/${hex}`} alt={`${hex} hex version`} height="20" loading="lazy" />
+    </a>
+  )}
+  {license && (
+    <a href={`https://opensource.org/licenses/${license}`} class="badge" target="_blank" rel="noopener">
+      <ShieldsBadge label="license" message={license} color="blue" />
+    </a>
+  )}
+</div>
+
+{/* Row two: how it's built and where to read about it. */}
+{(programmingLanguage || hexDocs) && (
+  <div class="badge-row">
+    {programmingLanguage && language && (
+      <ShieldsBadge
+        label="written in"
+        message={programmingLanguage}
+        color={language.color}
+        labelColor={language.labelColor}
+        logoBase64={language.logoBase64}
+      />
+    )}
+    {hexDocs && (
+      <a href={`https://hexdocs.pm/${hexDocs}`} class="badge" target="_blank" rel="noopener">
+        <ShieldsBadge label="hex" message="docs" color="ffaff3" />
+      </a>
+    )}
+  </div>
 )}
 
 <style>
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .badge-row + .badge-row {
+    margin-top: 0.35em;
+  }
+
   img {
     margin-right: 0.5em;
     vertical-align: top;

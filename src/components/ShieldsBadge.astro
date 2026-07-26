@@ -6,6 +6,8 @@ interface Props {
   message: string;
   /** Named shields color (e.g. "blue") or a bare hex triplet (e.g. "ffaff3"). */
   color?: string;
+  /** Label-side background. Defaults to badge-maker's dark grey. */
+  labelColor?: string;
   style?: "plastic" | "flat" | "flat-square" | "for-the-badge" | "social";
   /** Logo as a data URI — see languageBadge() in lib/badges.ts. */
   logoBase64?: string;
@@ -15,6 +17,7 @@ const {
   label,
   message,
   color = "blue",
+  labelColor,
   style = "flat",
   logoBase64,
 } = Astro.props;
@@ -42,7 +45,15 @@ const svg = String(
     message,
     color,
     style,
-    idSuffix: idSuffixFor([label, message, color, style, logoBase64]),
+    idSuffix: idSuffixFor([
+      label,
+      message,
+      color,
+      labelColor,
+      style,
+      logoBase64,
+    ]),
+    ...(labelColor ? { labelColor } : {}),
     ...(logoBase64 ? { logoBase64 } : {}),
   }),
 );

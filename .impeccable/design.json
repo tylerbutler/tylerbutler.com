@@ -1,0 +1,394 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-18T04:57:37.119Z",
+  "title": "Design System: tylerbutler.com",
+  "extensions": {
+    "colorMeta": {
+      "deep-space-hull": {
+        "role": "neutral",
+        "displayName": "Deep Space Hull",
+        "canonical": "oklch(24% 0.035 255)",
+        "tonalRamp": [
+          "oklch(15% 0.035 255)",
+          "oklch(24% 0.035 255)",
+          "oklch(35% 0.035 255)",
+          "oklch(47% 0.035 255)",
+          "oklch(59% 0.03 255)",
+          "oklch(71% 0.025 255)",
+          "oklch(83% 0.02 255)",
+          "oklch(95% 0.01 255)"
+        ]
+      },
+      "cloud-light-white": {
+        "role": "neutral",
+        "displayName": "Cloud-Light White",
+        "canonical": "oklch(98% 0.004 80)",
+        "tonalRamp": [
+          "oklch(15% 0.004 80)",
+          "oklch(30% 0.004 80)",
+          "oklch(45% 0.004 80)",
+          "oklch(60% 0.004 80)",
+          "oklch(72% 0.004 80)",
+          "oklch(84% 0.004 80)",
+          "oklch(92% 0.004 80)",
+          "oklch(98% 0.004 80)"
+        ]
+      },
+      "burnt-atmosphere": {
+        "role": "primary",
+        "displayName": "Burnt Atmosphere",
+        "canonical": "oklch(50% 0.09 62)",
+        "tonalRamp": [
+          "oklch(15% 0.06 62)",
+          "oklch(27% 0.08 62)",
+          "oklch(39% 0.1 62)",
+          "oklch(51% 0.105 62)",
+          "oklch(59% 0.105 62)",
+          "oklch(71% 0.09 62)",
+          "oklch(83% 0.07 62)",
+          "oklch(95% 0.03 62)"
+        ]
+      },
+      "golden-horizon": {
+        "role": "primary",
+        "displayName": "Golden Horizon",
+        "canonical": "oklch(79% 0.1 82)",
+        "tonalRamp": [
+          "oklch(15% 0.05 82)",
+          "oklch(27% 0.07 82)",
+          "oklch(39% 0.09 82)",
+          "oklch(51% 0.1 82)",
+          "oklch(63% 0.1 82)",
+          "oklch(79% 0.1 82)",
+          "oklch(88% 0.08 82)",
+          "oklch(95% 0.04 82)"
+        ]
+      },
+      "nebula-teal": {
+        "role": "neutral",
+        "displayName": "Nebula Teal",
+        "canonical": "oklch(38% 0.03 185)",
+        "tonalRamp": [
+          "oklch(15% 0.03 185)",
+          "oklch(26% 0.03 185)",
+          "oklch(38% 0.03 185)",
+          "oklch(48% 0.028 185)",
+          "oklch(60% 0.025 185)",
+          "oklch(72% 0.02 185)",
+          "oklch(84% 0.015 185)",
+          "oklch(95% 0.008 185)"
+        ]
+      },
+      "starfield-gold": {
+        "role": "primary",
+        "displayName": "Starfield Gold",
+        "canonical": "oklch(76% 0.125 95)",
+        "tonalRamp": [
+          "oklch(15% 0.06 95)",
+          "oklch(27% 0.08 95)",
+          "oklch(39% 0.1 95)",
+          "oklch(51% 0.115 95)",
+          "oklch(63% 0.125 95)",
+          "oklch(76% 0.125 95)",
+          "oklch(87% 0.1 95)",
+          "oklch(95% 0.05 95)"
+        ]
+      },
+      "cloud-shadow": {
+        "role": "neutral",
+        "displayName": "Cloud Shadow",
+        "canonical": "oklch(94% 0.007 80)",
+        "tonalRamp": [
+          "oklch(15% 0.007 80)",
+          "oklch(30% 0.007 80)",
+          "oklch(45% 0.007 80)",
+          "oklch(60% 0.007 80)",
+          "oklch(72% 0.007 80)",
+          "oklch(84% 0.007 80)",
+          "oklch(94% 0.007 80)",
+          "oklch(97% 0.005 80)"
+        ]
+      },
+      "deep-space-void": {
+        "role": "neutral",
+        "displayName": "Deep Space Void",
+        "canonical": "oklch(17% 0.02 240)",
+        "tonalRamp": [
+          "oklch(17% 0.02 240)",
+          "oklch(27% 0.02 240)",
+          "oklch(39% 0.02 240)",
+          "oklch(51% 0.02 240)",
+          "oklch(63% 0.018 240)",
+          "oklch(75% 0.015 240)",
+          "oklch(87% 0.01 240)",
+          "oklch(95% 0.006 240)"
+        ]
+      },
+      "atmosphere-bright": {
+        "role": "primary",
+        "displayName": "Atmosphere Bright",
+        "canonical": "oklch(59% 0.105 62)",
+        "tonalRamp": [
+          "oklch(15% 0.06 62)",
+          "oklch(27% 0.08 62)",
+          "oklch(39% 0.1 62)",
+          "oklch(51% 0.105 62)",
+          "oklch(59% 0.105 62)",
+          "oklch(71% 0.09 62)",
+          "oklch(83% 0.07 62)",
+          "oklch(95% 0.03 62)"
+        ]
+      },
+      "atmosphere-ember": {
+        "role": "primary",
+        "displayName": "Atmosphere Ember",
+        "canonical": "oklch(43% 0.08 62)",
+        "tonalRamp": [
+          "oklch(15% 0.06 62)",
+          "oklch(27% 0.08 62)",
+          "oklch(39% 0.1 62)",
+          "oklch(51% 0.105 62)",
+          "oklch(59% 0.105 62)",
+          "oklch(71% 0.09 62)",
+          "oklch(83% 0.07 62)",
+          "oklch(95% 0.03 62)"
+        ]
+      },
+      "cabin-paper": {
+        "role": "neutral",
+        "displayName": "Cabin Paper",
+        "canonical": "#e8e4de",
+        "tonalRamp": [
+          "#262320",
+          "#3d3934",
+          "#57524b",
+          "#726c63",
+          "#8f887d",
+          "#aca498",
+          "#c9c4bc",
+          "#e8e4de"
+        ]
+      },
+      "cabin-paper-dim": {
+        "role": "neutral",
+        "displayName": "Cabin Paper Dim",
+        "canonical": "#c9c4bc",
+        "tonalRamp": [
+          "#211f1c",
+          "#37342f",
+          "#4f4b44",
+          "#68635a",
+          "#827c71",
+          "#9d968a",
+          "#b8b1a5",
+          "#c9c4bc"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Masthead Display",
+        "purpose": "Site title only — Westgate, once per page, foil-stamped paperback titling."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page and article titles; Adelle 300 with wide tracking."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Article prose at 1.6 line-height inside the clamp(636px, 90vw, 763px) book measure."
+      },
+      "label": {
+        "displayName": "Wayfinding Label",
+        "purpose": "Lato uppercase — navigation, dates, alert titles. Never for prose."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "PragmataPro with ligatures; inline code tinted Burnt Atmosphere on Cloud Shadow."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ambient-container-glow",
+        "value": "0 0 20px rgba(26, 35, 50, 0.15)",
+        "purpose": "The site container floating over the painted backdrop. One per page."
+      },
+      {
+        "name": "structural-lift",
+        "value": "0 4px 12px rgba(0, 0, 0, 0.15)",
+        "purpose": "Elevated functional blocks (wide-screen code frames) and interactive elements needing affordance."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 2px 4px rgba(0, 0, 0, 0.1)",
+        "purpose": "Paired with translateY(-1px) on small controls like tags."
+      },
+      {
+        "name": "backdrop-dim",
+        "value": "rgba(0, 0, 0, 0.4)",
+        "purpose": "Dark-mode dim layer over the painted backdrop; the scene's night filter."
+      },
+      {
+        "name": "code-scroll-shadow",
+        "value": "radial-gradient rgba(0, 0, 0, 0.5) 16px edge fade",
+        "purpose": "Touch-only horizontal overflow signal on code frames; hidden at the reached edge."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "all 0.2s ease",
+        "purpose": "Default transition for color, background, border, shadow, transform, opacity on interactive elements."
+      },
+      {
+        "name": "underline-fade",
+        "value": "text-decoration-color 0.3s ease",
+        "purpose": "Link underlines fade out on hover; native text-decoration so wrapped lines stay underlined and contrast tooling can evaluate links."
+      },
+      {
+        "name": "kudos-launch",
+        "value": "750ms ease-in-out",
+        "purpose": "The 🚀 flies off the corner and returns. Suppressed under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "480px"
+      },
+      {
+        "name": "tablet",
+        "value": "768px"
+      },
+      {
+        "name": "wide",
+        "value": "1200px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Kudos Button",
+      "kind": "button",
+      "refersTo": "button-kudos",
+      "description": "The site's signature control — italic serif button whose rocket launches on click.",
+      "html": "<button class=\"ds-btn-kudos\">Kudos</button>",
+      "css": ".ds-btn-kudos { font-family: adelle, Baskerville, Georgia, serif; font-style: italic; font-size: 16px; color: #2a4a47; background: #f0ede8; border: 1px solid #4a6662; border-radius: 4px; padding: 4px 10px; cursor: pointer; transition: all 0.2s ease; } .ds-btn-kudos::before { content: \"🚀\\00a0\"; font-style: normal; display: inline-block; } .ds-btn-kudos:hover { background: #96591c; color: #ffffff; border-color: #96591c; } .ds-btn-kudos:focus-visible { outline: 2px solid #96591c; outline-offset: 2px; border-radius: 2px; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Uppercase Lato wayfinding label on the dark masthead.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\">Articles</a><a href=\"#\" class=\"ds-nav-link\">Notes</a><a href=\"#\" class=\"ds-nav-link ds-active\">Projects</a></nav>",
+      "css": ".ds-nav { background: #1a2332; padding: 12px 16px; display: flex; gap: 20px; justify-content: center; } .ds-nav-link { font-family: Lato, 'Helvetica Neue', Arial, sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: #f7f5f2; text-decoration: none; transition: color 0.2s ease; padding: 8px 4px; } .ds-nav-link:hover, .ds-nav-link.ds-active { color: #d4842a; } .ds-nav-link:focus-visible { outline: 2px solid #96591c; outline-offset: 2px; border-radius: 2px; }"
+    },
+    {
+      "name": "Content Link",
+      "kind": "custom",
+      "refersTo": "body",
+      "description": "Deep burnt-orange link whose underline fades on hover.",
+      "html": "<p class=\"ds-prose\">Read the <a href=\"#\" class=\"ds-link\">latest article</a> on the blog.</p>",
+      "css": ".ds-prose { font-family: adelle, Baskerville, Georgia, serif; font-size: 16px; line-height: 1.6; color: #2a4a47; } .ds-link { color: #96591c; text-decoration: underline; text-decoration-thickness: 0.08em; text-underline-offset: 0.2em; transition: text-decoration-color 0.3s ease, color 0.2s ease; } .ds-link:hover { color: #7d4b17; text-decoration-color: transparent; } .ds-link:focus-visible { outline: 2px solid #96591c; outline-offset: 2px; border-radius: 2px; }"
+    },
+    {
+      "name": "Inline Code",
+      "kind": "custom",
+      "refersTo": "code-inline",
+      "description": "Accent-tinted mono chip inside serif prose.",
+      "html": "<p class=\"ds-prose-code\">Run <code class=\"ds-code\">pnpm dev</code> to start the server.</p>",
+      "css": ".ds-prose-code { font-family: adelle, Baskerville, Georgia, serif; font-size: 16px; line-height: 1.6; color: #2a4a47; } .ds-code { font-family: 'PragmataPro', 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.025em; color: #96591c; background: #f0ede8; border: 1px solid rgba(184, 114, 42, 0.2); border-radius: 3px; padding: 0.2em 0.4em; }"
+    },
+    {
+      "name": "Note Alert",
+      "kind": "card",
+      "refersTo": "colors.instrument-blue",
+      "description": "GitHub-style alert: instrument-color left border, color-mix tinted fill, Lato uppercase title.",
+      "html": "<div class=\"ds-alert\"><p class=\"ds-alert-title\">Note</p><p class=\"ds-alert-body\">Useful information readers should know, even when skimming.</p></div>",
+      "css": ".ds-alert { border-left: 4px solid #4a6b8a; border-radius: 0 4px 4px 0; background: color-mix(in srgb, #4a6b8a 10%, #faf8f6); padding: 1em 1.5em; } .ds-alert-title { font-family: Lato, 'Helvetica Neue', Arial, sans-serif; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #4a6b8a; margin: 0 0 0.5em 0; } .ds-alert-body { font-family: adelle, Baskerville, Georgia, serif; font-size: 15px; line-height: 1.6; color: #2a4a47; margin: 0; }"
+    },
+    {
+      "name": "Tag Chip",
+      "kind": "chip",
+      "refersTo": "colors.cloud-shadow",
+      "description": "Small control that lifts 1px with a soft shadow on hover.",
+      "html": "<a href=\"#\" class=\"ds-tag\">astro</a>",
+      "css": ".ds-tag { display: inline-block; font-family: Lato, 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #2a4a47; background: #f0ede8; border-radius: 3px; padding: 2px 8px; text-decoration: none; transform: translateY(0); transition: all 0.2s ease; } .ds-tag:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); color: #96591c; }"
+    },
+    {
+      "name": "Action Chip",
+      "kind": "chip",
+      "refersTo": "button-kudos",
+      "description": "Stream preview action (Read More / Permalink) in the kudos register: italic serif on raised paper, accent fill on hover.",
+      "html": "<a class=\"ds-action-chip\" href=\"#\">Permalink →</a>",
+      "css": ".ds-action-chip { display: inline-block; background: #f0ede8; border: 1px solid #4a6662; padding: 4px 10px; font-family: adelle, Georgia, serif; font-style: italic; font-size: 13px; color: #2a4a47; border-radius: 4px; text-decoration: none; transition: color 0.2s, background-color 0.2s, border-color 0.2s; } .ds-action-chip:hover { background: #96591c; border-color: #96591c; color: #faf8f6; } .ds-action-chip:focus-visible { outline: 2px solid #96591c; outline-offset: 2px; }"
+    },
+    {
+      "name": "Back Cover Footer",
+      "kind": "custom",
+      "refersTo": "footer",
+      "description": "Hull-dark site footer: constellation emblem, italic subscribe line with Horizon Flare links, Lato wayfinding row, dimmed copyright.",
+      "html": "<footer class=\"ds-back-cover\"><svg viewBox=\"0 0 120 28\" width=\"120\" height=\"28\" aria-hidden=\"true\"><path d=\"M8 20 L34 9 L60 16 L86 6 L112 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.75\" opacity=\"0.5\"/><circle cx=\"8\" cy=\"20\" r=\"1.6\" fill=\"currentColor\"/><circle cx=\"34\" cy=\"9\" r=\"2.2\" fill=\"currentColor\"/><circle cx=\"60\" cy=\"16\" r=\"1.4\" fill=\"currentColor\"/><circle cx=\"86\" cy=\"6\" r=\"2\" fill=\"currentColor\"/><circle cx=\"112\" cy=\"18\" r=\"1.5\" fill=\"currentColor\"/></svg><p class=\"ds-back-cover-pitch\">New posts land here first — follow along via <a href=\"#\">RSS</a> or <a href=\"#\">JSON feed</a>. No algorithm, just posts.</p><nav class=\"ds-back-cover-links\"><a href=\"#\">About</a><a href=\"#\">Colophon</a><a href=\"#\">Webring</a></nav><p class=\"ds-back-cover-copy\">© 2002–2026 Tyler Butler</p></footer>",
+      "css": ".ds-back-cover { background: #1a2332; color: #f7f5f2; text-align: center; padding: 26px 25px 20px; font-family: adelle, Georgia, serif; } .ds-back-cover svg { display: block; margin: 0 auto 10px; opacity: 0.55; } .ds-back-cover-pitch { font-style: italic; font-size: 13px; max-width: 60ch; margin: 0 auto; } .ds-back-cover-pitch a { color: #d4842a; text-decoration: underline; text-underline-offset: 0.2em; } .ds-back-cover-pitch a:hover { text-decoration-color: transparent; } .ds-back-cover-links { display: flex; gap: 20px; justify-content: center; margin: 14px 0 10px; } .ds-back-cover-links a { font-family: Lato, Arial, sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #f7f5f2; text-decoration: none; padding: 4px; } .ds-back-cover-links a:hover { color: #d4842a; } .ds-back-cover-copy { font-size: 12px; color: #9a9da5; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Golden Age Paperback",
+    "overview": "The site is a 1970s science-fiction paperback cover you can read: a painted sky fixed behind everything, golden titling set in Westgate across a deep blue-gray masthead, and a warm white page of serif type floating in front of it. The scene is literal — a full-viewport spacecraft-sunset backdrop sits behind the site container, and on mobile it becomes a painted sunset gradient. Wonder is carried by the frame (masthead, constellations, gold accents); the page itself stays calm and bookish so long-form reading always comes first. Personality arrives in small, deliberate delights — a kudos button whose 🚀 actually launches, a webring, footnotes — never in loud gestures.",
+    "keyCharacteristics": [
+      "A literal painted-sky scene: fixed backdrop → glowing site container → dark masthead → light page",
+      "Serif-first typography (Adelle everywhere) with a single spectacular display face (Westgate) reserved for the masthead",
+      "Golden-hour palette: burnt orange and golden yellow warmth against deep space blue",
+      "Class-toggled light/dark themes; dark mode swaps burnt orange for starfield gold",
+      "Small delights over big motion: link underlines that fade on hover, launching rockets, constellation dividers"
+    ],
+    "rules": [
+      {
+        "name": "The Titling Foil Rule",
+        "body": "Golden Horizon belongs to the masthead alone — titling and the masthead's own wayfinding states (active nav, focus rings on its controls). Inside the reading column, use Burnt Atmosphere.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Suns Rule",
+        "body": "Light mode's sun is deep burnt orange (#96591c); dark mode's is starfield gold (#d4af37). Every accent role swaps with the theme; both themes must independently hold WCAG AA contrast at body size against the actual surface.",
+        "section": "colors"
+      },
+      {
+        "name": "The Masthead Rule",
+        "body": "Westgate appears exactly once per page, in the masthead. It is the cover titling; repeating it demotes it. One sanctioned exception: the constellation nameplates may whisper the face at caption size — cover furniture, not titling.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Voice Rule",
+        "body": "Everything readable is Adelle. Contrast comes from size and weight (100→300→400→600), never from introducing another text face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Painted Depth Rule",
+        "body": "The scene provides the depth (backdrop → container → masthead → page); shadows respond to state and function, never decorate at rest.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the reading column at clamp(636px, 90vw, 763px) — the book measure is the product.",
+      "Do route all light-mode accents through Burnt Atmosphere (#b8722a) and all dark-mode accents through Starfield Gold (#d4af37); verify AA contrast in both themes independently (the CI runs pa11y WCAG2AA).",
+      "Do reserve Westgate and Golden Horizon for the masthead — one appearance per page.",
+      "Do add small delights in the kudos-rocket register: brief (≤750ms), physical, suppressed under prefers-reduced-motion.",
+      "Do let depth come from the painted scene; shadows respond to hover, focus, or elevation state.",
+      "Do use color-mix tints of instrument colors for any new status surface, matching the alert formula.",
+      "Do spend underlines only on links that navigate; heading self-anchors stay bare and earn a # glyph on hover/focus instead.",
+      "Do give touch controls a >=40px hit area on coarse pointers - grow padding, not font size."
+    ],
+    "donts": [
+      "Don't import SaaS landing-page grammar — hero metrics, identical card grids, gradient CTAs (PRODUCT.md anti-reference, verbatim).",
+      "Don't drift toward the minimal dev-blog template — Inter-on-white, personality-free (PRODUCT.md anti-reference, verbatim).",
+      "Don't introduce a second text face; if a passage needs emphasis, use Adelle's weight and size range.",
+      "Don't use gradient text, glassmorphism, or decorative blurs — the backdrop is the only atmospheric layer.",
+      "Don't spend Golden Horizon inside the reading column in light mode; it fails contrast on Cloud-Light White and dilutes the masthead.",
+      "Don't add new thick colored left-borders beyond the established blockquote/alert convention; that pattern is grandfathered, not generative.",
+      "Don't replace the constellation dividers or the ### hr with plain rules — they are the site's fingerprint.",
+      "Do not end a page outside the scene: the footer is the hull-dark back cover in both themes, never a flat gray strip.",
+      "Do not use cold neutral grays - dark mode text is warmed Cabin Paper (#e8e4de / #c9c4bc)."
+    ]
+  }
+}

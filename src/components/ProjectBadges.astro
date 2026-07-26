@@ -2,7 +2,9 @@
 import { languageBadge } from "../lib/badges";
 import ShieldsBadge from "./ShieldsBadge.astro";
 
-type Maturity = "stable" | "unpublished" | "experimental";
+// Mirrors the maturity enum in src/content.config.ts — every value needs an
+// entry in maturityConfig below or the badge render throws.
+type Maturity = "stable" | "unpublished" | "experimental" | "archived";
 
 interface Props {
   npm?: string;
@@ -21,6 +23,7 @@ const maturityConfig: Record<Maturity, { message: string; color: string }> = {
   stable: { message: "stable", color: "brightgreen" },
   experimental: { message: "experimental", color: "orange" },
   unpublished: { message: "unpublished", color: "lightgrey" },
+  archived: { message: "archived", color: "inactive" },
 };
 
 const language = programmingLanguage

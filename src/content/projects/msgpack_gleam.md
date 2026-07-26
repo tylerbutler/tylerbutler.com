@@ -5,7 +5,9 @@ description: A pure Gleam implementation of MessagePack.
 github: https://github.com/tylerbutler/msgpack_gleam
 programmingLanguage: gleam
 license: MIT
-maturity: unpublished
+maturity: stable
+
+draft: true
 ---
 
 Encode and decode MessagePack binary serialization format in pure Gleam. Targets both the Erlang VM (BEAM) and JavaScript runtimes.

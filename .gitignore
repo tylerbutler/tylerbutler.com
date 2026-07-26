@@ -37,3 +37,8 @@ mise.local.toml
 
 # Generated dotLottie files (built from JSON sources)
 src/lottie/constellations/*.lottie
+
+# Ad-hoc screenshots from design/critique sessions
+/*.jpeg
+/*.jpg
+/*.png

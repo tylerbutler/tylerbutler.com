@@ -94,7 +94,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
               {index > 0 && (() => {
                 const { url, slug } = iconAssignments.get(article.id)!;
                 return (
-                  <li class="article-divider" aria-hidden="true">
+                  <li class="article-divider" role="presentation" aria-hidden="true">
                     <ConstellationIcon src={url} slug={slug} size={64} />
                   </li>
                 );
@@ -115,8 +115,10 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
                 </div>
                 <div class="article-content" set:html={article.transformedHtml}></div>
                 <p class="preview-actions">
-                  {article.isTruncated && (
+                  {article.isTruncated ? (
                     <a href={getArticleUrl(article)} class="read-more-link">Read More →</a>
+                  ) : (
+                    <a href={getArticleUrl(article)} class="read-more-link">Permalink →</a>
                   )}
                   <KudosButton path={getArticleUrl(article)} variant="preview" />
                 </p>
@@ -128,59 +130,18 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
       </ul>
     )}
 
-      <p>
-        <a href="/articles/">View All Articles</a>
-      </p>
+      <div class="stream-footer">
+        <p class="stream-footer-more">
+          <a href="/articles/">View All Articles →</a>
+        </p>
+      </div>
     </main>
   </div>
 </BaseLayout>
 
 <style>
-  .links-nav {
-    margin: -40px 0 0 0;
-    padding: 0.5em 0;
-    border-bottom: 1px solid var(--code-border);
-  }
-
-  .horizontal-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 1.5em;
-    justify-content: center;
-  }
-
-  .horizontal-links a {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 13px;
-    font-family: Lato, sans-serif;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .horizontal-links a:hover {
-    color: var(--accent);
-  }
-
   .homepage-layout {
     margin: 0;
-  }
-
-  @media (max-width: 768px) {
-    .horizontal-links {
-      flex-direction: row; /* Keep horizontal on mobile */
-      gap: 0.8em; /* Smaller gap to fit all items */
-      flex-wrap: nowrap; /* Force single line */
-      justify-content: center;
-    }
-
-    .horizontal-links a {
-      font-size: 12px; /* Smaller font to match top nav */
-      padding: 8px 4px; /* Tighter padding for single line */
-    }
   }
 
   .recent-articles {
@@ -202,16 +163,17 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   }
 
 
+  /* Size, face, and weight inherit from the global h2 ramp (typography.css) */
   .article-preview h2 {
     margin: 0 0 0.5em 0;
-    font-family: adelle, Georgia, serif;
-    font-size: 30px;
-    font-weight: 300;
   }
 
+  /* Stream titles read as headings first; no resting underline (consistent
+     with the article/note listing pages). Hover deepens to the accent. */
   .article-preview h2 a {
     color: var(--text);
     text-decoration: none;
+    transition: color 0.2s ease;
   }
 
   .article-preview h2 a:hover {
@@ -226,51 +188,17 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   }
 
   .article-preview time {
-    font-size: 12px;
+    font-size: var(--font-size-meta);
     color: var(--text-light);
     text-transform: uppercase;
     letter-spacing: 1px;
     flex-shrink: 0;
   }
 
-  .excerpt {
-    margin: 0.5em 0;
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-light);
-  }
-
+  /* Injected article HTML (set:html) is unscoped, so its typography comes
+     from the global stylesheets — only the wrapper itself is styled here */
   .article-content {
     margin: 0.5em 0;
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-light);
-  }
-
-  .article-content h1,
-  .article-content h2,
-  .article-content h3,
-  .article-content h4,
-  .article-content h5,
-  .article-content h6 {
-    color: var(--text);
-    margin: 1em 0 0.5em 0;
-  }
-
-  .article-content p {
-    margin: 0.5em 0;
-  }
-
-  .article-content a {
-    color: var(--accent);
-  }
-
-  .article-content pre,
-  .article-content code {
-    background: var(--code-bg);
-    padding: 0.2em 0.4em;
-    border-radius: 3px;
-    font-size: 12px;
   }
 
   .preview-actions {
@@ -280,31 +208,55 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     gap: 0.75em;
   }
 
+  /* Stream action chips share the kudos-button register: quiet italic serif
+     on raised paper, filling with the accent on hover */
   .read-more-link {
     display: inline-block;
     background: var(--code-bg);
-    padding: 2px 6px;
-    font-size: 13px;
-    color: var(--text-light);
-    border-radius: 3px;
+    border: 1px solid var(--text-light);
+    padding: 4px 10px;
+    font-size: var(--font-size-label);
+    font-style: italic;
+    color: var(--text);
+    border-radius: var(--radius-md);
     text-decoration: none;
   }
 
   .read-more-link:hover {
     background: var(--accent);
+    border-color: var(--accent);
     color: var(--light-bg);
   }
 
   .preview-actions :global(.tinylytics_kudos) {
-    font-size: 13px;
+    font-size: var(--font-size-label);
     padding: 2px 8px;
   }
 
-  .preview-kudos {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4em;
-    font-size: 13px;
-    color: var(--text-light);
+  /* Touch: grow the adjacent action chips to comfortable thumb targets
+     (≥40px hit height) and widen the gap between them */
+  @media (pointer: coarse) {
+    .preview-actions {
+      gap: 1.25em;
+    }
+
+    .read-more-link {
+      padding: 12px 16px;
+    }
+
+    .preview-actions :global(.tinylytics_kudos) {
+      padding: 10px 14px;
+    }
+  }
+
+  /* End-of-stream: the archive is the way onward; the subscribe pitch
+     lives in the site footer (the back cover) just below */
+  .stream-footer {
+    margin: 3em 0 1em;
+    text-align: center;
+  }
+
+  .stream-footer-more {
+    margin: 0;
   }
 </style>

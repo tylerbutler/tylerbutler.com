@@ -8,7 +8,7 @@ hex: birch
 hexDocs: birch
 programmingLanguage: gleam
 license: MIT
-maturity: stable
+maturity: experimental
 ---
 
 A comprehensive logging library in Gleam that targets both Erlang and JavaScript.

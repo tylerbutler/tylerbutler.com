@@ -5,7 +5,9 @@ description: ULID (Universally Unique Lexicographically Sortable Identifier) for
 github: https://github.com/tylerbutler/ulid_gleam
 programmingLanguage: gleam
 license: MIT
-maturity: unpublished
+maturity: stable
+
+draft: true
 ---
 
 Generate and parse ULIDs in Gleam. ULIDs are 128-bit identifiers that are sortable by creation time, making them a great alternative to UUIDs for database keys.

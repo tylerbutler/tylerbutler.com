@@ -7,7 +7,9 @@ group: markdown-plugins
 npm: remark-task-table
 programmingLanguage: typescript
 license: MIT
-maturity: stable
+maturity: unpublished
+
+draft: true
 ---
 
 Generates and updates Markdown tables of available tasks by reading `package.json` scripts and `justfile` recipes. Keeps documentation in sync with the actual commands in a project.

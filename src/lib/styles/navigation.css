@@ -10,13 +10,15 @@
   & ul {
     list-style: none;
     display: flex;
+    flex-wrap: wrap; /* Never clip labels: wrap to a second centered row when narrow */
     justify-content: center;
-    gap: 20px;
+    column-gap: 20px;
+    row-gap: 4px;
   }
 
   & a {
     font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
-    font-size: 14px;
+    font-size: var(--font-size-ui);
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: 2px;
@@ -28,11 +30,11 @@
 
     &:hover,
     &.active {
-      color: var(--accent-hover);
+      color: var(--nav-hover);
     }
 
     &:focus {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--header-accent);
       outline-offset: 2px;
       border-radius: 2px;
     }
@@ -44,7 +46,7 @@
   padding: 8px 0;
 
   & a {
-    font-size: 12px;
+    font-size: var(--font-size-meta);
     letter-spacing: 1.5px;
     line-height: 1.2;
   }
@@ -88,6 +90,7 @@
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
+      flex-wrap: nowrap; /* Single column — override the base wrap, which would clip into a hidden second column */
       justify-content: center;
       align-items: flex-start;
       gap: clamp(2px, 0.5vw, 5px); /* Responsive vertical gap */
@@ -124,17 +127,17 @@
           text-overflow: ellipsis; /* Show ... if text is still too long */
 
           &:hover {
-            color: var(--accent-hover);
+            color: var(--nav-hover);
           }
 
           &:focus {
-            outline: 2px solid var(--accent);
+            outline: 2px solid var(--header-accent);
             outline-offset: 2px;
             border-radius: 2px;
           }
 
           &.active {
-            color: var(--accent) !important;
+            color: var(--header-accent) !important;
             /* Use text-shadow instead of font-weight to prevent layout shift */
             text-shadow:
               0 0 0.5px currentColor,
@@ -155,7 +158,7 @@
 
   /* Active state for dark theme - ensure proper contrast */
   .dark .site-header nav ul li a.active {
-    color: var(--accent) !important;
+    color: var(--header-accent) !important;
     text-shadow:
       0 0 0.5px currentColor,
       0 0 0.5px currentColor;
@@ -204,14 +207,14 @@
     flex-shrink: 0;
 
     &:hover {
-      color: var(--accent-hover, #d4af37);
-      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--nav-hover);
+      background-color: var(--hover-wash-light);
     }
 
     &:focus {
-      outline: 2px solid var(--accent, #d4af37);
+      outline: 2px solid var(--header-accent);
       outline-offset: 2px;
-      border-radius: 3px;
+      border-radius: var(--radius-sm);
     }
   }
 
@@ -258,15 +261,18 @@
 /* Mobile navigation */
 @media (max-width: 480px) {
   .site-header nav a {
-    font-size: 12px; /* Smaller font for mobile horizontal layout */
+    font-size: var(
+      --font-size-meta
+    ); /* Smaller font for mobile horizontal layout */
     letter-spacing: 1px;
-    padding: 8px 4px; /* Tighter padding for single line */
+    padding: 10px 8px; /* Comfortable touch targets; wrapping handles overflow */
   }
 
   .site-header nav ul {
     flex-direction: row; /* Keep horizontal on mobile */
-    gap: 8px; /* Smaller gap to fit all items */
-    flex-wrap: nowrap; /* Force single line */
+    column-gap: 12px;
+    row-gap: 4px;
+    flex-wrap: wrap; /* Two centered rows instead of clipping */
     justify-content: center;
     width: 100%; /* Use full width */
   }

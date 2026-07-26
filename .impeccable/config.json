@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "lato",
+        "reason": "Lato is the documented wayfinding label font in DESIGN.md",
+        "createdAt": "2026-07-18T02:37:05.626Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(0, 0, 0, 0.15)",
+        "reason": "DESIGN.md §4 structural-lift elevation value",
+        "createdAt": "2026-07-19T04:12:52.852Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(0, 0, 0, 0.1)",
+        "reason": "DESIGN.md §4 hover-lift elevation value",
+        "createdAt": "2026-07-19T04:12:57.313Z"
+      }
+    ]
+  }
+}

@@ -5,7 +5,9 @@ description: Generate Gleam type definitions from JSON Schema definitions.
 github: https://github.com/tylerbutler/json-schema-gleam
 programmingLanguage: gleam
 license: MIT
-maturity: unpublished
+maturity: stable
+
+draft: true
 ---
 
 Parses JSON Schema files (Draft-07) and generates Gleam record types, along with optional JSON decoders. Handles objects, arrays, enums, `oneOf`/`anyOf`, `$ref`, and more.

@@ -143,7 +143,7 @@ const isRsvp = data.postType === "rsvp" && data.rsvp;
   .note-card {
     background: var(--code-bg);
     border: 1px solid var(--code-border);
-    border-radius: 8px;
+    border-radius: var(--radius-lg);
     padding: 1.1rem 1.35rem;
     overflow: hidden;
   }
@@ -189,7 +189,7 @@ const isRsvp = data.postType === "rsvp" && data.rsvp;
   .note-permalink {
     color: var(--text-light);
     text-decoration: none;
-    font-size: 13px;
+    font-size: var(--font-size-label);
     font-variant-numeric: tabular-nums;
   }
 
@@ -200,8 +200,8 @@ const isRsvp = data.postType === "rsvp" && data.rsvp;
   .note-context {
     margin: 0.25rem 0 0.75rem;
     padding: 0.5rem 0.75rem;
-    border-left: 3px solid var(--accent, #888);
-    font-size: 13px;
+    border-left: 3px solid var(--accent);
+    font-size: var(--font-size-label);
   }
 
   .note-context-line {
@@ -252,7 +252,7 @@ const isRsvp = data.postType === "rsvp" && data.rsvp;
   .tag {
     color: var(--accent);
     text-decoration: none;
-    font-size: 13px;
+    font-size: var(--font-size-label);
   }
 
   .tag:hover {
@@ -262,7 +262,7 @@ const isRsvp = data.postType === "rsvp" && data.rsvp;
   .note-syndication {
     margin-top: 0.75rem;
     color: var(--text-light);
-    font-size: 12px;
+    font-size: var(--font-size-meta);
   }
 
   .note-syndication-label {

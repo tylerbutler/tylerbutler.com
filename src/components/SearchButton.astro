@@ -12,7 +12,7 @@ import { Icon } from "astro-icon/components";
     background: none;
     cursor: pointer;
     padding: 4px;
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
     transition: background-color 0.2s ease;
     display: flex;
     align-items: center;
@@ -20,11 +20,11 @@ import { Icon } from "astro-icon/components";
   }
 
   #searchToggle:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--hover-wash-light);
   }
 
   #searchToggle:focus {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--header-accent);
     outline-offset: 2px;
   }
 
@@ -36,7 +36,14 @@ import { Icon } from "astro-icon/components";
   }
 
   :global(.dark) #searchToggle:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--hover-wash-dark);
+  }
+
+  /* Touch: ≥40px hit area (18px icon + 11px padding each side) */
+  @media (pointer: coarse) {
+    #searchToggle {
+      padding: 11px;
+    }
   }
 </style>
 

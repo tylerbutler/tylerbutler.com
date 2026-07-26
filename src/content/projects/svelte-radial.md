@@ -6,6 +6,8 @@ github: https://github.com/tylerbutler/svelte-radial
 programmingLanguage: typescript
 license: MIT
 maturity: unpublished
+
+draft: true
 ---
 
 A Svelte 5 component library for building interactive radial UI controls — iPod-style clickwheels, timezone selectors, volume dials, and more. Built on the Orbit CSS Framework.

@@ -1,10 +1,10 @@
 ---
 title: xkcd 2
-date: 2025-12-27
+date: 2012-05-17
 description: A Flask-based web application that displays xkcd comics in a slightly different way.
 url: https://xkcd2.com
 github: https://github.com/tylerbutler/xkcd2
-maturity: unpublished
+maturity: stable
 ---
 
 ## Overview

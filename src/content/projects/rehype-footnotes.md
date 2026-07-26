@@ -7,7 +7,7 @@ group: markdown-plugins
 npm: rehype-footnotes
 programmingLanguage: typescript
 license: MIT
-maturity: stable
+maturity: experimental
 ---
 
 A rehype plugin that transforms GitHub Flavored Markdown footnotes into the markup format expected by [Littlefoot.js](https://littlefoot.js.org/), enabling clean pop-up footnote UI.

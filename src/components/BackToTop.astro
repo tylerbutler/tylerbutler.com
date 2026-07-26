@@ -1,0 +1,102 @@
+---
+// BackToTop — a quiet rocket that appears after deep scroll and flies the
+// reader back to the top. Pairs with the kudos rocket; same delight register.
+---
+
+<button id="backToTop" aria-label="Back to top" hidden>
+  <span class="rocket" aria-hidden="true"></span>
+</button>
+
+<style>
+  #backToTop {
+    position: fixed;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--overlay);
+    background: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+    z-index: 90;
+  }
+
+  #backToTop.visible {
+    opacity: 0.85;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  #backToTop:hover {
+    opacity: 1;
+  }
+
+  #backToTop:focus-visible {
+    outline: 2px solid var(--header-accent);
+    outline-offset: 2px;
+    opacity: 1;
+  }
+
+  .rocket::before {
+    /* Emoji lives in a pseudo-element so contrast checkers skip it,
+       matching the kudos button's pattern */
+    content: "🚀";
+    font-size: 18px;
+    line-height: 1;
+    display: inline-block;
+    transform: rotate(-45deg); /* point the rocket straight up */
+    transition: transform 0.2s ease;
+  }
+
+  #backToTop:hover .rocket {
+    transform: rotate(-45deg) translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #backToTop,
+    .rocket {
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const initBackToTop = () => {
+      const btn = document.getElementById("backToTop");
+      if (!btn || btn.dataset.bound) return;
+      btn.dataset.bound = "true";
+      btn.hidden = false;
+
+      const toggle = () => {
+        btn.classList.toggle(
+          "visible",
+          window.scrollY > window.innerHeight * 1.5,
+        );
+      };
+
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+
+      btn.addEventListener("click", () => {
+        const reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      });
+    };
+
+    initBackToTop();
+    document.addEventListener("astro:after-swap", initBackToTop);
+  })();
+</script>

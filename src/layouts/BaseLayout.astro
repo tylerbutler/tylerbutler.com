@@ -1,4 +1,5 @@
 ---
+import BackToTop from "../components/BackToTop.astro";
 import BrokenLinkTooltip from "../components/BrokenLinkTooltip.astro";
 import Footer from "../components/Footer.astro";
 import FootnoteScript from "../components/FootnotesScript.astro";
@@ -64,15 +65,17 @@ const {
     <script src="/pagefind/pagefind-component-ui.js" type="module"></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="site-container">
       <Header size={headerSize}/>
-      <main class="content-section" data-pagefind-body={excludeFromSearch ? undefined : true}>
+      <main id="main-content" tabindex="-1" class="content-section" data-pagefind-body={excludeFromSearch ? undefined : true}>
         <div class="content-inner">
           <slot/>
         </div>
       </main>
       <Footer/>
     </div>
+    <BackToTop/>
     <FootnoteScript/>
     <BrokenLinkTooltip/>
     <pagefind-config bundle-path="/pagefind/" excerpt-length="30"></pagefind-config>

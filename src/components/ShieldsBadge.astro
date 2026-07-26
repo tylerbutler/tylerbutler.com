@@ -1,7 +1,39 @@
 ---
 import { makeBadge } from "badge-maker";
 
-const { label, message, color = "blue", style = "flat", logo } = Astro.props;
+interface Props {
+  label: string;
+  message: string;
+  /** Named shields color (e.g. "blue") or a bare hex triplet (e.g. "ffaff3"). */
+  color?: string;
+  style?: "plastic" | "flat" | "flat-square" | "for-the-badge" | "social";
+  /** Logo as a data URI — see languageBadge() in lib/badges.ts. */
+  logoBase64?: string;
+}
+
+const {
+  label,
+  message,
+  color = "blue",
+  style = "flat",
+  logoBase64,
+} = Astro.props;
+
+/**
+ * badge-maker names its clipPath and gradient "r" and "s". Inline SVGs share
+ * one document ID space, so without a suffix every badge's `url(#r)` resolves
+ * to the first badge's clipPath and any wider badge gets visibly cut off.
+ * Hashing the badge's own content keeps the suffix stable across builds, and
+ * two identical badges may safely share IDs since their defs are identical.
+ */
+function idSuffixFor(parts: Array<string | undefined>): string {
+  let hash = 0x811c9dc5;
+  for (const char of parts.join(" ")) {
+    hash ^= char.charCodeAt(0);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return Math.abs(hash).toString(36);
+}
 
 // Generate SVG as a string
 const svg = String(
@@ -10,7 +42,8 @@ const svg = String(
     message,
     color,
     style,
-    ...(logo ? { logo } : {}),
+    idSuffix: idSuffixFor([label, message, color, style, logoBase64]),
+    ...(logoBase64 ? { logoBase64 } : {}),
   }),
 );
 

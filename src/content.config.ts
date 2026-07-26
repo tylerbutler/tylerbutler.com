@@ -1,4 +1,4 @@
-import { defineCollection } from "astro:content";
+import { defineCollection, reference } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
@@ -137,6 +137,27 @@ function inferNoteSource(
   return undefined;
 }
 
+/**
+ * Named sections on the projects listing. The markdown body is the section
+ * description; the logo represents the whole group, so member cards suppress
+ * their own.
+ */
+const projectGroups = defineCollection({
+  loader: glob({
+    pattern: "**/[^_]*.{md,mdx}",
+    base: "./src/content/project-groups",
+  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      logo: image().optional(),
+      // Ascending. Values are spaced so a new group can slot in without
+      // renumbering the others.
+      order: z.number().default(100),
+      draft: z.boolean().default(false),
+    }),
+});
+
 const projects = defineCollection({
   loader: glob({
     pattern: "**/[^_]*.{md,mdx}",
@@ -159,7 +180,8 @@ const projects = defineCollection({
       license: z.string().optional(),
       maturity: z.enum(["stable", "unpublished", "experimental"]).optional(),
       logo: image().optional(),
+      group: reference("projectGroups").optional(),
     }),
 });
 
-export const collections = { articles, notes, projects };
+export const collections = { articles, notes, projects, projectGroups };

@@ -1,9 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-import { BookOpen, ExternalLink } from "@lucide/astro";
-import Github from "simple-icons-astro/Github";
-import ProjectBadges from "../components/ProjectBadges.astro";
+import { getCollection, render } from "astro:content";
+import ProjectCard from "../components/ProjectCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { includeDraft } from "../lib/draft-utils";
 import { formatTitle } from "../lib/typography";
@@ -27,8 +25,67 @@ const withTitles = await Promise.all(
     })),
 );
 
-const cclProjects = withTitles.filter((p) => p.data.tags?.includes("ccl"));
-const otherProjects = withTitles.filter((p) => !p.data.tags?.includes("ccl"));
+// Bucket by referenced group id. A reference resolves to { collection, id },
+// not the entry, so we match ids against the group collection loaded below
+// rather than paying a getEntry() per project.
+const byGroup = new Map<string, typeof withTitles>();
+for (const project of withTitles) {
+  const id = project.data.group?.id;
+  if (!id) continue;
+  const bucket = byGroup.get(id);
+  if (bucket) bucket.push(project);
+  else byGroup.set(id, [project]);
+}
+
+const allGroups = await getCollection(
+  "projectGroups",
+  ({ id }) => !id.startsWith("_"),
+);
+
+// Astro only validates a reference() when it is resolved via getEntry(), which
+// we intentionally skip — so a typo'd `group:` would otherwise silently drop a
+// project into the ungrouped list. Check against every group, drafts included,
+// so that referencing a draft group stays legal.
+const knownGroupIds = new Set(allGroups.map((group) => group.id));
+const badReferences = withTitles
+  .filter((p) => p.data.group && !knownGroupIds.has(p.data.group.id))
+  .map((p) => `${p.id} → "${p.data.group?.id}"`);
+if (badReferences.length > 0) {
+  throw new Error(
+    `Unknown project group referenced by ${badReferences.length} project(s): ${badReferences.join(", ")}. ` +
+      `Known groups: ${[...knownGroupIds].join(", ")}.`,
+  );
+}
+
+const groupEntries = allGroups.filter(({ data }) => includeDraft(data));
+
+// render() is async and can't be awaited inside JSX, so section bodies are
+// rendered up front.
+const groups = (
+  await Promise.all(
+    groupEntries
+      .sort((a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id))
+      .map(async (group) => {
+        const members = byGroup.get(group.id) ?? [];
+        if (members.length === 0) return null;
+        const { Content } = await render(group);
+        return {
+          group,
+          members,
+          Content,
+          formattedTitle: await formatTitle(group.data.title),
+        };
+      }),
+  )
+).filter((group): group is NonNullable<typeof group> => group !== null);
+
+// Computed last, against the groups that actually rendered, so a project
+// pointing at a draft or missing group falls back to the main list instead of
+// disappearing from the page.
+const renderedGroupIds = new Set(groups.map((g) => g.group.id));
+const ungrouped = withTitles.filter(
+  (p) => !p.data.group || !renderedGroupIds.has(p.data.group.id),
+);
 ---
 
 <BaseLayout
@@ -42,119 +99,44 @@ const otherProjects = withTitles.filter((p) => !p.data.tags?.includes("ccl"));
       source contributions and personal experiments.
     </p>
 
-    {otherProjects.length > 0 ? (
+    {ungrouped.length > 0 ? (
       <ul class="projects-list">
-        {otherProjects.map(project => {
-          return (
-            <li class="project-item">
-              <article>
-                {project.data.logo && (
-                  <Image
-                    src={project.data.logo}
-                    alt={`${project.data.title} logo`}
-                    class="project-logo"
-                    width={48}
-                  />
-                )}
-                <h2 set:html={project.formattedTitle} />
-                    <div class="article-badges">
-                      <ProjectBadges
-                        npm={project.data.npm}
-                        crate={project.data.crate}
-                        hex={project.data.hex}
-                        hexDocs={project.data.hexDocs}
-                        license={project.data.license}
-                        programmingLanguage={project.data.programmingLanguage}
-                      />
-                    </div>
-                {project.data.description && (
-                  <p class="description">{project.data.description}</p>
-                )}
-                <div class="project-links">
-                  <a href={`/projects/${project.id}`} class="read-more" data-tinylytics-event="project.read-more" data-tinylytics-event-value={project.id}>
-                    <BookOpen class="icon" />
-                    Read More
-                  </a>
-                  {project.data.url && (
-                    <a href={project.data.url} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
-                      <ExternalLink class="icon" />
-                      View Project
-                    </a>
-                  )}
-                  {project.data.github && (
-                    <a href={project.data.github} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
-                      <Github class="icon" />
-                      GitHub
-                    </a>
-                  )}
-                </div>
-              </article>
-            </li>
-          );
-        })}
+        {ungrouped.map(project => (
+          <ProjectCard project={project} formattedTitle={project.formattedTitle} />
+        ))}
       </ul>
-    ) : (
+    ) : groups.length === 0 && (
       <p>More projects coming soon...</p>
     )}
 
-    {cclProjects.length > 0 && (
-      <div class="ccl-section">
-        <h2 class="section-heading">CCL Implementations</h2>
-        <p class="section-description">
-          <a href="https://ccl.tylerbutler.com/">CCL (Categorical Configuration Language)</a> is a configuration language with a small, consistent syntax. These are implementations and tools across multiple languages.
-        </p>
+    {groups.map(({ group, members, Content, formattedTitle }) => (
+      <div class="project-group">
+        <div class="group-header">
+          {group.data.logo && (
+            <Image
+              src={group.data.logo}
+              alt={`${group.data.title} logo`}
+              class="group-logo"
+              width={96}
+            />
+          )}
+          <div class="group-intro">
+            <h2 class="section-heading" set:html={formattedTitle} />
+            <div class="section-description"><Content /></div>
+          </div>
+        </div>
         <ul class="projects-list">
-          {cclProjects.map(project => {
-            return (
-              <li class="project-item">
-                <article>
-                  {project.data.logo && (
-                    <Image
-                      src={project.data.logo}
-                      alt={`${project.data.title} logo`}
-                      class="project-logo"
-                      width={48}
-                    />
-                  )}
-                  <h3 set:html={project.formattedTitle} />
-                      <div class="article-badges">
-                        <ProjectBadges
-                          npm={project.data.npm}
-                          crate={project.data.crate}
-                          hex={project.data.hex}
-                          hexDocs={project.data.hexDocs}
-                          license={project.data.license}
-                          programmingLanguage={project.data.programmingLanguage}
-                        />
-                      </div>
-                  {project.data.description && (
-                    <p class="description">{project.data.description}</p>
-                  )}
-                  <div class="project-links">
-                    <a href={`/projects/${project.id}`} class="read-more" data-tinylytics-event="project.read-more" data-tinylytics-event-value={project.id}>
-                      <BookOpen class="icon" />
-                      Read More
-                    </a>
-                    {project.data.url && (
-                      <a href={project.data.url} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
-                        <ExternalLink class="icon" />
-                        View Project
-                      </a>
-                    )}
-                    {project.data.github && (
-                      <a href={project.data.github} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
-                        <Github class="icon" />
-                        GitHub
-                      </a>
-                    )}
-                  </div>
-                </article>
-              </li>
-            );
-          })}
+          {members.map(project => (
+            <ProjectCard
+              project={project}
+              formattedTitle={project.formattedTitle}
+              titleLevel={3}
+              showLogo={false}
+            />
+          ))}
         </ul>
       </div>
-    )}
+    ))}
   </section>
 </BaseLayout>
 
@@ -165,78 +147,26 @@ const otherProjects = withTitles.filter((p) => !p.data.tags?.includes("ccl"));
     margin: 2em 0;
   }
 
-  .project-item {
-    margin-bottom: 2.5em;
-    padding-bottom: 2em;
-    border-bottom: 1px solid var(--code-border);
-  }
-
-  .project-item:last-child {
-    border-bottom: none;
-  }
-
-  .project-item h2,
-  .project-item h3 {
-    margin: 0 0 0.5em 0;
-    color: var(--text);
-  }
-
-  .description {
-    font-style: italic;
-    color: var(--text-light);
-    margin: 0.5em 0 1em 0;
-    line-height: 1.5;
-  }
-
-  .project-links {
-    margin-top: 1em;
-  }
-
-  .project-links .icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .project-links a,
-  .article-badges a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    margin-right: 1em;
-    text-decoration: none;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .article-badges a {
-    margin-right: 0.5em;
-  }
-
-  .project-links a:hover,
-  .article-badges a:hover {
-    text-decoration: none;
-    opacity: 0.8;
-  }
-
-  .read-more {
-    font-weight: 500;
-  }
-
-  .external-link {
-    opacity: 0.8;
-  }
-
-  .project-logo {
-    width: 96px;
-    float: left;
-    margin-right: 1em;
-  }
-
-  .ccl-section {
+  .project-group {
     margin-top: 3em;
     padding-top: 2em;
     border-top: 2px solid var(--code-border);
+  }
+
+  /* Flex rather than a float, so the member list can't wrap around the logo. */
+  .group-header {
+    display: flex;
+    gap: 1em;
+    align-items: flex-start;
+  }
+
+  .group-logo {
+    width: 96px;
+    flex-shrink: 0;
+  }
+
+  .group-intro {
+    flex: 1;
   }
 
   .section-heading {
@@ -245,6 +175,13 @@ const otherProjects = withTitles.filter((p) => !p.data.tags?.includes("ccl"));
 
   .section-description {
     color: var(--text-light);
-    margin-bottom: 1.5em;
+  }
+
+  .section-description :global(p) {
+    margin: 0 0 1em 0;
+  }
+
+  .section-description :global(p:last-child) {
+    margin-bottom: 0;
   }
 </style>

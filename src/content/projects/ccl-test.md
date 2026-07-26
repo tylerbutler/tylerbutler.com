@@ -4,6 +4,7 @@ date: 2026-04-20
 description: A comprehensive language-agnostic test suite for CCL, the most elegant configuration language.
 url: https://ccl.tylerbutler.com/
 github: https://github.com/CatConfLang/ccl-test-data
+group: ccl
 logo: ../../assets/ccl-badge.webp
 license: MIT
 tags: ["ccl"]

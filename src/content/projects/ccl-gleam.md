@@ -3,6 +3,7 @@ title: CCL Gleam
 date: 2026-04-19
 description: A Gleam implementation of CCL (Categorical Configuration Language).
 github: https://github.com/tylerbutler/ccl_gleam
+group: ccl
 programmingLanguage: gleam
 license: MIT
 tags: ["ccl"]

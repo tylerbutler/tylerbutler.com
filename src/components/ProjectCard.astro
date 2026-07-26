@@ -1,0 +1,141 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { BookOpen, ExternalLink } from "@lucide/astro";
+import Github from "simple-icons-astro/Github";
+import ProjectBadges from "./ProjectBadges.astro";
+
+export interface Props {
+  project: CollectionEntry<"projects">;
+  /** Pre-rendered HTML from formatTitle(); consumed via set:html. */
+  formattedTitle: string;
+  /** h2 at top level, h3 inside a group section. */
+  titleLevel?: 2 | 3;
+  /** Group sections show one logo for the whole group, so members hide theirs. */
+  showLogo?: boolean;
+}
+
+const {
+  project,
+  formattedTitle,
+  titleLevel = 2,
+  showLogo = true,
+} = Astro.props;
+const TitleTag = `h${titleLevel}` as "h2" | "h3";
+---
+
+<li class="project-item">
+  <article>
+    {showLogo && project.data.logo && (
+      <Image
+        src={project.data.logo}
+        alt={`${project.data.title} logo`}
+        class="project-logo"
+        width={96}
+      />
+    )}
+    <TitleTag set:html={formattedTitle} />
+    <div class="article-badges">
+      <ProjectBadges
+        npm={project.data.npm}
+        crate={project.data.crate}
+        hex={project.data.hex}
+        hexDocs={project.data.hexDocs}
+        license={project.data.license}
+        programmingLanguage={project.data.programmingLanguage}
+        maturity={project.data.maturity}
+      />
+    </div>
+    {project.data.description && (
+      <p class="description">{project.data.description}</p>
+    )}
+    <div class="project-links">
+      <a href={`/projects/${project.id}`} class="read-more" data-tinylytics-event="project.read-more" data-tinylytics-event-value={project.id}>
+        <BookOpen class="icon" />
+        Read More
+      </a>
+      {project.data.url && (
+        <a href={project.data.url} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
+          <ExternalLink class="icon" />
+          View Project
+        </a>
+      )}
+      {project.data.github && (
+        <a href={project.data.github} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
+          <Github class="icon" />
+          GitHub
+        </a>
+      )}
+    </div>
+  </article>
+</li>
+
+<style>
+  .project-item {
+    margin-bottom: 2.5em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid var(--code-border);
+  }
+
+  .project-item:last-child {
+    border-bottom: none;
+  }
+
+  .project-item h2,
+  .project-item h3 {
+    margin: 0 0 0.5em 0;
+    color: var(--text);
+  }
+
+  .description {
+    font-style: italic;
+    color: var(--text-light);
+    margin: 0.5em 0 1em 0;
+    line-height: 1.5;
+  }
+
+  .project-links {
+    margin-top: 1em;
+  }
+
+  .project-links .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .project-links a,
+  .article-badges a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-right: 1em;
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .article-badges a {
+    margin-right: 0.5em;
+  }
+
+  .project-links a:hover,
+  .article-badges a:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  .read-more {
+    font-weight: 500;
+  }
+
+  .external-link {
+    opacity: 0.8;
+  }
+
+  .project-logo {
+    width: 96px;
+    float: left;
+    margin-right: 1em;
+  }
+</style>

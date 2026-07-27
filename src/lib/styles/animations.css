@@ -48,6 +48,21 @@ select,
   text-decoration-color: transparent;
 }
 
+/* Project action chips (Read More / Website / GitHub) already carry a border,
+   fill and padding, so they read as controls rather than body links — an
+   underline inside a bordered chip looks like a rendering fault. The component
+   sets `text-decoration: none`, but at (0,4,1) it loses to the body-link rule
+   above at (0,6,1), so the exemption has to be repeated here at (0,7,1).
+   Keyed on the `.project-links` wrapper, which the listing page, the project
+   detail page and the home page rollup all share. */
+.article-content .project-links
+  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.heading-anchor),
+.content-inner
+  .project-links
+  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.heading-anchor) {
+  text-decoration: none;
+}
+
 /* Rollup/listing title links live inside heading tags. The heading type
    already reads as the target, so skip the body-link underline there — each
    selector carries an extra element over its global counterpart above so it

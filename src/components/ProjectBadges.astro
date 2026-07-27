@@ -133,7 +133,12 @@ const hasBuild = Boolean(languageName) || Boolean(hexDocs);
           />
         )}
         {versions.map((version) => (
-          <a href={version.href} class="version" target="_blank" rel="noopener">
+          <a
+            href={version.href}
+            class="version badge"
+            target="_blank"
+            rel="noopener"
+          >
             <img src={version.src} alt={version.alt} height="20" loading="lazy" />
           </a>
         ))}
@@ -188,6 +193,9 @@ const hasBuild = Boolean(languageName) || Boolean(hexDocs);
     gap: 0.5em;
   }
 
+  /* Carries `badge` alongside `version` so the body-link underline rule in
+     animations.css excludes it the same way it excludes rendered badges —
+     an underline under a badge image reads as a rendering fault. */
   .version {
     display: inline-flex;
     align-items: center;

@@ -71,9 +71,13 @@ const TitleTag = `h${titleLevel}` as "h2" | "h3";
 </li>
 
 <style>
+  /* Cards are a layout list, not prose: drop the global li padding-left
+     (0.5em, typography.css) so project titles sit flush with the section
+     heading above them rather than 8px inside it. */
   .project-item {
     margin-bottom: 2.5em;
     padding-bottom: 2em;
+    padding-left: 0;
     border-bottom: 1px solid var(--code-border);
   }
 

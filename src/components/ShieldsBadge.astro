@@ -1,39 +1,37 @@
 ---
 /**
- * A project metadata chip in the site's own voice: Lato label on raised paper,
- * 1px quiet border, 4px radius — the action-chip register from DESIGN.md §5.
+ * A shields.io-style two-tone badge — dark label side, colored value side,
+ * white text, 3px corners — rendered natively rather than by badge-maker.
  *
- * This replaced a badge-maker/shields.io rendering whose Verdana type and
- * #4c1/#555/#9f9f9f palette were baked into SVG attributes, so it could be
- * themed by neither CSS nor the light/dark toggle (the Two Suns Rule). Tone is
- * carried by a border and a dot rather than by text color, which keeps the chip
- * at AA in both themes and stops color from being the only cue.
+ * Keeping the familiar README badge form, but not its typography or palette:
+ * badge-maker baked Verdana and #4c1/#555/#9f9f9f into SVG attributes, so the
+ * badges could follow neither CSS nor the light/dark toggle. Here the grounds
+ * come from the site palette and every pair is checked against white text.
  *
- * `logo` still takes the data URI produced by languageBadge() in lib/badges.ts,
- * so that module's brand colors and contrast-aware label logic are unchanged.
+ * `logo` still takes the data URI from languageBadge() in lib/badges.ts, and
+ * `valueBg` its brand `color`, so that module is unchanged.
  */
 type Tone = "neutral" | "success" | "warning" | "muted";
 
 interface Props {
-  /** Quiet leading label, e.g. "license". Omit for a value-only chip. */
+  /** Left (dark) side, e.g. "license". Omit for a value-only badge. */
   label?: string;
   message: string;
   tone?: Tone;
-  /** Data URI from languageBadge(); drawn in the language's own brand color. */
   logo?: string;
-  /** Renders the chip as a link. External hrefs get a target and a ↗ affordance. */
   href?: string;
+  /** Bare hex for the value ground — language brand colors override the tone. */
+  valueBg?: string;
 }
 
-const { label, message, tone = "neutral", logo, href } = Astro.props;
+const { label, message, tone = "neutral", logo, href, valueBg } = Astro.props;
 
 const Tag = href ? "a" : "span";
 const isExternal = href?.startsWith("http") ?? false;
 
 /**
- * Named explicitly rather than left to name-from-contents: the label and value
- * are adjacent text nodes separated only by a flex gap, so contents alone
- * announce as "licenseMIT". The ↗ is decorative and stays out of the name.
+ * Named explicitly rather than left to name-from-contents: the two sides are
+ * adjacent text nodes, so contents alone announce as "licenseMIT".
  */
 const accessibleName = href
   ? `${[label, message].filter(Boolean).join(" ")}${isExternal ? " (opens in new tab)" : ""}`
@@ -46,113 +44,107 @@ const linkAttrs = href
       ...(isExternal ? { target: "_blank", rel: "noopener" } : {}),
     }
   : {};
+
+/**
+ * Brand colors are never altered, so the text adapts to them: white where it
+ * clears AA, otherwise the hull dark. Gleam's pale pink and Go's cyan take the
+ * dark text; Rust, TypeScript and Python's blues take white.
+ */
+function readableOn(hex: string): string {
+  const h = hex.replace("#", "");
+  const [r, g, b] = [0, 2, 4].map((i) => {
+    const s = Number.parseInt(h.slice(i, i + 2), 16) / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  });
+  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return 1.05 / (luminance + 0.05) >= 4.5 ? "#ffffff" : "#1a2332";
+}
+
+const valueStyle = valueBg
+  ? `background:#${valueBg.replace("#", "")};color:${readableOn(valueBg)}`
+  : undefined;
 ---
 
-<Tag class:list={["chip", `tone-${tone}`, href && "chip-link"]} {...linkAttrs}>
-  {tone !== "neutral" && <span class="dot" aria-hidden="true"></span>}
-  {logo && <img class="logo" src={logo} alt="" width="14" height="14" />}
-  {label && <span class="chip-label">{label}</span>}
-  <span class="chip-value">{message}</span>
-  {isExternal && <span class="ext" aria-hidden="true">↗</span>}
+<Tag class:list={["badge", `tone-${tone}`, href && "badge-link"]} {...linkAttrs}>
+  <span class="badge-label">
+    {logo && <img class="badge-logo" src={logo} alt="" width="12" height="12" />}
+    {label && <span>{label}</span>}
+  </span>
+  <span class="badge-value" style={valueStyle}>{message}</span>
 </Tag>
 
 <style>
-  .chip {
+  /* Grounds are held constant across themes, the way a README badge is — each
+     is mid-dark enough to sit on both the warm white page and the void. */
+  .badge {
+    --label-bg: #2a4a47; /* Nebula Teal */
+    --value-bg: #96591c; /* Burnt Atmosphere */
+
     display: inline-flex;
-    align-items: center;
-    gap: 0.4em;
-    padding: 3px 8px;
-    background: var(--code-bg);
-    border: 1px solid var(--chip-edge, var(--text-light));
-    border-radius: var(--radius-md);
+    align-items: stretch;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
     font-family: Lato, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.45;
+    font-size: var(--font-size-meta);
+    line-height: 1;
     text-decoration: none;
-    /* No nowrap: it would make the chip's min-content the whole string, so flex
-       couldn't shrink it and a long chip would push past the column on narrow
-       screens. Chips still sit on one line whenever the row has room. */
-    flex-wrap: wrap;
     max-width: 100%;
   }
 
-  /* Label whispers, value speaks — contrast comes from case and weight, so the
-     value keeps its own capitalization (TypeScript, not TYPESCRIPT). */
-  .chip-label {
-    font-size: var(--font-size-meta);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-light);
+  .badge-label,
+  .badge-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 6px;
+    min-height: 20px;
+    color: #ffffff;
+    white-space: nowrap;
   }
 
-  .chip-value {
-    font-size: var(--font-size-label);
+  .badge-label {
+    background: var(--label-bg);
+  }
+
+  .badge-value {
+    background: var(--value-bg);
     font-weight: 600;
-    color: var(--text);
+    /* The one place a long value may break rather than push past the column */
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--chip-edge, var(--text-light));
+  .badge-logo {
+    width: 12px;
+    height: 12px;
     flex-shrink: 0;
   }
 
-  .logo {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-  }
-
-  .ext {
-    font-size: var(--font-size-meta);
-    color: var(--text-light);
-  }
-
-  /* Status tones ride the Instrument colors from variables.css, which already
-     swap with the theme — so the chip swaps with it too. */
+  /* Instrument colors, darkened where needed so white text clears AA:
+     success 4.9:1, warning 7.3:1, muted 6.2:1, neutral 5.6:1. */
   .tone-success {
-    --chip-edge: var(--success);
+    --value-bg: #4a7c59;
   }
 
   .tone-warning {
-    --chip-edge: var(--warning);
+    --value-bg: #7d4b17;
   }
 
   .tone-muted {
-    --chip-edge: var(--text-light);
+    --value-bg: #4a6662;
   }
 
-  .tone-muted .chip-value {
-    color: var(--text-light);
-    font-weight: 400;
+  .badge-link:hover .badge-value,
+  .badge-link:focus-visible .badge-value {
+    filter: brightness(1.15);
   }
 
-  /* Hover/focus fills the accent, matching the stream action chips */
-  .chip-link:hover,
-  .chip-link:focus-visible {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-
-  .chip-link:hover .chip-label,
-  .chip-link:hover .chip-value,
-  .chip-link:hover .ext,
-  .chip-link:focus-visible .chip-label,
-  .chip-link:focus-visible .chip-value,
-  .chip-link:focus-visible .ext {
-    color: var(--light-bg);
-  }
-
-  .chip-link:hover .dot,
-  .chip-link:focus-visible .dot {
-    background: var(--light-bg);
-  }
-
-  /* Touch: grow to a ≥40px hit area per DESIGN.md, by padding not font size */
+  /* Touch: grow to a comfortable hit area by padding, not font size */
   @media (pointer: coarse) {
-    .chip {
-      padding: 10px 12px;
+    .badge-label,
+    .badge-value {
+      min-height: 40px;
+      padding: 0 10px;
     }
   }
 </style>

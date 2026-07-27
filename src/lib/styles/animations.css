@@ -29,9 +29,17 @@ select,
 /* Link underline animation — native text-decoration so the underline follows
    wrapped lines and axe can compute contrast (background-image gradients
    register as an undeterminable background and fail CI) */
-.article-content a:not(.heading-anchor),
+/* `.action-chip` joins the exemption list rather than needing a wrapper-keyed
+   override: a chip already carries a border, fill and padding, so it reads as
+   a control, and an underline inside one looks like a rendering fault. A
+   component's own `text-decoration: none` can never win here — this rule
+   scores (0,6,1) and scoped component CSS lands at (0,4,1) — so opting out
+   has to happen in this list. */
+.article-content a:not(.action-chip):not(.heading-anchor),
 .content-inner
-  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.heading-anchor) {
+  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.action-chip):not(
+    .heading-anchor
+  ) {
   text-decoration: underline;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.2em;
@@ -40,27 +48,12 @@ select,
     color 0.2s ease;
 }
 
-.article-content a:not(.heading-anchor):hover,
+.article-content a:not(.action-chip):not(.heading-anchor):hover,
 .content-inner
-  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(
+  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.action-chip):not(
     .heading-anchor
   ):hover {
   text-decoration-color: transparent;
-}
-
-/* Project action chips (Read More / Website / GitHub) already carry a border,
-   fill and padding, so they read as controls rather than body links — an
-   underline inside a bordered chip looks like a rendering fault. The component
-   sets `text-decoration: none`, but at (0,4,1) it loses to the body-link rule
-   above at (0,6,1), so the exemption has to be repeated here at (0,7,1).
-   Keyed on the `.project-links` wrapper, which the listing page, the project
-   detail page and the home page rollup all share. */
-.article-content .project-links
-  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.heading-anchor),
-.content-inner
-  .project-links
-  a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.heading-anchor) {
-  text-decoration: none;
 }
 
 /* Rollup/listing title links live inside heading tags. The heading type

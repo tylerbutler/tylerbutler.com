@@ -81,6 +81,12 @@ const TitleTag = `h${titleLevel}` as "h2" | "h3";
     border-bottom: none;
   }
 
+  /* Contains the floated logo: without a BFC, a card whose text is shorter
+     than the 96px logo bleeds the float past its own bottom border. */
+  .project-item article {
+    display: flow-root;
+  }
+
   .project-item h2,
   .project-item h3 {
     margin: 0 0 0.5em 0;
@@ -96,6 +102,10 @@ const TitleTag = `h${titleLevel}` as "h2" | "h3";
 
   .project-links {
     margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75em;
   }
 
   .project-links .icon {
@@ -103,7 +113,7 @@ const TitleTag = `h${titleLevel}` as "h2" | "h3";
     height: 16px;
   }
 
-  /* Badge chips style themselves in ShieldsBadge.astro; scoped rules here never
+  /* Badges style themselves in ShieldsBadge.astro; scoped rules here never
      reached them anyway — those anchors carry ProjectBadges' scope id. */
   .article-badges {
     margin: 0.75em 0;
@@ -113,7 +123,6 @@ const TitleTag = `h${titleLevel}` as "h2" | "h3";
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
-    margin-right: 1em;
     text-decoration: none;
     font-size: var(--font-size-label);
     text-transform: uppercase;
@@ -126,8 +135,39 @@ const TitleTag = `h${titleLevel}` as "h2" | "h3";
     color: var(--accent-hover);
   }
 
-  .read-more {
-    font-weight: 500;
+  /* "Read More" is the same action the homepage stream offers, so it wears the
+     same control: the kudos/action-chip register from DESIGN.md §5, matching
+     .read-more-link in index.astro. */
+  .project-links .read-more {
+    background: var(--code-bg);
+    border: 1px solid var(--text-light);
+    padding: 4px 10px;
+    border-radius: var(--radius-md);
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--text);
+  }
+
+  .project-links .read-more:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--light-bg);
+  }
+
+  /* Touch: grow to a ≥40px hit area by padding, not font size */
+  @media (pointer: coarse) {
+    .project-links {
+      gap: 1.25em;
+    }
+
+    .project-links .read-more {
+      padding: 12px 16px;
+    }
+
+    .external-link {
+      padding: 10px 0;
+    }
   }
 
   .project-logo {

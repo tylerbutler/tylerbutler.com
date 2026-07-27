@@ -110,12 +110,4 @@ const linkAttrs = href
   .badge-link:focus-visible :global(svg) {
     filter: brightness(1.12);
   }
-
-  /* Touch: grow the tappable area around the badge rather than scaling the
-     badge itself, so the artwork stays exactly shields-sized. */
-  @media (pointer: coarse) {
-    .badge {
-      padding: 10px 0;
-    }
-  }
 </style>

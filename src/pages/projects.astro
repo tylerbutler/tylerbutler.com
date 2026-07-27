@@ -1,10 +1,48 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
+import ConstellationIcon from "../components/ConstellationIcon.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { includeDraft } from "../lib/draft-utils";
 import { formatTitle } from "../lib/typography";
+
+// Constellation lottie files — Vite resolves these to hashed URLs at build time.
+const constellationModules = import.meta.glob<string>(
+  "../lottie/constellations/*.lottie",
+  { query: "?url", import: "default", eager: true },
+);
+
+const constellationUrls: Record<string, string> = Object.fromEntries(
+  Object.entries(constellationModules).map(([path, url]) => [
+    path.split("/").pop()!.replace(".lottie", ""),
+    url,
+  ]),
+);
+
+function hashStr(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+const CONSTELLATION_NAMES = Object.keys(constellationUrls);
+
+// Same assignment the homepage stream uses: hash order, no duplicates on screen.
+function assignIcons(
+  ids: string[],
+): Map<string, { url: string; slug: string }> {
+  const result = new Map<string, { url: string; slug: string }>();
+  const used = new Set<number>();
+  for (const id of [...ids].sort((a, b) => hashStr(a) - hashStr(b))) {
+    let idx = hashStr(id) % CONSTELLATION_NAMES.length;
+    while (used.has(idx)) idx = (idx + 1) % CONSTELLATION_NAMES.length;
+    used.add(idx);
+    const slug = CONSTELLATION_NAMES[idx];
+    result.set(id, { url: constellationUrls[slug], slug });
+  }
+  return result;
+}
 
 // Get all projects (excluding index files; drafts hidden unless SHOW_DRAFTS=1)
 const projects = await getCollection(
@@ -12,13 +50,15 @@ const projects = await getCollection(
   ({ id, data }) => !id.startsWith("_") && includeDraft(data),
 );
 
+// `date` is optional in the schema, so undated projects sort last rather than
+// being filtered out — dropping a project silently is worse than showing it
+// at the end of its section.
+const timeOf = (value: Date | undefined): number =>
+  value ? new Date(value).getTime() : Number.NEGATIVE_INFINITY;
+
 const withTitles = await Promise.all(
-  projects
-    .filter((p) => p.data.date)
-    .sort(
-      (a, b) =>
-        new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime(),
-    )
+  [...projects]
+    .sort((a, b) => timeOf(b.data.date) - timeOf(a.data.date))
     .map(async (project) => ({
       ...project,
       formattedTitle: await formatTitle(project.data.title),
@@ -86,6 +126,18 @@ const renderedGroupIds = new Set(groups.map((g) => g.group.id));
 const ungrouped = withTitles.filter(
   (p) => !p.data.group || !renderedGroupIds.has(p.data.group.id),
 );
+
+/**
+ * Groups lead: they are the most editorial thing on the page, so the reader
+ * meets them first and the remainder becomes a named section rather than a
+ * pile of leftovers. When nothing is grouped there is no section to name, and
+ * project titles step back up to h2.
+ */
+const hasSections = groups.length > 0;
+const projectTitleLevel = hasSections ? 3 : 2;
+
+const OTHER_ID = "other-projects";
+const icons = assignIcons([...groups.map((g) => g.group.id), OTHER_ID]);
 ---
 
 <BaseLayout
@@ -99,31 +151,30 @@ const ungrouped = withTitles.filter(
       source contributions and personal experiments.
     </p>
 
-    {ungrouped.length > 0 ? (
-      <ul class="projects-list">
-        {ungrouped.map(project => (
-          <ProjectCard project={project} formattedTitle={project.formattedTitle} />
-        ))}
-      </ul>
-    ) : groups.length === 0 && (
-      <p>More projects coming soon...</p>
-    )}
-
     {groups.map(({ group, members, Content, formattedTitle }) => (
-      <div class="project-group">
+      <section class="project-group" aria-labelledby={`group-${group.id}`}>
+        <div class="group-divider">
+          <ConstellationIcon
+            src={icons.get(group.id)!.url}
+            slug={icons.get(group.id)!.slug}
+            size={56}
+          />
+        </div>
         <div class="group-header">
           {group.data.logo && (
             <Image
               src={group.data.logo}
               alt={`${group.data.title} logo`}
               class="group-logo"
-              width={96}
+              width={72}
             />
           )}
-          <div class="group-intro">
-            <h2 class="section-heading" set:html={formattedTitle} />
-            <div class="section-description"><Content /></div>
-          </div>
+          <h2
+            id={`group-${group.id}`}
+            class="section-heading"
+            set:html={formattedTitle}
+          />
+          <div class="section-description"><Content /></div>
         </div>
         <ul class="projects-list">
           {members.map(project => (
@@ -135,8 +186,46 @@ const ungrouped = withTitles.filter(
             />
           ))}
         </ul>
-      </div>
+      </section>
     ))}
+
+    {ungrouped.length > 0 ? (
+      hasSections ? (
+        <section class="project-group" aria-labelledby={OTHER_ID}>
+          <div class="group-divider">
+            <ConstellationIcon
+              src={icons.get(OTHER_ID)!.url}
+              slug={icons.get(OTHER_ID)!.slug}
+              size={56}
+            />
+          </div>
+          <div class="group-header">
+            <h2 id={OTHER_ID} class="section-heading">Everything Else</h2>
+          </div>
+          <ul class="projects-list">
+            {ungrouped.map(project => (
+              <ProjectCard
+                project={project}
+                formattedTitle={project.formattedTitle}
+                titleLevel={projectTitleLevel}
+              />
+            ))}
+          </ul>
+        </section>
+      ) : (
+        <ul class="projects-list">
+          {ungrouped.map(project => (
+            <ProjectCard
+              project={project}
+              formattedTitle={project.formattedTitle}
+              titleLevel={projectTitleLevel}
+            />
+          ))}
+        </ul>
+      )
+    ) : groups.length === 0 && (
+      <p>More projects coming soon...</p>
+    )}
   </section>
 </BaseLayout>
 
@@ -148,47 +237,31 @@ const ungrouped = withTitles.filter(
   }
 
   .project-group {
-    margin-top: 3em;
-    padding-top: 2em;
-    border-top: 2px solid var(--code-border);
+    margin-top: 2em;
   }
 
-  /* Flex rather than a float, so the member list can't wrap around the logo. */
-  .group-header {
+  /* The signature divider does the structural work a rule used to do badly:
+     a 2px border against the cards' 1px in the same color made the page's
+     biggest break its least visible one. */
+  .group-divider {
     display: flex;
-    gap: 1em;
-    align-items: flex-start;
+    justify-content: center;
+    margin: 3em 0 2em;
   }
 
+  /* Stacked, not a flex row: every section heading then starts at the reading
+     column's left edge whether or not its group has a logo, and the header can
+     no longer overflow the container on narrow screens. */
   .group-logo {
-    width: 96px;
-    flex-shrink: 0;
-  }
-
-  /* `flex: 1` is `flex: 1 1 0%` with the default min-width: auto, so the intro
-     refuses to shrink below its heading's min-content width and pushes the row
-     past the container on narrow screens. min-width: 0 lets it actually shrink. */
-  .group-intro {
-    flex: 1;
-    min-width: 0;
+    display: block;
+    width: 72px;
+    height: auto;
+    margin-bottom: 0.75em;
   }
 
   .section-heading {
-    margin-bottom: 0.5em;
+    margin: 0 0 0.5em 0;
     overflow-wrap: break-word;
-  }
-
-  /* Narrow: stack the emblem above the title rather than squeezing a 96px logo
-     and a wide-tracked heading into one row. */
-  @media (max-width: 600px) {
-    .group-header {
-      flex-direction: column;
-      gap: 0.75em;
-    }
-
-    .group-logo {
-      width: 64px;
-    }
   }
 
   .section-description {

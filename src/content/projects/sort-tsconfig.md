@@ -7,6 +7,8 @@ npm: sort-tsconfig
 programmingLanguage: typescript
 license: MIT
 maturity: stable
+
+draft: true
 ---
 
 A CLI and library for sorting TypeScript `tsconfig.json` files. Keeps compiler options and path entries in consistent order so diffs stay readable.

@@ -7,6 +7,8 @@ npm: repopo
 programmingLanguage: typescript
 license: MIT
 maturity: experimental
+
+draft: true
 ---
 
 A repository policy enforcement tool. Define rules that files must satisfy — consistent headers, correct package.json fields, naming conventions — and repopo checks them all or automatically fixes them.

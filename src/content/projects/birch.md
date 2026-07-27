@@ -9,6 +9,8 @@ hexDocs: birch
 programmingLanguage: gleam
 license: MIT
 maturity: experimental
+
+draft: true
 ---
 
 A comprehensive logging library in Gleam that targets both Erlang and JavaScript.

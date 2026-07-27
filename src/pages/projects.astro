@@ -65,11 +65,21 @@ const withTitles = await Promise.all(
     })),
 );
 
+// Archived projects sit in their own section at the bottom instead of the
+// dated timeline — "archived" means "no longer current," which outranks
+// wherever its date would otherwise place it.
+const archivedProjects = withTitles.filter(
+  (p) => p.data.maturity === "archived",
+);
+const activeProjects = withTitles.filter((p) => p.data.maturity !== "archived");
+
 // Bucket by referenced group id. A reference resolves to { collection, id },
 // not the entry, so we match ids against the group collection loaded below
-// rather than paying a getEntry() per project.
-const byGroup = new Map<string, typeof withTitles>();
-for (const project of withTitles) {
+// rather than paying a getEntry() per project. Archived projects are excluded
+// so an archived member can't keep an otherwise-empty group alive or skew its
+// date in the timeline.
+const byGroup = new Map<string, typeof activeProjects>();
+for (const project of activeProjects) {
   const id = project.data.group?.id;
   if (!id) continue;
   const bucket = byGroup.get(id);
@@ -110,48 +120,82 @@ const groupEntries = allGroups.filter(({ data }) => includeDraft(data));
 
 // render() is async and can't be awaited inside JSX, so section bodies are
 // rendered up front.
-const groups = (
+const groupUnits = (
   await Promise.all(
-    groupEntries
-      .sort(
-        (a, b) =>
-          newestDateOf(b.id) - newestDateOf(a.id) ||
-          a.data.order - b.data.order ||
-          a.id.localeCompare(b.id),
-      )
-      .map(async (group) => {
-        const members = byGroup.get(group.id) ?? [];
-        if (members.length === 0) return null;
-        const { Content } = await render(group);
-        return {
-          group,
-          members,
-          Content,
-          formattedTitle: await formatTitle(group.data.title),
-        };
-      }),
+    groupEntries.map(async (group) => {
+      const members = byGroup.get(group.id) ?? [];
+      if (members.length === 0) return null;
+      const { Content } = await render(group);
+      return {
+        group,
+        members,
+        Content,
+        formattedTitle: await formatTitle(group.data.title),
+        date: newestDateOf(group.id),
+      };
+    }),
   )
 ).filter((group): group is NonNullable<typeof group> => group !== null);
 
 // Computed last, against the groups that actually rendered, so a project
-// pointing at a draft or missing group falls back to the main list instead of
-// disappearing from the page.
-const renderedGroupIds = new Set(groups.map((g) => g.group.id));
-const ungrouped = withTitles.filter(
+// pointing at a draft or missing group falls back to the plain list instead
+// of disappearing from the page.
+const renderedGroupIds = new Set(groupUnits.map((g) => g.group.id));
+const ungroupedProjects = activeProjects.filter(
   (p) => !p.data.group || !renderedGroupIds.has(p.data.group.id),
 );
 
-/**
- * Groups lead: they are the most editorial thing on the page, so the reader
- * meets them first and the remainder becomes a named section rather than a
- * pile of leftovers. When nothing is grouped there is no section to name, and
- * project titles step back up to h2.
- */
-const hasSections = groups.length > 0;
-const projectTitleLevel = hasSections ? 3 : 2;
+// A single timeline: individual projects and group blocks interleave by
+// date, newest first, rather than every group leading and the leftovers
+// trailing behind them. Ties fall back to a group's manual `order`, then id.
+type Entry =
+  | {
+      kind: "project";
+      date: number;
+      project: (typeof ungroupedProjects)[number];
+    }
+  | { kind: "group"; date: number; unit: (typeof groupUnits)[number] };
 
-const OTHER_ID = "other-projects";
-const icons = assignIcons([...groups.map((g) => g.group.id), OTHER_ID]);
+const entries: Entry[] = [
+  ...ungroupedProjects.map(
+    (project): Entry => ({
+      kind: "project",
+      date: timeOf(project.data.date),
+      project,
+    }),
+  ),
+  ...groupUnits.map(
+    (unit): Entry => ({ kind: "group", date: unit.date, unit }),
+  ),
+].sort((a, b) => {
+  if (b.date !== a.date) return b.date - a.date;
+  const orderA = a.kind === "group" ? a.unit.group.data.order : 100;
+  const orderB = b.kind === "group" ? b.unit.group.data.order : 100;
+  if (orderA !== orderB) return orderA - orderB;
+  const idA = a.kind === "group" ? a.unit.group.id : a.project.id;
+  const idB = b.kind === "group" ? b.unit.group.id : b.project.id;
+  return idA.localeCompare(idB);
+});
+
+// Batch consecutive ungrouped projects into one shared `<ul>` so they still
+// read as a plain list; group blocks remain their own section in between.
+type Run =
+  | { kind: "projects"; projects: typeof ungroupedProjects }
+  | { kind: "group"; unit: (typeof groupUnits)[number] };
+
+const runs: Run[] = [];
+for (const entry of entries) {
+  if (entry.kind === "project") {
+    const last = runs.at(-1);
+    if (last?.kind === "projects") last.projects.push(entry.project);
+    else runs.push({ kind: "projects", projects: [entry.project] });
+  } else {
+    runs.push({ kind: "group", unit: entry.unit });
+  }
+}
+
+const ARCHIVED_ID = "archived-projects";
+const icons = assignIcons([...groupUnits.map((g) => g.group.id), ARCHIVED_ID]);
 ---
 
 <BaseLayout
@@ -165,80 +209,87 @@ const icons = assignIcons([...groups.map((g) => g.group.id), OTHER_ID]);
       source contributions and personal experiments.
     </p>
 
-    {groups.map(({ group, members, Content, formattedTitle }) => (
-      <section class="project-group" aria-labelledby={`group-${group.id}`}>
-        <div class="group-divider">
-          <ConstellationIcon
-            src={icons.get(group.id)!.url}
-            slug={icons.get(group.id)!.slug}
-            size={56}
-          />
-        </div>
-        <div class="group-header">
-          {group.data.logo && (
-            <Image
-              src={group.data.logo}
-              alt={`${group.data.title} logo`}
-              class="group-logo"
-              width={72}
-            />
-          )}
-          <h2
-            id={`group-${group.id}`}
-            class="section-heading"
-            set:html={formattedTitle}
-          />
-          <div class="section-description"><Content /></div>
-        </div>
-        <ul class="projects-list">
-          {members.map(project => (
-            <ProjectCard
-              project={project}
-              formattedTitle={project.formattedTitle}
-              titleLevel={3}
-              showLogo={false}
-            />
-          ))}
-        </ul>
-      </section>
-    ))}
+    {runs.length === 0 && archivedProjects.length === 0 && (
+      <p>More projects coming soon...</p>
+    )}
 
-    {ungrouped.length > 0 ? (
-      hasSections ? (
-        <section class="project-group" aria-labelledby={OTHER_ID}>
+    {runs.map((run) => {
+      if (run.kind === "projects") {
+        return (
+          <ul class="projects-list">
+            {run.projects.map(project => (
+              <ProjectCard
+                project={project}
+                formattedTitle={project.formattedTitle}
+                titleLevel={2}
+              />
+            ))}
+          </ul>
+        );
+      }
+
+      const { group, members, Content, formattedTitle } = run.unit;
+      return (
+        <section class="project-group" aria-labelledby={`group-${group.id}`}>
           <div class="group-divider">
             <ConstellationIcon
-              src={icons.get(OTHER_ID)!.url}
-              slug={icons.get(OTHER_ID)!.slug}
+              src={icons.get(group.id)!.url}
+              slug={icons.get(group.id)!.slug}
               size={56}
             />
           </div>
           <div class="group-header">
-            <h2 id={OTHER_ID} class="section-heading">Everything Else</h2>
+            {group.data.logo && (
+              <Image
+                src={group.data.logo}
+                alt={`${group.data.title} logo`}
+                class="group-logo"
+                width={72}
+              />
+            )}
+            <h2
+              id={`group-${group.id}`}
+              class="section-heading"
+              set:html={formattedTitle}
+            />
+            <div class="section-description"><Content /></div>
           </div>
           <ul class="projects-list">
-            {ungrouped.map(project => (
+            {members.map(project => (
               <ProjectCard
                 project={project}
                 formattedTitle={project.formattedTitle}
-                titleLevel={projectTitleLevel}
+                titleLevel={3}
+                showLogo={false}
               />
             ))}
           </ul>
         </section>
-      ) : (
+      );
+    })}
+
+    {archivedProjects.length > 0 && (
+      <section class="project-group" aria-labelledby={ARCHIVED_ID}>
+        <div class="group-divider">
+          <ConstellationIcon
+            src={icons.get(ARCHIVED_ID)!.url}
+            slug={icons.get(ARCHIVED_ID)!.slug}
+            size={56}
+          />
+        </div>
+        <div class="group-header">
+          <h2 id={ARCHIVED_ID} class="section-heading">Archived</h2>
+        </div>
         <ul class="projects-list">
-          {ungrouped.map(project => (
+          {archivedProjects.map(project => (
             <ProjectCard
               project={project}
               formattedTitle={project.formattedTitle}
-              titleLevel={projectTitleLevel}
+              titleLevel={3}
             />
           ))}
         </ul>
-      )
-    ) : groups.length === 0 && (
-      <p>More projects coming soon...</p>
+      </section>
     )}
   </section>
 </BaseLayout>

@@ -4,7 +4,7 @@ date: 2026-04-27
 description: A command-line tool to overlay files on top of a git repo without committing them.
 url: https://repoverlay.tylerbutler.com/
 github: https://github.com/tylerbutler/repoverlay
-logo: ../../assets/slate-wordmark.webp
+logo: ../../assets/repoverlay.svg
 crate: repoverlay
 programmingLanguage: rust
 license: MIT

@@ -19,16 +19,21 @@ interface Props {
 const { npm, crate, hex, hexDocs, license, programmingLanguage, maturity } =
   Astro.props;
 
-// Tone rides the Instrument colors, which swap with the theme. "unpublished"
-// and "archived" are both quiet states — neither is a warning.
-const maturityConfig: Record<
-  Maturity,
-  { message: string; tone: "success" | "warning" | "muted" }
-> = {
-  stable: { message: "stable", tone: "success" },
-  experimental: { message: "experimental", tone: "warning" },
-  unpublished: { message: "unpublished", tone: "muted" },
-  archived: { message: "archived", tone: "muted" },
+/**
+ * Shields' own geometry and typography, the site's palette. Every ground is
+ * dark enough for badge-maker to choose white text and clear AA against it:
+ * Nebula Teal 9.7:1, Instrument Green 4.9:1, Atmosphere Ember 7.3:1,
+ * Nebula Teal Light 6.2:1, Burnt Atmosphere 5.6:1.
+ */
+const LABEL_BG = "2a4a47"; // Nebula Teal
+const NEUTRAL = "96591c"; // Burnt Atmosphere
+
+// Atmosphere Ember, not --warning (#b8722a) — the latter gives white 3.8:1.
+const maturityConfig: Record<Maturity, { message: string; color: string }> = {
+  stable: { message: "stable", color: "4a7c59" },
+  experimental: { message: "experimental", color: "7d4b17" },
+  unpublished: { message: "unpublished", color: "4a6662" },
+  archived: { message: "archived", color: "4a6662" },
 };
 
 // Display names live here rather than in lib/badges.ts so that module stays a
@@ -50,14 +55,19 @@ const languageName = programmingLanguage
   : undefined;
 
 /**
- * Version numbers stay on img.shields.io — baking one in at build would freeze
- * it until the next deploy. They are the only remaining third-party pixels, so
- * they're pinned to the same grounds the native badges use (Nebula Teal label,
- * Burnt Atmosphere value) so a remote badge is indistinguishable from a local
- * one. Height is fixed at the shields "flat" height so the row can't shift
- * vertically as they load.
+ * labelFor() in lib/badges.ts already decided whether each brand logo reads
+ * better on a light or dark label; that verdict is reused here, swapping its
+ * generic greys for the palette's own light and dark grounds.
  */
-const SHIELDS_STYLE = "style=flat&labelColor=2a4a47&color=96591c";
+const languageLabelBg = language?.labelColor === "f5f5f5" ? "f0ede8" : LABEL_BG;
+
+/**
+ * Version numbers stay on img.shields.io — baking one in at build would freeze
+ * it until the next deploy. Pinned to the same grounds as the local badges so
+ * a remote badge is indistinguishable from a rendered one. Height is fixed at
+ * the shields "flat" height so the row can't shift as they load.
+ */
+const SHIELDS_STYLE = `style=flat&labelColor=${LABEL_BG}&color=${NEUTRAL}`;
 
 interface VersionBadge {
   key: string;
@@ -109,15 +119,17 @@ const hasAny =
       <ShieldsBadge
         label="status"
         message={maturityConfig[maturity].message}
-        tone={maturityConfig[maturity].tone}
+        color={maturityConfig[maturity].color}
+        labelColor={LABEL_BG}
       />
     )}
     {languageName && (
       <ShieldsBadge
         label="written in"
         message={languageName}
-        logo={language?.logoBase64}
-        valueBg={language?.color}
+        color={language?.color}
+        labelColor={languageLabelBg}
+        logoBase64={language?.logoBase64}
       />
     )}
     {versions.map((version) => (
@@ -129,13 +141,17 @@ const hasAny =
       <ShieldsBadge
         label="license"
         message={license}
+        color={NEUTRAL}
+        labelColor={LABEL_BG}
         href={`https://opensource.org/licenses/${license}`}
       />
     )}
     {hexDocs && (
       <ShieldsBadge
         label="docs"
-        message="HexDocs"
+        message="hexdocs"
+        color={NEUTRAL}
+        labelColor={LABEL_BG}
         href={`https://hexdocs.pm/${hexDocs}`}
       />
     )}
@@ -164,7 +180,7 @@ const hasAny =
 
   @media (pointer: coarse) {
     .version {
-      padding: 8px 0;
+      padding: 10px 0;
     }
   }
 </style>

@@ -1,150 +1,121 @@
 ---
-/**
- * A shields.io-style two-tone badge — dark label side, colored value side,
- * white text, 3px corners — rendered natively rather than by badge-maker.
- *
- * Keeping the familiar README badge form, but not its typography or palette:
- * badge-maker baked Verdana and #4c1/#555/#9f9f9f into SVG attributes, so the
- * badges could follow neither CSS nor the light/dark toggle. Here the grounds
- * come from the site palette and every pair is checked against white text.
- *
- * `logo` still takes the data URI from languageBadge() in lib/badges.ts, and
- * `valueBg` its brand `color`, so that module is unchanged.
- */
-type Tone = "neutral" | "success" | "warning" | "muted";
+import { makeBadge } from "badge-maker";
 
+/**
+ * A shields.io badge, rendered by shields' own renderer so the geometry,
+ * typography, gradient and text shadow match exactly. Only the colors are
+ * ours: callers pass palette hexes instead of shields' named colors.
+ *
+ * badge-maker picks label/message text color from each background's
+ * brightness, so a light ground (Cloud Shadow, Gleam's pink) gets dark text
+ * automatically and every pair stays readable.
+ */
 interface Props {
-  /** Left (dark) side, e.g. "license". Omit for a value-only badge. */
-  label?: string;
+  label: string;
   message: string;
-  tone?: Tone;
-  logo?: string;
+  /** Bare hex triplet from the site palette (e.g. "96591c"). */
+  color?: string;
+  /** Label-side background. Defaults to badge-maker's dark grey. */
+  labelColor?: string;
+  style?: "plastic" | "flat" | "flat-square" | "for-the-badge" | "social";
+  /** Logo as a data URI — see languageBadge() in lib/badges.ts. */
+  logoBase64?: string;
+  /** Renders the badge as a link with an explicit accessible name. */
   href?: string;
-  /** Bare hex for the value ground — language brand colors override the tone. */
-  valueBg?: string;
 }
 
-const { label, message, tone = "neutral", logo, href, valueBg } = Astro.props;
+const {
+  label,
+  message,
+  color = "blue",
+  labelColor,
+  style = "flat",
+  logoBase64,
+  href,
+} = Astro.props;
 
-const Tag = href ? "a" : "span";
+/**
+ * badge-maker names its clipPath and gradient "r" and "s". Inline SVGs share
+ * one document ID space, so without a suffix every badge's `url(#r)` resolves
+ * to the first badge's clipPath and any wider badge gets visibly cut off.
+ * Hashing the badge's own content keeps the suffix stable across builds, and
+ * two identical badges may safely share IDs since their defs are identical.
+ */
+function idSuffixFor(parts: Array<string | undefined>): string {
+  let hash = 0x811c9dc5;
+  for (const char of parts.join(" ")) {
+    hash ^= char.charCodeAt(0);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return Math.abs(hash).toString(36);
+}
+
+// Generate SVG as a string
+const svg = String(
+  makeBadge({
+    label,
+    message,
+    color,
+    style,
+    idSuffix: idSuffixFor([
+      label,
+      message,
+      color,
+      labelColor,
+      style,
+      logoBase64,
+    ]),
+    ...(labelColor ? { labelColor } : {}),
+    ...(logoBase64 ? { logoBase64 } : {}),
+  }),
+);
+
+const Tag = href ? "a" : "div";
 const isExternal = href?.startsWith("http") ?? false;
 
 /**
- * Named explicitly rather than left to name-from-contents: the two sides are
- * adjacent text nodes, so contents alone announce as "licenseMIT".
+ * Named explicitly: the badge SVG carries a <title> plus doubled shadow/real
+ * <text> nodes, so a link left to name-from-contents announces the label and
+ * message several times over ("license: MITlicenselicenseMITMIT").
  */
-const accessibleName = href
-  ? `${[label, message].filter(Boolean).join(" ")}${isExternal ? " (opens in new tab)" : ""}`
-  : undefined;
-
 const linkAttrs = href
   ? {
       href,
-      "aria-label": accessibleName,
+      "aria-label": `${label} ${message}${isExternal ? " (opens in new tab)" : ""}`,
       ...(isExternal ? { target: "_blank", rel: "noopener" } : {}),
     }
   : {};
 
-/**
- * Brand colors are never altered, so the text adapts to them: white where it
- * clears AA, otherwise the hull dark. Gleam's pale pink and Go's cyan take the
- * dark text; Rust, TypeScript and Python's blues take white.
- */
-function readableOn(hex: string): string {
-  const h = hex.replace("#", "");
-  const [r, g, b] = [0, 2, 4].map((i) => {
-    const s = Number.parseInt(h.slice(i, i + 2), 16) / 255;
-    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
-  });
-  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  return 1.05 / (luminance + 0.05) >= 4.5 ? "#ffffff" : "#1a2332";
-}
-
-const valueStyle = valueBg
-  ? `background:#${valueBg.replace("#", "")};color:${readableOn(valueBg)}`
-  : undefined;
+// Astro requires the SVG to be wrapped in a container
+// to avoid parser issues with top-level <svg>
 ---
 
-<Tag class:list={["badge", `tone-${tone}`, href && "badge-link"]} {...linkAttrs}>
-  <span class="badge-label">
-    {logo && <img class="badge-logo" src={logo} alt="" width="12" height="12" />}
-    {label && <span>{label}</span>}
-  </span>
-  <span class="badge-value" style={valueStyle}>{message}</span>
+<Tag class:list={["badge", href && "badge-link"]} {...linkAttrs}>
+  <Fragment set:html={svg} />
 </Tag>
 
 <style>
-  /* Grounds are held constant across themes, the way a README badge is — each
-     is mid-dark enough to sit on both the warm white page and the void. */
+  .badge :global(svg) {
+    display: block;
+  }
+
   .badge {
-    --label-bg: #2a4a47; /* Nebula Teal */
-    --value-bg: #96591c; /* Burnt Atmosphere */
-
-    display: inline-flex;
-    align-items: stretch;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    font-family: Lato, "Helvetica Neue", Arial, sans-serif;
-    font-size: var(--font-size-meta);
-    line-height: 1;
     text-decoration: none;
-    max-width: 100%;
-  }
-
-  .badge-label,
-  .badge-value {
+    text-transform: none;
     display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 0 6px;
-    min-height: 20px;
-    color: #ffffff;
-    white-space: nowrap;
+    border-radius: var(--radius-sm);
   }
 
-  .badge-label {
-    background: var(--label-bg);
+  .badge-link:hover :global(svg),
+  .badge-link:focus-visible :global(svg) {
+    filter: brightness(1.12);
   }
 
-  .badge-value {
-    background: var(--value-bg);
-    font-weight: 600;
-    /* The one place a long value may break rather than push past the column */
-    white-space: normal;
-    overflow-wrap: anywhere;
-  }
-
-  .badge-logo {
-    width: 12px;
-    height: 12px;
-    flex-shrink: 0;
-  }
-
-  /* Instrument colors, darkened where needed so white text clears AA:
-     success 4.9:1, warning 7.3:1, muted 6.2:1, neutral 5.6:1. */
-  .tone-success {
-    --value-bg: #4a7c59;
-  }
-
-  .tone-warning {
-    --value-bg: #7d4b17;
-  }
-
-  .tone-muted {
-    --value-bg: #4a6662;
-  }
-
-  .badge-link:hover .badge-value,
-  .badge-link:focus-visible .badge-value {
-    filter: brightness(1.15);
-  }
-
-  /* Touch: grow to a comfortable hit area by padding, not font size */
+  /* Touch: grow the tappable area around the badge rather than scaling the
+     badge itself, so the artwork stays exactly shields-sized. */
   @media (pointer: coarse) {
-    .badge-label,
-    .badge-value {
-      min-height: 40px;
-      padding: 0 10px;
+    .badge {
+      padding: 10px 0;
     }
   }
 </style>

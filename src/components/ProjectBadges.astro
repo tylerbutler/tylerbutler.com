@@ -28,6 +28,13 @@ const { npm, crate, hex, hexDocs, license, programmingLanguage, maturity } =
  */
 const LABEL_BG = "2a4a47"; // Nebula Teal
 
+/**
+ * shields' own `blue` (#007ec6) gives its white text 4.38:1 — just under AA.
+ * Deepened ~6% to clear it at 5.16:1 while still reading as the README blue
+ * everyone recognises on a license badge.
+ */
+const LICENSE_BLUE = "0072b4";
+
 // Atmosphere Ember, not --warning (#b8722a) — the latter gives white 3.8:1.
 const maturityConfig: Record<Maturity, { message: string; color: string }> = {
   stable: { message: "stable", color: "4a7c59" },
@@ -134,7 +141,7 @@ const hasBuild = Boolean(languageName) || Boolean(hexDocs);
           <ShieldsBadge
             label="license"
             message={license}
-            color="blue"
+            color={LICENSE_BLUE}
             labelColor={LABEL_BG}
             href={`https://opensource.org/licenses/${license}`}
           />

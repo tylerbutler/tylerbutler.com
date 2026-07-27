@@ -19,65 +19,123 @@ interface Props {
 const { npm, crate, hex, hexDocs, license, programmingLanguage, maturity } =
   Astro.props;
 
-const maturityConfig: Record<Maturity, { message: string; color: string }> = {
-  stable: { message: "stable", color: "brightgreen" },
-  experimental: { message: "experimental", color: "orange" },
-  unpublished: { message: "unpublished", color: "lightgrey" },
-  archived: { message: "archived", color: "inactive" },
+// Tone rides the Instrument colors, which swap with the theme. "unpublished"
+// and "archived" are both quiet states — neither is a warning.
+const maturityConfig: Record<
+  Maturity,
+  { message: string; tone: "success" | "warning" | "muted" }
+> = {
+  stable: { message: "stable", tone: "success" },
+  experimental: { message: "experimental", tone: "warning" },
+  unpublished: { message: "unpublished", tone: "muted" },
+  archived: { message: "archived", tone: "muted" },
+};
+
+// Display names live here rather than in lib/badges.ts so that module stays a
+// pure color/logo source. Frontmatter keys are lowercase; readers aren't.
+const languageNames: Record<string, string> = {
+  typescript: "TypeScript",
+  gleam: "Gleam",
+  rust: "Rust",
+  go: "Go",
+  python: "Python",
+  ocaml: "OCaml",
 };
 
 const language = programmingLanguage
   ? languageBadge(programmingLanguage)
   : undefined;
+const languageName = programmingLanguage
+  ? (languageNames[programmingLanguage] ?? programmingLanguage)
+  : undefined;
 
-// Version badges are served by shields.io rather than rendered at build, so a
-// release shows up without waiting for a redeploy. Height is fixed at the
-// shields "flat" height to keep the row from shifting vertically as they load.
+/**
+ * Version numbers stay on img.shields.io — baking one in at build would freeze
+ * it until the next deploy. They are the only remaining third-party pixels, so
+ * they're pinned to palette hexes (Nebula Teal label, Nebula Teal Light value)
+ * to sit with the native chips instead of against them. Height is fixed at the
+ * shields "flat" height so the row can't shift vertically as they load.
+ */
+const SHIELDS_STYLE = "style=flat&labelColor=2a4a47&color=4a6662";
+
+interface VersionBadge {
+  key: string;
+  href: string;
+  src: string;
+  alt: string;
+}
+
+const versions: VersionBadge[] = [
+  npm
+    ? {
+        key: "npm",
+        href: `https://www.npmjs.com/package/${npm}`,
+        src: `https://img.shields.io/npm/v/${npm}?${SHIELDS_STYLE}&label=npm`,
+        alt: `${npm} version on npm`,
+      }
+    : null,
+  crate
+    ? {
+        key: "crate",
+        href: `https://crates.io/crates/${crate}`,
+        src: `https://img.shields.io/crates/v/${crate}?${SHIELDS_STYLE}&label=crates.io`,
+        alt: `${crate} version on crates.io`,
+      }
+    : null,
+  hex
+    ? {
+        key: "hex",
+        href: `https://hex.pm/packages/${hex}`,
+        src: `https://img.shields.io/hexpm/v/${hex}?${SHIELDS_STYLE}&label=hex`,
+        alt: `${hex} version on Hex`,
+      }
+    : null,
+].filter((entry): entry is VersionBadge => entry !== null);
+
+// One wrapping row, ordered by what a stranger scanning the index needs first.
+// Guarded so a project with no metadata renders nothing rather than an empty box.
+const hasAny =
+  Boolean(maturity) ||
+  Boolean(languageName) ||
+  versions.length > 0 ||
+  Boolean(license) ||
+  Boolean(hexDocs);
 ---
 
-{/* Row one: what this project is — status, published version, license. */}
-<div class="badge-row">
-  {maturity && (
-    <ShieldsBadge label="status" message={maturityConfig[maturity].message} color={maturityConfig[maturity].color} />
-  )}
-  {npm && (
-    <a href={`https://www.npmjs.com/package/${npm}`} class="badge" target="_blank" rel="noopener">
-      <img src={`https://img.shields.io/npm/v/${npm}`} alt={`${npm} npm version`} height="20" loading="lazy" />
-    </a>
-  )}
-  {crate && (
-    <a href={`https://crates.io/crates/${crate}`} class="badge" target="_blank" rel="noopener">
-      <img src={`https://img.shields.io/crates/v/${crate}`} alt={`${crate} crate version`} height="20" loading="lazy" />
-    </a>
-  )}
-  {hex && (
-    <a href={`https://hex.pm/packages/${hex}`} class="badge" target="_blank" rel="noopener">
-      <img src={`https://img.shields.io/hexpm/v/${hex}`} alt={`${hex} hex version`} height="20" loading="lazy" />
-    </a>
-  )}
-  {license && (
-    <a href={`https://opensource.org/licenses/${license}`} class="badge" target="_blank" rel="noopener">
-      <ShieldsBadge label="license" message={license} color="blue" />
-    </a>
-  )}
-</div>
-
-{/* Row two: how it's built and where to read about it. */}
-{(programmingLanguage || hexDocs) && (
+{hasAny && (
   <div class="badge-row">
-    {programmingLanguage && language && (
+    {maturity && (
+      <ShieldsBadge
+        label="status"
+        message={maturityConfig[maturity].message}
+        tone={maturityConfig[maturity].tone}
+      />
+    )}
+    {languageName && (
       <ShieldsBadge
         label="written in"
-        message={programmingLanguage}
-        color={language.color}
-        labelColor={language.labelColor}
-        logoBase64={language.logoBase64}
+        message={languageName}
+        logo={language?.logoBase64}
+      />
+    )}
+    {versions.map((version) => (
+      <a href={version.href} class="version" target="_blank" rel="noopener">
+        <img src={version.src} alt={version.alt} height="20" loading="lazy" />
+      </a>
+    ))}
+    {license && (
+      <ShieldsBadge
+        label="license"
+        message={license}
+        href={`https://opensource.org/licenses/${license}`}
       />
     )}
     {hexDocs && (
-      <a href={`https://hexdocs.pm/${hexDocs}`} class="badge" target="_blank" rel="noopener">
-        <ShieldsBadge label="hex" message="docs" color="ffaff3" />
-      </a>
+      <ShieldsBadge
+        label="docs"
+        message="HexDocs"
+        href={`https://hexdocs.pm/${hexDocs}`}
+      />
     )}
   </div>
 )}
@@ -87,14 +145,24 @@ const language = programmingLanguage
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: 0.5em;
   }
 
-  .badge-row + .badge-row {
-    margin-top: 0.35em;
+  .version {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: var(--radius-md);
   }
 
-  img {
-    margin-right: 0.5em;
-    vertical-align: top;
+  .version img {
+    display: block;
+    border-radius: var(--radius-md);
+  }
+
+  @media (pointer: coarse) {
+    .version {
+      padding: 8px 0;
+    }
   }
 </style>

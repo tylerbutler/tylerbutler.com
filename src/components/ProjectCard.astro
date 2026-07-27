@@ -103,8 +103,13 @@ const TitleTag = `h${titleLevel}` as "h2" | "h3";
     height: 16px;
   }
 
-  .project-links a,
-  .article-badges a {
+  /* Badge chips style themselves in ShieldsBadge.astro; scoped rules here never
+     reached them anyway — those anchors carry ProjectBadges' scope id. */
+  .article-badges {
+    margin: 0.75em 0;
+  }
+
+  .project-links a {
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
@@ -115,13 +120,8 @@ const TitleTag = `h${titleLevel}` as "h2" | "h3";
     letter-spacing: 1px;
   }
 
-  .article-badges a {
-    margin-right: 0.5em;
-  }
-
   /* Color states, not opacity — dimmed accent text drops below AA contrast */
-  .project-links a:hover,
-  .article-badges a:hover {
+  .project-links a:hover {
     text-decoration: none;
     color: var(--accent-hover);
   }

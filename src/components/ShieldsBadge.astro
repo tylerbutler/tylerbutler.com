@@ -1,80 +1,158 @@
 ---
-import { makeBadge } from "badge-maker";
+/**
+ * A project metadata chip in the site's own voice: Lato label on raised paper,
+ * 1px quiet border, 4px radius — the action-chip register from DESIGN.md §5.
+ *
+ * This replaced a badge-maker/shields.io rendering whose Verdana type and
+ * #4c1/#555/#9f9f9f palette were baked into SVG attributes, so it could be
+ * themed by neither CSS nor the light/dark toggle (the Two Suns Rule). Tone is
+ * carried by a border and a dot rather than by text color, which keeps the chip
+ * at AA in both themes and stops color from being the only cue.
+ *
+ * `logo` still takes the data URI produced by languageBadge() in lib/badges.ts,
+ * so that module's brand colors and contrast-aware label logic are unchanged.
+ */
+type Tone = "neutral" | "success" | "warning" | "muted";
 
 interface Props {
-  label: string;
+  /** Quiet leading label, e.g. "license". Omit for a value-only chip. */
+  label?: string;
   message: string;
-  /** Named shields color (e.g. "blue") or a bare hex triplet (e.g. "ffaff3"). */
-  color?: string;
-  /** Label-side background. Defaults to badge-maker's dark grey. */
-  labelColor?: string;
-  style?: "plastic" | "flat" | "flat-square" | "for-the-badge" | "social";
-  /** Logo as a data URI — see languageBadge() in lib/badges.ts. */
-  logoBase64?: string;
+  tone?: Tone;
+  /** Data URI from languageBadge(); drawn in the language's own brand color. */
+  logo?: string;
+  /** Renders the chip as a link. External hrefs get a target and a ↗ affordance. */
+  href?: string;
 }
 
-const {
-  label,
-  message,
-  color = "blue",
-  labelColor,
-  style = "flat",
-  logoBase64,
-} = Astro.props;
+const { label, message, tone = "neutral", logo, href } = Astro.props;
+
+const Tag = href ? "a" : "span";
+const isExternal = href?.startsWith("http") ?? false;
 
 /**
- * badge-maker names its clipPath and gradient "r" and "s". Inline SVGs share
- * one document ID space, so without a suffix every badge's `url(#r)` resolves
- * to the first badge's clipPath and any wider badge gets visibly cut off.
- * Hashing the badge's own content keeps the suffix stable across builds, and
- * two identical badges may safely share IDs since their defs are identical.
+ * Named explicitly rather than left to name-from-contents: the label and value
+ * are adjacent text nodes separated only by a flex gap, so contents alone
+ * announce as "licenseMIT". The ↗ is decorative and stays out of the name.
  */
-function idSuffixFor(parts: Array<string | undefined>): string {
-  let hash = 0x811c9dc5;
-  for (const char of parts.join(" ")) {
-    hash ^= char.charCodeAt(0);
-    hash = Math.imul(hash, 0x01000193);
-  }
-  return Math.abs(hash).toString(36);
-}
+const accessibleName = href
+  ? `${[label, message].filter(Boolean).join(" ")}${isExternal ? " (opens in new tab)" : ""}`
+  : undefined;
 
-// Generate SVG as a string
-const svg = String(
-  makeBadge({
-    label,
-    message,
-    color,
-    style,
-    idSuffix: idSuffixFor([
-      label,
-      message,
-      color,
-      labelColor,
-      style,
-      logoBase64,
-    ]),
-    ...(labelColor ? { labelColor } : {}),
-    ...(logoBase64 ? { logoBase64 } : {}),
-  }),
-);
-
-// Astro requires the SVG to be wrapped in a container
-// to avoid parser issues with top-level <svg>
+const linkAttrs = href
+  ? {
+      href,
+      "aria-label": accessibleName,
+      ...(isExternal ? { target: "_blank", rel: "noopener" } : {}),
+    }
+  : {};
 ---
 
-<div class="badge">
-  <Fragment set:html={svg} />
-</div>
+<Tag class:list={["chip", `tone-${tone}`, href && "chip-link"]} {...linkAttrs}>
+  {tone !== "neutral" && <span class="dot" aria-hidden="true"></span>}
+  {logo && <img class="logo" src={logo} alt="" width="14" height="14" />}
+  {label && <span class="chip-label">{label}</span>}
+  <span class="chip-value">{message}</span>
+  {isExternal && <span class="ext" aria-hidden="true">↗</span>}
+</Tag>
 
 <style>
-  .badge :global(svg) {
-    display: inline-block;
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 3px 8px;
+    background: var(--code-bg);
+    border: 1px solid var(--chip-edge, var(--text-light));
+    border-radius: var(--radius-md);
+    font-family: Lato, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.45;
+    text-decoration: none;
+    /* No nowrap: it would make the chip's min-content the whole string, so flex
+       couldn't shrink it and a long chip would push past the column on narrow
+       screens. Chips still sit on one line whenever the row has room. */
+    flex-wrap: wrap;
+    max-width: 100%;
   }
 
-  .badge {
-    text-decoration: none;
-    text-transform: none;
-    display: inline-block;
-    margin-right: 0.5em;
+  /* Label whispers, value speaks — contrast comes from case and weight, so the
+     value keeps its own capitalization (TypeScript, not TYPESCRIPT). */
+  .chip-label {
+    font-size: var(--font-size-meta);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light);
+  }
+
+  .chip-value {
+    font-size: var(--font-size-label);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--chip-edge, var(--text-light));
+    flex-shrink: 0;
+  }
+
+  .logo {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .ext {
+    font-size: var(--font-size-meta);
+    color: var(--text-light);
+  }
+
+  /* Status tones ride the Instrument colors from variables.css, which already
+     swap with the theme — so the chip swaps with it too. */
+  .tone-success {
+    --chip-edge: var(--success);
+  }
+
+  .tone-warning {
+    --chip-edge: var(--warning);
+  }
+
+  .tone-muted {
+    --chip-edge: var(--text-light);
+  }
+
+  .tone-muted .chip-value {
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  /* Hover/focus fills the accent, matching the stream action chips */
+  .chip-link:hover,
+  .chip-link:focus-visible {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .chip-link:hover .chip-label,
+  .chip-link:hover .chip-value,
+  .chip-link:hover .ext,
+  .chip-link:focus-visible .chip-label,
+  .chip-link:focus-visible .chip-value,
+  .chip-link:focus-visible .ext {
+    color: var(--light-bg);
+  }
+
+  .chip-link:hover .dot,
+  .chip-link:focus-visible .dot {
+    background: var(--light-bg);
+  }
+
+  /* Touch: grow to a ≥40px hit area per DESIGN.md, by padding not font size */
+  @media (pointer: coarse) {
+    .chip {
+      padding: 10px 12px;
+    }
   }
 </style>

@@ -175,7 +175,7 @@ importers:
         specifier: ^0.34.5
         version: 0.34.5
       simple-icons:
-        specifier: ^16.27.1
+        specifier: ^16.27.0
         version: 16.27.1
       start-server-and-test:
         specifier: ^3.0.0

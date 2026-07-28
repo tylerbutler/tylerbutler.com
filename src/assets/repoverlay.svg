@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 551 619" role="img" aria-label="repoverlay">
+	<defs>
+		<filter id="shadow" x="-8%" y="-6%" width="116%" height="116%">
+			<feDropShadow dx="0" dy="12" stdDeviation="6" flood-color="#111910" flood-opacity=".32" />
+		</filter>
+	</defs>
+	<g filter="url(#shadow)">
+		<path
+			d="M82 127h258l100 103v302c0 24-20 44-44 44H82c-24 0-44-20-44-44V171c0-24 20-44 44-44Z"
+			fill="#CFE1DC"
+			stroke="#152117"
+			stroke-width="18"
+			stroke-linejoin="round"
+		/>
+		<path
+			d="M144 62h244l108 111v286c0 24-20 44-44 44H144c-24 0-44-20-44-44V106c0-24 20-44 44-44Z"
+			fill="#E0ECE1"
+			stroke="#152117"
+			stroke-width="18"
+			stroke-linejoin="round"
+		/>
+		<path
+			d="M386 62v98c0 24 20 44 44 44h66"
+			fill="#F5FAF3"
+			stroke="#152117"
+			stroke-width="18"
+			stroke-linejoin="round"
+		/>
+		<path
+			d="M386 62 496 204"
+			fill="none"
+			stroke="#152117"
+			stroke-width="18"
+			stroke-linejoin="round"
+		/>
+		<g fill="none" stroke="#152117" stroke-linecap="round">
+			<path d="M174 140h125" stroke-width="18" />
+			<path d="M174 209h222" stroke-width="18" />
+			<path d="M312 267h84" stroke-width="18" />
+			<path d="M358 326h39" stroke-width="18" />
+		</g>
+		<rect
+			x="99"
+			y="285"
+			width="276"
+			height="276"
+			rx="42"
+			transform="rotate(-45 237 423)"
+			fill="#DC7155"
+			stroke="#152117"
+			stroke-width="18"
+		/>
+		<g fill="none" stroke="#152117" stroke-linecap="round" stroke-linejoin="round" stroke-width="18">
+			<path d="M237 340v74" />
+			<path d="M237 340 294 397" />
+			<path d="M237 414v73" />
+		</g>
+		<g fill="#152117">
+			<circle cx="237" cy="340" r="26" />
+			<circle cx="294" cy="397" r="26" />
+			<circle cx="237" cy="487" r="26" />
+		</g>
+	</g>
+</svg>

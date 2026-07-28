@@ -1,0 +1,84 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+/**
+ * The site's action chip — DESIGN.md §5: italic Adelle at label size on raised
+ * paper, 1px quiet border, 4px radius, filling the accent on hover. The kudos
+ * button's register, minus the rocket.
+ *
+ * Every "go here" affordance on a card or preview uses this, so the same action
+ * cannot end up wearing three different controls on three pages, which is what
+ * it did before: a chip on the homepage, uppercase text links on the projects
+ * index, and accent-outlined buttons on the project detail page.
+ *
+ * The `action-chip` class is also what exempts these from the body-link
+ * underline in animations.css — that rule scores (0,6,1), so a component's own
+ * scoped `text-decoration: none` can never win against it.
+ */
+interface Props extends HTMLAttributes<"a"> {
+  href: string;
+  /** Opens in a new tab; the caller supplies its own icon affordance. */
+  external?: boolean;
+}
+
+const { href, external = false, class: className, ...rest } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={["action-chip", className]}
+  {...external ? { target: "_blank", rel: "noopener" } : {}}
+  {...rest}
+>
+  <slot />
+</a>
+
+<style>
+  .action-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 6px 12px;
+    background: var(--code-bg);
+    border: 1px solid var(--text-light);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-label);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text);
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: normal;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .action-chip:hover,
+  .action-chip:focus-visible {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--light-bg);
+  }
+
+  /* Icons follow the label, so they invert with the fill */
+  .action-chip :global(svg) {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .action-chip {
+      transition: none;
+    }
+  }
+
+  /* Touch: grow to a ≥40px hit area by padding, not font size */
+  @media (pointer: coarse) {
+    .action-chip {
+      padding: 12px 16px;
+    }
+  }
+</style>

@@ -40,4 +40,4 @@ myself). For now, I'm stuck with what I've got. But like I said, there are
 some exciting new things coming with my site redesign.
 
    [1]: http://disqus.com/
-   [2]: /2006/11/building-tylerbutlercom-on-moss/
+   [2]: /building-tylerbutlercom-on-moss/

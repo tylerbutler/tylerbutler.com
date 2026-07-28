@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import ActionChip from "../components/ActionChip.astro";
 import ConstellationIcon from "../components/ConstellationIcon.astro";
 import KudosButton from "../components/KudosButton.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -102,9 +103,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
             <li>
               <article class="article-preview">
                 <h2>
-                  <a href={getArticleUrl(article)}>
-                    {article.formattedTitle}
-                  </a>
+                  <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
                 </h2>
                 <div class="article-meta">
                   <time datetime={article.data.date.toISOString()}>
@@ -118,9 +117,9 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
                 <div class="article-content" set:html={article.transformedHtml}></div>
                 <p class="preview-actions">
                   {article.isTruncated ? (
-                    <a href={getArticleUrl(article)} class="read-more-link">Read More →</a>
+                    <ActionChip href={getArticleUrl(article)}>Read More →</ActionChip>
                   ) : (
-                    <a href={getArticleUrl(article)} class="read-more-link">Permalink →</a>
+                    <ActionChip href={getArticleUrl(article)}>Permalink →</ActionChip>
                   )}
                   <KudosButton path={getArticleUrl(article)} variant="preview" />
                 </p>
@@ -210,40 +209,18 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     gap: 0.75em;
   }
 
-  /* Stream action chips share the kudos-button register: quiet italic serif
-     on raised paper, filling with the accent on hover */
-  .read-more-link {
-    display: inline-block;
-    background: var(--code-bg);
-    border: 1px solid var(--text-light);
-    padding: 4px 10px;
-    font-size: var(--font-size-label);
-    font-style: italic;
-    color: var(--text);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-  }
-
-  .read-more-link:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--light-bg);
-  }
-
+  /* The stream chip itself lives in ActionChip.astro; only the kudos button
+     beside it needs local sizing to sit level with it. */
   .preview-actions :global(.tinylytics_kudos) {
     font-size: var(--font-size-label);
     padding: 2px 8px;
   }
 
-  /* Touch: grow the adjacent action chips to comfortable thumb targets
-     (≥40px hit height) and widen the gap between them */
+  /* Touch: grow the kudos button to a comfortable thumb target (the chip
+     grows itself) and widen the gap between them */
   @media (pointer: coarse) {
     .preview-actions {
       gap: 1.25em;
-    }
-
-    .read-more-link {
-      padding: 12px 16px;
     }
 
     .preview-actions :global(.tinylytics_kudos) {

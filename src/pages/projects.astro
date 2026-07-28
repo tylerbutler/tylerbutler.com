@@ -1,10 +1,48 @@
 ---
-import { getCollection } from "astro:content";
-import { BookOpen, ExternalLink } from "@lucide/astro";
-import Github from "simple-icons-astro/Github";
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import ConstellationIcon from "../components/ConstellationIcon.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { includeDraft } from "../lib/draft-utils";
 import { formatTitle } from "../lib/typography";
+
+// Constellation lottie files — Vite resolves these to hashed URLs at build time.
+const constellationModules = import.meta.glob<string>(
+  "../lottie/constellations/*.lottie",
+  { query: "?url", import: "default", eager: true },
+);
+
+const constellationUrls: Record<string, string> = Object.fromEntries(
+  Object.entries(constellationModules).map(([path, url]) => [
+    path.split("/").pop()!.replace(".lottie", ""),
+    url,
+  ]),
+);
+
+function hashStr(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+const CONSTELLATION_NAMES = Object.keys(constellationUrls);
+
+// Same assignment the homepage stream uses: hash order, no duplicates on screen.
+function assignIcons(
+  ids: string[],
+): Map<string, { url: string; slug: string }> {
+  const result = new Map<string, { url: string; slug: string }>();
+  const used = new Set<number>();
+  for (const id of [...ids].sort((a, b) => hashStr(a) - hashStr(b))) {
+    let idx = hashStr(id) % CONSTELLATION_NAMES.length;
+    while (used.has(idx)) idx = (idx + 1) % CONSTELLATION_NAMES.length;
+    used.add(idx);
+    const slug = CONSTELLATION_NAMES[idx];
+    result.set(id, { url: constellationUrls[slug], slug });
+  }
+  return result;
+}
 
 // Get all projects (excluding index files; drafts hidden unless SHOW_DRAFTS=1)
 const projects = await getCollection(
@@ -12,19 +50,152 @@ const projects = await getCollection(
   ({ id, data }) => !id.startsWith("_") && includeDraft(data),
 );
 
-// Sort projects by date (newest first)
-const sortedProjects = await Promise.all(
-  projects
-    .filter((p) => p.data.date)
-    .sort(
-      (a, b) =>
-        new Date(b.data.date!).getTime() - new Date(a.data.date!).getTime(),
-    )
+// `date` is optional in the schema, so undated projects sort last rather than
+// being filtered out — dropping a project silently is worse than showing it
+// at the end of its section.
+const timeOf = (value: Date | undefined): number =>
+  value ? new Date(value).getTime() : Number.NEGATIVE_INFINITY;
+
+const withTitles = await Promise.all(
+  [...projects]
+    .sort((a, b) => timeOf(b.data.date) - timeOf(a.data.date))
     .map(async (project) => ({
       ...project,
       formattedTitle: await formatTitle(project.data.title),
     })),
 );
+
+// Archived projects sit in their own section at the bottom instead of the
+// dated timeline — "archived" means "no longer current," which outranks
+// wherever its date would otherwise place it.
+const archivedProjects = withTitles.filter(
+  (p) => p.data.maturity === "archived",
+);
+const activeProjects = withTitles.filter((p) => p.data.maturity !== "archived");
+
+// Bucket by referenced group id. A reference resolves to { collection, id },
+// not the entry, so we match ids against the group collection loaded below
+// rather than paying a getEntry() per project. Archived projects are excluded
+// so an archived member can't keep an otherwise-empty group alive or skew its
+// date in the timeline.
+const byGroup = new Map<string, typeof activeProjects>();
+for (const project of activeProjects) {
+  const id = project.data.group?.id;
+  if (!id) continue;
+  const bucket = byGroup.get(id);
+  if (bucket) bucket.push(project);
+  else byGroup.set(id, [project]);
+}
+
+const allGroups = await getCollection(
+  "projectGroups",
+  ({ id }) => !id.startsWith("_"),
+);
+
+// Groups sort by their newest member's date (matching the newest-first order
+// of the project cards themselves), falling back to `order` and then id when
+// a group has no dated members to compare.
+const newestDateOf = (groupId: string): number =>
+  (byGroup.get(groupId) ?? []).reduce(
+    (max, project) => Math.max(max, timeOf(project.data.date)),
+    Number.NEGATIVE_INFINITY,
+  );
+
+// Astro only validates a reference() when it is resolved via getEntry(), which
+// we intentionally skip — so a typo'd `group:` would otherwise silently drop a
+// project into the ungrouped list. Check against every group, drafts included,
+// so that referencing a draft group stays legal.
+const knownGroupIds = new Set(allGroups.map((group) => group.id));
+const badReferences = withTitles
+  .filter((p) => p.data.group && !knownGroupIds.has(p.data.group.id))
+  .map((p) => `${p.id} → "${p.data.group?.id}"`);
+if (badReferences.length > 0) {
+  throw new Error(
+    `Unknown project group referenced by ${badReferences.length} project(s): ${badReferences.join(", ")}. ` +
+      `Known groups: ${[...knownGroupIds].join(", ")}.`,
+  );
+}
+
+const groupEntries = allGroups.filter(({ data }) => includeDraft(data));
+
+// render() is async and can't be awaited inside JSX, so section bodies are
+// rendered up front.
+const groupUnits = (
+  await Promise.all(
+    groupEntries.map(async (group) => {
+      const members = byGroup.get(group.id) ?? [];
+      if (members.length === 0) return null;
+      const { Content } = await render(group);
+      return {
+        group,
+        members,
+        Content,
+        formattedTitle: await formatTitle(group.data.title),
+        date: newestDateOf(group.id),
+      };
+    }),
+  )
+).filter((group): group is NonNullable<typeof group> => group !== null);
+
+// Computed last, against the groups that actually rendered, so a project
+// pointing at a draft or missing group falls back to the plain list instead
+// of disappearing from the page.
+const renderedGroupIds = new Set(groupUnits.map((g) => g.group.id));
+const ungroupedProjects = activeProjects.filter(
+  (p) => !p.data.group || !renderedGroupIds.has(p.data.group.id),
+);
+
+// A single timeline: individual projects and group blocks interleave by
+// date, newest first, rather than every group leading and the leftovers
+// trailing behind them. Ties fall back to a group's manual `order`, then id.
+type Entry =
+  | {
+      kind: "project";
+      date: number;
+      project: (typeof ungroupedProjects)[number];
+    }
+  | { kind: "group"; date: number; unit: (typeof groupUnits)[number] };
+
+const entries: Entry[] = [
+  ...ungroupedProjects.map(
+    (project): Entry => ({
+      kind: "project",
+      date: timeOf(project.data.date),
+      project,
+    }),
+  ),
+  ...groupUnits.map(
+    (unit): Entry => ({ kind: "group", date: unit.date, unit }),
+  ),
+].sort((a, b) => {
+  if (b.date !== a.date) return b.date - a.date;
+  const orderA = a.kind === "group" ? a.unit.group.data.order : 100;
+  const orderB = b.kind === "group" ? b.unit.group.data.order : 100;
+  if (orderA !== orderB) return orderA - orderB;
+  const idA = a.kind === "group" ? a.unit.group.id : a.project.id;
+  const idB = b.kind === "group" ? b.unit.group.id : b.project.id;
+  return idA.localeCompare(idB);
+});
+
+// Batch consecutive ungrouped projects into one shared `<ul>` so they still
+// read as a plain list; group blocks remain their own section in between.
+type Run =
+  | { kind: "projects"; projects: typeof ungroupedProjects }
+  | { kind: "group"; unit: (typeof groupUnits)[number] };
+
+const runs: Run[] = [];
+for (const entry of entries) {
+  if (entry.kind === "project") {
+    const last = runs.at(-1);
+    if (last?.kind === "projects") last.projects.push(entry.project);
+    else runs.push({ kind: "projects", projects: [entry.project] });
+  } else {
+    runs.push({ kind: "group", unit: entry.unit });
+  }
+}
+
+const ARCHIVED_ID = "archived-projects";
+const icons = assignIcons([...groupUnits.map((g) => g.group.id), ARCHIVED_ID]);
 ---
 
 <BaseLayout
@@ -38,41 +209,87 @@ const sortedProjects = await Promise.all(
       source contributions and personal experiments.
     </p>
 
-    {sortedProjects.length > 0 ? (
-      <ul class="projects-list">
-        {sortedProjects.map(project => {
-          return (
-            <li class="project-item">
-              <article>
-                <h2>{project.formattedTitle}</h2>
-                {project.data.description && (
-                  <p class="description">{project.data.description}</p>
-                )}
-                <div class="project-links">
-                  <a href={`/projects/${project.id}`} class="read-more" data-tinylytics-event="project.read-more" data-tinylytics-event-value={project.id}>
-                    <BookOpen class="icon" />
-                    Read More
-                  </a>
-                  {project.data.url && (
-                    <a href={project.data.url} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
-                      <ExternalLink class="icon" />
-                      View Project
-                    </a>
-                  )}
-                  {project.data.github && (
-                    <a href={project.data.github} target="_blank" rel="noopener" class="external-link" data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
-                      <Github class="icon" />
-                      GitHub
-                    </a>
-                  )}
-                </div>
-              </article>
-            </li>
-          );
-        })}
-      </ul>
-    ) : (
+    {runs.length === 0 && archivedProjects.length === 0 && (
       <p>More projects coming soon...</p>
+    )}
+
+    {runs.map((run) => {
+      if (run.kind === "projects") {
+        return (
+          <ul class="projects-list">
+            {run.projects.map(project => (
+              <ProjectCard
+                project={project}
+                formattedTitle={project.formattedTitle}
+                titleLevel={2}
+              />
+            ))}
+          </ul>
+        );
+      }
+
+      const { group, members, Content, formattedTitle } = run.unit;
+      return (
+        <section class="project-group" aria-labelledby={`group-${group.id}`}>
+          <div class="group-divider">
+            <ConstellationIcon
+              src={icons.get(group.id)!.url}
+              slug={icons.get(group.id)!.slug}
+              size={56}
+            />
+          </div>
+          <div class="group-header">
+            {group.data.logo && (
+              <Image
+                src={group.data.logo}
+                alt={`${group.data.title} logo`}
+                class="group-logo"
+                width={72}
+              />
+            )}
+            <h2
+              id={`group-${group.id}`}
+              class="section-heading"
+              set:html={formattedTitle}
+            />
+            <div class="section-description"><Content /></div>
+          </div>
+          <ul class="projects-list">
+            {members.map(project => (
+              <ProjectCard
+                project={project}
+                formattedTitle={project.formattedTitle}
+                titleLevel={3}
+                showLogo={false}
+              />
+            ))}
+          </ul>
+        </section>
+      );
+    })}
+
+    {archivedProjects.length > 0 && (
+      <section class="project-group" aria-labelledby={ARCHIVED_ID}>
+        <div class="group-divider">
+          <ConstellationIcon
+            src={icons.get(ARCHIVED_ID)!.url}
+            slug={icons.get(ARCHIVED_ID)!.slug}
+            size={56}
+          />
+        </div>
+        <div class="group-header">
+          <h2 id={ARCHIVED_ID} class="section-heading">Archived</h2>
+        </div>
+        <ul class="projects-list">
+          {archivedProjects.map(project => (
+            <ProjectCard
+              project={project}
+              formattedTitle={project.formattedTitle}
+              titleLevel={3}
+            />
+          ))}
+        </ul>
+      </section>
     )}
   </section>
 </BaseLayout>
@@ -84,56 +301,43 @@ const sortedProjects = await Promise.all(
     margin: 2em 0;
   }
 
-  .project-item {
-    margin-bottom: 2.5em;
-    padding-bottom: 2em;
-    border-bottom: 1px solid var(--code-border);
+  .project-group {
+    margin-top: 2em;
   }
 
-  .project-item:last-child {
-    border-bottom: none;
+  /* The signature divider does the structural work a rule used to do badly:
+     a 2px border against the cards' 1px in the same color made the page's
+     biggest break its least visible one. */
+  .group-divider {
+    display: flex;
+    justify-content: center;
+    margin: 3em 0 2em;
   }
 
-  .project-item h2 {
+  /* Stacked, not a flex row: every section heading then starts at the reading
+     column's left edge whether or not its group has a logo, and the header can
+     no longer overflow the container on narrow screens. */
+  .group-logo {
+    display: block;
+    width: 72px;
+    height: auto;
+    margin-bottom: 0.75em;
+  }
+
+  .section-heading {
     margin: 0 0 0.5em 0;
-    color: var(--text);
+    overflow-wrap: break-word;
   }
 
-  .description {
-    font-style: italic;
+  .section-description {
     color: var(--text-light);
-    margin: 0.5em 0 1em 0;
-    line-height: 1.5;
   }
 
-  .project-links {
-    margin-top: 1em;
+  .section-description :global(p) {
+    margin: 0 0 1em 0;
   }
 
-  .project-links .icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .project-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    margin-right: 1em;
-    color: var(--accent);
-    text-decoration: none;
-    font-size: var(--font-size-label);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  /* Color states, not opacity — dimmed accent text drops below AA contrast */
-  .project-links a:hover {
-    text-decoration: none;
-    color: var(--accent-hover);
-  }
-
-  .read-more {
-    font-weight: 500;
+  .section-description :global(p:last-child) {
+    margin-bottom: 0;
   }
 </style>

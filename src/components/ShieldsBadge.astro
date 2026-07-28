@@ -1,0 +1,113 @@
+---
+import { makeBadge } from "badge-maker";
+
+/**
+ * A shields.io badge, rendered by shields' own renderer so the geometry,
+ * typography, gradient and text shadow match exactly. Only the colors are
+ * ours: callers pass palette hexes instead of shields' named colors.
+ *
+ * badge-maker picks label/message text color from each background's
+ * brightness, so a light ground (Cloud Shadow, Gleam's pink) gets dark text
+ * automatically and every pair stays readable.
+ */
+interface Props {
+  label: string;
+  message: string;
+  /** Bare hex triplet from the site palette (e.g. "96591c"). */
+  color?: string;
+  /** Label-side background. Defaults to badge-maker's dark grey. */
+  labelColor?: string;
+  style?: "plastic" | "flat" | "flat-square" | "for-the-badge" | "social";
+  /** Logo as a data URI — see languageBadge() in lib/badges.ts. */
+  logoBase64?: string;
+  /** Renders the badge as a link with an explicit accessible name. */
+  href?: string;
+}
+
+const {
+  label,
+  message,
+  color = "blue",
+  labelColor,
+  style = "flat",
+  logoBase64,
+  href,
+} = Astro.props;
+
+/**
+ * badge-maker names its clipPath and gradient "r" and "s". Inline SVGs share
+ * one document ID space, so without a suffix every badge's `url(#r)` resolves
+ * to the first badge's clipPath and any wider badge gets visibly cut off.
+ * Hashing the badge's own content keeps the suffix stable across builds, and
+ * two identical badges may safely share IDs since their defs are identical.
+ */
+function idSuffixFor(parts: Array<string | undefined>): string {
+  let hash = 0x811c9dc5;
+  for (const char of parts.join(" ")) {
+    hash ^= char.charCodeAt(0);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return Math.abs(hash).toString(36);
+}
+
+// Generate SVG as a string
+const svg = String(
+  makeBadge({
+    label,
+    message,
+    color,
+    style,
+    idSuffix: idSuffixFor([
+      label,
+      message,
+      color,
+      labelColor,
+      style,
+      logoBase64,
+    ]),
+    ...(labelColor ? { labelColor } : {}),
+    ...(logoBase64 ? { logoBase64 } : {}),
+  }),
+);
+
+const Tag = href ? "a" : "div";
+const isExternal = href?.startsWith("http") ?? false;
+
+/**
+ * Named explicitly: the badge SVG carries a <title> plus doubled shadow/real
+ * <text> nodes, so a link left to name-from-contents announces the label and
+ * message several times over ("license: MITlicenselicenseMITMIT").
+ */
+const linkAttrs = href
+  ? {
+      href,
+      "aria-label": `${label} ${message}${isExternal ? " (opens in new tab)" : ""}`,
+      ...(isExternal ? { target: "_blank", rel: "noopener" } : {}),
+    }
+  : {};
+
+// Astro requires the SVG to be wrapped in a container
+// to avoid parser issues with top-level <svg>
+---
+
+<Tag class:list={["badge", href && "badge-link"]} {...linkAttrs}>
+  <Fragment set:html={svg} />
+</Tag>
+
+<style>
+  .badge :global(svg) {
+    display: block;
+  }
+
+  .badge {
+    text-decoration: none;
+    text-transform: none;
+    display: inline-flex;
+    border-radius: var(--radius-sm);
+  }
+
+  .badge-link:hover :global(svg),
+  .badge-link:focus-visible :global(svg) {
+    filter: brightness(1.12);
+  }
+</style>

@@ -265,7 +265,12 @@
       --font-size-meta
     ); /* Smaller font for mobile horizontal layout */
     letter-spacing: 1px;
-    padding: 10px 8px; /* Comfortable touch targets; wrapping handles overflow */
+    min-height: 44px;
+    padding: 10px 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
   }
 
   .site-header nav ul {

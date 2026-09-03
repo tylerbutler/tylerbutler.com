@@ -2,7 +2,7 @@
 // ThemeToggle.astro - Based on official Astro theme toggle pattern
 ---
 
-<button id="themeToggle" aria-label="Dark mode" aria-pressed="false">
+<button id="themeToggle" aria-label="Switch to dark mode" aria-pressed="false">
   <svg
     width="18"
     height="18"
@@ -107,9 +107,12 @@
     localStorage.setItem("theme", themeName);
 
     // Expose toggle state to assistive tech
-    document
-      .getElementById("themeToggle")
-      ?.setAttribute("aria-pressed", String(isDark));
+    const toggle = document.getElementById("themeToggle");
+    toggle?.setAttribute("aria-pressed", String(isDark));
+    toggle?.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light mode" : "Switch to dark mode",
+    );
   }
 
   // Apply initial theme

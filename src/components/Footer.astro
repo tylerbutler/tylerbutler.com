@@ -2,6 +2,7 @@
 // Footer.astro — the paperback's back cover
 import constellationUrl from "../lottie/constellations/ursa-minor.lottie?url";
 import LottieIcon from "./LottieIcon.astro";
+import SocialIconsBelow from "./SocialIconsBelow.astro";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -17,6 +18,7 @@ const currentYear = new Date().getFullYear();
     New posts land here first — follow along via <a href="https://feedpress.me/TylerButlerAllPosts.xml">RSS</a> or
     <a href="https://feedpress.me/TylerButlerAllPosts.json">JSON feed</a>. No algorithm, just posts.
   </p>
+  <SocialIconsBelow placement="footer" />
   <nav class="footer-links" aria-label="Footer">
     <a href="/about">About</a>
     <a href="/colophon">Colophon</a>

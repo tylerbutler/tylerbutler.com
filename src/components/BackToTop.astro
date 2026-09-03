@@ -78,11 +78,27 @@
       btn.dataset.bound = "true";
       btn.hidden = false;
 
+      const mobile = window.matchMedia("(max-width: 768px)");
+      let lastScrollY = window.scrollY;
+      let pauseTimer;
+
       const toggle = () => {
+        const scrollY = window.scrollY;
+        const pastThreshold = scrollY > window.innerHeight * 1.5;
+        const scrollingUp = scrollY < lastScrollY;
+
         btn.classList.toggle(
           "visible",
-          window.scrollY > window.innerHeight * 1.5,
+          pastThreshold && (!mobile.matches || scrollingUp),
         );
+        lastScrollY = scrollY;
+
+        window.clearTimeout(pauseTimer);
+        if (mobile.matches && pastThreshold) {
+          pauseTimer = window.setTimeout(() => {
+            btn.classList.add("visible");
+          }, 700);
+        }
       };
 
       window.addEventListener("scroll", toggle, { passive: true });

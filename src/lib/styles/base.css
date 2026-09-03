@@ -58,7 +58,7 @@ body::before {
   z-index: -2;
 }
 
-/* Dark mode overlay for background image */
+/* Quiet the painted scene behind the reading sheet; dark mode deepens it. */
 body::after {
   content: "";
   position: fixed;
@@ -67,7 +67,7 @@ body::after {
   width: 100vw;
   height: 100vh;
   background-color: var(--backdrop-dim);
-  opacity: 0;
+  opacity: 0.3;
   transition: opacity 0.3s ease;
   pointer-events: none;
   z-index: -1;

@@ -46,7 +46,7 @@ async function getAllUrls(
       `${baseUrlObj.protocol}//${baseUrlObj.host}/sitemap.xml`,
       `${baseUrlObj.protocol}//${baseUrlObj.host}/robots.txt`,
       `${baseUrlObj.protocol}//${baseUrlObj.host}/feed.xml`,
-      "http://feed.tylerbutler.com/AllPosts",
+      `${baseUrlObj.protocol}//${baseUrlObj.host}/feed.json`,
       `https://webmention.io/${baseUrlObj.hostname}/xmlrpc`,
     ];
 

@@ -26,13 +26,13 @@ I also initially struggled with how to handle versioning across the packages, wh
 
 After running into my third project that needed the same Gleam workspace infrastructure, I decided it was time to solve the problem properly.
 
-## Enter trellis
+## Enter Trellis
 
 I happen to have quite a bit of professional experience in this area, so I wrote down the scenarios and sketched the
 CLI, then dispatched Fable 5 to put it together.
 I was reasonably impressed with what it produced, and I'm already using it in my projects.
 
-The result is [trellis](https://trellis.tylerbutler.com) -- a trellis being, of course, the frame a lattice grows on.
+The result is [Trellis](https://trellis.tylerbutler.com) -- a trellis being, of course, the frame a lattice grows on.
 
 The design principle: **configure nothing that can be derived, verify anything that must be duplicated.** There's no separate workspace config file. A `[tools.trellis]` table in the root `gleam.toml` marks the workspace and lists member globs; everything else -- the dependency graph, build order, publish order, change impact, the path-dep rewrite map -- is computed from the members' own `gleam.toml` files, never declared.
 
@@ -73,7 +73,7 @@ Changie-compatible feature -- fragments in `.changes/unreleased/`, configurable 
 nice to have a single binary that handles the whole workspace scenario end to end, in CI and locally alike. But if you
 don't like how it works, sub it out.
 
-I also welcome bug reports, feature requests, pull requests, etc. on the [trellis
+I also welcome bug reports, feature requests, pull requests, etc. on the [Trellis
 repo](https://github.com/tylerbutler/trellis). It's MIT-licensed open source.
 
 It ships as a single prebuilt binary (shell installer, Homebrew, mise, or `cargo install`), so it installs in CI in

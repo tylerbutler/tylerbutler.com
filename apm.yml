@@ -1,0 +1,15 @@
+name: tylerbutler.com
+version: 1.0.0
+description: APM project for tylerbutler.com
+author: Tyler Butler
+# Which agent platforms to deploy to.
+# Resolution order: --target flag > this field > auto-detect from filesystem.
+# Accepted values: agent-skills, antigravity, claude, codex, copilot, cursor, gemini, grok-build, kiro, opencode, vscode, windsurf
+targets:
+  - claude
+dependencies:
+  apm:
+    - tylerbutler/apm-base
+  mcp: []
+includes: auto
+scripts: {}

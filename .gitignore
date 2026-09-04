@@ -42,3 +42,7 @@ src/lottie/constellations/*.lottie
 /*.jpeg
 /*.jpg
 /*.png
+
+
+# APM dependencies
+apm_modules/

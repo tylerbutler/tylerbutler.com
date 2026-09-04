@@ -1,15 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
 import Bluesky from "simple-icons-astro/Bluesky";
-
-export interface Props {
-  placement?: "header" | "footer";
-}
-
-const { placement = "header" } = Astro.props;
 ---
 
-<div class:list={["social-icons-below", `social-icons-below--${placement}`]}>
+<div class="social-icons-below">
   <div class="social-icons-row identity-links">
     <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me" data-tinylytics-event="social.github" data-tinylytics-event-value="https://github.com/tylerbutler">
       <Icon name="iconoir:github" aria-hidden="true" />
@@ -28,14 +22,12 @@ const { placement = "header" } = Astro.props;
       <span class="sr-only">Email</span>
     </a>
   </div>
-  {placement === "header" && (
-    <div class="social-icons-row">
-      <a href="http://feed.tylerbutler.com/AllPosts" class="social-link feed-link" title="Subscribe via RSS" data-tinylytics-event="social.feed" data-tinylytics-event-value="http://feed.tylerbutler.com/AllPosts">
-        <Icon name="iconoir:rss-feed" aria-hidden="true" />
-        <span class="feed-label">Subscribe</span>
-      </a>
-    </div>
-  )}
+  <div class="social-icons-row">
+    <a href="http://feed.tylerbutler.com/AllPosts" class="social-link feed-link" title="Subscribe via RSS" data-tinylytics-event="social.feed" data-tinylytics-event-value="http://feed.tylerbutler.com/AllPosts">
+      <Icon name="iconoir:rss-feed" aria-hidden="true" />
+      <span class="feed-label">Subscribe</span>
+    </a>
+  </div>
 </div>
 
 <style>
@@ -45,10 +37,6 @@ const { placement = "header" } = Astro.props;
     align-items: center;
     gap: 6px;
     margin: 8px 0 4px 0;
-  }
-
-  .social-icons-below--footer {
-    display: none;
   }
 
   .social-icons-row {
@@ -124,17 +112,6 @@ const { placement = "header" } = Astro.props;
 
     .feed-link {
       padding: 12px 16px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .social-icons-below--header .identity-links {
-      display: none;
-    }
-
-    .social-icons-below--footer {
-      display: flex;
-      margin: 8px 0 0;
     }
   }
 

@@ -113,7 +113,7 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 - **Golden Horizon** (#e6b35c): the masthead color — site title, tagline, and wayfinding state within the masthead (active nav link, focus rings on masthead controls, 8.2:1 on the hull). It never appears inside the reading column.
 
 ### Neutral
-- **Deep Space Hull** (#1a2332): masthead and footer background, dark-mode container; the structural dark of the scene.
+- **Deep Space Hull** (#1a2332): masthead background and dark-mode container; the structural dark of the scene.
 - **Cloud-Light White** (#faf8f6): the page. A softly warmed white; in dark mode the page becomes **Deep Space Void** (#0f1419).
 - **Nebula Teal** (#2a4a47): body text — a deep teal-gray, not black. **Nebula Teal Light** (#4a6662) for secondary text and metadata.
 - **Cabin Paper** (#e8e4de): dark-mode body text — a warmed light gray (14.6:1 on Deep Space Void), so the dark cabin reads as the same paperback, never a cold gray terminal. **Cabin Paper Dim** (#c9c4bc) for dark-mode secondary text (10.7:1 on the void, 9.1:1 on the hull).
@@ -206,11 +206,6 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Always dark:** code frames keep their instrument-panel chrome in both themes (frame chrome #1f2328, borders #30363d, titles #e6e8eb, inactive tabs #7d8590, active tab wells #0d1117) — a lit terminal in the spacecraft cabin, deliberately unswayed by the page theme. These hexes are sanctioned utility values, not palette drift
 - **Touch overflow:** on coarse pointers, horizontally scrollable code gets edge scroll-shadows (16px black-fade, hidden at the reached edge via local-attachment covers) so clipped code never masquerades as complete
 
-### Footer (The Back Cover)
-- **Surface:** Deep Space Hull in both themes — the back cover closing the scene the masthead opens; never a flat gray strip
-- **Anatomy, top to bottom:** a small static constellation emblem (Cabin Light at 55%), the subscribe line in italic Adelle (13px, ≤60ch) with Horizon Flare links, a Lato uppercase wayfinding row (About · Colophon · Webring, nav grammar), and the copyright dimmed to 65% Cabin Light mixed into the hull
-- **Subscribe lives here site-wide:** "New posts land here first — follow along via RSS or JSON feed. No algorithm, just posts." The homepage stream footer keeps only the archive link; the pitch belongs to the back cover
-
 ### Constellation Dividers (Signature)
 Between homepage article previews, a 64px animated Lottie constellation replaces the horizontal rule — each article is deterministically assigned a constellation by content hash, no duplicates on screen. Prose `<hr>` renders as a centered `###` in serif — a typewriter-manuscript wink. These are the site's fingerprint; protect them.
 
@@ -234,5 +229,4 @@ Between homepage article previews, a 64px animated Lottie constellation replaces
 - **Don't** spend Golden Horizon inside the reading column in light mode; it fails contrast on Cloud-Light White and dilutes the masthead.
 - **Don't** add new thick colored left-borders beyond the established blockquote/alert convention; that pattern is grandfathered, not generative.
 - **Don't** replace the constellation dividers or the `###` hr with plain rules — they are the site's fingerprint.
-- **Don't** end a page outside the scene: the footer is the hull-dark back cover in both themes, never a flat gray strip.
 - **Don't** use cold neutral grays anywhere — dark mode's text is warmed Cabin Paper (#e8e4de / #c9c4bc); if a gray has no warmth, it isn't in the palette.

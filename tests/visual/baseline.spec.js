@@ -91,39 +91,3 @@ test.describe("Code Blocks", () => {
     );
   });
 });
-
-test.describe("Footer", () => {
-  test("footer layout", async ({ page }) => {
-    await page.goto("/");
-    await page.waitForLoadState("networkidle");
-    await waitForFonts(page);
-
-    // Try different footer selectors
-    const footerSelectors = [
-      "footer#primary",
-      "footer",
-      ".footer",
-      "#footer",
-      '[role="contentinfo"]',
-    ];
-    let foundSelector = null;
-
-    for (const selector of footerSelectors) {
-      if (await page.locator(selector).isVisible()) {
-        foundSelector = selector;
-        break;
-      }
-    }
-
-    if (foundSelector) {
-      await expect(page.locator(foundSelector)).toHaveScreenshot("footer.png", {
-        // The footer constellation mark is animated; mask it so captures
-        // don't race the animation frame
-        mask: [page.locator(".footer-constellation")],
-      });
-    } else {
-      // Skip test if no footer found
-      console.log("No footer element found, skipping footer screenshot test");
-    }
-  });
-});

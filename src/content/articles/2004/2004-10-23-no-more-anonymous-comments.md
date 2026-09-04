@@ -29,4 +29,4 @@ account and post your comments -- I really do like it when you post comments.
 It makes me feel all warm and bubbly inside.
 
    [1]: https://www.geeklog.net/
-   [2]: /2002/04/april-16-2002/
+   [2]: /april-16-2002/

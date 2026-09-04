@@ -6,12 +6,13 @@ import Github from "simple-icons-astro/Github";
 import ActionChip from "../../components/ActionChip.astro";
 import ProjectBadges from "../../components/ProjectBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { includeDraft } from "../../lib/draft-utils";
 import { formatTitle } from "../../lib/typography";
 
 export async function getStaticPaths() {
   const projects = await getCollection(
     "projects",
-    ({ id }) => !id.startsWith("_"),
+    ({ id, data }) => !id.startsWith("_") && includeDraft(data),
   );
 
   return projects.map((project) => ({

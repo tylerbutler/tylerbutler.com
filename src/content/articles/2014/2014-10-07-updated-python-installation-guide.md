@@ -15,4 +15,4 @@ engineer:
 I just made a major update to my [Python Windows installation guide][1], which remains my most popular post. Things have gotten a lot simpler over the past few months since the distribute fork of setuptools was integrated back.
 
 
-[1]: /2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/
+[1]: /how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/

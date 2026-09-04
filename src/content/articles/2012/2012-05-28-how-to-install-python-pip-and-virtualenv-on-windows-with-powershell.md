@@ -250,7 +250,7 @@ It's worth noting that this file is just a regular PowerShell script, so you can
 
 ## Configuring Your IDE
 
-There is one final step to getting everything really *ready* for developing Python projects -- setting up your IDE to use the appropriate `virtualenv` for your project. There are several different IDEs out there or you could just rock [Notepad++][]. I personally like [PyCharm][] a lot though; [I use it](/2013/10/pycharm-3-0/) almost exclusively for Python development.
+There is one final step to getting everything really *ready* for developing Python projects -- setting up your IDE to use the appropriate `virtualenv` for your project. There are several different IDEs out there or you could just rock [Notepad++][]. I personally like [PyCharm][] a lot though; [I use it](/pycharm-3-0/) almost exclusively for Python development.
 
 If you *are* using PyCharm, version 2.5+ has built-in support for virtualenv. You can [create virtual environments][3] directly in PyCharm or you can import ones you created earlier using virtualenvwrapper. Personally I prefer the latter since virtualenvwrapper doesn't pick up the environments created by PyCharm (so they don't show up when you use the `workon` command, among another things).
 

@@ -29,4 +29,4 @@ decided was an excellent way to distinguish me from some sorry thief.
 To add insult to injury, many times I have to select** two or more** security
 questions. **OMG. [I hate banks so much.][1]**
 
-   [1]: /2004/08/i-hate-banks/
+   [1]: /i-hate-banks/

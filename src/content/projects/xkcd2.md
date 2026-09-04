@@ -15,5 +15,5 @@ and [check out the code on github][2].
 Licensed under the MIT license.
 
 [xkcd]: http://xkcd.com
-[1]: /2012/05/xkcd-2
+[1]: /xkcd-2/
 [2]: https://github.com/tylerbutler/xkcd2

@@ -1,4 +1,5 @@
 import { getCollection, render } from "astro:content";
+import mdxRenderer from "@astrojs/mdx/server.js";
 import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
@@ -18,6 +19,7 @@ export async function GET(context: APIContext) {
   );
 
   const container = await AstroContainer.create();
+  container.addServerRenderer({ renderer: mdxRenderer });
 
   const items = await Promise.all(
     sortedArticles.map(async (article) => {

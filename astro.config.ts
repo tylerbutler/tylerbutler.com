@@ -1,6 +1,7 @@
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
@@ -11,11 +12,9 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
 import { rehypeFootnotes } from "rehype-footnotes";
 import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
 import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
 import { remarkLazyLinks } from "remark-lazy-links";
 import { remarkShiftHeadings } from "remark-shift-headings";
-import remarkSmartypants from "remark-smartypants";
 import { visualizer } from "rollup-plugin-visualizer";
 import { downloadFonts } from "./scripts/download-fonts.ts";
 import { optimizeFonts } from "./scripts/optimize-fonts.ts";
@@ -115,7 +114,7 @@ const pagefindDevServer = () => ({
 const pagefindIntegration = () => ({
   name: "pagefind-integration",
   hooks: {
-    "astro:build:done": async ({ dir }) => {
+    "astro:build:done": async ({ dir }: { dir: URL }) => {
       try {
         console.log("🔍 Building Pagefind search index...");
         execSync(`npx pagefind --site "${dir.pathname}"`, {
@@ -146,15 +145,21 @@ export default defineConfig({
     pagefindIntegration(),
     articleRedirects(),
     sitemap(),
-    mdx({
+    mdx(),
+    brokenLinksChecker({
+      checkExternalLinks: false,
+    }),
+  ],
+  image: {
+    responsiveStyles: true,
+    layout: "constrained", // Generates srcset for responsive images
+  },
+  markdown: {
+    processor: unified({
       remarkPlugins: [
         // Process lazy links first, before other transformations
         // Use [remarkLazyLinks, { persist: true }] to write changes back to source files
         remarkLazyLinks,
-        remarkGfm,
-        remarkSmartypants,
-        // Disabled since mermaid is not used
-        // [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
         [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
         remarkShiftHeadings,
       ],
@@ -176,44 +181,7 @@ export default defineConfig({
         rehypeTagExternalLinks,
       ],
     }),
-    brokenLinksChecker({
-      checkExternalLinks: false,
-    }),
-  ],
-  image: {
-    responsiveStyles: true,
-    layout: "constrained", // Generates srcset for responsive images
-  },
-  markdown: {
     syntaxHighlight: false, // Disable Astro's built-in syntax highlighting to use Expressive Code
-    remarkPlugins: [
-      // Process lazy links first, before other transformations
-      // Use [remarkLazyLinks, { persist: true }] to write changes back to source files
-      remarkLazyLinks,
-      remarkGfm,
-      remarkSmartypants,
-      // Disabled since mermaid is not used
-      // [remarkMermaidConfigured, { destinationSubdir: "diagrams" }],
-      [remarkGithubBlockquoteAlert, { tagName: "blockquote" }],
-      remarkShiftHeadings,
-    ],
-    rehypePlugins: [
-      rehypeFootnotes,
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "wrap",
-          properties: {
-            className: ["heading-anchor"],
-            ariaLabel: "Link to this heading",
-          },
-        },
-      ],
-      [rehypeExpressiveCode, expressiveCodeConfig],
-      rehypeMarkBrokenLinks,
-      rehypeTagExternalLinks,
-    ],
   },
 
   build: {
@@ -233,7 +201,7 @@ export default defineConfig({
       assetsInlineLimit(filePath: string) {
         // Never inline .lottie files — they're binary (ZIP) and should be
         // served as separate assets with proper caching.
-        if (filePath.endsWith(".lottie")) return 0;
+        if (filePath.endsWith(".lottie")) return false;
         return undefined; // default for everything else
       },
     },

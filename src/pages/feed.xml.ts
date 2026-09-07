@@ -1,4 +1,5 @@
 import { getCollection, render } from "astro:content";
+import mdxRenderer from "@astrojs/mdx/server.js";
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
@@ -17,6 +18,7 @@ export async function GET(context: APIContext) {
 
   // Create container for rendering components
   const container = await AstroContainer.create();
+  container.addServerRenderer({ renderer: mdxRenderer });
 
   return rss({
     title: "Tyler Butler",

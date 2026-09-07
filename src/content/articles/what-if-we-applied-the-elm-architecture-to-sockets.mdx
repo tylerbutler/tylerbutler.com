@@ -27,7 +27,7 @@ I talked about the overall design and experience of that initial version here:
 
 <YouTube id="UOFA74zsSnk" />
 
-I had what I thought was a fairly nice API on top of Gleam. There were some problems with it, most notably type erasure,
+I had what I thought was a fairly nice Gleam API. There were some type-safety problems with it, most notably type erasure,
 but I felt I had it controlled pretty well and had limited the risk. If you're curious, you can use [beryl v0.0](https://github.com/tylerbutler/beryl/releases/tag/v0.0), which
 used a heterogeneous registry of sockets/connections.
 
@@ -44,13 +44,13 @@ So I took that feedback to heart, and I went back to the drawing board.
 
 Starting fresh meant going back to a lot of things that I still don't understand fully, that are very new to me, that I'm learning as I go. Specifically the Elm model -- model, view, update, where everything goes through one big update function.
 
-It's one of those architectures that I sort of understand from the outside, and sort of understand why it would be good. But then when I actually see the code that implements that design, I find it really hard to read and hard to reason about.
+It's one of those architectures that I sort of understand from the outside, and sort of understand why it would be good. But then when I actually see the code that implements the design, I find it really hard to read and hard to reason about.
 
 Part of that is my brain. Part of it is other people's brains, too, because other people also struggle with this. That doesn't mean the model isn't worth learning, and it doesn't mean the model is bad. It just means that I'm not quite clear on the model myself. So I'm trying to build it, but I'm also trying to learn it and understand it as I go.
 
 ## The connection
 
-Im took a harder look back at [Lustre][], which implements the Elm architecture. And further research revealed that Gleam's [OTP actor model][] is very similar -- it's the same basic architecture of state transitions.
+I took a harder look back at [Lustre][], which implements the Elm Architecture. Further research revealed that Gleam's [OTP actor model][] is very similar -- it's the same basic architecture of state transitions.
 
 So I started to realize that there was an opportunity to take that state transition inspiration and use that model against socket state.
 
@@ -58,7 +58,7 @@ So I started to realize that there was an opportunity to take that state transit
 
 What if we took the Elm Architecture of state transitions and applied it to socket state? That's the question the new design is built around, and it turns out the model works pretty well. Lustre and OTP actors already follow the same four steps: create some state, define the typed messages that can arrive, handle one message against the current state, return the next state plus whatever should happen next. Only that last step differs. Lustre renders a view. An actor continues or stops.
 
-beryl returns effects.
+beryl returns _effects_.
 
 | Role       | Lustre        | OTP actor      | beryl              |
 | ---------- | ------------- | -------------- | ------------------ |
@@ -103,3 +103,4 @@ The resulting API is pretty interesting, and more to the point, it feels a lot m
 [Phoenix Channels]: https://hexdocs.pm/phoenix/channels.html
 [Lustre]: https://hexdocs.pm/lustre/
 [OTP actor model]: https://hexdocs.pm/gleam_otp/
+[Elm Architecture]: https://guide.elm-lang.org/architecture/

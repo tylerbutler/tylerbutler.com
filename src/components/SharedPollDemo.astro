@@ -1,0 +1,172 @@
+---
+import "../lib/styles/socket-demos.css";
+---
+
+<shared-poll-demo class="socket-demo">
+  <figure id="shared-poll-demo" aria-label="Two sockets, one shared poll">
+    <figcaption>Two sockets, one shared poll</figcaption>
+    <p class="demo-intro">Vote from either client. Disconnect Alice and see what stays.</p>
+    <fieldset class="poll-playground" disabled>
+      <legend class="demo-sr-only">Poll simulation controls</legend>
+      <div class="poll-clients">
+        {["Alice", "Bob"].map((name) => (
+          <section class="poll-client" data-client={name.toLowerCase()} aria-label={`${name}'s socket`}>
+            <div class="client-heading">
+              <strong>{name}</strong>
+              <span class="connection-state" data-connection>Connected</span>
+            </div>
+            <span class="demo-label">Private socket model</span>
+            <pre class="demo-code" data-private>topic: "poll:space"
+last_vote: None</pre>
+            <div class="vote-controls">
+              <button type="button" data-vote="Moon">Vote Moon</button>
+              <button type="button" data-vote="Mars">Vote Mars</button>
+            </div>
+            <p class="client-receipt"><span class="demo-label">Client sees</span><span data-receipt>Moon 0 / Mars 0</span></p>
+            <button class="connection-toggle" type="button" data-toggle>Disconnect {name}</button>
+          </section>
+        ))}
+      </div>
+      <svg class="poll-wires" viewBox="0 0 600 64" preserveAspectRatio="none" aria-hidden="true">
+        <path class="wire-track" data-track="alice" d="M150 0 V22 Q150 32 160 32 H290 Q300 32 300 42 V64" />
+        <path class="wire-track" data-track="bob" d="M450 0 V22 Q450 32 440 32 H310 Q300 32 300 42 V64" />
+        <path class="wire-packet" data-packet="alice" pathLength="100" d="M150 0 V22 Q150 32 160 32 H290 Q300 32 300 42 V64" />
+        <path class="wire-packet" data-packet="bob" pathLength="100" d="M450 0 V22 Q450 32 440 32 H310 Q300 32 300 42 V64" />
+      </svg>
+      <section class="shared-actor" aria-label="Shared poll actor">
+        <div class="actor-heading">
+          <strong>Shared poll actor</strong>
+          <span>Where should we go?</span>
+        </div>
+        <div class="poll-tallies">
+          {["Moon", "Mars"].map((destination) => (
+            <div class="poll-tally">
+              <span>{destination}</span>
+              <strong data-total={destination}>0</strong>
+              <div class="tally-track" aria-hidden="true"><span data-bar={destination}></span></div>
+            </div>
+          ))}
+        </div>
+        <p class="demo-caption">Shared totals outlive either socket.</p>
+      </section>
+      <div class="poll-footer">
+        <span class="demo-caption">Each click adds a vote. Local simulation; no server.</span>
+        <button type="button" data-reset>Reset poll</button>
+      </div>
+    </fieldset>
+    <p class="demo-status" role="status" aria-atomic="true" data-status>Both sockets have their own model. The shared actor holds the poll totals.</p>
+    <noscript><p>Disconnecting a socket discards its private model, but the shared poll actor keeps its totals. <a href="https://tylerbutler.com/what-if-we-applied-the-elm-architecture-to-sockets/#shared-poll-demo">Open the shared poll</a> in a browser with JavaScript enabled.</p></noscript>
+  </figure>
+</shared-poll-demo>
+
+<script>
+  type Destination = "Moon" | "Mars";
+  type Client = { connected: boolean; lastVote: Destination | null };
+
+  class SharedPollDemo extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = "true";
+      const panels = this.querySelectorAll<HTMLElement>("[data-client]");
+      const clients: Client[] = Array.from(panels, () => ({
+        connected: true,
+        lastVote: null,
+      }));
+      const totals = { Moon: 0, Mars: 0 };
+      const status = this.querySelector<HTMLElement>("[data-status]")!;
+      const packets = this.querySelectorAll<SVGPathElement>("[data-packet]");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      const render = () => {
+        panels.forEach((panel, index) => {
+          const client = clients[index];
+          const name = index === 0 ? "Alice" : "Bob";
+          panel.dataset.connected = String(client.connected);
+          panel.querySelector("[data-connection]")!.textContent =
+            client.connected ? "Connected" : "Disconnected";
+          panel.querySelector("[data-private]")!.textContent = client.connected
+            ? `topic: "poll:space"\nlast_vote: ${client.lastVote ?? "None"}`
+            : "No model:\nsocket stopped";
+          panel.querySelector("[data-receipt]")!.textContent = client.connected
+            ? `Moon ${totals.Moon} / Mars ${totals.Mars}`
+            : "Offline; no updates";
+          panel.querySelector("[data-toggle]")!.textContent =
+            `${client.connected ? "Disconnect" : "Reconnect"} ${name}`;
+          panel.querySelectorAll<HTMLButtonElement>("[data-vote]").forEach((button) => {
+            button.disabled = !client.connected;
+          });
+          this.querySelector(`[data-track="${panel.dataset.client}"]`)!
+            .setAttribute("data-connected", String(client.connected));
+        });
+        const count = totals.Moon + totals.Mars;
+        for (const destination of ["Moon", "Mars"] as const) {
+          this.querySelector(`[data-total="${destination}"]`)!.textContent =
+            String(totals[destination]);
+          this.querySelector<HTMLElement>(`[data-bar="${destination}"]`)!.style.transform =
+            `scaleX(${count ? totals[destination] / count : 0})`;
+        }
+      };
+
+      const clearPackets = () => {
+        packets.forEach((packet) => {
+          for (const animation of packet.getAnimations()) animation.cancel();
+        });
+      };
+
+      panels.forEach((panel, index) => {
+        const client = clients[index];
+        const name = index === 0 ? "Alice" : "Bob";
+        panel.querySelectorAll<HTMLButtonElement>("[data-vote]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const destination = button.dataset.vote;
+            if (!client.connected || (destination !== "Moon" && destination !== "Mars")) {
+              throw new Error("A vote requires a connected socket and a valid destination.");
+            }
+            client.lastVote = destination;
+            totals[destination] += 1;
+            render();
+            status.textContent = `${name} voted for ${destination}. Shared totals: Moon ${totals.Moon}, Mars ${totals.Mars}. Only connected clients receive the update.`;
+            clearPackets();
+            if (!reducedMotion.matches) {
+              packets[index].animate(
+                [{ strokeDashoffset: 110, opacity: 1 }, { strokeDashoffset: -10, opacity: 1 }],
+                { duration: 250, easing: "ease-out" },
+              );
+              packets.forEach((packet, recipient) => {
+                if (clients[recipient].connected) {
+                  packet.animate(
+                    [{ strokeDashoffset: -10, opacity: 1 }, { strokeDashoffset: 110, opacity: 1 }],
+                    { duration: 350, delay: 250, easing: "ease-out" },
+                  );
+                }
+              });
+            }
+          });
+        });
+        panel.querySelector("[data-toggle]")!.addEventListener("click", () => {
+          clearPackets();
+          client.connected = !client.connected;
+          client.lastVote = null;
+          render();
+          status.textContent = client.connected
+            ? `${name} reconnected with a fresh private model and received the current totals. Shared votes did not reset.`
+            : `${name}'s socket stopped and its private model was discarded. The shared actor keeps all ${totals.Moon + totals.Mars} votes.`;
+        });
+      });
+      this.querySelector("[data-reset]")!.addEventListener("click", () => {
+        clearPackets();
+        totals.Moon = 0;
+        totals.Mars = 0;
+        clients.forEach((client) => {
+          client.connected = true;
+          client.lastVote = null;
+        });
+        render();
+        status.textContent = "Poll reset. Both sockets are connected with fresh models. Shared totals are zero.";
+      });
+      this.querySelector("fieldset")!.disabled = false;
+    }
+  }
+
+  customElements.define("shared-poll-demo", SharedPollDemo);
+</script>

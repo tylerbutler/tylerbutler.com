@@ -10,6 +10,7 @@ tags:
 ---
 
 import { YouTube } from "astro-embed";
+import SharedPollDemo from "../../components/SharedPollDemo.astro";
 
 I've been working on a project for the past few months called [beryl][]. attempts to bring a real-time channels abstraction -- rooms and topics -- to [Gleam][]. If those words mean anything to you, then this will sound familiar. I want to make it easier to build real-time applications, web applications specifically, in Gleam.
 
@@ -70,6 +71,8 @@ beryl returns _effects_.
 There's no `view`, which changes how you think about output. Changing the model doesn't send anything over the wire. A frame goes out only when an effect asks for one -- accept this join, reply to this client, broadcast to this topic, update presence, close a topic. Output is an explicit, ordered list, so the model is free to hold things that never leave the server.
 
 The other difference from a frontend is that `init` runs once per connected socket, not once per application. Every socket is its own actor with its own model. Shared state -- the poll totals everyone in a room needs to agree on -- lives in an actor your application owns, and each socket talks to it. Per-socket state and shared domain state stay apart.
+
+<SharedPollDemo />
 
 ## Two APIs
 

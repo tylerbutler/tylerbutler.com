@@ -173,9 +173,14 @@ function extractReferenceLinkDefinitions(markdownContent: string): string {
   return matches ? matches.join("\n") : "";
 }
 
-function renderYouTubeEmbeds(markdownContent: string): string {
+function renderMdxEmbeds(markdownContent: string): string {
   return markdownContent
     .replace(/^import \{ YouTube \} from "astro-embed";\s*$/gm, "")
+    .replace(/^import SharedPollDemo from "[^"]+\.astro";\s*$/gm, "")
+    .replace(
+      /<SharedPollDemo\s*\/>/g,
+      "[Try the shared poll](/what-if-we-applied-the-elm-architecture-to-sockets/#shared-poll-demo).",
+    )
     .replace(
       /<YouTube\s+id="([\w-]{11})"\s*\/>/g,
       (_, videoId: string) => `
@@ -209,7 +214,7 @@ function renderYouTubeEmbeds(markdownContent: string): string {
 export async function createHomepagePreview(
   markdownContent: string,
 ): Promise<{ html: string; isTruncated: boolean }> {
-  const previewContent = renderYouTubeEmbeds(markdownContent);
+  const previewContent = renderMdxEmbeds(markdownContent);
   const moreIndex = previewContent.indexOf("<!--more-->");
 
   if (moreIndex === -1) {

@@ -1,6 +1,6 @@
 ---
 
-title: 'Git-only releases with Trellis'
+title: 'Git-only releases with trellis'
 date: '2026-09-01T17:44:00-07:00'
 slug: git-only-releases-with-trellis
 tags:
@@ -16,7 +16,7 @@ But you still need to distribute such software in _some_ way if you want to get 
 
 But just because the pre-1.0 world is technically the Wild West doesn't mean we can't get in the habit of following a release process prior to 1.0. However, because "doing a release" is so often synonymous with "publishing to a registry" oftentimes the first time you're exercising the release machinery is during a 1.0. Not fun!
 
-With my Gleam monorepo tool, [Trellis](https://trellis.tylerbutler.com), I added support for a [git-only release style](https://trellis.tylerbutler.com/docs/configuration/#release-lifecycle), which allows you to use the same change tracking and release mechanism you use to eventually publish your work to a registry without actually doing that. But you can still do every other part, including using change tracking to determine release types, tagging each package individually in a monorepo, and create a rolling tag that moves as minor or patch versions are released.
+With my Gleam monorepo tool, [trellis](https://trellis.tylerbutler.com), I added support for a [git-only release style](https://trellis.tylerbutler.com/docs/configuration/#release-lifecycle), which allows you to use the same change tracking and release mechanism you use to eventually publish your work to a registry without actually doing that. But you can still do every other part, including using change tracking to determine release types, tagging each package individually in a monorepo, and create a rolling tag that moves as minor or patch versions are released.
 
 The rolling tags are the flagship feature, because they give your users something closer to a version range like they would have on a registry. They can depend on a moving series tag like `v0`, and get updates automatically every time they re-resolve.
 
@@ -32,7 +32,7 @@ With repository series tags and `trellis pin`, you can support users taking git 
 
 And worry not -- you can use `trellis pin` on its own without adopting anything else. If you already depend on git refs and just want to turn them into commits, that's fine. Trellis remains modular. Use what you need and ignore what you don't.
 
-Note that Trellis doesn't make any claims about breaking changes or where they'll show up. You should still pin
+Note that trellis doesn't make any claims about breaking changes or where they'll show up. You should still pin
 according to the amount of change you can absorb. In general, pinning to a major version is safe after 1.0, but for 0.x
 be sure to check the compatibility promises the library in question provides.
 

@@ -106,7 +106,7 @@
 
 .socket-demo .poll-clients {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -288,12 +288,16 @@
     gap: 16px;
   }
 
-  .socket-demo .vote-controls {
-    flex-direction: column;
+  .socket-demo .poll-clients {
+    grid-template-columns: 1fr;
   }
 
-  .socket-demo .client-heading {
-    flex-direction: column;
+  .socket-demo .poll-wires {
+    display: none;
+  }
+
+  .socket-demo .shared-actor {
+    margin-top: 16px;
   }
 }
 

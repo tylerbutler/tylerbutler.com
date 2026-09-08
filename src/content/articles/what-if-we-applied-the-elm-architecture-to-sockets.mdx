@@ -1,7 +1,7 @@
 ---
 
 title: 'What if we applied the Elm Architecture to sockets?'
-date: '2026-09-05T19:32:00-07:00'
+date: '2026-09-08T19:32:00-07:00'
 slug: what-if-we-applied-the-elm-architecture-to-sockets
 tags:
 - gleam
@@ -68,9 +68,12 @@ beryl returns _effects_.
 | transition | `update`      | `on_message`   | `update`           |
 | next step  | model + effect | `actor.Next`  | `socket.Next(model, effects)` |
 
-There's no `view`, which changes how you think about output. Changing the model doesn't send anything over the wire. A frame goes out only when an effect asks for one -- accept this join, reply to this client, broadcast to this topic, update presence, close a topic. Output is an explicit, ordered list, so the model is free to hold things that never leave the server.
+There's no `view`, which changes how you think about output. Changing the model doesn't send anything over the wire. A frame goes out _only when an effect asks for one_ -- accept this join, reply to this client, broadcast to this topic, update presence, close a topic. Output is an explicit, ordered list, so the model is free to hold things that never leave the server.
 
 The other difference from a frontend is that `init` runs once per connected socket, not once per application. Every socket is its own actor with its own model. Shared state -- the poll totals everyone in a room needs to agree on -- lives in an actor your application owns, and each socket talks to it. Per-socket state and shared domain state stay apart.
+
+Play with the poll below to see what happens when three users vote and disconnect. Most of the beryl state is ephemeral,
+but what's in your storage actor is durable.
 
 <SharedPollDemo />
 
@@ -78,7 +81,9 @@ The other difference from a frontend is that `init` runs once per connected sock
 
 Both layers use the same loop. Which one you use depends on how much routing you want to handle yourself.
 
-**[Raw dispatch][]** is the core. You give beryl an `init` and an `update`, and every event on a socket arrives at your `update` as a single `socket.Input` value: joins, client messages, binary frames, close events, and your own typed server messages. You do the routing. You return `socket.Next(model, effects)` or `socket.Stop(reason)`. It's the smallest possible surface, and it's the clearest place to see the whole loop, which is why the walkthrough starts there.
+**[Raw dispatch][]** is the core. You give beryl an `init` and an `update`, and every event on a socket arrives at your
+`update` as a single `socket.Input` value: joins, client messages, binary frames, close events, and your own typed
+server messages. You do the routing for all of it. You return `socket.Next(model, effects)` or `socket.Stop(reason)`. It's the clearest place to see the whole loop, which is why the walkthrough starts there.
 
 **[Channels][]** sit on top and do the routing for you. A channel is a topic pattern plus a typed `join` callback that either rejects the join or accepts it with private state and a few callbacks -- `on_message`, `on_info`, `on_terminate`. You register a list of handlers, patterns match in registration order, and each joined topic gets its own instance and its own state, pruned automatically when the topic closes.
 

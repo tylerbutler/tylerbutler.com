@@ -8,6 +8,10 @@ test("shared votes survive disconnects and reconnects", async ({ page }) => {
   const demo = page.locator("shared-poll-demo");
   const alice = demo.getByRole("region", { name: "Alice's socket" });
   const bob = demo.getByRole("region", { name: "Bob's socket" });
+  const carol = demo.getByRole("region", { name: "Carol's socket" });
+  await expect(demo.locator("[data-client]")).toHaveCount(3);
+  await expect(demo.locator("[data-track]")).toHaveCount(3);
+  await expect(demo.locator("[data-packet]")).toHaveCount(3);
 
   await alice.getByRole("button", { name: "Vote Moon" }).click();
   await expect(alice.locator("[data-private]")).toContainText(
@@ -15,6 +19,10 @@ test("shared votes survive disconnects and reconnects", async ({ page }) => {
   );
   await expect(bob.locator("[data-private]")).toContainText("last_vote: None");
   await expect(bob.locator("[data-receipt]")).toHaveText("Moon 1 / Mars 0");
+  await expect(carol.locator("[data-private]")).toContainText(
+    "last_vote: None",
+  );
+  await expect(carol.locator("[data-receipt]")).toHaveText("Moon 1 / Mars 0");
 
   await alice.getByRole("button", { name: "Disconnect Alice" }).click();
   await expect(alice.getByRole("button", { name: "Vote Moon" })).toBeDisabled();
@@ -27,19 +35,52 @@ test("shared votes survive disconnects and reconnects", async ({ page }) => {
   );
 
   await bob.getByRole("button", { name: "Disconnect Bob" }).click();
+  await carol.getByRole("button", { name: "Vote Mars" }).click();
+  await expect(carol.locator("[data-private]")).toContainText(
+    "last_vote: Mars",
+  );
+  await expect(carol.locator("[data-receipt]")).toHaveText("Moon 1 / Mars 2");
+  await expect(demo.getByRole("status")).toContainText("Carol voted for Mars.");
+  await carol.getByRole("button", { name: "Disconnect Carol" }).click();
+  await expect(carol.getByRole("button", { name: "Vote Mars" })).toBeDisabled();
+  await expect(carol.locator("[data-private]")).toContainText("No model");
+  await expect(demo.locator('[data-track="carol"]')).toHaveAttribute(
+    "data-connected",
+    "false",
+  );
   await expect(demo.locator('[data-total="Moon"]')).toHaveText("1");
+  await expect(demo.locator('[data-total="Mars"]')).toHaveText("2");
   await alice.getByRole("button", { name: "Reconnect Alice" }).click();
   await expect(alice.locator("[data-private]")).toContainText(
     "last_vote: None",
   );
-  await expect(alice.locator("[data-receipt]")).toHaveText("Moon 1 / Mars 1");
+  await expect(alice.locator("[data-receipt]")).toHaveText("Moon 1 / Mars 2");
   await alice.getByRole("button", { name: "Vote Moon" }).click();
   await expect(demo.locator('[data-total="Moon"]')).toHaveText("2");
+  await expect(carol.locator("[data-receipt]")).toHaveText(
+    "Offline; no updates",
+  );
+  await carol.getByRole("button", { name: "Reconnect Carol" }).click();
+  await expect(carol.locator("[data-private]")).toContainText(
+    "last_vote: None",
+  );
+  await expect(carol.locator("[data-receipt]")).toHaveText("Moon 2 / Mars 2");
+  await expect(carol.getByRole("button", { name: "Vote Mars" })).toBeEnabled();
+  await expect(demo.locator('[data-track="carol"]')).toHaveAttribute(
+    "data-connected",
+    "true",
+  );
+  await carol.getByRole("button", { name: "Disconnect Carol" }).click();
 
   await demo.getByRole("button", { name: "Reset poll" }).click();
   await expect(demo.locator('[data-total="Moon"]')).toHaveText("0");
   await expect(demo.locator('[data-total="Mars"]')).toHaveText("0");
   await expect(bob.getByRole("button", { name: "Vote Mars" })).toBeEnabled();
+  await expect(carol.getByRole("button", { name: "Vote Mars" })).toBeEnabled();
+  await expect(carol.locator("[data-private]")).toContainText(
+    "last_vote: None",
+  );
+  await expect(carol.locator("[data-receipt]")).toHaveText("Moon 0 / Mars 0");
 });
 
 test("poll supports keyboard use and reduced motion without overflow", async ({
@@ -48,7 +89,8 @@ test("poll supports keyboard use and reduced motion without overflow", async ({
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto(article);
   const poll = page.locator("shared-poll-demo");
-  await poll.getByRole("button", { name: "Vote Moon" }).first().focus();
+  const carol = poll.getByRole("region", { name: "Carol's socket" });
+  await carol.getByRole("button", { name: "Vote Moon" }).focus();
   await page.keyboard.press("Enter");
   await expect(poll.locator('[data-total="Moon"]')).toHaveText("1");
   for (const theme of ["light", "dark"]) {
@@ -85,6 +127,12 @@ test("without JavaScript the poll retains its explanation and disabled controls"
   );
   await expect(
     page.getByRole("button", { name: "Vote Moon" }).first(),
+  ).toBeDisabled();
+  await expect(page.locator("shared-poll-demo [data-client]")).toHaveCount(3);
+  await expect(
+    page
+      .getByRole("region", { name: "Carol's socket" })
+      .getByRole("button", { name: "Vote Moon" }),
   ).toBeDisabled();
   await context.close();
 });

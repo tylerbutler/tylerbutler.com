@@ -3,14 +3,14 @@ import "../lib/styles/socket-demos.css";
 ---
 
 <shared-poll-demo class="socket-demo">
-  <figure id="shared-poll-demo" aria-label="Two sockets, one shared poll">
-    <figcaption>Two sockets, one shared poll</figcaption>
-    <p class="demo-intro">Vote from either client. Disconnect Alice and see what stays.</p>
+  <figure id="shared-poll-demo" aria-label="Three sockets, one shared poll">
+    <figcaption>Three sockets, one shared poll</figcaption>
+    <p class="demo-intro">Vote from any client. Disconnect Alice and see what stays.</p>
     <fieldset class="poll-playground" disabled>
       <legend class="demo-sr-only">Poll simulation controls</legend>
       <div class="poll-clients">
-        {["Alice", "Bob"].map((name) => (
-          <section class="poll-client" data-client={name.toLowerCase()} aria-label={`${name}'s socket`}>
+        {["Alice", "Bob", "Carol"].map((name) => (
+          <section class="poll-client" data-client={name.toLowerCase()} data-name={name} aria-label={`${name}'s socket`}>
             <div class="client-heading">
               <strong>{name}</strong>
               <span class="connection-state" data-connection>Connected</span>
@@ -28,10 +28,12 @@ last_vote: None</pre>
         ))}
       </div>
       <svg class="poll-wires" viewBox="0 0 600 64" preserveAspectRatio="none" aria-hidden="true">
-        <path class="wire-track" data-track="alice" d="M150 0 V22 Q150 32 160 32 H290 Q300 32 300 42 V64" />
-        <path class="wire-track" data-track="bob" d="M450 0 V22 Q450 32 440 32 H310 Q300 32 300 42 V64" />
-        <path class="wire-packet" data-packet="alice" pathLength="100" d="M150 0 V22 Q150 32 160 32 H290 Q300 32 300 42 V64" />
-        <path class="wire-packet" data-packet="bob" pathLength="100" d="M450 0 V22 Q450 32 440 32 H310 Q300 32 300 42 V64" />
+        <path class="wire-track" data-track="alice" d="M100 0 V22 Q100 32 110 32 H290 Q300 32 300 42 V64" />
+        <path class="wire-track" data-track="bob" d="M300 0 V64" />
+        <path class="wire-track" data-track="carol" d="M500 0 V22 Q500 32 490 32 H310 Q300 32 300 42 V64" />
+        <path class="wire-packet" data-packet="alice" pathLength="100" d="M100 0 V22 Q100 32 110 32 H290 Q300 32 300 42 V64" />
+        <path class="wire-packet" data-packet="bob" pathLength="100" d="M300 0 V64" />
+        <path class="wire-packet" data-packet="carol" pathLength="100" d="M500 0 V22 Q500 32 490 32 H310 Q300 32 300 42 V64" />
       </svg>
       <section class="shared-actor" aria-label="Shared poll actor">
         <div class="actor-heading">
@@ -47,14 +49,14 @@ last_vote: None</pre>
             </div>
           ))}
         </div>
-        <p class="demo-caption">Shared totals outlive either socket.</p>
+        <p class="demo-caption">Shared totals outlive all three sockets.</p>
       </section>
       <div class="poll-footer">
         <span class="demo-caption">Each click adds a vote. Local simulation; no server.</span>
         <button type="button" data-reset>Reset poll</button>
       </div>
     </fieldset>
-    <p class="demo-status" role="status" aria-atomic="true" data-status>Both sockets have their own model. The shared actor holds the poll totals.</p>
+    <p class="demo-status" role="status" aria-atomic="true" data-status>Each socket has its own model. The shared actor holds the poll totals.</p>
     <noscript><p>Disconnecting a socket discards its private model, but the shared poll actor keeps its totals. <a href="https://tylerbutler.com/what-if-we-applied-the-elm-architecture-to-sockets/#shared-poll-demo">Open the shared poll</a> in a browser with JavaScript enabled.</p></noscript>
   </figure>
 </shared-poll-demo>
@@ -80,7 +82,7 @@ last_vote: None</pre>
       const render = () => {
         panels.forEach((panel, index) => {
           const client = clients[index];
-          const name = index === 0 ? "Alice" : "Bob";
+          const name = panel.dataset.name!;
           panel.dataset.connected = String(client.connected);
           panel.querySelector("[data-connection]")!.textContent =
             client.connected ? "Connected" : "Disconnected";
@@ -115,7 +117,7 @@ last_vote: None</pre>
 
       panels.forEach((panel, index) => {
         const client = clients[index];
-        const name = index === 0 ? "Alice" : "Bob";
+        const name = panel.dataset.name!;
         panel.querySelectorAll<HTMLButtonElement>("[data-vote]").forEach((button) => {
           button.addEventListener("click", () => {
             const destination = button.dataset.vote;
@@ -162,7 +164,7 @@ last_vote: None</pre>
           client.lastVote = null;
         });
         render();
-        status.textContent = "Poll reset. Both sockets are connected with fresh models. Shared totals are zero.";
+        status.textContent = "Poll reset. All three sockets are connected with fresh models. Shared totals are zero.";
       });
       this.querySelector("fieldset")!.disabled = false;
     }

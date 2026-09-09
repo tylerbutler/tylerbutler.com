@@ -12,7 +12,7 @@ tags:
 import { YouTube } from "astro-embed";
 import SharedPollDemo from "../../components/SharedPollDemo.astro";
 
-I've been working on a project for the past few months called [beryl][]. attempts to bring a real-time channels abstraction -- rooms and topics -- to [Gleam][]. If those words mean anything to you, then this will sound familiar. I want to make it easier to build real-time applications, web applications specifically, in Gleam.
+I've been working on a project for the past few months called [beryl][]. It attempts to bring a real-time channels abstraction -- rooms and topics -- to [Gleam][]. If those words mean anything to you, then this will sound familiar. I want to make it easier to build real-time applications, web applications specifically, in Gleam.
 
 I'm fairly new to Gleam, and this is the first big project I've built with it.
 
@@ -69,7 +69,7 @@ beryl returns _effects_.
 | state      | model         | actor state    | one model per socket |
 | input      | `Message`     | mailbox message | `socket.Input(Message)` |
 | transition | `update`      | `on_message`   | `update`           |
-| next step  | model + effect | `actor.Next`  | `socket.Next(model, effects)` |
+| next step  | `#(model, effect)` | `actor.Next` | `socket.Next(model, effects)` |
 
 There's no `view`, which changes how you think about output. Changing the model doesn't send anything over the wire. A frame goes out _only when an effect asks for one_ -- accept this join, reply to this client, broadcast to this topic, update presence, close a topic. Output is an explicit, ordered list, so the model is free to hold things that never leave the server.
 
@@ -93,14 +93,14 @@ server messages. You do the routing for all of it. You return `socket.Next(model
 The part I'm happiest with is that channel state is typed all the way through. Phoenix keeps per-channel state in `socket.assigns`, a map of atoms to untyped terms. A beryl channel keeps a value of its own type, known to the compiler, and unrelated channels can still live in the same handler list. Nothing gets stuffed through `Dynamic`. The same is true of server-side messages: `notify` delivers your own type to the right join's `on_info`, and a sender only ever addresses the join that produced it.
 
 Actions work the same way effects do, with one useful constraint -- an action can only touch its own channel's topic.
-Cross-topic work has to go through an explicit API. That felt restrictive when I wrote it but after more thought, I came
+Cross-topic work has to go through an explicit API. That felt restrictive when I wrote it, but after more thought, I came
 around to it.
 
 If you have more than one topic namespace on a socket, the channel layer is what you want. If you want one topic family and total control, raw dispatch is right there underneath, and moving between them doesn't change the wire protocol.
 
 ## Going deeper
 
-I've skimmed a lot here. The [tutorial][] on the docs site builds a live poll end to end -- the raw loop
+I've skipped a lot here. The [tutorial][] on the docs site builds a live poll end to end -- the raw loop
 first, then the same poll moved onto channels, then typed server messages, presence, and supervision. That's the deep
 dive for anything I described that you want to see in more detail.
 

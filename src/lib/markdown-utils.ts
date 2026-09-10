@@ -5,6 +5,8 @@ import rehypeExpressiveCode, {
   ExpressiveCodeTheme,
 } from "rehype-expressive-code";
 import { rehypeFootnotes } from "rehype-footnotes";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
@@ -28,6 +30,30 @@ const themes = [
   ayuLight, // light
   ayuMirage, // dark
 ];
+
+const rawHtmlSchema = {
+  ...defaultSchema,
+  tagNames: [...(defaultSchema.tagNames ?? []), "div", "iframe"],
+  attributes: {
+    ...defaultSchema.attributes,
+    div: ["className"],
+    iframe: [
+      "src",
+      "title",
+      "width",
+      "height",
+      "allow",
+      "allowfullscreen",
+      "allowFullScreen",
+      "frameborder",
+      "frameBorder",
+      "referrerpolicy",
+      "referrerPolicy",
+      "loading",
+      "className",
+    ],
+  },
+};
 
 /**
  * Centralized Expressive Code configuration
@@ -98,7 +124,9 @@ function createMarkdownProcessor(headingLevel?: number) {
   }
 
   return processor
-    .use(remarkRehype)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeSanitize, rawHtmlSchema)
     .use(rehypeFootnotes)
     .use(rehypeSlug)
     .use(rehypeAutolinkHeadings, {
@@ -145,6 +173,30 @@ function extractReferenceLinkDefinitions(markdownContent: string): string {
   return matches ? matches.join("\n") : "";
 }
 
+function renderMdxEmbeds(markdownContent: string): string {
+  return markdownContent
+    .replace(/^import \{ YouTube \} from "astro-embed";\s*$/gm, "")
+    .replace(/^import SharedPollDemo from "[^"]+\.astro";\s*$/gm, "")
+    .replace(
+      /<SharedPollDemo\s*\/>/g,
+      "[Try the shared poll](/what-if-we-applied-the-elm-architecture-to-sockets/#shared-poll-demo).",
+    )
+    .replace(
+      /<YouTube\s+id="([\w-]{11})"\s*\/>/g,
+      (_, videoId: string) => `
+<div class="video-embed">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/${videoId}"
+    title="YouTube video player"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  ></iframe>
+</div>`,
+    );
+}
+
 /**
  * Creates a preview version of article content with shifted headings for homepage display
  * This ensures proper heading hierarchy when article content appears under h2 article titles
@@ -162,21 +214,22 @@ function extractReferenceLinkDefinitions(markdownContent: string): string {
 export async function createHomepagePreview(
   markdownContent: string,
 ): Promise<{ html: string; isTruncated: boolean }> {
-  const moreIndex = markdownContent.indexOf("<!--more-->");
+  const previewContent = renderMdxEmbeds(markdownContent);
+  const moreIndex = previewContent.indexOf("<!--more-->");
 
   if (moreIndex === -1) {
     // No separator, render full content
-    const html = await renderMarkdownWithPipeline(markdownContent, 3);
+    const html = await renderMarkdownWithPipeline(previewContent, 3);
     return { html, isTruncated: false };
   }
 
   // Extract excerpt and strip all footnote markers
-  const excerpt = markdownContent.substring(0, moreIndex);
+  const excerpt = previewContent.substring(0, moreIndex);
   const excerptWithoutFootnotes = excerpt.replace(/\[\^(\w+)\]/g, "");
 
   // Extract reference link definitions from full content and append to excerpt
   // This ensures reference-style links in the excerpt can be resolved
-  const refLinks = extractReferenceLinkDefinitions(markdownContent);
+  const refLinks = extractReferenceLinkDefinitions(previewContent);
   const excerptWithRefLinks = refLinks
     ? `${excerptWithoutFootnotes}\n\n${refLinks}`
     : excerptWithoutFootnotes;

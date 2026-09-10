@@ -105,6 +105,21 @@
   background: color-mix(in srgb, var(--error) 15%, var(--dark-bg));
 }
 
+.article-content .video-embed {
+  position: relative;
+  width: 100%;
+  margin: 1.5rem 0;
+  aspect-ratio: 16 / 9;
+}
+
+.article-content .video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* Table Styles */
 table {
   width: 100%;

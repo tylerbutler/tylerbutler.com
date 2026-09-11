@@ -1,0 +1,39 @@
+---
+import { Icon } from "astro-icon/components";
+import Microdotblog from "simple-icons-astro/Microdotblog";
+
+interface Props {
+  source: "twitter" | "microblog" | undefined;
+  className?: string;
+}
+
+const { source, className } = Astro.props;
+
+const labels = {
+  twitter: "Originally posted on Twitter",
+  microblog: "Originally posted on Micro.blog",
+} as const;
+
+const label = source ? labels[source] : null;
+---
+
+{source && label && (
+  <span class:list={["note-source-icon", className]} title={label} aria-label={label}>
+    {source === "twitter" && <Icon name="iconoir:twitter" aria-hidden="true" />}
+    {source === "microblog" && <Microdotblog fill="currentColor" aria-hidden="true" />}
+  </span>
+)}
+
+<style>
+  .note-source-icon {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-light);
+    line-height: 1;
+  }
+
+  .note-source-icon :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+</style>

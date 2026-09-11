@@ -69,4 +69,4 @@ have to fear? (The answer is _everything_. Government sucks. And yes, I am
 [paranoid][2].)
 
    [1]: http://story.news.yahoo.com/news?tmpl=story&cid=816&e=1&u=/ap/20041028/ap_on_fe_st/toy_store_homeland_security
-   [2]: /2004/09/tolls-and-cameras/
+   [2]: /tolls-and-cameras/

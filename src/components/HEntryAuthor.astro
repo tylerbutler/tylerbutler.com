@@ -1,0 +1,19 @@
+---
+// Minimal p-author h-card partial used inside h-entry markup so IndieWeb
+// consumers (microformats.io, micro.blog, etc.) can resolve the author of
+// each post. Visually hidden by default since the site chrome already
+// communicates authorship.
+export interface Props {
+  hidden?: boolean;
+}
+const { hidden = true } = Astro.props;
+---
+
+<a
+  class="p-author h-card"
+  href="/"
+  rel="author"
+  hidden={hidden ? true : undefined}
+>
+  Tyler Butler
+</a>

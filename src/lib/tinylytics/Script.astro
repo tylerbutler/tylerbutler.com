@@ -1,0 +1,87 @@
+---
+/**
+ * Tinylytics script loader.
+ *
+ * Renders the `<script>` tag for the Tinylytics analytics embed and exposes
+ * every documented script-URL parameter as a typed prop.
+ *
+ * @see https://tinylytics.app/docs/embedding_your_script
+ */
+export interface Props {
+  /** The unique site embed code from your Tinylytics dashboard. */
+  embedCode: string;
+  /** Use the minified embed (`/min.js`). */
+  min?: boolean;
+  /** Enable SPA mode for client-side navigation tracking. */
+  spa?: boolean;
+  /** Ignore hits from this page load (useful while developing). */
+  ignore?: boolean;
+  /**
+   * Hit counter widget.
+   * `true` → `?hits`; `"unique"` → `?hits=unique` (paid plans).
+   */
+  hits?: boolean | "unique";
+  /**
+   * Kudos widget.
+   * `true` → default 👋 emoji; `"custom"` → count only;
+   * any other string → custom emoji (e.g. `"❤️"`).
+   */
+  kudos?: boolean | "custom" | string;
+  /** Uptime percentage widget (paid plans). */
+  uptime?: boolean;
+  /** Visitor country flags widget. */
+  countries?: boolean;
+  /**
+   * Webring widget.
+   * `true` → text-only; `"avatars"` → include site avatars.
+   */
+  webring?: boolean | "avatars";
+  /** Enable click event tracking via `data-tinylytics-event` attributes. */
+  events?: boolean;
+  /** Use `navigator.sendBeacon` for events (better for unload navigations). */
+  beacon?: boolean;
+  /** Add `defer` to the script tag. Defaults to `true`. */
+  defer?: boolean;
+}
+
+const {
+  embedCode,
+  min = false,
+  spa = false,
+  ignore = false,
+  hits,
+  kudos,
+  uptime = false,
+  countries = false,
+  webring,
+  events = false,
+  beacon = false,
+  defer = true,
+} = Astro.props;
+
+const flags: string[] = [];
+
+if (hits === "unique") flags.push("hits=unique");
+else if (hits === true) flags.push("hits");
+
+if (kudos === true) flags.push("kudos");
+else if (kudos === "custom") flags.push("kudos=custom");
+else if (typeof kudos === "string") flags.push(`kudos=${kudos}`);
+
+if (uptime) flags.push("uptime");
+if (countries) flags.push("countries");
+
+if (webring === "avatars") flags.push("webring=avatars");
+else if (webring) flags.push("webring");
+
+if (events) flags.push("events");
+if (beacon) flags.push("beacon");
+if (spa) flags.push("spa");
+if (ignore) flags.push("ignore");
+
+const path = min ? `${embedCode}/min.js` : `${embedCode}.js`;
+const query = flags.length > 0 ? `?${flags.join("&")}` : "";
+const scriptSrc = `https://tinylytics.app/embed/${path}${query}`;
+---
+
+{defer ? <script src={scriptSrc} defer is:inline /> : <script src={scriptSrc} is:inline />}

@@ -20,6 +20,12 @@ export const rehypeMarkBrokenLinks: Plugin<[], Root> = () => {
 
           node.properties["data-broken"] = "true";
           node.properties.title = "This link is no longer available";
+
+          // Fire a tinylytics event on click so we can track which broken
+          // links visitors are still hitting (event fires on click; beacon
+          // mode in Tinylytics ensures delivery despite navigation).
+          node.properties["data-tinylytics-event"] = "link.not-found";
+          node.properties["data-tinylytics-event-value"] = href;
         }
       }
     });

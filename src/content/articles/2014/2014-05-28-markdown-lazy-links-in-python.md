@@ -6,6 +6,7 @@ slug: markdown-lazy-links-in-python
 tags:
 - engineer
 - python
+- markdown
 engineer:
   slug: markdown-lazy-links-in-python
   url: /2014/05/markdown-lazy-links-in-python/
@@ -14,7 +15,7 @@ engineer:
 
 One of the things I am most excited about in [Engineer 0.5.0][1] is the new support for [Markdown Lazy Links][3]. My implementation is actually a bit richer than [Brett Terpstra's original sample][5], though it's not quite as elegant as the original either. In particular, Engineer's implementation allows you to add lazy links to posts that already have numeric reference links. Also, you can optionally have Engineer transform the lazy links into numeric links during a build. This can come in handy if you anticipate doing a lot of reorganizing of the post content at some point, and want to make sure links don't break.
 
-[1]: /2014/05/engineer-v0-5-0-released/
+[1]: /engineer-v0-5-0-released/
 [3]: https://engineer.readthedocs.org/en/master/bundled_plugins.html#lazy-links-plugin
 [5]: https://brettterpstra.com/2013/10/19/lazy-markdown-reference-links/
 

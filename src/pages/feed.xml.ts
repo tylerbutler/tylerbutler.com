@@ -1,14 +1,16 @@
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
+import mdxRenderer from "@astrojs/mdx/server.js";
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
 import { getArticleUrl } from "../lib/article-utils";
+import { includeDraft } from "../lib/draft-utils";
 
 export async function GET(context: APIContext) {
-  const articles = await getCollection("articles", ({ data }) => {
-    return !data.draft;
-  });
+  const articles = await getCollection("articles", ({ data }) =>
+    includeDraft(data),
+  );
 
   const sortedArticles = articles.sort(
     (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
@@ -16,6 +18,7 @@ export async function GET(context: APIContext) {
 
   // Create container for rendering components
   const container = await AstroContainer.create();
+  container.addServerRenderer({ renderer: mdxRenderer });
 
   return rss({
     title: "Tyler Butler",
@@ -25,7 +28,7 @@ export async function GET(context: APIContext) {
     items: await Promise.all(
       sortedArticles.map(async (article) => {
         // Render the article content using Astro's unified markdown pipeline
-        const { Content } = await article.render();
+        const { Content } = await render(article);
         const html = await container.renderToString(Content);
 
         return {

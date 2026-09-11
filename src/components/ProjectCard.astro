@@ -1,0 +1,127 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { BookOpen, ExternalLink } from "@lucide/astro";
+import Github from "simple-icons-astro/Github";
+import ActionChip from "./ActionChip.astro";
+import ProjectBadges from "./ProjectBadges.astro";
+
+export interface Props {
+  project: CollectionEntry<"projects">;
+  /** Pre-rendered HTML from formatTitle(); consumed via set:html. */
+  formattedTitle: string;
+  /** h2 at top level, h3 inside a group section. */
+  titleLevel?: 2 | 3;
+  /** Group sections show one logo for the whole group, so members hide theirs. */
+  showLogo?: boolean;
+}
+
+const {
+  project,
+  formattedTitle,
+  titleLevel = 2,
+  showLogo = true,
+} = Astro.props;
+const TitleTag = `h${titleLevel}` as "h2" | "h3";
+---
+
+<li class="project-item">
+  <article>
+    {showLogo && project.data.logo && (
+      <Image
+        src={project.data.logo}
+        alt={`${project.data.title} logo`}
+        class="project-logo"
+        width={96}
+      />
+    )}
+    <TitleTag set:html={formattedTitle} />
+    <div class="article-badges">
+      <ProjectBadges
+        npm={project.data.npm}
+        crate={project.data.crate}
+        hex={project.data.hex}
+        hexDocs={project.data.hexDocs}
+        license={project.data.license}
+        programmingLanguage={project.data.programmingLanguage}
+        maturity={project.data.maturity}
+      />
+    </div>
+    {project.data.description && (
+      <p class="description">{project.data.description}</p>
+    )}
+    <div class="project-links">
+      <ActionChip href={`/projects/${project.id}`} data-tinylytics-event="project.read-more" data-tinylytics-event-value={project.id}>
+        <BookOpen class="icon" />
+        Read More
+      </ActionChip>
+      {project.data.url && (
+        <ActionChip href={project.data.url} external data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
+          <ExternalLink class="icon" />
+          Website
+        </ActionChip>
+      )}
+      {project.data.github && (
+        <ActionChip href={project.data.github} external data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
+          <Github class="icon" />
+          GitHub
+        </ActionChip>
+      )}
+    </div>
+  </article>
+</li>
+
+<style>
+  /* Cards are a layout list, not prose: drop the global li padding-left
+     (0.5em, typography.css) so project titles sit flush with the section
+     heading above them rather than 8px inside it. */
+  .project-item {
+    margin-bottom: 2.5em;
+    padding-bottom: 2em;
+    padding-left: 0;
+    border-bottom: 1px solid var(--code-border);
+  }
+
+  .project-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Contains the floated logo: without a BFC, a card whose text is shorter
+     than the 96px logo bleeds the float past its own bottom border. */
+  .project-item article {
+    display: flow-root;
+  }
+
+  .project-item h2,
+  .project-item h3 {
+    margin: 0 0 0.5em 0;
+    color: var(--text);
+  }
+
+  .description {
+    font-style: italic;
+    color: var(--text-light);
+    margin: 0.5em 0 1em 0;
+    line-height: 1.5;
+  }
+
+  .project-links {
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75em;
+  }
+
+  /* Badges style themselves in ShieldsBadge.astro; scoped rules here never
+     reached them anyway — those anchors carry ProjectBadges' scope id. */
+  .article-badges {
+    margin: 0.75em 0;
+  }
+
+  .project-logo {
+    width: 96px;
+    float: left;
+    margin-right: 1em;
+  }
+</style>

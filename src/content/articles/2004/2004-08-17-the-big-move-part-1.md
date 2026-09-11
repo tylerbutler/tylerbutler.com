@@ -44,4 +44,4 @@ destroyed the place with my stuff. Some of the best ones are here. Others are
 available in the download section. Click on the photos below to get an
 even bigger photo.
 
-   [1]: /2004/08/i-hate-banks/
+   [1]: /i-hate-banks/

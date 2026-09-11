@@ -1,0 +1,146 @@
+---
+
+title: 'What if we applied the Elm Architecture to Web Sockets?'
+date: '2026-09-10T08:10:00-07:00'
+slug: what-if-we-applied-the-elm-architecture-to-sockets
+tags:
+- gleam
+- beryl
+- elm-architecture
+---
+
+import { YouTube } from "astro-embed";
+import SharedPollDemo from "../../components/SharedPollDemo.astro";
+
+I've been working on a project for the past few months called [beryl][]. It attempts to bring a real-time channels
+abstraction (rooms and topics, for those familiar with the space) to [Gleam][]. A channel is a named group of
+connected clients that exchange real-time messages. My goal is to make it easier to build real-time applications, web
+applications specifically, in Gleam.
+
+I'm fairly new to Gleam, and this is the first big project I've built with it.
+
+I'm also using LLMs a lot. Now you know.
+
+## Starting from Phoenix
+
+When I started this project, I used [Phoenix Channels][] as design inspiration. Phoenix Channels is written in Elixir. It's in the BEAM ecosystem, but it's built in the Elixir language, and therefore has some different programming models and styles that make sense in the Elixir world but don't necessarily make sense in Gleam.
+
+I don't know Elixir, so I borrowed Phoenix's design rather than its code, but in the end it doesn't really matter, because a lot of the code stems from the design.
+
+I talked about the overall design and experience of that initial version here:
+
+<YouTube id="UOFA74zsSnk" />
+
+I liked the Gleam API, but it had a type-safety problem. To keep sockets with different message types in one registry,
+beryl v0.0 erased those types at the registry boundary. Code on the other side had to recover information the compiler
+could no longer verify. If you're curious, you can still use [beryl
+v0.0](https://github.com/tylerbutler/beryl/releases/tag/v0.0). I did some clever (to me, anyway) things to make sure
+that the type erasure was as safe as possible, but it still felt like a compromise compared to a fully type-safe approach.
+
+## Feedback
+
+The clearest feedback from the Gleam Discord was that the heterogeneous registry worked against the language. I had
+copied a Phoenix design, then used type erasure to make it fit. The result felt more like Elixir than Gleam.
+
+They were polite and convincing, so I went back to the drawing board.
+
+I took a harder look at [Lustre][], which implements the [Elm Architecture][]. Further research revealed that Gleam's
+[OTP actor model][] uses a very similar state-transition design.
+
+Could the same state-transition design work for socket state?
+
+## Model-View-Update, but sockets?
+
+_What if we took the Elm Architecture of state transitions and applied it to socket state?_ That's the question the new
+design is built around, and it turns out to work pretty well. Lustre and OTP actors already follow the same four steps:
+create some state, define the typed messages that can arrive, handle one message against the current state, return the
+next state plus whatever should happen next. Only that last step differs. Lustre renders a view. An actor continues or
+stops.
+
+beryl returns _effects that turn into frames over the wire._
+
+| Role       | Lustre        | OTP actor      | beryl              |
+| ---------- | ------------- | -------------- | ------------------ |
+| state      | model         | actor state    | one model per socket |
+| input      | `Message`     | mailbox message | `socket.Input(Message)` |
+| transition | `update`      | `on_message`   | `update`           |
+| next step  | `#(model, effect)` | `actor.Next` | `socket.Next(model, effects)` |
+
+In raw dispatch, the core beryl API, the loop looks like this:
+
+```gleam
+import beryl/socket
+import gleam/option.{None}
+
+type Model {
+	Model(joined_topics: Int)
+}
+
+fn init(_info: socket.ConnectInfo(Nil)) -> #(Model, List(socket.Effect)) {
+	#(Model(joined_topics: 0), [])
+}
+
+fn update(model: Model, input: socket.Input(Nil)) -> socket.Next(Model) {
+	case input {
+		socket.Join(_topic, _payload, ref) ->
+			socket.Next(Model(joined_topics: model.joined_topics + 1), [
+				socket.AcceptJoin(ref, None),
+			])
+		// ...more input handling here...
+		_ -> socket.Next(model, [])
+	}
+}
+```
+
+There's no `view`, which changes how you think about output. Changing the model doesn't send anything over the wire. A
+frame goes out _only when an effect asks for one_ -- accept this join, reply to this client, broadcast to this topic,
+update presence, close a topic. Output is an explicit, ordered list, so the model is free to hold things that never
+leave the server.
+
+The other difference from a frontend is that `init` runs once per connected socket, not once per application. Every
+socket is its own actor with its own model. Shared state -- the poll totals everyone in a room needs to agree on --
+lives in an actor your application owns, and each socket talks to it. Per-socket state and shared domain state stay
+apart.
+
+Play with the poll below to see what happens when three users vote and disconnect. Most of the beryl state is ephemeral,
+but what's in your storage actor outlives the sockets.
+
+<SharedPollDemo />
+
+## Two APIs
+
+Both layers use the same loop. Which one you use depends on how much routing you want to handle yourself.
+
+**[Raw dispatch][]** is the core. You give beryl an `init` and an `update`, and every event on a socket arrives at your
+`update` as a single `socket.Input` value: joins, client messages, binary frames, close events, and your own typed
+server messages. You do the routing for all of it. You return `socket.Next(model, effects)` or `socket.Stop(reason)`.
+It's the clearest place to see the whole loop, which is why the beryl tutorial starts there.
+
+**[Channels][]** sit on top and do the routing for you. A channel is a topic pattern plus a typed `join` callback that either rejects the join or accepts it with private state and a few callbacks -- `on_message`, `on_info`, `on_terminate`. You register a list of handlers, patterns match in registration order, and each joined topic gets its own instance and its own state, pruned automatically when the topic closes.
+
+The part I'm happiest with is that channel state is typed all the way through. Phoenix keeps per-channel state in `socket.assigns`, a map of atoms to untyped terms. A beryl channel keeps a value of its own type, known to the compiler, and unrelated channels can still live in the same handler list. Nothing gets stuffed through `Dynamic`. The same is true of server-side messages: `notify` delivers your own type to the right join's `on_info`, and a sender only ever addresses the join that produced it.
+
+Channels return _actions_ instead of effects, but they work the same way effects do, with one useful constraint -- an action can only touch its own channel's topic.
+Cross-topic work has to go through an explicit API. That felt restrictive when I wrote it, but after more thought, I came
+around to it.
+
+If you have more than one topic namespace on a socket, the channel layer is what you want. If you want one topic family and total control, raw dispatch is right there underneath, and moving between them doesn't change the wire protocol.
+
+## Going deeper
+
+I've skipped a lot here. The [tutorial][] on the docs site builds a live poll end to end -- the raw loop
+first, then the same poll moved onto channels, then typed server messages, presence, and supervision. That's the deep
+dive for anything I described that you want to see in more detail.
+
+The new API replaces the heterogeneous registry with typed channel state and explicit effects. More to the point, it
+feels a lot more like Gleam than what I had before, which was the whole idea.
+
+[beryl]: https://beryl.tylerbutler.com
+[tutorial]: https://beryl.tylerbutler.com/tutorial/
+[Raw dispatch]: https://beryl.tylerbutler.com/guides/dispatch/
+[Channels]: https://beryl.tylerbutler.com/guides/channels/
+[Gleam]: https://gleam.run
+[Phoenix Channels]: https://hexdocs.pm/phoenix/channels.html
+[Lustre]: https://hexdocs.pm/lustre/
+[OTP actor model]: https://hexdocs.pm/gleam_otp/
+[Elm Architecture]: https://guide.elm-lang.org/architecture/

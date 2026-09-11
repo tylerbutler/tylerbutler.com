@@ -1,0 +1,23 @@
+---
+/**
+ * Tinylytics hit counter widget. Requires the script to be loaded with
+ * `hits` (or `hits="unique"`).
+ *
+ * @see https://tinylytics.app/docs/show_hit_counter
+ */
+export interface Props {
+  /** HTML element to render. Defaults to `span`. */
+  as?: keyof HTMLElementTagNameMap;
+  /** Optional class name(s) to append. */
+  class?: string;
+  /** Ignore this widget instance (sets `data-ignore="true"`). */
+  ignore?: boolean;
+}
+
+const { as: Tag = "span", class: className, ignore = false } = Astro.props;
+---
+
+<Tag
+  class:list={["tinylytics_hits", className]}
+  data-ignore={ignore ? "true" : undefined}
+><slot /></Tag>

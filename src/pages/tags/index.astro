@@ -1,10 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { includeDraft } from "../../lib/draft-utils";
 
-const articles = await getCollection("articles", ({ data }) => {
-  return !data.draft;
-});
+const articles = await getCollection("articles", ({ data }) =>
+  includeDraft(data),
+);
 
 // Get tag counts
 const tagCounts: Record<string, number> = {};
@@ -22,7 +23,7 @@ const title = "Tags";
 const description = "All tags used on articles across the site";
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} excludeFromSearch>
   <main>
     <header class="page-header">
       <h1>{title}</h1>

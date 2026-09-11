@@ -1,0 +1,15 @@
+---
+title: lattice
+date: 2026-04-22
+description: A library of CRDTs in pure Gleam.
+url: https://lattice.tylerbutler.com
+github: https://github.com/tylerbutler/lattice
+logo: ../../assets/lattice.webp
+hex: lattice_crdt
+hexDocs: lattice_crdt
+programmingLanguage: gleam
+license: MIT
+maturity: stable
+---
+
+CRDTs (Conflict-free Replicated Data Types) for building distributed systems that can merge state without coordination. Implemented in pure Gleam with no external dependencies.

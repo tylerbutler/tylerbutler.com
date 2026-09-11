@@ -21,7 +21,7 @@ Deploying on Azure has the benefits of auto-scaling to handle traffic demands, t
 
 With some of the new features in [Engineer version 0.5.0][3], I've got tylerbutler.com in a [GitHub repository][4] of its own, and every time I `git push`, the site is updated automatically thanks to Azure. Even better, thanks to Engineer's support for [multiple post directories][5], I can put my published posts inside the Git repository itself for safekeeping but still write posts from any device/app that integrates with Dropbox. This flexibility of post authoring was one of the key reasons I wrote Engineer originally; it's important that I maintain that with whatever deployment architecture I choose.
 
-[3]: /2014/05/engineer-v0-5-0-released/
+[3]: /engineer-v0-5-0-released/
 [4]: https://github.com/tylerbutler/tylerbutler.com
 [5]: https://engineer.readthedocs.org/en/master/settings.html#engineer.conf.EngineerConfiguration.POST_DIR
 

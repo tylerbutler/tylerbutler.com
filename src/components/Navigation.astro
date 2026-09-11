@@ -1,10 +1,11 @@
 ---
 // Navigation items matching the current site structure
 const navItems = [
-  { href: "/articles/", label: "Articles" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/colophon", label: "Colophon" },
+  { href: "/articles/", label: "Articles", slug: "articles" },
+  { href: "/notes/", label: "Notes", slug: "notes" },
+  { href: "/projects", label: "Projects", slug: "projects" },
+  { href: "/about", label: "About", slug: "about" },
+  { href: "/colophon", label: "Colophon", slug: "colophon" },
 ];
 
 // Helper to normalize paths (remove trailing slash for comparison, except root)
@@ -18,7 +19,7 @@ const currentPath = Astro.url.pathname;
 const normalizedCurrentPath = normalizePath(currentPath);
 ---
 
-<nav>
+<nav aria-label="Main">
   <ul>
     {navItems.map(item => {
       const isActive = normalizedCurrentPath === normalizePath(item.href);
@@ -28,6 +29,8 @@ const normalizedCurrentPath = normalizePath(currentPath);
             href={item.href}
             class={isActive ? 'active' : ''}
             aria-current={isActive ? 'page' : undefined}
+            data-tinylytics-event={`nav.${item.slug}`}
+            data-tinylytics-event-value={item.href}
           >
             {item.label}
           </a>

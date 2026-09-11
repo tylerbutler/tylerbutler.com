@@ -1,0 +1,22 @@
+---
+/**
+ * Tinylytics uptime widget. Requires the script to be loaded with `uptime`
+ * and uptime monitoring enabled on a paid plan.
+ *
+ * Only one uptime element should appear per page.
+ *
+ * @see https://tinylytics.app/docs/showing_uptime
+ */
+export interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+  ignore?: boolean;
+}
+
+const { as: Tag = "span", class: className, ignore = false } = Astro.props;
+---
+
+<Tag
+  class:list={["tinylytics_uptime", className]}
+  data-ignore={ignore ? "true" : undefined}
+><slot /></Tag>

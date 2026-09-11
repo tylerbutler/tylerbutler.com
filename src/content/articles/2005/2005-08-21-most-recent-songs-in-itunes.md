@@ -43,12 +43,8 @@ couldn't attach the stylesheet. Rather than fool with Apache, I just changed
 the extension of the stylesheet. How's that for lazy?
 
   
-Anyway, here's the xml file with attached stylesheet: [nowplaying.xml][1].
-Obviously, you'll need at least IE 6.0 or Firefox (or another XSLT-ready
-browser)to see it right. And here's the [XSLT itself][2]. Like I said, I want
-to do a lot more styling, but I have been doing this stuff all day, so I'm
-calling it quits for now.
-
-   [1]: /SiteCollectionDocuments/Post%20Content/nowplaying.xml ()
-   [2]: /SiteCollectionDocuments/Post%20Content/fullview.xsl ()
-
+Anyway, the XML file had an attached stylesheet. You needed at least IE 6.0
+or Firefox (or another XSLT-ready browser) to see it right. The original XML
+and XSLT files are no longer available. Like I said, I want to do a lot more
+styling, but I have been doing this stuff all day, so I'm calling it quits
+for now.

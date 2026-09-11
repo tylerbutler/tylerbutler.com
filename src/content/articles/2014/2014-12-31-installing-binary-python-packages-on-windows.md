@@ -118,7 +118,7 @@ In the event you're using Windows and need [Dulwich][], but don't want to fool w
 [Dulwich]: https://www.samba.org/~jelmer/dulwich/
 [dulwich fork]: https://github.com/tylerbutler/dulwich
 [dulwich-windows]: https://pypi.python.org/pypi/dulwich-windows
-[Python Windows installation guide]: /2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/
+[Python Windows installation guide]: /how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/
 [stackoverflow]: https://stackoverflow.com/questions/2817869/error-unable-to-find-vcvarsall-bat
 [msft_package]: https://www.microsoft.com/en-us/download/details.aspx?id=44266
 [engineer_upgrade]: https://engineer.readthedocs.org/en/master/upgrade.html

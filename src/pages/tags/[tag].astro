@@ -2,12 +2,13 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getArticleUrl } from "../../lib/article-utils";
+import { includeDraft } from "../../lib/draft-utils";
 import { formatTitle } from "../../lib/typography";
 
 export async function getStaticPaths() {
-  const articles = await getCollection("articles", ({ data }) => {
-    return !data.draft;
-  });
+  const articles = await getCollection("articles", ({ data }) =>
+    includeDraft(data),
+  );
 
   // Get all unique tags
   const tagSet = new Set<string>();
@@ -54,7 +55,7 @@ const title = `Articles tagged "${tag}"`;
 const description = `All articles tagged with "${tag}"`;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} excludeFromSearch>
   <main>
     <header class="page-header">
       <h1>Articles tagged "{tag}"</h1>
@@ -68,9 +69,7 @@ const description = `All articles tagged with "${tag}"`;
         return (
           <article class="article-item">
             <h2>
-              <a href={getArticleUrl(article)}>
-                {article.formattedTitle}
-              </a>
+              <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
             </h2>
             <div class="article-meta">
               <time datetime={article.data.date.toISOString()}>

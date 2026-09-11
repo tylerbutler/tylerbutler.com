@@ -1,0 +1,36 @@
+---
+/**
+ * Tinylytics tracking pixel for environments that do not support JavaScript,
+ * such as RSS feeds or HTML email. Renders an invisible 1×1 GIF that
+ * registers a hit when fetched.
+ *
+ * @see https://tinylytics.app/docs/pixel_tracking
+ */
+export interface Props {
+  /** Your unique site embed code. */
+  embedCode: string;
+  /**
+   * Optional path to associate with this view (e.g. the post URL). Strongly
+   * recommended for per-content tracking. Leading slash is added automatically.
+   */
+  path?: string;
+}
+
+const { embedCode, path } = Astro.props;
+
+let src = `https://tinylytics.app/pixel/${embedCode}.gif`;
+if (path) {
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  src += `?path=${encodeURIComponent(normalized)}`;
+}
+---
+
+<img
+  src={src}
+  alt=""
+  width="1"
+  height="1"
+  style="width:1px;height:1px;border:0;"
+  aria-hidden="true"
+  loading="eager"
+/>

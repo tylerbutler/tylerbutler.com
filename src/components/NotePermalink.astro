@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import { getNoteUrl } from "../lib/note-utils";
+
+interface Props {
+  note: CollectionEntry<"notes">;
+  className?: string;
+}
+
+const { note, className } = Astro.props;
+const url = getNoteUrl(note);
+---
+
+<a
+  href={url}
+  class:list={["note-permalink-icon u-url", className]}
+  title="Permalink"
+  aria-label="Permalink"
+>
+  <Icon name="iconoir:link" aria-hidden="true" />
+</a>
+
+<style>
+  .note-permalink-icon {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-light);
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .note-permalink-icon:hover {
+    color: var(--accent);
+  }
+
+  .note-permalink-icon :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+</style>

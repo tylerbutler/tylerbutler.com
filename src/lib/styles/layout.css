@@ -10,7 +10,7 @@
 
 /* Dark theme site container */
 .dark .site-container {
-  background-color: var(--site-container-bg, #1a1a1a);
+  background-color: var(--site-container-bg, var(--dark-bg));
 }
 
 /* Header section - dark background */
@@ -61,29 +61,6 @@
 .article-content h6 {
   --flow-space: 1em;
   margin-bottom: 0.4em;
-}
-
-/* Footer section */
-.site-footer {
-  background-color: #f2f0ed;
-  padding: 15px 25px;
-  text-align: center;
-  font-size: 11px;
-  color: var(--text-light);
-
-  & a {
-    color: var(--accent);
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-/* Dark theme footer - match header background */
-.dark .site-footer {
-  background-color: var(--dark-bg);
 }
 
 /* Responsive layout adjustments */

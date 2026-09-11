@@ -1,0 +1,62 @@
+---
+/**
+ * Tinylytics webring link — renders a link that the embed script populates
+ * with a random member of the Tinylytics webring on page load. Requires the
+ * script to be loaded with `webring` (or `webring="avatars"`).
+ *
+ * Use the `avatar` prop to render the optional avatar image; the script
+ * fills in `src`/`srcset` and removes `display: none` once loaded.
+ *
+ * The default slot lets you provide your own label/markup. If empty,
+ * Tinylytics will leave whatever you render in place.
+ *
+ * @see https://tinylytics.app/docs/showing_webring
+ */
+export interface Props {
+  /** Render the avatar `<img>` placeholder. Requires `webring="avatars"` on the script. */
+  avatar?: boolean;
+  /** Position of the avatar relative to the slot content. */
+  avatarPosition?: "before" | "after";
+  /** Open the link in a new tab. Defaults to `true`. */
+  newTab?: boolean;
+  /** Optional class name(s) to append. */
+  class?: string;
+  /** Alt text for the avatar image (defaults to empty + aria-hidden). */
+  avatarAlt?: string;
+}
+
+const {
+  avatar = false,
+  avatarPosition = "before",
+  newTab = true,
+  class: className,
+  avatarAlt = "",
+} = Astro.props;
+---
+
+<a
+  href="#"
+  target={newTab ? "_blank" : undefined}
+  rel={newTab ? "noopener" : undefined}
+  class:list={["tinylytics_webring", className]}
+>
+  {avatar && avatarPosition === "before" && (
+    <img
+      class="tinylytics_webring_avatar"
+      src=""
+      style="display: none"
+      alt={avatarAlt}
+      aria-hidden={avatarAlt === "" ? "true" : undefined}
+    />
+  )}
+  <slot />
+  {avatar && avatarPosition === "after" && (
+    <img
+      class="tinylytics_webring_avatar"
+      src=""
+      style="display: none"
+      alt={avatarAlt}
+      aria-hidden={avatarAlt === "" ? "true" : undefined}
+    />
+  )}
+</a>

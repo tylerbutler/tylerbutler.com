@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from "astro:content";
+import NoteCard from "../../../../../components/NoteCard.astro";
+import BaseLayout from "../../../../../layouts/BaseLayout.astro";
+import { includeDraft } from "../../../../../lib/draft-utils";
+import { getNotePathParts, getNoteUrl } from "../../../../../lib/note-utils";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
+  return notes.map((note) => ({
+    params: getNotePathParts(note),
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+
+const formattedDate = note.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const canonicalUrl = `https://tylerbutler.com${getNoteUrl(note)}`;
+const pageTitle = note.data.title
+  ? `${note.data.title} - Tyler Butler`
+  : `${formattedDate} - Tyler Butler`;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={note.data.summary}
+  headerSize="small"
+  canonicalUrl={canonicalUrl}
+>
+  <NoteCard note={note} variant="detail" titleLevel={1}>
+    <Content />
+  </NoteCard>
+
+  <footer class="note-footer">
+    <a href="/notes/" class="back-link">← All notes</a>
+  </footer>
+</BaseLayout>
+
+<style>
+  .note-footer {
+    max-width: 65ch;
+    margin: 2rem auto 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border, #ddd);
+  }
+
+  .back-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>

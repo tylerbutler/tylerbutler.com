@@ -1,78 +1,74 @@
-import { execSync } from "child_process";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
+import subsetFont from "subset-font";
 
-const fontsDir = path.join(process.cwd(), "public", "fonts");
 const distDir = path.join(process.cwd(), "dist");
+const fontsDir = path.join(distDir, "fonts");
+
+async function walk(dir: string, ext: string): Promise<string[]> {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const files: string[] = [];
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await walk(full, ext)));
+    } else if (entry.isFile() && entry.name.endsWith(ext)) {
+      files.push(full);
+    }
+  }
+  return files;
+}
+
+async function collectGlyphs(): Promise<string> {
+  const htmlFiles = await walk(distDir, ".html");
+  const codepoints = new Set<number>();
+  for (const file of htmlFiles) {
+    const content = await fs.readFile(file, "utf8");
+    for (const codepoint of content) {
+      codepoints.add(codepoint.codePointAt(0) ?? 0);
+    }
+  }
+  return Array.from(codepoints)
+    .map((cp) => String.fromCodePoint(cp))
+    .join("");
+}
 
 export async function optimizeFonts(): Promise<void> {
-  console.log("Optimizing fonts with glyphhanger...");
-
-  // Check if fonts exist
-  if (!fs.existsSync(fontsDir)) {
-    console.warn("⚠️  No fonts directory found, skipping optimization");
+  try {
+    await fs.access(fontsDir);
+  } catch {
+    console.warn(`⚠️  ${fontsDir} not found, skipping font subsetting`);
     return;
   }
 
-  // Check if dist directory exists (build must run first)
-  if (!fs.existsSync(distDir)) {
-    throw new Error("dist/ directory not found. Run build first.");
-  }
-
-  const fontFiles = fs
-    .readdirSync(fontsDir)
-    .filter((f) => f.endsWith(".woff2"));
-
+  const fontFiles = (await fs.readdir(fontsDir)).filter((f) =>
+    f.endsWith(".woff2"),
+  );
   if (fontFiles.length === 0) {
     console.warn("⚠️  No .woff2 fonts found, skipping optimization");
     return;
   }
 
-  console.log(`Found ${fontFiles.length} font files to optimize`);
-
-  // Create backup directory for original fonts
-  const backupDir = path.join(fontsDir, "originals");
-  if (!fs.existsSync(backupDir)) {
-    fs.mkdirSync(backupDir, { recursive: true });
-  }
+  console.log(`Collecting glyphs from HTML in ${distDir}...`);
+  const text = await collectGlyphs();
+  console.log(
+    `Found ${[...new Set(text)].length} unique codepoints across the site`,
+  );
 
   for (const fontFile of fontFiles) {
     const fontPath = path.join(fontsDir, fontFile);
-    const backupPath = path.join(backupDir, fontFile);
-
-    try {
-      console.log(`  Subsetting ${fontFile}...`);
-
-      // Backup original font if not already backed up
-      if (!fs.existsSync(backupPath)) {
-        fs.copyFileSync(fontPath, backupPath);
-      }
-
-      // Use glyphhanger to analyze HTML and subset font
-      // Note: glyphhanger requires pyftsubset to be installed
-      const command = `npx glyphhanger "${distDir}/**/*.html" --subset="${fontPath}" --formats=woff2`;
-
-      execSync(command, { stdio: "inherit", cwd: process.cwd() });
-
-      // Replace original font with optimized version
-      const generatedFile = fontPath.replace(".woff2", "-subset.woff2");
-      if (fs.existsSync(generatedFile)) {
-        fs.renameSync(generatedFile, fontPath);
-        console.log(`  ✓ Optimized ${fontFile}`);
-      }
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      console.warn(`  ⚠️  Failed to optimize ${fontFile}: ${errorMessage}`);
-    }
+    const original = await fs.readFile(fontPath);
+    const subset = await subsetFont(original, text, { targetFormat: "woff2" });
+    await fs.writeFile(fontPath, subset);
+    const pct = ((1 - subset.length / original.length) * 100).toFixed(1);
+    console.log(
+      `  ✓ ${fontFile}: ${(original.length / 1024).toFixed(1)} KB → ${(subset.length / 1024).toFixed(1)} KB (-${pct}%)`,
+    );
   }
 
-  console.log("Font optimization complete!");
-  console.log(`Original fonts backed up to: ${backupDir}`);
-  console.log("Optimized fonts replaced originals - no CSS changes needed");
+  console.log("Font subsetting complete");
 }
 
-// Allow running directly
 if (import.meta.url === `file://${process.argv[1]}`) {
   optimizeFonts().catch((error) => {
     const errorMessage = error instanceof Error ? error.message : String(error);

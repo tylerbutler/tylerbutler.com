@@ -1,66 +1,49 @@
 ---
-// Simple social icons component for positioning below subtitle
-import { Github, Mail, Rss } from "@lucide/astro";
-
-const socialItems = [
-  {
-    href: "https://github.com/tylerbutler",
-    label: "GitHub",
-    icon: "github",
-    external: true,
-    me: true,
-  },
-  {
-    href: "mailto:tyler@tylerbutler.com",
-    label: "Email",
-    icon: "email",
-    external: false,
-    me: true,
-  },
-  {
-    href: "/feed.xml",
-    label: "Feed",
-    icon: "feed",
-    external: false,
-    me: false,
-  },
-];
+import { Icon } from "astro-icon/components";
+import Bluesky from "simple-icons-astro/Bluesky";
 ---
 
 <div class="social-icons-below">
-  {socialItems.map(item => (
-    <a
-      href={item.href}
-      class={`social-link social-link--${item.icon}`}
-      title={item.label}
-      target={item.external ? '_blank' : undefined}
-      rel={[item.external && 'noopener', item.me && 'me'].filter(Boolean).join(' ') || undefined}
-    >
-      {item.icon === 'github' && (
-        <Github class="social-icon" />
-      )}
-
-      {item.icon === 'email' && (
-        <Mail class="social-icon" />
-      )}
-
-      {item.icon === 'feed' && (
-        <Rss class="social-icon" />
-      )}
-
-
-      <span class="sr-only">{item.label}</span>
+  <div class="social-icons-row identity-links">
+    <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me" data-tinylytics-event="social.github" data-tinylytics-event-value="https://github.com/tylerbutler">
+      <Icon name="iconoir:github" aria-hidden="true" />
+      <span class="sr-only">GitHub</span>
     </a>
-  ))}
+    <a href="https://hachyderm.io/@tyler" class="social-link" title="Mastodon" target="_blank" rel="noopener me" data-tinylytics-event="social.mastodon" data-tinylytics-event-value="https://hachyderm.io/@tyler">
+      <Icon name="iconoir:mastodon" aria-hidden="true" />
+      <span class="sr-only">Mastodon</span>
+    </a>
+    <a href="https://bsky.app/profile/tylerbutler.bsky.social" class="social-link" title="Bluesky" target="_blank" rel="noopener me" data-tinylytics-event="social.bluesky" data-tinylytics-event-value="https://bsky.app/profile/tylerbutler.bsky.social">
+      <Bluesky fill="currentColor" aria-hidden="true" />
+      <span class="sr-only">Bluesky</span>
+    </a>
+    <a href="mailto:tyler@tylerbutler.com" class="social-link" title="Email" rel="me" data-tinylytics-event="social.email" data-tinylytics-event-value="tyler@tylerbutler.com">
+      <Icon name="iconoir:mail" aria-hidden="true" />
+      <span class="sr-only">Email</span>
+    </a>
+  </div>
+  <div class="social-icons-row">
+    <a href="/feed.xml" class="social-link feed-link" title="Subscribe via RSS" data-tinylytics-event="social.feed" data-tinylytics-event-value="/feed.xml">
+      <Icon name="iconoir:rss-feed" aria-hidden="true" />
+      <span class="feed-label">Subscribe</span>
+    </a>
+  </div>
 </div>
 
 <style>
   .social-icons-below {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0 4px 0;
+  }
+
+  .social-icons-row {
+    display: flex;
     gap: 8px;
     justify-content: center;
     align-items: center;
-    margin: 8px 0 4px 0;
   }
 
   .social-link {
@@ -75,20 +58,61 @@ const socialItems = [
   }
 
   .social-link:hover {
-    color: var(--accent);
+    color: var(--nav-hover);
     background-color: rgba(212, 175, 55, 0.1);
   }
 
   .social-link:focus {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--header-accent);
     outline-offset: 2px;
     border-radius: 3px;
   }
 
-  .social-icon {
-    width: 14px;
-    height: 14px;
+  .social-link svg {
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
+  }
+
+  /* The subscribe action is the one conversion in the row — it gets a quiet
+     gold-edged chip and a visible word; identity icons stay icons */
+  .feed-link {
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid
+      color-mix(in srgb, var(--header-accent) 55%, transparent);
+    border-radius: var(--radius-md);
+  }
+
+  .feed-label {
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--font-size-meta);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .feed-link:hover {
+    border-color: var(--nav-hover);
+  }
+
+  /* Touch: grow every control in the row to a ≥40px hit area — the padding
+     provides the spacing, so the gap tightens to keep the row on one line */
+  @media (pointer: coarse) {
+    .social-icons-row {
+      gap: 4px;
+    }
+
+    .social-link {
+      box-sizing: border-box;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 12px;
+    }
+
+    .feed-link {
+      padding: 12px 16px;
+    }
   }
 
   /* Screen reader only text */

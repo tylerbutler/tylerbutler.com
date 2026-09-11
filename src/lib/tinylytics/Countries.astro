@@ -1,0 +1,21 @@
+---
+/**
+ * Tinylytics visitor countries widget — renders emoji flags of countries
+ * that have visited the site, alphabetically. Requires the script to be
+ * loaded with `countries`.
+ *
+ * @see https://tinylytics.app/docs/showing_countries
+ */
+export interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+  ignore?: boolean;
+}
+
+const { as: Tag = "span", class: className, ignore = false } = Astro.props;
+---
+
+<Tag
+  class:list={["tinylytics_countries", className]}
+  data-ignore={ignore ? "true" : undefined}
+><slot /></Tag>

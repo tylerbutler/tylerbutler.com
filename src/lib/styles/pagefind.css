@@ -1,0 +1,78 @@
+/* Pagefind Component UI as a warm paperback index card. Site theme vars flip
+   under `.dark`, so these properties follow the active reading surface. */
+:root {
+  --pf-background: var(--light-bg);
+  --pf-text: var(--text);
+  --pf-text-secondary: var(--text-light);
+  --pf-text-muted: var(--text-light);
+  --pf-border: var(--code-border);
+  --pf-border-focus: var(--accent);
+  --pf-skeleton: var(--code-bg);
+  --pf-skeleton-shine: color-mix(in srgb, var(--code-bg) 70%, var(--light-bg));
+  --pf-hover: var(--code-bg);
+  --pf-mark: var(--accent);
+  --pf-outline-focus: var(--accent);
+  --pf-scroll-shadow: var(--overlay);
+  --pf-shadow-sm: 0 2px 8px var(--overlay);
+  --pf-shadow-md: 0 6px 18px var(--overlay);
+  --pf-shadow-lg: 0 18px 48px rgba(26, 35, 50, 0.32);
+  --pf-modal-backdrop: rgba(26, 35, 50, 0.82);
+
+  --pf-font: "Lato", "Helvetica Neue", Arial, sans-serif;
+  --pf-input-height: 44px;
+  --pf-border-radius: var(--radius-md);
+  --pf-modal-max-width: 640px;
+  --pf-modal-top: 8dvh;
+  --pf-result-title-font-size: 16px;
+  --pf-result-excerpt-font-size: 14px;
+
+  --pf-error-bg: color-mix(in srgb, var(--error) 10%, var(--light-bg));
+  --pf-error-border: var(--error);
+  --pf-error-text: var(--error);
+  --pf-error-text-secondary: var(--text);
+}
+
+/* Pagefind does not expose tokens for the outer sheet or result type. */
+dialog.pf-modal {
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--light-bg)) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.pf-modal-header,
+.pf-modal-footer {
+  background: var(--code-bg) !important;
+}
+
+.pf-result-card {
+  padding-inline: 4px !important;
+  border-inline: 0 !important;
+  border-radius: 0 !important;
+}
+
+.pf-result-title,
+.pf-result-excerpt,
+.pf-empty-text {
+  font-family: "adelle", "Baskerville", Georgia, serif !important;
+}
+
+.pf-result-link {
+  color: var(--accent) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 0.08em !important;
+  text-underline-offset: 0.2em !important;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease !important;
+}
+
+.pf-result-link:hover {
+  color: var(--accent-hover) !important;
+  text-decoration-color: transparent !important;
+}
+
+@media (max-width: 640px) {
+  dialog.pf-modal {
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+}

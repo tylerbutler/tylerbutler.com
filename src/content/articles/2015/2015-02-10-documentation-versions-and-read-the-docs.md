@@ -23,7 +23,7 @@ Up until [Engineer v0.5.0][2], when you went to GitHub, you saw *master* by defa
 
 When you go to GitHub, I want you to see the latest in-development version. The reason is pretty simple: Since official releases are fairly slow, but I actually make changes fairly often, I want to make sure that activity is shown on the GitHub homepage -- via the 'x days ago' text that shows up on the far right of the code listing. My hypothesis is that people make some judgements based on the activity level of project. If people are searching for a static site generator, and they come across Engineer, I don't want them to think that the project is abandoned and simply leave. If my default branch shown in GitHub is *master*, then it looks as though the project isn't under active development at first glance, which clearly isn't what I want. Thus, I want GitHub to display the *dev* branch by default, which is easy enough to change in the repository settings. I made this change along with the release of Engineer v0.5.0, so now when you go to the repository on GitHub, you'll see the *dev* branch by default.
 
-[2]: /2014/05/engineer-v0-5-0-released/
+[2]: /engineer-v0-5-0-released/
 
 There's still a problem, though, related to the fact that I host [Engineer's public documentation][3] on [Read the Docs][6] (RTD). Imagine someone finds my project on GitHub, likes what they see, and installs the release version using pip:
 

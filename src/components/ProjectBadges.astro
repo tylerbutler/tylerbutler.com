@@ -1,0 +1,210 @@
+---
+import { languageBadge } from "../lib/badges";
+import ShieldsBadge from "./ShieldsBadge.astro";
+
+// Mirrors the maturity enum in src/content.config.ts — every value needs an
+// entry in maturityConfig below or the badge render throws.
+type Maturity = "stable" | "unpublished" | "experimental" | "archived";
+
+interface Props {
+  npm?: string;
+  crate?: string;
+  hex?: string;
+  hexDocs?: string;
+  license?: string;
+  programmingLanguage?: string;
+  maturity?: Maturity;
+}
+
+const { npm, crate, hex, hexDocs, license, programmingLanguage, maturity } =
+  Astro.props;
+
+/**
+ * Shields' own geometry and typography throughout, with the label side pinned
+ * to the palette. Value colors are ours only where they carry site meaning —
+ * project status. License, docs and registry versions keep their own colors,
+ * since those belong to the license, the docs host and the package registries
+ * rather than to this site.
+ */
+const LABEL_BG = "2a4a47"; // Nebula Teal
+
+/**
+ * shields' own `blue` (#007ec6) gives its white text 4.38:1 — just under AA.
+ * Deepened ~6% to clear it at 5.16:1 while still reading as the README blue
+ * everyone recognises on a license badge.
+ */
+const LICENSE_BLUE = "0072b4";
+
+// Atmosphere Ember, not --warning (#b8722a) — the latter gives white 3.8:1.
+const maturityConfig: Record<Maturity, { message: string; color: string }> = {
+  stable: { message: "stable", color: "4a7c59" },
+  experimental: { message: "experimental", color: "7d4b17" },
+  unpublished: { message: "unpublished", color: "4a6662" },
+  archived: { message: "archived", color: "4a6662" },
+};
+
+// Display names live here rather than in lib/badges.ts so that module stays a
+// pure color/logo source. Frontmatter keys are lowercase; readers aren't.
+const languageNames: Record<string, string> = {
+  typescript: "TypeScript",
+  gleam: "Gleam",
+  rust: "Rust",
+  go: "Go",
+  python: "Python",
+  ocaml: "OCaml",
+};
+
+const language = programmingLanguage
+  ? languageBadge(programmingLanguage)
+  : undefined;
+const languageName = programmingLanguage
+  ? (languageNames[programmingLanguage] ?? programmingLanguage)
+  : undefined;
+
+/**
+ * labelFor() in lib/badges.ts already decided whether each brand logo reads
+ * better on a light or dark label; that verdict is reused here, swapping its
+ * generic greys for the palette's own light and dark grounds.
+ */
+const languageLabelBg = language?.labelColor === "f5f5f5" ? "f0ede8" : LABEL_BG;
+
+/**
+ * Version numbers stay on img.shields.io — baking one in at build would freeze
+ * it until the next deploy. Only the label side is pinned to the palette; the
+ * value keeps each registry's own brand color. Height is fixed at the shields
+ * "flat" height so the row can't shift as they load.
+ */
+const SHIELDS_STYLE = `style=flat&labelColor=${LABEL_BG}`;
+
+interface VersionBadge {
+  key: string;
+  href: string;
+  src: string;
+  alt: string;
+}
+
+const versions: VersionBadge[] = [
+  npm
+    ? {
+        key: "npm",
+        href: `https://www.npmjs.com/package/${npm}`,
+        src: `https://img.shields.io/npm/v/${npm}?${SHIELDS_STYLE}&label=npm`,
+        alt: `${npm} version on npm`,
+      }
+    : null,
+  crate
+    ? {
+        key: "crate",
+        href: `https://crates.io/crates/${crate}`,
+        src: `https://img.shields.io/crates/v/${crate}?${SHIELDS_STYLE}&label=crates.io`,
+        alt: `${crate} version on crates.io`,
+      }
+    : null,
+  hex
+    ? {
+        key: "hex",
+        href: `https://hex.pm/packages/${hex}`,
+        src: `https://img.shields.io/hexpm/v/${hex}?${SHIELDS_STYLE}&label=hex`,
+        alt: `${hex} version on Hex`,
+      }
+    : null,
+].filter((entry): entry is VersionBadge => entry !== null);
+
+/**
+ * Two rows, each guarded so an absent half never leaves an empty box behind:
+ * what the project *is and where it ships* (status, published versions,
+ * license), then how it's built and documented (language, docs).
+ */
+const hasPublishing =
+  Boolean(maturity) || versions.length > 0 || Boolean(license);
+const hasBuild = Boolean(languageName) || Boolean(hexDocs);
+---
+
+{(hasPublishing || hasBuild) && (
+  <div class="badge-rows">
+    {hasPublishing && (
+      <div class="badge-row">
+        {maturity && (
+          <ShieldsBadge
+            label="status"
+            message={maturityConfig[maturity].message}
+            color={maturityConfig[maturity].color}
+            labelColor={LABEL_BG}
+          />
+        )}
+        {versions.map((version) => (
+          <a
+            href={version.href}
+            class="version badge"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src={version.src} alt={version.alt} height="20" loading="lazy" />
+          </a>
+        ))}
+        {license && (
+          <ShieldsBadge
+            label="license"
+            message={license}
+            color={LICENSE_BLUE}
+            labelColor={LABEL_BG}
+            href={`https://opensource.org/licenses/${license}`}
+          />
+        )}
+      </div>
+    )}
+    {hasBuild && (
+      <div class="badge-row">
+        {languageName && (
+          <ShieldsBadge
+            label="written in"
+            message={languageName}
+            color={language?.color}
+            labelColor={languageLabelBg}
+            logoBase64={language?.logoBase64}
+          />
+        )}
+        {hexDocs && (
+          <ShieldsBadge
+            label="docs"
+            message="hexdocs"
+            color="ffaff3"
+            labelColor={LABEL_BG}
+            href={`https://hexdocs.pm/${hexDocs}`}
+          />
+        )}
+      </div>
+    )}
+  </div>
+)}
+
+<style>
+  .badge-rows {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35em;
+  }
+
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  /* Carries `badge` alongside `version` so the body-link underline rule in
+     animations.css excludes it the same way it excludes rendered badges —
+     an underline under a badge image reads as a rendering fault. */
+  .version {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .version img {
+    display: block;
+    border-radius: var(--radius-sm);
+  }
+</style>

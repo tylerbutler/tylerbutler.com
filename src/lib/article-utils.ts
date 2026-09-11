@@ -16,7 +16,7 @@ export function getArticleUrl(article: CollectionEntry<"articles">): string {
 }
 
 export function getArticleSlug(article: CollectionEntry<"articles">): string {
-  return article.data.slug || article.slug;
+  return article.id;
 }
 
 export function validateArticleSlugs(

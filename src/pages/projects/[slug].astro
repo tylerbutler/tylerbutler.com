@@ -1,23 +1,28 @@
 ---
-import { getCollection } from "astro:content";
-import { ExternalLink, Github } from "@lucide/astro";
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import { ExternalLink } from "@lucide/astro";
+import Github from "simple-icons-astro/Github";
+import ActionChip from "../../components/ActionChip.astro";
+import ProjectBadges from "../../components/ProjectBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { includeDraft } from "../../lib/draft-utils";
 import { formatTitle } from "../../lib/typography";
 
 export async function getStaticPaths() {
   const projects = await getCollection(
     "projects",
-    ({ id }) => !id.startsWith("_"),
+    ({ id, data }) => !id.startsWith("_") && includeDraft(data),
   );
 
   return projects.map((project) => ({
-    params: { slug: project.slug },
+    params: { slug: project.id },
     props: { project },
   }));
 }
 
 const { project } = Astro.props;
-const { Content } = await project.render();
+const { Content } = await render(project);
 ---
 
 <BaseLayout
@@ -27,12 +32,25 @@ const { Content } = await project.render();
 >
   <article class="article">
     <header class="article-header">
-      <h1>{await formatTitle(project.data.title)}</h1>
+      {project.data.logo && (
+        <Image src={project.data.logo} alt={`${project.data.title} logo`} class="project-logo"/>
+      )}
+      <h1 set:html={await formatTitle(project.data.title)} />
+      <div class="article-badges">
+        <ProjectBadges
+          npm={project.data.npm}
+          crate={project.data.crate}
+          hex={project.data.hex}
+          hexDocs={project.data.hexDocs}
+          license={project.data.license}
+          programmingLanguage={project.data.programmingLanguage}
+          maturity={project.data.maturity}
+        />
+      </div>
       {project.data.description && (
         <p class="project-description">{project.data.description}</p>
       )}
     </header>
-
     <div class="article-content">
       <Content/>
     </div>
@@ -47,16 +65,16 @@ const { Content } = await project.render();
 
     <div class="project-links">
       {project.data.url && (
-        <a href={project.data.url} target="_blank" rel="noopener" class="project-link">
+        <ActionChip href={project.data.url} external data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
           <ExternalLink size={16} />
-          View Project
-        </a>
+          Website
+        </ActionChip>
       )}
       {project.data.github && (
-        <a href={project.data.github} target="_blank" rel="noopener" class="project-link">
+        <ActionChip href={project.data.github} external data-tinylytics-event="project.github" data-tinylytics-event-value={project.id}>
           <Github size={16} />
           GitHub
-        </a>
+        </ActionChip>
       )}
     </div>
   </article>
@@ -73,12 +91,11 @@ const { Content } = await project.render();
     border-bottom: 1px solid var(--text-light);
   }
 
+  /* Type comes from typography.css — the family, weight and line-height here
+     were identical to the global headings, and the sizes only diverged by
+     being fluid where the documented ramp is flat. These rules now carry
+     nothing but the article's own vertical rhythm. */
   .article h1 {
-    font-family: adelle, Georgia, serif;
-    font-size: clamp(32px, 6vw, 48px);
-    font-weight: 300;
-    line-height: 1.2;
-    color: var(--text);
     margin: 0 0 0.5em 0;
   }
 
@@ -86,15 +103,18 @@ const { Content } = await project.render();
     margin: 1.5em 0;
   }
 
+  /* Not a duplicate of the identical rule in article-page.css: that sheet is
+     imported by ArticlePage.astro alone, never by global.css, so it does not
+     reach this page. Sized by the meta token rather than a bare 11px. */
   .tag {
     display: inline-block;
     background: var(--code-bg);
     padding: 2px 6px;
     margin-right: 6px;
     margin-bottom: 4px;
-    font-size: 11px;
+    font-size: var(--font-size-meta);
     color: var(--text);
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
     text-transform: lowercase;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -102,7 +122,7 @@ const { Content } = await project.render();
 
   .tag:hover {
     background: var(--accent);
-    color: white;
+    color: var(--light-bg);
   }
 
   .article-content {
@@ -112,42 +132,22 @@ const { Content } = await project.render();
 
   .article-content h2 {
     margin: 2em 0 1em 0;
-    font-size: clamp(28px, 4.5vw, 36px);
-    font-family: adelle, Georgia, serif;
-    font-weight: 300;
-    line-height: 1.2;
   }
 
   .article-content h3 {
     margin: 1.5em 0 0.8em 0;
-    font-size: clamp(24px, 4vw, 28px);
-    font-family: adelle, Georgia, serif;
-    font-weight: 300;
-    line-height: 1.2;
   }
 
   .article-content h4 {
     margin: 1.2em 0 0.6em 0;
-    font-size: clamp(20px, 3.5vw, 24px);
-    font-family: adelle, Georgia, serif;
-    font-weight: 400;
-    line-height: 1.3;
   }
 
   .article-content h5 {
     margin: 1em 0 0.5em 0;
-    font-size: clamp(18px, 3vw, 20px);
-    font-family: adelle, Georgia, serif;
-    font-weight: 400;
-    line-height: 1.3;
   }
 
   .article-content h6 {
     margin: 1em 0 0.5em 0;
-    font-size: clamp(16px, 2.5vw, 18px);
-    font-family: adelle, Georgia, serif;
-    font-weight: 400;
-    line-height: 1.3;
   }
 
   .article-content p {
@@ -156,38 +156,39 @@ const { Content } = await project.render();
     margin: 1em 0;
   }
 
-  /* Project-specific styles */
+  .article-content a,
+  .content-inner a:not(.tag):not(.nav-link):not(.badge):not(.blank) {
+    position: relative;
+    text-decoration: none;
+    background-image: none;
+  }
+
+  .content-inner a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(#overview):hover {
+    background-size: 0% 1px;
+    background-position: 100% 0%;
+  }
+
+  /* Matches the card description on the projects index: body size, set apart
+     by italic and the secondary ink rather than by a step off the type ramp. */
   .project-description {
     font-style: italic;
     color: var(--text-light);
-    font-size: 18px;
     margin: 1em 0 1.5em 0;
     line-height: 1.5;
   }
 
+  /* The chips style themselves in ActionChip.astro — this row only spaces them */
   .project-links {
     margin: 2em 0 0 0;
     padding-top: 1.5em;
-  }
-
-  .project-link {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
-    margin-right: 1em;
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 8px 12px;
-    border: 1px solid var(--accent);
-    border-radius: 3px;
-    transition: all 0.2s ease;
+    gap: 0.75em;
   }
 
-  .project-link:hover {
-    background-color: var(--accent);
-    color: white;
+  .project-logo {
+    width: 96px;
+    float: left;
   }
 </style>

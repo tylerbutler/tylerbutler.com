@@ -47,6 +47,7 @@ export function pluginCodeFold() {
   var targets = document.querySelectorAll(".expressive-code.has-long-lines");
   if (targets.length === 0) return;
 
+  // Cap the fold at 70%, leaving at least 30% of the block visible.
   var MAX_FOLD_ANGLE = 70;
 
   // Inject a style tag to reset margins/padding on all OriDomi elements and
@@ -86,6 +87,29 @@ export function pluginCodeFold() {
     ".oridomi-active .oridomi-panel {",
     "  -webkit-transform-style: preserve-3d !important;",
     "  transform-style: preserve-3d !important;",
+    "}",
+    ".ec-fold-shell {",
+    "  position: relative;",
+    "  cursor: pointer;",
+    "}",
+    ".ec-fold-hint {",
+    "  position: absolute;",
+    "  z-index: 10;",
+    "  left: 1rem;",
+    "  top: 1rem;",
+    "  border: 1px solid rgba(255, 255, 255, 0.35);",
+    "  border-radius: 999px;",
+    "  padding: 0.4rem 0.7rem;",
+    "  background: rgba(13, 17, 23, 0.88);",
+    "  color: #fff;",
+    "  font: 600 0.75rem/1 sans-serif;",
+    "  letter-spacing: 0.02em;",
+    "  cursor: pointer;",
+    "  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);",
+    "}",
+    ".ec-fold-hint:focus-visible {",
+    "  outline: 3px solid #f0b44d;",
+    "  outline-offset: 3px;",
     "}",
   ].join("\\n");
   document.head.appendChild(fixStyle);
@@ -138,14 +162,29 @@ export function pluginCodeFold() {
     proxy.setAttribute("aria-hidden", "true");
     proxy.appendChild(clone);
 
-    // Insert proxy before the EC block, hide the EC block
-    ec.parentNode.insertBefore(proxy, ec);
+    var shell = document.createElement("div");
+    shell.className = "ec-fold-shell";
+    shell.style.cssText =
+      "width:" + rect.width + "px;" +
+      "height:" + rect.height + "px";
+    shell.appendChild(proxy);
+
+    var hint = document.createElement("button");
+    hint.className = "ec-fold-hint";
+    hint.type = "button";
+    hint.setAttribute("aria-expanded", "false");
+    hint.textContent = "Expand code →";
+    shell.appendChild(hint);
+
+    // Insert the folded clone before the real block, then reveal the real block
+    // after the user expands it.
+    ec.parentNode.insertBefore(shell, ec);
     ec.style.display = "none";
 
     var ori = new window.OriDomi(proxy, {
       vPanels:      3,
       hPanels:      1,
-      ripple:       true,
+      ripple:       false,
       speed:        0,
       shading:      true,
       touchEnabled: false,
@@ -153,37 +192,22 @@ export function pluginCodeFold() {
 
     ec._oriDomi = ori;
     ori.accordion(MAX_FOLD_ANGLE);
+    ori.setSpeed(700);
 
-    var revealed = false;
-    var ticking = false;
-    function updateFold() {
-      if (revealed) return;
-
-      var foldRect = proxy.getBoundingClientRect();
-      var start = window.innerHeight;
-      var end = window.innerHeight * 0.35;
-      var progress = Math.max(0, Math.min(1, (start - foldRect.top) / (start - end)));
-
-      ori.accordion(MAX_FOLD_ANGLE * (1 - progress));
-
-      if (progress === 1) {
-        revealed = true;
-        window.removeEventListener("scroll", requestUpdate);
-        proxy.style.display = "none";
+    var expanding = false;
+    function expand() {
+      if (expanding) return;
+      expanding = true;
+      hint.setAttribute("aria-expanded", "true");
+      hint.style.display = "none";
+      ori.accordion(0);
+      setTimeout(function () {
+        shell.style.display = "none";
         ec.style.display = "";
-      }
-
-      ticking = false;
+      }, 750);
     }
 
-    function requestUpdate() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(updateFold);
-    }
-
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    requestUpdate();
+    shell.addEventListener("click", expand);
   }
 
   var observer = new IntersectionObserver(function (entries) {

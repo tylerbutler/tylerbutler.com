@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
-import { definePlugin, addClassName } from "@expressive-code/core";
+import { addClassName, definePlugin } from "@expressive-code/core";
 
 /**
  * Threshold in characters — lines longer than this trigger the fold animation.
@@ -26,7 +26,6 @@ export function pluginCodeFold() {
 
     baseStyles: () => `
       &.has-long-lines {
-        cursor: pointer;
         position: relative;
       }
     `,
@@ -38,53 +37,17 @@ export function pluginCodeFold() {
       `
 // ── OriDomi accordion(20) fold on code blocks ──────────────────────
 (function initCodeFolds() {
+  if (document.documentElement.dataset.codeFoldsInitialized) return;
+  document.documentElement.dataset.codeFoldsInitialized = "true";
+
   if (typeof window.OriDomi === "undefined") return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (window.matchMedia("(pointer: coarse)").matches) return;
 
   var targets = document.querySelectorAll(".expressive-code.has-long-lines");
   if (targets.length === 0) return;
 
-  // ── Manual test element ───────────────────────────────────────────
-  // Inject a known-good OriDomi reference element before the first fold-enabled block.
-  // This helps verify OriDomi works independently of the EC block structure.
-  var firstTarget = targets[0];
-  var testEl = document.createElement("div");
-  testEl.id = "oridomi-test";
-  testEl.style.cssText = "width:100%;height:200px;background:#1e293b;color:#e2e8f0;font-family:monospace;font-size:14px;padding:1.5rem;border-radius:8px;line-height:1.6;overflow:hidden;margin:1rem 0 2rem;box-sizing:border-box;cursor:pointer";
-  testEl.innerHTML = '<h3 style="margin:0 0 .5rem;color:#38bdf8;font-size:1.2rem">OriDomi Test Element</h3>'
-    + '<p style="margin:0">This element uses <code>accordion(20)</code> with 5 vertical panels and ripple — matching the first demo on oxism.com/oriDomi. Click to toggle fold/unfold.</p>'
-    + '<p style="margin:.5rem 0 0;color:#94a3b8">If you see this folded in 3D, OriDomi is working correctly.</p>';
-
-  var testLabel = document.createElement("p");
-  testLabel.style.cssText = "font-style:italic;color:#888;font-size:0.9em;margin:0 0 1rem";
-  testLabel.textContent = "▼ Manual OriDomi test element (accordion(20), 5 vPanels, ripple):";
-
-  firstTarget.parentNode.insertBefore(testLabel, firstTarget);
-  firstTarget.parentNode.insertBefore(testEl, firstTarget);
-
-  var testOri = new window.OriDomi(testEl, {
-    vPanels: 5,
-    ripple: true,
-    speed: 700,
-    shading: true,
-    touchEnabled: true,
-  });
-
-  var testFolded = false;
-  setTimeout(function () {
-    testOri.accordion(20);
-    testFolded = true;
-  }, 800);
-
-  testEl.addEventListener("click", function (e) {
-    e.preventDefault();
-    if (testFolded) {
-      testOri.accordion(0);
-      testFolded = false;
-    } else {
-      testOri.accordion(20);
-      testFolded = true;
-    }
-  });
+  var MAX_FOLD_ANGLE = 70;
 
   // Inject a style tag to reset margins/padding on all OriDomi elements and
   // their descendants. The site's ".article-content * + *" owl selector adds
@@ -135,40 +98,45 @@ export function pluginCodeFold() {
     if (ec._oriDomi) return; // already initialized
 
     var rect = ec.getBoundingClientRect();
+    var columnWidth = ec.parentElement ? ec.parentElement.clientWidth : rect.width;
+    var availableWidth = window.innerWidth - rect.left - 16;
+    var targetWidth = Math.min(columnWidth + 180, availableWidth);
 
-    // Extract visual properties from the EC block to build a matching proxy.
-    var codeEl = ec.querySelector("code");
-    var preEl = ec.querySelector("pre");
-    var bgColor = preEl
-      ? getComputedStyle(preEl).backgroundColor
-      : "#1e293b";
-    var textColor = codeEl
-      ? getComputedStyle(codeEl).color
-      : "#e2e8f0";
-    var fontSize = codeEl
-      ? getComputedStyle(codeEl).fontSize
-      : "14px";
-    var lineHeight = codeEl
-      ? getComputedStyle(codeEl).lineHeight
-      : "1.6";
-    var codeText = codeEl ? codeEl.textContent : "";
+    if (targetWidth <= columnWidth) return;
 
-    // Build a simple proxy <pre> that looks like the code block but has no
-    // .expressive-code classes. OriDomi folds this reliably (proven by the
-    // test element) because it's free of EC's "all: revert" interference.
-    var proxy = document.createElement("pre");
+    if (rect.width < targetWidth) {
+      ec.style.width = targetWidth + "px";
+      ec.style.maxWidth = targetWidth + "px";
+      ec.querySelectorAll("pre, code").forEach(function (element) {
+        element.style.whiteSpace = "pre";
+        element.style.overflowX = "visible";
+        element.style.minWidth = "100%";
+        element.style.width = "max-content";
+      });
+      rect = ec.getBoundingClientRect();
+    }
+
+    // Build a plain proxy wrapper that holds a full clone of the code block.
+    // OriDomi transforms the wrapper, whose structural elements stay outside
+    // the ".expressive-code" scope, while the clone inside keeps its class so
+    // syntax highlighting still applies.
+    var proxy = document.createElement("div");
+    proxy.className = "ec-fold-proxy";
     proxy.style.cssText =
       "width:" + rect.width + "px;" +
       "height:" + rect.height + "px;" +
-      "margin:0;padding:1rem;box-sizing:border-box;" +
-      "overflow:hidden;white-space:pre;cursor:pointer;" +
-      "background:" + bgColor + ";" +
-      "color:" + textColor + ";" +
-      "font-size:" + fontSize + ";" +
-      "line-height:" + lineHeight + ";" +
-      "font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,monospace;" +
-      "border-radius:8px";
-    proxy.textContent = codeText;
+      "margin:0;padding:0;box-sizing:border-box;overflow:hidden";
+
+    var clone = ec.cloneNode(true);
+    clone.classList.remove("has-long-lines");
+    clone.style.display = "";
+    clone.style.margin = "0";
+    clone.removeAttribute("id");
+    clone.querySelectorAll("button, a").forEach(function (element) {
+      element.remove();
+    });
+    proxy.setAttribute("aria-hidden", "true");
+    proxy.appendChild(clone);
 
     // Insert proxy before the EC block, hide the EC block
     ec.parentNode.insertBefore(proxy, ec);
@@ -178,48 +146,44 @@ export function pluginCodeFold() {
       vPanels:      3,
       hPanels:      1,
       ripple:       true,
-      speed:        700,
+      speed:        0,
       shading:      true,
       touchEnabled: false,
     });
 
     ec._oriDomi = ori;
-    proxy._ecBlock = ec;
+    ori.accordion(MAX_FOLD_ANGLE);
 
-    var isFolded = false;
-    setTimeout(function () {
-      ori.accordion(20);
-      isFolded = true;
-    }, 300);
+    var revealed = false;
+    var ticking = false;
+    function updateFold() {
+      if (revealed) return;
 
-    // Click toggles between folded proxy and original scrollable EC block
-    proxy.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (isFolded) {
-        // Unfold: animate proxy flat, then swap to real EC block
-        ori.accordion(0);
-        isFolded = false;
-        setTimeout(function () {
-          proxy.style.display = "none";
-          ec.style.display = "";
-        }, 750); // slightly longer than animation speed (700ms)
-      } else {
-        ori.accordion(20);
-        isFolded = true;
+      var foldRect = proxy.getBoundingClientRect();
+      var start = window.innerHeight;
+      var end = window.innerHeight * 0.35;
+      var progress = Math.max(0, Math.min(1, (start - foldRect.top) / (start - end)));
+
+      ori.accordion(MAX_FOLD_ANGLE * (1 - progress));
+
+      if (progress === 1) {
+        revealed = true;
+        window.removeEventListener("scroll", requestUpdate);
+        proxy.style.display = "none";
+        ec.style.display = "";
       }
-    });
 
-    // Click on real EC block re-folds
-    ec.addEventListener("click", function (e) {
-      // Don't intercept clicks on interactive elements (copy button, links)
-      if (e.target.closest("button, a")) return;
-      e.preventDefault();
-      ec.style.display = "none";
-      proxy.style.display = "";
-      ori.accordion(20);
-      isFolded = true;
-    });
+      ticking = false;
+    }
+
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateFold);
+    }
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    requestUpdate();
   }
 
   var observer = new IntersectionObserver(function (entries) {
@@ -229,7 +193,7 @@ export function pluginCodeFold() {
         observer.unobserve(entry.target); // one-shot: init once, keep alive
       }
     });
-  }, { rootMargin: "200px 0px" }); // init slightly before entering viewport
+  }, { rootMargin: "300px 0px" }); // initialize before the block enters the viewport
 
   targets.forEach(function (ec) {
     observer.observe(ec);
@@ -239,9 +203,14 @@ export function pluginCodeFold() {
     ],
 
     hooks: {
-      postprocessRenderedBlockGroup: ({ renderedGroupContents, renderData }) => {
+      postprocessRenderedBlockGroup: ({
+        renderedGroupContents,
+        renderData,
+      }) => {
         const anyOverflow = renderedGroupContents.some(({ codeBlock }) =>
-          codeBlock.getLines().some((line) => line.text.length > LONG_LINE_THRESHOLD),
+          codeBlock
+            .getLines()
+            .some((line) => line.text.length > LONG_LINE_THRESHOLD),
         );
 
         if (!anyOverflow) return;
@@ -251,4 +220,3 @@ export function pluginCodeFold() {
     },
   });
 }
-

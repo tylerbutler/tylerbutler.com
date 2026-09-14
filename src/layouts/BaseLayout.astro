@@ -12,6 +12,9 @@ export interface Props {
   description?: string;
   headerSize?: "large" | "small";
   canonicalUrl?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: "website" | "article";
   excludeFromSearch?: boolean;
 }
 
@@ -20,8 +23,16 @@ const {
   description = "Personal website and blog of Tyler Butler",
   headerSize = "large",
   canonicalUrl,
+  ogImage,
+  ogImageAlt = title,
+  ogType = "website",
   excludeFromSearch = false,
 } = Astro.props;
+
+const pageUrl = canonicalUrl ?? Astro.url.href;
+const socialImageUrl = ogImage
+  ? new URL(ogImage, Astro.site ?? Astro.url).href
+  : undefined;
 ---
 
 <html lang="en">
@@ -33,6 +44,24 @@ const {
     <title>{title}</title>
     <meta name="description" content={description}>
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <meta property="og:type" content={ogType}>
+    <meta property="og:site_name" content="Tyler Butler">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={pageUrl}>
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    {socialImageUrl && (
+      <>
+        <meta property="og:image" content={socialImageUrl}>
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content={ogImageAlt}>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content={socialImageUrl}>
+        <meta name="twitter:image:alt" content={ogImageAlt}>
+      </>
+    )}
     <link rel="stylesheet" href="https://use.typekit.net/zsx5vsn.css">
     <link
       rel="preload"

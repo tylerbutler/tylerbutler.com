@@ -14,6 +14,9 @@
   # Default build command.
   command = "pnpm build"
 
+[[plugins]]
+  package = "/netlify/plugins/og-image-cache"
+
 # Subfont optimization plugin (runs after Astro build)
 # Disabled - using manual font management
 # [[plugins]]

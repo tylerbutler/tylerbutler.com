@@ -1,8 +1,120 @@
+import { createHash } from "node:crypto";
+import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
+const TEMPLATE_VERSION = 1;
+const cacheDirectory = path.join(process.cwd(), ".cache", "og-images");
+const backgroundPath = path.join(process.cwd(), "public", "bg-hq.webp");
+const backgroundHash = createHash("sha256")
+  .update(fs.readFileSync(backgroundPath))
+  .digest("hex");
+const TYPEKIT_CSS_URL = "https://use.typekit.net/zsx5vsn.css";
+const latoFiles = path.join(
+  process.cwd(),
+  "node_modules",
+  "@fontsource",
+  "lato",
+  "files",
+);
+
+interface TypekitFont {
+  family: "adelle" | "westgate";
+  weight: number;
+  style: "normal" | "italic";
+}
+
+interface OgFonts {
+  adelleBold: string;
+  adelleItalic: string;
+  latoBold: string;
+  westgate: string;
+}
+
+let fontsPromise: Promise<OgFonts> | undefined;
+
+function findTypekitFontUrl(css: string, font: TypekitFont): string {
+  const block = (css.match(/@font-face\s*{[^}]+}/g) ?? []).find(
+    (candidate) =>
+      candidate.includes(`font-family:"${font.family}"`) &&
+      candidate.includes(`font-weight:${font.weight}`) &&
+      candidate.includes(`font-style:${font.style}`),
+  );
+  const url = block?.match(/url\("([^"]+)"\) format\("opentype"\)/)?.[1];
+  if (!url) {
+    throw new Error(
+      `Adobe Fonts kit is missing ${font.family} ${font.weight} ${font.style}`,
+    );
+  }
+  return url;
+}
+
+async function downloadTypekitFont(
+  css: string,
+  font: TypekitFont,
+): Promise<string> {
+  const url = findTypekitFontUrl(css, font);
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(
+      `Could not download ${font.family}: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  const directory = path.join(os.tmpdir(), "tylerbutler-og-fonts");
+  const filename = path.join(
+    directory,
+    `${font.family}-${font.weight}-${font.style}.otf`,
+  );
+  await fs.promises.mkdir(directory, { recursive: true });
+  await fs.promises.writeFile(
+    filename,
+    Buffer.from(await response.arrayBuffer()),
+  );
+  return filename;
+}
+
+function loadFonts(): Promise<OgFonts> {
+  fontsPromise ??= (async () => {
+    const response = await fetch(TYPEKIT_CSS_URL);
+    if (!response.ok) {
+      throw new Error(
+        `Could not load Adobe Fonts kit: ${response.status} ${response.statusText}`,
+      );
+    }
+    const css = await response.text();
+
+    const [adelleBold, adelleItalic, westgate] = await Promise.all([
+      downloadTypekitFont(css, {
+        family: "adelle",
+        weight: 700,
+        style: "normal",
+      }),
+      downloadTypekitFont(css, {
+        family: "adelle",
+        weight: 400,
+        style: "italic",
+      }),
+      downloadTypekitFont(css, {
+        family: "westgate",
+        weight: 100,
+        style: "normal",
+      }),
+    ]);
+
+    return {
+      adelleBold,
+      adelleItalic,
+      latoBold: path.join(latoFiles, "lato-latin-700-normal.woff2"),
+      westgate,
+    };
+  })();
+
+  return fontsPromise;
+}
 
 interface OgImageOptions {
   title: string;
@@ -11,13 +123,17 @@ interface OgImageOptions {
   kind: "ARTICLE" | "GUIDE" | "LINK";
 }
 
+interface CachedOgImageOptions extends OgImageOptions {
+  slug: string;
+}
+
 interface TitleLayout {
   lines: string[];
   fontSize: number;
   lineHeight: number;
 }
 
-const background = sharp(path.join(process.cwd(), "public", "bg-hq.webp"))
+const background = sharp(backgroundPath)
   .resize(WIDTH, HEIGHT, { fit: "cover", position: "center" })
   .modulate({ brightness: 0.62, saturation: 0.78 })
   .composite([
@@ -28,14 +144,6 @@ const background = sharp(path.join(process.cwd(), "public", "bg-hq.webp"))
           <path d="M0 0H790L690 630H0Z" fill="#0f1419" fill-opacity=".88"/>
           <path d="M790 0L690 630" stroke="#e6b35c" stroke-width="3"/>
           <path d="M28 28H1172V602H28Z" fill="none" stroke="#e6b35c" stroke-opacity=".72" stroke-width="2"/>
-          <circle cx="1010" cy="150" r="72" fill="#d4842a" fill-opacity=".82"/>
-          <circle cx="1010" cy="150" r="92" fill="none" stroke="#e6b35c" stroke-opacity=".55" stroke-width="2"/>
-          <path d="M870 430L940 365L1015 415L1090 315L1160 350" fill="none" stroke="#f7f5f2" stroke-opacity=".56" stroke-width="2"/>
-          <g fill="#e6b35c">
-            <circle cx="870" cy="430" r="5"/><circle cx="940" cy="365" r="4"/>
-            <circle cx="1015" cy="415" r="6"/><circle cx="1090" cy="315" r="4"/>
-            <circle cx="1160" cy="350" r="5"/>
-          </g>
         </svg>
       `),
     },
@@ -103,11 +211,12 @@ export async function createOgImage({
   date,
   kind,
 }: OgImageOptions): Promise<Buffer> {
+  const fonts = await loadFonts();
   const { lines, fontSize, lineHeight } = layoutTitle(title);
   const subtitleLines = subtitle ? wrapTitle(subtitle, 31).slice(0, 3) : [];
   const titleHeight = lines.length * lineHeight;
   const subtitleHeight = subtitleLines.length * 43;
-  const titleY = Math.max(
+  const titleTop = Math.max(
     190,
     330 - (titleHeight + (subtitle ? 24 + subtitleHeight : 0)) / 2,
   );
@@ -119,38 +228,103 @@ export async function createOgImage({
     })
     .toUpperCase();
 
-  const titleLines = lines
-    .map(
-      (line, index) =>
-        `<text x="84" y="${titleY + index * lineHeight}" class="title" fill="#f7f5f2">${escapeXml(line)}</text>`,
-    )
-    .join("");
-  const subtitleY = titleY + titleHeight + 24;
-  const subtitleText = subtitleLines
-    .map(
-      (line, index) =>
-        `<text x="84" y="${subtitleY + index * 43}" class="subtitle" fill="#f7f5f2">${escapeXml(line)}</text>`,
-    )
-    .join("");
-
-  const textLayer = Buffer.from(`
-    <svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
-      <style>
-        .label { font-family: Arial, sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 4px; }
-        .title { font-family: Georgia, serif; font-size: ${fontSize}px; font-weight: 700; letter-spacing: .5px; }
-        .subtitle { font-family: Georgia, serif; font-size: 34px; font-style: italic; font-weight: 400; letter-spacing: .3px; }
-      </style>
-      <text x="84" y="92" class="label" fill="#e6b35c">TYLERBUTLER.COM</text>
-      <text x="84" y="132" class="label" fill="#f7f5f2" opacity=".72">${kind}</text>
-      ${titleLines}
-      ${subtitleText}
-      <text x="84" y="548" class="label" fill="#e6b35c">${formattedDate}</text>
-      <text x="1116" y="556" text-anchor="end" class="label" fill="#f7f5f2" opacity=".72">A PROGRAMMER'S HOME ON THE WEB</text>
-    </svg>
-  `);
-
   return sharp(await background)
-    .composite([{ input: textLayer }])
+    .composite([
+      {
+        input: {
+          text: {
+            text: `<span foreground="#e6b35c" letter_spacing="5120">${escapeXml("TYLERBUTLER.COM")}</span>`,
+            font: "westgate-100-normal 30",
+            fontfile: fonts.westgate,
+            rgba: true,
+          },
+        },
+        left: 84,
+        top: 68,
+      },
+      {
+        input: {
+          text: {
+            text: `<span foreground="#b9bbc0" letter_spacing="4096">${kind}</span>`,
+            font: "Lato Bold 18",
+            fontfile: fonts.latoBold,
+            rgba: true,
+          },
+        },
+        left: 84,
+        top: 116,
+      },
+      {
+        input: {
+          text: {
+            text: `<span foreground="#f7f5f2">${escapeXml(lines.join("\n"))}</span>`,
+            font: `adelle-700-normal ${fontSize}`,
+            fontfile: fonts.adelleBold,
+            spacing: lineHeight - fontSize,
+            rgba: true,
+          },
+        },
+        left: 84,
+        top: titleTop,
+      },
+      ...(subtitle
+        ? [
+            {
+              input: {
+                text: {
+                  text: `<span foreground="#f7f5f2">${escapeXml(subtitleLines.join("\n"))}</span>`,
+                  font: "adelle-400-italic 34",
+                  fontfile: fonts.adelleItalic,
+                  spacing: 9,
+                  rgba: true,
+                },
+              },
+              left: 84,
+              top: titleTop + titleHeight + 24,
+            },
+          ]
+        : []),
+      {
+        input: {
+          text: {
+            text: `<span foreground="#e6b35c" letter_spacing="4096">${formattedDate}</span>`,
+            font: "Lato Bold 18",
+            fontfile: fonts.latoBold,
+            rgba: true,
+          },
+        },
+        left: 84,
+        top: 528,
+      },
+    ])
     .png({ compressionLevel: 9, palette: true })
     .toBuffer();
+}
+
+export async function createCachedOgImage({
+  slug,
+  ...options
+}: CachedOgImageOptions): Promise<Buffer> {
+  const key = createHash("sha256")
+    .update(
+      JSON.stringify({
+        template: TEMPLATE_VERSION,
+        background: backgroundHash,
+        ...options,
+      }),
+    )
+    .digest("hex")
+    .slice(0, 16);
+  const cachePath = path.join(cacheDirectory, `${slug}-${key}.png`);
+
+  try {
+    return await fs.promises.readFile(cachePath);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
+
+  const image = await createOgImage(options);
+  await fs.promises.mkdir(cacheDirectory, { recursive: true });
+  await fs.promises.writeFile(cachePath, image);
+  return image;
 }

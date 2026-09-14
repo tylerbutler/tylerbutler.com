@@ -2,9 +2,10 @@ import { getCollection } from "astro:content";
 import type { APIRoute } from "astro";
 import { getArticleSlug } from "../../lib/article-utils";
 import { includeDraft } from "../../lib/draft-utils";
-import { createOgImage } from "../../lib/og-image";
+import { createCachedOgImage } from "../../lib/og-image";
 
 interface OgImageProps {
+  slug: string;
   title: string;
   subtitle?: string;
   date: Date;
@@ -19,6 +20,7 @@ export async function getStaticPaths() {
   return articles.map((article) => ({
     params: { slug: getArticleSlug(article) },
     props: {
+      slug: getArticleSlug(article),
       title: article.data.title,
       subtitle: article.data.subtitle,
       date: article.data.date,
@@ -33,7 +35,7 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute<OgImageProps> = async ({ props }) => {
-  const image = await createOgImage(props);
+  const image = await createCachedOgImage(props);
 
   return new Response(new Uint8Array(image), {
     headers: {

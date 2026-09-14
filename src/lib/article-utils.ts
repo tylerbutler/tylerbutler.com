@@ -15,6 +15,14 @@ export function getArticleUrl(article: CollectionEntry<"articles">): string {
   return `/${getArticleSlug(article)}`;
 }
 
+export function getArticleDisplayTitle(
+  article: CollectionEntry<"articles">,
+): string {
+  return article.data.subtitle
+    ? `${article.data.title}: ${article.data.subtitle}`
+    : article.data.title;
+}
+
 export function getArticleSlug(article: CollectionEntry<"articles">): string {
   return article.id;
 }

@@ -4,7 +4,7 @@ import ActionChip from "../components/ActionChip.astro";
 import ConstellationIcon from "../components/ConstellationIcon.astro";
 import KudosButton from "../components/KudosButton.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getArticleUrl } from "../lib/article-utils";
+import { getArticleDisplayTitle, getArticleUrl } from "../lib/article-utils";
 import { includeDraft } from "../lib/draft-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
 import { formatTitle } from "../lib/typography";
@@ -71,7 +71,7 @@ const recentArticles = await Promise.all(
       ...article,
       transformedHtml: html,
       isTruncated,
-      formattedTitle: await formatTitle(article.data.title),
+      formattedTitle: await formatTitle(getArticleDisplayTitle(article)),
     };
   }),
 );

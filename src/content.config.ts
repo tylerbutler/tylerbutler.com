@@ -10,10 +10,12 @@ const articles = defineCollection({
   schema: z
     .object({
       title: z.string(),
+      subtitle: z.string().optional(),
       date: z.coerce.date(),
       tags: z.array(z.string()).optional(),
       slug: z.string().optional(),
       excerpt: z.string().optional(),
+      ogImage: z.string().optional(),
       draft: z.boolean().default(false),
       link: z.string().optional(),
       via: z.string().optional(),

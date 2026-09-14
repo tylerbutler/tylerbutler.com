@@ -4,7 +4,11 @@ import { ExternalLink } from "@lucide/astro";
 import type { TocItem } from "astro-toc";
 import { TOC } from "astro-toc";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getArticleUrl } from "../lib/article-utils";
+import {
+  getArticleDisplayTitle,
+  getArticleSlug,
+  getArticleUrl,
+} from "../lib/article-utils";
 import { formatTitle } from "../lib/typography";
 import "../lib/styles/article-page.css";
 import KudosButton from "./KudosButton.astro";
@@ -81,18 +85,26 @@ function getAgePeriod(year: number): string {
 const agePeriod = shouldShowAgeAside ? getAgePeriod(articleYear) : null;
 const isLinkPost = article.data.articleType === "link";
 const kudosPath = getArticleUrl(article);
+const ogImage = article.data.ogImage ?? `/og/${getArticleSlug(article)}.png`;
+const articleTitle = getArticleDisplayTitle(article);
 ---
 
 <BaseLayout
-  title={`${article.data.title} - Tyler Butler`}
+  title={`${articleTitle} - Tyler Butler`}
   description={article.data.excerpt}
   headerSize="small"
   canonicalUrl={canonicalUrl}
+  ogImage={ogImage}
+  ogImageAlt={`Cover image for ${articleTitle}`}
+  ogType="article"
 >
   <div class="article-layout" class:list={{ 'with-toc': isGuide && tocData.length > 0 }}>
     <article class="article" class:list={{ 'link-post': isLinkPost }}>
       <header class="article-header">
         <h1>{await formatTitle(article.data.title)}</h1>
+        {article.data.subtitle && (
+          <p class="article-subtitle">{await formatTitle(article.data.subtitle)}</p>
+        )}
         <div class="article-meta">
           <time datetime={article.data.date.toISOString()} class="article-date">
             {formattedDate}
@@ -113,7 +125,7 @@ const kudosPath = getArticleUrl(article);
         <div class="link-post-reference">
           <div class="link-wrapper">
             <a href={article.data.link} target="_blank" rel="noopener noreferrer" class="external-article-link">
-              {await formatTitle(article.data.title)}
+              {await formatTitle(articleTitle)}
               <ExternalLink size={16} class="external-icon" />
             </a>
             {article.data.via && article.data.vialink && (
@@ -164,13 +176,13 @@ const kudosPath = getArticleUrl(article);
     {prevArticle && prevUrl && (
       <a href={prevUrl} class="nav-link">
         <span class="nav-arrow">←</span>
-        <span class="nav-text">{await formatTitle(prevArticle.data.title)}</span>
+        <span class="nav-text">{await formatTitle(getArticleDisplayTitle(prevArticle))}</span>
       </a>
     )}
 
     {nextArticle && nextUrl && (
       <a href={nextUrl} class="nav-link nav-link-next">
-        <span class="nav-text">{await formatTitle(nextArticle.data.title)}</span>
+        <span class="nav-text">{await formatTitle(getArticleDisplayTitle(nextArticle))}</span>
         <span class="nav-arrow">→</span>
       </a>
     )}

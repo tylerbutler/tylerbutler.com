@@ -6,7 +6,7 @@ import sharp from "sharp";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-const TEMPLATE_VERSION = 1;
+const TEMPLATE_VERSION = 2;
 const cacheDirectory = path.join(process.cwd(), ".cache", "og-images");
 const backgroundPath = path.join(process.cwd(), "public", "bg-hq.webp");
 const backgroundHash = createHash("sha256")
@@ -183,9 +183,9 @@ function wrapTitle(title: string, maxCharacters: number): string[] {
 
 function layoutTitle(title: string): TitleLayout {
   const layouts = [
-    { fontSize: 72, lineHeight: 82, maxCharacters: 16, maxLines: 3 },
-    { fontSize: 62, lineHeight: 72, maxCharacters: 19, maxLines: 4 },
-    { fontSize: 52, lineHeight: 62, maxCharacters: 23, maxLines: 4 },
+    { fontSize: 72, lineHeight: 78, maxCharacters: 16, maxLines: 3 },
+    { fontSize: 62, lineHeight: 68, maxCharacters: 19, maxLines: 4 },
+    { fontSize: 52, lineHeight: 58, maxCharacters: 23, maxLines: 4 },
   ];
 
   for (const layout of layouts) {
@@ -202,7 +202,7 @@ function layoutTitle(title: string): TitleLayout {
   const lines = wrapTitle(title, 26).slice(0, 4);
   const lastLine = lines.at(-1);
   if (lastLine) lines[lines.length - 1] = `${lastLine.slice(0, 39)}...`;
-  return { lines, fontSize: 46, lineHeight: 56 };
+  return { lines, fontSize: 46, lineHeight: 52 };
 }
 
 export async function createOgImage({

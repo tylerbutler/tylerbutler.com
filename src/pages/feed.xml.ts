@@ -4,7 +4,7 @@ import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
-import { getArticleUrl } from "../lib/article-utils";
+import { getArticleDisplayTitle, getArticleUrl } from "../lib/article-utils";
 import { includeDraft } from "../lib/draft-utils";
 
 export async function GET(context: APIContext) {
@@ -27,14 +27,15 @@ export async function GET(context: APIContext) {
     site: context.site || "https://tylerbutler.com",
     items: await Promise.all(
       sortedArticles.map(async (article) => {
+        const title = getArticleDisplayTitle(article);
         // Render the article content using Astro's unified markdown pipeline
         const { Content } = await render(article);
         const html = await container.renderToString(Content);
 
         return {
-          title: article.data.title,
+          title,
           pubDate: article.data.date,
-          description: article.data.excerpt || article.data.title,
+          description: article.data.excerpt || title,
           content: sanitizeHtml(html, {
             allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
           }),

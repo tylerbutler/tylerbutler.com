@@ -3,7 +3,7 @@ import mdxRenderer from "@astrojs/mdx/server.js";
 import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
-import { getArticleUrl } from "../lib/article-utils";
+import { getArticleDisplayTitle, getArticleUrl } from "../lib/article-utils";
 import { includeDraft } from "../lib/draft-utils";
 
 export async function GET(context: APIContext) {
@@ -23,6 +23,7 @@ export async function GET(context: APIContext) {
 
   const items = await Promise.all(
     sortedArticles.map(async (article) => {
+      const title = getArticleDisplayTitle(article);
       const { Content } = await render(article);
       const html = await container.renderToString(Content);
       const url = `${siteUrl}${getArticleUrl(article)}/`;
@@ -30,7 +31,7 @@ export async function GET(context: APIContext) {
       return {
         id: url,
         url,
-        title: article.data.title,
+        title,
         content_html: sanitizeHtml(html, {
           allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
         }),

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getArticleUrl } from "../../lib/article-utils";
+import { getArticleDisplayTitle, getArticleUrl } from "../../lib/article-utils";
 import { includeDraft } from "../../lib/draft-utils";
 import { formatTitle } from "../../lib/typography";
 
@@ -19,7 +19,7 @@ const sortedArticles = await Promise.all(
     )
     .map(async (article) => ({
       ...article,
-      formattedTitle: await formatTitle(article.data.title),
+      formattedTitle: await formatTitle(getArticleDisplayTitle(article)),
     })),
 );
 

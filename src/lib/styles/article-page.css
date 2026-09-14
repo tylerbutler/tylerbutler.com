@@ -129,6 +129,15 @@
   margin: 0 0 0.5em 0;
 }
 
+.article-subtitle {
+  margin: -0.25em 0 1em;
+  color: var(--text-light);
+  font-family: adelle, Georgia, serif;
+  font-size: clamp(20px, 3.5vw, 26px);
+  font-style: italic;
+  line-height: 1.35;
+}
+
 .link-post-reference {
   margin-bottom: 2em;
   padding: 1em;

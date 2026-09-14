@@ -1,6 +1,7 @@
 ---
 
-title: 'trellis: workspace tooling for Gleam monorepos'
+title: 'trellis'
+subtitle: 'workspace tooling for Gleam monorepos'
 date: '2026-07-16T21:32:00-07:00'
 slug: trellis
 tags:

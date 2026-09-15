@@ -43,7 +43,7 @@
 
 /* Small header navigation styles */
 .site-header--small nav {
-  padding: 8px 0;
+  padding: 6px 0 4px;
 
   & a {
     font-size: var(--font-size-meta);
@@ -52,7 +52,7 @@
   }
 
   & ul {
-    gap: 15px;
+    gap: 4px 15px;
   }
 }
 
@@ -80,7 +80,7 @@
     padding: 0; /* Remove padding - let inner container handle it */
     box-sizing: border-box;
     z-index: 100;
-    overflow: hidden; /* Clip content if needed */
+    overflow: visible;
 
     & ul {
       width: 100%;
@@ -99,6 +99,8 @@
 
       & li {
         width: 100%;
+        margin: 0;
+        padding: 0;
 
         & a {
           font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
@@ -122,9 +124,8 @@
           display: block;
           width: 100%;
           text-align: left;
-          white-space: nowrap; /* Prevent text wrapping */
-          overflow: hidden; /* Hide overflow if still needed */
-          text-overflow: ellipsis; /* Show ... if text is still too long */
+          white-space: normal;
+          overflow-wrap: anywhere;
 
           &:hover {
             color: var(--nav-hover);
@@ -148,11 +149,15 @@
     }
   }
 
-  /* Compact header: smaller font, but spacing matches the regular header */
+  .site-header--small nav {
+    min-height: 0;
+  }
+
   .site-header--small nav ul {
     & li a {
-      font-size: clamp(8px, 1vw, 12px) !important;
-      letter-spacing: clamp(0.1px, 0.15vw, 1.5px) !important;
+      font-size: clamp(10px, 1vw, 12px) !important;
+      letter-spacing: clamp(0.2px, 0.15vw, 1.5px) !important;
+      padding-block: 4px;
     }
   }
 
@@ -280,5 +285,9 @@
     flex-wrap: wrap; /* Two centered rows instead of clipping */
     justify-content: center;
     width: 100%; /* Use full width */
+  }
+
+  .site-header--small nav a {
+    min-height: 40px;
   }
 }

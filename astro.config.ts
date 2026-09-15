@@ -172,7 +172,6 @@ export default defineConfig({
             behavior: "wrap",
             properties: {
               className: ["heading-anchor"],
-              ariaLabel: "Link to this heading",
             },
           },
         ],

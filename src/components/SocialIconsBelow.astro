@@ -1,10 +1,16 @@
 ---
 import { Icon } from "astro-icon/components";
 import Bluesky from "simple-icons-astro/Bluesky";
+
+export interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
 ---
 
 <div class="social-icons-below">
-  <div class="social-icons-row identity-links">
+  {!compact && <div class="social-icons-row identity-links">
     <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me" data-tinylytics-event="social.github" data-tinylytics-event-value="https://github.com/tylerbutler">
       <Icon name="iconoir:github" aria-hidden="true" />
       <span class="sr-only">GitHub</span>
@@ -21,7 +27,7 @@ import Bluesky from "simple-icons-astro/Bluesky";
       <Icon name="iconoir:mail" aria-hidden="true" />
       <span class="sr-only">Email</span>
     </a>
-  </div>
+  </div>}
   <div class="social-icons-row">
     <a href="/feed.xml" class="social-link feed-link" title="Subscribe via RSS" data-tinylytics-event="social.feed" data-tinylytics-event-value="/feed.xml">
       <Icon name="iconoir:rss-feed" aria-hidden="true" />

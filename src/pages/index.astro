@@ -93,70 +93,70 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   excludeFromSearch
 >
   <div class="homepage-layout">
+    {recentArticles.length > 0 && (
+      <nav class="current-issue" aria-labelledby="current-issue-heading">
+        <div class="current-issue-heading">
+          <h2 id="current-issue-heading">Current Issue</h2>
+          <a href="/articles/">
+            All {articles.length} Articles →
+          </a>
+        </div>
+        <ol>
+          {recentArticles.map((article) => (
+            <li>
+              <a href={`#${article.previewId}`} set:html={article.formattedTitle} />
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+
     <div class="main-content">
       {recentArticles.length > 0 && (
-        <nav class="current-issue" aria-labelledby="current-issue-heading">
-          <div class="current-issue-heading">
-            <h2 id="current-issue-heading">Current Issue</h2>
-            <a href="/articles/">
-              All {articles.length} Articles →
-            </a>
-          </div>
-          <ol>
-            {recentArticles.map((article) => (
-              <li>
-                <a href={`#${article.previewId}`} set:html={article.formattedTitle} />
-              </li>
-            ))}
-          </ol>
-        </nav>
+        <ul class="recent-articles">
+          {recentArticles.map((article, index) => {
+            const date = new Date(article.data.date);
+
+            return (
+              <>
+                {index > 0 && (() => {
+                  const { url, slug } = iconAssignments.get(article.id)!;
+                  return (
+                    <li class="article-divider" role="presentation" aria-hidden="true">
+                      <ConstellationIcon src={url} slug={slug} size={64} />
+                    </li>
+                  );
+                })()}
+                <li>
+                  <article class="article-preview">
+                    <h2 id={article.previewId}>
+                      <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
+                    </h2>
+                    <div class="article-meta">
+                      <time datetime={article.data.date.toISOString()}>
+                        {date.toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </time>
+                    </div>
+                    <div class="article-content" set:html={article.transformedHtml}></div>
+                    <p class="preview-actions">
+                      {article.isTruncated ? (
+                        <ActionChip href={getArticleUrl(article)}>Read More →</ActionChip>
+                      ) : (
+                        <ActionChip href={getArticleUrl(article)}>Permalink →</ActionChip>
+                      )}
+                      <KudosButton path={getArticleUrl(article)} variant="preview" />
+                    </p>
+                  </article>
+                </li>
+              </>
+            );
+          })}
+        </ul>
       )}
-
-      {recentArticles.length > 0 && (
-      <ul class="recent-articles">
-        {recentArticles.map((article, index) => {
-          const date = new Date(article.data.date);
-
-          return (
-            <>
-              {index > 0 && (() => {
-                const { url, slug } = iconAssignments.get(article.id)!;
-                return (
-                  <li class="article-divider" role="presentation" aria-hidden="true">
-                    <ConstellationIcon src={url} slug={slug} size={64} />
-                  </li>
-                );
-              })()}
-            <li>
-              <article class="article-preview">
-                <h2 id={article.previewId}>
-                  <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
-                </h2>
-                <div class="article-meta">
-                  <time datetime={article.data.date.toISOString()}>
-                    {date.toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </time>
-                </div>
-                <div class="article-content" set:html={article.transformedHtml}></div>
-                <p class="preview-actions">
-                  {article.isTruncated ? (
-                    <ActionChip href={getArticleUrl(article)}>Read More →</ActionChip>
-                  ) : (
-                    <ActionChip href={getArticleUrl(article)}>Permalink →</ActionChip>
-                  )}
-                  <KudosButton path={getArticleUrl(article)} variant="preview" />
-                </p>
-              </article>
-            </li>
-            </>
-          );
-        })}
-      </ul>
-    )}
 
       <div class="stream-footer">
         <p class="stream-footer-more">
@@ -327,6 +327,45 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
 
     .current-issue ol {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .homepage-layout {
+      display: grid;
+      grid-template-areas: "main issue";
+      grid-template-columns: minmax(0, 1fr) 250px;
+      column-gap: 35px;
+      width: calc(100% + 285px);
+    }
+
+    .main-content {
+      grid-area: main;
+      min-width: 0;
+    }
+
+    .current-issue {
+      grid-area: issue;
+      align-self: start;
+      position: sticky;
+      top: 2em;
+      margin: 0;
+      padding: 1.5em;
+      background: var(--light-bg);
+      border-left: 3px solid var(--accent);
+      border-radius: 0;
+    }
+
+    .current-issue-heading {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    .current-issue ol {
+      grid-template-columns: 1fr;
+      gap: 0.65em;
+      padding-left: 1.5em;
     }
   }
 

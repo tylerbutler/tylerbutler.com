@@ -85,7 +85,7 @@
 }
 
 /* Wide screens: fixed sidebar TOC */
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
   /* Hide narrow TOC on wide screens */
   .toc-narrow {
     display: none;

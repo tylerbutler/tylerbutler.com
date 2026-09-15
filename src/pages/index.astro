@@ -368,13 +368,19 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     }
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1024px) {
+    :global(.site-container:has(.homepage-layout)) {
+      width: calc(var(--container-width) - 15px);
+      margin-left: calc((100vw - var(--container-width) - 200px) / 2);
+      margin-right: auto;
+    }
+
     .homepage-layout {
       display: grid;
       grid-template-areas: "main issue";
-      grid-template-columns: minmax(0, 1fr) 250px;
+      grid-template-columns: minmax(0, 1fr) 215px;
       column-gap: 35px;
-      width: calc(100% + 285px);
+      width: calc(100% + 250px);
     }
 
     .main-content {
@@ -388,7 +394,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
       position: sticky;
       top: 2em;
       margin: 0;
-      padding: 1.5em;
+      padding: 1em;
       max-height: calc(100vh - 4em);
       overflow-y: auto;
       background: var(--light-bg);
@@ -409,6 +415,24 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     }
   }
 
+  @media (min-width: 1280px) {
+    :global(.site-container:has(.homepage-layout)) {
+      width: var(--container-width);
+      margin-left: calc(50vw - var(--container-width) / 2);
+      margin-right: calc(50vw - var(--container-width) / 2);
+    }
+
+    .homepage-layout {
+      grid-template-columns: minmax(0, 1fr) 250px;
+      column-gap: 35px;
+      width: calc(100% + 285px);
+    }
+
+    .current-issue {
+      padding: 1.5em;
+    }
+  }
+
   /* End-of-stream: the archive is the way onward */
   .stream-footer {
     margin: 3em 0 1em;
@@ -421,7 +445,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
 </style>
 
 <script>
-  const railQuery = window.matchMedia("(min-width: 1280px)");
+  const railQuery = window.matchMedia("(min-width: 1024px)");
   const previews = [
     ...document.querySelectorAll<HTMLElement>("[data-article-preview]"),
   ];

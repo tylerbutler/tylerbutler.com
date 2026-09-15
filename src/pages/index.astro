@@ -103,8 +103,13 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
         </div>
         <ol>
           {recentArticles.map((article) => (
-            <li>
-              <a href={`#${article.previewId}`} set:html={article.formattedTitle} />
+            <li data-issue-target={article.previewId}>
+              <a
+                class="issue-article-link"
+                href={`#${article.previewId}`}
+                set:html={article.formattedTitle}
+              />
+              <ul class="issue-sections" hidden></ul>
             </li>
           ))}
         </ol>
@@ -128,7 +133,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
                   );
                 })()}
                 <li>
-                  <article class="article-preview">
+                  <article class="article-preview" data-article-preview={article.previewId}>
                     <h2 id={article.previewId}>
                       <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
                     </h2>
@@ -230,6 +235,39 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   .current-issue li a {
     color: var(--text);
     text-decoration-color: var(--accent);
+  }
+
+  .issue-article-link[aria-current="location"] {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .issue-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    margin: 0.45em 0 0.15em;
+    padding-left: 1em;
+    list-style: disc;
+  }
+
+  .issue-sections[hidden] {
+    display: none;
+  }
+
+  .issue-sections :global(li) {
+    padding-left: 0;
+    font-size: var(--font-size-meta);
+  }
+
+  .issue-sections :global(a) {
+    color: var(--text-light);
+    line-height: 1.35;
+    text-decoration: none;
+  }
+
+  .issue-sections :global(a:hover) {
+    color: var(--accent);
   }
 
   .article-preview {
@@ -351,6 +389,8 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
       top: 2em;
       margin: 0;
       padding: 1.5em;
+      max-height: calc(100vh - 4em);
+      overflow-y: auto;
       background: var(--light-bg);
       border-left: 3px solid var(--accent);
       border-radius: 0;
@@ -379,3 +419,96 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     margin: 0;
   }
 </style>
+
+<script>
+  const railQuery = window.matchMedia("(min-width: 1280px)");
+  const previews = [
+    ...document.querySelectorAll<HTMLElement>("[data-article-preview]"),
+  ];
+  const issueItems = new Map(
+    [...document.querySelectorAll<HTMLElement>("[data-issue-target]")].map(
+      (item) => [item.dataset.issueTarget, item],
+    ),
+  );
+
+  for (const preview of previews) {
+    const previewId = preview.dataset.articlePreview;
+    const issueItem = issueItems.get(previewId);
+    const sectionList =
+      issueItem?.querySelector<HTMLUListElement>(".issue-sections");
+    if (!previewId || !sectionList) continue;
+
+    const headings = preview.querySelectorAll<HTMLElement>(
+      ".article-content h3, .article-content h4, .article-content h5",
+    );
+
+    headings.forEach((heading, index) => {
+      const originalId = heading.id || `section-${index + 1}`;
+      const headingId = `${previewId}-${originalId}`;
+      heading.id = headingId;
+      for (const link of preview.querySelectorAll<HTMLAnchorElement>("a[href]")) {
+        if (link.getAttribute("href") === `#${originalId}`) {
+          link.setAttribute("href", `#${headingId}`);
+        }
+      }
+
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = `#${headingId}`;
+      link.textContent = heading.textContent?.trim() || `Section ${index + 1}`;
+      item.append(link);
+      sectionList.append(item);
+    });
+  }
+
+  function setActiveIssue(previewId?: string) {
+    for (const [id, item] of issueItems) {
+      const isActive = railQuery.matches && id === previewId;
+      const articleLink =
+        item.querySelector<HTMLAnchorElement>(".issue-article-link");
+      const sectionList =
+        item.querySelector<HTMLUListElement>(".issue-sections");
+
+      articleLink?.toggleAttribute("aria-current", isActive);
+      if (articleLink && isActive) {
+        articleLink.setAttribute("aria-current", "location");
+      }
+      if (sectionList) {
+        sectionList.hidden = !isActive || sectionList.children.length === 0;
+      }
+    }
+  }
+
+  function updateActiveIssue() {
+    if (!railQuery.matches || previews.length === 0) {
+      setActiveIssue();
+      return;
+    }
+
+    const activationLine = window.innerHeight * 0.3;
+    let activePreview = previews[0];
+
+    for (const preview of previews) {
+      if (preview.getBoundingClientRect().top > activationLine) break;
+      activePreview = preview;
+    }
+
+    setActiveIssue(activePreview.dataset.articlePreview);
+  }
+
+  let updateFrame = 0;
+  function scheduleActiveIssueUpdate() {
+    if (updateFrame) return;
+    updateFrame = window.requestAnimationFrame(() => {
+      updateFrame = 0;
+      updateActiveIssue();
+    });
+  }
+
+  window.addEventListener("scroll", scheduleActiveIssueUpdate, {
+    passive: true,
+  });
+  window.addEventListener("resize", scheduleActiveIssueUpdate);
+  railQuery.addEventListener("change", updateActiveIssue);
+  updateActiveIssue();
+</script>

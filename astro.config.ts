@@ -132,6 +132,7 @@ const pagefindIntegration = () => ({
 // https://astro.build/config
 export default defineConfig({
   site: "https://tylerbutler.com",
+  compressHTML: true,
 
   adapter: netlify({
     imageCDN: false,

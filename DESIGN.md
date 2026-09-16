@@ -177,7 +177,7 @@ Quiet instruments, small delights: controls are understated and bookish, then oc
 - **Hover:** the underline fades out (text-decoration-color → transparent over 0.3s) while the color deepens to Atmosphere Ember
 - **Focus:** 2px solid accent outline, 2px offset, 2px radius — the universal focus treatment
 - **Broken links:** dimmed to Nebula Teal Light at 60% opacity with a help cursor
-- **Stream title links** (homepage article titles): body-ink text with a resting accent underline scaled optically for display size (0.06em thickness, 0.14em offset); hover runs the link grammar in reverse — color moves to the accent while the underline fades
+- **Stream title links** (homepage article titles): body-ink text with no resting underline; hover moves the title to the accent. The heading scale and pointer/focus states provide the affordance without adding rules beneath wrapped titles.
 - **Heading self-anchors:** never underlined. The underline is spent only on links that go somewhere; heading anchors reveal a `#` glyph in the accent on hover/focus instead, and the `:target` heading gets a 10% accent wash (15% in dark)
 
 ### Cards / Containers (Blockquotes & Alerts)
@@ -198,7 +198,7 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Interior running head:** the homepage alone uses the full cover masthead. Interior pages keep the Westgate wordmark, navigation, utilities, and Subscribe chip in a shorter masthead; the rotating tagline and identity-icon row remain cover-only.
 
 ### Editorial Indexes
-- **Homepage current issue:** a quiet Cloud Shadow contents strip appears before the full-post stream, with numbered in-page links to the five current articles and an archive link outside the numbered group. At ≥1200px it becomes a sticky rail with one role at a time: it starts as the issue picker, switches to the active article's section links after the reader enters the article, and provides a visible control to switch modes. It is editorial wayfinding, not a card grid.
+- **Homepage current issue:** a quiet Cloud Shadow contents strip appears before the full-post stream, with unadorned article-title links in a numbered list and an archive link outside the numbered group. Article titles move to the accent on hover or when active. At ≥1200px it becomes a sticky rail with one role at a time: it starts as the issue picker, switches to the active article's section links after the reader enters the article, and provides a visible control to switch modes. It is editorial wayfinding, not a card grid.
 - **Archive navigation:** years remain directly addressable but are grouped by decade with visible article counts, reducing the choice burden without hiding publishing history.
 
 ### Action Chips (Read More / Permalink)

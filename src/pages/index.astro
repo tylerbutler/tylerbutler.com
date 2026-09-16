@@ -277,6 +277,14 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     text-decoration-color: var(--accent);
   }
 
+  .issue-article-link {
+    text-decoration: none;
+  }
+
+  .issue-article-link:hover {
+    color: var(--accent);
+  }
+
   .issue-article-link[aria-current="location"] {
     color: var(--accent);
     font-weight: 600;
@@ -336,21 +344,15 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     scroll-margin-block-start: 1rem;
   }
 
-  /* Stream titles use the display-scale link treatment documented in DESIGN.md. */
+  /* Stream titles read as headings first; color provides the link state. */
   .stream-title-link {
     color: var(--text);
-    text-decoration-line: underline;
-    text-decoration-color: var(--accent);
-    text-decoration-thickness: 0.06em;
-    text-underline-offset: 0.14em;
-    transition:
-      color 0.2s ease,
-      text-decoration-color 0.2s ease;
+    text-decoration: none;
+    transition: color 0.2s ease;
   }
 
   .stream-title-link:hover {
     color: var(--accent);
-    text-decoration-color: transparent;
   }
 
   .article-preview h2:target .stream-title-link {

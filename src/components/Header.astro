@@ -12,12 +12,15 @@ export interface Props {
 const { size = "large" } = Astro.props;
 
 const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
+const initialHeadlineIndex = Math.floor(Math.random() * headlines.length);
+const initialHeadline = headlines[initialHeadlineIndex] ?? "";
 ---
 
 <header
   class:list={["site-header", `site-header--${size}`]}
   data-pagefind-ignore="all"
   data-headlines={size === "large" ? JSON.stringify(headlines) : undefined}
+  data-initial-headline-index={size === "large" ? initialHeadlineIndex : undefined}
 >
   <div class="header-controls">
     <SearchButton/>
@@ -34,7 +37,9 @@ const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
     </div>
   )}
 
-  {size === "large" && <p class="tagline" id="random-headline"></p>}
+  {size === "large" && (
+    <p class="tagline" id="random-headline">{`${initialHeadline}\u00A0`}</p>
+  )}
   <Navigation/>
   <SocialIconsBelow compact={size === "small"}/>
 </header>
@@ -46,8 +51,7 @@ const headlines = headlinesRaw.split("\n").filter((line) => line.trim() !== "");
   const headlines = JSON.parse(largeHeader?.dataset.headlines ?? "[]") as string[];
   const taglineElement = document.getElementById("random-headline");
   if (taglineElement && headlines.length > 0) {
-    let currentIndex = Math.floor(Math.random() * headlines.length);
-    taglineElement.textContent = headlines[currentIndex] + "\u00A0";
+    let currentIndex = Number(largeHeader?.dataset.initialHeadlineIndex ?? 0);
 
     // Rotate headline every 60 seconds with crossfade
     setInterval(() => {

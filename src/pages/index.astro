@@ -90,6 +90,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   title="Tyler Butler - Personal Website"
   description="Personal website and blog of Tyler Butler, featuring articles on technology, programming, and more."
   headerSize="large"
+  containerClass="site-container--homepage"
   excludeFromSearch
 >
   <div class="homepage-layout">
@@ -433,7 +434,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   }
 
   @media (min-width: 1200px) {
-    :global(.site-container:has(.homepage-layout)) {
+    :global(.site-container--homepage) {
       width: var(--container-width);
       margin-left: calc((100vw - var(--container-width) - 100px) / 2);
       margin-right: auto;

@@ -17,6 +17,7 @@ export interface Props {
   ogType?: "website" | "article";
   excludeFromSearch?: boolean;
   pagefindTitle?: string;
+  containerClass?: string;
 }
 
 const {
@@ -29,6 +30,7 @@ const {
   ogType = "website",
   excludeFromSearch = false,
   pagefindTitle = title.replace(/\s+-\s+Tyler Butler$/, ""),
+  containerClass,
 } = Astro.props;
 
 const pageUrl = canonicalUrl ?? Astro.url.href;
@@ -97,7 +99,7 @@ const socialImageUrl = ogImage
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <div class="site-container">
+    <div class:list={["site-container", containerClass]}>
       <Header size={headerSize}/>
       <main id="main-content" tabindex="-1" class="content-section" data-pagefind-body={excludeFromSearch ? undefined : true}>
         <div class="content-inner">

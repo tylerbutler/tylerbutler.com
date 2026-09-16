@@ -85,7 +85,13 @@
 }
 
 /* Wide screens: fixed sidebar TOC */
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
+  body:has(.article-layout.with-toc) .site-container {
+    width: calc(var(--container-width) - 15px);
+    margin-left: calc((100vw - var(--container-width) - 200px) / 2);
+    margin-right: auto;
+  }
+
   /* Hide narrow TOC on wide screens */
   .toc-narrow {
     display: none;
@@ -98,11 +104,16 @@
     color: var(--text);
     position: fixed;
     top: 0; /* At viewport top - JavaScript will adjust dynamically */
-    /* Position so LEFT edge aligns with header's RIGHT edge */
-    left: calc(50vw + var(--container-width) / 2);
+    left: calc(
+      (100vw - var(--container-width) - 200px) /
+      2 +
+      var(--container-width) -
+      15px
+    );
     max-height: 100vh;
     overflow-y: auto;
-    width: 250px;
+    width: 215px;
+    padding: 1em;
     z-index: 1; /* Low priority so code blocks overlay when scrolling */
   }
 
@@ -112,6 +123,25 @@
 
   .toc-sidebar .toc-list a:hover {
     color: var(--accent);
+  }
+
+  .toc-sidebar .toc-list a[aria-current="location"] {
+    color: var(--text);
+    font-weight: 600;
+  }
+}
+
+@media (min-width: 1280px) {
+  body:has(.article-layout.with-toc) .site-container {
+    width: var(--container-width);
+    margin-left: calc(50vw - var(--container-width) / 2);
+    margin-right: calc(50vw - var(--container-width) / 2);
+  }
+
+  .toc-sidebar {
+    left: calc(50vw + var(--container-width) / 2);
+    width: 250px;
+    padding: 1.5em;
   }
 }
 

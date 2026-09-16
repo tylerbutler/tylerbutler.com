@@ -43,6 +43,8 @@
   --font-size-ui: 14px; /* nav links, alert titles, tables */
   --font-size-label: 13px; /* preview text, small buttons, permalinks, tags */
   --font-size-meta: 12px; /* timestamps, fine print, tiny labels */
+  --font-size-section: clamp(24px, 4vw, 28px);
+  --font-size-subheading: 20px;
 
   /* Radii */
   --radius-sm: 3px; /* inline code, small controls, focus rings */

@@ -195,6 +195,11 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Wide screens (≥1200px):** the nav detaches into a left sidebar column extending the masthead's dark block
 - **Mobile:** labels tighten to 12px and the row wraps to a second centered line when narrow. Never clip or shrink a label below its touch padding to force one row — the wrap is sanctioned; clipping is not
 - **Subscribe chip:** the feed link in the masthead's social row is the one conversion among identity icons, so it alone carries a visible word — a quiet chip (icon + "Subscribe" in Lato caps) edged in 55% Golden Horizon. This is masthead wayfinding, inside the Titling Foil Rule
+- **Interior running head:** the homepage alone uses the full cover masthead. Interior pages keep the Westgate wordmark, navigation, utilities, and Subscribe chip in a shorter masthead; the rotating tagline and identity-icon row remain cover-only.
+
+### Editorial Indexes
+- **Homepage current issue:** a quiet Cloud Shadow contents strip appears before the full-post stream, with numbered in-page links to the five current articles and an early archive link. It is editorial wayfinding, not a card grid.
+- **Archive navigation:** years remain directly addressable but are grouped by decade with visible article counts, reducing the choice burden without hiding publishing history.
 
 ### Action Chips (Read More / Permalink)
 - **Style:** italic Adelle at label size on Cloud Shadow with a 1px Nebula Teal Light border, 4px 10px padding, 4px radius — the kudos-button register, minus the rocket

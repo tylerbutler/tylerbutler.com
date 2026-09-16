@@ -21,13 +21,13 @@
 /* Site title when not h1 (for non-homepage header) */
 .site-title {
   font-family: "westgate", "Trajan Pro", "Copperplate", serif;
-  font-size: clamp(64px, 12vw, 108px);
+  font-size: clamp(36px, 7vw, 54px);
   font-weight: 100;
   line-height: 1;
   letter-spacing: clamp(2px, 1vw, 10px);
   text-transform: uppercase;
   color: var(--header-accent);
-  margin: 5px 0;
+  margin: 0;
   text-align: center;
 
   & a {

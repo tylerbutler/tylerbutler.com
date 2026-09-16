@@ -16,17 +16,19 @@ export interface Props {
   ogImageAlt?: string;
   ogType?: "website" | "article";
   excludeFromSearch?: boolean;
+  pagefindTitle?: string;
 }
 
 const {
   title = "Tyler Butler",
   description = "Personal website and blog of Tyler Butler",
-  headerSize = "large",
+  headerSize = "small",
   canonicalUrl,
   ogImage = "/og/site.png",
   ogImageAlt = "Tyler Butler — Software, technology, and other curiosities",
   ogType = "website",
   excludeFromSearch = false,
+  pagefindTitle = title.replace(/\s+-\s+Tyler Butler$/, ""),
 } = Astro.props;
 
 const pageUrl = canonicalUrl ?? Astro.url.href;
@@ -43,6 +45,7 @@ const socialImageUrl = ogImage
     <meta name="generator" content={Astro.generator}>
     <title>{title}</title>
     <meta name="description" content={description}>
+    <meta data-pagefind-meta="title[content]" content={pagefindTitle}>
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <meta property="og:type" content={ogType}>
     <meta property="og:site_name" content="Tyler Butler">

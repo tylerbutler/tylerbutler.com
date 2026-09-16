@@ -39,27 +39,66 @@ const articlesByYear = sortedArticles.reduce(
 const years = Object.keys(articlesByYear)
   .map(Number)
   .sort((a, b) => b - a);
+
+const decadeGroups = Array.from(
+  years.reduce((groups, year) => {
+    const decade = Math.floor(year / 10) * 10;
+    const group = groups.get(decade) ?? [];
+    group.push({
+      year,
+      count: articlesByYear[year].length,
+    });
+    groups.set(decade, group);
+    return groups;
+  }, new Map<number, { year: number; count: number }[]>()),
+)
+  .sort(([a], [b]) => b - a)
+  .map(([decade, groupedYears]) => ({
+    decade,
+    years: groupedYears,
+    total: groupedYears.reduce((sum, year) => sum + year.count, 0),
+  }));
 ---
 
 <BaseLayout
   title="Articles - Tyler Butler"
   description="All articles by Tyler Butler."
+  excludeFromSearch
 >
   <section>
     <h1>Articles</h1>
 
-    <nav class="year-navigation">
-      <ul class="year-nav-list">
-        {years.map((year, index) => (
-          <li class="year-nav-item">
-            <a href={`#${year}`} class="year-nav-link">{year}</a>
-            {index < years.length - 1 && <span class="year-separator">/</span>}
-          </li>
+    <nav class="year-navigation" aria-labelledby="year-navigation-title">
+      <h2 id="year-navigation-title">Browse by Decade</h2>
+      <div class="decade-groups">
+        {decadeGroups.map((group) => (
+          <section class="decade-group" aria-labelledby={`decade-${group.decade}`}>
+            <div class="decade-heading">
+              <h3 id={`decade-${group.decade}`}>{group.decade}s</h3>
+              <span>
+                {group.total} {group.total === 1 ? "article" : "articles"}
+              </span>
+            </div>
+            <ul class="year-nav-list">
+              {group.years.map(({ year, count }) => (
+                <li class="year-nav-item">
+                  <a
+                    href={`#${year}`}
+                    class="year-nav-link"
+                    aria-label={`${year}, ${count} ${count === 1 ? "article" : "articles"}`}
+                  >
+                    <span>{year}</span>
+                    <span class="year-count">({count})</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
         ))}
-      </ul>
+      </div>
     </nav>
 
-    <main class="articles-main">
+    <div class="articles-main">
       {years.map(year => (
         <section class="year-section" id={year.toString()}>
           <h2 class="year-heading">{year}</h2>
@@ -87,13 +126,50 @@ const years = Object.keys(articlesByYear)
           </div>
         </section>
       ))}
-    </main>
+    </div>
   </section>
 </BaseLayout>
 
 <style>
   .year-navigation {
-    margin-bottom: 2rem;
+    margin: 2rem 0 3rem;
+  }
+
+  .year-navigation > h2 {
+    margin-bottom: 0.75em;
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--font-size-ui);
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .decade-groups {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .decade-group {
+    min-width: 0;
+  }
+
+  .decade-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--code-border);
+  }
+
+  .decade-heading h3 {
+    font-size: var(--font-size-subheading);
+  }
+
+  .decade-heading span {
+    color: var(--text-light);
+    font-size: var(--font-size-meta);
   }
 
   .year-nav-list {
@@ -103,27 +179,29 @@ const years = Object.keys(articlesByYear)
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0;
+    gap: 0.25rem 0.75rem;
   }
 
   .year-nav-item {
-    display: flex;
-    align-items: center;
+    margin: 0;
+    padding: 0;
   }
 
   .year-nav-link {
+    display: inline-flex;
+    gap: 0.3em;
     color: var(--accent);
     text-decoration: none;
-    font-size: 14px;
+    font-size: var(--font-size-label);
   }
 
   .year-nav-link:hover {
     text-decoration: underline;
   }
 
-  .year-separator {
-    margin: 0 0.5rem;
-    color: var(--text);
+  .year-count {
+    color: var(--text-light);
+    font-variant-numeric: tabular-nums;
   }
 
   .articles-main {
@@ -135,6 +213,7 @@ const years = Object.keys(articlesByYear)
     margin-bottom: 2rem;
     align-items: flex-start;
     gap: 2rem;
+    scroll-margin-block-start: 1rem;
   }
 
   .year-heading {
@@ -145,7 +224,7 @@ const years = Object.keys(articlesByYear)
     position: sticky;
     top: 0;
     align-self: flex-start;
-    background: var(--background);
+    background: var(--light-bg);
     padding: 0.5rem 0;
     z-index: 10;
   }
@@ -163,7 +242,7 @@ const years = Object.keys(articlesByYear)
   .article-date {
     flex-shrink: 0;
     width: 60px;
-    font-size: 13px;
+    font-size: var(--font-size-label);
     color: var(--text-light);
     font-variant-numeric: tabular-nums;
     text-align: left;
@@ -185,22 +264,27 @@ const years = Object.keys(articlesByYear)
 
   .excerpt {
     margin: 0.5em 0;
-    font-size: 13px;
+    font-size: var(--font-size-label);
     line-height: 1.6;
     color: var(--text-light);
   }
 
   /* Smaller headings for articles page */
   .year-heading {
-    font-size: clamp(24px, 4vw, 28px); /* Use h3 size */
+    font-size: var(--font-size-section);
   }
 
   .article-title {
-    font-size: 24px; /* Use h4 size */
+    font-size: var(--font-size-subheading);
   }
 
   /* Mobile responsive layout */
   @media (max-width: 768px) {
+    .decade-groups {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
     .year-section {
       flex-direction: column;
       gap: 1rem;

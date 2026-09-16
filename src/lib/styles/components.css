@@ -178,7 +178,11 @@ table {
 /* Table responsive behavior */
 @media (max-width: 768px) {
   table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
     font-size: 12px;
+    -webkit-overflow-scrolling: touch;
 
     & th,
     & td {
@@ -279,7 +283,11 @@ table {
   border-radius: var(--radius-md);
   padding: 4px 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .tinylytics_kudos::before {

@@ -58,7 +58,10 @@ const { compact = false } = Astro.props;
     justify-content: center;
     color: var(--nav-links);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease;
     padding: 4px;
     border-radius: 3px;
   }

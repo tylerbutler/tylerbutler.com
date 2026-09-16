@@ -141,7 +141,7 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 - **Display** (100, clamp(64px, 12vw, 108px), lh 1, uppercase, tracking clamp(2px, 1vw, 10px)): the site title in the masthead — nowhere else.
 - **Headline / h1** (300, clamp(32px, 5vw, 42px), lh 1.2, +1.2px tracking): page and article titles.
 - **Title / h2–h3** (300, clamp(28px, 4.5vw, 36px) and clamp(24px, 4vw, 28px), lh 1.2): section headings; h4–h6 step down 24/20/18px at weight 400.
-- **Body** (400, clamp(15px, 2.5vw, 16px), lh 1.6): article prose; the reading column is clamped to `clamp(636px, 90vw, 763px)`, a book-like measure.
+- **Body** (400, clamp(15px, 2.5vw, 16px), lh 1.6): article prose; the page container is clamped to `clamp(636px, 90vw, 763px)`, while homepage stream prose is capped at `70ch`. Tables and code frames may use the wider container when their content requires it.
 - **Label** (Lato 400, 12–14px, +1.5–2px tracking, uppercase): navigation and metadata (dates, taglines at 11–13px).
 - **Code** (PragmataPro, 16px block / 14px inline, ligatures on): inline code is tinted Burnt Atmosphere on Cloud Shadow.
 
@@ -198,14 +198,19 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Interior running head:** the homepage alone uses the full cover masthead. Interior pages keep the Westgate wordmark, navigation, utilities, and Subscribe chip in a shorter masthead; the rotating tagline and identity-icon row remain cover-only.
 
 ### Editorial Indexes
-- **Homepage current issue:** a quiet Cloud Shadow contents strip appears before the full-post stream, with numbered in-page links to the five current articles and an early archive link. It is editorial wayfinding, not a card grid.
+- **Homepage current issue:** a quiet Cloud Shadow contents strip appears before the full-post stream, with numbered in-page links to the five current articles and an archive link outside the numbered group. At ≥1200px it becomes a sticky rail with one role at a time: it starts as the issue picker, switches to the active article's section links after the reader enters the article, and provides a visible control to switch modes. It is editorial wayfinding, not a card grid.
 - **Archive navigation:** years remain directly addressable but are grouped by decade with visible article counts, reducing the choice burden without hiding publishing history.
 
 ### Action Chips (Read More / Permalink)
 - **Style:** italic Adelle at label size on Cloud Shadow with a 1px Nebula Teal Light border, 4px 10px padding, 4px radius — the kudos-button register, minus the rocket
 - **Hover:** fills the accent with page-white text
 - **Every stream preview ends with one:** "Read More →" when truncated, "Permalink →" when the article runs in full — the reader always gets a link at the point of maximum engagement
+- **Homepage stream coda:** the stream ends with paired "Browse the Archive →" and "Subscribe via RSS" chips, giving the reader both a next read and a way to return.
 - **Touch (coarse pointers):** chip padding grows to a ≥40px hit area (12px 16px; kudos 10px 14px) and the action-row gap widens to 1.25em
+
+### Tables
+- **Default:** tables use the full available reading container, with compact Adelle text, quiet cell borders, and an accent rule beneath the header.
+- **Mobile (≤768px):** a table becomes its own horizontal scroll region with `max-width: 100%`; wide columns may scroll, but the table must never widen the document viewport.
 
 ### Code Frames (Expressive Code)
 - **Always dark:** code frames keep their instrument-panel chrome in both themes (frame chrome #1f2328, borders #30363d, titles #e6e8eb, inactive tabs #7d8590, active tab wells #0d1117) — a lit terminal in the spacecraft cabin, deliberately unswayed by the page theme. These hexes are sanctioned utility values, not palette drift
@@ -217,7 +222,7 @@ Between homepage article previews, a 64px animated Lottie constellation replaces
 ## 6. Do's and Don'ts
 
 ### Do:
-- **Do** keep the reading column at `clamp(636px, 90vw, 763px)` — the book measure is the product.
+- **Do** keep the page container at `clamp(636px, 90vw, 763px)` and prose within 45–75 characters per line; the homepage stream uses `70ch`.
 - **Do** route all light-mode accents through Burnt Atmosphere (#96591c) and all dark-mode accents through Starfield Gold (#d4af37); verify AA contrast in both themes independently (the CI runs pa11y WCAG2AA).
 - **Do** spend underlines only on links that navigate; heading self-anchors stay bare and earn a `#` glyph on hover/focus instead.
 - **Do** give touch controls a ≥40px hit area on coarse pointers — grow padding, not font size, and never shrink a label to dodge a wrap.

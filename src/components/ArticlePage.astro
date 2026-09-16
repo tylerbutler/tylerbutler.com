@@ -188,33 +188,73 @@ const articleTitle = getArticleDisplayTitle(article);
 </BaseLayout>
 
 <script>
-  // Handle TOC sidebar positioning: start at header bottom, stick to top when scrolling
-  const tocSidebar = document.querySelector('.toc-sidebar');
+  const tocSidebar = document.querySelector<HTMLElement>(".toc-sidebar");
   if (tocSidebar) {
-    const header = document.querySelector('header');
-    if (header) {
-      const updateTocPosition = () => {
-        const headerBottom = header.getBoundingClientRect().bottom;
-        // If header is still visible, position TOC at header bottom
-        // Otherwise, stick to top of viewport
-        const topPosition = Math.max(0, headerBottom);
-        (tocSidebar as HTMLElement).style.top = `${topPosition}px`;
-      };
+    const header = document.querySelector("header");
+    const tocEntries = [
+      ...tocSidebar.querySelectorAll<HTMLAnchorElement>(
+        '.toc-list a[href^="#"]',
+      ),
+    ]
+      .map((link) => {
+        const heading = document.getElementById(
+          decodeURIComponent(link.hash.slice(1)),
+        );
+        return heading ? { link, heading } : null;
+      })
+      .filter((entry) => entry !== null);
 
-      // Update on scroll and resize
-      window.addEventListener('scroll', updateTocPosition, { passive: true });
-      window.addEventListener('resize', updateTocPosition, { passive: true });
+    const updateToc = () => {
+      const top = Math.max(0, header?.getBoundingClientRect().bottom ?? 0);
+      tocSidebar.style.top = `${top}px`;
+      tocSidebar.style.maxHeight = `${window.innerHeight - top}px`;
 
-      // Initial position
-      updateTocPosition();
-    }
+      const readingLine = window.innerHeight * 0.3;
+      let activeEntry = tocEntries[0];
+      for (const entry of tocEntries) {
+        if (entry.heading.getBoundingClientRect().top > readingLine) break;
+        activeEntry = entry;
+      }
+
+      for (const entry of tocEntries) {
+        if (entry === activeEntry) {
+          entry.link.setAttribute("aria-current", "location");
+        } else {
+          entry.link.removeAttribute("aria-current");
+        }
+      }
+
+      if (activeEntry) {
+        const railRect = tocSidebar.getBoundingClientRect();
+        const linkRect = activeEntry.link.getBoundingClientRect();
+        if (linkRect.top < railRect.top || linkRect.bottom > railRect.bottom) {
+          tocSidebar.scrollTop +=
+            linkRect.top -
+            railRect.top -
+            tocSidebar.clientHeight / 2 +
+            linkRect.height / 2;
+        }
+      }
+    };
+
+    let updateFrame = 0;
+    const scheduleTocUpdate = () => {
+      if (updateFrame) return;
+      updateFrame = window.requestAnimationFrame(() => {
+        updateFrame = 0;
+        updateToc();
+      });
+    };
+
+    window.addEventListener("scroll", scheduleTocUpdate, { passive: true });
+    window.addEventListener("resize", scheduleTocUpdate);
+    updateToc();
   }
 
   // Handle narrow TOC relocation: move to marker if present in content
-  const tocNarrow = document.querySelector('.toc-narrow');
-  const tocMarker = document.querySelector('#toc');
+  const tocNarrow = document.querySelector(".toc-narrow");
+  const tocMarker = document.querySelector("#toc");
   if (tocNarrow && tocMarker) {
-    // Move the narrow TOC to the marker location
     tocMarker.replaceWith(tocNarrow);
   }
 </script>

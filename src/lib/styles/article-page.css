@@ -124,6 +124,11 @@
   .toc-sidebar .toc-list a:hover {
     color: var(--accent);
   }
+
+  .toc-sidebar .toc-list a[aria-current="location"] {
+    color: var(--text);
+    font-weight: 600;
+  }
 }
 
 @media (min-width: 1280px) {

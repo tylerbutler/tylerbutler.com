@@ -85,10 +85,10 @@
 }
 
 /* Wide screens: fixed sidebar TOC */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   body:has(.article-layout.with-toc) .site-container {
-    width: calc(var(--container-width) - 15px);
-    margin-left: calc((100vw - var(--container-width) - 200px) / 2);
+    width: var(--container-width);
+    margin-left: calc((100vw - var(--container-width) - 100px) / 2);
     margin-right: auto;
   }
 
@@ -105,15 +105,14 @@
     position: fixed;
     top: 0; /* At viewport top - JavaScript will adjust dynamically */
     left: calc(
-      (100vw - var(--container-width) - 200px) /
+      (100vw - var(--container-width) - 100px) /
       2 +
-      var(--container-width) -
-      15px
+      var(--container-width)
     );
     max-height: 100vh;
     overflow-y: auto;
-    width: 215px;
-    padding: 1em;
+    width: 250px;
+    padding: 1.5em;
     z-index: 1; /* Low priority so code blocks overlay when scrolling */
   }
 
@@ -128,20 +127,6 @@
   .toc-sidebar .toc-list a[aria-current="location"] {
     color: var(--text);
     font-weight: 600;
-  }
-}
-
-@media (min-width: 1280px) {
-  body:has(.article-layout.with-toc) .site-container {
-    width: var(--container-width);
-    margin-left: calc(50vw - var(--container-width) / 2);
-    margin-right: calc(50vw - var(--container-width) / 2);
-  }
-
-  .toc-sidebar {
-    left: calc(50vw + var(--container-width) / 2);
-    width: 250px;
-    padding: 1.5em;
   }
 }
 

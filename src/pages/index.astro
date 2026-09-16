@@ -4,7 +4,11 @@ import ActionChip from "../components/ActionChip.astro";
 import ConstellationIcon from "../components/ConstellationIcon.astro";
 import KudosButton from "../components/KudosButton.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getArticleDisplayTitle, getArticleUrl } from "../lib/article-utils";
+import {
+  getArticleDisplayTitle,
+  getArticleSlug,
+  getArticleUrl,
+} from "../lib/article-utils";
 import { includeDraft } from "../lib/draft-utils";
 import { createHomepagePreview } from "../lib/markdown-utils";
 import { formatTitle } from "../lib/typography";
@@ -65,13 +69,16 @@ const sortedArticles = articles
 // Render articles with full markdown pipeline and h3 headings for homepage
 const recentArticles = await Promise.all(
   sortedArticles.map(async (article) => {
-    const { html, isTruncated } = await createHomepagePreview(article.body);
+    const { html, isTruncated } = await createHomepagePreview(
+      article.body ?? "",
+    );
 
     return {
       ...article,
       transformedHtml: html,
       isTruncated,
       formattedTitle: await formatTitle(getArticleDisplayTitle(article)),
+      previewId: `article-${getArticleSlug(article)}`,
     };
   }),
 );
@@ -82,61 +89,86 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
 <BaseLayout
   title="Tyler Butler - Personal Website"
   description="Personal website and blog of Tyler Butler, featuring articles on technology, programming, and more."
+  headerSize="large"
+  excludeFromSearch
 >
   <div class="homepage-layout">
-    <main class="main-content">
-      {recentArticles.length > 0 && (
-      <ul class="recent-articles">
-        {recentArticles.map((article, index) => {
-          const date = new Date(article.data.date);
-
-          return (
-            <>
-              {index > 0 && (() => {
-                const { url, slug } = iconAssignments.get(article.id)!;
-                return (
-                  <li class="article-divider" role="presentation" aria-hidden="true">
-                    <ConstellationIcon src={url} slug={slug} size={64} />
-                  </li>
-                );
-              })()}
-            <li>
-              <article class="article-preview">
-                <h2>
-                  <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
-                </h2>
-                <div class="article-meta">
-                  <time datetime={article.data.date.toISOString()}>
-                    {date.toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </time>
-                </div>
-                <div class="article-content" set:html={article.transformedHtml}></div>
-                <p class="preview-actions">
-                  {article.isTruncated ? (
-                    <ActionChip href={getArticleUrl(article)}>Read More →</ActionChip>
-                  ) : (
-                    <ActionChip href={getArticleUrl(article)}>Permalink →</ActionChip>
-                  )}
-                  <KudosButton path={getArticleUrl(article)} variant="preview" />
-                </p>
-              </article>
+    {recentArticles.length > 0 && (
+      <nav class="current-issue" aria-labelledby="current-issue-heading">
+        <div class="current-issue-heading">
+          <h2 id="current-issue-heading">Current Issue</h2>
+          <a href="/articles/">
+            All {articles.length} Articles →
+          </a>
+        </div>
+        <ol>
+          {recentArticles.map((article) => (
+            <li data-issue-target={article.previewId}>
+              <a
+                class="issue-article-link"
+                href={`#${article.previewId}`}
+                set:html={article.formattedTitle}
+              />
+              <ul class="issue-sections" hidden></ul>
             </li>
-            </>
-          );
-        })}
-      </ul>
+          ))}
+        </ol>
+      </nav>
     )}
+
+    <div class="main-content">
+      {recentArticles.length > 0 && (
+        <ul class="recent-articles">
+          {recentArticles.map((article, index) => {
+            const date = new Date(article.data.date);
+
+            return (
+              <>
+                {index > 0 && (() => {
+                  const { url, slug } = iconAssignments.get(article.id)!;
+                  return (
+                    <li class="article-divider" role="presentation" aria-hidden="true">
+                      <ConstellationIcon src={url} slug={slug} size={64} />
+                    </li>
+                  );
+                })()}
+                <li>
+                  <article class="article-preview" data-article-preview={article.previewId}>
+                    <h2 id={article.previewId}>
+                      <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
+                    </h2>
+                    <div class="article-meta">
+                      <time datetime={article.data.date.toISOString()}>
+                        {date.toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </time>
+                    </div>
+                    <div class="article-content" set:html={article.transformedHtml}></div>
+                    <p class="preview-actions">
+                      {article.isTruncated ? (
+                        <ActionChip href={getArticleUrl(article)}>Read More →</ActionChip>
+                      ) : (
+                        <ActionChip href={getArticleUrl(article)}>Permalink →</ActionChip>
+                      )}
+                      <KudosButton path={getArticleUrl(article)} variant="preview" />
+                    </p>
+                  </article>
+                </li>
+              </>
+            );
+          })}
+        </ul>
+      )}
 
       <div class="stream-footer">
         <p class="stream-footer-more">
           <a href="/articles/">View All Articles →</a>
         </p>
       </div>
-    </main>
+    </div>
   </div>
 </BaseLayout>
 
@@ -149,6 +181,93 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     list-style: none;
     padding: 0;
     margin: 2em 0;
+  }
+
+  .current-issue {
+    margin: 0 0 4em;
+    padding: 1.25em 1.5em;
+    background: var(--code-bg);
+    border-radius: var(--radius-md);
+  }
+
+  .current-issue-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1em;
+    padding-bottom: 0.75em;
+    border-bottom: 1px solid var(--code-border);
+  }
+
+  .current-issue-heading h2 {
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--font-size-ui);
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .current-issue-heading a {
+    flex-shrink: 0;
+    font-size: var(--font-size-label);
+  }
+
+  .current-issue ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5em 2em;
+    margin: 1em 0 0;
+    padding-left: 1.75em;
+  }
+
+  .current-issue li {
+    margin: 0;
+    padding-left: 0.25em;
+    color: var(--text-light);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .current-issue li::marker {
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--font-size-meta);
+  }
+
+  .current-issue li a {
+    color: var(--text);
+    text-decoration-color: var(--accent);
+  }
+
+  .issue-article-link[aria-current="location"] {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .issue-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    margin: 0.45em 0 0.15em;
+    padding-left: 1em;
+    list-style: disc;
+  }
+
+  .issue-sections[hidden] {
+    display: none;
+  }
+
+  .issue-sections :global(li) {
+    padding-left: 0;
+    font-size: var(--font-size-meta);
+  }
+
+  .issue-sections :global(a) {
+    color: var(--text-light);
+    line-height: 1.35;
+    text-decoration: none;
+  }
+
+  .issue-sections :global(a:hover) {
+    color: var(--accent);
   }
 
   .article-preview {
@@ -167,6 +286,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   /* Size, face, and weight inherit from the global h2 ramp (typography.css) */
   .article-preview h2 {
     margin: 0 0 0.5em 0;
+    scroll-margin-block-start: 1rem;
   }
 
   /* Stream titles read as headings first; no resting underline (consistent
@@ -178,6 +298,10 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   }
 
   .article-preview h2 a:hover {
+    color: var(--accent);
+  }
+
+  .article-preview h2:target a {
     color: var(--accent);
   }
 
@@ -228,6 +352,69 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     }
   }
 
+  @media (max-width: 600px) {
+    .current-issue {
+      padding: 1em 1.25em;
+    }
+
+    .current-issue-heading {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.35em;
+    }
+
+    .current-issue ol {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    :global(.site-container:has(.homepage-layout)) {
+      width: var(--container-width);
+      margin-left: calc((100vw - var(--container-width) - 100px) / 2);
+      margin-right: auto;
+    }
+
+    .homepage-layout {
+      display: grid;
+      grid-template-areas: "main issue";
+      grid-template-columns: minmax(0, 1fr) 250px;
+      column-gap: 35px;
+      width: calc(100% + 285px);
+    }
+
+    .main-content {
+      grid-area: main;
+      min-width: 0;
+    }
+
+    .current-issue {
+      grid-area: issue;
+      align-self: start;
+      position: sticky;
+      top: 2em;
+      margin: 0;
+      padding: 1.5em;
+      max-height: calc(100vh - 4em);
+      overflow-y: auto;
+      background: var(--light-bg);
+      border-left: 3px solid var(--accent);
+      border-radius: 0;
+    }
+
+    .current-issue-heading {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    .current-issue ol {
+      grid-template-columns: 1fr;
+      gap: 0.65em;
+      padding-left: 1.5em;
+    }
+  }
+
   /* End-of-stream: the archive is the way onward */
   .stream-footer {
     margin: 3em 0 1em;
@@ -238,3 +425,96 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     margin: 0;
   }
 </style>
+
+<script>
+  const railQuery = window.matchMedia("(min-width: 1200px)");
+  const previews = [
+    ...document.querySelectorAll<HTMLElement>("[data-article-preview]"),
+  ];
+  const issueItems = new Map(
+    [...document.querySelectorAll<HTMLElement>("[data-issue-target]")].map(
+      (item) => [item.dataset.issueTarget, item],
+    ),
+  );
+
+  for (const preview of previews) {
+    const previewId = preview.dataset.articlePreview;
+    const issueItem = issueItems.get(previewId);
+    const sectionList =
+      issueItem?.querySelector<HTMLUListElement>(".issue-sections");
+    if (!previewId || !sectionList) continue;
+
+    const headings = preview.querySelectorAll<HTMLElement>(
+      ".article-content h3, .article-content h4, .article-content h5",
+    );
+
+    headings.forEach((heading, index) => {
+      const originalId = heading.id || `section-${index + 1}`;
+      const headingId = `${previewId}-${originalId}`;
+      heading.id = headingId;
+      for (const link of preview.querySelectorAll<HTMLAnchorElement>("a[href]")) {
+        if (link.getAttribute("href") === `#${originalId}`) {
+          link.setAttribute("href", `#${headingId}`);
+        }
+      }
+
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = `#${headingId}`;
+      link.textContent = heading.textContent?.trim() || `Section ${index + 1}`;
+      item.append(link);
+      sectionList.append(item);
+    });
+  }
+
+  function setActiveIssue(previewId?: string) {
+    for (const [id, item] of issueItems) {
+      const isActive = railQuery.matches && id === previewId;
+      const articleLink =
+        item.querySelector<HTMLAnchorElement>(".issue-article-link");
+      const sectionList =
+        item.querySelector<HTMLUListElement>(".issue-sections");
+
+      articleLink?.toggleAttribute("aria-current", isActive);
+      if (articleLink && isActive) {
+        articleLink.setAttribute("aria-current", "location");
+      }
+      if (sectionList) {
+        sectionList.hidden = !isActive || sectionList.children.length === 0;
+      }
+    }
+  }
+
+  function updateActiveIssue() {
+    if (!railQuery.matches || previews.length === 0) {
+      setActiveIssue();
+      return;
+    }
+
+    const activationLine = window.innerHeight * 0.3;
+    let activePreview = previews[0];
+
+    for (const preview of previews) {
+      if (preview.getBoundingClientRect().top > activationLine) break;
+      activePreview = preview;
+    }
+
+    setActiveIssue(activePreview.dataset.articlePreview);
+  }
+
+  let updateFrame = 0;
+  function scheduleActiveIssueUpdate() {
+    if (updateFrame) return;
+    updateFrame = window.requestAnimationFrame(() => {
+      updateFrame = 0;
+      updateActiveIssue();
+    });
+  }
+
+  window.addEventListener("scroll", scheduleActiveIssueUpdate, {
+    passive: true,
+  });
+  window.addEventListener("resize", scheduleActiveIssueUpdate);
+  railQuery.addEventListener("change", updateActiveIssue);
+  updateActiveIssue();
+</script>

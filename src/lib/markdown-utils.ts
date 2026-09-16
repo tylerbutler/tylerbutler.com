@@ -133,7 +133,6 @@ function createMarkdownProcessor(headingLevel?: number) {
       behavior: "wrap",
       properties: {
         className: ["heading-anchor"],
-        ariaLabel: "Link to this heading",
       },
     })
     .use(rehypeExpressiveCode, expressiveCodeConfig)

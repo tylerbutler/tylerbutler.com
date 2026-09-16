@@ -132,6 +132,7 @@ const pagefindIntegration = () => ({
 // https://astro.build/config
 export default defineConfig({
   site: "https://tylerbutler.com",
+  compressHTML: true,
 
   adapter: netlify({
     imageCDN: false,
@@ -172,7 +173,6 @@ export default defineConfig({
             behavior: "wrap",
             properties: {
               className: ["heading-anchor"],
-              ariaLabel: "Link to this heading",
             },
           },
         ],

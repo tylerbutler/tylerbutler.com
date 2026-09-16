@@ -15,7 +15,7 @@
 /* Show # to the left on hover or keyboard focus */
 .heading-anchor:hover::before,
 .heading-anchor:focus-visible::before {
-  content: "#";
+  content: "#" / "";
   position: absolute;
   left: -0.8em;
   color: var(--accent);

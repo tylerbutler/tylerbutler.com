@@ -14,6 +14,7 @@
     justify-content: center;
     column-gap: 20px;
     row-gap: 4px;
+    margin: 0;
   }
 
   & a {
@@ -265,6 +266,10 @@
 
 /* Mobile navigation */
 @media (max-width: 480px) {
+  .site-header nav {
+    padding: 4px 0;
+  }
+
   .site-header nav a {
     font-size: var(
       --font-size-meta
@@ -280,8 +285,8 @@
 
   .site-header nav ul {
     flex-direction: row; /* Keep horizontal on mobile */
-    column-gap: 12px;
-    row-gap: 4px;
+    column-gap: 8px;
+    row-gap: 0;
     flex-wrap: wrap; /* Two centered rows instead of clipping */
     justify-content: center;
     width: 100%; /* Use full width */

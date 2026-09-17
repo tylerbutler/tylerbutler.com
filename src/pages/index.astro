@@ -97,14 +97,11 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     {recentArticles.length > 0 && (
       <nav class="current-issue" aria-labelledby="current-issue-heading">
         <div class="current-issue-heading">
-          <h2 id="current-issue-heading">
-            <span class="issue-heading-wide">Reading Guide</span>
-            <span class="issue-heading-narrow">Current Issue</span>
-          </h2>
+          <h2 id="current-issue-heading">Latest Articles</h2>
           <div
             class="rail-mode-switch"
             role="group"
-            aria-label="Reading guide view"
+            aria-label="Article navigation view"
             hidden
           >
             <button
@@ -113,7 +110,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
               aria-controls="current-issue-list"
               aria-pressed="true"
             >
-              Current Issue
+              Articles
             </button>
             <button
               type="button"
@@ -121,7 +118,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
               aria-controls="current-issue-list"
               aria-pressed="false"
             >
-              In This Article
+              Sections
             </button>
           </div>
         </div>
@@ -235,10 +232,6 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     font-weight: 400;
     letter-spacing: 2px;
     text-transform: uppercase;
-  }
-
-  .issue-heading-narrow {
-    display: none;
   }
 
   .rail-mode-switch {
@@ -462,19 +455,31 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
 
   @media (max-width: 600px) {
     .current-issue {
-      margin-bottom: 2.5em;
-      padding: 1em 1.25em 0.75em;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 0.75em;
+      margin-bottom: 1.25em;
+      padding: 0.5em 0;
+      background: transparent;
     }
 
     .current-issue-heading {
       display: block;
+      padding: 0;
+      border: 0;
+    }
+
+    .current-issue-heading h2 {
+      font-size: var(--font-size-meta);
+      line-height: 1.3;
     }
 
     .current-issue ol {
       display: flex;
-      gap: 0.75em;
-      margin-block: 0.75em 0;
-      padding: 0 0 0.5em;
+      gap: 0.5em;
+      margin: 0;
+      padding: 0.25em 0;
       overflow-x: auto;
       overscroll-behavior-inline: contain;
       scroll-snap-type: inline proximity;
@@ -482,14 +487,18 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
       counter-reset: issue;
     }
 
+    .current-issue ol > li:first-child {
+      display: none;
+    }
+
     .current-issue ol > li {
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
       align-items: baseline;
       gap: 0.5em;
-      flex: 0 0 min(76vw, 17rem);
+      flex: 0 0 min(62vw, 14rem);
       margin: 0;
-      padding: 0.65em 0.75em;
+      padding: 0.45em 0.6em;
       background: var(--light-bg);
       border: 1px solid var(--code-border);
       border-radius: var(--radius-md);
@@ -506,15 +515,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     }
 
     .current-issue-archive {
-      margin-top: 0.5em;
-    }
-
-    .issue-heading-wide {
       display: none;
-    }
-
-    .issue-heading-narrow {
-      display: inline;
     }
   }
 

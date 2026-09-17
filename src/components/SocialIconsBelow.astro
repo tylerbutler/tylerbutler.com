@@ -152,6 +152,13 @@ const { compact = false } = Astro.props;
   }
 
   @media (max-width: 480px) {
+    .social-icons-below {
+      flex-direction: row;
+      justify-content: center;
+      gap: 4px;
+      margin: 0;
+    }
+
     .identity-links--desktop {
       display: none;
     }
@@ -161,7 +168,8 @@ const { compact = false } = Astro.props;
     }
 
     .identity-disclosure summary {
-      min-height: 40px;
+      box-sizing: border-box;
+      min-height: 44px;
       padding: 10px 12px;
       color: var(--nav-links);
       font-family: "Lato", "Helvetica Neue", Arial, sans-serif;

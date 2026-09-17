@@ -97,15 +97,33 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     {recentArticles.length > 0 && (
       <nav class="current-issue" aria-labelledby="current-issue-heading">
         <div class="current-issue-heading">
-          <h2 id="current-issue-heading">Current Issue</h2>
-          <button
-            class="rail-mode-toggle"
-            type="button"
-            aria-controls="current-issue-list"
+          <h2 id="current-issue-heading">
+            <span class="issue-heading-wide">Reading Guide</span>
+            <span class="issue-heading-narrow">Current Issue</span>
+          </h2>
+          <div
+            class="rail-mode-switch"
+            role="group"
+            aria-label="Reading guide view"
             hidden
           >
-            Show Sections
-          </button>
+            <button
+              type="button"
+              data-rail-mode="issue"
+              aria-controls="current-issue-list"
+              aria-pressed="true"
+            >
+              Current Issue
+            </button>
+            <button
+              type="button"
+              data-rail-mode="sections"
+              aria-controls="current-issue-list"
+              aria-pressed="false"
+            >
+              In This Article
+            </button>
+          </div>
         </div>
         <ol id="current-issue-list">
           {recentArticles.map((article) => (
@@ -178,7 +196,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
 
       <nav class="stream-footer" aria-label="Keep reading">
         <ActionChip href="/articles/">Browse the Archive →</ActionChip>
-        <ActionChip href="/feed.xml">Subscribe via RSS</ActionChip>
+        <ActionChip href="/subscribe">Subscribe</ActionChip>
       </nav>
     </div>
   </div>
@@ -219,27 +237,52 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     text-transform: uppercase;
   }
 
-  .rail-mode-toggle {
-    padding: 0;
+  .issue-heading-narrow {
+    display: none;
+  }
+
+  .rail-mode-switch {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25em;
+    width: 100%;
+  }
+
+  .rail-mode-switch[hidden] {
+    display: none;
+  }
+
+  .rail-mode-switch button {
+    padding: 0.45em 0;
     border: 0;
-    color: var(--accent);
+    border-bottom: 1px solid var(--code-border);
+    color: var(--text-light);
     background: transparent;
-    font: inherit;
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
     font-size: var(--font-size-label);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
     cursor: pointer;
   }
 
-  .rail-mode-toggle:hover {
-    color: var(--accent-hover);
-    text-decoration-color: transparent;
+  .rail-mode-switch button:hover,
+  .rail-mode-switch button[aria-pressed="true"] {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
   }
 
-  .rail-mode-toggle:focus-visible {
+  .rail-mode-switch button:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
     border-radius: var(--radius-sm);
+  }
+
+  .rail-mode-switch button:disabled {
+    color: var(--text-light);
+    border-bottom-color: var(--code-border);
+    cursor: not-allowed;
+    opacity: 0.55;
   }
 
   .current-issue ol {
@@ -419,17 +462,59 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
 
   @media (max-width: 600px) {
     .current-issue {
-      padding: 1em 1.25em;
+      margin-bottom: 2.5em;
+      padding: 1em 1.25em 0.75em;
     }
 
     .current-issue-heading {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 0.35em;
+      display: block;
     }
 
     .current-issue ol {
-      grid-template-columns: 1fr;
+      display: flex;
+      gap: 0.75em;
+      margin-block: 0.75em 0;
+      padding: 0 0 0.5em;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline proximity;
+      scrollbar-color: var(--accent) transparent;
+      counter-reset: issue;
+    }
+
+    .current-issue ol > li {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: baseline;
+      gap: 0.5em;
+      flex: 0 0 min(76vw, 17rem);
+      margin: 0;
+      padding: 0.65em 0.75em;
+      background: var(--light-bg);
+      border: 1px solid var(--code-border);
+      border-radius: var(--radius-md);
+      scroll-snap-align: start;
+      counter-increment: issue;
+    }
+
+    .current-issue ol > li::before {
+      content: counter(issue, decimal-leading-zero);
+      color: var(--text-light);
+      font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+      font-size: var(--font-size-meta);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .current-issue-archive {
+      margin-top: 0.5em;
+    }
+
+    .issue-heading-wide {
+      display: none;
+    }
+
+    .issue-heading-narrow {
+      display: inline;
     }
   }
 
@@ -493,10 +578,11 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
 <script>
   const railQuery = window.matchMedia("(min-width: 1200px)");
   const issueNav = document.querySelector<HTMLElement>(".current-issue");
-  const issueHeading =
-    document.querySelector<HTMLElement>("#current-issue-heading");
-  const railModeToggle =
-    document.querySelector<HTMLButtonElement>(".rail-mode-toggle");
+  const railModeSwitch =
+    document.querySelector<HTMLElement>(".rail-mode-switch");
+  const railModeButtons = [
+    ...document.querySelectorAll<HTMLButtonElement>("[data-rail-mode]"),
+  ];
   const previews = [
     ...document.querySelectorAll<HTMLElement>("[data-article-preview]"),
   ];
@@ -539,11 +625,11 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   type RailMode = "issue" | "sections";
 
   let activePreviewId: string | undefined;
-  let manualRailMode: RailMode | undefined;
+  let railMode: RailMode = "issue";
 
   function setActiveIssue(
     previewId?: string,
-    requestedMode: RailMode = "issue",
+    requestedMode: RailMode = railMode,
   ) {
     const activeItem = previewId ? issueItems.get(previewId) : undefined;
     const activeSections =
@@ -553,14 +639,11 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
       requestedMode === "sections" && canShowSections ? "sections" : "issue";
 
     if (issueNav) issueNav.dataset.mode = mode;
-    if (issueHeading) {
-      issueHeading.textContent =
-        mode === "sections" ? "In This Article" : "Current Issue";
-    }
-    if (railModeToggle) {
-      railModeToggle.hidden = !railQuery.matches || !canShowSections;
-      railModeToggle.textContent =
-        mode === "sections" ? "Show Issue" : "Show Sections";
+    if (railModeSwitch) railModeSwitch.hidden = !railQuery.matches;
+    for (const button of railModeButtons) {
+      const buttonMode = button.dataset.railMode as RailMode;
+      button.setAttribute("aria-pressed", String(buttonMode === mode));
+      button.disabled = buttonMode === "sections" && !canShowSections;
     }
 
     for (const [id, item] of issueItems) {
@@ -587,8 +670,8 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   function updateActiveIssue() {
     if (!railQuery.matches || previews.length === 0) {
       activePreviewId = undefined;
-      manualRailMode = undefined;
-      setActiveIssue();
+      railMode = "issue";
+      setActiveIssue(undefined, railMode);
       return;
     }
 
@@ -601,14 +684,8 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
     }
 
     const nextPreviewId = activePreview.dataset.articlePreview;
-    if (nextPreviewId !== activePreviewId) {
-      activePreviewId = nextPreviewId;
-      manualRailMode = undefined;
-    }
-
-    const hasEnteredArticle = activePreview.getBoundingClientRect().top <= 96;
-    const automaticMode: RailMode = hasEnteredArticle ? "sections" : "issue";
-    setActiveIssue(activePreviewId, manualRailMode ?? automaticMode);
+    activePreviewId = nextPreviewId;
+    setActiveIssue(activePreviewId, railMode);
   }
 
   let updateFrame = 0;
@@ -625,13 +702,14 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   });
   window.addEventListener("resize", scheduleActiveIssueUpdate);
   railQuery.addEventListener("change", () => {
-    manualRailMode = undefined;
+    railMode = "issue";
     updateActiveIssue();
   });
-  railModeToggle?.addEventListener("click", () => {
-    manualRailMode =
-      issueNav?.dataset.mode === "sections" ? "issue" : "sections";
-    setActiveIssue(activePreviewId, manualRailMode);
-  });
+  for (const button of railModeButtons) {
+    button.addEventListener("click", () => {
+      railMode = button.dataset.railMode as RailMode;
+      setActiveIssue(activePreviewId, railMode);
+    });
+  }
   updateActiveIssue();
 </script>

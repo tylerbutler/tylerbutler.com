@@ -4,6 +4,7 @@ import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
 import { includeDraft } from "../../lib/draft-utils";
+import { addFeedTrackingPixel } from "../../lib/feed-utils";
 import { getNoteUrl, plaintextExcerpt } from "../../lib/note-utils";
 
 export async function GET(context: APIContext) {
@@ -23,6 +24,7 @@ export async function GET(context: APIContext) {
       sortedNotes.map(async (note) => {
         const { Content } = await render(note);
         const html = await container.renderToString(Content);
+        const path = `${getNoteUrl(note)}/`;
 
         // RSS items must carry a title or description. Notes are usually
         // title-less by design, so we leave title unset and synthesize a
@@ -33,10 +35,13 @@ export async function GET(context: APIContext) {
         const item: RSSFeedItem = {
           pubDate: note.data.date,
           description,
-          content: sanitizeHtml(html, {
-            allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-          }),
-          link: `${getNoteUrl(note)}/`,
+          content: addFeedTrackingPixel(
+            sanitizeHtml(html, {
+              allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+            }),
+            path,
+          ),
+          link: path,
         };
         if (note.data.title) item.title = note.data.title;
         return item;

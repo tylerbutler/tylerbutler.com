@@ -3,6 +3,7 @@ import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
 import { includeDraft } from "../../lib/draft-utils";
+import { addFeedTrackingPixel } from "../../lib/feed-utils";
 import { getNoteUrl, plaintextExcerpt } from "../../lib/note-utils";
 
 export async function GET(context: APIContext) {
@@ -21,15 +22,19 @@ export async function GET(context: APIContext) {
     sortedNotes.map(async (note) => {
       const { Content } = await render(note);
       const html = await container.renderToString(Content);
-      const url = `${siteUrl}${getNoteUrl(note)}/`;
+      const path = `${getNoteUrl(note)}/`;
+      const url = `${siteUrl}${path}`;
       const body = note.body ?? "";
 
       const item: Record<string, unknown> = {
         id: url,
         url,
-        content_html: sanitizeHtml(html, {
-          allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-        }),
+        content_html: addFeedTrackingPixel(
+          sanitizeHtml(html, {
+            allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+          }),
+          path,
+        ),
         content_text: plaintextExcerpt(body, 1000),
         date_published: note.data.date.toISOString(),
       };

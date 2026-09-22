@@ -5,6 +5,7 @@ import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
 import { getArticleDisplayTitle, getArticleUrl } from "../lib/article-utils";
 import { includeDraft } from "../lib/draft-utils";
+import { addFeedTrackingPixel } from "../lib/feed-utils";
 
 export async function GET(context: APIContext) {
   const site = (context.site || new URL("https://tylerbutler.com")).toString();
@@ -26,15 +27,19 @@ export async function GET(context: APIContext) {
       const title = getArticleDisplayTitle(article);
       const { Content } = await render(article);
       const html = await container.renderToString(Content);
-      const url = `${siteUrl}${getArticleUrl(article)}/`;
+      const path = `${getArticleUrl(article)}/`;
+      const url = `${siteUrl}${path}`;
 
       return {
         id: url,
         url,
         title,
-        content_html: sanitizeHtml(html, {
-          allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-        }),
+        content_html: addFeedTrackingPixel(
+          sanitizeHtml(html, {
+            allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+          }),
+          path,
+        ),
         summary: article.data.excerpt,
         date_published: new Date(article.data.date).toISOString(),
         tags: article.data.tags,

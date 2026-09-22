@@ -6,6 +6,7 @@ import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
 import { getArticleDisplayTitle, getArticleUrl } from "../lib/article-utils";
 import { includeDraft } from "../lib/draft-utils";
+import { addFeedTrackingPixel } from "../lib/feed-utils";
 
 export async function GET(context: APIContext) {
   const articles = await getCollection("articles", ({ data }) =>
@@ -31,15 +32,19 @@ export async function GET(context: APIContext) {
         // Render the article content using Astro's unified markdown pipeline
         const { Content } = await render(article);
         const html = await container.renderToString(Content);
+        const path = `${getArticleUrl(article)}/`;
 
         return {
           title,
           pubDate: article.data.date,
           description: article.data.excerpt || title,
-          content: sanitizeHtml(html, {
-            allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-          }),
-          link: `${getArticleUrl(article)}/`,
+          content: addFeedTrackingPixel(
+            sanitizeHtml(html, {
+              allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+            }),
+            path,
+          ),
+          link: path,
         };
       }),
     ),

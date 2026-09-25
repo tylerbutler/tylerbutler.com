@@ -1,0 +1,172 @@
+---
+import ActionChip from "../components/ActionChip.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const feeds = [
+  {
+    title: "Articles via RSS",
+    description: "Use this feed for long-form articles and link posts.",
+    url: new URL("/feed.xml", Astro.site ?? Astro.url).href,
+  },
+  {
+    title: "Articles via JSON Feed",
+    description: "Use this format if your feed reader asks for JSON Feed.",
+    url: new URL("/feed.json", Astro.site ?? Astro.url).href,
+  },
+  {
+    title: "Notes via RSS",
+    description: "Use this feed for short notes and updates.",
+    url: new URL("/notes/feed.xml", Astro.site ?? Astro.url).href,
+  },
+  {
+    title: "Notes via JSON Feed",
+    description: "Use this format if your feed reader asks for JSON Feed.",
+    url: new URL("/notes/feed.json", Astro.site ?? Astro.url).href,
+  },
+];
+---
+
+<BaseLayout
+  title="Subscribe - Tyler Butler"
+  description="Subscribe to Tyler Butler's articles and notes with RSS or JSON Feed."
+>
+  <article class="subscribe-page">
+    <header>
+      <h1>Subscribe</h1>
+      <p>
+        Follow new articles and notes in your feed reader. Choose Add Feed,
+        then paste one of the addresses below. RSS works with most readers.
+      </p>
+    </header>
+
+    <div class="feed-list">
+      {feeds.map((feed) => (
+        <section class="feed-option">
+          <h2>{feed.title}</h2>
+          <p>{feed.description}</p>
+          <a class="feed-url" href={feed.url}>{feed.url}</a>
+          <div class="feed-actions">
+            <button
+              type="button"
+              class="copy-feed"
+              data-copy-feed={feed.url}
+              data-feed-title={feed.title}
+            >
+              Copy address
+            </button>
+            <ActionChip href={feed.url}>Open feed →</ActionChip>
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <p class="copy-status" id="copy-status" aria-live="polite"></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .subscribe-page header {
+    max-width: 65ch;
+    margin-bottom: 3em;
+  }
+
+  .feed-list {
+    border-top: 1px solid var(--code-border);
+  }
+
+  .feed-option {
+    padding: 1.5em 0;
+    border-bottom: 1px solid var(--code-border);
+  }
+
+  .feed-option h2 {
+    font-size: var(--font-size-section);
+  }
+
+  .feed-option p {
+    margin-bottom: 0.5em;
+  }
+
+  .feed-url {
+    display: block;
+    overflow-wrap: anywhere;
+    font-family: var(--code-font);
+    font-size: var(--font-size-label);
+  }
+
+  .feed-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75em;
+    margin-top: 1em;
+  }
+
+  .copy-feed {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    color: var(--text);
+    background: var(--code-bg);
+    border: 1px solid var(--text-light);
+    border-radius: var(--radius-md);
+    font-family: "adelle", "Baskerville", Georgia, serif;
+    font-size: var(--font-size-label);
+    font-style: italic;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+
+  .copy-feed:hover,
+  .copy-feed:focus-visible,
+  .copy-feed[data-copied="true"] {
+    color: var(--light-bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .copy-feed:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .copy-status {
+    min-height: 1.6em;
+    margin-top: 1em;
+    color: var(--text-light);
+    font-size: var(--font-size-label);
+  }
+
+  @media (pointer: coarse) {
+    .copy-feed {
+      padding: 12px 16px;
+    }
+  }
+</style>
+
+<script>
+  const status = document.querySelector<HTMLElement>("#copy-status");
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>(
+    "[data-copy-feed]",
+  )) {
+    button.addEventListener("click", async () => {
+      const feedUrl = button.dataset.copyFeed;
+      const feedTitle = button.dataset.feedTitle;
+      if (!feedUrl || !feedTitle || !status) return;
+
+      try {
+        await navigator.clipboard.writeText(feedUrl);
+        button.dataset.copied = "true";
+        button.textContent = "Copied";
+        status.textContent = `${feedTitle} address copied.`;
+        window.setTimeout(() => {
+          button.dataset.copied = "false";
+          button.textContent = "Copy address";
+        }, 2000);
+      } catch {
+        status.textContent =
+          "Copy failed. Open the feed, then copy its address from your browser.";
+      }
+    });
+  }
+</script>

@@ -2,15 +2,88 @@ import { expect, test } from "@playwright/test";
 
 const PINNED_ARTICLE = "/base64-encoded-sha256-hashes/";
 
-test("homepage offers an early current-issue index", async ({ page }) => {
+test("homepage offers an early latest-articles index", async ({ page }) => {
   await page.goto("/");
 
-  const issue = page.getByRole("navigation", { name: "Current Issue" });
+  const issue = page.locator(".current-issue");
   await expect(issue).toBeVisible();
-  await expect(issue.getByRole("listitem")).toHaveCount(5);
   await expect(
-    issue.getByRole("link", { name: /All \d+ Articles/ }),
+    issue.getByRole("heading", { name: /Latest Articles|Read Next/ }),
   ).toBeVisible();
+  await expect(issue.locator("#current-issue-list > li")).toHaveCount(5);
+  const archiveLink = issue.getByRole("link", {
+    name: /Browse All \d+ Articles/,
+  });
+  if ((page.viewportSize()?.width ?? Infinity) <= 600) {
+    await expect(archiveLink).toBeHidden();
+  } else {
+    await expect(archiveLink).toBeVisible();
+  }
+});
+
+test("desktop reading guide uses explicit modes", async ({ page }) => {
+  test.skip(
+    (page.viewportSize()?.width ?? 0) < 1200,
+    "The reading guide mode switch is a wide-screen enhancement.",
+  );
+  await page.goto("/");
+
+  const guide = page.locator(".current-issue");
+  const issueButton = guide.getByRole("button", { name: "Articles" });
+  const sectionsButton = guide.getByRole("button", { name: "Sections" });
+
+  await expect(issueButton).toHaveAttribute("aria-pressed", "true");
+  await sectionsButton.click();
+  await expect(sectionsButton).toHaveAttribute("aria-pressed", "true");
+  await expect(guide.locator("[data-rail-heading]")).toContainText(
+    "Contents ·",
+  );
+  await expect(guide.locator(".issue-sections:not([hidden])")).toBeVisible();
+});
+
+test("mobile homepage prioritizes reading and preserves article context", async ({
+  page,
+}) => {
+  test.skip(
+    (page.viewportSize()?.width ?? Infinity) > 600,
+    "The compact article navigator is a phone layout.",
+  );
+  await page.goto("/");
+
+  const issueItems = page.locator("#current-issue-list > li");
+  await expect(issueItems.first()).toBeHidden();
+  await expect(issueItems.nth(1)).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Read Next" })).toBeVisible();
+  await expect(page.locator(".identity-disclosure")).toBeVisible();
+  await expect(page.locator(".identity-links--desktop")).toBeHidden();
+  await expect(
+    page
+      .locator(".site-header")
+      .getByRole("link", { name: "Subscribe via RSS" }),
+  ).toBeVisible();
+
+  const firstTitle = page.locator(".article-preview h2").first();
+  await expect(firstTitle).toBeVisible();
+  const firstTitleTop = await firstTitle.evaluate(
+    (element) => element.getBoundingClientRect().top,
+  );
+  expect(firstTitleTop).toBeLessThan(700);
+  await expect(firstTitle.locator(".stream-title-icon")).toBeVisible();
+
+  await page.locator(".article-preview").nth(1).scrollIntoViewIfNeeded();
+  await expect(page.locator(".mobile-stream-nav")).toBeVisible();
+});
+
+test("subscribe page explains and exposes every feed", async ({ page }) => {
+  await page.goto("/subscribe");
+
+  await expect(
+    page.getByRole("heading", { name: "Subscribe", level: 1 }),
+  ).toBeVisible();
+  await expect(page.getByRole("button", { name: "Copy address" })).toHaveCount(
+    4,
+  );
+  await expect(page.getByRole("link", { name: "Open feed →" })).toHaveCount(4);
 });
 
 test("interior pages use one page heading and a compact masthead", async ({

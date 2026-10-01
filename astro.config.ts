@@ -17,7 +17,7 @@ import { remarkLazyLinks } from "remark-lazy-links";
 import { remarkShiftHeadings } from "remark-shift-headings";
 import { visualizer } from "rollup-plugin-visualizer";
 import { downloadFonts } from "./scripts/download-fonts.ts";
-import { optimizeFonts } from "./scripts/optimize-fonts.ts";
+import { publishFontSubsets } from "./scripts/publish-font-subsets.ts";
 import { articleRedirects } from "./src/lib/article-redirects.ts";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
 import { rehypeMarkBrokenLinks } from "./src/lib/rehype-mark-broken-links.ts";
@@ -36,31 +36,23 @@ const fontDownloader = () => ({
           process.env.NETLIFY === "true";
 
         if (isProduction) {
-          console.error("Font download failed:", (error as Error).message);
-          process.exit(1);
-        } else {
-          console.warn(
-            "⚠️  Font download failed (local dev - continuing anyway):",
-            (error as Error).message,
-          );
+          throw error;
         }
+
+        console.warn(
+          "⚠️  Font download failed (local development will use the last downloaded sources):",
+          (error as Error).message,
+        );
       }
     },
   },
 });
 
-const fontOptimizer = () => ({
-  name: "font-optimizer",
+const fontSubsetPublisher = () => ({
+  name: "font-subset-publisher",
   hooks: {
-    "astro:build:done": async () => {
-      try {
-        await optimizeFonts();
-      } catch (error) {
-        console.warn(
-          "⚠️  Font optimization failed (continuing anyway):",
-          (error as Error).message,
-        );
-      }
+    "astro:build:done": async ({ dir }: { dir: URL }) => {
+      await publishFontSubsets(dir);
     },
   },
 });
@@ -142,7 +134,7 @@ export default defineConfig({
   integrations: [
     icon(),
     fontDownloader(),
-    fontOptimizer(),
+    fontSubsetPublisher(),
     pagefindIntegration(),
     articleRedirects(),
     sitemap(),

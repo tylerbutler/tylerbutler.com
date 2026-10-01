@@ -5,7 +5,6 @@ import FootnoteScript from "../components/FootnotesScript.astro";
 import Header from "../components/Header.astro";
 import Tinylytics from "../components/Tinylytics.astro";
 import "../lib/styles/global.css";
-import "../styles/fonts.css";
 
 export interface Props {
   title?: string;
@@ -69,11 +68,8 @@ const socialImageUrl = ogImage
     )}
     <link rel="stylesheet" href="https://use.typekit.net/zsx5vsn.css">
     <link
-      rel="preload"
-      href="/fonts/PragmataPro_Mono_R_liga_0902.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
+      rel="stylesheet"
+      href="https://fonts.tylerbutler.com/css/sites/tylerbutler.com/pragmata-pro.css"
     >
     <!-- Feeds -->
     <link rel="alternate" type="application/rss+xml" title="Tyler Butler" href="/feed.xml" />

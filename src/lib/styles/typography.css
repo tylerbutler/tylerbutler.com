@@ -4,7 +4,7 @@
 .site-header h1 {
   font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(17.5px, 5.4vw, 48px);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.2;
   letter-spacing: 0.035em;
   text-transform: uppercase;
@@ -22,7 +22,7 @@
 .site-title {
   font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(17.5px, 4vw, 28px);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.2;
   letter-spacing: 0.025em;
   text-transform: uppercase;

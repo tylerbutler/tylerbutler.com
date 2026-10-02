@@ -26,8 +26,9 @@ pnpm serve
 
 ### Fonts
 
-The masthead uses Idlewild SSm Book (weight 400). Body text and headings remain
-Adelle, and code remains PragmataPro.
+The masthead and constellation labels use Idlewild SSm Light (weight 300).
+Social-preview images use the same face for the site label. Body text and
+headings remain Adelle, and code remains PragmataPro.
 
 At build start, `scripts/download-fonts.ts` downloads missing full WOFF2 sources
 into the Git-ignored `public/fonts/` directory. PragmataPro comes from the private

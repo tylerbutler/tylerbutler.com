@@ -27,11 +27,11 @@ const name = getConstellationName(slug);
     position: absolute;
     top: -0.5em;
     right: -0.5em;
-    font-family: "westgate", "Trajan Pro", "Copperplate", serif;
+    font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
     font-size: var(--font-size-meta);
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: 800;
+    font-weight: 300;
     color: var(--text);
     /* Solid chip keeps the label legible where it overlaps the constellation
        drawing, and gives contrast checkers a determinable background */
@@ -50,6 +50,18 @@ const name = getConstellationName(slug);
 
   .constellation-icon:has(.lottie-icon-wrapper[data-playing="true"]) .constellation-label {
     animation: constellation-float 3s ease-in-out infinite;
+  }
+
+  @media (max-width: 480px) {
+    .constellation-label {
+      left: 50%;
+      right: auto;
+      translate: -50% 0;
+      width: max-content;
+      max-width: calc(100vw - 32px);
+      white-space: normal;
+      text-align: center;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -313,7 +313,7 @@ code:not(pre code) {
   font-size: calc(var(--code-font-size) * 0.875); /* 14px when base is 16px */
   font-weight: 500;
   font-variant-ligatures: normal; /* Ensure ligatures work in inline code */
-  letter-spacing: 0.025em; /* Slight letter spacing for better readability */
+  letter-spacing: normal;
 }
 
 /* Responsive typography adjustments */

@@ -36,6 +36,7 @@ Navigation and UI labels use Idlewild SSm Book (weight 400) with tighter
 tracking. Social-preview images use Light for the site label and Book for
 metadata. Body text and headings remain Adelle, and code uses PragmataPro Mono Liga 0.903 under the
 `PragmataPro` CSS family.
+Keep code letter spacing at `normal` so programming ligatures can form.
 
 At build start, `scripts/download-fonts.ts` downloads missing full WOFF2 sources
 into the Git-ignored `public/fonts/` directory. Both families come from

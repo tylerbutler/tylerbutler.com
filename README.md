@@ -26,21 +26,23 @@ pnpm serve
 
 ### Fonts
 
-The masthead and constellation labels use Idlewild SSm Light (weight 300).
+The masthead and constellation labels use Idlewild SSm Light (weight 300),
+the lightest face available from the font service.
 Masthead titles use uppercase letters, normal kerning, and 0.05em tracking.
 The rotating tagline uses uppercase Idlewild Light with 0.08em tracking.
 Social-preview images use the same face for the site label. Body text and
-headings remain Adelle, and code remains PragmataPro.
+headings remain Adelle, and code uses PragmataPro Mono Liga 0.903 under the
+`PragmataPro` CSS family.
 
 At build start, `scripts/download-fonts.ts` downloads missing full WOFF2 sources
-into the Git-ignored `public/fonts/` directory. PragmataPro comes from the private
-resources repository and requires `GITHUB_TOKEN` when its sources are not cached.
-Idlewild comes from `fonts.tylerbutler.com`, with an approved `Origin` header and
-without GitHub credentials. The original Idlewild OTF files remain in the private
+into the Git-ignored `public/fonts/` directory. Both families come from
+`fonts.tylerbutler.com`, with an approved `Origin` header and without GitHub
+credentials. The original Idlewild OTF files remain in the private
 font-service repository; they are not copied into this site's public assets.
 
-**Deploy the font service with Idlewild version `1.401` before a production
-build.** The site downloads all four Idlewild faces from
+**Deploy the font service with PragmataPro version `0.903` and Idlewild version
+`1.401` before a production build.** The site downloads all four faces per family
+from `https://fonts.tylerbutler.com/fonts/pragmata-pro/0.903/` and
 `https://fonts.tylerbutler.com/fonts/idlewild/1.401/`.
 
 After Astro generates the HTML, `scripts/publish-font-subsets.ts` collects the

@@ -4,12 +4,12 @@ export const FONT_SITE = "tylerbutler.com";
 export const FONT_FAMILIES = [
   {
     id: "pragmata-pro",
-    version: "0.902",
+    version: "0.903",
     faces: [
-      { id: "regular", fileName: "PragmataPro_Mono_R_liga_0902.woff2" },
-      { id: "bold", fileName: "PragmataPro_Mono_B_liga_0902.woff2" },
-      { id: "italic", fileName: "PragmataPro_Mono_I_liga_0902.woff2" },
-      { id: "bold-italic", fileName: "PragmataPro_Mono_Z_liga_0902.woff2" },
+      { id: "regular", fileName: "pragmata-pro/0.903/regular.woff2" },
+      { id: "bold", fileName: "pragmata-pro/0.903/bold.woff2" },
+      { id: "italic", fileName: "pragmata-pro/0.903/italic.woff2" },
+      { id: "bold-italic", fileName: "pragmata-pro/0.903/bold-italic.woff2" },
     ],
   },
   {

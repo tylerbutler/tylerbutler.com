@@ -6,7 +6,7 @@ Personal website ([tylerbutler.com](https://tylerbutler.com)) built with Astro, 
 
 ```bash
 pnpm dev              # Start dev server (localhost:4321)
-pnpm build            # Production build (requires env vars below)
+pnpm build            # Production build
 pnpm check            # Astro type-check (minimumSeverity warning)
 pnpm format           # Biome format (linter disabled)
 pnpm serve            # Serve dist/ on port 4173
@@ -14,13 +14,6 @@ pnpm test:unit        # Node.js unit tests
 pnpm test:visual      # Playwright visual regression tests
 pnpm test:lighthouse  # Lighthouse CI performance tests
 pnpm test:accessibility  # pa11y-ci accessibility tests
-```
-
-**Build env vars** (required for production):
-
-```bash
-GITHUB_REPO_OWNER=tylerbutler
-GITHUB_REPO_NAME=private-resources
 ```
 
 **Optional env vars**:
@@ -60,7 +53,7 @@ docs/superpowers/   # Implementation plans and specs
 
 **rehype plugin order matters**: `rehypeExpressiveCode` must run before `rehypeCodeFold`. Both are registered in `astro.config.ts` for MDX and in `markdown-utils.ts` for standalone unified pipelines.
 
-**Font pipeline**: `scripts/font-config.ts` defines PragmataPro and Idlewild SSm faces. `scripts/download-fonts.ts` fetches their full WOFF2 sources at build start; `scripts/publish-font-subsets.ts` scans generated HTML and publishes both families through `fonts.tylerbutler.com` after the build. Sources under `public/fonts/` are ignored by Git. Idlewild SSm Light (weight 300) is used for the masthead title and tagline, constellation labels, and social-preview site label; PragmataPro remains the code font.
+**Font pipeline**: `scripts/font-config.ts` defines PragmataPro Mono Liga 0.903 and Idlewild SSm 1.401 faces. `scripts/download-fonts.ts` fetches their full WOFF2 sources from `fonts.tylerbutler.com` at build start with an approved `Origin` header and no GitHub credentials; `scripts/publish-font-subsets.ts` scans generated HTML and publishes both families through the same service after the build. Sources under `public/fonts/` are ignored by Git. Idlewild SSm Light (weight 300, the lightest available face) is used for the masthead title and tagline, constellation labels, and social-preview site label; `PragmataPro` remains the code font's CSS family.
 
 **Micropub**: IndieWeb publishing endpoint at `/micropub` → `/.netlify/functions/micropub`.
 

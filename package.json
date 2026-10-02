@@ -20,7 +20,7 @@
     "baseline:build": "npm run build",
     "baseline:bundle": "npm run test:bundle",
     "baseline:lighthouse": "npm run test:lighthouse && npm run test:lighthouse:mobile",
-    "build": "cross-env GITHUB_REPO_OWNER=tylerbutler GITHUB_REPO_NAME=private-resources astro build",
+    "build": "astro build",
     "check": "astro check --minimumSeverity warning",
     "dev": "astro dev",
     "dev:drafts": "cross-env SHOW_DRAFTS=1 astro dev",

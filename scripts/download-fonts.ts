@@ -6,16 +6,10 @@ import {
   FONT_SITE,
 } from "./font-config.ts";
 
-interface GitHubFileData {
-  download_url?: string;
-}
-
 export async function downloadFonts(): Promise<void> {
   console.log("Checking fonts...");
 
   const fontsDir = path.join(process.cwd(), "public", "fonts");
-  const repo = `${process.env.GITHUB_REPO_OWNER}/${process.env.GITHUB_REPO_NAME}`;
-
   // Create fonts directory
   if (!fs.existsSync(fontsDir)) {
     fs.mkdirSync(fontsDir, { recursive: true });
@@ -32,12 +26,6 @@ export async function downloadFonts(): Promise<void> {
     return;
   }
 
-  const headers = {
-    Authorization: `token ${process.env.GITHUB_TOKEN}`,
-    Accept: "application/vnd.github.v3+json",
-    "User-Agent": "Private-Font-Downloader",
-  };
-
   try {
     for (const family of FONT_FAMILIES) {
       for (const face of family.faces) {
@@ -50,40 +38,10 @@ export async function downloadFonts(): Promise<void> {
         try {
           console.log(`Downloading ${face.fileName}...`);
 
-          let response: Response;
-          if (family.id === "idlewild") {
-            response = await fetch(
-              `${FONT_SERVICE_ORIGIN}/fonts/${face.fileName}`,
-              { headers: { Origin: `https://${FONT_SITE}` } },
-            );
-          } else {
-            if (!process.env.GITHUB_TOKEN) {
-              throw new Error("GITHUB_TOKEN environment variable is required");
-            }
-            const apiUrl = `https://api.github.com/repos/${repo}/contents/fonts/PragmataPro0.902W/${face.fileName}`;
-            const metaResponse = await fetch(apiUrl, { headers });
-
-            if (!metaResponse.ok) {
-              throw new Error(
-                `GitHub API error: ${metaResponse.status} ${metaResponse.statusText}`,
-              );
-            }
-
-            const fileData = (await metaResponse.json()) as GitHubFileData;
-            const downloadUrl = fileData.download_url;
-
-            if (!downloadUrl) {
-              throw new Error("No download URL found in GitHub API response");
-            }
-
-            // Download file using the download URL
-            response = await fetch(downloadUrl, {
-              headers: {
-                Authorization: `token ${process.env.GITHUB_TOKEN}`,
-                "User-Agent": "Private-Font-Downloader",
-              },
-            });
-          }
+          const response = await fetch(
+            `${FONT_SERVICE_ORIGIN}/fonts/${face.fileName}`,
+            { headers: { Origin: `https://${FONT_SITE}` } },
+          );
 
           if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);

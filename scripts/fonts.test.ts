@@ -129,18 +129,52 @@ test("fails explicitly when an Idlewild source cannot be downloaded", async (t) 
   );
 });
 
-test("still requires GitHub credentials for missing PragmataPro sources", async (t) => {
+test("downloads PragmataPro 0.903 from the font service without GitHub credentials", async (t) => {
   await prepare(t);
-  const fetch = t.mock.method(globalThis, "fetch", async () => {
-    throw new Error("Unexpected network request");
-  });
+  await seedFonts(["idlewild"]);
+  const downloaded: string[] = [];
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async (input: FetchInput, init?: RequestInit) => {
+      downloaded.push(String(input));
+      const headers = new Headers(init?.headers);
+      assert.equal(headers.get("Origin"), `https://${FONT_SITE}`);
+      assert.equal(headers.get("Authorization"), null);
+      return new Response(new Uint8Array(sourceFont));
+    },
+  );
+
+  await downloadFonts();
+
+  assert.equal(FONT_FAMILIES[0].version, "0.903");
+  assert.deepEqual(
+    downloaded,
+    ["regular", "bold", "italic", "bold-italic"].map(
+      (face) => `${FONT_SERVICE_ORIGIN}/fonts/pragmata-pro/0.903/${face}.woff2`,
+    ),
+  );
+  for (const face of FONT_FAMILIES[0].faces) {
+    assert.deepEqual(
+      await fs.readFile(path.join("public/fonts", face.fileName)),
+      sourceFont,
+    );
+  }
+});
+
+test("fails explicitly when a PragmataPro source cannot be downloaded", async (t) => {
+  await prepare(t);
+  await seedFonts(["idlewild"]);
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async () => new Response("Not Found", { status: 404 }),
+  );
 
   await assert.rejects(
     downloadFonts(),
-    /GITHUB_TOKEN environment variable is required/,
+    /Failed to download font: pragmata-pro\/0\.903\/regular\.woff2 - HTTP 404/,
   );
-
-  assert.equal(fetch.mock.callCount(), 0);
 });
 
 test("checks independent caches for PragmataPro and Idlewild", async (t) => {

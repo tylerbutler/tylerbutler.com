@@ -60,7 +60,7 @@ typography:
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Idlewild SSm, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Lato, Helvetica Neue, Arial, sans-serif"
     fontSize: "12px"
     fontWeight: 400
     lineHeight: 1.2
@@ -112,7 +112,7 @@ The register is brand, but the surface is a reading surface. Density is low: one
 
 **Key Characteristics:**
 - A literal painted-sky scene: fixed backdrop → glowing site container → dark masthead → light page
-- Serif-first typography (Adelle everywhere) with a wide retro-futuristic display face (Idlewild SSm Light) for the masthead, constellation nameplates, and social-preview site label
+- Serif-first typography (Adelle for reading and the submast) with Idlewild SSm Light for the masthead, and Lato for navigation, constellation nameplates, UI labels, and social-preview labels
 - Golden-hour palette: burnt orange and golden yellow warmth against deep space blue
 - Class-toggled light/dark themes; dark mode swaps burnt orange for starfield gold
 - Small delights over big motion: link underlines that fade on hover, launching rockets, constellation dividers
@@ -145,10 +145,10 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 
 **Display Font:** Idlewild SSm Light (with Helvetica Neue, Arial fallback), loaded from the dynamic font subset service at weight 300 with `font-display: swap`
 **Body Font:** adelle (with Baskerville, Georgia fallback) — Typekit-loaded
-**Label Font:** Idlewild SSm Book, weight 400 (with Helvetica Neue, Arial fallback); shared through `--label-font`
+**Label Font:** Lato Regular, weight 400 (with Helvetica Neue, Arial fallback); shared through `--label-font`. Lato Bold (700) supplies alert titles.
 **Code Font:** PragmataPro (with JetBrains Mono fallback)
 
-**Character:** Adelle supplies the article headings, body text, and italic sentence-case tagline. Idlewild SSm Light provides uppercase masthead titling with normal pair kerning and 0.05em tracking. Constellation nameplates and the social-preview site label remain uppercase. Idlewild SSm Book replaces Lato in navigation and UI labels, with 0.04em tracking for short uppercase labels. Long search excerpts remain Adelle.
+**Character:** Adelle supplies the article headings, body text, and italic sentence-case tagline. Idlewild SSm Light provides uppercase masthead titling with normal pair kerning and 0.05em tracking. Constellation nameplates and the social-preview site label remain uppercase in Lato. Lato Regular supplies navigation and UI labels, with 0.04em tracking for short uppercase labels. Long search excerpts remain Adelle.
 
 ### Hierarchy
 - **Display** (300, clamp(17px, 4.4vw, 36px), lh 1.2, uppercase, normal kerning, tracking 0.05em): the homepage site title.
@@ -157,11 +157,11 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 - **Headline / h1** (300, clamp(32px, 5vw, 42px), lh 1.2, +1.2px tracking): page and article titles.
 - **Title / h2–h3** (300, clamp(28px, 4.5vw, 36px) and clamp(24px, 4vw, 28px), lh 1.2): section headings; h4–h6 step down 24/20/18px at weight 400.
 - **Body** (400, clamp(15px, 2.5vw, 16px), lh 1.6): article prose; the page container is clamped to `clamp(636px, 90vw, 763px)`, while homepage stream prose is capped at `70ch`. Tables and code frames may use the wider container when their content requires it.
-- **Label** (Idlewild SSm Book 400, 12–14px, tracking 0.04em, uppercase): navigation and metadata. Alert titles use Bold (700).
+- **Label** (Lato Regular 400, 12–14px, tracking 0.04em, uppercase): navigation and metadata. Alert titles use Bold (700).
 - **Code** (PragmataPro, 16px block / 14px inline, ligatures on): inline code is tinted Burnt Atmosphere on Cloud Shadow.
 
 ### Named Rules
-**The Masthead Rule.** Use Idlewild SSm Light for the masthead wordmark, small constellation nameplates, and social-preview site label. Use Book for navigation and UI labels. Keep article prose, headings, and the rotating tagline in Adelle.
+**The Masthead Rule.** Use Idlewild SSm Light for the masthead wordmark. Use Lato Light for the social-preview site label and Lato Regular for constellation nameplates, navigation, and UI labels. Keep article prose, headings, and the rotating tagline in Adelle.
 
 **The One Voice Rule.** Everything readable is Adelle. Contrast comes from size and weight (100→300→400→600), never from introducing another text face.
 
@@ -199,17 +199,17 @@ Quiet instruments, small delights: controls are understated and bookish, then oc
 - **Corner Style:** flat left edge, 4px rounded right corners (0 4px 4px 0)
 - **Background:** Cloud Shadow for quotes; alerts tint 10% of their instrument color into the page background (15% into Deep Space Hull in dark mode)
 - **Border:** 4px solid left border in the instrument color (the one sanctioned thick left-border pattern — a GitHub-alert convention, kept for reader familiarity)
-- **Alert titles:** Idlewild SSm Bold uppercase labels (14–15px, +0.5px tracking) in the instrument color, with octicon
+- **Alert titles:** Lato Bold uppercase labels (14–15px, +0.5px tracking) in the instrument color, with octicon
 
 ### Inputs
 No styled input system exists yet (search is delegated to Pagefind UI). When one is needed, follow the instrument philosophy: Cloud Shadow fills, 1px quiet borders, the universal 2px accent focus outline.
 
 ### Navigation
-- **Style:** Idlewild SSm Book uppercase labels (12px, tracking 0.04em) in Cabin Light on the Deep Space Hull masthead; centered row with 20px gaps
+- **Style:** Lato Regular uppercase labels (12px, tracking 0.04em) in Cabin Light on the Deep Space Hull masthead; centered row with 20px gaps
 - **Hover / Active:** color shifts to Horizon Flare over 0.2s
 - **Wide screens (≥1200px):** the nav detaches into a left sidebar column extending the masthead's dark block
 - **Mobile:** 12px labels wrap across centered rows when narrow. Desktop sidebar labels use 10–11px with less horizontal padding to keep each word intact. Preserve touch padding rather than forcing one row.
-- **Subscribe chip:** the feed link in the masthead's social row is the one conversion among identity icons, so it alone carries a visible word — a quiet chip (icon + "Subscribe" in Idlewild Book caps) edged in 55% Golden Horizon. This is masthead wayfinding, inside the Titling Foil Rule
+- **Subscribe chip:** the feed link in the masthead's social row is the one conversion among identity icons, so it alone carries a visible word — a quiet chip (icon + "Subscribe" in Lato Regular caps) edged in 55% Golden Horizon. This is masthead wayfinding, inside the Titling Foil Rule
 - **Interior running head:** the homepage alone uses the full cover masthead. Interior pages keep the Idlewild SSm wordmark, navigation, utilities, and Subscribe chip in a shorter masthead; the rotating tagline and identity-icon row remain cover-only. The homepage title sits below the corner controls; compact titles do likewise on narrow screens so touch targets do not overlap the lettering.
 
 ### Editorial Indexes
@@ -232,7 +232,7 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Touch overflow:** on coarse pointers, horizontally scrollable code gets edge scroll-shadows (16px black-fade, hidden at the reached edge via local-attachment covers) so clipped code never masquerades as complete
 
 ### Constellation Dividers (Signature)
-Between homepage article previews, a 64px animated Lottie constellation replaces the horizontal rule — each article is deterministically assigned a constellation by content hash, no duplicates on screen. Nameplates use Idlewild SSm Light at weight 300; on mobile they center over the icon and wrap when needed to stay within the viewport. Prose `<hr>` renders as a centered `###` in serif — a typewriter-manuscript wink. These are the site's fingerprint; protect them.
+Between homepage article previews, a 64px animated Lottie constellation replaces the horizontal rule — each article is deterministically assigned a constellation by content hash, no duplicates on screen. Nameplates use Lato Regular at weight 400; on mobile they center over the icon and wrap when needed to stay within the viewport. Prose `<hr>` renders as a centered `###` in serif — a typewriter-manuscript wink. These are the site's fingerprint; protect them.
 
 ## 6. Do's and Don'ts
 
@@ -241,7 +241,7 @@ Between homepage article previews, a 64px animated Lottie constellation replaces
 - **Do** route all light-mode accents through Burnt Atmosphere (#96591c) and all dark-mode accents through Starfield Gold (#d4af37); verify AA contrast in both themes independently (the CI runs pa11y WCAG2AA).
 - **Do** spend underlines only on links that navigate; heading self-anchors stay bare and earn a `#` glyph on hover/focus instead.
 - **Do** give touch controls a ≥40px hit area on coarse pointers — grow padding, not font size, and never shrink a label to dodge a wrap.
-- **Do** reserve Idlewild SSm Light for the masthead wordmark, constellation nameplates, and social-preview site label. Use Book for navigation and UI labels; use italic Adelle for the rotating tagline. Reserve Golden Horizon for masthead titling and wayfinding.
+- **Do** use Idlewild SSm Light for the masthead wordmark and Lato Light for the social-preview site label. Use Lato Regular for constellation nameplates, navigation, and UI labels; use italic Adelle for the rotating tagline. Reserve Golden Horizon for masthead titling and wayfinding.
 - **Do** add small delights in the kudos-rocket register: brief (≤750ms), physical, suppressed under `prefers-reduced-motion`.
 - **Do** let depth come from the painted scene; shadows respond to hover, focus, or elevation state.
 - **Do** use `color-mix` tints of instrument colors for any new status surface, matching the alert formula.

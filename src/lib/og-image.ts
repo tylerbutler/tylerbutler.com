@@ -4,15 +4,10 @@ import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 import subsetFont from "subset-font";
-import {
-  FONT_FAMILIES,
-  FONT_SERVICE_ORIGIN,
-  FONT_SITE,
-} from "../../scripts/font-config.ts";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-const TEMPLATE_VERSION = 4;
+const TEMPLATE_VERSION = 5;
 const SITE_LABEL = "TYLERBUTLER.COM";
 const METADATA_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789, ";
 const cacheDirectory = path.join(process.cwd(), ".cache", "og-images");
@@ -31,8 +26,8 @@ interface TypekitFont {
 interface OgFonts {
   adelleBold: string;
   adelleItalic: string;
-  idlewildLight: string;
-  idlewildBook: string;
+  latoLight: string;
+  latoRegular: string;
 }
 
 let fontsPromise: Promise<OgFonts> | undefined;
@@ -78,38 +73,21 @@ async function downloadTypekitFont(
   return filename;
 }
 
-async function downloadIdlewild(
-  faceId: "light" | "book",
-  text: string,
-): Promise<string> {
-  const face = FONT_FAMILIES.find(
-    (family) => family.id === "idlewild",
-  )?.faces.find((face) => face.id === faceId);
-  if (!face)
-    throw new Error(
-      `Idlewild ${faceId} is missing from the font configuration`,
-    );
-
-  const response = await fetch(
-    `${FONT_SERVICE_ORIGIN}/fonts/${face.fileName}`,
-    {
-      headers: { Origin: `https://${FONT_SITE}` },
-    },
+async function loadLato(weight: 300 | 400, text: string): Promise<string> {
+  const source = await fs.promises.readFile(
+    path.join(
+      process.cwd(),
+      "node_modules",
+      "@fontsource",
+      "lato",
+      "files",
+      `lato-latin-${weight}-normal.woff2`,
+    ),
   );
-  if (!response.ok) {
-    throw new Error(
-      `Could not download Idlewild ${faceId}: ${response.status} ${response.statusText}`,
-    );
-  }
-
   // Pango needs an SFNT font, not the browser's WOFF2 source.
-  const font = await subsetFont(
-    Buffer.from(await response.arrayBuffer()),
-    text,
-    { targetFormat: "sfnt" },
-  );
+  const font = await subsetFont(source, text, { targetFormat: "sfnt" });
   const directory = path.join(os.tmpdir(), "tylerbutler-og-fonts");
-  const filename = path.join(directory, `idlewild-${faceId}.ttf`);
+  const filename = path.join(directory, `lato-${weight}.ttf`);
   await fs.promises.mkdir(directory, { recursive: true });
   await fs.promises.writeFile(filename, font);
   return filename;
@@ -125,7 +103,7 @@ function loadFonts(): Promise<OgFonts> {
     }
     const css = await response.text();
 
-    const [adelleBold, adelleItalic, idlewildLight, idlewildBook] =
+    const [adelleBold, adelleItalic, latoLight, latoRegular] =
       await Promise.all([
         downloadTypekitFont(css, {
           family: "adelle",
@@ -137,15 +115,15 @@ function loadFonts(): Promise<OgFonts> {
           weight: 400,
           style: "italic",
         }),
-        downloadIdlewild("light", SITE_LABEL),
-        downloadIdlewild("book", METADATA_CHARACTERS),
+        loadLato(300, SITE_LABEL),
+        loadLato(400, METADATA_CHARACTERS),
       ]);
 
     return {
       adelleBold,
       adelleItalic,
-      idlewildLight,
-      idlewildBook,
+      latoLight,
+      latoRegular,
     };
   })();
 
@@ -271,9 +249,8 @@ export async function createOgImage({
         input: {
           text: {
             text: `<span foreground="#e6b35c" letter_spacing="5120">${escapeXml(SITE_LABEL)}</span>`,
-            // The comma keeps "Light" in the family name, not Pango's weight.
-            font: "Idlewild SSm Light, 30",
-            fontfile: fonts.idlewildLight,
+            font: "Lato Light 30",
+            fontfile: fonts.latoLight,
             rgba: true,
           },
         },
@@ -284,8 +261,8 @@ export async function createOgImage({
         input: {
           text: {
             text: `<span foreground="#b9bbc0" letter_spacing="1024">${kind}</span>`,
-            font: "Idlewild SSm Book, 16",
-            fontfile: fonts.idlewildBook,
+            font: "Lato 16",
+            fontfile: fonts.latoRegular,
             rgba: true,
           },
         },
@@ -328,8 +305,8 @@ export async function createOgImage({
               input: {
                 text: {
                   text: `<span foreground="#e6b35c" letter_spacing="1024">${formattedDate}</span>`,
-                  font: "Idlewild SSm Book, 16",
-                  fontfile: fonts.idlewildBook,
+                  font: "Lato 16",
+                  fontfile: fonts.latoRegular,
                   rgba: true,
                 },
               },

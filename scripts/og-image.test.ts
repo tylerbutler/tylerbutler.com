@@ -4,7 +4,6 @@ import os from "node:os";
 import path from "node:path";
 import { type TestContext, test } from "node:test";
 import sharp from "sharp";
-import { FONT_SERVICE_ORIGIN, FONT_SITE } from "./font-config.ts";
 
 const sourceFont = await fs.readFile(
   new URL(
@@ -17,32 +16,16 @@ const kit = [
   '@font-face {font-family:"adelle";font-weight:400;font-style:italic;src:url("https://example.com/italic.otf") format("opentype");}',
 ].join("\n");
 
-function mockFonts(t: TestContext, failedFace?: "light" | "book"): string[] {
+function mockFonts(t: TestContext, failedFont?: "kit" | "bold"): string[] {
   const requests: string[] = [];
   t.mock.method(
     globalThis,
     "fetch",
-    async (input: Parameters<typeof fetch>[0], init?: RequestInit) => {
+    async (input: Parameters<typeof fetch>[0]) => {
       const url = String(input);
       requests.push(url);
-      if (url.startsWith(FONT_SERVICE_ORIGIN)) {
-        assert.ok(
-          ["light", "book"].some(
-            (face) =>
-              url ===
-              `${FONT_SERVICE_ORIGIN}/fonts/idlewild/1.401/${face}.woff2`,
-          ),
-        );
-        const headers = new Headers(init?.headers);
-        assert.equal(headers.get("Origin"), `https://${FONT_SITE}`);
-        assert.equal(headers.get("Authorization"), null);
-        return new Response(new Uint8Array(sourceFont), {
-          status:
-            failedFace && url.endsWith(`/${failedFace}.woff2`) ? 403 : 200,
-        });
-      }
       if (url === "https://use.typekit.net/zsx5vsn.css") {
-        return new Response(kit);
+        return new Response(kit, { status: failedFont === "kit" ? 403 : 200 });
       }
       assert.ok(
         [
@@ -50,13 +33,15 @@ function mockFonts(t: TestContext, failedFace?: "light" | "book"): string[] {
           "https://example.com/italic.otf",
         ].includes(url),
       );
-      return new Response(new Uint8Array(sourceFont));
+      return new Response(new Uint8Array(sourceFont), {
+        status: failedFont === "bold" && url.endsWith("/bold.otf") ? 403 : 200,
+      });
     },
   );
   return requests;
 }
 
-test("OG images use Idlewild Light and Book for labels and convert them to SFNT", async (t) => {
+test("OG images use local Lato labels and convert them to SFNT", async (t) => {
   const requests = mockFonts(t);
   const { createOgImage }: typeof import("../src/lib/og-image.ts") =
     await import(
@@ -76,24 +61,21 @@ test("OG images use Idlewild Light and Book for labels and convert them to SFNT"
     assert.equal(metadata.width, 1200);
     assert.equal(metadata.height, 630);
   }
-  assert.equal(
-    requests.filter((url) => url.startsWith(FONT_SERVICE_ORIGIN)).length,
-    2,
-  );
-  for (const face of ["light", "book"]) {
-    assert.equal(
-      requests.filter((url) => url.endsWith(`/${face}.woff2`)).length,
-      1,
-    );
+  assert.deepEqual(requests, [
+    "https://use.typekit.net/zsx5vsn.css",
+    "https://example.com/bold.otf",
+    "https://example.com/italic.otf",
+  ]);
+  for (const weight of [300, 400]) {
     const converted = await fs.readFile(
-      path.join(os.tmpdir(), "tylerbutler-og-fonts", `idlewild-${face}.ttf`),
+      path.join(os.tmpdir(), "tylerbutler-og-fonts", `lato-${weight}.ttf`),
     );
     assert.equal(converted.readUInt32BE(0), 0x00010000);
   }
 });
 
-test("OG image generation fails explicitly when Idlewild Light is unavailable", async (t) => {
-  mockFonts(t, "light");
+test("OG image generation fails explicitly when the Adobe kit is unavailable", async (t) => {
+  mockFonts(t, "kit");
   const { createOgImage }: typeof import("../src/lib/og-image.ts") =
     await import(
       new URL("../src/lib/og-image.ts?failure", import.meta.url).href
@@ -104,15 +86,15 @@ test("OG image generation fails explicitly when Idlewild Light is unavailable", 
       kind: "ARTICLE",
       date: new Date("2026-10-02"),
     }),
-    /Could not download Idlewild light: 403/,
+    /Could not load Adobe Fonts kit: 403/,
   );
 });
 
-test("OG image generation fails explicitly when Idlewild Book is unavailable", async (t) => {
-  mockFonts(t, "book");
+test("OG image generation fails explicitly when Adelle is unavailable", async (t) => {
+  mockFonts(t, "bold");
   const { createOgImage }: typeof import("../src/lib/og-image.ts") =
     await import(
-      new URL("../src/lib/og-image.ts?book-failure", import.meta.url).href
+      new URL("../src/lib/og-image.ts?bold-failure", import.meta.url).href
     );
   await assert.rejects(
     createOgImage({
@@ -120,6 +102,6 @@ test("OG image generation fails explicitly when Idlewild Book is unavailable", a
       kind: "ARTICLE",
       date: new Date("2026-10-02"),
     }),
-    /Could not download Idlewild book: 403/,
+    /Could not download adelle: 403/,
   );
 });

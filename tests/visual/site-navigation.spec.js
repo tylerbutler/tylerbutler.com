@@ -26,6 +26,7 @@ test("Idlewild mastheads fit desktop and narrow screens", async ({ page }) => {
           loaded: Array.from(document.fonts).some(
             (font) =>
               font.family.replaceAll('"', "") === "Idlewild SSm" &&
+              font.weight === "300" &&
               font.status === "loaded",
           ),
           weight: style.fontWeight,
@@ -50,7 +51,7 @@ test("Idlewild mastheads fit desktop and narrow screens", async ({ page }) => {
   }
 });
 
-test("Idlewild labels and the Adelle tagline fit without horizontal overflow", async ({
+test("Lato labels and the Adelle tagline fit without horizontal overflow", async ({
   page,
 }) => {
   for (const route of ["/", PINNED_ARTICLE, "/articles/", "/search/"]) {
@@ -71,6 +72,8 @@ test("Idlewild labels and the Adelle tagline fit without horizontal overflow", a
           tagline: tagline
             ? {
                 family: getComputedStyle(tagline).fontFamily,
+                style: getComputedStyle(tagline).fontStyle,
+                weight: getComputedStyle(tagline).fontWeight,
                 transform: getComputedStyle(tagline).textTransform,
               }
             : null,
@@ -93,9 +96,9 @@ test("Idlewild labels and the Adelle tagline fit without horizontal overflow", a
               ),
             };
           }),
-          bookLoaded: [...document.fonts].some(
+          regularLoaded: [...document.fonts].some(
             (font) =>
-              font.family.replaceAll('"', "") === "Idlewild SSm" &&
+              font.family.replaceAll('"', "") === "Lato" &&
               font.weight === "400" &&
               font.status === "loaded",
           ),
@@ -104,13 +107,15 @@ test("Idlewild labels and the Adelle tagline fit without horizontal overflow", a
         };
       });
       expect(typography.titleSize).toBeLessThanOrEqual(route === "/" ? 36 : 24);
-      expect(typography.bookLoaded).toBe(true);
+      expect(typography.regularLoaded).toBe(true);
       if (route === "/") {
         expect(typography.tagline?.family).toMatch(/^"?adelle"?/);
+        expect(typography.tagline?.style).toBe("italic");
+        expect(typography.tagline?.weight).toBe("400");
         expect(typography.tagline?.transform).toBe("none");
       }
       for (const link of typography.links) {
-        expect(link.family).toMatch(/^"?Idlewild SSm"?/);
+        expect(link.family).toMatch(/^"?Lato"?/);
         expect(link.weight).toBe("400");
         expect(link.left).toBeGreaterThanOrEqual(0);
         expect(link.right).toBeLessThanOrEqual(typography.viewportWidth);

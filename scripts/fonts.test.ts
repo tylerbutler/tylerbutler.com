@@ -66,43 +66,7 @@ async function seedFonts(ids = FONT_FAMILIES.map((family) => family.id)) {
   }
 }
 
-test("downloads all Idlewild sources without sending GitHub credentials", async (t) => {
-  await prepare(t);
-  await seedFonts(["pragmata-pro"]);
-  process.env.GITHUB_TOKEN = "test-token";
-  const downloaded: string[] = [];
-  t.mock.method(
-    globalThis,
-    "fetch",
-    async (input: FetchInput, init?: RequestInit) => {
-      const url = String(input);
-      downloaded.push(url);
-      assert.ok(url.startsWith(`${FONT_SERVICE_ORIGIN}/fonts/idlewild/1.401/`));
-      const headers = new Headers(init?.headers);
-      assert.equal(headers.get("Origin"), `https://${FONT_SITE}`);
-      assert.equal(headers.get("Authorization"), null);
-      return new Response(new Uint8Array(sourceFont));
-    },
-  );
-
-  await downloadFonts();
-
-  const idlewild = FONT_FAMILIES[1];
-  assert.deepEqual(
-    downloaded,
-    idlewild.faces.map(
-      (face) => `${FONT_SERVICE_ORIGIN}/fonts/${face.fileName}`,
-    ),
-  );
-  for (const face of idlewild.faces) {
-    assert.deepEqual(
-      await fs.readFile(path.join("public/fonts", face.fileName)),
-      sourceFont,
-    );
-  }
-});
-
-test("skips downloads when both families are already cached", async (t) => {
+test("skips downloads when both font families are already cached", async (t) => {
   await prepare(t);
   await seedFonts();
   const fetch = t.mock.method(globalThis, "fetch", async () => {
@@ -114,24 +78,9 @@ test("skips downloads when both families are already cached", async (t) => {
   assert.equal(fetch.mock.callCount(), 0);
 });
 
-test("fails explicitly when an Idlewild source cannot be downloaded", async (t) => {
+test("downloads both font families without GitHub credentials", async (t) => {
   await prepare(t);
-  await seedFonts(["pragmata-pro"]);
-  t.mock.method(
-    globalThis,
-    "fetch",
-    async () => new Response("Forbidden", { status: 403 }),
-  );
-
-  await assert.rejects(
-    downloadFonts(),
-    /Failed to download font: idlewild\/1\.401\/light\.woff2 - HTTP 403/,
-  );
-});
-
-test("downloads PragmataPro 0.903 from the font service without GitHub credentials", async (t) => {
-  await prepare(t);
-  await seedFonts(["idlewild"]);
+  process.env.GITHUB_TOKEN = "test-token";
   const downloaded: string[] = [];
   t.mock.method(
     globalThis,
@@ -150,21 +99,24 @@ test("downloads PragmataPro 0.903 from the font service without GitHub credentia
   assert.equal(FONT_FAMILIES[0].version, "0.903");
   assert.deepEqual(
     downloaded,
-    ["regular", "bold", "italic", "bold-italic"].map(
-      (face) => `${FONT_SERVICE_ORIGIN}/fonts/pragmata-pro/0.903/${face}.woff2`,
+    FONT_FAMILIES.flatMap((family) =>
+      family.faces.map(
+        (face) => `${FONT_SERVICE_ORIGIN}/fonts/${face.fileName}`,
+      ),
     ),
   );
-  for (const face of FONT_FAMILIES[0].faces) {
-    assert.deepEqual(
-      await fs.readFile(path.join("public/fonts", face.fileName)),
-      sourceFont,
-    );
+  for (const family of FONT_FAMILIES) {
+    for (const face of family.faces) {
+      assert.deepEqual(
+        await fs.readFile(path.join("public/fonts", face.fileName)),
+        sourceFont,
+      );
+    }
   }
 });
 
 test("fails explicitly when a PragmataPro source cannot be downloaded", async (t) => {
   await prepare(t);
-  await seedFonts(["idlewild"]);
   t.mock.method(
     globalThis,
     "fetch",
@@ -177,7 +129,7 @@ test("fails explicitly when a PragmataPro source cannot be downloaded", async (t
   );
 });
 
-test("checks independent caches for PragmataPro and Idlewild", async (t) => {
+test("checks independent caches for both font families", async (t) => {
   const outputDir = await prepare(t);
   const requests: SubsetRequest[] = [];
   process.env.FONT_SUBSET_API_URL = "http://localhost:18787/v1/subsets";
@@ -221,6 +173,7 @@ test("checks independent caches for PragmataPro and Idlewild", async (t) => {
   ].sort((left, right) => left - right);
   assert.deepEqual(requests[0].codepoints, expected);
   assert.deepEqual(requests[1].codepoints, expected);
+  assert.equal(requests.length, 2);
 });
 
 test("generates and uploads all faces for both uncached families", async (t) => {
@@ -268,32 +221,19 @@ test("generates and uploads all faces for both uncached families", async (t) => 
   );
 });
 
-test("fails the build when Idlewild publication is rejected", async (t) => {
+test("fails the build when PragmataPro publication is rejected", async (t) => {
   const outputDir = await prepare(t);
-  t.mock.method(
-    globalThis,
-    "fetch",
-    async (_input: FetchInput, init?: RequestInit) => {
-      const request = JSON.parse(String(init?.body)) as SubsetRequest;
-      if (request.font === "idlewild") {
-        return Response.json({ error: "Unknown font" }, { status: 404 });
-      }
-      return Response.json({
-        cached: true,
-        codepointCount: request.codepoints.length,
-        cssUrl:
-          "https://fonts.tylerbutler.com/css/sites/tylerbutler.com/pragmata-pro.css",
-      });
-    },
+  t.mock.method(globalThis, "fetch", async () =>
+    Response.json({ error: "Unknown font" }, { status: 404 }),
   );
 
   await assert.rejects(
     publishFontSubsets(outputDir),
-    /Font subset publication failed for idlewild \(404\)/,
+    /Font subset publication failed for pragmata-pro \(404\)/,
   );
 });
 
-test("skips both families for an offline build", async (t) => {
+test("skips subset publication for an offline build", async (t) => {
   const outputDir = await prepare(t);
   process.env.SKIP_FONT_SUBSET_PUBLISH = "1";
   const fetch = t.mock.method(globalThis, "fetch", async () => {

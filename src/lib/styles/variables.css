@@ -38,6 +38,7 @@
 
   --code-font: "PragmataPro", "JetBrains Mono", mono;
   --code-font-size: 16px;
+  --label-font: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
 
   /* UI type scale — label roles only; body and heading sizes live in typography.css */
   --font-size-ui: 14px; /* nav links, alert titles, tables */

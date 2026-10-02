@@ -1,5 +1,4 @@
 /* Import fonts with font-display optimization */
-@import "@fontsource/lato/latin-400.css";
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
 /* Declare the externally loaded Adobe Typekit family to subfont
@@ -118,9 +117,9 @@ body::after {
   z-index: 100;
   background: var(--dark-bg);
   color: var(--header-accent);
-  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--label-font);
   font-size: var(--font-size-label);
-  letter-spacing: 1.5px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
   padding: 10px 18px;

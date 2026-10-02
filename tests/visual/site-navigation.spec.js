@@ -40,12 +40,87 @@ test("Idlewild mastheads fit desktop and narrow screens", async ({ page }) => {
 
       expect(masthead.family).toMatch(/^"?Idlewild SSm"?/);
       expect(masthead.loaded).toBe(true);
-      expect(masthead.weight).toBe("400");
+      expect(masthead.weight).toBe("300");
       expect(masthead.height, `${route} at ${width}px`).toBeLessThanOrEqual(
         masthead.lineHeight + 1,
       );
       expect(masthead.left).toBeGreaterThanOrEqual(masthead.headerLeft);
       expect(masthead.right).toBeLessThanOrEqual(masthead.headerRight);
+    }
+  }
+});
+
+test("Idlewild labels and the Adelle tagline fit without horizontal overflow", async ({
+  page,
+}) => {
+  for (const route of ["/", PINNED_ARTICLE, "/articles/", "/search/"]) {
+    for (const width of [320, 481, 768, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(route);
+      const typography = await page.evaluate(async () => {
+        await document.fonts.ready;
+        const navLinks = [
+          ...document.querySelectorAll('.site-header nav[aria-label="Main"] a'),
+        ];
+        const tagline = document.querySelector(".tagline");
+        const title = document.querySelector(".site-header h1, .site-title");
+        if (!title || navLinks.length === 0)
+          throw new Error("Missing masthead or navigation");
+        return {
+          titleSize: Number.parseFloat(getComputedStyle(title).fontSize),
+          tagline: tagline
+            ? {
+                family: getComputedStyle(tagline).fontFamily,
+                transform: getComputedStyle(tagline).textTransform,
+              }
+            : null,
+          links: navLinks.map((link) => {
+            const bounds = link.getBoundingClientRect();
+            const style = getComputedStyle(link);
+            return {
+              family: style.fontFamily,
+              weight: style.fontWeight,
+              left: bounds.left,
+              right: bounds.right,
+              width: Math.ceil(bounds.width),
+              scrollWidth: link.scrollWidth,
+              height: bounds.height,
+              singleLineHeight: Math.max(
+                Number.parseFloat(style.minHeight),
+                Number.parseFloat(style.lineHeight) +
+                  Number.parseFloat(style.paddingTop) +
+                  Number.parseFloat(style.paddingBottom),
+              ),
+            };
+          }),
+          bookLoaded: [...document.fonts].some(
+            (font) =>
+              font.family.replaceAll('"', "") === "Idlewild SSm" &&
+              font.weight === "400" &&
+              font.status === "loaded",
+          ),
+          viewportWidth: document.documentElement.clientWidth,
+          documentWidth: document.documentElement.scrollWidth,
+        };
+      });
+      expect(typography.titleSize).toBeLessThanOrEqual(route === "/" ? 36 : 24);
+      expect(typography.bookLoaded).toBe(true);
+      if (route === "/") {
+        expect(typography.tagline?.family).toMatch(/^"?adelle"?/);
+        expect(typography.tagline?.transform).toBe("none");
+      }
+      for (const link of typography.links) {
+        expect(link.family).toMatch(/^"?Idlewild SSm"?/);
+        expect(link.weight).toBe("400");
+        expect(link.left).toBeGreaterThanOrEqual(0);
+        expect(link.right).toBeLessThanOrEqual(typography.viewportWidth);
+        expect(link.scrollWidth).toBeLessThanOrEqual(link.width);
+        expect(link.height).toBeLessThanOrEqual(link.singleLineHeight + 1);
+      }
+      expect(
+        typography.documentWidth,
+        `${route} at ${width}px`,
+      ).toBeLessThanOrEqual(typography.viewportWidth);
     }
   }
 });

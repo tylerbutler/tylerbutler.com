@@ -5,6 +5,7 @@ Built with [Astro](https://astro.build/) - a modern web framework for content-fo
 ## Requirements
 
 - Node.js 24+ (see `mise.toml` for specific version requirements)
+- pnpm 12.7.0 (pinned in `package.json` and `mise.toml`)
 
 ## Development
 
@@ -28,10 +29,12 @@ pnpm serve
 
 The masthead and constellation labels use Idlewild SSm Light (weight 300),
 the lightest face available from the font service.
-Masthead titles use uppercase letters, normal kerning, and 0.05em tracking.
-The rotating tagline uses uppercase Idlewild Light with 0.08em tracking.
-Social-preview images use the same face for the site label. Body text and
-headings remain Adelle, and code uses PragmataPro Mono Liga 0.903 under the
+Masthead titles use uppercase letters, normal kerning, and 0.05em tracking,
+with maximum sizes of 36px on the homepage and 24px on interior pages.
+The rotating tagline uses italic Adelle in sentence case.
+Navigation and UI labels use Idlewild SSm Book (weight 400) with tighter
+tracking. Social-preview images use Light for the site label and Book for
+metadata. Body text and headings remain Adelle, and code uses PragmataPro Mono Liga 0.903 under the
 `PragmataPro` CSS family.
 
 At build start, `scripts/download-fonts.ts` downloads missing full WOFF2 sources

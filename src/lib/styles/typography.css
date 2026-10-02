@@ -3,7 +3,7 @@
 /* Main Site Title - only in header */
 .site-header h1 {
   font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(17px, 5.4vw, 48px);
+  font-size: clamp(17px, 4.4vw, 36px);
   font-weight: 300;
   font-kerning: normal;
   line-height: 1.2;
@@ -22,7 +22,7 @@
 /* Site title when not h1 (for non-homepage header) */
 .site-title {
   font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(17px, 4vw, 28px);
+  font-size: clamp(16px, 3.5vw, 24px);
   font-weight: 300;
   font-kerning: normal;
   line-height: 1.2;
@@ -40,16 +40,16 @@
 
 /* Site Tagline */
 .tagline {
-  font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(11px, 2vw, 13px);
-  font-weight: 300;
+  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-size: clamp(13px, 2.2vw, 16px);
+  font-weight: 400;
+  font-style: italic;
   font-kerning: normal;
   line-height: 1.4;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--header-accent);
   text-align: center;
-  margin: 7px 0 17px;
+  margin: 7px 0 12px;
 }
 
 /* Section Headings - Consistent hierarchy with fluid typography */

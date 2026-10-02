@@ -17,12 +17,15 @@ export const test = base.extend({
         headers: {
           ...request.headers(),
           origin: "https://tylerbutler.com",
+          "accept-encoding": "identity",
         },
       });
       const headers = {
         ...response.headers(),
         "access-control-allow-origin": request.headers().origin ?? "*",
       };
+      delete headers["content-encoding"];
+      delete headers["content-length"];
       if (response.headers()["content-type"]?.startsWith("text/css")) {
         await route.fulfill({
           response,

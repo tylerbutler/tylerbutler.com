@@ -10,7 +10,7 @@ pnpm build            # Production build (requires env vars below)
 pnpm check            # Astro type-check (minimumSeverity warning)
 pnpm format           # Biome format (linter disabled)
 pnpm serve            # Serve dist/ on port 4173
-pnpm test:unit        # Vitest unit tests
+pnpm test:unit        # Node.js unit tests
 pnpm test:visual      # Playwright visual regression tests
 pnpm test:lighthouse  # Lighthouse CI performance tests
 pnpm test:accessibility  # pa11y-ci accessibility tests
@@ -60,7 +60,7 @@ docs/superpowers/   # Implementation plans and specs
 
 **rehype plugin order matters**: `rehypeExpressiveCode` must run before `rehypeCodeFold`. Both are registered in `astro.config.ts` for MDX and in `markdown-utils.ts` for standalone unified pipelines.
 
-**Font pipeline**: `scripts/download-fonts.ts` fetches fonts at build start; `scripts/optimize-fonts.ts` runs post-build (currently disabled — requires Chrome/Puppeteer for glyphhanger).
+**Font pipeline**: `scripts/font-config.ts` defines PragmataPro and Idlewild SSm faces. `scripts/download-fonts.ts` fetches their full WOFF2 sources at build start; `scripts/publish-font-subsets.ts` scans generated HTML and publishes both families through `fonts.tylerbutler.com` after the build. Sources under `public/fonts/` are ignored by Git. Idlewild SSm Book is reserved for the masthead; PragmataPro remains the code font.
 
 **Micropub**: IndieWeb publishing endpoint at `/micropub` → `/.netlify/functions/micropub`.
 
@@ -80,4 +80,4 @@ Netlify. `pnpm build` is the build command; `dist/` is the publish directory. Pa
 
 ## Design Context
 
-`PRODUCT.md` (project root) captures the strategic design context: brand register, audience, positioning ("a programmer's home on the web"), personality, anti-references, and design principles. `DESIGN.md` captures the visual system — palette, typography, elevation, and components — under the north star "The Golden Age Paperback". Read both before any design or UI work; the retro-sci-fi identity (Westgate masthead, golden-hour palette, constellation dividers) is committed brand and should be preserved and deepened, not replaced.
+`PRODUCT.md` (project root) captures the strategic design context: brand register, audience, positioning ("a programmer's home on the web"), personality, anti-references, and design principles. `DESIGN.md` captures the visual system — palette, typography, elevation, and components — under the north star "The Golden Age Paperback". Read both before any design or UI work; the retro-sci-fi identity (Idlewild SSm masthead, golden-hour palette, constellation dividers) is committed brand and should be preserved and deepened, not replaced.

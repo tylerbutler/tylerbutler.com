@@ -24,6 +24,39 @@ pnpm build
 pnpm serve
 ```
 
+### Fonts
+
+The masthead uses Idlewild SSm Book (weight 400). Body text and headings remain
+Adelle, and code remains PragmataPro.
+
+At build start, `scripts/download-fonts.ts` downloads missing full WOFF2 sources
+into the Git-ignored `public/fonts/` directory. PragmataPro comes from the private
+resources repository and requires `GITHUB_TOKEN` when its sources are not cached.
+Idlewild comes from `fonts.tylerbutler.com`, with an approved `Origin` header and
+without GitHub credentials. The original Idlewild OTF files remain in the private
+font-service repository; they are not copied into this site's public assets.
+
+**Deploy the font service with Idlewild version `1.401` before a production
+build.** The site downloads all four Idlewild faces from
+`https://fonts.tylerbutler.com/fonts/idlewild/1.401/`.
+
+After Astro generates the HTML, `scripts/publish-font-subsets.ts` collects the
+site's Unicode code points and publishes subsets for both configured families.
+Each family has its own cache entry and stable stylesheet:
+
+```text
+https://fonts.tylerbutler.com/css/sites/tylerbutler.com/idlewild.css
+https://fonts.tylerbutler.com/css/sites/tylerbutler.com/pragmata-pro.css
+```
+
+Both stylesheets are loaded by `BaseLayout.astro`. A failed publication fails the
+build. `FONT_SUBSET_API_URL` can point publication at a local font service;
+`SKIP_FONT_SUBSET_PUBLISH=1` skips publication for offline build checks.
+
+Visual tests fetch font assets with the approved production origin while the
+pages run on localhost. Set `FONT_SERVICE_TEST_ORIGIN=http://localhost:18787`
+to use a local font service after publishing subsets there.
+
 ## Testing Infrastructure
 
 This site includes comprehensive performance and quality testing. All tests run against the production build.

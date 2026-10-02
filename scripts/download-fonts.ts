@@ -1,12 +1,10 @@
 import fs from "fs";
 import path from "path";
-
-const fonts = [
-  "PragmataPro_Mono_R_liga_0902.woff2",
-  "PragmataPro_Mono_B_liga_0902.woff2",
-  "PragmataPro_Mono_I_liga_0902.woff2",
-  "PragmataPro_Mono_Z_liga_0902.woff2",
-].map((p) => `fonts/PragmataPro0.902W/${p}`);
+import {
+  FONT_FAMILIES,
+  FONT_SERVICE_ORIGIN,
+  FONT_SITE,
+} from "./font-config.ts";
 
 interface GitHubFileData {
   download_url?: string;
@@ -23,23 +21,16 @@ export async function downloadFonts(): Promise<void> {
     fs.mkdirSync(fontsDir, { recursive: true });
   }
 
-  // Check if all fonts already exist
-  const allFontsExist = fonts.every((font) => {
-    const fontName = path.basename(font);
-    const outputPath = path.join(fontsDir, fontName);
-    return fs.existsSync(outputPath);
-  });
+  const allFontsExist = FONT_FAMILIES.every((family) =>
+    family.faces.every((face) =>
+      fs.existsSync(path.join(fontsDir, face.fileName)),
+    ),
+  );
 
   if (allFontsExist) {
     console.log("All fonts already exist, skipping download");
     return;
   }
-
-  if (!process.env.GITHUB_TOKEN) {
-    throw new Error("GITHUB_TOKEN environment variable is required");
-  }
-
-  console.log("Downloading fonts using GitHub API...");
 
   const headers = {
     Authorization: `token ${process.env.GITHUB_TOKEN}`,
@@ -48,54 +39,68 @@ export async function downloadFonts(): Promise<void> {
   };
 
   try {
-    for (const font of fonts) {
-      const fontName = path.basename(font);
-      const outputPath = path.join(fontsDir, fontName);
-      if (fs.existsSync(outputPath)) {
-        console.log(`Skipping ${fontName}...`);
-        continue;
-      }
+    for (const family of FONT_FAMILIES) {
+      for (const face of family.faces) {
+        const outputPath = path.join(fontsDir, face.fileName);
+        if (fs.existsSync(outputPath)) {
+          console.log(`Skipping ${face.fileName}...`);
+          continue;
+        }
 
-      try {
-        console.log(`Downloading ${fontName}...`);
+        try {
+          console.log(`Downloading ${face.fileName}...`);
 
-        // Get file metadata from GitHub API
-        const apiUrl = `https://api.github.com/repos/${repo}/contents/${font}`;
-        const metaResponse = await fetch(apiUrl, { headers });
+          let response: Response;
+          if (family.id === "idlewild") {
+            response = await fetch(
+              `${FONT_SERVICE_ORIGIN}/fonts/${face.fileName}`,
+              { headers: { Origin: `https://${FONT_SITE}` } },
+            );
+          } else {
+            if (!process.env.GITHUB_TOKEN) {
+              throw new Error("GITHUB_TOKEN environment variable is required");
+            }
+            const apiUrl = `https://api.github.com/repos/${repo}/contents/fonts/PragmataPro0.902W/${face.fileName}`;
+            const metaResponse = await fetch(apiUrl, { headers });
 
-        if (!metaResponse.ok) {
+            if (!metaResponse.ok) {
+              throw new Error(
+                `GitHub API error: ${metaResponse.status} ${metaResponse.statusText}`,
+              );
+            }
+
+            const fileData = (await metaResponse.json()) as GitHubFileData;
+            const downloadUrl = fileData.download_url;
+
+            if (!downloadUrl) {
+              throw new Error("No download URL found in GitHub API response");
+            }
+
+            // Download file using the download URL
+            response = await fetch(downloadUrl, {
+              headers: {
+                Authorization: `token ${process.env.GITHUB_TOKEN}`,
+                "User-Agent": "Private-Font-Downloader",
+              },
+            });
+          }
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+
+          const buffer = await response.arrayBuffer();
+          fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+          fs.writeFileSync(outputPath, Buffer.from(buffer));
+
+          console.log(`✓ Downloaded: ${face.fileName}`);
+        } catch (error) {
+          const errorMessage =
+            error instanceof Error ? error.message : String(error);
           throw new Error(
-            `GitHub API error: ${metaResponse.status} ${metaResponse.statusText}`,
+            `Failed to download font: ${face.fileName} - ${errorMessage}`,
           );
         }
-
-        const fileData = (await metaResponse.json()) as GitHubFileData;
-        const downloadUrl = fileData.download_url;
-
-        if (!downloadUrl) {
-          throw new Error("No download URL found in GitHub API response");
-        }
-
-        // Download file using the download URL
-        const response = await fetch(downloadUrl, {
-          headers: {
-            Authorization: `token ${process.env.GITHUB_TOKEN}`,
-            "User-Agent": "Private-Font-Downloader",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const buffer = await response.arrayBuffer();
-        fs.writeFileSync(outputPath, Buffer.from(buffer));
-
-        console.log(`✓ Downloaded: ${font}`);
-      } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : String(error);
-        throw new Error(`Failed to download font: ${font} - ${errorMessage}`);
       }
     }
   } catch (error) {

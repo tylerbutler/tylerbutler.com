@@ -1,10 +1,10 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./font-service.js";
 
 const PINNED_ARTICLE = "/base64-encoded-sha256-hashes/";
 
-test("Michroma mastheads fit desktop and narrow screens", async ({ page }) => {
+test("Idlewild mastheads fit desktop and narrow screens", async ({ page }) => {
   for (const route of ["/", PINNED_ARTICLE]) {
-    for (const width of [320, 768, 1440]) {
+    for (const width of [320, 481, 768, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(route);
 
@@ -24,7 +24,9 @@ test("Michroma mastheads fit desktop and narrow screens", async ({ page }) => {
         return {
           family: style.fontFamily,
           loaded: Array.from(document.fonts).some(
-            (font) => font.family === "Michroma" && font.status === "loaded",
+            (font) =>
+              font.family.replaceAll('"', "") === "Idlewild SSm" &&
+              font.status === "loaded",
           ),
           weight: style.fontWeight,
           height: titleBounds.height,
@@ -36,10 +38,12 @@ test("Michroma mastheads fit desktop and narrow screens", async ({ page }) => {
         };
       });
 
-      expect(masthead.family).toMatch(/^"?Michroma"?/);
+      expect(masthead.family).toMatch(/^"?Idlewild SSm"?/);
       expect(masthead.loaded).toBe(true);
       expect(masthead.weight).toBe("400");
-      expect(masthead.height).toBeLessThanOrEqual(masthead.lineHeight + 1);
+      expect(masthead.height, `${route} at ${width}px`).toBeLessThanOrEqual(
+        masthead.lineHeight + 1,
+      );
       expect(masthead.left).toBeGreaterThanOrEqual(masthead.headerLeft);
       expect(masthead.right).toBeLessThanOrEqual(masthead.headerRight);
     }

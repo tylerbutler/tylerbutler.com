@@ -27,6 +27,7 @@ pnpm serve
 ### Fonts
 
 The masthead and constellation labels use Idlewild SSm Light (weight 300).
+Masthead titles use small caps, normal kerning, and 0.04em tracking.
 Social-preview images use the same face for the site label. Body text and
 headings remain Adelle, and code remains PragmataPro.
 

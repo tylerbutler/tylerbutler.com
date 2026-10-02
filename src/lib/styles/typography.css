@@ -5,9 +5,11 @@
   font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(17.5px, 5.4vw, 48px);
   font-weight: 300;
+  font-variant-caps: small-caps;
+  font-kerning: normal;
   line-height: 1.2;
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-transform: none;
   color: var(--header-accent);
   margin: 5px 0;
   text-align: center;
@@ -23,9 +25,11 @@
   font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(17.5px, 4vw, 28px);
   font-weight: 300;
+  font-variant-caps: small-caps;
+  font-kerning: normal;
   line-height: 1.2;
-  letter-spacing: 0.025em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-transform: none;
   color: var(--header-accent);
   margin: 0;
   text-align: center;

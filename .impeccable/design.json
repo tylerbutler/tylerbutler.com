@@ -188,7 +188,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Masthead Display",
-        "purpose": "Site title — Idlewild SSm Light (weight 300), foil-stamped paperback titling."
+        "purpose": "Small-cap site title — Idlewild SSm Light (weight 300), normal kerning and 0.04em tracking."
       },
       "headline": {
         "displayName": "Headline",

@@ -50,6 +50,7 @@
     "@expressive-code/plugin-line-numbers": "^0.41.7",
     "@floating-ui/dom": "^1.7.6",
     "@fontsource/lato": "^5.2.7",
+    "@fontsource/michroma": "^5.3.0",
     "@iconify-json/iconoir": "^1.2.10",
     "@lottiefiles/dotlottie-web": "^0.70.0",
     "@lucide/astro": "^1.37.0",

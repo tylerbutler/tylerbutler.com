@@ -24,11 +24,17 @@ colors:
   instrument-violet: "#8b5a9d"
 typography:
   display:
-    fontFamily: "westgate, Trajan Pro, Copperplate, serif"
-    fontSize: "clamp(64px, 12vw, 108px)"
-    fontWeight: 100
-    lineHeight: 1
-    letterSpacing: "clamp(2px, 1vw, 10px)"
+    fontFamily: "Michroma, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(20px, 6.5vw, 54px)"
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "0.035em"
+  running-head:
+    fontFamily: "Michroma, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(18px, 4vw, 28px)"
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "0.025em"
   headline:
     fontFamily: "adelle, Baskerville, Georgia, serif"
     fontSize: "clamp(32px, 5vw, 42px)"
@@ -93,13 +99,13 @@ components:
 
 **Creative North Star: "The Golden Age Paperback"**
 
-The site is a 1970s science-fiction paperback cover you can read: a painted sky fixed behind everything, golden titling set in Westgate across a deep blue-gray masthead, and a warm white page of serif type floating in front of it. The scene is literal — a full-viewport spacecraft-sunset backdrop sits behind the site container, and on mobile it becomes a painted sunset gradient. Wonder is carried by the frame (masthead, constellations, gold accents); the page itself stays calm and bookish so long-form reading always comes first.
+The site is a 1970s science-fiction paperback cover you can read: a painted sky fixed behind everything, golden titling set in Michroma across a deep blue-gray masthead, and a warm white page of serif type floating in front of it. The scene is literal — a full-viewport spacecraft-sunset backdrop sits behind the site container, and on mobile it becomes a painted sunset gradient. Wonder is carried by the frame (masthead, constellations, gold accents); the page itself stays calm and bookish so long-form reading always comes first.
 
 The register is brand, but the surface is a reading surface. Density is low: one centered column clamped to a book-like measure, generous flow spacing, article dividers drawn as animated constellations instead of rules. Personality arrives in small, deliberate delights — a kudos button whose 🚀 actually launches, a webring, footnotes — never in loud gestures. Per PRODUCT.md, this explicitly rejects SaaS landing-page grammar and the interchangeable Inter-on-white dev-blog template.
 
 **Key Characteristics:**
 - A literal painted-sky scene: fixed backdrop → glowing site container → dark masthead → light page
-- Serif-first typography (Adelle everywhere) with a single spectacular display face (Westgate) reserved for the masthead
+- Serif-first typography (Adelle everywhere) with a wide retro-futuristic display face (Michroma) reserved for the masthead
 - Golden-hour palette: burnt orange and golden yellow warmth against deep space blue
 - Class-toggled light/dark themes; dark mode swaps burnt orange for starfield gold
 - Small delights over big motion: link underlines that fade on hover, launching rockets, constellation dividers
@@ -130,15 +136,16 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 
 ## 3. Typography
 
-**Display Font:** westgate (with Trajan Pro, Copperplate fallback) — Typekit-loaded
+**Display Font:** Michroma (with Helvetica Neue, Arial fallback), self-hosted through Fontsource at weight 400 with `font-display: swap`
 **Body Font:** adelle (with Baskerville, Georgia fallback) — Typekit-loaded
 **Label Font:** Lato (with Helvetica Neue, Arial fallback)
 **Code Font:** PragmataPro (with JetBrains Mono fallback)
 
-**Character:** Adelle is the voice of the whole site — a warm slab-tinged serif carrying everything from h1 (weight 300, wide-tracked) down to body text at a comfortable 1.6 line-height. Westgate is the paperback titling face: enormous, thin (weight 100), uppercase, letter-spaced like foil stamping. Lato appears only in small uppercase wayfinding labels; the mono is a programmer's signature.
+**Character:** Adelle is the voice of the whole site — a warm slab-tinged serif carrying everything from h1 (weight 300, wide-tracked) down to body text at a comfortable 1.6 line-height. Michroma provides wide, rounded-square uppercase titling with tight tracking, based on mid-century space-age lettering. Lato appears only in small uppercase wayfinding labels; the mono is a programmer's signature. Westgate remains on the constellation nameplates.
 
 ### Hierarchy
-- **Display** (100, clamp(64px, 12vw, 108px), lh 1, uppercase, tracking clamp(2px, 1vw, 10px)): the site title in the masthead — nowhere else.
+- **Display** (400, clamp(20px, 6.5vw, 54px), lh 1.2, uppercase, tracking 0.035em): the homepage site title.
+- **Running head** (400, clamp(18px, 4vw, 28px), lh 1.2, uppercase, tracking 0.025em): the site title on interior pages.
 - **Headline / h1** (300, clamp(32px, 5vw, 42px), lh 1.2, +1.2px tracking): page and article titles.
 - **Title / h2–h3** (300, clamp(28px, 4.5vw, 36px) and clamp(24px, 4vw, 28px), lh 1.2): section headings; h4–h6 step down 24/20/18px at weight 400.
 - **Body** (400, clamp(15px, 2.5vw, 16px), lh 1.6): article prose; the page container is clamped to `clamp(636px, 90vw, 763px)`, while homepage stream prose is capped at `70ch`. Tables and code frames may use the wider container when their content requires it.
@@ -146,7 +153,7 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 - **Code** (PragmataPro, 16px block / 14px inline, ligatures on): inline code is tinted Burnt Atmosphere on Cloud Shadow.
 
 ### Named Rules
-**The Masthead Rule.** Westgate appears exactly once per page, in the masthead. It is the cover titling; repeating it demotes it. One sanctioned exception: the constellation nameplates — the tiny labels on the star-chart dividers — may whisper the face at caption size. They are cover furniture on the same painted scene, not titling; anywhere else, Westgate is still forbidden.
+**The Masthead Rule.** Reserve Michroma for the masthead wordmark. Keep Westgate on the small constellation nameplates; do not extend either face into article prose or headings.
 
 **The One Voice Rule.** Everything readable is Adelle. Contrast comes from size and weight (100→300→400→600), never from introducing another text face.
 
@@ -195,7 +202,7 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Wide screens (≥1200px):** the nav detaches into a left sidebar column extending the masthead's dark block
 - **Mobile:** labels tighten to 12px and the row wraps to a second centered line when narrow. Never clip or shrink a label below its touch padding to force one row — the wrap is sanctioned; clipping is not
 - **Subscribe chip:** the feed link in the masthead's social row is the one conversion among identity icons, so it alone carries a visible word — a quiet chip (icon + "Subscribe" in Lato caps) edged in 55% Golden Horizon. This is masthead wayfinding, inside the Titling Foil Rule
-- **Interior running head:** the homepage alone uses the full cover masthead. Interior pages keep the Westgate wordmark, navigation, utilities, and Subscribe chip in a shorter masthead; the rotating tagline and identity-icon row remain cover-only.
+- **Interior running head:** the homepage alone uses the full cover masthead. Interior pages keep the Michroma wordmark, navigation, utilities, and Subscribe chip in a shorter masthead; the rotating tagline and identity-icon row remain cover-only.
 
 ### Editorial Indexes
 - **Homepage current issue:** a quiet Cloud Shadow contents strip appears before the full-post stream, with unadorned article-title links in a numbered list and an archive link outside the numbered group. Article titles move to the accent on hover or when active. At ≥1200px it becomes a sticky rail with one role at a time: it starts as the issue picker, switches to the active article's section links after the reader enters the article, and provides a visible control to switch modes. It is editorial wayfinding, not a card grid.
@@ -226,7 +233,7 @@ Between homepage article previews, a 64px animated Lottie constellation replaces
 - **Do** route all light-mode accents through Burnt Atmosphere (#96591c) and all dark-mode accents through Starfield Gold (#d4af37); verify AA contrast in both themes independently (the CI runs pa11y WCAG2AA).
 - **Do** spend underlines only on links that navigate; heading self-anchors stay bare and earn a `#` glyph on hover/focus instead.
 - **Do** give touch controls a ≥40px hit area on coarse pointers — grow padding, not font size, and never shrink a label to dodge a wrap.
-- **Do** reserve Westgate and Golden Horizon for the masthead — one appearance per page.
+- **Do** reserve Michroma for the masthead wordmark and Golden Horizon for masthead titling and wayfinding.
 - **Do** add small delights in the kudos-rocket register: brief (≤750ms), physical, suppressed under `prefers-reduced-motion`.
 - **Do** let depth come from the painted scene; shadows respond to hover, focus, or elevation state.
 - **Do** use `color-mix` tints of instrument colors for any new status surface, matching the alert formula.

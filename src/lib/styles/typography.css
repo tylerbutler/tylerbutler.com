@@ -2,11 +2,11 @@
 
 /* Main Site Title - only in header */
 .site-header h1 {
-  font-family: "westgate", "Trajan Pro", "Copperplate", serif;
-  font-size: clamp(64px, 12vw, 108px);
-  font-weight: 100;
-  line-height: 1;
-  letter-spacing: clamp(2px, 1vw, 10px);
+  font-family: "Michroma", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(20px, 6.5vw, 54px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.035em;
   text-transform: uppercase;
   color: var(--header-accent);
   margin: 5px 0;
@@ -20,11 +20,11 @@
 
 /* Site title when not h1 (for non-homepage header) */
 .site-title {
-  font-family: "westgate", "Trajan Pro", "Copperplate", serif;
-  font-size: clamp(36px, 7vw, 54px);
-  font-weight: 100;
-  line-height: 1;
-  letter-spacing: clamp(2px, 1vw, 10px);
+  font-family: "Michroma", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(18px, 4vw, 28px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
   color: var(--header-accent);
   margin: 0;

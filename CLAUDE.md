@@ -60,7 +60,7 @@ docs/superpowers/   # Implementation plans and specs
 
 **rehype plugin order matters**: `rehypeExpressiveCode` must run before `rehypeCodeFold`. Both are registered in `astro.config.ts` for MDX and in `markdown-utils.ts` for standalone unified pipelines.
 
-**Font pipeline**: `scripts/font-config.ts` defines PragmataPro and Idlewild SSm faces. `scripts/download-fonts.ts` fetches their full WOFF2 sources at build start; `scripts/publish-font-subsets.ts` scans generated HTML and publishes both families through `fonts.tylerbutler.com` after the build. Sources under `public/fonts/` are ignored by Git. Idlewild SSm Light (weight 300) is used for the masthead, constellation labels, and social-preview site label; PragmataPro remains the code font.
+**Font pipeline**: `scripts/font-config.ts` defines PragmataPro and Idlewild SSm faces. `scripts/download-fonts.ts` fetches their full WOFF2 sources at build start; `scripts/publish-font-subsets.ts` scans generated HTML and publishes both families through `fonts.tylerbutler.com` after the build. Sources under `public/fonts/` are ignored by Git. Idlewild SSm Light (weight 300) is used for the masthead title and tagline, constellation labels, and social-preview site label; PragmataPro remains the code font.
 
 **Micropub**: IndieWeb publishing endpoint at `/micropub` → `/.netlify/functions/micropub`.
 

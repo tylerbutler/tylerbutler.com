@@ -25,16 +25,22 @@ colors:
 typography:
   display:
     fontFamily: "Idlewild SSm, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(17.5px, 5.4vw, 48px)"
+    fontSize: "clamp(17px, 5.4vw, 48px)"
     fontWeight: 300
     lineHeight: 1.2
-    letterSpacing: "0.04em"
+    letterSpacing: "0.05em"
   running-head:
     fontFamily: "Idlewild SSm, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(17.5px, 4vw, 28px)"
+    fontSize: "clamp(17px, 4vw, 28px)"
     fontWeight: 300
     lineHeight: 1.2
-    letterSpacing: "0.04em"
+    letterSpacing: "0.05em"
+  tagline:
+    fontFamily: "Idlewild SSm, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(11px, 2vw, 13px)"
+    fontWeight: 300
+    lineHeight: 1.4
+    letterSpacing: "0.08em"
   headline:
     fontFamily: "adelle, Baskerville, Georgia, serif"
     fontSize: "clamp(32px, 5vw, 42px)"
@@ -141,19 +147,20 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 **Label Font:** Lato (with Helvetica Neue, Arial fallback)
 **Code Font:** PragmataPro (with JetBrains Mono fallback)
 
-**Character:** Adelle is the voice of the whole site — a warm slab-tinged serif carrying everything from h1 (weight 300, wide-tracked) down to body text at a comfortable 1.6 line-height. Idlewild SSm Light provides small-cap masthead titling with larger initial capitals, normal pair kerning, and 0.04em tracking. Constellation nameplates and the social-preview site label remain uppercase. Lato appears only in small uppercase wayfinding labels; the mono is a programmer's signature.
+**Character:** Adelle is the voice of the whole site — a warm slab-tinged serif carrying everything from h1 (weight 300, wide-tracked) down to body text at a comfortable 1.6 line-height. Idlewild SSm Light provides uppercase masthead titling with normal pair kerning and 0.05em tracking. The rotating tagline uses the same Light face in smaller uppercase letters with 0.08em tracking. Constellation nameplates and the social-preview site label remain uppercase. Lato appears only in small uppercase wayfinding labels; the mono is a programmer's signature.
 
 ### Hierarchy
-- **Display** (300, clamp(17.5px, 5.4vw, 48px), lh 1.2, small caps, normal kerning, tracking 0.04em): the homepage site title.
-- **Running head** (300, clamp(17.5px, 4vw, 28px), lh 1.2, small caps, normal kerning, tracking 0.04em): the site title on interior pages.
+- **Display** (300, clamp(17px, 5.4vw, 48px), lh 1.2, uppercase, normal kerning, tracking 0.05em): the homepage site title.
+- **Running head** (300, clamp(17px, 4vw, 28px), lh 1.2, uppercase, normal kerning, tracking 0.05em): the site title on interior pages.
+- **Tagline** (Idlewild SSm 300, clamp(11px, 2vw, 13px), lh 1.4, uppercase, normal kerning, tracking 0.08em): the rotating line beneath the homepage site title.
 - **Headline / h1** (300, clamp(32px, 5vw, 42px), lh 1.2, +1.2px tracking): page and article titles.
 - **Title / h2–h3** (300, clamp(28px, 4.5vw, 36px) and clamp(24px, 4vw, 28px), lh 1.2): section headings; h4–h6 step down 24/20/18px at weight 400.
 - **Body** (400, clamp(15px, 2.5vw, 16px), lh 1.6): article prose; the page container is clamped to `clamp(636px, 90vw, 763px)`, while homepage stream prose is capped at `70ch`. Tables and code frames may use the wider container when their content requires it.
-- **Label** (Lato 400, 12–14px, +1.5–2px tracking, uppercase): navigation and metadata (dates, taglines at 11–13px).
+- **Label** (Lato 400, 12–14px, +1.5–2px tracking, uppercase): navigation and metadata.
 - **Code** (PragmataPro, 16px block / 14px inline, ligatures on): inline code is tinted Burnt Atmosphere on Cloud Shadow.
 
 ### Named Rules
-**The Masthead Rule.** Use Idlewild SSm Light for the masthead wordmark, small constellation nameplates, and social-preview site label. Do not extend it into article prose or headings.
+**The Masthead Rule.** Use Idlewild SSm Light for the masthead wordmark and rotating tagline, small constellation nameplates, and social-preview site label. Do not extend it into article prose or headings.
 
 **The One Voice Rule.** Everything readable is Adelle. Contrast comes from size and weight (100→300→400→600), never from introducing another text face.
 
@@ -202,7 +209,7 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Wide screens (≥1200px):** the nav detaches into a left sidebar column extending the masthead's dark block
 - **Mobile:** labels tighten to 12px and the row wraps to a second centered line when narrow. Never clip or shrink a label below its touch padding to force one row — the wrap is sanctioned; clipping is not
 - **Subscribe chip:** the feed link in the masthead's social row is the one conversion among identity icons, so it alone carries a visible word — a quiet chip (icon + "Subscribe" in Lato caps) edged in 55% Golden Horizon. This is masthead wayfinding, inside the Titling Foil Rule
-- **Interior running head:** the homepage alone uses the full cover masthead. Interior pages keep the Idlewild SSm wordmark, navigation, utilities, and Subscribe chip in a shorter masthead; the rotating tagline and identity-icon row remain cover-only. On narrow screens, the title sits below the corner controls so their touch targets do not overlap the lettering.
+- **Interior running head:** the homepage alone uses the full cover masthead. Interior pages keep the Idlewild SSm wordmark, navigation, utilities, and Subscribe chip in a shorter masthead; the rotating tagline and identity-icon row remain cover-only. The homepage title sits below the corner controls; compact titles do likewise on narrow screens so touch targets do not overlap the lettering.
 
 ### Editorial Indexes
 - **Homepage current issue:** a quiet Cloud Shadow contents strip appears before the full-post stream, with unadorned article-title links in a numbered list and an archive link outside the numbered group. Article titles move to the accent on hover or when active. At ≥1200px it becomes a sticky rail with one role at a time: it starts as the issue picker, switches to the active article's section links after the reader enters the article, and provides a visible control to switch modes. It is editorial wayfinding, not a card grid.
@@ -233,7 +240,7 @@ Between homepage article previews, a 64px animated Lottie constellation replaces
 - **Do** route all light-mode accents through Burnt Atmosphere (#96591c) and all dark-mode accents through Starfield Gold (#d4af37); verify AA contrast in both themes independently (the CI runs pa11y WCAG2AA).
 - **Do** spend underlines only on links that navigate; heading self-anchors stay bare and earn a `#` glyph on hover/focus instead.
 - **Do** give touch controls a ≥40px hit area on coarse pointers — grow padding, not font size, and never shrink a label to dodge a wrap.
-- **Do** reserve Idlewild SSm Light for the masthead wordmark, constellation nameplates, and social-preview site label. Reserve Golden Horizon for masthead titling and wayfinding.
+- **Do** reserve Idlewild SSm Light for the masthead wordmark and rotating tagline, constellation nameplates, and social-preview site label. Reserve Golden Horizon for masthead titling and wayfinding.
 - **Do** add small delights in the kudos-rocket register: brief (≤750ms), physical, suppressed under `prefers-reduced-motion`.
 - **Do** let depth come from the painted scene; shadows respond to hover, focus, or elevation state.
 - **Do** use `color-mix` tints of instrument colors for any new status surface, matching the alert formula.

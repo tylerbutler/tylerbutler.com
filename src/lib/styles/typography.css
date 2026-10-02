@@ -3,13 +3,12 @@
 /* Main Site Title - only in header */
 .site-header h1 {
   font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(17.5px, 5.4vw, 48px);
+  font-size: clamp(17px, 5.4vw, 48px);
   font-weight: 300;
-  font-variant-caps: small-caps;
   font-kerning: normal;
   line-height: 1.2;
-  letter-spacing: 0.04em;
-  text-transform: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--header-accent);
   margin: 5px 0;
   text-align: center;
@@ -23,13 +22,12 @@
 /* Site title when not h1 (for non-homepage header) */
 .site-title {
   font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(17.5px, 4vw, 28px);
+  font-size: clamp(17px, 4vw, 28px);
   font-weight: 300;
-  font-variant-caps: small-caps;
   font-kerning: normal;
   line-height: 1.2;
-  letter-spacing: 0.04em;
-  text-transform: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--header-accent);
   margin: 0;
   text-align: center;
@@ -42,11 +40,12 @@
 
 /* Site Tagline */
 .tagline {
-  font-family: "adelle", "Baskerville", Georgia, serif;
+  font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(11px, 2vw, 13px);
-  font-weight: 400;
+  font-weight: 300;
+  font-kerning: normal;
   line-height: 1.4;
-  letter-spacing: clamp(2px, 0.5vw, 3px);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--header-accent);
   text-align: center;

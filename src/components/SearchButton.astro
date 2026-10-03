@@ -48,7 +48,7 @@ import { Icon } from "astro-icon/components";
 </style>
 
 <script is:inline>
-  const handleSearchClick = () => {
+  const openSearch = () => {
     const modal = document.querySelector("pagefind-modal");
     if (modal && typeof modal.open === "function") {
       modal.open();
@@ -57,11 +57,30 @@ import { Icon } from "astro-icon/components";
 
   document
     .getElementById("searchToggle")
-    ?.addEventListener("click", handleSearchClick);
+    ?.addEventListener("click", openSearch);
+
+  document.addEventListener("keydown", (event) => {
+    const target = event.target;
+    const isEditable =
+      target instanceof HTMLElement &&
+      (target.isContentEditable ||
+        target.matches("input, textarea, select"));
+
+    if (
+      !isEditable &&
+      !event.altKey &&
+      !event.shiftKey &&
+      (event.metaKey || event.ctrlKey) &&
+      event.key.toLowerCase() === "k"
+    ) {
+      event.preventDefault();
+      openSearch();
+    }
+  });
 
   document.addEventListener("astro:after-swap", () => {
     document
       .getElementById("searchToggle")
-      ?.addEventListener("click", handleSearchClick);
+      ?.addEventListener("click", openSearch);
   });
 </script>

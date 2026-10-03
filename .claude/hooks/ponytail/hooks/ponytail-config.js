@@ -9,22 +9,22 @@
 //      - %APPDATA%\ponytail\config.json (Windows fallback)
 //   3. 'full'
 
-const fs = require('fs');
-const path = require('path');
-const os = require('os');
+const fs = require("fs");
+const path = require("path");
+const os = require("os");
 
-const DEFAULT_MODE = 'full';
-const VALID_MODES = ['off', 'lite', 'full', 'ultra', 'review'];
-const RUNTIME_MODES = ['off', 'lite', 'full', 'ultra'];
+const DEFAULT_MODE = "full";
+const VALID_MODES = ["off", "lite", "full", "ultra", "review"];
+const RUNTIME_MODES = ["off", "lite", "full", "ultra"];
 
 function normalizeMode(mode) {
-  if (typeof mode !== 'string') return null;
+  if (typeof mode !== "string") return null;
   const normalized = mode.trim().toLowerCase();
   return RUNTIME_MODES.includes(normalized) ? normalized : null;
 }
 
 function normalizeConfigMode(mode) {
-  if (typeof mode !== 'string') return null;
+  if (typeof mode !== "string") return null;
   const normalized = mode.trim().toLowerCase();
   return VALID_MODES.includes(normalized) ? normalized : null;
 }
@@ -38,8 +38,11 @@ function normalizePersistedMode(mode) {
 // for ordinary requests like "add a normal mode toggle" — so require the whole
 // message to be the command, ignoring case and trailing punctuation.
 function isDeactivationCommand(text) {
-  const t = String(text || '').trim().toLowerCase().replace(/[.!?\s]+$/, '');
-  return t === 'stop ponytail' || t === 'normal mode';
+  const t = String(text || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[.!?\s]+$/, "");
+  return t === "stop ponytail" || t === "normal mode";
 }
 
 // ponytail: only embed the plugin install path in a statusline shell command when
@@ -48,29 +51,29 @@ function isDeactivationCommand(text) {
 // to manual setup instead. Allows : \ / for normal Windows and POSIX paths. Full
 // per-shell escaper only if a real need appears.
 function isShellSafe(p) {
-  return typeof p === 'string' && /^[A-Za-z0-9 _.\-:/\\~]+$/.test(p);
+  return typeof p === "string" && /^[A-Za-z0-9 _.\-:/\\~]+$/.test(p);
 }
 
 function getConfigDir() {
   if (process.env.XDG_CONFIG_HOME) {
-    return path.join(process.env.XDG_CONFIG_HOME, 'ponytail');
+    return path.join(process.env.XDG_CONFIG_HOME, "ponytail");
   }
-  if (process.platform === 'win32') {
+  if (process.platform === "win32") {
     return path.join(
-      process.env.APPDATA || path.join(os.homedir(), 'AppData', 'Roaming'),
-      'ponytail'
+      process.env.APPDATA || path.join(os.homedir(), "AppData", "Roaming"),
+      "ponytail",
     );
   }
-  return path.join(os.homedir(), '.config', 'ponytail');
+  return path.join(os.homedir(), ".config", "ponytail");
 }
 
 function getConfigPath() {
-  return path.join(getConfigDir(), 'config.json');
+  return path.join(getConfigDir(), "config.json");
 }
 
 function getClaudeDir() {
   // ponytail: CLAUDE_CONFIG_DIR overrides ~/.claude, matching Claude Code.
-  return process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude');
+  return process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), ".claude");
 }
 
 function getDefaultMode() {
@@ -87,8 +90,13 @@ function getDefaultMode() {
   try {
     const configPath = getConfigPath();
     // Strip UTF-8 BOM (common on Windows-saved files) so JSON.parse doesn't choke
-    const config = JSON.parse(fs.readFileSync(configPath, 'utf8').replace(/^\uFEFF/, ''));
-    if (config.defaultMode && RUNTIME_MODES.includes(config.defaultMode.toLowerCase())) {
+    const config = JSON.parse(
+      fs.readFileSync(configPath, "utf8").replace(/^\uFEFF/, ""),
+    );
+    if (
+      config.defaultMode &&
+      RUNTIME_MODES.includes(config.defaultMode.toLowerCase())
+    ) {
       return config.defaultMode.toLowerCase();
     }
   } catch (e) {
@@ -106,10 +114,12 @@ function getQuietStartup() {
   const env = process.env.PONYTAIL_QUIET_STARTUP;
   if (env !== undefined) {
     const v = env.trim().toLowerCase();
-    return v !== '' && v !== '0' && v !== 'false' && v !== 'no';
+    return v !== "" && v !== "0" && v !== "false" && v !== "no";
   }
   try {
-    const config = JSON.parse(fs.readFileSync(getConfigPath(), 'utf8').replace(/^\uFEFF/, ''));
+    const config = JSON.parse(
+      fs.readFileSync(getConfigPath(), "utf8").replace(/^\uFEFF/, ""),
+    );
     return config.quietStartup === true;
   } catch (_) {
     return false;
@@ -123,10 +133,12 @@ function getHideStatus() {
   const env = process.env.PONYTAIL_HIDE_STATUS;
   if (env !== undefined) {
     const v = env.trim().toLowerCase();
-    return v !== '' && v !== '0' && v !== 'false' && v !== 'no';
+    return v !== "" && v !== "0" && v !== "false" && v !== "no";
   }
   try {
-    const config = JSON.parse(fs.readFileSync(getConfigPath(), 'utf8').replace(/^\uFEFF/, ''));
+    const config = JSON.parse(
+      fs.readFileSync(getConfigPath(), "utf8").replace(/^\uFEFF/, ""),
+    );
     return config.hideStatus === true;
   } catch (_) {
     return false;
@@ -142,11 +154,14 @@ function writeDefaultMode(mode) {
   fs.mkdirSync(path.dirname(configPath), { recursive: true });
   let config = {};
   try {
-    config = JSON.parse(fs.readFileSync(configPath, 'utf8').replace(/^\uFEFF/, ''));
-    if (!config || typeof config !== 'object' || Array.isArray(config)) config = {};
+    config = JSON.parse(
+      fs.readFileSync(configPath, "utf8").replace(/^\uFEFF/, ""),
+    );
+    if (!config || typeof config !== "object" || Array.isArray(config))
+      config = {};
   } catch (_) {}
   config.defaultMode = normalized;
-  fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
+  fs.writeFileSync(configPath, JSON.stringify(config, null, 2), "utf8");
   return normalized;
 }
 

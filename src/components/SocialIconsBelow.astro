@@ -10,7 +10,7 @@ const { compact = false } = Astro.props;
 ---
 
 <div class="social-icons-below">
-  {!compact && <div class="social-icons-row identity-links">
+  {!compact && <div class="social-icons-row identity-links identity-links--desktop">
     <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me" data-tinylytics-event="social.github" data-tinylytics-event-value="https://github.com/tylerbutler">
       <Icon name="iconoir:github" aria-hidden="true" />
       <span class="sr-only">GitHub</span>
@@ -28,10 +28,33 @@ const { compact = false } = Astro.props;
       <span class="sr-only">Email</span>
     </a>
   </div>}
+  {!compact && (
+    <details class="identity-disclosure">
+      <summary>Elsewhere</summary>
+      <div class="social-icons-row">
+        <a href="https://github.com/tylerbutler" class="social-link" title="GitHub" target="_blank" rel="noopener me" data-tinylytics-event="social.github" data-tinylytics-event-value="https://github.com/tylerbutler">
+          <Icon name="iconoir:github" aria-hidden="true" />
+          <span class="sr-only">GitHub</span>
+        </a>
+        <a href="https://hachyderm.io/@tyler" class="social-link" title="Mastodon" target="_blank" rel="noopener me" data-tinylytics-event="social.mastodon" data-tinylytics-event-value="https://hachyderm.io/@tyler">
+          <Icon name="iconoir:mastodon" aria-hidden="true" />
+          <span class="sr-only">Mastodon</span>
+        </a>
+        <a href="https://bsky.app/profile/tylerbutler.bsky.social" class="social-link" title="Bluesky" target="_blank" rel="noopener me" data-tinylytics-event="social.bluesky" data-tinylytics-event-value="https://bsky.app/profile/tylerbutler.bsky.social">
+          <Bluesky fill="currentColor" aria-hidden="true" />
+          <span class="sr-only">Bluesky</span>
+        </a>
+        <a href="mailto:tyler@tylerbutler.com" class="social-link" title="Email" rel="me" data-tinylytics-event="social.email" data-tinylytics-event-value="tyler@tylerbutler.com">
+          <Icon name="iconoir:mail" aria-hidden="true" />
+          <span class="sr-only">Email</span>
+        </a>
+      </div>
+    </details>
+  )}
   <div class="social-icons-row">
-    <a href="/feed.xml" class="social-link feed-link" title="Subscribe via RSS" data-tinylytics-event="social.feed" data-tinylytics-event-value="/feed.xml">
+    <a href="/subscribe" class="social-link feed-link" title="Subscribe to Tyler Butler" data-tinylytics-event="social.feed" data-tinylytics-event-value="/subscribe">
       <Icon name="iconoir:rss-feed" aria-hidden="true" />
-      <span class="feed-label">Subscribe</span>
+      <span class="feed-label">Subscribe via RSS</span>
     </a>
   </div>
 </div>
@@ -50,6 +73,10 @@ const { compact = false } = Astro.props;
     gap: 8px;
     justify-content: center;
     align-items: center;
+  }
+
+  .identity-disclosure {
+    display: none;
   }
 
   .social-link {
@@ -121,6 +148,44 @@ const { compact = false } = Astro.props;
 
     .feed-link {
       padding: 12px 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .social-icons-below {
+      flex-direction: row;
+      justify-content: center;
+      gap: 4px;
+      margin: 0;
+    }
+
+    .identity-links--desktop {
+      display: none;
+    }
+
+    .identity-disclosure {
+      display: block;
+    }
+
+    .identity-disclosure summary {
+      box-sizing: border-box;
+      min-height: 44px;
+      padding: 10px 12px;
+      color: var(--nav-links);
+      font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+      font-size: var(--font-size-meta);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .identity-disclosure summary:hover,
+    .identity-disclosure summary:focus-visible {
+      color: var(--nav-hover);
+    }
+
+    .identity-disclosure[open] summary {
+      color: var(--header-accent);
     }
   }
 

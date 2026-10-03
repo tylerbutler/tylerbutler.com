@@ -18,7 +18,7 @@
   --pf-shadow-lg: 0 18px 48px rgba(26, 35, 50, 0.32);
   --pf-modal-backdrop: rgba(26, 35, 50, 0.82);
 
-  --pf-font: "Lato", "Helvetica Neue", Arial, sans-serif;
+  --pf-font: var(--label-font);
   --pf-input-height: 44px;
   --pf-border-radius: var(--radius-md);
   --pf-modal-max-width: 640px;

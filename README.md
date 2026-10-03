@@ -5,6 +5,7 @@ Built with [Astro](https://astro.build/) - a modern web framework for content-fo
 ## Requirements
 
 - Node.js 24+ (see `mise.toml` for specific version requirements)
+- pnpm 12.7.0 (pinned in `package.json` and `mise.toml`)
 
 ## Development
 
@@ -23,6 +24,46 @@ pnpm build
 # Serve the production build locally
 pnpm serve
 ```
+
+### Fonts
+
+The masthead uses Idlewild SSm Light (weight 300) from the font service.
+Masthead titles use uppercase letters, normal kerning, and 0.05em tracking,
+with maximum sizes of 36px on the homepage and 24px on interior pages.
+The rotating tagline uses italic Adelle in sentence case.
+Navigation, constellation nameplates, and UI labels use Lato Regular (weight 400);
+alert titles use Lato Bold (weight 700). These faces come from `@fontsource/lato`.
+Social-preview images use Lato Light for the site label and Regular for metadata.
+Body text and headings remain Adelle, and code uses PragmataPro Mono Liga 0.903 under the
+`PragmataPro` CSS family.
+Keep code letter spacing at `normal` so programming ligatures can form.
+
+At build start, `scripts/download-fonts.ts` downloads missing full WOFF2 sources
+into the Git-ignored `public/fonts/` directory. PragmataPro and Idlewild come from
+`fonts.tylerbutler.com`, with an approved `Origin` header and without GitHub
+credentials.
+
+**Deploy the font service with PragmataPro version `0.903` and Idlewild version
+`1.401` before a production build.** The site downloads all four faces per family
+from `https://fonts.tylerbutler.com/fonts/pragmata-pro/0.903/` and
+`https://fonts.tylerbutler.com/fonts/idlewild/1.401/`.
+
+After Astro generates the HTML, `scripts/publish-font-subsets.ts` collects the
+site's Unicode code points and publishes subsets for both font-service families.
+Each family has its own cache entry and stable stylesheet:
+
+```text
+https://fonts.tylerbutler.com/css/sites/tylerbutler.com/pragmata-pro.css
+https://fonts.tylerbutler.com/css/sites/tylerbutler.com/idlewild.css
+```
+
+Both stylesheets are loaded by `BaseLayout.astro`. A failed publication fails the
+build. `FONT_SUBSET_API_URL` can point publication at a local font service;
+`SKIP_FONT_SUBSET_PUBLISH=1` skips publication for offline build checks.
+
+Visual tests fetch font assets with the approved production origin while the
+pages run on localhost. Set `FONT_SERVICE_TEST_ORIGIN=http://localhost:18787`
+to use a local font service after publishing subsets there.
 
 ## Testing Infrastructure
 

@@ -80,12 +80,18 @@ const initialHeadline = headlines[initialHeadlineIndex] ?? "";
 <style>
   .site-header {
     position: relative;
-    padding-top: 25px !important;
-    padding-bottom: 20px !important;
+    padding-top: 48px !important;
+    padding-bottom: 16px !important;
   }
 
   .site-header--small {
     padding: 18px 56px 14px !important;
+  }
+
+  @media (min-width: 1200px) {
+    .site-header--small {
+      min-height: 120px;
+    }
   }
 
   .header-controls {
@@ -161,7 +167,7 @@ const initialHeadline = headlines[initialHeadlineIndex] ?? "";
     }
 
     .site-header--small {
-      padding: 16px 16px 12px !important;
+      padding: 48px 16px 12px !important;
     }
   }
 

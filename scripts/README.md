@@ -5,8 +5,9 @@ Utility scripts for site maintenance and asset generation.
 | Script | Purpose |
 |--------|---------|
 | `mp4-to-svg.py` | Convert MP4 animations to optimized animated SVGs |
-| `download-fonts.ts` | Download web fonts for self-hosting |
-| `optimize-fonts.ts` | Subset and optimize downloaded fonts |
+| `font-config.ts` | Define PragmataPro and Idlewild SSm source faces and versions |
+| `download-fonts.ts` | Download full WOFF2 sources before the build |
+| `publish-font-subsets.ts` | Publish site-wide WOFF2 subsets after the build |
 | `get-all-urls.ts` | Crawl the site and collect all URLs |
 | `extract-urls.sh` | Extract URLs from a sitemap or HTML file |
 | `extract-broken-urls.ts` | Identify broken links from a URL list |

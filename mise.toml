@@ -1,3 +1,4 @@
 [tools]
 deno = "2.2.4"
 gh = "latest"
+pnpm = "12.7.0"

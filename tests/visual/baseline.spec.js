@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./font-service.js";
 
 // Screenshots are font- and content-sensitive: wait for webfonts (Typekit +
 // local) so captures don't race the fallback-font render, and pin the

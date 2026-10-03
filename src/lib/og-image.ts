@@ -1,131 +1,31 @@
-import { createHash } from "node:crypto";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 
+// CoreText ignores the custom font files registered by libvips.
+if (process.platform === "darwin") {
+  process.env.PANGOCAIRO_BACKEND = "fontconfig";
+}
+
 const WIDTH = 1200;
 const HEIGHT = 630;
-const TEMPLATE_VERSION = 2;
-const cacheDirectory = path.join(process.cwd(), ".cache", "og-images");
+const SITE_LABEL = "TYLERBUTLER.COM";
 const backgroundPath = path.join(process.cwd(), "public", "bg-hq.webp");
-const backgroundHash = createHash("sha256")
-  .update(fs.readFileSync(backgroundPath))
-  .digest("hex");
-const TYPEKIT_CSS_URL = "https://use.typekit.net/zsx5vsn.css";
-const latoFiles = path.join(
-  process.cwd(),
-  "node_modules",
-  "@fontsource",
-  "lato",
-  "files",
-);
+const fontDirectory = path.join(process.cwd(), ".cache", "og-assets");
+const fonts = {
+  adelleBold: path.join(fontDirectory, "adelle-700-normal.otf"),
+  adelleItalic: path.join(fontDirectory, "adelle-400-italic.otf"),
+  latoBold: path.join(fontDirectory, "lato-700.ttf"),
+  idlewildLight: path.join(fontDirectory, "idlewild-light.ttf"),
+};
 
-interface TypekitFont {
-  family: "adelle" | "westgate";
-  weight: number;
-  style: "normal" | "italic";
-}
-
-interface OgFonts {
-  adelleBold: string;
-  adelleItalic: string;
-  latoBold: string;
-  westgate: string;
-}
-
-let fontsPromise: Promise<OgFonts> | undefined;
-
-function findTypekitFontUrl(css: string, font: TypekitFont): string {
-  const block = (css.match(/@font-face\s*{[^}]+}/g) ?? []).find(
-    (candidate) =>
-      candidate.includes(`font-family:"${font.family}"`) &&
-      candidate.includes(`font-weight:${font.weight}`) &&
-      candidate.includes(`font-style:${font.style}`),
-  );
-  const url = block?.match(/url\("([^"]+)"\) format\("opentype"\)/)?.[1];
-  if (!url) {
-    throw new Error(
-      `Adobe Fonts kit is missing ${font.family} ${font.weight} ${font.style}`,
-    );
-  }
-  return url;
-}
-
-async function downloadTypekitFont(
-  css: string,
-  font: TypekitFont,
-): Promise<string> {
-  const url = findTypekitFontUrl(css, font);
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(
-      `Could not download ${font.family}: ${response.status} ${response.statusText}`,
-    );
-  }
-
-  const directory = path.join(os.tmpdir(), "tylerbutler-og-fonts");
-  const filename = path.join(
-    directory,
-    `${font.family}-${font.weight}-${font.style}.otf`,
-  );
-  await fs.promises.mkdir(directory, { recursive: true });
-  await fs.promises.writeFile(
-    filename,
-    Buffer.from(await response.arrayBuffer()),
-  );
-  return filename;
-}
-
-function loadFonts(): Promise<OgFonts> {
-  fontsPromise ??= (async () => {
-    const response = await fetch(TYPEKIT_CSS_URL);
-    if (!response.ok) {
-      throw new Error(
-        `Could not load Adobe Fonts kit: ${response.status} ${response.statusText}`,
-      );
-    }
-    const css = await response.text();
-
-    const [adelleBold, adelleItalic, westgate] = await Promise.all([
-      downloadTypekitFont(css, {
-        family: "adelle",
-        weight: 700,
-        style: "normal",
-      }),
-      downloadTypekitFont(css, {
-        family: "adelle",
-        weight: 400,
-        style: "italic",
-      }),
-      downloadTypekitFont(css, {
-        family: "westgate",
-        weight: 100,
-        style: "normal",
-      }),
-    ]);
-
-    return {
-      adelleBold,
-      adelleItalic,
-      latoBold: path.join(latoFiles, "lato-latin-700-normal.woff2"),
-      westgate,
-    };
-  })();
-
-  return fontsPromise;
-}
-
-interface OgImageOptions {
+type OgImageOptions = {
   title: string;
   subtitle?: string;
-  date: Date;
-  kind: "ARTICLE" | "GUIDE" | "LINK";
-}
-
-interface CachedOgImageOptions extends OgImageOptions {
-  slug: string;
-}
+} & (
+  | { date: Date; kind: "ARTICLE" | "GUIDE" | "LINK" }
+  | { date?: never; kind: "WEBSITE" }
+);
 
 interface TitleLayout {
   lines: string[];
@@ -133,23 +33,32 @@ interface TitleLayout {
   lineHeight: number;
 }
 
-const background = sharp(backgroundPath)
-  .resize(WIDTH, HEIGHT, { fit: "cover", position: "center" })
-  .modulate({ brightness: 0.62, saturation: 0.78 })
-  .composite([
-    {
-      input: Buffer.from(`
+let backgroundPromise: Promise<Buffer> | undefined;
+
+function getBackground(): Promise<Buffer> {
+  backgroundPromise ??= sharp(backgroundPath)
+    .resize(WIDTH, HEIGHT, { fit: "cover", position: "center" })
+    .modulate({ brightness: 0.62, saturation: 0.78 })
+    .composite([
+      {
+        input: Buffer.from(`
         <svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
           <rect width="${WIDTH}" height="${HEIGHT}" fill="#1a2332" fill-opacity=".34"/>
           <path d="M0 0H790L690 630H0Z" fill="#0f1419" fill-opacity=".88"/>
           <path d="M790 0L690 630" stroke="#e6b35c" stroke-width="3"/>
           <path d="M28 28H1172V602H28Z" fill="none" stroke="#e6b35c" stroke-opacity=".72" stroke-width="2"/>
         </svg>
-      `),
-    },
-  ])
-  .png()
-  .toBuffer();
+        `),
+      },
+    ])
+    .png()
+    .toBuffer()
+    .catch((error: unknown) => {
+      backgroundPromise = undefined;
+      throw error;
+    });
+  return backgroundPromise;
+}
 
 function escapeXml(value: string): string {
   return value.replace(
@@ -211,31 +120,39 @@ export async function createOgImage({
   date,
   kind,
 }: OgImageOptions): Promise<Buffer> {
-  const fonts = await loadFonts();
+  // Pango can silently fall back when a custom font file is unavailable.
+  await Promise.all(
+    Object.values(fonts).map((font) =>
+      fs.promises.access(font, fs.constants.R_OK),
+    ),
+  );
   const { lines, fontSize, lineHeight } = layoutTitle(title);
   const subtitleLines = subtitle ? wrapTitle(subtitle, 31).slice(0, 3) : [];
   const titleHeight = lines.length * lineHeight;
   const subtitleHeight = subtitleLines.length * 43;
-  const titleTop = Math.max(
-    190,
-    330 - (titleHeight + (subtitle ? 24 + subtitleHeight : 0)) / 2,
+  const titleTop = Math.round(
+    Math.max(
+      190,
+      330 - (titleHeight + (subtitle ? 24 + subtitleHeight : 0)) / 2,
+    ),
   );
   const formattedDate = date
-    .toLocaleDateString("en-US", {
+    ?.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
     })
     .toUpperCase();
 
-  return sharp(await background)
+  return sharp(await getBackground())
     .composite([
       {
         input: {
           text: {
-            text: `<span foreground="#e6b35c" letter_spacing="5120">${escapeXml("TYLERBUTLER.COM")}</span>`,
-            font: "westgate-100-normal 30",
-            fontfile: fonts.westgate,
+            text: `<span foreground="#e6b35c" letter_spacing="5120">${escapeXml(SITE_LABEL)}</span>`,
+            // Keep "Light" in the family name rather than Pango's weight.
+            font: "Idlewild SSm Light, 30",
+            fontfile: fonts.idlewildLight,
             rgba: true,
           },
         },
@@ -284,47 +201,23 @@ export async function createOgImage({
             },
           ]
         : []),
-      {
-        input: {
-          text: {
-            text: `<span foreground="#e6b35c" letter_spacing="4096">${formattedDate}</span>`,
-            font: "Lato Bold 18",
-            fontfile: fonts.latoBold,
-            rgba: true,
-          },
-        },
-        left: 84,
-        top: 528,
-      },
+      ...(formattedDate
+        ? [
+            {
+              input: {
+                text: {
+                  text: `<span foreground="#e6b35c" letter_spacing="4096">${formattedDate}</span>`,
+                  font: "Lato Bold 18",
+                  fontfile: fonts.latoBold,
+                  rgba: true,
+                },
+              },
+              left: 84,
+              top: 528,
+            },
+          ]
+        : []),
     ])
     .png({ compressionLevel: 9, palette: true })
     .toBuffer();
-}
-
-export async function createCachedOgImage({
-  slug,
-  ...options
-}: CachedOgImageOptions): Promise<Buffer> {
-  const key = createHash("sha256")
-    .update(
-      JSON.stringify({
-        template: TEMPLATE_VERSION,
-        background: backgroundHash,
-        ...options,
-      }),
-    )
-    .digest("hex")
-    .slice(0, 16);
-  const cachePath = path.join(cacheDirectory, `${slug}-${key}.png`);
-
-  try {
-    return await fs.promises.readFile(cachePath);
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
-  }
-
-  const image = await createOgImage(options);
-  await fs.promises.mkdir(cacheDirectory, { recursive: true });
-  await fs.promises.writeFile(cachePath, image);
-  return image;
 }

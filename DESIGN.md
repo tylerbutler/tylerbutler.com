@@ -112,7 +112,7 @@ The register is brand, but the surface is a reading surface. Density is low: one
 
 **Key Characteristics:**
 - A literal painted-sky scene: fixed backdrop → glowing site container → dark masthead → light page
-- Serif-first typography (Adelle for reading and the submast) with Idlewild SSm Light for the masthead, and Lato for navigation, constellation nameplates, UI labels, and social-preview labels
+- Serif-first typography (Adelle for reading and the submast) with Idlewild SSm Light for the masthead and social-preview site label, and Lato for navigation, constellation nameplates, and UI labels
 - Golden-hour palette: burnt orange and golden yellow warmth against deep space blue
 - Class-toggled light/dark themes; dark mode swaps burnt orange for starfield gold
 - Small delights over big motion: link underlines that fade on hover, launching rockets, constellation dividers
@@ -148,7 +148,7 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 **Label Font:** Lato Regular, weight 400 (with Helvetica Neue, Arial fallback); shared through `--label-font`. Lato Bold (700) supplies alert titles.
 **Code Font:** PragmataPro (with JetBrains Mono fallback)
 
-**Character:** Adelle supplies the article headings, body text, and italic sentence-case tagline. Idlewild SSm Light provides uppercase masthead titling with normal pair kerning and 0.05em tracking. Constellation nameplates and the social-preview site label remain uppercase in Lato. Lato Regular supplies navigation and UI labels, with 0.04em tracking for short uppercase labels. Long search excerpts remain Adelle.
+**Character:** Adelle supplies the article headings, body text, and italic sentence-case tagline. Idlewild SSm Light provides uppercase masthead titling with normal pair kerning and 0.05em tracking. Constellation nameplates remain uppercase in Lato. Social previews use Idlewild SSm Light for the site label, Lato Bold for metadata, and Adelle Bold and Italic for titles and subtitles. Lato Regular supplies navigation and UI labels, with 0.04em tracking for short uppercase labels. Long search excerpts remain Adelle.
 
 ### Hierarchy
 - **Display** (300, clamp(17px, 4.4vw, 36px), lh 1.2, uppercase, normal kerning, tracking 0.05em): the homepage site title.
@@ -161,7 +161,7 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 - **Code** (PragmataPro, 16px block / 14px inline, ligatures on): inline code is tinted Burnt Atmosphere on Cloud Shadow.
 
 ### Named Rules
-**The Masthead Rule.** Use Idlewild SSm Light for the masthead wordmark. Use Lato Light for the social-preview site label and Lato Regular for constellation nameplates, navigation, and UI labels. Keep article prose, headings, and the rotating tagline in Adelle.
+**The Masthead Rule.** Use Idlewild SSm Light for the masthead wordmark and social-preview site label. Use Lato Regular for constellation nameplates, navigation, and UI labels. Keep article prose, headings, and the rotating tagline in Adelle.
 
 **The One Voice Rule.** Everything readable is Adelle. Contrast comes from size and weight (100→300→400→600), never from introducing another text face.
 
@@ -241,7 +241,7 @@ Between homepage article previews, a 64px animated Lottie constellation replaces
 - **Do** route all light-mode accents through Burnt Atmosphere (#96591c) and all dark-mode accents through Starfield Gold (#d4af37); verify AA contrast in both themes independently (the CI runs pa11y WCAG2AA).
 - **Do** spend underlines only on links that navigate; heading self-anchors stay bare and earn a `#` glyph on hover/focus instead.
 - **Do** give touch controls a ≥40px hit area on coarse pointers — grow padding, not font size, and never shrink a label to dodge a wrap.
-- **Do** use Idlewild SSm Light for the masthead wordmark and Lato Light for the social-preview site label. Use Lato Regular for constellation nameplates, navigation, and UI labels; use italic Adelle for the rotating tagline. Reserve Golden Horizon for masthead titling and wayfinding.
+- **Do** use Idlewild SSm Light for the masthead wordmark and social-preview site label. Use Lato Regular for constellation nameplates, navigation, and UI labels; use italic Adelle for the rotating tagline. Reserve Golden Horizon for masthead titling and wayfinding.
 - **Do** add small delights in the kudos-rocket register: brief (≤750ms), physical, suppressed under `prefers-reduced-motion`.
 - **Do** let depth come from the painted scene; shadows respond to hover, focus, or elevation state.
 - **Do** use `color-mix` tints of instrument colors for any new status surface, matching the alert formula.

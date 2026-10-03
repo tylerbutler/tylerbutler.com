@@ -4,10 +4,16 @@ import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 import subsetFont from "subset-font";
+import { FONT_FAMILIES } from "../../scripts/font-config.ts";
+
+// CoreText ignores the custom font files registered by libvips.
+if (process.platform === "darwin") {
+  process.env.PANGOCAIRO_BACKEND = "fontconfig";
+}
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-const TEMPLATE_VERSION = 5;
+const TEMPLATE_VERSION = 7;
 const SITE_LABEL = "TYLERBUTLER.COM";
 const METADATA_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789, ";
 const cacheDirectory = path.join(process.cwd(), ".cache", "og-images");
@@ -26,8 +32,8 @@ interface TypekitFont {
 interface OgFonts {
   adelleBold: string;
   adelleItalic: string;
-  latoLight: string;
-  latoRegular: string;
+  latoBold: string;
+  idlewildLight: string;
 }
 
 let fontsPromise: Promise<OgFonts> | undefined;
@@ -73,24 +79,21 @@ async function downloadTypekitFont(
   return filename;
 }
 
-async function loadLato(weight: 300 | 400, text: string): Promise<string> {
-  const source = await fs.promises.readFile(
-    path.join(
-      process.cwd(),
-      "node_modules",
-      "@fontsource",
-      "lato",
-      "files",
-      `lato-latin-${weight}-normal.woff2`,
-    ),
-  );
+async function loadLocalFont(
+  sourcePath: string,
+  text: string,
+  filename: string,
+): Promise<string> {
+  const source = await fs.promises.readFile(sourcePath);
   // Pango needs an SFNT font, not the browser's WOFF2 source.
-  const font = await subsetFont(source, text, { targetFormat: "sfnt" });
+  const font = await subsetFont(source, text, {
+    targetFormat: "sfnt",
+  });
   const directory = path.join(os.tmpdir(), "tylerbutler-og-fonts");
-  const filename = path.join(directory, `lato-${weight}.ttf`);
+  const fontPath = path.join(directory, filename);
   await fs.promises.mkdir(directory, { recursive: true });
-  await fs.promises.writeFile(filename, font);
-  return filename;
+  await fs.promises.writeFile(fontPath, font);
+  return fontPath;
 }
 
 function loadFonts(): Promise<OgFonts> {
@@ -102,8 +105,14 @@ function loadFonts(): Promise<OgFonts> {
       );
     }
     const css = await response.text();
+    const idlewild = FONT_FAMILIES.find(
+      (family) => family.id === "idlewild",
+    )?.faces.find((face) => face.id === "light");
+    if (!idlewild) {
+      throw new Error("Idlewild Light is missing from the font configuration");
+    }
 
-    const [adelleBold, adelleItalic, latoLight, latoRegular] =
+    const [adelleBold, adelleItalic, idlewildLight, latoBold] =
       await Promise.all([
         downloadTypekitFont(css, {
           family: "adelle",
@@ -115,15 +124,30 @@ function loadFonts(): Promise<OgFonts> {
           weight: 400,
           style: "italic",
         }),
-        loadLato(300, SITE_LABEL),
-        loadLato(400, METADATA_CHARACTERS),
+        loadLocalFont(
+          path.join(process.cwd(), "public", "fonts", idlewild.fileName),
+          SITE_LABEL,
+          "idlewild-light.ttf",
+        ),
+        loadLocalFont(
+          path.join(
+            process.cwd(),
+            "node_modules",
+            "@fontsource",
+            "lato",
+            "files",
+            "lato-latin-700-normal.woff2",
+          ),
+          METADATA_CHARACTERS,
+          "lato-700.ttf",
+        ),
       ]);
 
     return {
       adelleBold,
       adelleItalic,
-      latoLight,
-      latoRegular,
+      idlewildLight,
+      latoBold,
     };
   })();
 
@@ -231,9 +255,11 @@ export async function createOgImage({
   const subtitleLines = subtitle ? wrapTitle(subtitle, 31).slice(0, 3) : [];
   const titleHeight = lines.length * lineHeight;
   const subtitleHeight = subtitleLines.length * 43;
-  const titleTop = Math.max(
-    190,
-    330 - (titleHeight + (subtitle ? 24 + subtitleHeight : 0)) / 2,
+  const titleTop = Math.round(
+    Math.max(
+      190,
+      330 - (titleHeight + (subtitle ? 24 + subtitleHeight : 0)) / 2,
+    ),
   );
   const formattedDate = date
     ?.toLocaleDateString("en-US", {
@@ -249,8 +275,9 @@ export async function createOgImage({
         input: {
           text: {
             text: `<span foreground="#e6b35c" letter_spacing="5120">${escapeXml(SITE_LABEL)}</span>`,
-            font: "Lato Light 30",
-            fontfile: fonts.latoLight,
+            // Keep "Light" in the family name rather than Pango's weight.
+            font: "Idlewild SSm Light, 30",
+            fontfile: fonts.idlewildLight,
             rgba: true,
           },
         },
@@ -260,9 +287,9 @@ export async function createOgImage({
       {
         input: {
           text: {
-            text: `<span foreground="#b9bbc0" letter_spacing="1024">${kind}</span>`,
-            font: "Lato 16",
-            fontfile: fonts.latoRegular,
+            text: `<span foreground="#b9bbc0" letter_spacing="4096">${kind}</span>`,
+            font: "Lato Bold 18",
+            fontfile: fonts.latoBold,
             rgba: true,
           },
         },
@@ -304,9 +331,9 @@ export async function createOgImage({
             {
               input: {
                 text: {
-                  text: `<span foreground="#e6b35c" letter_spacing="1024">${formattedDate}</span>`,
-                  font: "Lato 16",
-                  fontfile: fonts.latoRegular,
+                  text: `<span foreground="#e6b35c" letter_spacing="4096">${formattedDate}</span>`,
+                  font: "Lato Bold 18",
+                  fontfile: fonts.latoBold,
                   rgba: true,
                 },
               },

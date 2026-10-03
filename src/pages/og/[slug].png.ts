@@ -1,26 +1,24 @@
 import { getCollection } from "astro:content";
 import type { APIRoute } from "astro";
 import { getArticleSlug } from "../../lib/article-utils";
-import { includeDraft } from "../../lib/draft-utils";
-import { createCachedOgImage } from "../../lib/og-image";
+import { createOgImage } from "../../lib/og-image";
 
-interface OgImageProps {
-  slug: string;
-  title: string;
-  subtitle?: string;
-  date: Date;
-  kind: "ARTICLE" | "GUIDE" | "LINK";
-}
+export const prerender = false;
 
-export async function getStaticPaths() {
-  const articles = await getCollection("articles", ({ data }) =>
-    includeDraft(data),
-  );
+export const GET: APIRoute = async ({ params }) => {
+  try {
+    const articles = await getCollection("articles", ({ data }) => !data.draft);
+    const article = articles.find(
+      (entry) => getArticleSlug(entry) === params.slug,
+    );
+    if (!article) {
+      return new Response("Not found", {
+        status: 404,
+        headers: { "Cache-Control": "no-store" },
+      });
+    }
 
-  return articles.map((article) => ({
-    params: { slug: getArticleSlug(article) },
-    props: {
-      slug: getArticleSlug(article),
+    const image = await createOgImage({
       title: article.data.title,
       subtitle: article.data.subtitle,
       date: article.data.date,
@@ -30,17 +28,19 @@ export async function getStaticPaths() {
           : article.data.type === "guide"
             ? "GUIDE"
             : "ARTICLE",
-    } satisfies OgImageProps,
-  }));
-}
-
-export const GET: APIRoute<OgImageProps> = async ({ props }) => {
-  const image = await createCachedOgImage(props);
-
-  return new Response(new Uint8Array(image), {
-    headers: {
-      "Content-Type": "image/png",
-      "Cache-Control": "public, max-age=31536000, immutable",
-    },
-  });
+    });
+    return new Response(new Uint8Array(image), {
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "Netlify-CDN-Cache-Control": "public, durable, max-age=31536000",
+      },
+    });
+  } catch (error) {
+    console.error(`OG image generation failed for ${params.slug}:`, error);
+    return new Response("Image generation failed", {
+      status: 500,
+      headers: { "Cache-Control": "no-store" },
+    });
+  }
 };

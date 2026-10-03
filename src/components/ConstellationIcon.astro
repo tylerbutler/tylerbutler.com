@@ -27,17 +27,14 @@ const name = getConstellationName(slug);
     position: absolute;
     top: -0.5em;
     right: -0.5em;
-    font-family: var(--label-font);
-    font-size: var(--font-size-meta);
+    font-family: "Idlewild SSm", "Helvetica Neue", Arial, sans-serif;
+    font-size: max(9px, var(--font-size-meta));
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: 400;
+    font-weight: 300;
     color: var(--text);
-    /* Solid chip keeps the label legible where it overlaps the constellation
-       drawing, and gives contrast checkers a determinable background */
-    background: var(--light-bg);
+    background: transparent;
     padding: 0 4px;
-    border-radius: 2px;
     white-space: nowrap;
     pointer-events: none;
   }

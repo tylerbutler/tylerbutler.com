@@ -8,6 +8,7 @@ Personal website ([tylerbutler.com](https://tylerbutler.com)) built with Astro, 
 pnpm dev              # Start dev server (localhost:4321)
 pnpm build            # Production build
 pnpm check            # Astro type-check (minimumSeverity warning)
+pnpm prepare:og       # Prepare OG fonts before dev on a clean checkout
 pnpm format           # Biome format (linter disabled)
 pnpm serve            # Serve dist/ on port 4173
 pnpm test:unit        # Node.js unit tests
@@ -56,6 +57,8 @@ docs/superpowers/   # Implementation plans and specs
 **Font pipeline**: `scripts/font-config.ts` defines PragmataPro Mono Liga 0.903 and Idlewild SSm 1.401 faces. `scripts/download-fonts.ts` fetches their full WOFF2 sources from `fonts.tylerbutler.com` at build start with an approved `Origin` header and no GitHub credentials; `scripts/publish-font-subsets.ts` scans generated HTML and publishes both families through the same service after the build. Sources under `public/fonts/` are ignored by Git. Idlewild SSm Light (300) supplies masthead titles, constellation labels (fixed 9px, transparent background), and the social-preview site label. Self-hosted Lato from `@fontsource/lato` supplies navigation and UI labels at weight 400, and alert titles and social-preview metadata at weight 700; `--label-font` is the shared CSS stack. Social previews retain Adelle Bold and Italic for titles and subtitles. The OG renderer converts local Idlewild and Lato sources to SFNT and uses Fontconfig on macOS so custom font files load instead of CoreText fallbacks. Article headings, body text, and the italic rotating tagline use Adelle. `PragmataPro` remains the code font's CSS family.
 
 **Micropub**: IndieWeb publishing endpoint at `/micropub` → `/.netlify/functions/micropub`.
+
+**OG images**: `/og/<article-slug>.png` is an on-demand Astro endpoint on Netlify; the rest of the site remains static. It renders only published articles, even with `SHOW_DRAFTS=1`. Custom `ogImage` frontmatter overrides remain supported, and `public/og/site.png` stays static. Builds prepare Adelle, Idlewild Light, and Lato Bold fonts under `.cache/og-assets/` and bundle them with `public/bg-hq.webp`; image requests do not download fonts or write PNGs to disk. Netlify's durable CDN cache serves repeat requests and invalidates on deploy. Stable image URLs use browser revalidation, not immutable caching. Run `pnpm prepare:og` before `pnpm dev` on a clean checkout. `pnpm serve` serves static output only; use `pnpm dev` or a Netlify Deploy Preview to exercise the image endpoint.
 
 ## Content Schemas
 

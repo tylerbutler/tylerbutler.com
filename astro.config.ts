@@ -17,6 +17,7 @@ import { remarkLazyLinks } from "remark-lazy-links";
 import { remarkShiftHeadings } from "remark-shift-headings";
 import { visualizer } from "rollup-plugin-visualizer";
 import { downloadFonts } from "./scripts/download-fonts.ts";
+import { prepareOgAssets } from "./scripts/prepare-og-assets.ts";
 import { publishFontSubsets } from "./scripts/publish-font-subsets.ts";
 import { articleRedirects } from "./src/lib/article-redirects.ts";
 import { expressiveCodeConfig } from "./src/lib/markdown-utils.ts";
@@ -38,12 +39,12 @@ const fontDownloader = () => ({
         if (isProduction) {
           throw error;
         }
-
         console.warn(
           "⚠️  Font download failed (local development will use the last downloaded sources):",
           (error as Error).message,
         );
       }
+      await prepareOgAssets();
     },
   },
 });
@@ -128,6 +129,13 @@ export default defineConfig({
 
   adapter: netlify({
     imageCDN: false,
+    includeFiles: [
+      ".cache/og-assets/adelle-700-normal.otf",
+      ".cache/og-assets/adelle-400-italic.otf",
+      ".cache/og-assets/idlewild-light.ttf",
+      ".cache/og-assets/lato-700.ttf",
+      "public/bg-hq.webp",
+    ],
   }),
   output: "static",
 

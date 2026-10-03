@@ -1,10 +1,6 @@
-import { createHash } from "node:crypto";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
-import subsetFont from "subset-font";
-import { FONT_FAMILIES } from "../../scripts/font-config.ts";
 
 // CoreText ignores the custom font files registered by libvips.
 if (process.platform === "darwin") {
@@ -13,146 +9,15 @@ if (process.platform === "darwin") {
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-const TEMPLATE_VERSION = 7;
 const SITE_LABEL = "TYLERBUTLER.COM";
-const METADATA_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789, ";
-const cacheDirectory = path.join(process.cwd(), ".cache", "og-images");
 const backgroundPath = path.join(process.cwd(), "public", "bg-hq.webp");
-const backgroundHash = createHash("sha256")
-  .update(fs.readFileSync(backgroundPath))
-  .digest("hex");
-const TYPEKIT_CSS_URL = "https://use.typekit.net/zsx5vsn.css";
-
-interface TypekitFont {
-  family: "adelle";
-  weight: number;
-  style: "normal" | "italic";
-}
-
-interface OgFonts {
-  adelleBold: string;
-  adelleItalic: string;
-  latoBold: string;
-  idlewildLight: string;
-}
-
-let fontsPromise: Promise<OgFonts> | undefined;
-
-function findTypekitFontUrl(css: string, font: TypekitFont): string {
-  const block = (css.match(/@font-face\s*{[^}]+}/g) ?? []).find(
-    (candidate) =>
-      candidate.includes(`font-family:"${font.family}"`) &&
-      candidate.includes(`font-weight:${font.weight}`) &&
-      candidate.includes(`font-style:${font.style}`),
-  );
-  const url = block?.match(/url\("([^"]+)"\) format\("opentype"\)/)?.[1];
-  if (!url) {
-    throw new Error(
-      `Adobe Fonts kit is missing ${font.family} ${font.weight} ${font.style}`,
-    );
-  }
-  return url;
-}
-
-async function downloadTypekitFont(
-  css: string,
-  font: TypekitFont,
-): Promise<string> {
-  const url = findTypekitFontUrl(css, font);
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(
-      `Could not download ${font.family}: ${response.status} ${response.statusText}`,
-    );
-  }
-
-  const directory = path.join(os.tmpdir(), "tylerbutler-og-fonts");
-  const filename = path.join(
-    directory,
-    `${font.family}-${font.weight}-${font.style}.otf`,
-  );
-  await fs.promises.mkdir(directory, { recursive: true });
-  await fs.promises.writeFile(
-    filename,
-    Buffer.from(await response.arrayBuffer()),
-  );
-  return filename;
-}
-
-async function loadLocalFont(
-  sourcePath: string,
-  text: string,
-  filename: string,
-): Promise<string> {
-  const source = await fs.promises.readFile(sourcePath);
-  // Pango needs an SFNT font, not the browser's WOFF2 source.
-  const font = await subsetFont(source, text, {
-    targetFormat: "sfnt",
-  });
-  const directory = path.join(os.tmpdir(), "tylerbutler-og-fonts");
-  const fontPath = path.join(directory, filename);
-  await fs.promises.mkdir(directory, { recursive: true });
-  await fs.promises.writeFile(fontPath, font);
-  return fontPath;
-}
-
-function loadFonts(): Promise<OgFonts> {
-  fontsPromise ??= (async () => {
-    const response = await fetch(TYPEKIT_CSS_URL);
-    if (!response.ok) {
-      throw new Error(
-        `Could not load Adobe Fonts kit: ${response.status} ${response.statusText}`,
-      );
-    }
-    const css = await response.text();
-    const idlewild = FONT_FAMILIES.find(
-      (family) => family.id === "idlewild",
-    )?.faces.find((face) => face.id === "light");
-    if (!idlewild) {
-      throw new Error("Idlewild Light is missing from the font configuration");
-    }
-
-    const [adelleBold, adelleItalic, idlewildLight, latoBold] =
-      await Promise.all([
-        downloadTypekitFont(css, {
-          family: "adelle",
-          weight: 700,
-          style: "normal",
-        }),
-        downloadTypekitFont(css, {
-          family: "adelle",
-          weight: 400,
-          style: "italic",
-        }),
-        loadLocalFont(
-          path.join(process.cwd(), "public", "fonts", idlewild.fileName),
-          SITE_LABEL,
-          "idlewild-light.ttf",
-        ),
-        loadLocalFont(
-          path.join(
-            process.cwd(),
-            "node_modules",
-            "@fontsource",
-            "lato",
-            "files",
-            "lato-latin-700-normal.woff2",
-          ),
-          METADATA_CHARACTERS,
-          "lato-700.ttf",
-        ),
-      ]);
-
-    return {
-      adelleBold,
-      adelleItalic,
-      idlewildLight,
-      latoBold,
-    };
-  })();
-
-  return fontsPromise;
-}
+const fontDirectory = path.join(process.cwd(), ".cache", "og-assets");
+const fonts = {
+  adelleBold: path.join(fontDirectory, "adelle-700-normal.otf"),
+  adelleItalic: path.join(fontDirectory, "adelle-400-italic.otf"),
+  latoBold: path.join(fontDirectory, "lato-700.ttf"),
+  idlewildLight: path.join(fontDirectory, "idlewild-light.ttf"),
+};
 
 type OgImageOptions = {
   title: string;
@@ -162,33 +27,38 @@ type OgImageOptions = {
   | { date?: never; kind: "WEBSITE" }
 );
 
-type CachedOgImageOptions = OgImageOptions & {
-  slug: string;
-};
-
 interface TitleLayout {
   lines: string[];
   fontSize: number;
   lineHeight: number;
 }
 
-const background = sharp(backgroundPath)
-  .resize(WIDTH, HEIGHT, { fit: "cover", position: "center" })
-  .modulate({ brightness: 0.62, saturation: 0.78 })
-  .composite([
-    {
-      input: Buffer.from(`
+let backgroundPromise: Promise<Buffer> | undefined;
+
+function getBackground(): Promise<Buffer> {
+  backgroundPromise ??= sharp(backgroundPath)
+    .resize(WIDTH, HEIGHT, { fit: "cover", position: "center" })
+    .modulate({ brightness: 0.62, saturation: 0.78 })
+    .composite([
+      {
+        input: Buffer.from(`
         <svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
           <rect width="${WIDTH}" height="${HEIGHT}" fill="#1a2332" fill-opacity=".34"/>
           <path d="M0 0H790L690 630H0Z" fill="#0f1419" fill-opacity=".88"/>
           <path d="M790 0L690 630" stroke="#e6b35c" stroke-width="3"/>
           <path d="M28 28H1172V602H28Z" fill="none" stroke="#e6b35c" stroke-opacity=".72" stroke-width="2"/>
         </svg>
-      `),
-    },
-  ])
-  .png()
-  .toBuffer();
+        `),
+      },
+    ])
+    .png()
+    .toBuffer()
+    .catch((error: unknown) => {
+      backgroundPromise = undefined;
+      throw error;
+    });
+  return backgroundPromise;
+}
 
 function escapeXml(value: string): string {
   return value.replace(
@@ -250,7 +120,12 @@ export async function createOgImage({
   date,
   kind,
 }: OgImageOptions): Promise<Buffer> {
-  const fonts = await loadFonts();
+  // Pango can silently fall back when a custom font file is unavailable.
+  await Promise.all(
+    Object.values(fonts).map((font) =>
+      fs.promises.access(font, fs.constants.R_OK),
+    ),
+  );
   const { lines, fontSize, lineHeight } = layoutTitle(title);
   const subtitleLines = subtitle ? wrapTitle(subtitle, 31).slice(0, 3) : [];
   const titleHeight = lines.length * lineHeight;
@@ -269,7 +144,7 @@ export async function createOgImage({
     })
     .toUpperCase();
 
-  return sharp(await background)
+  return sharp(await getBackground())
     .composite([
       {
         input: {
@@ -345,32 +220,4 @@ export async function createOgImage({
     ])
     .png({ compressionLevel: 9, palette: true })
     .toBuffer();
-}
-
-export async function createCachedOgImage({
-  slug,
-  ...options
-}: CachedOgImageOptions): Promise<Buffer> {
-  const key = createHash("sha256")
-    .update(
-      JSON.stringify({
-        template: TEMPLATE_VERSION,
-        background: backgroundHash,
-        ...options,
-      }),
-    )
-    .digest("hex")
-    .slice(0, 16);
-  const cachePath = path.join(cacheDirectory, `${slug}-${key}.png`);
-
-  try {
-    return await fs.promises.readFile(cachePath);
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
-  }
-
-  const image = await createOgImage(options);
-  await fs.promises.mkdir(cacheDirectory, { recursive: true });
-  await fs.promises.writeFile(cachePath, image);
-  return image;
 }

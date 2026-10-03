@@ -148,7 +148,7 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 **Label Font:** Lato Regular, weight 400 (with Helvetica Neue, Arial fallback); shared through `--label-font`. Lato Bold (700) supplies alert titles.
 **Code Font:** PragmataPro (with JetBrains Mono fallback)
 
-**Character:** Adelle supplies the article headings, body text, and italic sentence-case tagline. Idlewild SSm Light provides uppercase masthead titling with normal pair kerning and 0.05em tracking. Constellation nameplates use uppercase Idlewild SSm Light, at least 9px, on a transparent background. Social previews use Idlewild SSm Light for the site label, Lato Bold for metadata, and Adelle Bold and Italic for titles and subtitles. Lato Regular supplies navigation and UI labels, with 0.04em tracking for short uppercase labels. Long search excerpts remain Adelle.
+**Character:** Adelle supplies the article headings, body text, and italic sentence-case tagline. Idlewild SSm Light provides uppercase masthead titling with normal pair kerning and 0.05em tracking. Constellation nameplates use uppercase Idlewild SSm Light at a fixed 9px on a transparent background. Social previews use Idlewild SSm Light for the site label, Lato Bold for metadata, and Adelle Bold and Italic for titles and subtitles. Lato Regular supplies navigation and UI labels, with 0.04em tracking for short uppercase labels. Long search excerpts remain Adelle.
 
 ### Hierarchy
 - **Display** (300, clamp(17px, 4.4vw, 36px), lh 1.2, uppercase, normal kerning, tracking 0.05em): the homepage site title.
@@ -232,7 +232,7 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Touch overflow:** on coarse pointers, horizontally scrollable code gets edge scroll-shadows (16px black-fade, hidden at the reached edge via local-attachment covers) so clipped code never masquerades as complete
 
 ### Constellation Dividers (Signature)
-Between homepage article previews, a 64px animated Lottie constellation replaces the horizontal rule — each article is deterministically assigned a constellation by content hash, no duplicates on screen. Nameplates use Idlewild SSm Light at weight 300, at least 9px, with a transparent background; on mobile they center over the icon and wrap when needed to stay within the viewport. Prose `<hr>` renders as a centered `###` in serif — a typewriter-manuscript wink. These are the site's fingerprint; protect them.
+Between homepage article previews, a 64px animated Lottie constellation replaces the horizontal rule — each article is deterministically assigned a constellation by content hash, no duplicates on screen. Nameplates use Idlewild SSm Light at weight 300 and a fixed 9px, with a transparent background; on mobile they center over the icon and wrap when needed to stay within the viewport. Prose `<hr>` renders as a centered `###` in serif — a typewriter-manuscript wink. These are the site's fingerprint; protect them.
 
 ## 6. Do's and Don'ts
 

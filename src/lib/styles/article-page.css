@@ -54,7 +54,7 @@
 .toc-narrow .toc-list li,
 .toc-sidebar .toc-list li {
   margin: 0.4em 0;
-  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--label-font);
   font-size: 14px;
   display: block;
 }

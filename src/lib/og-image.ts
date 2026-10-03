@@ -3,26 +3,28 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
+import subsetFont from "subset-font";
+import { FONT_FAMILIES } from "../../scripts/font-config.ts";
+
+// CoreText ignores the custom font files registered by libvips.
+if (process.platform === "darwin") {
+  process.env.PANGOCAIRO_BACKEND = "fontconfig";
+}
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-const TEMPLATE_VERSION = 2;
+const TEMPLATE_VERSION = 7;
+const SITE_LABEL = "TYLERBUTLER.COM";
+const METADATA_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789, ";
 const cacheDirectory = path.join(process.cwd(), ".cache", "og-images");
 const backgroundPath = path.join(process.cwd(), "public", "bg-hq.webp");
 const backgroundHash = createHash("sha256")
   .update(fs.readFileSync(backgroundPath))
   .digest("hex");
 const TYPEKIT_CSS_URL = "https://use.typekit.net/zsx5vsn.css";
-const latoFiles = path.join(
-  process.cwd(),
-  "node_modules",
-  "@fontsource",
-  "lato",
-  "files",
-);
 
 interface TypekitFont {
-  family: "adelle" | "westgate";
+  family: "adelle";
   weight: number;
   style: "normal" | "italic";
 }
@@ -31,7 +33,7 @@ interface OgFonts {
   adelleBold: string;
   adelleItalic: string;
   latoBold: string;
-  westgate: string;
+  idlewildLight: string;
 }
 
 let fontsPromise: Promise<OgFonts> | undefined;
@@ -77,6 +79,23 @@ async function downloadTypekitFont(
   return filename;
 }
 
+async function loadLocalFont(
+  sourcePath: string,
+  text: string,
+  filename: string,
+): Promise<string> {
+  const source = await fs.promises.readFile(sourcePath);
+  // Pango needs an SFNT font, not the browser's WOFF2 source.
+  const font = await subsetFont(source, text, {
+    targetFormat: "sfnt",
+  });
+  const directory = path.join(os.tmpdir(), "tylerbutler-og-fonts");
+  const fontPath = path.join(directory, filename);
+  await fs.promises.mkdir(directory, { recursive: true });
+  await fs.promises.writeFile(fontPath, font);
+  return fontPath;
+}
+
 function loadFonts(): Promise<OgFonts> {
   fontsPromise ??= (async () => {
     const response = await fetch(TYPEKIT_CSS_URL);
@@ -86,46 +105,66 @@ function loadFonts(): Promise<OgFonts> {
       );
     }
     const css = await response.text();
+    const idlewild = FONT_FAMILIES.find(
+      (family) => family.id === "idlewild",
+    )?.faces.find((face) => face.id === "light");
+    if (!idlewild) {
+      throw new Error("Idlewild Light is missing from the font configuration");
+    }
 
-    const [adelleBold, adelleItalic, westgate] = await Promise.all([
-      downloadTypekitFont(css, {
-        family: "adelle",
-        weight: 700,
-        style: "normal",
-      }),
-      downloadTypekitFont(css, {
-        family: "adelle",
-        weight: 400,
-        style: "italic",
-      }),
-      downloadTypekitFont(css, {
-        family: "westgate",
-        weight: 100,
-        style: "normal",
-      }),
-    ]);
+    const [adelleBold, adelleItalic, idlewildLight, latoBold] =
+      await Promise.all([
+        downloadTypekitFont(css, {
+          family: "adelle",
+          weight: 700,
+          style: "normal",
+        }),
+        downloadTypekitFont(css, {
+          family: "adelle",
+          weight: 400,
+          style: "italic",
+        }),
+        loadLocalFont(
+          path.join(process.cwd(), "public", "fonts", idlewild.fileName),
+          SITE_LABEL,
+          "idlewild-light.ttf",
+        ),
+        loadLocalFont(
+          path.join(
+            process.cwd(),
+            "node_modules",
+            "@fontsource",
+            "lato",
+            "files",
+            "lato-latin-700-normal.woff2",
+          ),
+          METADATA_CHARACTERS,
+          "lato-700.ttf",
+        ),
+      ]);
 
     return {
       adelleBold,
       adelleItalic,
-      latoBold: path.join(latoFiles, "lato-latin-700-normal.woff2"),
-      westgate,
+      idlewildLight,
+      latoBold,
     };
   })();
 
   return fontsPromise;
 }
 
-interface OgImageOptions {
+type OgImageOptions = {
   title: string;
   subtitle?: string;
-  date: Date;
-  kind: "ARTICLE" | "GUIDE" | "LINK";
-}
+} & (
+  | { date: Date; kind: "ARTICLE" | "GUIDE" | "LINK" }
+  | { date?: never; kind: "WEBSITE" }
+);
 
-interface CachedOgImageOptions extends OgImageOptions {
+type CachedOgImageOptions = OgImageOptions & {
   slug: string;
-}
+};
 
 interface TitleLayout {
   lines: string[];
@@ -216,12 +255,14 @@ export async function createOgImage({
   const subtitleLines = subtitle ? wrapTitle(subtitle, 31).slice(0, 3) : [];
   const titleHeight = lines.length * lineHeight;
   const subtitleHeight = subtitleLines.length * 43;
-  const titleTop = Math.max(
-    190,
-    330 - (titleHeight + (subtitle ? 24 + subtitleHeight : 0)) / 2,
+  const titleTop = Math.round(
+    Math.max(
+      190,
+      330 - (titleHeight + (subtitle ? 24 + subtitleHeight : 0)) / 2,
+    ),
   );
   const formattedDate = date
-    .toLocaleDateString("en-US", {
+    ?.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -233,9 +274,10 @@ export async function createOgImage({
       {
         input: {
           text: {
-            text: `<span foreground="#e6b35c" letter_spacing="5120">${escapeXml("TYLERBUTLER.COM")}</span>`,
-            font: "westgate-100-normal 30",
-            fontfile: fonts.westgate,
+            text: `<span foreground="#e6b35c" letter_spacing="5120">${escapeXml(SITE_LABEL)}</span>`,
+            // Keep "Light" in the family name rather than Pango's weight.
+            font: "Idlewild SSm Light, 30",
+            fontfile: fonts.idlewildLight,
             rgba: true,
           },
         },
@@ -284,18 +326,22 @@ export async function createOgImage({
             },
           ]
         : []),
-      {
-        input: {
-          text: {
-            text: `<span foreground="#e6b35c" letter_spacing="4096">${formattedDate}</span>`,
-            font: "Lato Bold 18",
-            fontfile: fonts.latoBold,
-            rgba: true,
-          },
-        },
-        left: 84,
-        top: 528,
-      },
+      ...(formattedDate
+        ? [
+            {
+              input: {
+                text: {
+                  text: `<span foreground="#e6b35c" letter_spacing="4096">${formattedDate}</span>`,
+                  font: "Lato Bold 18",
+                  fontfile: fonts.latoBold,
+                  rgba: true,
+                },
+              },
+              left: 84,
+              top: 528,
+            },
+          ]
+        : []),
     ])
     .png({ compressionLevel: 9, palette: true })
     .toBuffer();

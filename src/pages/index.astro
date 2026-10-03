@@ -212,10 +212,10 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   }
 
   .current-issue-heading h2 {
-    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--label-font);
     font-size: var(--font-size-ui);
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
   }
 
@@ -269,7 +269,7 @@ const iconAssignments = assignIcons(recentArticles.slice(1).map((a) => a.id));
   }
 
   .current-issue li::marker {
-    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--label-font);
     font-size: var(--font-size-meta);
   }
 

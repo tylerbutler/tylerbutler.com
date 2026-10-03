@@ -2,14 +2,13 @@ import { Buffer } from "node:buffer";
 import fs from "node:fs/promises";
 import path from "node:path";
 import subsetFont from "subset-font";
+import {
+  FONT_FAMILIES,
+  FONT_SERVICE_ORIGIN,
+  FONT_SITE,
+} from "./font-config.ts";
 
-const DEFAULT_API_URL = "https://fonts.tylerbutler.com/v1/subsets";
-const FONT_FACES = [
-  { id: "regular", fileName: "PragmataPro_Mono_R_liga_0902.woff2" },
-  { id: "bold", fileName: "PragmataPro_Mono_B_liga_0902.woff2" },
-  { id: "italic", fileName: "PragmataPro_Mono_I_liga_0902.woff2" },
-  { id: "bold-italic", fileName: "PragmataPro_Mono_Z_liga_0902.woff2" },
-] as const;
+const DEFAULT_API_URL = `${FONT_SERVICE_ORIGIN}/v1/subsets`;
 
 async function walk(dir: string, extension: string): Promise<string[]> {
   const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -59,58 +58,60 @@ export async function publishFontSubsets(outputDir: URL): Promise<void> {
   const apiUrl = process.env.FONT_SUBSET_API_URL ?? DEFAULT_API_URL;
   console.log(`Publishing ${codepoints.length} codepoints to ${apiUrl}`);
 
-  const request = {
-    site: "tylerbutler.com",
-    font: "pragmata-pro",
-    version: "0.902",
-    codepoints,
-  };
-  let response = await fetch(apiUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(request),
-  });
+  for (const family of FONT_FAMILIES) {
+    const request = {
+      site: FONT_SITE,
+      font: family.id,
+      version: family.version,
+      codepoints,
+    };
+    let response = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(request),
+    });
 
-  if (response.status === 409) {
-    const text = String.fromCodePoint(...codepoints);
-    const faces = [];
+    if (response.status === 409) {
+      const text = String.fromCodePoint(...codepoints);
+      const faces = [];
 
-    for (const face of FONT_FACES) {
-      const sourcePath = path.join(
-        process.cwd(),
-        "public",
-        "fonts",
-        face.fileName,
-      );
-      const source = await fs.readFile(sourcePath);
-      const generated = await subsetFont(source, text, {
-        targetFormat: "woff2",
-      });
-      faces.push({
-        id: face.id,
-        data: Buffer.from(generated).toString("base64"),
+      for (const face of family.faces) {
+        const sourcePath = path.join(
+          process.cwd(),
+          "public",
+          "fonts",
+          face.fileName,
+        );
+        const source = await fs.readFile(sourcePath);
+        const generated = await subsetFont(source, text, {
+          targetFormat: "woff2",
+        });
+        faces.push({
+          id: face.id,
+          data: Buffer.from(generated).toString("base64"),
+        });
+      }
+
+      response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...request, faces }),
       });
     }
 
-    response = await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...request, faces }),
-    });
-  }
+    if (!response.ok) {
+      throw new Error(
+        `Font subset publication failed for ${family.id} (${response.status}): ${await response.text()}`,
+      );
+    }
 
-  if (!response.ok) {
-    throw new Error(
-      `Font subset publication failed (${response.status}): ${await response.text()}`,
+    const result = (await response.json()) as {
+      cached: boolean;
+      codepointCount: number;
+      cssUrl: string;
+    };
+    console.log(
+      `Published ${family.id}: ${result.codepointCount} codepoints to ${result.cssUrl} (${result.cached ? "cached" : "generated"})`,
     );
   }
-
-  const result = (await response.json()) as {
-    cached: boolean;
-    codepointCount: number;
-    cssUrl: string;
-  };
-  console.log(
-    `Published ${result.codepointCount} codepoints to ${result.cssUrl} (${result.cached ? "cached" : "generated"})`,
-  );
 }

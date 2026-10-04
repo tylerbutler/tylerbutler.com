@@ -25,6 +25,19 @@ pnpm build
 pnpm serve
 ```
 
+### Project Content
+
+Add a `tags` list to a project's frontmatter to show related articles:
+
+```yaml
+tags: ["trellis", "gleam"]
+```
+
+On each project page, readers see articles that match at least one tag,
+newest first. Tag matching is case-sensitive. Each article appears once,
+even if it matches more than one tag. Pages with no matches omit the section.
+Draft articles stay hidden unless you set `SHOW_DRAFTS=1`.
+
 ### Fonts
 
 The masthead uses Idlewild SSm Light (weight 300) from the font service.

@@ -2,6 +2,7 @@
 title: trellis
 date: 2026-07-10
 description: A workspace CLI for multi-package Gleam projects.
+tags: ["trellis"]
 url: https://trellis.tylerbutler.com/
 github: https://github.com/tylerbutler/trellis
 logo: ../../assets/trellis.svg

@@ -1,4 +1,5 @@
 import type { CollectionEntry } from "astro:content";
+import { includeDraft } from "./draft-utils.ts";
 
 export const RESERVED_SLUGS = new Set([
   "about",
@@ -25,6 +26,19 @@ export function getArticleDisplayTitle(
 
 export function getArticleSlug(article: CollectionEntry<"articles">): string {
   return article.id;
+}
+
+export function getRelatedArticles(
+  articles: CollectionEntry<"articles">[],
+  tags: string[] = [],
+): CollectionEntry<"articles">[] {
+  const projectTags = new Set(tags);
+  return articles
+    .filter(
+      ({ data }) =>
+        includeDraft(data) && data.tags?.some((tag) => projectTags.has(tag)),
+    )
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
 export function validateArticleSlugs(

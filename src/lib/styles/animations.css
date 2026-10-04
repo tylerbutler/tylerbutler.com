@@ -32,12 +32,12 @@ select,
 /* Keep defaults deliberately low-specificity so component link roles can
    replace them without starting a selector arms race. */
 :where(
-    .article-content a:not(.action-chip):not(.heading-anchor),
-    .content-inner
-      a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.action-chip):not(
-        .heading-anchor
-      )
-  ) {
+  .article-content a:not(.action-chip):not(.heading-anchor),
+  .content-inner
+    a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.action-chip):not(
+      .heading-anchor
+    )
+) {
   text-decoration: underline;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.2em;
@@ -47,12 +47,12 @@ select,
 }
 
 :where(
-    .article-content a:not(.action-chip):not(.heading-anchor):hover,
-    .content-inner
-      a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.action-chip):not(
-        .heading-anchor
-      ):hover
-  ) {
+  .article-content a:not(.action-chip):not(.heading-anchor):hover,
+  .content-inner
+    a:not(.tag):not(.nav-link):not(.badge):not(.blank):not(.action-chip):not(
+      .heading-anchor
+    ):hover
+) {
   text-decoration-color: transparent;
 }
 
@@ -60,11 +60,11 @@ select,
    already reads as the target, so skip the body-link underline there.
    Components can opt back into a title-specific treatment. */
 :where(
-    .article-content :is(h1, h2, h3, h4, h5, h6) a:not(.heading-anchor),
-    .content-inner
-      :is(h1, h2, h3, h4, h5, h6)
-      a:not(.tag):not(.nav-link):not(.heading-anchor)
-  ) {
+  .article-content :is(h1, h2, h3, h4, h5, h6) a:not(.heading-anchor),
+  .content-inner
+    :is(h1, h2, h3, h4, h5, h6)
+    a:not(.tag):not(.nav-link):not(.heading-anchor)
+) {
   text-decoration: none;
 }
 

@@ -6,6 +6,11 @@ import Github from "simple-icons-astro/Github";
 import ActionChip from "../../components/ActionChip.astro";
 import ProjectBadges from "../../components/ProjectBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import {
+  getArticleDisplayTitle,
+  getArticleUrl,
+  getRelatedArticles,
+} from "../../lib/article-utils";
 import { includeDraft } from "../../lib/draft-utils";
 import { formatTitle } from "../../lib/typography";
 
@@ -23,6 +28,15 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+const relatedArticles = await Promise.all(
+  getRelatedArticles(
+    project.data.tags?.length ? await getCollection("articles") : [],
+    project.data.tags,
+  ).map(async (article) => ({
+    ...article,
+    formattedTitle: await formatTitle(getArticleDisplayTitle(article)),
+  })),
+);
 ---
 
 <BaseLayout
@@ -77,6 +91,26 @@ const { Content } = await render(project);
         </ActionChip>
       )}
     </div>
+
+    {relatedArticles.length > 0 && (
+      <section class="related-articles" aria-labelledby="related-articles-heading">
+        <h2 id="related-articles-heading">Related Articles</h2>
+        <ul>
+          {relatedArticles.map(article => (
+            <li>
+              <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
+              <time datetime={article.data.date.toISOString()}>
+                {article.data.date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
   </article>
 </BaseLayout>
 
@@ -190,5 +224,20 @@ const { Content } = await render(project);
   .project-logo {
     width: 96px;
     float: left;
+    margin-right: 1em;
+  }
+
+  .related-articles {
+    margin-top: 2em;
+  }
+
+  .related-articles li {
+    margin-bottom: 1em;
+  }
+
+  .related-articles time {
+    display: block;
+    color: var(--text-light);
+    font-size: var(--font-size-meta);
   }
 </style>

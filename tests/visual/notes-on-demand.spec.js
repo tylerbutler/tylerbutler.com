@@ -12,6 +12,10 @@ test.describe("On-demand notes", () => {
     const feed = await response.json();
     expect(feed.version).toBe("https://jsonfeed.org/version/1.1");
     expect(feed.items.length).toBeGreaterThan(20);
+    const stream = await page.goto("/notes/");
+    expect(stream.status()).toBe(200);
+    expect(stream.headers()["content-type"]).toContain("text/html");
+    await expect(page.locator("h1")).toHaveText("Notes");
     await page.goto("/notes/2/");
     await expect(page.locator(".page-indicator")).toContainText("Page 2");
     await expect(page.locator(".h-entry")).toHaveCount(20);

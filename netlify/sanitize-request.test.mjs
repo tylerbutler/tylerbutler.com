@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { sanitizeRequest } from "./sanitize-request.js";
+import { sanitizeRequest } from "../src/lib/micropub/sanitize-request.js";
 
 const URL_MICROPUB = "https://tylerbutler.com/micropub";
 

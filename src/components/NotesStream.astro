@@ -1,24 +1,17 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
-import type { GetStaticPaths } from "astro";
-import NoteCard from "../../components/NoteCard.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { includeDraft } from "../../lib/draft-utils";
-import "../../lib/styles/page-nav.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { NoteCounts } from "../lib/note-counts";
+import type { Note } from "../lib/note-schema";
+import { renderNote } from "../lib/render-note";
+import NoteCard from "./NoteCard.astro";
+import "../lib/styles/page-nav.css";
 
 const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
 
-export const getStaticPaths = (async ({ paginate }) => {
-  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
-  const sorted = notes.sort(
-    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-  );
-  return paginate(sorted, { pageSize: 20 });
-}) satisfies GetStaticPaths;
-
-const { page } = Astro.props as {
+const { page, counts } = Astro.props as {
+  counts: NoteCounts;
   page: {
-    data: CollectionEntry<"notes">[];
+    data: Note[];
     url: { prev?: string; next?: string; current: string };
     currentPage: number;
     lastPage: number;
@@ -28,8 +21,7 @@ const { page } = Astro.props as {
 
 const renderedNotes = await Promise.all(
   page.data.map(async (note) => {
-    const { Content } = await render(note);
-    return { note, Content };
+    return { note, html: await renderNote(note) };
   }),
 );
 
@@ -57,7 +49,7 @@ const pageTitle =
     )}
 
     <div class="notes-stream">
-      {renderedNotes.map(({ note, Content }, i) => {
+      {renderedNotes.map(({ note, html }, i) => {
         const older = renderedNotes[i + 1];
         const gap = older
           ? Math.round(
@@ -69,8 +61,8 @@ const pageTitle =
 
         return (
           <Fragment>
-            <NoteCard note={note}>
-              <Content />
+            <NoteCard note={note} counts={counts}>
+              <Fragment set:html={html} />
             </NoteCard>
 
             {showGap && (
@@ -87,14 +79,14 @@ const pageTitle =
       <nav class="article-nav">
         {page.url.prev && (
           <a href={page.url.prev} class="nav-link">
-            <span class="nav-arrow">←</span>
+            <span class="nav-arrow" aria-hidden="true">←</span>
             <span class="nav-text">Newer notes</span>
           </a>
         )}
         {page.url.next && (
           <a href={page.url.next} class="nav-link nav-link-next">
             <span class="nav-text">Older notes</span>
-            <span class="nav-arrow">→</span>
+            <span class="nav-arrow" aria-hidden="true">→</span>
           </a>
         )}
       </nav>

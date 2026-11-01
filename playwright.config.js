@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [["html", { open: "never" }]],
   use: {
-    baseURL: "http://localhost:4327",
+    baseURL: process.env.NOTES_TEST_BASE_URL || "http://localhost:4327",
     trace: "on-first-retry",
   },
   projects: [
@@ -37,13 +37,15 @@ export default defineConfig({
       use: { ...devices["iPad Pro"] },
     },
   ],
-  webServer: {
-    // Serve the production build (per README, all tests run against `pnpm build` output);
-    // the dev server's toolbar animates and destabilizes screenshots
-    command: "serve dist -l 4327",
-    port: 4327,
-    reuseExistingServer: !process.env.CI,
-    stdout: "pipe",
-    stderr: "pipe",
-  },
+  webServer: process.env.NOTES_TEST_BASE_URL
+    ? undefined
+    : {
+        // Serve the production build (per README, all tests run against `pnpm build` output);
+        // the dev server's toolbar animates and destabilizes screenshots
+        command: "serve dist -l 4327",
+        port: 4327,
+        reuseExistingServer: !process.env.CI,
+        stdout: "pipe",
+        stderr: "pipe",
+      },
 });

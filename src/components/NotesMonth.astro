@@ -1,63 +1,42 @@
 ---
-import { getCollection, render } from "astro:content";
-import NoteCard from "../../../../components/NoteCard.astro";
-import BaseLayout from "../../../../layouts/BaseLayout.astro";
-import { includeDraft } from "../../../../lib/draft-utils";
-import "../../../../lib/styles/page-nav.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { NoteCounts } from "../lib/note-counts";
+import type { Note } from "../lib/note-schema";
+import { renderNote } from "../lib/render-note";
+import NoteCard from "./NoteCard.astro";
+import "../lib/styles/page-nav.css";
 import {
   getNoteMonthUrl,
   getNotePathParts,
   getNoteYearUrl,
   monthLabel,
-} from "../../../../lib/note-utils";
+} from "../lib/note-utils";
 
-export async function getStaticPaths() {
-  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
-
-  const byKey = new Map<
-    string,
-    {
-      year: string;
-      month: string;
-      items: Array<{ note: (typeof notes)[number]; day: string }>;
-    }
-  >();
-  for (const note of notes) {
-    const { year, month, day } = getNotePathParts(note);
-    const key = `${year}-${month}`;
-    if (!byKey.has(key)) byKey.set(key, { year, month, items: [] });
-    byKey.get(key)!.items.push({ note, day });
-  }
-
-  const keys = [...byKey.keys()].sort();
-
-  return keys.map((key, idx) => {
-    const { year, month, items } = byKey.get(key)!;
-    items.sort(
-      (a, b) => b.note.data.date.getTime() - a.note.data.date.getTime(),
-    );
-    const prev = idx > 0 ? byKey.get(keys[idx - 1])! : null;
-    const next = idx < keys.length - 1 ? byKey.get(keys[idx + 1])! : null;
-    return {
-      params: { year, month },
-      props: {
-        items,
-        prev: prev ? { year: prev.year, month: prev.month } : null,
-        next: next ? { year: next.year, month: next.month } : null,
-      },
-    };
-  });
+interface Props {
+  notes: Note[];
+  counts: NoteCounts;
+  year: string;
+  month: string;
 }
-
-const { year, month } = Astro.params;
-const { items, prev, next } = Astro.props;
+const { notes, counts, year, month } = Astro.props;
+const allItems = notes.map((note) => ({ note, ...getNotePathParts(note) }));
+const keys = [
+  ...new Set(allItems.map((item) => `${item.year}-${item.month}`)),
+].sort();
+const index = keys.indexOf(`${year}-${month}`);
+const parts = (key?: string) =>
+  key ? { year: key.slice(0, 4), month: key.slice(5) } : null;
+const prev = parts(keys[index - 1]);
+const next = parts(keys[index + 1]);
+const items = allItems.filter(
+  (item) => item.year === year && item.month === month,
+);
 
 const heading = `${monthLabel(month)} ${year}`;
 
 const renderedItems = await Promise.all(
   items.map(async (item) => {
-    const { Content } = await render(item.note);
-    return { ...item, Content };
+    return { ...item, html: await renderNote(item.note) };
   }),
 );
 ---
@@ -80,9 +59,9 @@ const renderedItems = await Promise.all(
 
     <div class="notes-stream">
       {
-        renderedItems.map(({ note, Content }) => (
-          <NoteCard note={note} titleLevel={2}>
-            <Content />
+        renderedItems.map(({ note, html }) => (
+          <NoteCard note={note} counts={counts} titleLevel={2}>
+            <Fragment set:html={html} />
           </NoteCard>
         ))
       }
@@ -95,7 +74,7 @@ const renderedItems = await Promise.all(
             href={getNoteMonthUrl(prev.year, prev.month)}
             class="nav-link"
           >
-            <span class="nav-arrow">←</span>
+            <span class="nav-arrow" aria-hidden="true">←</span>
             <span class="nav-text">
               {monthLabel(prev.month)} {prev.year}
             </span>
@@ -111,7 +90,7 @@ const renderedItems = await Promise.all(
             <span class="nav-text">
               {monthLabel(next.month)} {next.year}
             </span>
-            <span class="nav-arrow">→</span>
+            <span class="nav-arrow" aria-hidden="true">→</span>
           </a>
         )
       }

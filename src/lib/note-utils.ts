@@ -1,4 +1,4 @@
-import type { CollectionEntry } from "astro:content";
+import type { Note } from "./note-schema.ts";
 
 const PT_DATE_FORMATTER = new Intl.DateTimeFormat("en-CA", {
   timeZone: "America/Los_Angeles",
@@ -29,9 +29,7 @@ export interface NotePathParts {
   slug: string;
 }
 
-export function getNotePathParts(
-  note: CollectionEntry<"notes">,
-): NotePathParts {
+export function getNotePathParts(note: Note): NotePathParts {
   const [year, month, day] = PT_DATE_FORMATTER.format(note.data.date).split(
     "-",
   );
@@ -44,16 +42,41 @@ export function getNotePathParts(
 // fallback exists because @benjifs/micropub does not write a `slug`
 // frontmatter field; the netlify store wrapper injects it on creation,
 // but we keep this fallback for defense in depth.
-export function noteSlug(note: CollectionEntry<"notes">): string {
+export function noteSlug(note: Note): string {
   if (note.data.slug) return note.data.slug;
-  const id = note.id;
+  const id = note.id.split("/").pop() ?? note.id;
   const match = id.match(/^\d{4}-\d{2}-\d{2}-(.+)$/);
   return match ? match[1] : id;
 }
 
-export function getNoteUrl(note: CollectionEntry<"notes">): string {
+export function getNoteUrl(note: Note): string {
   const { year, month, day, slug } = getNotePathParts(note);
   return `/notes/${year}/${month}/${day}/${slug}`;
+}
+
+export function getNotePhotos(
+  note: Note,
+  html: string,
+): { src: string; alt: string }[] {
+  const images = new Set(
+    Array.from(
+      html.matchAll(/<img\b[^>]*\bsrc="([^"]*)"/g),
+      (match) => match[1],
+    ),
+  );
+  return (note.data.photos ?? []).flatMap((src, i) =>
+    images.has(escapeHtml(src))
+      ? []
+      : [{ src, alt: note.data.photoAlt?.[i] ?? "" }],
+  );
+}
+
+export function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
 export function getNoteYearUrl(year: string): string {

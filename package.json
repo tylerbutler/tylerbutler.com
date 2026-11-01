@@ -78,13 +78,13 @@
     "remark-shift-headings": "^0.1.1",
     "remark-smartypants": "^3.0.2",
     "remark-stringify": "^11.0.0",
-    "sanitize-html": "^2.17.2",
+    "sanitize-html": "2.17.2",
     "simple-icons-astro": "^16.1.0",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.11",
+    "@biomejs/biome": "2.5.15",
     "@dotlottie/dotlottie-js": "^1.6.3",
     "@fontsource/lato": "^5.2.7",
     "@lhci/cli": "^0.15.1",

@@ -1,9 +1,9 @@
-import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
+import { cacheNetlify } from "@astrojs/netlify/cache";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import brokenLinksChecker from "astro-broken-links-checker";
@@ -17,6 +17,8 @@ import { remarkLazyLinks } from "remark-lazy-links";
 import { remarkShiftHeadings } from "remark-shift-headings";
 import { visualizer } from "rollup-plugin-visualizer";
 import { downloadFonts } from "./scripts/download-fonts.ts";
+import { indexNotes } from "./scripts/index-notes.ts";
+import { prepareNotes } from "./scripts/prepare-notes.ts";
 import { prepareOgAssets } from "./scripts/prepare-og-assets.ts";
 import { publishFontSubsets } from "./scripts/publish-font-subsets.ts";
 import { articleRedirects } from "./src/lib/article-redirects.ts";
@@ -110,9 +112,7 @@ const pagefindIntegration = () => ({
     "astro:build:done": async ({ dir }: { dir: URL }) => {
       try {
         console.log("🔍 Building Pagefind search index...");
-        execSync(`npx pagefind --site "${dir.pathname}"`, {
-          stdio: "inherit",
-        });
+        await indexNotes(dir);
         console.log("✅ Pagefind search index built successfully");
       } catch (error) {
         console.error("❌ Pagefind indexing failed:", (error as Error).message);
@@ -138,8 +138,19 @@ export default defineConfig({
     ],
   }),
   output: "static",
+  cache: { provider: cacheNetlify() },
+  // Middleware keeps Origin checks except for token-authenticated publishing.
+  security: { checkOrigin: false },
 
   integrations: [
+    {
+      name: "notes-baseline",
+      hooks: {
+        "astro:config:setup": async () => {
+          await prepareNotes();
+        },
+      },
+    },
     icon(),
     fontDownloader(),
     fontSubsetPublisher(),

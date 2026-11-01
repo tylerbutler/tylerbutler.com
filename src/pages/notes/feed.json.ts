@@ -1,67 +1,55 @@
-import { getCollection, render } from "astro:content";
 import type { APIContext } from "astro";
-import { experimental_AstroContainer as AstroContainer } from "astro/container";
-import sanitizeHtml from "sanitize-html";
-import { includeDraft } from "../../lib/draft-utils";
-import { addFeedTrackingPixel } from "../../lib/feed-utils";
+import { publicNotes } from "../../lib/live-notes";
 import { getNoteUrl, plaintextExcerpt } from "../../lib/note-utils";
+import { cacheNotes } from "../../lib/notes-cache";
+import { noteFeedHtml, noteModified } from "../../lib/render-note";
 
+export const prerender = false;
 export async function GET(context: APIContext) {
-  const site = (context.site || new URL("https://tylerbutler.com")).toString();
-  const siteUrl = site.endsWith("/") ? site.slice(0, -1) : site;
-
-  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
-
-  const sortedNotes = notes.sort(
-    (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-  );
-
-  const container = await AstroContainer.create();
-
-  const items = await Promise.all(
-    sortedNotes.map(async (note) => {
-      const { Content } = await render(note);
-      const html = await container.renderToString(Content);
-      const path = `${getNoteUrl(note)}/`;
-      const url = `${siteUrl}${path}`;
-      const body = note.body ?? "";
-
-      const item: Record<string, unknown> = {
-        id: url,
-        url,
-        content_html: addFeedTrackingPixel(
-          sanitizeHtml(html, {
-            allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-          }),
-          path,
-        ),
-        content_text: plaintextExcerpt(body, 1000),
-        date_published: note.data.date.toISOString(),
-      };
-      if (note.data.lastmod) {
-        item.date_modified = note.data.lastmod.toISOString();
-      }
-      if (note.data.title) item.title = note.data.title;
-      if (note.data.summary) item.summary = note.data.summary;
-      if (note.data.tags && note.data.tags.length > 0) {
-        item.tags = note.data.tags;
-      }
-      return item;
-    }),
-  );
-
-  const feed = {
-    version: "https://jsonfeed.org/version/1.1",
-    title: "Tyler Butler — Notes",
-    home_page_url: `${siteUrl}/notes/`,
-    feed_url: `${siteUrl}/notes/feed.json`,
-    description: "Short-form notes by Tyler Butler.",
-    language: "en-us",
-    authors: [{ name: "Tyler Butler", url: `${siteUrl}/` }],
-    items,
-  };
-
-  return new Response(JSON.stringify(feed, null, 2), {
-    headers: { "Content-Type": "application/feed+json; charset=utf-8" },
-  });
+  try {
+    const site = (context.site || new URL("https://tylerbutler.com")).origin;
+    const notes = await publicNotes();
+    const items = await Promise.all(
+      notes.map(async (note) => {
+        const url = `${site}${getNoteUrl(note)}/`;
+        return {
+          id: url,
+          url,
+          content_html: await noteFeedHtml(note),
+          content_text: plaintextExcerpt(note.body ?? "", 1000),
+          date_published: note.data.date.toISOString(),
+          ...(note.data.lastmod || note.data.updated
+            ? { date_modified: noteModified(note).toISOString() }
+            : {}),
+          ...(note.data.title ? { title: note.data.title } : {}),
+          ...(note.data.summary ? { summary: note.data.summary } : {}),
+          ...(note.data.tags?.length ? { tags: note.data.tags } : {}),
+        };
+      }),
+    );
+    cacheNotes(context);
+    return new Response(
+      JSON.stringify(
+        {
+          version: "https://jsonfeed.org/version/1.1",
+          title: "Tyler Butler — Notes",
+          home_page_url: `${site}/notes/`,
+          feed_url: `${site}/notes/feed.json`,
+          description: "Short-form notes by Tyler Butler.",
+          language: "en-us",
+          authors: [{ name: "Tyler Butler", url: `${site}/` }],
+          items,
+        },
+        null,
+        2,
+      ),
+      { headers: { "Content-Type": "application/feed+json; charset=utf-8" } },
+    );
+  } catch {
+    context.cache.set(false);
+    return new Response("Notes feed unavailable.", {
+      status: 503,
+      headers: { "Cache-Control": "no-store" },
+    });
+  }
 }

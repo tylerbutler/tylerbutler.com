@@ -1,10 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
+import type { Note } from "../lib/note-schema";
 import { getNoteUrl } from "../lib/note-utils";
 
 interface Props {
-  note: CollectionEntry<"notes">;
+  note: Note;
   className?: string;
 }
 

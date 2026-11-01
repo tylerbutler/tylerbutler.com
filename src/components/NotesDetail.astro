@@ -1,20 +1,17 @@
 ---
-import { getCollection, render } from "astro:content";
-import NoteCard from "../../../../../components/NoteCard.astro";
-import BaseLayout from "../../../../../layouts/BaseLayout.astro";
-import { includeDraft } from "../../../../../lib/draft-utils";
-import { getNotePathParts, getNoteUrl } from "../../../../../lib/note-utils";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { NoteCounts } from "../lib/note-counts";
+import type { Note } from "../lib/note-schema";
+import { getNoteUrl } from "../lib/note-utils";
+import { renderNote } from "../lib/render-note";
+import NoteCard from "./NoteCard.astro";
 
-export async function getStaticPaths() {
-  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
-  return notes.map((note) => ({
-    params: getNotePathParts(note),
-    props: { note },
-  }));
+interface Props {
+  note: Note;
+  counts: NoteCounts;
 }
-
-const { note } = Astro.props;
-const { Content } = await render(note);
+const { note, counts } = Astro.props;
+const html = await renderNote(note);
 
 const formattedDate = note.data.date.toLocaleDateString("en-US", {
   year: "numeric",
@@ -34,8 +31,8 @@ const pageTitle = note.data.title
   headerSize="small"
   canonicalUrl={canonicalUrl}
 >
-  <NoteCard note={note} variant="detail" titleLevel={1}>
-    <Content />
+  <NoteCard note={note} counts={counts} variant="detail" titleLevel={1}>
+    <Fragment set:html={html} />
   </NoteCard>
 
   <footer class="note-footer">

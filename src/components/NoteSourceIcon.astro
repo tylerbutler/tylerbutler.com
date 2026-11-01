@@ -18,7 +18,7 @@ const label = source ? labels[source] : null;
 ---
 
 {source && label && (
-  <span class:list={["note-source-icon", className]} title={label} aria-label={label}>
+  <span class:list={["note-source-icon", className]} role="img" title={label} aria-label={label}>
     {source === "twitter" && <Icon name="iconoir:twitter" aria-hidden="true" />}
     {source === "microblog" && <Microdotblog fill="currentColor" aria-hidden="true" />}
   </span>

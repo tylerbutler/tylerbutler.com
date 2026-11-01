@@ -5,3 +5,4 @@ Allow: /
 Disallow:
 
 Sitemap: https://tylerbutler.com/sitemap-index.xml
+Sitemap: https://tylerbutler.com/notes/sitemap.xml

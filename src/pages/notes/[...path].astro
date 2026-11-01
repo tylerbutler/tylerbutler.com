@@ -1,0 +1,52 @@
+---
+import NotesDetail from "../../components/NotesDetail.astro";
+import NotesMonth from "../../components/NotesMonth.astro";
+import NotesStream from "../../components/NotesStream.astro";
+import NotesYear from "../../components/NotesYear.astro";
+import { publicNotes } from "../../lib/live-notes";
+import { getNoteCounts } from "../../lib/note-counts";
+import { noteRoute } from "../../lib/note-route";
+import type { Note } from "../../lib/note-schema";
+import { cacheNotes } from "../../lib/notes-cache";
+
+export const prerender = false;
+let notes: Note[];
+try {
+  notes = await publicNotes();
+} catch {
+  Astro.cache.set(false);
+  return new Response("Notes are temporarily unavailable.", {
+    status: 503,
+    headers: { "Cache-Control": "no-store" },
+  });
+}
+const route = noteRoute(Astro.params.path, notes);
+if (!route)
+  return new Response("Note not found.", {
+    status: 404,
+    headers: { "Cache-Control": "no-store" },
+  });
+if (Astro.params.path === "1") return Astro.redirect("/notes/", 308);
+cacheNotes(Astro);
+const counts = getNoteCounts(notes);
+const pageUrl = (page: number) => (page === 1 ? "/notes/" : `/notes/${page}/`);
+const page =
+  route.kind === "stream"
+    ? {
+        data: notes.slice((route.page - 1) * 20, route.page * 20),
+        currentPage: route.page,
+        lastPage: route.lastPage,
+        total: notes.length,
+        url: {
+          current: pageUrl(route.page),
+          prev: route.page > 1 ? pageUrl(route.page - 1) : undefined,
+          next:
+            route.page < route.lastPage ? pageUrl(route.page + 1) : undefined,
+        },
+      }
+    : undefined;
+---
+{route.kind === "stream" && page && <NotesStream page={page} counts={counts} />}
+{route.kind === "year" && <NotesYear notes={notes} counts={counts} year={route.year} />}
+{route.kind === "month" && <NotesMonth notes={notes} counts={counts} year={route.year} month={route.month} />}
+{route.kind === "detail" && <NotesDetail note={route.note} counts={counts} />}

@@ -1,63 +1,46 @@
 ---
-import { getCollection, render } from "astro:content";
-import NoteCard from "../../../components/NoteCard.astro";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { includeDraft } from "../../../lib/draft-utils";
-import "../../../lib/styles/page-nav.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { NoteCounts } from "../lib/note-counts";
+import type { Note } from "../lib/note-schema";
+import { renderNote } from "../lib/render-note";
+import NoteCard from "./NoteCard.astro";
+import "../lib/styles/page-nav.css";
 import {
   getNoteMonthUrl,
   getNotePathParts,
   getNoteYearUrl,
   monthLabel,
-} from "../../../lib/note-utils";
+} from "../lib/note-utils";
 
-export async function getStaticPaths() {
-  const notes = await getCollection("notes", ({ data }) => includeDraft(data));
-
-  const byYear = new Map<
-    string,
-    Array<{ note: (typeof notes)[number]; month: string; day: string }>
-  >();
-  for (const note of notes) {
-    const { year, month, day } = getNotePathParts(note);
-    if (!byYear.has(year)) byYear.set(year, []);
-    byYear.get(year)!.push({ note, month, day });
-  }
-
-  const years = [...byYear.keys()].sort();
-
-  return years.map((year, idx) => {
-    const items = byYear
-      .get(year)!
-      .sort((a, b) => b.note.data.date.getTime() - a.note.data.date.getTime());
-    return {
-      params: { year },
-      props: {
-        items,
-        prevYear: idx > 0 ? years[idx - 1] : null,
-        nextYear: idx < years.length - 1 ? years[idx + 1] : null,
-      },
-    };
-  });
+interface Props {
+  notes: Note[];
+  counts: NoteCounts;
+  year: string;
 }
-
-const { year } = Astro.params;
-const { items, prevYear, nextYear } = Astro.props;
+const { notes, counts, year } = Astro.props;
+const years = [
+  ...new Set(notes.map((note) => getNotePathParts(note).year)),
+].sort();
+const index = years.indexOf(year);
+const prevYear = years[index - 1];
+const nextYear = years[index + 1];
+const items = notes
+  .map((note) => ({ note, ...getNotePathParts(note) }))
+  .filter((item) => item.year === year);
 
 const groupedByMonth = new Map<string, typeof items>();
 for (const item of items) {
   if (!groupedByMonth.has(item.month)) groupedByMonth.set(item.month, []);
-  groupedByMonth.get(item.month)!.push(item);
+  groupedByMonth.get(item.month)?.push(item);
 }
 const months = [...groupedByMonth.keys()].sort().reverse();
 
 const renderedByMonth = await Promise.all(
   months.map(async (month) => {
-    const monthItems = groupedByMonth.get(month)!;
+    const monthItems = groupedByMonth.get(month) ?? [];
     const rendered = await Promise.all(
       monthItems.map(async (item) => {
-        const { Content } = await render(item.note);
-        return { ...item, Content };
+        return { ...item, html: await renderNote(item.note) };
       }),
     );
     return { month, items: rendered };
@@ -86,9 +69,9 @@ const renderedByMonth = await Promise.all(
             <a href={getNoteMonthUrl(year, month)}>{monthLabel(month)}</a>
           </h2>
           <div class="notes-stream">
-            {monthItems.map(({ note, Content }) => (
-              <NoteCard note={note}>
-                <Content />
+            {monthItems.map(({ note, html }) => (
+              <NoteCard note={note} counts={counts}>
+                <Fragment set:html={html} />
               </NoteCard>
             ))}
           </div>
@@ -100,7 +83,7 @@ const renderedByMonth = await Promise.all(
       {
         prevYear && (
           <a href={getNoteYearUrl(prevYear)} class="nav-link">
-            <span class="nav-arrow">←</span>
+            <span class="nav-arrow" aria-hidden="true">←</span>
             <span class="nav-text">{prevYear}</span>
           </a>
         )
@@ -112,7 +95,7 @@ const renderedByMonth = await Promise.all(
             class="nav-link nav-link-next"
           >
             <span class="nav-text">{nextYear}</span>
-            <span class="nav-arrow">→</span>
+            <span class="nav-arrow" aria-hidden="true">→</span>
           </a>
         )
       }

@@ -1,13 +1,15 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getNoteUrl } from "../lib/note-utils";
+import type { NoteCounts } from "../lib/note-counts";
+import type { Note } from "../lib/note-schema";
+import { getNotePhotos, getNoteUrl } from "../lib/note-utils";
 import HEntryAuthor from "./HEntryAuthor.astro";
 import NoteDate from "./NoteDate.astro";
 import NotePermalink from "./NotePermalink.astro";
 import NoteSourceIcon from "./NoteSourceIcon.astro";
 
 export interface Props {
-  note: CollectionEntry<"notes">;
+  note: Note;
+  counts: NoteCounts;
   /**
    * "feed" — used in listings/streams (renders permalink icon).
    * "detail" — used on the single-note page (omits the permalink icon since
@@ -26,7 +28,7 @@ function hostnameOf(url: string): string {
   }
 }
 
-const { note, variant = "feed", titleLevel = 3 } = Astro.props;
+const { note, counts, variant = "feed", titleLevel = 3 } = Astro.props;
 const { data } = note;
 const url = getNoteUrl(note);
 const TitleTag = `h${titleLevel}` as "h1" | "h2" | "h3" | "h4";
@@ -53,6 +55,14 @@ const contextRels: Array<{
 ];
 const hasContext = contextRels.some((c) => c.urls.length > 0);
 const isRsvp = data.postType === "rsvp" && data.rsvp;
+const content = (await Astro.slots.render("default")).replace(
+  /<img\b[^>]*>/g,
+  (img) =>
+    img.includes('class="')
+      ? img.replace('class="', 'class="u-photo ')
+      : img.replace("<img", '<img class="u-photo"'),
+);
+const photos = getNotePhotos(note, content);
 ---
 
 <article class={`note-card h-entry note-card--${variant} note-card--${data.postType}`}>
@@ -68,7 +78,7 @@ const isRsvp = data.postType === "rsvp" && data.rsvp;
     )}
     <span class="note-meta">
       <NoteSourceIcon source={data.source} />
-      <NoteDate note={note} className="note-permalink" />
+      <NoteDate note={note} counts={counts} className="note-permalink" />
       {variant === "feed" && <NotePermalink note={note} />}
       <HEntryAuthor />
     </span>
@@ -100,11 +110,11 @@ const isRsvp = data.postType === "rsvp" && data.rsvp;
   )}
 
   <div class="note-card-content e-content">
-    <slot />
-    {data.photos && data.photos.length > 0 && (
+    <Fragment set:html={content} />
+    {photos.length > 0 && (
       <div class="note-photos">
-        {data.photos.map((src) => (
-          <img class="u-photo" src={src} alt="" loading="lazy" />
+        {photos.map(({ src, alt }) => (
+          <img class="u-photo" src={src} alt={alt} loading="lazy" />
         ))}
       </div>
     )}

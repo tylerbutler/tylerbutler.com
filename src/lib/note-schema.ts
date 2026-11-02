@@ -70,6 +70,8 @@ export interface Note {
   id: string;
   data: NoteData;
   body?: string;
+  html?: string;
+  sourceUrl?: string;
 }
 
 export function includeNote(data: NoteData): boolean {

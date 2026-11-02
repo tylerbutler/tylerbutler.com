@@ -3,19 +3,26 @@ import { expect, test } from "./font-service.js";
 test.describe("On-demand notes", () => {
   test.skip(!process.env.NOTES_TEST_BASE_URL, "Requires an Astro SSR target");
 
-  test("feeds, archives, pagination, and canonical note pages agree", async ({
+  test("direct feeds, archives, pagination, and canonical note pages work", async ({
     page,
     request,
   }) => {
-    const response = await request.get("/notes/feed.json");
-    expect(response.status()).toBe(200);
-    const feed = await response.json();
-    expect(feed.version).toBe("https://jsonfeed.org/version/1.1");
-    expect(feed.items.length).toBeGreaterThan(20);
+    for (const [path, target] of [
+      ["/notes/feed.json", "https://tylerbutler.micro.blog/feed.json"],
+      ["/notes/feed.xml", "https://tylerbutler.micro.blog/feed.xml"],
+    ]) {
+      const response = await request.get(path, { maxRedirects: 0 });
+      expect(response.status()).toBe(302);
+      expect(response.headers().location).toBe(target);
+    }
     const stream = await page.goto("/notes/");
     expect(stream.status()).toBe(200);
     expect(stream.headers()["content-type"]).toContain("text/html");
     await expect(page.locator("h1")).toHaveText("Notes");
+    const pathname = await page
+      .locator(".note-permalink-icon.u-url")
+      .first()
+      .getAttribute("href");
     await page.goto("/notes/2/");
     await expect(page.locator(".page-indicator")).toContainText("Page 2");
     await expect(page.locator(".h-entry")).toHaveCount(20);
@@ -23,13 +30,12 @@ test.describe("On-demand notes", () => {
       "role",
       "img",
     );
-    const pathname = new URL(feed.items[0].url).pathname;
     await page.goto(pathname);
     await expect(page.locator(".h-entry")).toHaveCount(1);
     await expect(page.locator(".e-content")).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      feed.items[0].url.replace(/\/$/, ""),
+      `https://tylerbutler.com${pathname.replace(/\/$/, "")}`,
     );
     const [, , year, month] = pathname.split("/");
     await page.goto(`/notes/${year}/`);
@@ -38,19 +44,31 @@ test.describe("On-demand notes", () => {
     await expect(page.locator(".archive-count")).toBeVisible();
     expect((await request.get("/notes/999999/")).status()).toBe(404);
     const sitemap = await request.get("/notes/sitemap.xml");
-    expect(await sitemap.text()).toContain(feed.items[0].url);
+    expect(await sitemap.text()).toContain(
+      `https://tylerbutler.com${pathname}/`,
+    );
     expect((await request.get("/micropub?q=config")).status()).toBe(401);
   });
   test("photos load and keep their microformats in light and dark layouts", async ({
     page,
-    request,
   }) => {
-    const feed = await (await request.get("/notes/feed.json")).json();
-    const photo = feed.items.find((item) =>
-      item.content_html.includes("/uploads/"),
-    );
-    test.skip(!photo, "Requires a published photo note");
-    await page.goto(new URL(photo.url).pathname);
+    await page.goto("/notes/");
+    let card = page
+      .locator(".note-card")
+      .filter({ has: page.locator(".e-content img") })
+      .first();
+    if (!(await card.count())) {
+      await page.goto("/notes/2/");
+      card = page
+        .locator(".note-card")
+        .filter({ has: page.locator(".e-content img") })
+        .first();
+    }
+    test.skip(!(await card.count()), "Requires a published photo note");
+    const pathname = await card
+      .locator(".note-permalink-icon.u-url")
+      .getAttribute("href");
+    await page.goto(pathname);
     const image = page.locator(".e-content img.u-photo").first();
     await expect(image).toBeVisible();
     await expect

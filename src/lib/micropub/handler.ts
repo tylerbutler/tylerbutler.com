@@ -1,4 +1,5 @@
 import type { APIContext } from "astro";
+import { microblogIdentity } from "../microblog-notes.ts";
 import { getNoteUrl } from "../note-utils.ts";
 import { createMicropub } from "./config.ts";
 import { sanitizeRequest } from "./sanitize-request.js";
@@ -19,14 +20,30 @@ export async function publish(
     });
   }
   try {
+    let sourceOwned = false;
     const { store, endpoint } = createMicropub(async (url: string) => {
       const { currentNotes } = await import("../live-notes.ts");
-      return (await currentNotes()).find((note) => getNoteUrl(note) === url);
+      const note = (await currentNotes()).find(
+        (note) => getNoteUrl(note) === url,
+      );
+      if (microblogIdentity(note?.data.originalUrl)) {
+        sourceOwned = true;
+        throw new Error("Edit Micro.blog-owned posts at Micro.blog");
+      }
+      return note;
     });
     const request = await sanitizeRequest(context.request);
     const response = await (media
       ? endpoint.mediaHandler(request)
       : endpoint.micropubHandler(request));
+    if (sourceOwned)
+      return Response.json(
+        {
+          error: "invalid_request",
+          error_description: "Edit or delete this post at Micro.blog.",
+        },
+        { status: 400, headers: { "Cache-Control": "no-store" } },
+      );
     const headers = new Headers(response.headers);
     headers.set("Cache-Control", "no-store");
     if (response.status === 201) {

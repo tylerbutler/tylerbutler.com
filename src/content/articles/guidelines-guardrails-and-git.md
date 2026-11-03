@@ -6,5 +6,5 @@ tags:
 - agents
 ---
 
-Related to [my last post](./stop-re-explaining-your-conventions-in-code-review.md), Allen Pike [covers similar
+Related to [my last post](/stop-re-explaining-your-conventions-in-code-review), Allen Pike [covers similar
 ground](https://allenpike.com/2026/in-repo-agent-instructions/).

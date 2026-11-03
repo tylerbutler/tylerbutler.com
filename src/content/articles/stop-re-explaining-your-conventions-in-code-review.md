@@ -1,7 +1,7 @@
 ---
 title: 'Stop re-explaining your conventions in code review'
 subtitle: 'Keeping a codebase coherent with repopo'
-date: '2026-11-02T17:39:16-08:00'
+date: '2026-11-03T07:39:16-08:00'
 slug: stop-re-explaining-your-conventions-in-code-review
 draft: true
 tags:

@@ -1,13 +1,16 @@
 ---
 title: 'Stop re-explaining your conventions in code review'
-subtitle: 'Keeping a codebase coherent with repopo'
-date: '2026-10-21T11:58:45-07:00'
+subtitle: 'keeping a codebase coherent with repopo'
+date: '2026-11-02T17:39:16-08:00'
 slug: stop-re-explaining-your-conventions-in-code-review
 draft: true
+tags:
+- repopo
+- agents
 ---
 
-In her piece [Test coverage won't save you from incoherence][powerplant], Jenn Cooper argues that coding agents speed up
-incoherence across a codebase. One line stood out to me, because it's proven true in my own projects:
+In her piece [Test Coverage Won't Save You][powerplant], Jenn Cooper argues that coding agents spread incoherence
+across a codebase faster. One line stood out to me, because it's proven true in my own projects:
 
 > Every merged PR becomes a precedent.
 
@@ -15,20 +18,20 @@ The natural outcome is a feedback loop. An agent copies whatever patterns it fin
 patterns all on its own.
 
 I've been building a tool called [repopo][repopo] that enforces repo policies, and I think it could be useful for
-exploring some of the just-in-time agent opportunities Jenn talks about.
+exploring the just-in-time agent coaching Jenn talks about: telling an agent what to fix, and what not to break, at the
+moment it's working.
 
 ## Where repopo came from
 
 Repopo came out of my work on the [Fluid Framework][fluid]. We had a lot of rules we needed to enforce across the repo
 that didn't belong to any particular linter. ESLint is great for code, but it's not great for questions like "is this
 project set up properly?" Does this package have a README? Does the README have the right sections? Those rules are
-about the repo itself. Or maybe you have layers in your code, and you don't want certain layers to call into
-other ones. That's another place a tool like this can be useful.
+about the repo itself.
 
 So we built a [policy check tool][flub-policy] into our build tooling and made it pretty flexible. It runs against files
 in the repo that match a regex, and it can fix many problems automatically. It worked well enough in Fluid that I wanted
-the same thing everywhere, but I didn't want to bring Fluid's build tools everywhere, and there were some other changes I
-wanted to make.
+the same thing everywhere, but I didn't want to bring Fluid's build tools everywhere, and there were some other changes
+I wanted to make.
 
 That's repopo: a lint tool for any file in your Git repo, with a straightforward way to write your own policies. It aims
 to be fast enough to run regularly as part of your inner loop.
@@ -40,12 +43,13 @@ Her examples include forbidding certain service calls and capping bundle growth.
 agent after a check fails -- how to fix the violation and what it must not break along the way.
 
 Now, you can absolutely write architectural checks in a test runner. Nothing stops a test from asserting import
-boundaries. But a passing test suite can't tell you about something you never took the time to encode as a test.
+boundaries. But a passing test suite can't tell you about something you never took the time to encode, and repo-wide
+tests take plumbing that most people won't bother to write.
 
-That's where repopo comes in. Instead of writing a test that loads every file in the repo and checks each one, you
-define policies and repopo handles the common plumbing. You can write your own or use the bundled ones. A *file policy*
-matches paths with a regular expression and runs a handler for each matching file. The handler can return an error with
-instructions for a manual fix, or, if the change is mechanical, it can just fix the thing.
+Repopo makes those checks cheaper to write. Instead of writing a test that loads every file in the repo and checks each
+one, you define policies and repopo handles the common plumbing. You can write your own or use the bundled ones. A
+*file policy* matches paths with a regular expression and runs a handler for each matching file. The handler can return
+an error with instructions for a manual fix, or, if the change is mechanical, it can just fix the thing.
 
 I use a bunch of the built-in policies for package metadata and scripts in my [tools monorepo][monorepo-config], but a
 repo-specific rule shows the connection to Jenn's argument better.
@@ -103,31 +107,33 @@ the migration.
 
 ## Repository policies
 
-Some rules need more context than a single file. For those, repopo has *repository policies*, which run
-once after the file policies finish.
+Some rules need more context than a single file. For those, repopo has *repository policies*, which run once after the
+file policies finish.
 
 The built-in `SharedDependencyVersions` policy is a good example -- it checks that members of a Cargo workspace agree on
 dependency versions. It's a Rust-specific policy, but the same API is there for your own cross-file rules.
 
-Could you use it for Jenn's example of tool handlers calling AI services? Sure, but it's harder than it sounds.
-Do you care about direct imports only, or calls through intermediate modules? What about import aliases? Dynamic
-imports? A text search for one import string will leave gaps. If your linter or a dependency-analysis tool already
-handles the boundary you need, use that. Repopo is a home for repo-specific checks. Leave dependency analysis to
-the tools built for it.
+Could you use it for Jenn's example of tool handlers calling AI services? Sure, but it's harder than it sounds. Do you
+care about direct imports only, or calls through intermediate modules? What about import aliases? Dynamic imports? A
+text search for one import string will leave gaps. If your linter or a dependency-analysis tool already handles the
+boundary you need, use that. Repopo is a home for repo-specific checks. Leave dependency analysis to the tools built for
+it.
 
 ## Ratchets
 
-Jenn also describes *ratchets* for measurable things like bundle size: set a ceiling at the current value, then
-require review for any growth.
+Jenn also describes *ratchets* for measurable things like bundle size: set a ceiling at the current value, then require
+review for significant growth.
 
 I wouldn't use repopo for bundle size. You can't measure a bundle until you build it, and a full build is too slow for a
 check you run in your inner loop. Bundle size checks should run in CI at the very least, and a dedicated bundle-size
 tool will do the job better than anything you write yourself. Those tools already handle compression, per-entry-point
-budgets, and reporting the change on each PR. Those checks still need instructions that protect the product as well as
-the number. Ripping out an accessibility label to save a few bytes is not a fix. If growth is intentional, raise the
-limit in a reviewed change and say why it's worth it.
+budgets, and reporting the change on each PR.
 
-Ratchets on source files are a different story. Repopo already reads the files in your repo, so a custom policy can
+Bundle-size checks still need instructions that protect the product as well as the number. Ripping out an accessibility
+label to save a few bytes is not a fix. If growth is intentional, raise the limit in a reviewed change and say why it's
+worth it.
+
+Ratchets on source files are a different story. Repopo already walks the files in your repo, so a custom policy can
 count lines or find files that still use a deprecated pattern without waiting for a build. Have the policy compare the
 result against a limit in committed config and report both numbers when it fails.
 
@@ -136,7 +142,7 @@ into four awkward ones to get under it. A smaller number doesn't always mean a b
 
 ## What repopo won't do
 
-To be fair to the problem, there's a lot repopo doesn't handle, and it's worth being clear about that:
+There's a lot repopo doesn't handle, and it's worth being clear about that:
 
 - **No built-in ratchets.** There are no historical baselines. You write the measurement and comparison, and your team
   owns the review process.
@@ -144,8 +150,8 @@ To be fair to the problem, there's a lot repopo doesn't handle, and it's worth b
   That's one more reason to leave bundle size to a dedicated tool.
 - **It's not a commit gate.** Repopo exits nonzero when there are unresolved violations. Wiring that into CI or a local
   hook is up to you.
-- **It can't judge design.** It can reject a forbidden file. It can't tell you whether two helpers express the same idea,
-  or whether a new abstraction earns its keep.
+- **It can't judge design.** It can reject a forbidden file. It can't tell you whether two helpers express the same
+  idea, or whether a new abstraction earns its keep.
 
 That last one is where the agent-based reviews Jenn describes come in, including reviews that flag tests preserving
 patterns the team wants to retire. I'd run those alongside deterministic checks. When a reviewer keeps flagging the same
@@ -160,6 +166,23 @@ Install repopo as a dev dependency:
 npm install --save-dev repopo
 ```
 
+Without a config file, repopo runs a small default set of policies. To use your own, create `repopo.config.ts` in the
+root of your repo and register them with `makePolicy`:
+
+```ts
+import { type FilePolicyDefinition, makePolicy, type RepopoConfig } from "repopo";
+
+const NoPackageProjectJson = {
+	// The policy from earlier in this post
+} satisfies FilePolicyDefinition;
+
+const config: RepopoConfig = {
+	policies: [makePolicy(NoPackageProjectJson)],
+};
+
+export default config;
+```
+
 Then run:
 
 ```sh
@@ -170,7 +193,7 @@ npx repopo check --fix   # fix what can be fixed automatically
 I'd put the read-only check in CI and ask coding agents to run it before they declare a task done. The [docs][repopo]
 cover the rest, including partial checks.
 
-For my monorepo, the task-config rule is one decision I've managed to write down where it can't be missed. Future
+For my monorepo, the task-config rule is one decision I've managed to write down where it's hard to miss. Future
 contributors get the reasoning right in the error message, and I spend less time in code review repeating myself about
 where task config belongs.
 

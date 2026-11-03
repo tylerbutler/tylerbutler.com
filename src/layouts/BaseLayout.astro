@@ -4,6 +4,10 @@ import BrokenLinkTooltip from "../components/BrokenLinkTooltip.astro";
 import FootnoteScript from "../components/FootnotesScript.astro";
 import Header from "../components/Header.astro";
 import Tinylytics from "../components/Tinylytics.astro";
+import {
+  MICROBLOG_JSON_FEED,
+  MICROBLOG_RSS_FEED,
+} from "../lib/microblog-notes";
 import "../lib/styles/global.css";
 
 export interface Props {
@@ -78,8 +82,8 @@ const socialImageUrl = ogImage
     <!-- Feeds -->
     <link rel="alternate" type="application/rss+xml" title="Tyler Butler" href="/feed.xml" />
     <link rel="alternate" type="application/feed+json" title="Tyler Butler" href="/feed.json" />
-    <link rel="alternate" type="application/rss+xml" title="Tyler Butler — Notes" href="/notes/feed.xml" />
-    <link rel="alternate" type="application/feed+json" title="Tyler Butler — Notes" href="/notes/feed.json" />
+    <link rel="alternate" type="application/rss+xml" title="Tyler Butler — Notes" href={MICROBLOG_RSS_FEED} />
+    <link rel="alternate" type="application/feed+json" title="Tyler Butler — Notes" href={MICROBLOG_JSON_FEED} />
     <!-- IndieAuth -->
     <link rel="authorization_endpoint" href="https://indieauth.com/auth" />
     <link rel="token_endpoint" href="https://tokens.indieauth.com/token" />

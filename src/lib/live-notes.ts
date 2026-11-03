@@ -1,6 +1,7 @@
 import hashes from "../../.cache/notes-source-hashes.json";
 import { githubTree, readNotes } from "./github-notes";
-import { includeNote, type Note } from "./note-schema";
+import { mergeMicroblogNotes, readMicroblogSnapshot } from "./microblog-notes";
+import type { Note } from "./note-schema";
 
 export async function currentNotes(): Promise<Note[]> {
   // The live config imports this module; defer the reverse import.
@@ -22,9 +23,15 @@ export async function publicNotes(): Promise<Note[]> {
     id: entry.id,
     data: entry.data,
     body: entry.data.body,
+    html: entry.data.html,
+    sourceUrl: entry.data.sourceUrl,
   }));
 }
 
-export function visibleNotes(notes: readonly Note[]): Note[] {
-  return notes.filter((note) => includeNote(note.data));
+export async function synchronizedNotes(): Promise<Note[]> {
+  const [stored, source] = await Promise.all([
+    currentNotes(),
+    readMicroblogSnapshot(),
+  ]);
+  return mergeMicroblogNotes(stored, source);
 }

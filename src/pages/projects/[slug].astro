@@ -5,6 +5,7 @@ import { ExternalLink } from "@lucide/astro";
 import Github from "simple-icons-astro/Github";
 import ActionChip from "../../components/ActionChip.astro";
 import ProjectBadges from "../../components/ProjectBadges.astro";
+import SourcePreview from "../../components/SourcePreview.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
   getArticleDisplayTitle,
@@ -74,6 +75,12 @@ const relatedArticles = await Promise.all(
         {project.data.tags.map(tag => (
           <a href={`/tags/${tag}/`} class="tag" data-pagefind-filter="tag">#{tag}</a>
         ))}
+      </div>
+    )}
+
+    {project.data.url && (
+      <div class="project-previews">
+        <SourcePreview url={project.data.url} />
       </div>
     )}
 
@@ -209,6 +216,16 @@ const relatedArticles = await Promise.all(
     color: var(--text-light);
     margin: 1em 0 1.5em 0;
     line-height: 1.5;
+  }
+
+  .project-previews {
+    display: grid;
+    gap: 1em;
+    margin-top: 2em;
+  }
+
+  .project-previews:not(:has(:global(.link-preview:not(.link-preview--no-metadata)))) {
+    display: none;
   }
 
   /* The chips style themselves in ActionChip.astro — this row only spaces them */

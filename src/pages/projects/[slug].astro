@@ -29,8 +29,18 @@ export async function getStaticPaths() {
 const { project, relationships } = Astro.props;
 const relationshipSections = await Promise.all(
   [
-    { heading: "Powered by", id: "powered-by", projects: relationships.poweredBy },
-    { heading: "Powers", id: "powers", projects: relationships.powers },
+    {
+      heading: "Powered by",
+      id: "powered-by",
+      description: `Projects that ${project.data.title} depends on.`,
+      projects: relationships.poweredBy,
+    },
+    {
+      heading: "Powers",
+      id: "powers",
+      description: `Projects that use ${project.data.title} as a dependency.`,
+      projects: relationships.powers,
+    },
   ]
     .filter(({ projects }) => projects.length > 0)
     .map(async (section) => ({
@@ -113,6 +123,7 @@ const relatedArticles = await Promise.all(
         {relationshipSections.map(section => (
           <section aria-labelledby={`${section.id}-heading`}>
             <h2 id={`${section.id}-heading`}>{section.heading}</h2>
+            <p class="relationship-context">{section.description}</p>
             <ul>
               {section.projects.map(relatedProject => (
                 <li>
@@ -299,6 +310,11 @@ const relatedArticles = await Promise.all(
   .project-relationships p {
     margin: 0.25em 0 0;
     color: var(--text-light);
+  }
+
+  .project-relationships .relationship-context {
+    margin-top: 0.5em;
+    overflow-wrap: anywhere;
   }
 
   .related-articles li {

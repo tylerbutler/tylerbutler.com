@@ -12,6 +12,9 @@ test("project dependencies link in both directions without empty sections", asyn
     }, theme);
 
     const poweredBy = page.getByRole("region", { name: "Powered by" });
+    await expect(poweredBy.locator(".relationship-context")).toHaveText(
+      "Projects that tylerbutler.com depends on.",
+    );
     await expect(poweredBy.getByRole("link")).toHaveText([
       "rehype-footnotes",
       "remark-lazy-links",
@@ -44,6 +47,9 @@ test("project dependencies link in both directions without empty sections", asyn
 
     await poweredBy.getByRole("link").first().click();
     const powers = page.getByRole("region", { name: "Powers", exact: true });
+    await expect(powers.locator(".relationship-context")).toHaveText(
+      "Projects that use rehype-footnotes as a dependency.",
+    );
     await expect(powers.getByRole("link")).toHaveText(["tylerbutler.com"]);
     await expect(powers.getByRole("link")).toHaveAttribute(
       "href",

@@ -10,6 +10,8 @@ crate: trellis-gleam
 programmingLanguage: rust
 license: MIT
 maturity: stable
+dependsOn:
+  - tiny-update-check
 ---
 
 Use Trellis to manage a Gleam monorepo from its existing `gleam.toml` files. Run builds and tests across packages in dependency order, check workspace configuration, and coordinate changelogs, versioning, and publishing. Install a single Rust binary with no runtime dependencies.

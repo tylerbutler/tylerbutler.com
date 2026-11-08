@@ -8,6 +8,9 @@ programmingLanguage: gleam
 license: MIT
 tags: ["ccl"]
 maturity: experimental
+dependsOn:
+  - ccl-test
+  - trellis
 
 draft: true
 ---

@@ -9,6 +9,8 @@ crate: repoverlay
 programmingLanguage: rust
 license: MIT
 maturity: stable
+dependsOn:
+  - tiny-update-check
 ---
 
 ## Overview

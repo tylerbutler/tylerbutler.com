@@ -21,14 +21,16 @@ This is a comprehensive test project to verify all markdown formatting features 
 
 ### Text Formatting
 
-This project supports **bold text**, *italic text*, ***bold and italic***, ~~strikethrough~~, and `inline code`.
+This project supports **bold text**, _italic text_, _**bold and italic**_, ~~strikethrough~~, and `inline code`.
 
 Smart typography includes "double quotes", 'single quotes', em dashes—like this—and ellipsis...
 
 ### Headings Hierarchy
 
 #### Level 4: Installation
+
 ##### Level 5: Prerequisites
+
 ###### Level 6: System Requirements
 
 All headings are automatically linked for easy navigation.
@@ -80,7 +82,7 @@ CMD ["npm", "start"]
 ### System Design
 
 <!-- TODO: Re-enable once mermaid SVG generation is fixed on Netlify -->
-<!--
+<pre hidden>
 ```mermaid
 graph LR
     A[Client] --> B[API Gateway]
@@ -89,11 +91,11 @@ graph LR
     C --> E[Cache]
     B --> F[Authentication]
 ```
--->
+</pre>
 
 ### Data Flow
 
-<!--
+<pre hidden>
 ```mermaid
 sequenceDiagram
     participant Client
@@ -108,11 +110,11 @@ sequenceDiagram
     Service->>API: Response
     API->>Client: JSON
 ```
--->
+</pre>
 
 ### Component Architecture
 
-<!--
+<pre hidden>
 ```mermaid
 graph TD
     A[Application] --> B[Core Module]
@@ -125,18 +127,18 @@ graph TD
     D --> I[Models]
     D --> J[Services]
 ```
--->
+</pre>
 
 ## Configuration
 
 ### Environment Variables
 
-| Variable | Description | Default | Required |
-|----------|-------------|---------|----------|
-| `PORT` | Server port | `4321` | No |
-| `DATABASE_URL` | Database connection | - | Yes |
-| `API_KEY` | External API key | - | Yes |
-| `LOG_LEVEL` | Logging verbosity | `info` | No |
+| Variable       | Description         | Default | Required |
+| -------------- | ------------------- | ------- | -------- |
+| `PORT`         | Server port         | `4321`  | No       |
+| `DATABASE_URL` | Database connection | -       | Yes      |
+| `API_KEY`      | External API key    | -       | Yes      |
+| `LOG_LEVEL`    | Logging verbosity   | `info`  | No       |
 
 ### Configuration File
 
@@ -191,13 +193,13 @@ Response:
 
 ### Data Endpoints
 
-| Endpoint | Method | Description | Auth Required |
-|----------|--------|-------------|---------------|
-| `/api/users` | GET | List users | ✅ |
-| `/api/users/:id` | GET | Get user | ✅ |
-| `/api/users` | POST | Create user | ✅ |
-| `/api/users/:id` | PUT | Update user | ✅ |
-| `/api/users/:id` | DELETE | Delete user | ✅ |
+| Endpoint         | Method | Description | Auth Required |
+| ---------------- | ------ | ----------- | ------------- |
+| `/api/users`     | GET    | List users  | ✅            |
+| `/api/users/:id` | GET    | Get user    | ✅            |
+| `/api/users`     | POST   | Create user | ✅            |
+| `/api/users/:id` | PUT    | Update user | ✅            |
+| `/api/users/:id` | DELETE | Delete user | ✅            |
 
 ## Code Examples
 
@@ -468,20 +470,20 @@ def test_get_users(client, auth_headers):
 
 ### Comparison Table
 
-| Operation | Throughput | Latency (p50) | Latency (p95) | Latency (p99) |
-|-----------|------------|---------------|---------------|---------------|
-| Read | 10,000 req/s | 5ms | 15ms | 25ms |
-| Write | 5,000 req/s | 10ms | 30ms | 50ms |
-| Update | 7,500 req/s | 8ms | 20ms | 35ms |
-| Delete | 8,000 req/s | 6ms | 18ms | 30ms |
+| Operation | Throughput   | Latency (p50) | Latency (p95) | Latency (p99) |
+| --------- | ------------ | ------------- | ------------- | ------------- |
+| Read      | 10,000 req/s | 5ms           | 15ms          | 25ms          |
+| Write     | 5,000 req/s  | 10ms          | 30ms          | 50ms          |
+| Update    | 7,500 req/s  | 8ms           | 20ms          | 35ms          |
+| Delete    | 8,000 req/s  | 6ms           | 18ms          | 30ms          |
 
 ### Resource Usage
 
-| Metric | Idle | Light Load | Heavy Load | Peak |
-|--------|------|------------|------------|------|
-| CPU | 5% | 25% | 60% | 85% |
-| Memory | 100MB | 250MB | 500MB | 750MB |
-| Network | 1MB/s | 10MB/s | 50MB/s | 100MB/s |
+| Metric  | Idle  | Light Load | Heavy Load | Peak    |
+| ------- | ----- | ---------- | ---------- | ------- |
+| CPU     | 5%    | 25%        | 60%        | 85%     |
+| Memory  | 100MB | 250MB      | 500MB      | 750MB   |
+| Network | 1MB/s | 10MB/s     | 50MB/s     | 100MB/s |
 
 ## Deployment
 

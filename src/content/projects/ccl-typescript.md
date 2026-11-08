@@ -9,6 +9,8 @@ programmingLanguage: typescript
 license: MIT
 tags: ["ccl"]
 maturity: experimental
+dependsOn:
+  - ccl-test
 
 draft: true
 ---

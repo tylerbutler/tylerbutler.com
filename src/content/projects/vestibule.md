@@ -6,6 +6,8 @@ github: https://github.com/tylerbutler/vestibule
 programmingLanguage: gleam
 license: MIT
 maturity: stable
+dependsOn:
+  - trellis
 
 draft: true
 ---

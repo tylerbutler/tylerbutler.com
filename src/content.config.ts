@@ -88,6 +88,7 @@ const projects = defineCollection({
         .optional(),
       logo: image().optional(),
       group: reference("projectGroups").optional(),
+      dependsOn: z.array(reference("projects")).default([]),
     }),
 });
 

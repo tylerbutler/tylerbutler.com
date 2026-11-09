@@ -13,5 +13,3 @@ tags: ["markdown"]
 
 Transforms `[*]`-style lazy link placeholders in Markdown into proper numbered reference links, making it easier to
 write link-heavy documents without manually numbering references.
-
-See 

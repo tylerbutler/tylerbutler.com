@@ -38,6 +38,25 @@ newest first. Tag matching is case-sensitive. Each article appears once,
 even if it matches more than one tag. Pages with no matches omit the section.
 Draft articles stay hidden unless you set `SHOW_DRAFTS=1`.
 
+Add `dependsOn` to list other projects that a project uses. Each value is
+the referenced project's content ID (the slug in its `/projects/<id>/` URL):
+
+Include libraries, shared test suites, and build or release tools that the
+project uses. Do not list former dependencies or projects that only share
+the same underlying technology.
+
+```yaml
+dependsOn:
+  - rehype-footnotes
+  - remark-lazy-links
+```
+
+The project page shows these links under **Powered by**. Referenced project
+pages automatically show the reverse links under **Powers**. Both lists show
+direct relationships only, sorted by project title, with each project listed
+once. Empty sections are omitted. Draft projects stay hidden unless you set
+`SHOW_DRAFTS=1`. Unknown IDs and self-dependencies fail the build.
+
 ### Fonts
 
 The masthead uses Idlewild SSm Light (weight 300) from the font service.

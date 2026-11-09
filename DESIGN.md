@@ -18,10 +18,20 @@ colors:
   deep-space-void: "#0f1419"
   cabin-paper: "#e8e4de"
   cabin-paper-dim: "#c9c4bc"
+  cabin-shadow: "#2d3748"
+  code-paper: "#e2e8f0"
+  golden-dim: "#8b6f3a"
+  golden-hover: "#c4a366"
+  cabin-nav-dark: "#f0f0f0"
   instrument-green: "#4a7c59"
   instrument-blue: "#4a6b8a"
   instrument-red: "#b85a4a"
   instrument-violet: "#8b5a9d"
+  instrument-green-dark: "#6b9d7a"
+  instrument-blue-dark: "#6b8aaa"
+  instrument-orange-dark: "#e69a4a"
+  instrument-red-dark: "#d47a6a"
+  instrument-violet-dark: "#a67ab8"
 typography:
   display:
     fontFamily: "Idlewild SSm, Helvetica Neue, Arial, sans-serif"
@@ -39,7 +49,6 @@ typography:
     fontFamily: "adelle, Baskerville, Georgia, serif"
     fontSize: "clamp(13px, 2.2vw, 16px)"
     fontWeight: 400
-    fontStyle: "italic"
     lineHeight: 1.4
     letterSpacing: "0.02em"
   headline:
@@ -98,17 +107,44 @@ components:
     textColor: "{colors.burnt-atmosphere}"
     rounded: "{rounded.sm}"
     padding: "0.2em 0.4em"
+  action-chip:
+    backgroundColor: "{colors.cloud-shadow}"
+    textColor: "{colors.nebula-teal}"
+    rounded: "{rounded.md}"
+    padding: "6px 12px"
+  action-chip-hover:
+    backgroundColor: "{colors.burnt-atmosphere}"
+    textColor: "{colors.cloud-light-white}"
+  content-link:
+    textColor: "{colors.burnt-atmosphere}"
+    typography: "{typography.body}"
+  note-alert:
+    backgroundColor: "color-mix(in srgb, #4a6b8a 10%, #faf8f6)"
+    textColor: "{colors.nebula-teal}"
+    rounded: "0 4px 4px 0"
+    padding: "1em 1.5em"
+  tag-chip:
+    backgroundColor: "{colors.cloud-shadow}"
+    textColor: "{colors.nebula-teal}"
+    rounded: "{rounded.sm}"
+    padding: "2px 6px"
+  input-search:
+    backgroundColor: "{colors.cloud-light-white}"
+    textColor: "{colors.nebula-teal}"
+    typography: "{typography.label}"
+    rounded: "{rounded.md}"
+    height: "44px"
 ---
 
 # Design System: tylerbutler.com
 
-## 1. Overview
+## Overview
 
 **Creative North Star: "The Golden Age Paperback"**
 
 The site is a 1970s science-fiction paperback cover you can read: a painted sky fixed behind everything, golden titling set in Idlewild SSm across a deep blue-gray masthead, and a warm white page of serif type floating in front of it. The scene is literal — a full-viewport spacecraft-sunset backdrop sits behind the site container, and on mobile it becomes a painted sunset gradient. Wonder is carried by the frame (masthead, constellations, gold accents); the page itself stays calm and bookish so long-form reading always comes first.
 
-The register is brand, but the surface is a reading surface. Density is low: one centered column clamped to a book-like measure, generous flow spacing, article dividers drawn as animated constellations instead of rules. Personality arrives in small, deliberate delights — a kudos button whose 🚀 actually launches, a webring, footnotes — never in loud gestures. Per PRODUCT.md, this explicitly rejects SaaS landing-page grammar and the interchangeable Inter-on-white dev-blog template.
+Readers use a centered column with a book-like measure, generous flow spacing, and animated constellation dividers between articles. The kudos rocket, webring, and footnotes add detail without disrupting the text. Preserve the retro-sci-fi identity and the visual anti-references in PRODUCT.md.
 
 **Key Characteristics:**
 - A literal painted-sky scene: fixed backdrop → glowing site container → dark masthead → light page
@@ -117,13 +153,16 @@ The register is brand, but the surface is a reading surface. Density is low: one
 - Class-toggled light/dark themes; dark mode swaps burnt orange for starfield gold
 - Small delights over big motion: link underlines that fade on hover, launching rockets, constellation dividers
 
-## 2. Colors
+## Colors
 
 A golden-hour cover palette: warm metallic accents burning against deep blue-gray, over a quiet warm white page.
 
 ### Primary
 - **Burnt Atmosphere** (#96591c): the working accent — links, inline code text, focus outlines, table header rules. Deepened to hold WCAG AA at body size: 5.3:1 on the page, 4.8:1 on Cloud Shadow. In dark mode its role passes to **Starfield Gold** (#d4af37). **Atmosphere Ember** (#7d4b17) is the hover state — links darken on hover on light surfaces. **Atmosphere Bright** (#b8722a) is the original brighter shade, kept for warning alerts and decorative borders where only 3:1 applies. **Horizon Flare** (#d4842a) is the bright hover reserved for dark masthead surfaces (nav links, social icons).
 - **Golden Horizon** (#e6b35c): the masthead color — site title, tagline, and wayfinding state within the masthead (active nav link, focus rings on masthead controls, 8.2:1 on the hull). It never appears inside the reading column.
+
+### Tertiary
+- Instrument colors for alerts and statuses use muted green, blue, orange, red, and violet. Dark mode uses the lighter `instrument-*-dark` variants. Alert fills mix 10% of the instrument color into the page background in light mode, and 15% into Deep Space Hull in dark mode.
 
 ### Neutral
 - **Deep Space Hull** (#1a2332): masthead background and dark-mode container; the structural dark of the scene.
@@ -132,16 +171,14 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 - **Cabin Paper** (#e8e4de): dark-mode body text — a warmed light gray (14.6:1 on Deep Space Void), so the dark cabin reads as the same paperback, never a cold gray terminal. **Cabin Paper Dim** (#c9c4bc) for dark-mode secondary text (10.7:1 on the void, 9.1:1 on the hull).
 - **Cabin Light** (#f7f5f2): navigation links on the dark masthead.
 - **Cloud Shadow** (#f0ede8): raised paper — inline code, blockquotes, alert and button fills.
-
-### Tertiary
-- Instrument colors for alerts and statuses, always muted to sit with the palette: **Instrument Green** (#4a7c59, tip/success), **Instrument Blue** (#4a6b8a, note/info), **Horizon Flare** (#d4842a, warning), **Instrument Red** (#b85a4a, caution/error), **Instrument Violet** (#8b5a9d, important). Alert fills are `color-mix` tints of the instrument color into the page background (10% light, 15% dark).
+- **Cabin Shadow** and **Code Paper** supply dark-mode inline code backgrounds and text. Golden Dim and Golden Hover supply dark-mode accent variants. Dark-mode navigation uses Cabin Nav Dark. Use the frontmatter values and the theme assignments in `src/lib/styles/variables.css`.
 
 ### Named Rules
 **The Titling Foil Rule.** Golden Horizon belongs to the masthead alone — titling, and the masthead's own wayfinding states (active nav, focus rings on its controls). If gold is appearing inside the reading column in light mode, it's the wrong accent — use Burnt Atmosphere.
 
 **The Two Suns Rule.** Light mode's sun is deep burnt orange (#96591c); dark mode's is starfield gold (#d4af37). Every accent role swaps with the theme; both themes must independently hold WCAG AA contrast — 4.5:1 at body size, verified against the surface the text actually sits on (page, Cloud Shadow, or hull).
 
-## 3. Typography
+## Typography
 
 **Display Font:** Idlewild SSm Light (with Helvetica Neue, Arial fallback), loaded from the dynamic font subset service at weight 300 with `font-display: swap`
 **Body Font:** adelle (with Baskerville, Georgia fallback) — Typekit-loaded
@@ -163,9 +200,17 @@ A golden-hour cover palette: warm metallic accents burning against deep blue-gra
 ### Named Rules
 **The Masthead Rule.** Use Idlewild SSm Light for the masthead wordmark, constellation nameplates, and social-preview site label. Use Lato Regular for navigation and UI labels. Keep article prose, headings, and the rotating tagline in Adelle.
 
-**The One Voice Rule.** Everything readable is Adelle. Contrast comes from size and weight (100→300→400→600), never from introducing another text face.
+**The One Voice Rule.** Use Adelle for prose and content headings. Preserve the established Idlewild SSm masthead and Lato UI roles; do not add another font for emphasis.
 
-## 4. Elevation
+## Layout
+
+Center the reading container at `clamp(636px, 90vw, 763px)` with a 30px vertical outer margin. Content uses 35px inner side margins and 50.875px vertical padding. Use the existing flow rhythm: 1em between blocks, 1.25em between paragraphs, and 1.5em around larger content blocks.
+
+At widths up to 768px, cap the container at 90vw, use 20px inner side margins, and reduce the outer margin to 20px. At widths up to 480px, use 25px 15px header padding and 30px vertical content padding. At 1200px and above, navigation occupies a left extension of the masthead, while the reading column remains centered. Code frames can extend up to 180px beyond that column.
+
+Pagefind limits its search dialog to 640px and positions it 8dvh below the viewport top. At widths up to 640px, its mobile dialog drops the outer border and rounded corners. Lists and project relationships wrap within the reading column; related-project lists use responsive columns with a 16rem minimum when space permits.
+
+## Elevation & Depth
 
 Depth is primarily scenography, not shadow: the fixed painted backdrop sits behind everything, the site container floats in front of it with a soft ambient glow (`box-shadow: 0 0 20px rgba(26, 35, 50, 0.15)`), and the dark masthead caps the light page. Within the page, surfaces are mostly flat, with raised-paper tints (Cloud Shadow) marking blocks like code and quotes. Structural shadows are permitted on interactive and elevated elements — wide-screen code blocks lift with `0 4px 12px rgba(0,0,0,0.15)`, tags rise 1px on hover with a soft `0 2px 4px` shadow — and this is a sanctioned direction to extend: interactive elements may earn lift as a state response.
 
@@ -173,11 +218,16 @@ Depth is primarily scenography, not shadow: the fixed painted backdrop sits behi
 - **Ambient container glow** (`box-shadow: 0 0 20px var(--overlay)`): the site container against the backdrop. One per page.
 - **Structural lift** (`box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15)`): elevated functional blocks (wide-screen code frames) and, going forward, interactive elements that need affordance.
 - **Hover lift** (`translateY(-1px)` + `box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)`): small controls like tags responding to the cursor.
+- **Search surfaces:** Pagefind uses `0 2px 8px var(--overlay)` and `0 6px 18px var(--overlay)` for smaller layers, and `0 18px 48px rgba(26, 35, 50, 0.32)` for its dialog. The backdrop uses `rgba(26, 35, 50, 0.82)`.
 
 ### Named Rules
 **The Painted Depth Rule.** The scene provides the depth (backdrop → container → masthead → page); shadows respond to state and function, never decorate at rest.
 
-## 5. Components
+## Shapes
+
+Use small corner radii: 3px for inline code and tags, 4px for action chips and dialogs, and 8px where existing cards need it. Link focus outlines use a 2px radius. Quotes and alerts keep a flat left edge with rounded right corners (`0 4px 4px 0`), a 4px left border, and 1em 1.5em padding. Preserve these existing shapes rather than introducing new card forms.
+
+## Components
 
 Quiet instruments, small delights: controls are understated and bookish, then occasionally reward attention with a playful moment.
 
@@ -195,6 +245,10 @@ Quiet instruments, small delights: controls are understated and bookish, then oc
 - **Stream title links** (homepage article titles): body-ink text with no resting underline; hover moves the title to the accent. The heading scale and pointer/focus states provide the affordance without adding rules beneath wrapped titles.
 - **Heading self-anchors:** never underlined. The underline is spent only on links that go somewhere; heading anchors reveal a `#` glyph in the accent on hover/focus instead, and the `:target` heading gets a 10% accent wash (15% in dark)
 
+### Link previews
+On link-article pages, show one preview for the explicit frontmatter source after the heading and date, before commentary. Use the existing paper tint (`--code-bg`), gently rounded corners (4px), Adelle title and description, Lato domain in secondary ink, and accent links. Keep “Read original” and any via credit below the preview, including when metadata is unavailable. Ordinary body links do not unfurl.
+Project detail pages use the same preview for Website destinations, after project content and before the action chips. HexDocs links remain documentation badges without previews. Keep the chips and documentation badges available when metadata is missing. Listing pages retain their compact links without previews.
+
 ### Cards / Containers (Blockquotes & Alerts)
 - **Corner Style:** flat left edge, 4px rounded right corners (0 4px 4px 0)
 - **Background:** Cloud Shadow for quotes; alerts tint 10% of their instrument color into the page background (15% into Deep Space Hull in dark mode)
@@ -202,11 +256,11 @@ Quiet instruments, small delights: controls are understated and bookish, then oc
 - **Alert titles:** Lato Bold uppercase labels (14–15px, +0.5px tracking) in the instrument color, with octicon
 
 ### Inputs
-No styled input system exists yet (search is delegated to Pagefind UI). When one is needed, follow the instrument philosophy: Cloud Shadow fills, 1px quiet borders, the universal 2px accent focus outline.
+Pagefind uses the site theme variables for its search field, dialog, loading placeholders, and error states. The field uses Lato, a 44px height, a 4px radius, and the accent for its focus border and outline. Results and empty-state text use Adelle; result links use the standard content-link treatment. Error surfaces use the error color with a 10% tint. The dialog header and footer use the raised-paper background. Preserve these assignments rather than introducing a separate input palette.
 
 ### Navigation
 - **Style:** Lato Regular uppercase labels (12px, tracking 0.04em) in Cabin Light on the Deep Space Hull masthead; centered row with 20px gaps
-- **Hover / Active:** color shifts to Horizon Flare over 0.2s
+- **Hover / Active:** the centered navigation uses Horizon Flare over 0.2s. Wide sidebar links use white text; the active link uses Golden Horizon. Preserve the existing wide-sidebar cascade when extending it.
 - **Wide screens (≥1200px):** the nav detaches into a left sidebar column extending the masthead's dark block
 - **Mobile:** 12px labels wrap across centered rows when narrow. Desktop sidebar labels use 10–11px with less horizontal padding to keep each word intact. Preserve touch padding rather than forcing one row.
 - **Subscribe chip:** the feed link in the masthead's social row is the one conversion among identity icons, so it alone carries a visible word — a quiet chip (icon + "Subscribe" in Lato Regular caps) edged in 55% Golden Horizon. This is masthead wayfinding, inside the Titling Foil Rule
@@ -217,8 +271,8 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Archive navigation:** years remain directly addressable but are grouped by decade with visible article counts, reducing the choice burden without hiding publishing history.
 
 ### Action Chips (Read More / Permalink)
-- **Style:** italic Adelle at label size on Cloud Shadow with a 1px Nebula Teal Light border, 4px 10px padding, 4px radius — the kudos-button register, minus the rocket
-- **Hover:** fills the accent with page-white text
+- **Style:** italic Adelle at label size on Cloud Shadow with a 1px Nebula Teal Light border, 6px 12px padding, and 4px radius. Icons use 15px dimensions and a 0.5em gap.
+- **Hover / Focus:** fills the theme accent; text uses the current page background color. Reduced-motion settings disable the transition.
 - **Every stream preview ends with one:** "Read More →" when truncated, "Permalink →" when the article runs in full — the reader always gets a link at the point of maximum engagement
 - **Homepage stream coda:** the stream ends with paired "Browse the Archive →" and "Subscribe via RSS" chips, giving the reader both a next read and a way to return.
 - **Touch (coarse pointers):** chip padding grows to a ≥40px hit area (12px 16px; kudos 10px 14px) and the action-row gap widens to 1.25em
@@ -227,6 +281,9 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 - **Default:** tables use the full available reading container, with compact Adelle text, quiet cell borders, and an accent rule beneath the header.
 - **Mobile (≤768px):** a table becomes its own horizontal scroll region with `max-width: 100%`; wide columns may scroll, but the table must never widen the document viewport.
 
+### Project Relationships
+Use native internal links with each project's existing title and description. Keep lists unboxed, with Adelle headings and secondary text for descriptions. Separate them from project actions with a quiet theme border and generous vertical spacing. Columns stack when the reading container cannot fit both lists. Omit empty sections.
+
 ### Code Frames (Expressive Code)
 - **Always dark:** code frames keep their instrument-panel chrome in both themes (frame chrome #1f2328, borders #30363d, titles #e6e8eb, inactive tabs #7d8590, active tab wells #0d1117) — a lit terminal in the spacecraft cabin, deliberately unswayed by the page theme. These hexes are sanctioned utility values, not palette drift
 - **Touch overflow:** on coarse pointers, horizontally scrollable code gets edge scroll-shadows (16px black-fade, hidden at the reached edge via local-attachment covers) so clipped code never masquerades as complete
@@ -234,7 +291,7 @@ No styled input system exists yet (search is delegated to Pagefind UI). When one
 ### Constellation Dividers (Signature)
 Between homepage article previews, a 64px animated Lottie constellation replaces the horizontal rule — each article is deterministically assigned a constellation by content hash, no duplicates on screen. Nameplates use Idlewild SSm Light at weight 300 and a fixed 9px, with a transparent background; on mobile they center over the icon and wrap when needed to stay within the viewport. Prose `<hr>` renders as a centered `###` in serif — a typewriter-manuscript wink. These are the site's fingerprint; protect them.
 
-## 6. Do's and Don'ts
+## Do's and Don'ts
 
 ### Do:
 - **Do** keep the page container at `clamp(636px, 90vw, 763px)` and prose within 45–75 characters per line; the homepage stream uses `70ch`.
@@ -249,9 +306,9 @@ Between homepage article previews, a 64px animated Lottie constellation replaces
 ### Don't:
 - **Don't** import SaaS landing-page grammar — hero metrics, identical card grids, gradient CTAs (PRODUCT.md anti-reference, verbatim).
 - **Don't** drift toward the minimal dev-blog template — Inter-on-white, personality-free (PRODUCT.md anti-reference, verbatim).
-- **Don't** introduce a second text face; if a passage needs emphasis, use Adelle's weight and size range.
+- **Don't** add fonts beyond the established Adelle, Idlewild SSm, Lato, and PragmataPro roles; use Adelle's weight and size range for prose emphasis.
 - **Don't** use gradient text, glassmorphism, or decorative blurs — the backdrop is the only atmospheric layer.
 - **Don't** spend Golden Horizon inside the reading column in light mode; it fails contrast on Cloud-Light White and dilutes the masthead.
 - **Don't** add new thick colored left-borders beyond the established blockquote/alert convention; that pattern is grandfathered, not generative.
 - **Don't** replace the constellation dividers or the `###` hr with plain rules — they are the site's fingerprint.
-- **Don't** use cold neutral grays anywhere — dark mode's text is warmed Cabin Paper (#e8e4de / #c9c4bc); if a gray has no warmth, it isn't in the palette.
+- **Don't** replace the warm dark-mode prose colors with cold grays. Preserve the existing utility colors for code frames, inline code, tables, and navigation.

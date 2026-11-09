@@ -76,6 +76,12 @@ The disk-based broken-link checker cannot validate on-demand routes and can repo
 
 Articles support `link` + `via`/`vialink` fields for link-style posts (auto-infers `articleType: "link"`). Use `headingStartLevel` to override remark-shift-headings behavior. Use `type: "guide"` to show a ToC.
 
+Link-post article pages use `astro-embed`'s `LinkPreview` to fetch the `link` destination's Open Graph metadata at build time. The "Read original" link and `via` credit remain available if metadata fetching fails. Ordinary body links, article listings, and feeds do not unfurl.
+
+Project detail pages also preview the Website (`url`) destination. `SourcePreview.astro` shares the preview styles with articles. HexDocs links remain badges without previews. Website/GitHub action chips and documentation badges remain available when metadata is missing; the projects listing does not unfurl.
+
+For deterministic preview tests, start `NODE_OPTIONS="--import=./tests/link-preview-fetch.mjs" pnpm dev --port 4340`, then run `NOTES_TEST_BASE_URL=http://localhost:4340 pnpm exec playwright test link-previews.spec.js --project=chromium`.
+
 Notes are short-form posts (no `title` by convention). Schema accepts `date` (required), optional `lastmod`, `title`, `tags`, `summary`, `originalUrl`, and `draft`. `originalUrl` preserves the source path for content imported from other systems (e.g. the micro.blog archive). `lastmod` is only set when it differs from `date`.
 
 ## Linting

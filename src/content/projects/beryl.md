@@ -8,6 +8,9 @@ programmingLanguage: gleam
 logo: ../../assets/beryl.webp
 license: MIT
 maturity: unpublished
+dependsOn:
+  - lattice
+  - trellis
 ---
 
 Type-safe real-time channels and presence for Gleam on the BEAM. It's like Phoenix Channels, but with types thanks to Gleam!

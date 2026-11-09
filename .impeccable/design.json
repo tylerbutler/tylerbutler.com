@@ -1,157 +1,217 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-18T04:57:37.119Z",
+  "generatedAt": "2026-11-08T05:10:38.862Z",
   "title": "Design System: tylerbutler.com",
   "extensions": {
     "colorMeta": {
       "deep-space-hull": {
         "role": "neutral",
         "displayName": "Deep Space Hull",
-        "canonical": "oklch(24% 0.035 255)",
+        "canonical": "#1a2332",
         "tonalRamp": [
-          "oklch(15% 0.035 255)",
-          "oklch(24% 0.035 255)",
-          "oklch(35% 0.035 255)",
-          "oklch(47% 0.035 255)",
-          "oklch(59% 0.03 255)",
-          "oklch(71% 0.025 255)",
-          "oklch(83% 0.02 255)",
-          "oklch(95% 0.01 255)"
+          "oklch(from #1a2332 15% c h)",
+          "oklch(from #1a2332 27% c h)",
+          "oklch(from #1a2332 39% c h)",
+          "oklch(from #1a2332 51% c h)",
+          "oklch(from #1a2332 63% c h)",
+          "oklch(from #1a2332 75% c h)",
+          "oklch(from #1a2332 87% c h)",
+          "oklch(from #1a2332 95% c h)"
         ]
       },
       "cloud-light-white": {
         "role": "neutral",
-        "displayName": "Cloud-Light White",
-        "canonical": "oklch(98% 0.004 80)",
+        "displayName": "Cloud Light White",
+        "canonical": "#faf8f6",
         "tonalRamp": [
-          "oklch(15% 0.004 80)",
-          "oklch(30% 0.004 80)",
-          "oklch(45% 0.004 80)",
-          "oklch(60% 0.004 80)",
-          "oklch(72% 0.004 80)",
-          "oklch(84% 0.004 80)",
-          "oklch(92% 0.004 80)",
-          "oklch(98% 0.004 80)"
+          "oklch(from #faf8f6 15% c h)",
+          "oklch(from #faf8f6 27% c h)",
+          "oklch(from #faf8f6 39% c h)",
+          "oklch(from #faf8f6 51% c h)",
+          "oklch(from #faf8f6 63% c h)",
+          "oklch(from #faf8f6 75% c h)",
+          "oklch(from #faf8f6 87% c h)",
+          "oklch(from #faf8f6 95% c h)"
         ]
       },
       "burnt-atmosphere": {
         "role": "primary",
         "displayName": "Burnt Atmosphere",
-        "canonical": "oklch(50% 0.09 62)",
+        "canonical": "#96591c",
         "tonalRamp": [
-          "oklch(15% 0.06 62)",
-          "oklch(27% 0.08 62)",
-          "oklch(39% 0.1 62)",
-          "oklch(51% 0.105 62)",
-          "oklch(59% 0.105 62)",
-          "oklch(71% 0.09 62)",
-          "oklch(83% 0.07 62)",
-          "oklch(95% 0.03 62)"
-        ]
-      },
-      "golden-horizon": {
-        "role": "primary",
-        "displayName": "Golden Horizon",
-        "canonical": "oklch(79% 0.1 82)",
-        "tonalRamp": [
-          "oklch(15% 0.05 82)",
-          "oklch(27% 0.07 82)",
-          "oklch(39% 0.09 82)",
-          "oklch(51% 0.1 82)",
-          "oklch(63% 0.1 82)",
-          "oklch(79% 0.1 82)",
-          "oklch(88% 0.08 82)",
-          "oklch(95% 0.04 82)"
-        ]
-      },
-      "nebula-teal": {
-        "role": "neutral",
-        "displayName": "Nebula Teal",
-        "canonical": "oklch(38% 0.03 185)",
-        "tonalRamp": [
-          "oklch(15% 0.03 185)",
-          "oklch(26% 0.03 185)",
-          "oklch(38% 0.03 185)",
-          "oklch(48% 0.028 185)",
-          "oklch(60% 0.025 185)",
-          "oklch(72% 0.02 185)",
-          "oklch(84% 0.015 185)",
-          "oklch(95% 0.008 185)"
-        ]
-      },
-      "starfield-gold": {
-        "role": "primary",
-        "displayName": "Starfield Gold",
-        "canonical": "oklch(76% 0.125 95)",
-        "tonalRamp": [
-          "oklch(15% 0.06 95)",
-          "oklch(27% 0.08 95)",
-          "oklch(39% 0.1 95)",
-          "oklch(51% 0.115 95)",
-          "oklch(63% 0.125 95)",
-          "oklch(76% 0.125 95)",
-          "oklch(87% 0.1 95)",
-          "oklch(95% 0.05 95)"
-        ]
-      },
-      "cloud-shadow": {
-        "role": "neutral",
-        "displayName": "Cloud Shadow",
-        "canonical": "oklch(94% 0.007 80)",
-        "tonalRamp": [
-          "oklch(15% 0.007 80)",
-          "oklch(30% 0.007 80)",
-          "oklch(45% 0.007 80)",
-          "oklch(60% 0.007 80)",
-          "oklch(72% 0.007 80)",
-          "oklch(84% 0.007 80)",
-          "oklch(94% 0.007 80)",
-          "oklch(97% 0.005 80)"
-        ]
-      },
-      "deep-space-void": {
-        "role": "neutral",
-        "displayName": "Deep Space Void",
-        "canonical": "oklch(17% 0.02 240)",
-        "tonalRamp": [
-          "oklch(17% 0.02 240)",
-          "oklch(27% 0.02 240)",
-          "oklch(39% 0.02 240)",
-          "oklch(51% 0.02 240)",
-          "oklch(63% 0.018 240)",
-          "oklch(75% 0.015 240)",
-          "oklch(87% 0.01 240)",
-          "oklch(95% 0.006 240)"
+          "oklch(from #96591c 15% c h)",
+          "oklch(from #96591c 27% c h)",
+          "oklch(from #96591c 39% c h)",
+          "oklch(from #96591c 51% c h)",
+          "oklch(from #96591c 63% c h)",
+          "oklch(from #96591c 75% c h)",
+          "oklch(from #96591c 87% c h)",
+          "oklch(from #96591c 95% c h)"
         ]
       },
       "atmosphere-bright": {
-        "role": "primary",
+        "role": "tertiary",
         "displayName": "Atmosphere Bright",
-        "canonical": "oklch(59% 0.105 62)",
+        "canonical": "#b8722a",
         "tonalRamp": [
-          "oklch(15% 0.06 62)",
-          "oklch(27% 0.08 62)",
-          "oklch(39% 0.1 62)",
-          "oklch(51% 0.105 62)",
-          "oklch(59% 0.105 62)",
-          "oklch(71% 0.09 62)",
-          "oklch(83% 0.07 62)",
-          "oklch(95% 0.03 62)"
+          "oklch(from #b8722a 15% c h)",
+          "oklch(from #b8722a 27% c h)",
+          "oklch(from #b8722a 39% c h)",
+          "oklch(from #b8722a 51% c h)",
+          "oklch(from #b8722a 63% c h)",
+          "oklch(from #b8722a 75% c h)",
+          "oklch(from #b8722a 87% c h)",
+          "oklch(from #b8722a 95% c h)"
         ]
       },
       "atmosphere-ember": {
         "role": "primary",
         "displayName": "Atmosphere Ember",
-        "canonical": "oklch(43% 0.08 62)",
+        "canonical": "#7d4b17",
         "tonalRamp": [
-          "oklch(15% 0.06 62)",
-          "oklch(27% 0.08 62)",
-          "oklch(39% 0.1 62)",
-          "oklch(51% 0.105 62)",
-          "oklch(59% 0.105 62)",
-          "oklch(71% 0.09 62)",
-          "oklch(83% 0.07 62)",
-          "oklch(95% 0.03 62)"
+          "oklch(from #7d4b17 15% c h)",
+          "oklch(from #7d4b17 27% c h)",
+          "oklch(from #7d4b17 39% c h)",
+          "oklch(from #7d4b17 51% c h)",
+          "oklch(from #7d4b17 63% c h)",
+          "oklch(from #7d4b17 75% c h)",
+          "oklch(from #7d4b17 87% c h)",
+          "oklch(from #7d4b17 95% c h)"
+        ]
+      },
+      "atmosphere-deep": {
+        "role": "primary",
+        "displayName": "Atmosphere Deep",
+        "canonical": "#a3621f",
+        "tonalRamp": [
+          "oklch(from #a3621f 15% c h)",
+          "oklch(from #a3621f 27% c h)",
+          "oklch(from #a3621f 39% c h)",
+          "oklch(from #a3621f 51% c h)",
+          "oklch(from #a3621f 63% c h)",
+          "oklch(from #a3621f 75% c h)",
+          "oklch(from #a3621f 87% c h)",
+          "oklch(from #a3621f 95% c h)"
+        ]
+      },
+      "horizon-flare": {
+        "role": "primary",
+        "displayName": "Horizon Flare",
+        "canonical": "#d4842a",
+        "tonalRamp": [
+          "oklch(from #d4842a 15% c h)",
+          "oklch(from #d4842a 27% c h)",
+          "oklch(from #d4842a 39% c h)",
+          "oklch(from #d4842a 51% c h)",
+          "oklch(from #d4842a 63% c h)",
+          "oklch(from #d4842a 75% c h)",
+          "oklch(from #d4842a 87% c h)",
+          "oklch(from #d4842a 95% c h)"
+        ]
+      },
+      "golden-horizon": {
+        "role": "primary",
+        "displayName": "Golden Horizon",
+        "canonical": "#e6b35c",
+        "tonalRamp": [
+          "oklch(from #e6b35c 15% c h)",
+          "oklch(from #e6b35c 27% c h)",
+          "oklch(from #e6b35c 39% c h)",
+          "oklch(from #e6b35c 51% c h)",
+          "oklch(from #e6b35c 63% c h)",
+          "oklch(from #e6b35c 75% c h)",
+          "oklch(from #e6b35c 87% c h)",
+          "oklch(from #e6b35c 95% c h)"
+        ]
+      },
+      "nebula-teal": {
+        "role": "neutral",
+        "displayName": "Nebula Teal",
+        "canonical": "#2a4a47",
+        "tonalRamp": [
+          "oklch(from #2a4a47 15% c h)",
+          "oklch(from #2a4a47 27% c h)",
+          "oklch(from #2a4a47 39% c h)",
+          "oklch(from #2a4a47 51% c h)",
+          "oklch(from #2a4a47 63% c h)",
+          "oklch(from #2a4a47 75% c h)",
+          "oklch(from #2a4a47 87% c h)",
+          "oklch(from #2a4a47 95% c h)"
+        ]
+      },
+      "nebula-teal-light": {
+        "role": "neutral",
+        "displayName": "Nebula Teal Light",
+        "canonical": "#4a6662",
+        "tonalRamp": [
+          "oklch(from #4a6662 15% c h)",
+          "oklch(from #4a6662 27% c h)",
+          "oklch(from #4a6662 39% c h)",
+          "oklch(from #4a6662 51% c h)",
+          "oklch(from #4a6662 63% c h)",
+          "oklch(from #4a6662 75% c h)",
+          "oklch(from #4a6662 87% c h)",
+          "oklch(from #4a6662 95% c h)"
+        ]
+      },
+      "starfield-gold": {
+        "role": "primary",
+        "displayName": "Starfield Gold",
+        "canonical": "#d4af37",
+        "tonalRamp": [
+          "oklch(from #d4af37 15% c h)",
+          "oklch(from #d4af37 27% c h)",
+          "oklch(from #d4af37 39% c h)",
+          "oklch(from #d4af37 51% c h)",
+          "oklch(from #d4af37 63% c h)",
+          "oklch(from #d4af37 75% c h)",
+          "oklch(from #d4af37 87% c h)",
+          "oklch(from #d4af37 95% c h)"
+        ]
+      },
+      "cabin-light": {
+        "role": "neutral",
+        "displayName": "Cabin Light",
+        "canonical": "#f7f5f2",
+        "tonalRamp": [
+          "oklch(from #f7f5f2 15% c h)",
+          "oklch(from #f7f5f2 27% c h)",
+          "oklch(from #f7f5f2 39% c h)",
+          "oklch(from #f7f5f2 51% c h)",
+          "oklch(from #f7f5f2 63% c h)",
+          "oklch(from #f7f5f2 75% c h)",
+          "oklch(from #f7f5f2 87% c h)",
+          "oklch(from #f7f5f2 95% c h)"
+        ]
+      },
+      "cloud-shadow": {
+        "role": "neutral",
+        "displayName": "Cloud Shadow",
+        "canonical": "#f0ede8",
+        "tonalRamp": [
+          "oklch(from #f0ede8 15% c h)",
+          "oklch(from #f0ede8 27% c h)",
+          "oklch(from #f0ede8 39% c h)",
+          "oklch(from #f0ede8 51% c h)",
+          "oklch(from #f0ede8 63% c h)",
+          "oklch(from #f0ede8 75% c h)",
+          "oklch(from #f0ede8 87% c h)",
+          "oklch(from #f0ede8 95% c h)"
+        ]
+      },
+      "deep-space-void": {
+        "role": "neutral",
+        "displayName": "Deep Space Void",
+        "canonical": "#0f1419",
+        "tonalRamp": [
+          "oklch(from #0f1419 15% c h)",
+          "oklch(from #0f1419 27% c h)",
+          "oklch(from #0f1419 39% c h)",
+          "oklch(from #0f1419 51% c h)",
+          "oklch(from #0f1419 63% c h)",
+          "oklch(from #0f1419 75% c h)",
+          "oklch(from #0f1419 87% c h)",
+          "oklch(from #0f1419 95% c h)"
         ]
       },
       "cabin-paper": {
@@ -159,14 +219,14 @@
         "displayName": "Cabin Paper",
         "canonical": "#e8e4de",
         "tonalRamp": [
-          "#262320",
-          "#3d3934",
-          "#57524b",
-          "#726c63",
-          "#8f887d",
-          "#aca498",
-          "#c9c4bc",
-          "#e8e4de"
+          "oklch(from #e8e4de 15% c h)",
+          "oklch(from #e8e4de 27% c h)",
+          "oklch(from #e8e4de 39% c h)",
+          "oklch(from #e8e4de 51% c h)",
+          "oklch(from #e8e4de 63% c h)",
+          "oklch(from #e8e4de 75% c h)",
+          "oklch(from #e8e4de 87% c h)",
+          "oklch(from #e8e4de 95% c h)"
         ]
       },
       "cabin-paper-dim": {
@@ -174,91 +234,318 @@
         "displayName": "Cabin Paper Dim",
         "canonical": "#c9c4bc",
         "tonalRamp": [
-          "#211f1c",
-          "#37342f",
-          "#4f4b44",
-          "#68635a",
-          "#827c71",
-          "#9d968a",
-          "#b8b1a5",
-          "#c9c4bc"
+          "oklch(from #c9c4bc 15% c h)",
+          "oklch(from #c9c4bc 27% c h)",
+          "oklch(from #c9c4bc 39% c h)",
+          "oklch(from #c9c4bc 51% c h)",
+          "oklch(from #c9c4bc 63% c h)",
+          "oklch(from #c9c4bc 75% c h)",
+          "oklch(from #c9c4bc 87% c h)",
+          "oklch(from #c9c4bc 95% c h)"
+        ]
+      },
+      "cabin-shadow": {
+        "role": "neutral",
+        "displayName": "Cabin Shadow",
+        "canonical": "#2d3748",
+        "tonalRamp": [
+          "oklch(from #2d3748 15% c h)",
+          "oklch(from #2d3748 27% c h)",
+          "oklch(from #2d3748 39% c h)",
+          "oklch(from #2d3748 51% c h)",
+          "oklch(from #2d3748 63% c h)",
+          "oklch(from #2d3748 75% c h)",
+          "oklch(from #2d3748 87% c h)",
+          "oklch(from #2d3748 95% c h)"
+        ]
+      },
+      "code-paper": {
+        "role": "neutral",
+        "displayName": "Code Paper",
+        "canonical": "#e2e8f0",
+        "tonalRamp": [
+          "oklch(from #e2e8f0 15% c h)",
+          "oklch(from #e2e8f0 27% c h)",
+          "oklch(from #e2e8f0 39% c h)",
+          "oklch(from #e2e8f0 51% c h)",
+          "oklch(from #e2e8f0 63% c h)",
+          "oklch(from #e2e8f0 75% c h)",
+          "oklch(from #e2e8f0 87% c h)",
+          "oklch(from #e2e8f0 95% c h)"
+        ]
+      },
+      "golden-dim": {
+        "role": "primary",
+        "displayName": "Golden Dim",
+        "canonical": "#8b6f3a",
+        "tonalRamp": [
+          "oklch(from #8b6f3a 15% c h)",
+          "oklch(from #8b6f3a 27% c h)",
+          "oklch(from #8b6f3a 39% c h)",
+          "oklch(from #8b6f3a 51% c h)",
+          "oklch(from #8b6f3a 63% c h)",
+          "oklch(from #8b6f3a 75% c h)",
+          "oklch(from #8b6f3a 87% c h)",
+          "oklch(from #8b6f3a 95% c h)"
+        ]
+      },
+      "golden-hover": {
+        "role": "primary",
+        "displayName": "Golden Hover",
+        "canonical": "#c4a366",
+        "tonalRamp": [
+          "oklch(from #c4a366 15% c h)",
+          "oklch(from #c4a366 27% c h)",
+          "oklch(from #c4a366 39% c h)",
+          "oklch(from #c4a366 51% c h)",
+          "oklch(from #c4a366 63% c h)",
+          "oklch(from #c4a366 75% c h)",
+          "oklch(from #c4a366 87% c h)",
+          "oklch(from #c4a366 95% c h)"
+        ]
+      },
+      "cabin-nav-dark": {
+        "role": "neutral",
+        "displayName": "Cabin Nav Dark",
+        "canonical": "#f0f0f0",
+        "tonalRamp": [
+          "oklch(from #f0f0f0 15% c h)",
+          "oklch(from #f0f0f0 27% c h)",
+          "oklch(from #f0f0f0 39% c h)",
+          "oklch(from #f0f0f0 51% c h)",
+          "oklch(from #f0f0f0 63% c h)",
+          "oklch(from #f0f0f0 75% c h)",
+          "oklch(from #f0f0f0 87% c h)",
+          "oklch(from #f0f0f0 95% c h)"
+        ]
+      },
+      "instrument-green": {
+        "role": "tertiary",
+        "displayName": "Instrument Green",
+        "canonical": "#4a7c59",
+        "tonalRamp": [
+          "oklch(from #4a7c59 15% c h)",
+          "oklch(from #4a7c59 27% c h)",
+          "oklch(from #4a7c59 39% c h)",
+          "oklch(from #4a7c59 51% c h)",
+          "oklch(from #4a7c59 63% c h)",
+          "oklch(from #4a7c59 75% c h)",
+          "oklch(from #4a7c59 87% c h)",
+          "oklch(from #4a7c59 95% c h)"
+        ]
+      },
+      "instrument-blue": {
+        "role": "tertiary",
+        "displayName": "Instrument Blue",
+        "canonical": "#4a6b8a",
+        "tonalRamp": [
+          "oklch(from #4a6b8a 15% c h)",
+          "oklch(from #4a6b8a 27% c h)",
+          "oklch(from #4a6b8a 39% c h)",
+          "oklch(from #4a6b8a 51% c h)",
+          "oklch(from #4a6b8a 63% c h)",
+          "oklch(from #4a6b8a 75% c h)",
+          "oklch(from #4a6b8a 87% c h)",
+          "oklch(from #4a6b8a 95% c h)"
+        ]
+      },
+      "instrument-red": {
+        "role": "tertiary",
+        "displayName": "Instrument Red",
+        "canonical": "#b85a4a",
+        "tonalRamp": [
+          "oklch(from #b85a4a 15% c h)",
+          "oklch(from #b85a4a 27% c h)",
+          "oklch(from #b85a4a 39% c h)",
+          "oklch(from #b85a4a 51% c h)",
+          "oklch(from #b85a4a 63% c h)",
+          "oklch(from #b85a4a 75% c h)",
+          "oklch(from #b85a4a 87% c h)",
+          "oklch(from #b85a4a 95% c h)"
+        ]
+      },
+      "instrument-violet": {
+        "role": "tertiary",
+        "displayName": "Instrument Violet",
+        "canonical": "#8b5a9d",
+        "tonalRamp": [
+          "oklch(from #8b5a9d 15% c h)",
+          "oklch(from #8b5a9d 27% c h)",
+          "oklch(from #8b5a9d 39% c h)",
+          "oklch(from #8b5a9d 51% c h)",
+          "oklch(from #8b5a9d 63% c h)",
+          "oklch(from #8b5a9d 75% c h)",
+          "oklch(from #8b5a9d 87% c h)",
+          "oklch(from #8b5a9d 95% c h)"
+        ]
+      },
+      "instrument-green-dark": {
+        "role": "tertiary",
+        "displayName": "Instrument Green Dark",
+        "canonical": "#6b9d7a",
+        "tonalRamp": [
+          "oklch(from #6b9d7a 15% c h)",
+          "oklch(from #6b9d7a 27% c h)",
+          "oklch(from #6b9d7a 39% c h)",
+          "oklch(from #6b9d7a 51% c h)",
+          "oklch(from #6b9d7a 63% c h)",
+          "oklch(from #6b9d7a 75% c h)",
+          "oklch(from #6b9d7a 87% c h)",
+          "oklch(from #6b9d7a 95% c h)"
+        ]
+      },
+      "instrument-blue-dark": {
+        "role": "tertiary",
+        "displayName": "Instrument Blue Dark",
+        "canonical": "#6b8aaa",
+        "tonalRamp": [
+          "oklch(from #6b8aaa 15% c h)",
+          "oklch(from #6b8aaa 27% c h)",
+          "oklch(from #6b8aaa 39% c h)",
+          "oklch(from #6b8aaa 51% c h)",
+          "oklch(from #6b8aaa 63% c h)",
+          "oklch(from #6b8aaa 75% c h)",
+          "oklch(from #6b8aaa 87% c h)",
+          "oklch(from #6b8aaa 95% c h)"
+        ]
+      },
+      "instrument-orange-dark": {
+        "role": "tertiary",
+        "displayName": "Instrument Orange Dark",
+        "canonical": "#e69a4a",
+        "tonalRamp": [
+          "oklch(from #e69a4a 15% c h)",
+          "oklch(from #e69a4a 27% c h)",
+          "oklch(from #e69a4a 39% c h)",
+          "oklch(from #e69a4a 51% c h)",
+          "oklch(from #e69a4a 63% c h)",
+          "oklch(from #e69a4a 75% c h)",
+          "oklch(from #e69a4a 87% c h)",
+          "oklch(from #e69a4a 95% c h)"
+        ]
+      },
+      "instrument-red-dark": {
+        "role": "tertiary",
+        "displayName": "Instrument Red Dark",
+        "canonical": "#d47a6a",
+        "tonalRamp": [
+          "oklch(from #d47a6a 15% c h)",
+          "oklch(from #d47a6a 27% c h)",
+          "oklch(from #d47a6a 39% c h)",
+          "oklch(from #d47a6a 51% c h)",
+          "oklch(from #d47a6a 63% c h)",
+          "oklch(from #d47a6a 75% c h)",
+          "oklch(from #d47a6a 87% c h)",
+          "oklch(from #d47a6a 95% c h)"
+        ]
+      },
+      "instrument-violet-dark": {
+        "role": "tertiary",
+        "displayName": "Instrument Violet Dark",
+        "canonical": "#a67ab8",
+        "tonalRamp": [
+          "oklch(from #a67ab8 15% c h)",
+          "oklch(from #a67ab8 27% c h)",
+          "oklch(from #a67ab8 39% c h)",
+          "oklch(from #a67ab8 51% c h)",
+          "oklch(from #a67ab8 63% c h)",
+          "oklch(from #a67ab8 75% c h)",
+          "oklch(from #a67ab8 87% c h)",
+          "oklch(from #a67ab8 95% c h)"
         ]
       }
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Masthead Display",
-        "purpose": "Uppercase site title — Idlewild SSm Light (weight 300), normal kerning and 0.05em tracking."
+        "displayName": "Display",
+        "purpose": "Homepage masthead: Idlewild SSm Light, uppercase, normal kerning."
+      },
+      "running-head": {
+        "displayName": "Running Head",
+        "purpose": "Compact interior masthead in Idlewild SSm Light."
       },
       "tagline": {
-        "displayName": "Masthead Tagline",
-        "purpose": "Rotating line beneath the title — Adelle 400 italic, sentence case, normal kerning and 0.02em tracking."
+        "displayName": "Tagline",
+        "purpose": "Rotating masthead line in italic Adelle."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Page and article titles; Adelle 300 with wide tracking."
+        "purpose": "Page and article titles in Adelle."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Content section headings in Adelle."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Article prose at 1.6 line-height inside the clamp(636px, 90vw, 763px) book measure."
+        "purpose": "Reading text in Adelle at 1.6 line height."
       },
       "label": {
-        "displayName": "Wayfinding Label",
-        "purpose": "Lato uppercase — navigation, dates, alert titles. Never for prose."
+        "displayName": "Label",
+        "purpose": "Navigation and UI labels in Lato; alert titles use weight 700."
       },
       "code": {
         "displayName": "Code",
-        "purpose": "PragmataPro with ligatures; inline code tinted Burnt Atmosphere on Cloud Shadow."
+        "purpose": "PragmataPro code with normal letter spacing and programming ligatures."
       }
     },
     "shadows": [
       {
         "name": "ambient-container-glow",
-        "value": "0 0 20px rgba(26, 35, 50, 0.15)",
-        "purpose": "The site container floating over the painted backdrop. One per page."
+        "value": "0 0 20px var(--overlay)",
+        "purpose": "Site container over the painted backdrop; theme-bound overlay."
       },
       {
         "name": "structural-lift",
         "value": "0 4px 12px rgba(0, 0, 0, 0.15)",
-        "purpose": "Elevated functional blocks (wide-screen code frames) and interactive elements needing affordance."
+        "purpose": "Wide-screen code frames."
       },
       {
         "name": "hover-lift",
         "value": "0 2px 4px rgba(0, 0, 0, 0.1)",
-        "purpose": "Paired with translateY(-1px) on small controls like tags."
+        "purpose": "Tag hover, paired with a 1px upward translation."
       },
       {
-        "name": "backdrop-dim",
-        "value": "rgba(0, 0, 0, 0.4)",
-        "purpose": "Dark-mode dim layer over the painted backdrop; the scene's night filter."
+        "name": "search-small",
+        "value": "0 2px 8px var(--overlay)",
+        "purpose": "Small Pagefind layers."
       },
       {
-        "name": "code-scroll-shadow",
-        "value": "radial-gradient rgba(0, 0, 0, 0.5) 16px edge fade",
-        "purpose": "Touch-only horizontal overflow signal on code frames; hidden at the reached edge."
+        "name": "search-medium",
+        "value": "0 6px 18px var(--overlay)",
+        "purpose": "Medium Pagefind layers."
+      },
+      {
+        "name": "search-dialog",
+        "value": "0 18px 48px rgba(26, 35, 50, 0.32)",
+        "purpose": "Pagefind search dialog."
       }
     ],
     "motion": [
       {
-        "name": "ease-standard",
-        "value": "all 0.2s ease",
-        "purpose": "Default transition for color, background, border, shadow, transform, opacity on interactive elements."
+        "name": "state-transition",
+        "value": "0.2s ease",
+        "purpose": "Existing color, background, border, shadow, transform, and opacity transitions."
       },
       {
         "name": "underline-fade",
         "value": "text-decoration-color 0.3s ease",
-        "purpose": "Link underlines fade out on hover; native text-decoration so wrapped lines stay underlined and contrast tooling can evaluate links."
+        "purpose": "Content-link hover underlines."
       },
       {
         "name": "kudos-launch",
         "value": "750ms ease-in-out",
-        "purpose": "The 🚀 flies off the corner and returns. Suppressed under prefers-reduced-motion."
+        "purpose": "Rocket launch; disabled for reduced motion."
       }
     ],
     "breakpoints": [
       {
         "name": "mobile",
         "value": "480px"
+      },
+      {
+        "name": "search-mobile",
+        "value": "640px"
       },
       {
         "name": "tablet",
@@ -275,73 +562,73 @@
       "name": "Kudos Button",
       "kind": "button",
       "refersTo": "button-kudos",
-      "description": "The site's signature control — italic serif button whose rocket launches on click.",
-      "html": "<button class=\"ds-btn-kudos\">Kudos</button>",
-      "css": ".ds-btn-kudos { font-family: adelle, Baskerville, Georgia, serif; font-style: italic; font-size: 16px; color: #2a4a47; background: #f0ede8; border: 1px solid #4a6662; border-radius: 4px; padding: 4px 10px; cursor: pointer; transition: all 0.2s ease; } .ds-btn-kudos::before { content: \"🚀\\00a0\"; font-style: normal; display: inline-block; } .ds-btn-kudos:hover { background: #96591c; color: #ffffff; border-color: #96591c; } .ds-btn-kudos:focus-visible { outline: 2px solid #96591c; outline-offset: 2px; border-radius: 2px; }"
+      "description": "Italic Adelle button with the existing rocket and selected state.",
+      "html": "<button class=\"ds-kudos\">Kudos</button>",
+      "css": ".ds-kudos { font-family: adelle, Baskerville, Georgia, serif; font-size: 16px; font-style: italic; color: var(--text, #2a4a47); background: var(--code-bg, #f0ede8); border: 1px solid var(--text-light, #4a6662); border-radius: var(--radius-md, 4px); padding: 4px 10px; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease; } .ds-kudos::before { content: \"🚀\\00a0\"; font-style: normal; display: inline-block; } .ds-kudos:hover:not(:disabled) { background: var(--accent, #96591c); color: white; border-color: var(--accent, #96591c); } .ds-kudos.ds-selected { border-color: var(--accent, #96591c); opacity: 0.8; cursor: default; } .ds-kudos:focus-visible { outline: 2px solid var(--accent, #96591c); outline-offset: 2px; border-radius: 2px; } @media (pointer: coarse) { .ds-kudos { padding: 10px 14px; } } @media (prefers-reduced-motion: reduce) { .ds-kudos { transition: none; } }"
     },
     {
       "name": "Navigation Link",
       "kind": "nav",
       "refersTo": "nav-link",
-      "description": "Uppercase Lato wayfinding label on the dark masthead.",
-      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\">Articles</a><a href=\"#\" class=\"ds-nav-link\">Notes</a><a href=\"#\" class=\"ds-nav-link ds-active\">Projects</a></nav>",
-      "css": ".ds-nav { background: #1a2332; padding: 12px 16px; display: flex; gap: 20px; justify-content: center; } .ds-nav-link { font-family: Lato, 'Helvetica Neue', Arial, sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: #f7f5f2; text-decoration: none; transition: color 0.2s ease; padding: 8px 4px; } .ds-nav-link:hover, .ds-nav-link.ds-active { color: #d4842a; } .ds-nav-link:focus-visible { outline: 2px solid #96591c; outline-offset: 2px; border-radius: 2px; }"
+      "description": "Centered masthead links in uppercase Lato with gold focus outlines.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Example navigation\"><a href=\"#\" class=\"ds-nav-link\">Articles</a><a href=\"#\" class=\"ds-nav-link\">Notes</a><a href=\"#\" class=\"ds-nav-link ds-active\" aria-current=\"page\">Projects</a></nav>",
+      "css": ".ds-nav { background: var(--dark-bg, #1a2332); padding: 12px 0; display: flex; flex-wrap: wrap; gap: 4px 20px; justify-content: center; } .ds-nav-link { font-family: var(--label-font, Lato), 'Helvetica Neue', Arial, sans-serif; font-size: var(--font-size-meta, 12px); font-weight: 400; line-height: 1.2; letter-spacing: 0.04em; text-transform: uppercase; color: var(--nav-links, #f7f5f2); text-decoration: none; transition: color 0.2s ease; padding: 8px 4px; } .ds-nav-link:hover, .ds-nav-link.ds-active { color: var(--nav-hover, #d4842a); } .ds-nav-link:focus-visible { outline: 2px solid var(--header-accent, #e6b35c); outline-offset: 2px; border-radius: 2px; }"
     },
     {
       "name": "Content Link",
       "kind": "custom",
-      "refersTo": "body",
-      "description": "Deep burnt-orange link whose underline fades on hover.",
-      "html": "<p class=\"ds-prose\">Read the <a href=\"#\" class=\"ds-link\">latest article</a> on the blog.</p>",
-      "css": ".ds-prose { font-family: adelle, Baskerville, Georgia, serif; font-size: 16px; line-height: 1.6; color: #2a4a47; } .ds-link { color: #96591c; text-decoration: underline; text-decoration-thickness: 0.08em; text-underline-offset: 0.2em; transition: text-decoration-color 0.3s ease, color 0.2s ease; } .ds-link:hover { color: #7d4b17; text-decoration-color: transparent; } .ds-link:focus-visible { outline: 2px solid #96591c; outline-offset: 2px; border-radius: 2px; }"
+      "refersTo": "content-link",
+      "description": "Theme-accent content link with a native underline that fades on hover.",
+      "html": "<p class=\"ds-prose\">Read the <a href=\"#\" class=\"ds-link\">latest article</a>.</p>",
+      "css": ".ds-prose { font-family: adelle, Baskerville, Georgia, serif; font-size: 16px; line-height: 1.6; color: var(--text, #2a4a47); } .ds-link { color: var(--accent, #96591c); text-decoration: underline; text-decoration-thickness: 0.08em; text-underline-offset: 0.2em; transition: text-decoration-color 0.3s ease, color 0.2s ease; } .ds-link:hover { color: var(--accent-hover, #7d4b17); text-decoration-color: transparent; } .ds-link:focus-visible { outline: 2px solid var(--accent, #96591c); outline-offset: 2px; border-radius: 2px; }"
     },
     {
       "name": "Inline Code",
       "kind": "custom",
       "refersTo": "code-inline",
-      "description": "Accent-tinted mono chip inside serif prose.",
-      "html": "<p class=\"ds-prose-code\">Run <code class=\"ds-code\">pnpm dev</code> to start the server.</p>",
-      "css": ".ds-prose-code { font-family: adelle, Baskerville, Georgia, serif; font-size: 16px; line-height: 1.6; color: #2a4a47; } .ds-code { font-family: 'PragmataPro', 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.025em; color: #96591c; background: #f0ede8; border: 1px solid rgba(184, 114, 42, 0.2); border-radius: 3px; padding: 0.2em 0.4em; }"
+      "description": "PragmataPro inline code with normal tracking and theme-bound colors.",
+      "html": "<p class=\"ds-code-prose\">Run <code class=\"ds-code\">pnpm dev</code> to start the server.</p>",
+      "css": ".ds-code-prose { font-family: adelle, Baskerville, Georgia, serif; font-size: 16px; line-height: 1.6; color: var(--text, #2a4a47); } .ds-code { font-family: var(--code-font, 'PragmataPro'), 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; font-variant-ligatures: normal; letter-spacing: normal; color: var(--code-text, #96591c); background: var(--code-bg, #f0ede8); border: 1px solid var(--code-border, rgba(184, 114, 42, 0.2)); border-radius: 3px; padding: 0.2em 0.4em; }"
     },
     {
       "name": "Note Alert",
       "kind": "card",
-      "refersTo": "colors.instrument-blue",
-      "description": "GitHub-style alert: instrument-color left border, color-mix tinted fill, Lato uppercase title.",
-      "html": "<div class=\"ds-alert\"><p class=\"ds-alert-title\">Note</p><p class=\"ds-alert-body\">Useful information readers should know, even when skimming.</p></div>",
-      "css": ".ds-alert { border-left: 4px solid #4a6b8a; border-radius: 0 4px 4px 0; background: color-mix(in srgb, #4a6b8a 10%, #faf8f6); padding: 1em 1.5em; } .ds-alert-title { font-family: Lato, 'Helvetica Neue', Arial, sans-serif; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #4a6b8a; margin: 0 0 0.5em 0; } .ds-alert-body { font-family: adelle, Baskerville, Georgia, serif; font-size: 15px; line-height: 1.6; color: #2a4a47; margin: 0; }"
+      "refersTo": "note-alert",
+      "description": "Existing GitHub-style alert with an instrument-color border and Lato Bold title.",
+      "html": "<div class=\"ds-alert\"><p class=\"ds-alert-title\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"6.5\" fill=\"none\" stroke=\"currentColor\"/><path d=\"M8 7v4M8 4.5v1\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg>Note</p><p class=\"ds-alert-body\">Useful information for readers.</p></div>",
+      "css": ".ds-alert { border-left: 4px solid var(--info, #4a6b8a); border-radius: 0 4px 4px 0; background: color-mix(in srgb, var(--info, #4a6b8a) 10%, var(--light-bg, #faf8f6)); padding: 1em 1.5em; } .ds-alert-title { font-family: var(--label-font, Lato), 'Helvetica Neue', Arial, sans-serif; display: flex; align-items: center; gap: 0.5em; font-size: clamp(14px, 2.5vw, 15px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--info, #4a6b8a); margin: 0 0 0.5em; } .ds-alert-body { font-family: adelle, Baskerville, Georgia, serif; font-size: 16px; line-height: 1.6; color: var(--text, #2a4a47); margin: 0; }"
     },
     {
-      "name": "Tag Chip",
+      "name": "Project Tag",
       "kind": "chip",
-      "refersTo": "colors.cloud-shadow",
-      "description": "Small control that lifts 1px with a soft shadow on hover.",
-      "html": "<a href=\"#\" class=\"ds-tag\">astro</a>",
-      "css": ".ds-tag { display: inline-block; font-family: Lato, 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #2a4a47; background: #f0ede8; border-radius: 3px; padding: 2px 8px; text-decoration: none; transform: translateY(0); transition: all 0.2s ease; } .ds-tag:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); color: #96591c; }"
+      "refersTo": "tag-chip",
+      "description": "Adelle project tag with the existing accent fill and hover lift.",
+      "html": "<a href=\"#\" class=\"ds-tag\">#markdown</a>",
+      "css": ".ds-tag { font-family: adelle, Baskerville, Georgia, serif; display: inline-block; font-size: var(--font-size-meta, 12px); color: var(--text, #2a4a47); background: var(--code-bg, #f0ede8); border-radius: var(--radius-sm, 3px); padding: 2px 6px; text-transform: lowercase; text-decoration: none; transition: all 0.2s ease; } .ds-tag:hover { background: var(--accent, #96591c); color: var(--light-bg, #faf8f6); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); } .ds-tag:focus-visible { outline: 2px solid var(--accent, #96591c); outline-offset: 2px; border-radius: 2px; }"
     },
     {
       "name": "Action Chip",
       "kind": "chip",
-      "refersTo": "button-kudos",
-      "description": "Stream preview action (Read More / Permalink) in the kudos register: italic serif on raised paper, accent fill on hover.",
-      "html": "<a class=\"ds-action-chip\" href=\"#\">Permalink →</a>",
-      "css": ".ds-action-chip { display: inline-block; background: #f0ede8; border: 1px solid #4a6662; padding: 4px 10px; font-family: adelle, Georgia, serif; font-style: italic; font-size: 13px; color: #2a4a47; border-radius: 4px; text-decoration: none; transition: color 0.2s, background-color 0.2s, border-color 0.2s; } .ds-action-chip:hover { background: #96591c; border-color: #96591c; color: #faf8f6; } .ds-action-chip:focus-visible { outline: 2px solid #96591c; outline-offset: 2px; }"
+      "refersTo": "action-chip",
+      "description": "Shared italic Adelle action with 6px 12px padding and theme-accent hover and focus.",
+      "html": "<a class=\"ds-action\" href=\"#\">Permalink →</a>",
+      "css": ".ds-action { font-family: adelle, Baskerville, Georgia, serif; display: inline-flex; align-items: center; gap: 0.5em; background: var(--code-bg, #f0ede8); border: 1px solid var(--text-light, #4a6662); padding: 6px 12px; font-style: italic; font-size: var(--font-size-label, 13px); line-height: 1.4; color: var(--text, #2a4a47); border-radius: var(--radius-md, 4px); text-decoration: none; text-transform: none; letter-spacing: normal; transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease; } .ds-action:hover, .ds-action:focus-visible { background: var(--accent, #96591c); border-color: var(--accent, #96591c); color: var(--light-bg, #faf8f6); } .ds-action:focus-visible { outline: 2px solid var(--accent, #96591c); outline-offset: 2px; border-radius: 2px; } @media (pointer: coarse) { .ds-action { padding: 12px 16px; } } @media (prefers-reduced-motion: reduce) { .ds-action { transition: none; } }"
     },
     {
-      "name": "Back Cover Footer",
-      "kind": "custom",
-      "refersTo": "footer",
-      "description": "Hull-dark site footer: constellation emblem, italic subscribe line with Horizon Flare links, Lato wayfinding row, dimmed copyright.",
-      "html": "<footer class=\"ds-back-cover\"><svg viewBox=\"0 0 120 28\" width=\"120\" height=\"28\" aria-hidden=\"true\"><path d=\"M8 20 L34 9 L60 16 L86 6 L112 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.75\" opacity=\"0.5\"/><circle cx=\"8\" cy=\"20\" r=\"1.6\" fill=\"currentColor\"/><circle cx=\"34\" cy=\"9\" r=\"2.2\" fill=\"currentColor\"/><circle cx=\"60\" cy=\"16\" r=\"1.4\" fill=\"currentColor\"/><circle cx=\"86\" cy=\"6\" r=\"2\" fill=\"currentColor\"/><circle cx=\"112\" cy=\"18\" r=\"1.5\" fill=\"currentColor\"/></svg><p class=\"ds-back-cover-pitch\">New posts land here first — follow along via <a href=\"#\">RSS</a> or <a href=\"#\">JSON feed</a>. No algorithm, just posts.</p><nav class=\"ds-back-cover-links\"><a href=\"#\">About</a><a href=\"#\">Colophon</a><a href=\"#\">Webring</a></nav><p class=\"ds-back-cover-copy\">© 2002–2026 Tyler Butler</p></footer>",
-      "css": ".ds-back-cover { background: #1a2332; color: #f7f5f2; text-align: center; padding: 26px 25px 20px; font-family: adelle, Georgia, serif; } .ds-back-cover svg { display: block; margin: 0 auto 10px; opacity: 0.55; } .ds-back-cover-pitch { font-style: italic; font-size: 13px; max-width: 60ch; margin: 0 auto; } .ds-back-cover-pitch a { color: #d4842a; text-decoration: underline; text-underline-offset: 0.2em; } .ds-back-cover-pitch a:hover { text-decoration-color: transparent; } .ds-back-cover-links { display: flex; gap: 20px; justify-content: center; margin: 14px 0 10px; } .ds-back-cover-links a { font-family: Lato, Arial, sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #f7f5f2; text-decoration: none; padding: 4px; } .ds-back-cover-links a:hover { color: #d4842a; } .ds-back-cover-copy { font-size: 12px; color: #9a9da5; margin: 0; }"
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Pagefind search field using the existing 44px height, Lato labels, and theme tokens.",
+      "html": "<label class=\"ds-search-label\" for=\"ds-search\">Search<input class=\"ds-search\" id=\"ds-search\" type=\"search\" placeholder=\"Search\" /></label>",
+      "css": ".ds-search-label { font-family: var(--label-font, Lato), 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: var(--text, #2a4a47); } .ds-search { font-family: var(--label-font, Lato), 'Helvetica Neue', Arial, sans-serif; display: block; height: var(--pf-input-height, 44px); border: 1px solid var(--pf-border, rgba(184, 114, 42, 0.2)); border-radius: var(--pf-border-radius, 4px); background: var(--pf-background, var(--light-bg, #faf8f6)); color: var(--pf-text, var(--text, #2a4a47)); } .ds-search::placeholder { color: var(--pf-text-muted, var(--text-light, #4a6662)); } .ds-search:focus-visible { border-color: var(--pf-border-focus, var(--accent, #96591c)); outline: 2px solid var(--pf-outline-focus, var(--accent, #96591c)); outline-offset: 2px; }"
     }
   ],
   "narrative": {
     "northStar": "The Golden Age Paperback",
-    "overview": "The site is a 1970s science-fiction paperback cover you can read: a painted sky fixed behind everything, golden titling set in Idlewild SSm Light across a deep blue-gray masthead, and a warm white page of serif type floating in front of it. The scene is literal — a full-viewport spacecraft-sunset backdrop sits behind the site container, and on mobile it becomes a painted sunset gradient. Wonder is carried by the frame (masthead, constellations, gold accents); the page itself stays calm and bookish so long-form reading always comes first. Personality arrives in small, deliberate delights — a kudos button whose 🚀 actually launches, a webring, footnotes — never in loud gestures.",
+    "overview": "The site is a 1970s science-fiction paperback cover you can read: a painted sky fixed behind everything, golden titling set in Idlewild SSm across a deep blue-gray masthead, and a warm white page of serif type floating in front of it. The scene is literal — a full-viewport spacecraft-sunset backdrop sits behind the site container, and on mobile it becomes a painted sunset gradient. Wonder is carried by the frame (masthead, constellations, gold accents); the page itself stays calm and bookish so long-form reading always comes first.\n\nReaders use a centered column with a book-like measure, generous flow spacing, and animated constellation dividers between articles. The kudos rocket, webring, and footnotes add detail without disrupting the text. Preserve the retro-sci-fi identity and the visual anti-references in PRODUCT.md.",
     "keyCharacteristics": [
       "A literal painted-sky scene: fixed backdrop → glowing site container → dark masthead → light page",
-      "Serif-first typography (Adelle for reading and the submast) with Idlewild SSm Light for the masthead, and Lato for navigation, constellation nameplates, UI labels, and social-preview labels",
+      "Serif-first typography (Adelle for reading and the submast) with Idlewild SSm Light for the masthead, constellation nameplates, and social-preview site label, and Lato for navigation and UI labels",
       "Golden-hour palette: burnt orange and golden yellow warmth against deep space blue",
       "Class-toggled light/dark themes; dark mode swaps burnt orange for starfield gold",
       "Small delights over big motion: link underlines that fade on hover, launching rockets, constellation dividers"
@@ -349,22 +636,22 @@
     "rules": [
       {
         "name": "The Titling Foil Rule",
-        "body": "Golden Horizon belongs to the masthead alone — titling and the masthead's own wayfinding states (active nav, focus rings on its controls). Inside the reading column, use Burnt Atmosphere.",
+        "body": "Golden Horizon belongs to the masthead alone — titling, and the masthead's own wayfinding states (active nav, focus rings on its controls). If gold is appearing inside the reading column in light mode, it's the wrong accent — use Burnt Atmosphere.",
         "section": "colors"
       },
       {
         "name": "The Two Suns Rule",
-        "body": "Light mode's sun is deep burnt orange (#96591c); dark mode's is starfield gold (#d4af37). Every accent role swaps with the theme; both themes must independently hold WCAG AA contrast at body size against the actual surface.",
+        "body": "Light mode's sun is deep burnt orange (#96591c); dark mode's is starfield gold (#d4af37). Every accent role swaps with the theme; both themes must independently hold WCAG AA contrast — 4.5:1 at body size, verified against the surface the text actually sits on (page, Cloud Shadow, or hull).",
         "section": "colors"
       },
       {
         "name": "The Masthead Rule",
-        "body": "Use Idlewild SSm Light for the masthead wordmark. Use Lato Light for the social-preview site label and Lato Regular for constellation nameplates, navigation, and UI labels. Keep article prose, headings, and the rotating tagline in Adelle.",
+        "body": "Use Idlewild SSm Light for the masthead wordmark, constellation nameplates, and social-preview site label. Use Lato Regular for navigation and UI labels. Keep article prose, headings, and the rotating tagline in Adelle.",
         "section": "typography"
       },
       {
         "name": "The One Voice Rule",
-        "body": "Everything readable is Adelle. Contrast comes from size and weight (100→300→400→600), never from introducing another text face.",
+        "body": "Use Adelle for prose and content headings. Preserve the established Idlewild SSm masthead and Lato UI roles; do not add another font for emphasis.",
         "section": "typography"
       },
       {
@@ -374,25 +661,24 @@
       }
     ],
     "dos": [
-      "Do keep the reading column at clamp(636px, 90vw, 763px) — the book measure is the product.",
-      "Do route all light-mode accents through Burnt Atmosphere (#b8722a) and all dark-mode accents through Starfield Gold (#d4af37); verify AA contrast in both themes independently (the CI runs pa11y WCAG2AA).",
-      "Do use Idlewild SSm Light for the masthead wordmark, Lato Light for the social-preview site label, Lato Regular for constellation nameplates and UI labels, and italic Adelle for the rotating tagline. Reserve Golden Horizon for masthead titling and wayfinding.",
-      "Do add small delights in the kudos-rocket register: brief (≤750ms), physical, suppressed under prefers-reduced-motion.",
+      "Do keep the page container at `clamp(636px, 90vw, 763px)` and prose within 45–75 characters per line; the homepage stream uses `70ch`.",
+      "Do route all light-mode accents through Burnt Atmosphere (#96591c) and all dark-mode accents through Starfield Gold (#d4af37); verify AA contrast in both themes independently (the CI runs pa11y WCAG2AA).",
+      "Do spend underlines only on links that navigate; heading self-anchors stay bare and earn a `#` glyph on hover/focus instead.",
+      "Do give touch controls a ≥40px hit area on coarse pointers — grow padding, not font size, and never shrink a label to dodge a wrap.",
+      "Do use Idlewild SSm Light for the masthead wordmark, constellation nameplates, and social-preview site label. Use Lato Regular for navigation and UI labels; use italic Adelle for the rotating tagline. Reserve Golden Horizon for masthead titling and wayfinding.",
+      "Do add small delights in the kudos-rocket register: brief (≤750ms), physical, suppressed under `prefers-reduced-motion`.",
       "Do let depth come from the painted scene; shadows respond to hover, focus, or elevation state.",
-      "Do use color-mix tints of instrument colors for any new status surface, matching the alert formula.",
-      "Do spend underlines only on links that navigate; heading self-anchors stay bare and earn a # glyph on hover/focus instead.",
-      "Do give touch controls a >=40px hit area on coarse pointers - grow padding, not font size."
+      "Do use `color-mix` tints of instrument colors for any new status surface, matching the alert formula."
     ],
     "donts": [
       "Don't import SaaS landing-page grammar — hero metrics, identical card grids, gradient CTAs (PRODUCT.md anti-reference, verbatim).",
       "Don't drift toward the minimal dev-blog template — Inter-on-white, personality-free (PRODUCT.md anti-reference, verbatim).",
-      "Don't introduce a second text face; if a passage needs emphasis, use Adelle's weight and size range.",
+      "Don't add fonts beyond the established Adelle, Idlewild SSm, Lato, and PragmataPro roles; use Adelle's weight and size range for prose emphasis.",
       "Don't use gradient text, glassmorphism, or decorative blurs — the backdrop is the only atmospheric layer.",
       "Don't spend Golden Horizon inside the reading column in light mode; it fails contrast on Cloud-Light White and dilutes the masthead.",
       "Don't add new thick colored left-borders beyond the established blockquote/alert convention; that pattern is grandfathered, not generative.",
-      "Don't replace the constellation dividers or the ### hr with plain rules — they are the site's fingerprint.",
-      "Do not end a page outside the scene: the footer is the hull-dark back cover in both themes, never a flat gray strip.",
-      "Do not use cold neutral grays - dark mode text is warmed Cabin Paper (#e8e4de / #c9c4bc)."
+      "Don't replace the constellation dividers or the `###` hr with plain rules — they are the site's fingerprint.",
+      "Don't replace the warm dark-mode prose colors with cold grays. Preserve the existing utility colors for code frames, inline code, tables, and navigation."
     ]
   }
 }

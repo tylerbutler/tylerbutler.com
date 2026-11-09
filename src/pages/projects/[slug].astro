@@ -5,6 +5,7 @@ import { ExternalLink } from "@lucide/astro";
 import Github from "simple-icons-astro/Github";
 import ActionChip from "../../components/ActionChip.astro";
 import ProjectBadges from "../../components/ProjectBadges.astro";
+import SourcePreview from "../../components/SourcePreview.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
   getArticleDisplayTitle,
@@ -12,21 +13,47 @@ import {
   getRelatedArticles,
 } from "../../lib/article-utils";
 import { includeDraft } from "../../lib/draft-utils";
+import { getProjectRelationships } from "../../lib/project-utils";
 import { formatTitle } from "../../lib/typography";
 
 export async function getStaticPaths() {
-  const projects = await getCollection(
-    "projects",
-    ({ id, data }) => !id.startsWith("_") && includeDraft(data),
-  );
+  const projects = await getCollection("projects");
 
-  return projects.map((project) => ({
-    params: { slug: project.id },
-    props: { project },
-  }));
+  return projects
+    .filter(({ id, data }) => !id.startsWith("_") && includeDraft(data))
+    .map((project) => ({
+      params: { slug: project.id },
+      props: { project, relationships: getProjectRelationships(project, projects) },
+    }));
 }
 
-const { project } = Astro.props;
+const { project, relationships } = Astro.props;
+const relationshipSections = await Promise.all(
+  [
+    {
+      heading: "Powered by",
+      id: "powered-by",
+      description: `Projects that ${project.data.title} depends on.`,
+      projects: relationships.poweredBy,
+    },
+    {
+      heading: "Powers",
+      id: "powers",
+      description: `Projects that use ${project.data.title} as a dependency.`,
+      projects: relationships.powers,
+    },
+  ]
+    .filter(({ projects }) => projects.length > 0)
+    .map(async (section) => ({
+      ...section,
+      projects: await Promise.all(
+        section.projects.map(async (relatedProject) => ({
+          ...relatedProject,
+          formattedTitle: await formatTitle(relatedProject.data.title),
+        })),
+      ),
+    })),
+);
 const { Content } = await render(project);
 const relatedArticles = await Promise.all(
   getRelatedArticles(
@@ -77,6 +104,12 @@ const relatedArticles = await Promise.all(
       </div>
     )}
 
+    {project.data.url && (
+      <div class="project-previews">
+        <SourcePreview url={project.data.url} />
+      </div>
+    )}
+
     <div class="project-links">
       {project.data.url && (
         <ActionChip href={project.data.url} external data-tinylytics-event="project.url" data-tinylytics-event-value={project.id}>
@@ -91,6 +124,27 @@ const relatedArticles = await Promise.all(
         </ActionChip>
       )}
     </div>
+
+    {relationshipSections.length > 0 && (
+      <div class="project-relationships">
+        {relationshipSections.map(section => (
+          <section aria-labelledby={`${section.id}-heading`}>
+            <h2 id={`${section.id}-heading`}>{section.heading}</h2>
+            <p class="relationship-context">{section.description}</p>
+            <ul>
+              {section.projects.map(relatedProject => (
+                <li>
+                  <a href={`/projects/${relatedProject.id}/`} set:html={relatedProject.formattedTitle} />
+                  {relatedProject.data.description && (
+                    <p>{relatedProject.data.description}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    )}
 
     {relatedArticles.length > 0 && (
       <section class="related-articles" aria-labelledby="related-articles-heading">
@@ -211,6 +265,16 @@ const relatedArticles = await Promise.all(
     line-height: 1.5;
   }
 
+  .project-previews {
+    display: grid;
+    gap: 1em;
+    margin-top: 2em;
+  }
+
+  .project-previews:not(:has(:global(.link-preview:not(.link-preview--no-metadata)))) {
+    display: none;
+  }
+
   /* The chips style themselves in ActionChip.astro — this row only spaces them */
   .project-links {
     margin: 2em 0 0 0;
@@ -229,6 +293,45 @@ const relatedArticles = await Promise.all(
 
   .related-articles {
     margin-top: 2em;
+  }
+
+  .project-relationships {
+    margin-top: 2.5em;
+    padding-top: 2em;
+    border-top: 1px solid var(--code-border);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 2em;
+  }
+
+  .project-relationships section {
+    min-width: 0;
+  }
+
+  .project-relationships ul {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0 0;
+  }
+
+  .project-relationships li {
+    padding: 0;
+    margin: 0 0 1.25em;
+    overflow-wrap: anywhere;
+  }
+
+  .project-relationships li:last-child {
+    margin-bottom: 0;
+  }
+
+  .project-relationships p {
+    margin: 0.25em 0 0;
+    color: var(--text-light);
+  }
+
+  .project-relationships .relationship-context {
+    margin-top: 0.5em;
+    overflow-wrap: anywhere;
   }
 
   .related-articles li {

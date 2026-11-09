@@ -13,7 +13,7 @@ programmingLanguage: python
 
 At its core, Engineer is a static website generator. In other words,
 Engineer let's you build a website from a bunch of files -- articles written
-in [Markdown][], templates, and other stuff -- and outputs *another* bunch
+in [Markdown][], templates, and other stuff -- and outputs _another_ bunch
 of files -- HTML, mostly -- that you can then copy wherever you want.
 
 But Engineer has some pretty nifty features that you might find

@@ -12,6 +12,7 @@ import {
 import { formatTitle } from "../lib/typography";
 import "../lib/styles/article-page.css";
 import KudosButton from "./KudosButton.astro";
+import SourcePreview from "./SourcePreview.astro";
 
 interface Props {
   article: CollectionEntry<"articles">;
@@ -121,9 +122,10 @@ const articleTitle = getArticleDisplayTitle(article);
 
       {isLinkPost && article.data.link && (
         <div class="link-post-reference">
+          <SourcePreview url={article.data.link} />
           <div class="link-wrapper">
             <a href={article.data.link} target="_blank" rel="noopener noreferrer" class="external-article-link">
-              {await formatTitle(articleTitle)}
+              Read original
               <ExternalLink size={16} class="external-icon" />
             </a>
             {article.data.via && article.data.vialink && (

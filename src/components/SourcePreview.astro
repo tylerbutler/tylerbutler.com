@@ -1,0 +1,53 @@
+---
+import { LinkPreview } from "astro-embed";
+
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+---
+
+<div class="source-preview">
+  <LinkPreview id={url} />
+</div>
+
+<style>
+  .source-preview :global(.link-preview) {
+    --link-preview-width: 100%;
+    --link-preview-padding-inline: 1em;
+    --link-preview-padding-block: 1em;
+    --link-preview-corners: 4px;
+    --link-preview-description-lines: 3;
+    background: var(--code-bg);
+    color: var(--text);
+    overflow-wrap: anywhere;
+  }
+
+  .source-preview :global(.link-preview__title) {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .source-preview :global(.link-preview__domain) {
+    font-family: var(--label-font);
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  .source-preview :global(.link-preview__description) {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .source-preview :global(.link-preview img),
+  .source-preview :global(.link-preview video) {
+    max-height: 280px;
+  }
+
+  .source-preview:has(:global(.link-preview--no-metadata)) {
+    display: none;
+  }
+</style>

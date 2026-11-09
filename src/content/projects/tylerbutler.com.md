@@ -4,6 +4,10 @@ date: 2012-05-05
 description: The very site you're looking at is a sandbox for various web experiments. (Sounds a lot more sinister than it is.)
 github: https://github.com/tylerbutler/tylerbutler.com
 maturity: stable
+dependsOn:
+  - rehype-footnotes
+  - remark-lazy-links
+  - remark-shift-headings
 ---
 
 ## Overview

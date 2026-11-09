@@ -245,6 +245,10 @@ Quiet instruments, small delights: controls are understated and bookish, then oc
 - **Stream title links** (homepage article titles): body-ink text with no resting underline; hover moves the title to the accent. The heading scale and pointer/focus states provide the affordance without adding rules beneath wrapped titles.
 - **Heading self-anchors:** never underlined. The underline is spent only on links that go somewhere; heading anchors reveal a `#` glyph in the accent on hover/focus instead, and the `:target` heading gets a 10% accent wash (15% in dark)
 
+### Link previews
+On link-article pages, show one preview for the explicit frontmatter source after the heading and date, before commentary. Use the existing paper tint (`--code-bg`), gently rounded corners (4px), Adelle title and description, Lato domain in secondary ink, and accent links. Keep “Read original” and any via credit below the preview, including when metadata is unavailable. Ordinary body links do not unfurl.
+Project detail pages use the same preview for Website destinations, after project content and before the action chips. HexDocs links remain documentation badges without previews. Keep the chips and documentation badges available when metadata is missing. Listing pages retain their compact links without previews.
+
 ### Cards / Containers (Blockquotes & Alerts)
 - **Corner Style:** flat left edge, 4px rounded right corners (0 4px 4px 0)
 - **Background:** Cloud Shadow for quotes; alerts tint 10% of their instrument color into the page background (15% into Deep Space Hull in dark mode)

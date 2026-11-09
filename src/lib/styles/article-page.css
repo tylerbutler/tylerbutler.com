@@ -155,16 +155,14 @@
 
 .link-post-reference {
   margin-bottom: 2em;
-  padding: 1em;
-  background: var(--code-bg);
-  border-left: 3px solid var(--accent);
-  border-radius: 3px;
 }
 
 .link-wrapper {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5em 1em;
+  margin-top: 0.75em;
 }
 
 .external-article-link {
@@ -184,11 +182,10 @@
 }
 
 .link-via {
-  margin-top: 0.75em;
+  margin-left: auto;
   font-style: normal;
   font-size: 13px;
   color: var(--text-light);
-  align-self: flex-end;
 }
 
 .link-via::before {

@@ -8,6 +8,14 @@ import {
   readNotes,
 } from "../src/lib/github-notes.ts";
 import {
+  hydrateMicroblogNotes,
+  MICROBLOG_JSON_FEED,
+  MICROBLOG_ORIGIN,
+  MICROBLOG_RSS_FEED,
+  mergeMicroblogNotes,
+  readMicroblogSnapshot,
+} from "../src/lib/microblog-notes.ts";
+import {
   createMicropub,
   publishCommitMessage,
 } from "../src/lib/micropub/config.ts";
@@ -18,6 +26,8 @@ import { includeNote } from "../src/lib/note-schema.ts";
 import { getNotePhotos, getNoteUrl } from "../src/lib/note-utils.ts";
 import { cacheNotes } from "../src/lib/notes-cache.ts";
 import { onRequest } from "../src/middleware.ts";
+import { GET as jsonFeed } from "../src/pages/notes/feed.json.ts";
+import { GET as rssFeed } from "../src/pages/notes/feed.xml.ts";
 import { GET as upload } from "../src/pages/uploads/[...path].ts";
 
 const markdown = (body: string, extra = "") =>
@@ -26,6 +36,208 @@ const fixture = parseNote(
   `${NOTES_DIR}2026-11-01-fixture.md`,
   markdown("Baseline"),
 );
+
+const sourcePost = {
+  id: `${MICROBLOG_ORIGIN.replace("https:", "http:")}/2026/10/31/source.html`,
+  url: `${MICROBLOG_ORIGIN}/2026/10/31/source.html`,
+  date_published: fixture.data.date,
+  content_html: "<p>Current <em>source</em> &amp; content.</p>",
+};
+
+test("Micro.blog edits and deletion override imported snapshots without changing legacy notes or stable URLs", () => {
+  for (const originalUrl of [
+    sourcePost.url,
+    sourcePost.id,
+    "/2026/10/31/source.html",
+  ]) {
+    const imported = parseNote(
+      `${NOTES_DIR}2026-11-01-imported.md`,
+      markdown(
+        "Stale backup",
+        `originalUrl: "${originalUrl}"\nslug: retained\ntags: [backup]\ntitle: Stale title\nphoto: ["/uploads/stale.jpg"]\nin-reply-to: ["https://example.com/stale"]\ndraft: true\n`,
+      ),
+    );
+    const hiddenLegacy = parseNote(
+      `${NOTES_DIR}2026-11-01-draft.md`,
+      markdown("Hidden legacy", "draft: true\n"),
+    );
+    const storedBody = imported.body;
+    const source = { archive: [sourcePost], recent: [sourcePost] };
+    const notes = mergeMicroblogNotes(
+      [imported, fixture, hiddenLegacy],
+      source,
+    );
+    assert.equal(notes.length, 2);
+    const live = notes.find((note) => note.sourceUrl);
+    assert.ok(live);
+    assert.equal(live.id, imported.id);
+    assert.equal(getNoteUrl(live), getNoteUrl(imported));
+    assert.equal(live.body, "Current source & content.");
+    assert.match(live.html ?? "", /<em>source<\/em>/);
+    assert.deepEqual(live.data.tags, ["backup"]);
+    assert.equal(live.data.title, undefined);
+    assert.ok(!live.data.photos?.length);
+    assert.ok(!live.data.replyTo?.length);
+    assert.equal(imported.body, storedBody);
+    assert.deepEqual(
+      mergeMicroblogNotes([imported, fixture, hiddenLegacy], {
+        archive: [],
+        recent: [],
+      }),
+      [fixture],
+    );
+  }
+  const unimported = mergeMicroblogNotes([], {
+    archive: [sourcePost],
+    recent: [sourcePost],
+  })[0];
+  const imported = parseNote(
+    `${NOTES_DIR}2026-11-01-source.md`,
+    markdown("Later snapshot", `originalUrl: "${sourcePost.url}"\n`),
+  );
+  const afterImport = mergeMicroblogNotes([imported], {
+    archive: [sourcePost],
+    recent: [sourcePost],
+  });
+  assert.equal(afterImport.length, 1);
+  assert.equal(getNoteUrl(afterImport[0]), getNoteUrl(unimported));
+});
+
+test("older Micro.blog posts leaving the recent feed hydrate only when selected and never reuse stale URL bodies", async (t) => {
+  const older = {
+    ...sourcePost,
+    url: `${MICROBLOG_ORIGIN}/2026/10/31/older.html`,
+    id: "older",
+    content_html: undefined,
+  };
+  const snapshot = { archive: [sourcePost, older], recent: [sourcePost] };
+  let body =
+    '<p>Older <em>formatted</em> content. <a href="../related.html">Related</a><img src="../photo.jpg" alt="Source alt text" onerror="alert(1)"></p><script>alert(1)</script><a href="javascript:alert(1)">Unsafe</a>';
+  let calls = 0;
+  t.mock.method(globalThis, "fetch", async (input, options) => {
+    calls++;
+    assert.equal(String(input), older.url);
+    assert.equal(options?.cache, "no-store");
+    assert.equal(options?.redirect, "error");
+    return new Response(
+      `<nav>Exclude navigation</nav><article class="post h-entry"><header>Exclude header</header><section class="post-content e-content">${body}</section></article>`,
+      {
+        headers: { "Content-Type": "text/html" },
+      },
+    );
+  });
+  let notes = mergeMicroblogNotes([], snapshot);
+  await hydrateMicroblogNotes(
+    notes.filter((note) => note.sourceUrl === sourcePost.url),
+  );
+  assert.equal(calls, 0);
+  let old = notes.find((note) => note.sourceUrl === older.url);
+  assert.ok(old);
+  assert.equal(old.html, undefined);
+  await hydrateMicroblogNotes([old]);
+  assert.equal(calls, 1);
+  assert.match(old.html ?? "", /<em>formatted<\/em>/);
+  assert.match(
+    old.html ?? "",
+    /href="https:\/\/tylerbutler.micro.blog\/2026\/10\/related.html"/,
+  );
+  assert.match(
+    old.html ?? "",
+    /src="https:\/\/tylerbutler.micro.blog\/2026\/10\/photo.jpg" alt="Source alt text"/,
+  );
+  assert.doesNotMatch(old.html ?? "", /<script|onerror|javascript:|Exclude/);
+  assert.equal(old.data.postType, "photo");
+  body = "<p>Edited after import.</p>";
+  notes = mergeMicroblogNotes([], snapshot);
+  old = notes.find((note) => note.sourceUrl === older.url);
+  assert.ok(old);
+  await hydrateMicroblogNotes([old]);
+  assert.equal(calls, 2);
+  assert.equal(old.body, "Edited after import.");
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async () =>
+      new Response("Missing e-content", {
+        headers: { "Content-Type": "text/html" },
+      }),
+  );
+  await assert.rejects(
+    hydrateMicroblogNotes(mergeMicroblogNotes([], snapshot)),
+    /content unavailable/,
+  );
+});
+
+test("Micro.blog publication inventory completes pagination and rejects incomplete, untrusted, malformed or inconsistent sources", async (t) => {
+  const archiveUrl = `${MICROBLOG_ORIGIN}/archive/index.json`;
+  const nextUrl = `${archiveUrl}?page=2`;
+  const older = {
+    ...sourcePost,
+    id: "older",
+    url: `${MICROBLOG_ORIGIN}/2026/10/31/older.html`,
+    content_html: undefined,
+    content_text: "Archive preview",
+  };
+  const feed = (items, next_url?) => ({
+    version: "https://jsonfeed.org/version/1",
+    home_page_url: `${MICROBLOG_ORIGIN}/`,
+    items,
+    next_url,
+  });
+  let mode = "valid";
+  const requests: string[] = [];
+  t.mock.method(globalThis, "fetch", async (input) => {
+    const url = String(input);
+    requests.push(url);
+    assert.ok(url.startsWith(MICROBLOG_ORIGIN));
+    if (url === MICROBLOG_JSON_FEED) return Response.json(feed([sourcePost]));
+    if (url === nextUrl) {
+      if (mode === "unavailable")
+        return new Response("Unavailable", { status: 503 });
+      return Response.json(feed([sourcePost]));
+    }
+    assert.equal(url, archiveUrl);
+    if (mode === "inconsistent") return Response.json(feed([]));
+    if (mode === "malformed") return Response.json({ items: [] });
+    if (mode === "date")
+      return Response.json(feed([{ ...older, date_published: null }]));
+    if (mode === "untrusted")
+      return Response.json(feed([older], "https://example.com/archive.json"));
+    if (mode === "duplicate") return Response.json(feed([sourcePost], nextUrl));
+    return Response.json(feed([older], nextUrl));
+  });
+  const result = await readMicroblogSnapshot();
+  assert.equal(result.archive.length, 2);
+  assert.equal(result.recent.length, 1);
+  assert.ok(requests.includes(nextUrl));
+  for (mode of [
+    "unavailable",
+    "inconsistent",
+    "malformed",
+    "date",
+    "untrusted",
+    "duplicate",
+  ]) {
+    await assert.rejects(readMicroblogSnapshot());
+  }
+});
+
+test("old notes subscription URLs redirect directly to Micro.blog without generating or caching a second feed", () => {
+  for (const [handler, url] of [
+    [jsonFeed, MICROBLOG_JSON_FEED],
+    [rssFeed, MICROBLOG_RSS_FEED],
+  ] as const) {
+    const calls: unknown[] = [];
+    const response = handler({
+      cache: { set: (value) => calls.push(value) },
+    } as APIContext);
+    assert.equal(response.status, 302);
+    assert.equal(response.headers.get("location"), url);
+    assert.equal(response.headers.get("cache-control"), "no-store");
+    assert.deepEqual(calls, [false]);
+    assert.equal(response.body, null);
+  }
+});
 
 test("token publishing accepts native clients while other form routes keep Origin protection", async () => {
   for (const [pathname, contentType, origin, expected] of [

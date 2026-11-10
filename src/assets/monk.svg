@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Monk - Side by Side</title>
+  <path fill="#f2cf45" d="M0 0h512v512H0Z"/>
+  <g transform="translate(116 136) scale(2)">
+    <path fill="#eb6256" d="M0 120V42a42 42 0 0 1 84 0v78H56V42a14 14 0 0 0-28 0v78Z"/>
+    <path fill="#69b5f5" d="M56 120V42a42 42 0 0 1 84 0v78h-28V42a14 14 0 0 0-28 0v78Z"/>
+  </g>
+</svg>

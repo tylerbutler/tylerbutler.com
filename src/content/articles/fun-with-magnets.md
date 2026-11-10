@@ -1,6 +1,6 @@
 ---
-title: "Fun with Magnets!"
-date: '2026-11-06T17:44:00-08:00'
+title: "Fun with magnets!"
+date: '2026-11-10T12:44:00-08:00'
 slug: fun-with-magnets
 tags:
 - depression

@@ -18,3 +18,5 @@ dependsOn:
 Overlay files into git repositories without committing them. Symlink or copy shared configs — automatically
 excluded from git. Overlays are shareable, composable, and are perfect for things like git hook configs, AI agent
 configs, and other files that you need in the repo but not committed.
+
+The core overlay tool is stable. Profiles and plugins remain experimental.

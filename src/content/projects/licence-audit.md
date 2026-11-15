@@ -4,6 +4,8 @@ date: 2026-05-24
 description: Dependency licence auditing, SBOMs, and vulnerability reports for Gleam.
 url: https://licence-audit.tylerbutler.com/
 github: https://github.com/tylerbutler/licence_audit
+hex: licence_audit
+hexDocs: licence_audit
 logo: ../../assets/licence-audit.svg
 programmingLanguage: gleam
 license: Apache-2.0
@@ -20,4 +22,4 @@ Audit the locked dependencies in a Gleam project, preview or enforce a licence p
 
 Licence_audit uses tomlet for configuration, tty and spruce for terminal output, and Gluegun for HTTP requests. The project uses Trellis for releases.
 
-It is in release-candidate testing. GitHub releases provide self-contained executables that include the Erlang runtime, plus escripts that require Erlang/OTP 28 or newer. It is not published on Hex.
+It is in release-candidate testing. GitHub releases provide self-contained executables that include the Erlang runtime, plus escripts that require Erlang/OTP 28 or newer. You can also install the release candidate from Hex.

@@ -7,7 +7,7 @@ group: markdown-plugins
 npm: remark-shift-headings
 programmingLanguage: typescript
 license: MIT
-maturity: experimental
+maturity: stable
 tags: ["markdown"]
 ---
 

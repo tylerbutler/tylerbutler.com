@@ -7,7 +7,7 @@ group: markdown-plugins
 npm: rehype-footnotes
 programmingLanguage: typescript
 license: MIT
-maturity: experimental
+maturity: stable
 tags: ["markdown"]
 ---
 

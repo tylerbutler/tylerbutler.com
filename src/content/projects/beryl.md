@@ -7,12 +7,14 @@ github: https://github.com/tylerbutler/beryl
 programmingLanguage: gleam
 logo: ../../assets/beryl.webp
 license: MIT
-maturity: unpublished
+maturity: experimental
 dependsOn:
   - lattice
   - trellis
 ---
 
 Type-safe real-time channels and presence for Gleam on the BEAM. It's like Phoenix Channels, but with types thanks to Gleam!
+
+Beryl is experimental. Install from Git using the published GitHub release tags; it is not on Hex.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UOFA74zsSnk?si=njETXRxinSA6PdpS" title="YouTube video player" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

@@ -7,7 +7,7 @@ group: markdown-plugins
 npm: remark-lazy-links
 programmingLanguage: typescript
 license: MIT
-maturity: experimental
+maturity: stable
 tags: ["markdown"]
 ---
 

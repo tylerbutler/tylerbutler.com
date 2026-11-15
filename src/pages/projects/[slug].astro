@@ -23,7 +23,10 @@ export async function getStaticPaths() {
     .filter(({ id, data }) => !id.startsWith("_") && includeDraft(data))
     .map((project) => ({
       params: { slug: project.id },
-      props: { project, relationships: getProjectRelationships(project, projects) },
+      props: {
+        project,
+        relationships: getProjectRelationships(project, projects),
+      },
     }));
 }
 

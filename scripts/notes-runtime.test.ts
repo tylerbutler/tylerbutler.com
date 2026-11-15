@@ -50,6 +50,7 @@ test("token publishing accepts native clients while other form routes keep Origi
       context,
       async () => new Response("Allowed"),
     );
+    assert.ok(response instanceof Response);
     assert.equal(response.status, expected);
   }
 });
@@ -62,14 +63,18 @@ test("live inventory reuses baseline and merges immutable changes/removals beyon
     else delete process.env.GITHUB_TOKEN;
   });
   let calls = 0;
-  t.mock.method(globalThis, "fetch", async (input) => {
-    calls++;
-    assert.match(String(input), /git\/blobs\/changed-unique$/);
-    return Response.json({
-      encoding: "base64",
-      content: Buffer.from(markdown("Changed")).toString("base64"),
-    });
-  });
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async (input: Parameters<typeof fetch>[0]) => {
+      calls++;
+      assert.match(String(input), /git\/blobs\/changed-unique$/);
+      return Response.json({
+        encoding: "base64",
+        content: Buffer.from(markdown("Changed")).toString("base64"),
+      });
+    },
+  );
   const baseline = Array.from({ length: 1002 }, (_, i) => ({
     ...fixture,
     id: `2026-11-01-${i}`,
@@ -109,21 +114,25 @@ test("truncated GitHub trees use complete subtrees, and source failures do not b
     if (oldToken) process.env.GITHUB_TOKEN = oldToken;
     else delete process.env.GITHUB_TOKEN;
   });
-  t.mock.method(globalThis, "fetch", async (input) => {
-    const url = String(input);
-    if (url.endsWith("?recursive=1"))
-      return Response.json({ sha: "root", truncated: true, tree: [] });
-    const sha = url.split("/").pop();
-    const tree =
-      sha === "root"
-        ? [{ path: "src", sha: "src", type: "tree" }]
-        : sha === "src"
-          ? [{ path: "content", sha: "content", type: "tree" }]
-          : sha === "content"
-            ? [{ path: "notes", sha: "notes", type: "tree" }]
-            : [{ path: "2026-11-01-fixture.md", sha: "file", type: "blob" }];
-    return Response.json({ truncated: false, tree });
-  });
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async (input: Parameters<typeof fetch>[0]) => {
+      const url = String(input);
+      if (url.endsWith("?recursive=1"))
+        return Response.json({ sha: "root", truncated: true, tree: [] });
+      const sha = url.split("/").pop();
+      const tree =
+        sha === "root"
+          ? [{ path: "src", sha: "src", type: "tree" }]
+          : sha === "src"
+            ? [{ path: "content", sha: "content", type: "tree" }]
+            : sha === "content"
+              ? [{ path: "notes", sha: "notes", type: "tree" }]
+              : [{ path: "2026-11-01-fixture.md", sha: "file", type: "blob" }];
+      return Response.json({ truncated: false, tree });
+    },
+  );
   assert.deepEqual(
     (await githubTree("main")).map((entry) => entry.path),
     [`${NOTES_DIR}2026-11-01-fixture.md`],
@@ -210,20 +219,24 @@ test("uploads preserve binary bytes, conditional requests, and uncached failures
   });
   const bytes = Uint8Array.from([0, 255, 128, 1]);
   let failed = false;
-  t.mock.method(globalThis, "fetch", async (input) => {
-    if (failed) return new Response(null, { status: 403 });
-    return String(input).includes("/trees/")
-      ? Response.json({
-          tree: [
-            { path: "public/uploads/new.png", type: "blob", sha: "photo" },
-          ],
-          truncated: false,
-        })
-      : Response.json({
-          encoding: "base64",
-          content: Buffer.from(bytes).toString("base64"),
-        });
-  });
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async (input: Parameters<typeof fetch>[0]) => {
+      if (failed) return new Response(null, { status: 403 });
+      return String(input).includes("/trees/")
+        ? Response.json({
+            tree: [
+              { path: "public/uploads/new.png", type: "blob", sha: "photo" },
+            ],
+            truncated: false,
+          })
+        : Response.json({
+            encoding: "base64",
+            content: Buffer.from(bytes).toString("base64"),
+          });
+    },
+  );
   const policy: unknown[] = [];
   const context = {
     params: { path: "new.png" },
@@ -286,19 +299,23 @@ test("publishing preserves canonical metadata, validates notes, and skips only n
     else delete process.env.GITHUB_TOKEN;
   });
   const writes: { content: string; message: string }[] = [];
-  t.mock.method(globalThis, "fetch", async (input, init) => {
-    if (String(input).includes("tokens.indieauth.com"))
-      return Response.json({
-        me: "https://tylerbutler.com/",
-        scope: "create update delete undelete media",
-        client_id: "https://micro.blog/",
-      });
-    if (init?.method === "PUT") {
-      writes.push(JSON.parse(String(init.body)));
-      return Response.json({ commit: { sha: "saved" } });
-    }
-    return new Response("", { status: 404 });
-  });
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async (input: Parameters<typeof fetch>[0], init?: RequestInit) => {
+      if (String(input).includes("tokens.indieauth.com"))
+        return Response.json({
+          me: "https://tylerbutler.com/",
+          scope: "create update delete undelete media",
+          client_id: "https://micro.blog/",
+        });
+      if (init?.method === "PUT") {
+        writes.push(JSON.parse(String(init.body)));
+        return Response.json({ commit: { sha: "saved" } });
+      }
+      return new Response("", { status: 404 });
+    },
+  );
   const { store } = createMicropub(async () => fixture);
   assert.equal(
     await store.storagePath("src/content/notes/2026/10/31/fixture.md"),

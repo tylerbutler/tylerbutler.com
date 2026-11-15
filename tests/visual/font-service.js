@@ -20,6 +20,7 @@ export const test = base.extend({
           "accept-encoding": "identity",
         },
       });
+      /** @type {Record<string, string>} */
       const headers = {
         ...response.headers(),
         "access-control-allow-origin": request.headers().origin ?? "*",

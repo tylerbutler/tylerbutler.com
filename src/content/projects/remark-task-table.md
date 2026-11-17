@@ -7,7 +7,7 @@ group: markdown-plugins
 npm: remark-task-table
 programmingLanguage: typescript
 license: MIT
-maturity: unpublished
+maturity: experimental
 tags: ["markdown"]
 
 draft: true

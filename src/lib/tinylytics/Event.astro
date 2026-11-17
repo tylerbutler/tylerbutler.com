@@ -31,8 +31,12 @@ const { name, value, as, ...rest } = Astro.props;
 const Tag = as ?? ("href" in rest && rest.href ? "a" : "button");
 ---
 
-<Tag
-  {...rest}
-  data-tinylytics-event={name}
-  data-tinylytics-event-value={value}
-><slot /></Tag>
+{Tag === "a" ? (
+  <a {...rest as AnchorAttrs} data-tinylytics-event={name} data-tinylytics-event-value={value}><slot /></a>
+) : Tag === "button" ? (
+  <button {...rest as ButtonAttrs} data-tinylytics-event={name} data-tinylytics-event-value={value}><slot /></button>
+) : Tag === "div" ? (
+  <div {...rest as DivAttrs} data-tinylytics-event={name} data-tinylytics-event-value={value}><slot /></div>
+) : (
+  <span {...rest as DivAttrs} data-tinylytics-event={name} data-tinylytics-event-value={value}><slot /></span>
+)}

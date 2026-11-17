@@ -2,7 +2,7 @@
 title: birch
 date: 2026-04-07
 description: Logs that gleam. ✨🪵✨
-url: https://birch.tylerbutler.com/
+url: https://hexdocs.pm/birch/
 github: https://github.com/tylerbutler/birch
 hex: birch
 hexDocs: birch

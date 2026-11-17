@@ -8,7 +8,7 @@ group: ccl
 logo: ../../assets/ccl-badge.webp
 license: MIT
 tags: ["ccl"]
-maturity: experimental
+maturity: stable
 ---
 
 A test suite and accompanying documentation for CCL.

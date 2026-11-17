@@ -1,7 +1,7 @@
 ---
 title: Engineer
 date: 2025-12-16
-description: A static blog engine written in Python. tylerbutler.com was built using Engineer, and your site can be too!
+description: A retired static blog engine written in Python that once powered tylerbutler.com.
 url: https://engineer.readthedocs.org/
 github: https://github.com/tylerbutler/engineer
 maturity: archived
@@ -10,6 +10,8 @@ programmingLanguage: python
 ---
 
 ## Overview
+
+Engineer is retired. This site now uses Astro. The archived status here means the project is no longer current; the GitHub repository remains unarchived.
 
 At its core, Engineer is a static website generator. In other words,
 Engineer let's you build a website from a bunch of files -- articles written
@@ -21,10 +23,6 @@ enticing. Learn more about Engineer, including how to install it, at
 <https://engineer.readthedocs.org/>, or check out the source at
 [github](https://github.com/tylerbutler/engineer).
 
-You can also check out [the source for tylerbutler.com][1] for an example of what an
-Engineer-based site looks like under the covers.
-
 Licensed under the MIT license.
 
 [Markdown]: https://daringfireball.net/projects/markdown/
-[1]: https://github.com/tylerbutler/tylerbutler.com

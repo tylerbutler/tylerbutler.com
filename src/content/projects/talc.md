@@ -5,7 +5,7 @@ description: Publish npm packages from Gleam source code.
 github: https://github.com/tylerbutler/talc
 programmingLanguage: gleam
 license: MIT
-maturity: stable
+maturity: experimental
 
 draft: true
 ---

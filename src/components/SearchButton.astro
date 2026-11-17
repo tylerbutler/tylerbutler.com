@@ -50,7 +50,7 @@ import { Icon } from "astro-icon/components";
 <script is:inline>
   const handleSearchClick = () => {
     const modal = document.querySelector("pagefind-modal");
-    if (modal && typeof modal.open === "function") {
+    if (modal && "open" in modal && typeof modal.open === "function") {
       modal.open();
     }
   };

@@ -1,3 +1,4 @@
+import assert from "node:assert/strict";
 import { expect, test } from "./font-service.js";
 
 test.describe("On-demand notes", () => {
@@ -13,6 +14,7 @@ test.describe("On-demand notes", () => {
     expect(feed.version).toBe("https://jsonfeed.org/version/1.1");
     expect(feed.items.length).toBeGreaterThan(20);
     const stream = await page.goto("/notes/");
+    assert.ok(stream);
     expect(stream.status()).toBe(200);
     expect(stream.headers()["content-type"]).toContain("text/html");
     await expect(page.locator("h1")).toHaveText("Notes");
@@ -46,15 +48,20 @@ test.describe("On-demand notes", () => {
     request,
   }) => {
     const feed = await (await request.get("/notes/feed.json")).json();
-    const photo = feed.items.find((item) =>
-      item.content_html.includes("/uploads/"),
+    const photo = feed.items.find(
+      (/** @type {{ content_html: string }} */ item) =>
+        item.content_html.includes("/uploads/"),
     );
     test.skip(!photo, "Requires a published photo note");
     await page.goto(new URL(photo.url).pathname);
     const image = page.locator(".e-content img.u-photo").first();
     await expect(image).toBeVisible();
     await expect
-      .poll(() => image.evaluate((img) => img.naturalWidth))
+      .poll(() =>
+        image.evaluate((img) =>
+          img instanceof HTMLImageElement ? img.naturalWidth : 0,
+        ),
+      )
       .toBeGreaterThan(0);
     const colors = [];
     for (const theme of ["light", "dark"]) {

@@ -5,7 +5,7 @@ description: ULID (Universally Unique Lexicographically Sortable Identifier) for
 github: https://github.com/tylerbutler/ulid_gleam
 programmingLanguage: gleam
 license: MIT
-maturity: stable
+maturity: experimental
 
 draft: true
 ---

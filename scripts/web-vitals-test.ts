@@ -24,7 +24,7 @@ interface MetricsSummary {
   summary: {
     totalPages: number;
     avgLCP: number;
-    avgFID: number;
+    avgINP: number;
     avgCLS: number;
     avgFCP: number;
     avgTTFB: number;
@@ -33,7 +33,7 @@ interface MetricsSummary {
 
 /**
  * Web Vitals testing using Playwright and web-vitals library
- * Tests Core Web Vitals (LCP, FID, CLS) on key pages
+ * Tests Core Web Vitals (LCP, INP, CLS) on key pages
  */
 
 test.describe("Web Vitals Performance Tests", () => {
@@ -42,56 +42,30 @@ test.describe("Web Vitals Performance Tests", () => {
   test.beforeEach(async ({ page }) => {
     // Inject web-vitals library
     await page.addInitScript(() => {
-      (window as any).vitalsData = [];
+      window.vitalsData = [];
 
       // Import and configure web-vitals
-      // @ts-ignore - Dynamic CDN import
-      import(
-        "https://unpkg.com/web-vitals@5/dist/web-vitals.attribution.js"
-      ).then(({ getCLS, getFID, getFCP, getLCP, getTTFB }: any) => {
-        // Collect all Core Web Vitals
-        getCLS((metric: any) =>
-          (window as any).vitalsData.push({
-            name: "CLS",
-            value: metric.value,
-            rating: metric.rating,
-          }),
-        );
-        getFID((metric: any) =>
-          (window as any).vitalsData.push({
-            name: "FID",
-            value: metric.value,
-            rating: metric.rating,
-          }),
-        );
-        getFCP((metric: any) =>
-          (window as any).vitalsData.push({
-            name: "FCP",
-            value: metric.value,
-            rating: metric.rating,
-          }),
-        );
-        getLCP((metric: any) =>
-          (window as any).vitalsData.push({
-            name: "LCP",
-            value: metric.value,
-            rating: metric.rating,
-          }),
-        );
-        getTTFB((metric: any) =>
-          (window as any).vitalsData.push({
-            name: "TTFB",
-            value: metric.value,
-            rating: metric.rating,
-          }),
-        );
+      const libraryUrl =
+        "https://unpkg.com/web-vitals@5/dist/web-vitals.attribution.js";
+      import(libraryUrl).then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
+        for (const observe of [onCLS, onINP, onFCP, onLCP, onTTFB]) {
+          observe(
+            (metric: VitalMetric) =>
+              window.vitalsData.push({
+                name: metric.name,
+                value: metric.value,
+                rating: metric.rating,
+              }),
+            { reportAllChanges: true },
+          );
+        }
       });
     });
   });
 
   const testPages = [
     { name: "Homepage", url: "/" },
-    { name: "Article Page", url: "/posts/" }, // Will test first available post
+    { name: "Article Page", url: "/articles/" },
     { name: "About Page", url: "/about/" },
   ];
 
@@ -104,19 +78,33 @@ test.describe("Web Vitals Performance Tests", () => {
       // Wait for vitals to be collected
       await page.waitForTimeout(3000);
 
-      // If it's the posts page, click on first article
-      if (url === "/posts/") {
-        const firstArticle = page.locator("article h1 a").first();
-        if (await firstArticle.isVisible()) {
-          await firstArticle.click();
-          await page.waitForLoadState("networkidle");
-          await page.waitForTimeout(2000);
-        }
+      if (url === "/articles/") {
+        await page.locator(".article-link").first().click();
+        await page.waitForLoadState("networkidle");
+        await page.waitForTimeout(2000);
       }
+
+      await page.mouse.click(1, 1);
+      await expect
+        .poll(() =>
+          page.evaluate(() => {
+            const required = ["CLS", "FCP", "LCP", "TTFB"];
+            if (
+              "PerformanceEventTiming" in window &&
+              "interactionId" in PerformanceEventTiming.prototype
+            ) {
+              required.push("INP");
+            }
+            return required.every((name) =>
+              window.vitalsData.some((metric) => metric.name === name),
+            );
+          }),
+        )
+        .toBe(true);
 
       // Get vitals data
       const vitals = (await page.evaluate(
-        () => (window as any).vitalsData || [],
+        () => window.vitalsData || [],
       )) as VitalMetric[];
 
       console.log(`\n📊 Web Vitals for ${name}:`);
@@ -149,12 +137,12 @@ test.describe("Web Vitals Performance Tests", () => {
             ).toBeLessThan(2500);
             expect(metric.rating, "LCP rating should be good").not.toBe("poor");
             break;
-          case "FID":
+          case "INP":
             expect(
               metric.value,
-              `FID should be under 100ms (got ${metric.value}ms)`,
-            ).toBeLessThan(100);
-            expect(metric.rating, "FID rating should be good").not.toBe("poor");
+              `INP should be under 200ms (got ${metric.value}ms)`,
+            ).toBeLessThan(200);
+            expect(metric.rating, "INP rating should be good").not.toBe("poor");
             break;
           case "CLS":
             expect(
@@ -198,8 +186,8 @@ test.describe("Web Vitals Performance Tests", () => {
         avgLCP:
           vitalsData.reduce((sum, p) => sum + (p.metrics.LCP?.value || 0), 0) /
           vitalsData.length,
-        avgFID:
-          vitalsData.reduce((sum, p) => sum + (p.metrics.FID?.value || 0), 0) /
+        avgINP:
+          vitalsData.reduce((sum, p) => sum + (p.metrics.INP?.value || 0), 0) /
           vitalsData.length,
         avgCLS:
           vitalsData.reduce((sum, p) => sum + (p.metrics.CLS?.value || 0), 0) /
@@ -224,7 +212,7 @@ test.describe("Web Vitals Performance Tests", () => {
     console.log("\n📈 Web Vitals Summary:");
     console.log("─".repeat(50));
     console.log(`Average LCP: ${metrics.summary.avgLCP.toFixed(2)}ms`);
-    console.log(`Average FID: ${metrics.summary.avgFID.toFixed(2)}ms`);
+    console.log(`Average INP: ${metrics.summary.avgINP.toFixed(2)}ms`);
     console.log(`Average CLS: ${metrics.summary.avgCLS.toFixed(3)}`);
     console.log(`Average FCP: ${metrics.summary.avgFCP.toFixed(2)}ms`);
     console.log(`Average TTFB: ${metrics.summary.avgTTFB.toFixed(2)}ms`);

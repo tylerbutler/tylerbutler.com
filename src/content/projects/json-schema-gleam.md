@@ -5,7 +5,7 @@ description: Generate Gleam type definitions from JSON Schema definitions.
 github: https://github.com/tylerbutler/json-schema-gleam
 programmingLanguage: gleam
 license: MIT
-maturity: stable
+maturity: experimental
 
 draft: true
 ---

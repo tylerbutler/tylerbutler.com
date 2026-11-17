@@ -89,6 +89,7 @@
     "@fontsource/lato": "^5.2.7",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.59.1",
+    "@types/hast": "^3.0.5",
     "@types/subset-font": "^2.3.0",
     "cross-env": "^10.1.0",
     "pa11y-ci": "^4.1.0",
@@ -102,7 +103,8 @@
     "simple-icons": "^16.27.0",
     "start-server-and-test": "^3.0.0",
     "subset-font": "^2.5.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vite": "^8.3.8"
   },
   "packageManager": "pnpm@12.7.0"
 }

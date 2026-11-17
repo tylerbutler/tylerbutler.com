@@ -11,7 +11,7 @@ export async function indexNotes(output: URL): Promise<void> {
   try {
     const directory = await index.addDirectory({ path: output.pathname });
     if (directory.errors.length) throw new Error(directory.errors.join("; "));
-    async function walk(dir: string): Promise<void> {
+    const walk = async (dir: string): Promise<void> => {
       for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
         const filename = path.join(dir, entry.name);
         if (entry.isDirectory()) await walk(filename);
@@ -37,7 +37,7 @@ export async function indexNotes(output: URL): Promise<void> {
           if (record.errors.length) throw new Error(record.errors.join("; "));
         }
       }
-    }
+    };
     await walk("src/content/notes");
     const written = await index.writeFiles({
       outputPath: path.join(output.pathname, "pagefind"),

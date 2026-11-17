@@ -17,4 +17,4 @@ web applications and ideas I am playing around with, along with occasional artic
 
 The site was previously built using [Engineer](/projects/engineer), a static site generator I created.
 
-The complete source code for the site is available on [GitHub](https://github.com/tylerbutler/tylerbutler.com-hugo).
+The complete source code for the site is available on [GitHub](https://github.com/tylerbutler/tylerbutler.com).

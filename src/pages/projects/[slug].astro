@@ -128,6 +128,26 @@ const relatedArticles = await Promise.all(
       )}
     </div>
 
+    {relatedArticles.length > 0 && (
+      <section class="related-articles" aria-labelledby="related-articles-heading">
+        <h2 id="related-articles-heading">Related Articles</h2>
+        <ul>
+          {relatedArticles.map(article => (
+            <li>
+              <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
+              <time datetime={article.data.date.toISOString()}>
+                {article.data.date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     {relationshipSections.length > 0 && (
       <div class="project-relationships">
         {relationshipSections.map(section => (
@@ -147,26 +167,6 @@ const relatedArticles = await Promise.all(
           </section>
         ))}
       </div>
-    )}
-
-    {relatedArticles.length > 0 && (
-      <section class="related-articles" aria-labelledby="related-articles-heading">
-        <h2 id="related-articles-heading">Related Articles</h2>
-        <ul>
-          {relatedArticles.map(article => (
-            <li>
-              <a href={getArticleUrl(article)} set:html={article.formattedTitle} />
-              <time datetime={article.data.date.toISOString()}>
-                {article.data.date.toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
-            </li>
-          ))}
-        </ul>
-      </section>
     )}
   </article>
 </BaseLayout>

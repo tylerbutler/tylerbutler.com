@@ -270,9 +270,9 @@ messages and lifecycle callbacks, not just delivery.
 Eventually Bob gets bored and closes the tab. Alice should stop seeing him in the audience, but the die should keep its
 value.
 
-Floodgate's membership and presence cleanup lives in `channel.on_terminate`, which beryl calls when the channel ends. If
-Bob's connection goes half-open instead of closing cleanly (thanks, hotel Wi-Fi), heartbeat eviction eventually lands in
-the same callback.
+Floodgate cleans up membership and presence in `channel.on_terminate`, which beryl calls when the channel ends. If
+Bob's connection silently drops (thanks, hotel Wi-Fi), the server stops getting his heartbeats, evicts him, and ends up
+in the same callback.
 
 The socket library notices the loss; the application decides what it means. Floodgate removes Bob's membership and, if
 he was a writer, sequences a leave op. That's not just about the audience list. Every writer reports how far through the

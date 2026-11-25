@@ -1,4 +1,12 @@
-# Phoenix Channels and Cloudflare Durable Objects
+---
+title: 'Phoenix Channels and Cloudflare Durable Objects'
+date: '2026-11-25T13:30:00-08:00'
+slug: phoenix-channels-and-cloudflare-durable-objects
+draft: true
+tags:
+- gleam
+- beryl
+---
 
 You have a frontend that uses Phoenix Channels. It joins a topic, pushes commands, and handles replies through the Phoenix JavaScript client. To host that interaction on Cloudflare Durable Objects, you need a server that understands those channel messages, plus application code that fits the Durable Object runtime.
 

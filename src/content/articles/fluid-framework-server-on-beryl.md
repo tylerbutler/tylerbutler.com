@@ -1,14 +1,26 @@
-# A Fluid Framework server in Gleam with beryl
+---
+title: 'A Fluid Framework server in Gleam with beryl'
+date: '2026-11-25T13:07:31-08:00'
+slug: fluid-framework-server-on-beryl
+tags:
+- gleam
+- beryl
+- fluid
+---
 
-In [my previous post about beryl](/what-if-we-applied-the-elm-architecture-to-sockets/), I described a socket API built on the Elm Architecture. Each socket has its own private state. You handle an input and return the next state, plus effects that describe what should go out over the wire.
+In [What if we applied the Elm Architecture to Web Sockets?](/what-if-we-applied-the-elm-architecture-to-sockets/), I described beryl's socket API. Each socket has its own private state. You handle an input and return the next state, plus effects that describe what should go out over the wire.
 
-A live poll is a fine way to explain an API, but it doesn't tell you much about whether the API holds up. So I've been putting the design to work on something bigger: [Floodgate](https://github.com/tylerbutler/floodgate), a Fluid Framework server written in Gleam.
+What I didn't mention there is that beryl was a side quest. The real goal was [Floodgate](https://github.com/tylerbutler/floodgate), a Fluid Framework server written in Gleam.
 
-Floodgate has a sibling project, [Levee](https://github.com/tylerbutler/levee), a Fluid server built on Elixir and Phoenix Channels. Floodgate started out speaking only Socket.IO, the protocol Fluid's official drivers use. But beryl is modeled on Phoenix Channels -- Phoenix framing is its native wire format -- so adding a second endpoint for Levee's clients turned out to be mostly wiring. Now a Socket.IO client and a Phoenix Channels client can edit the same document on one Floodgate server.
+I already had a Fluid server, [Levee](https://github.com/tylerbutler/levee), but it was split between Gleam and Elixir. Floodgate replaces it with a stack that's Gleam all the way down. (My Fluid projects all get water names, and if you're replacing a levee, you might as well open the floodgates.) I think the BEAM fits Fluid's needs particularly well, and Gleam is a fun language to work with.
 
-Floodgate does all of this through beryl's public API. I supply a channel handler, give each connection the right codec, and return actions for beryl to deliver. Sequencing and storage belong to Floodgate. beryl never has to learn what a Fluid document is.
+A Fluid server lives on real-time sockets, though, and when I started, I couldn't find a solid Gleam WebSocket library with an abstraction I liked. So I wrote beryl.
 
-As far as I'm concerned, that last part is the whole point. I want to build an application with its own protocol and rules without baking those rules into the socket library. If beryl can't stay out of Floodgate's way, it probably won't stay out of yours either.
+That left me with something to prove. The live poll in that post was fine for explaining the API, but it couldn't show whether beryl could handle everything Floodgate needs without turning into a Fluid library. If beryl can't stay out of Floodgate's way, it probably won't stay out of yours either.
+
+Floodgate started out speaking only Socket.IO, the protocol Fluid's official drivers use. But beryl is modeled on Phoenix Channels -- Phoenix framing is its native wire format -- so adding a second endpoint for Phoenix clients, including Levee's driver, turned out to be mostly wiring. Now a Socket.IO client and a Phoenix Channels client can edit the same document on one Floodgate server.
+
+Floodgate does all of this through beryl's public API. I supply a channel handler, give each connection the right codec, and return actions for beryl to deliver. Sequencing and storage belong to Floodgate. The socket library never has to learn what a Fluid document is.
 
 (The code below is trimmed from the server and its tests. I've dropped the setup and renamed a few things so they read better out of context.)
 
@@ -76,7 +88,7 @@ Alice and Bob connect through different endpoints:
 
 Bob's side is easy. The stock `beryl_mist` adapter inherits the runtime's codec, Phoenix V2 JSON framing. Alice's side takes more work. Floodgate handles the Socket.IO handshake and pings itself, and it uses [Dewdrop](https://github.com/tylerbutler/dewdrop) to translate Fluid events to and from beryl's channel format.
 
-beryl's shared transport API does the rest: admission, connection registration, frame processing, and closes requested by the runtime. Floodgate passes the Dewdrop codec when it registers the connection:
+beryl's shared transport API does the rest. It enforces connection limits, registers the connection, and processes frames. (Keeping those limits honest when the limiter crashes turned into its own project. More on that in a future post.) Floodgate passes the Dewdrop codec when it registers the connection:
 
 ```gleam
 let #(connection_state, message_selector) =
@@ -144,7 +156,7 @@ There's no special case for Bob's protocol anywhere in the op handler, and the h
 
 Notice that `channel.broadcast` doesn't take a topic. Alice's handler can't send her roll to the wrong document because of a typo. If I really wanted to broadcast somewhere else, I'd have to reach for `beryl.broadcast` and name the topic explicitly. (This is the restriction I said I came around to last time. Here's a concrete case for it.)
 
-To be clear, the callback isn't pure -- it verifies tokens and calls shared actors. But everything it wants to send to clients comes back as a list of actions I can read, and that's the part I care about.
+The callback isn't pure, I'll admit. It verifies tokens and calls shared actors. But everything it wants to send to clients comes back as a list of actions I can read, and that's the part I care about.
 
 One actor per document is also why, for now, Alice and Bob need to be on the same Floodgate instance. Each instance has its own actor registry and, by default, its own storage. If two instances both accepted rolls for the same die, they could both hand out 41, and broadcasting both rolls wouldn't tell anyone which came first. beryl can already broadcast and track presence across BEAM nodes, but Floodgate doesn't coordinate document edits across nodes yet.
 
@@ -185,7 +197,7 @@ Eventually Bob gets bored and closes the tab. Alice should stop seeing him in th
 
 Floodgate's membership and presence cleanup lives in `channel.on_terminate`, which beryl calls when the channel ends. If Bob's connection goes half-open instead of closing cleanly (thanks, hotel Wi-Fi), heartbeat eviction eventually lands in the same callback.
 
-The socket library notices the loss; the application decides what it means. Floodgate removes Bob's membership and, if he was a writer, sequences a leave op. That's not just about the audience list. Every writer reports how far through the op history it has read, and those positions feed the document's minimum sequence number. If Bob's stale position stuck around, it would hold that minimum back indefinitely.
+The socket library notices the loss; the application decides what it means. Floodgate removes Bob's membership and, if he was a writer, sequences a leave op. That's not just about the audience list. Every writer reports how far through the op history it has read, and the lowest of those positions is the document's minimum sequence number. Every connected writer has seen every op up to that number, so clients can drop the extra bookkeeping they keep for older ops. If Bob's stale position stuck around, the minimum would stop moving, and that bookkeeping would pile up indefinitely.
 
 The stored history belongs to the document, so Bob leaving doesn't delete it. Someone can open the document later, load a stored summary, and replay the ops that came after it.
 
@@ -214,6 +226,6 @@ There are Gleam tests for the channel lifecycle too, including heartbeat evictio
 
 ## What's next
 
-The poll in the last post was a tidy little example of the state-transition loop. Floodgate gives the same loop a lot more to do -- two wire protocols, server-originated messages, cleanup that changes shared state -- and all of it fits through beryl's public API. That means I can keep chasing Fluid compatibility in Floodgate without turning beryl into a Fluid library, which was the whole reason for the redesign in the first place.
+The poll in the last post was a tidy little example of the state-transition loop. Floodgate gives the same loop a lot more to do -- two wire protocols, server-originated messages, cleanup that changes shared state -- and all of it fits through beryl's public API. That means I can keep chasing Fluid compatibility in Floodgate without turning beryl into a Fluid library, which is what I set out to prove.
 
-There's plenty left to do. Floodgate only sequences a document on one node today, and beryl is still pre-1.0, so expect things to move around. If you want to poke at Floodgate, the [README](https://github.com/tylerbutler/floodgate#readme) covers running it locally or in Docker. And if you're building something real-time in Gleam, give [beryl](https://beryl.tylerbutler.com) a look and let me know whether it stays out of your way.
+There's plenty left to do. Floodgate only sequences a document on one node today. If you want to poke at Floodgate, the [README](https://github.com/tylerbutler/floodgate#readme) covers running it locally or in Docker. And if you're building something real-time in Gleam, give [beryl](https://beryl.tylerbutler.com) a look and let me know whether it stays out of your way.

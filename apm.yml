@@ -9,7 +9,17 @@ targets:
   - claude
 dependencies:
   apm:
-    - tylerbutler/apm-base
+    # apm-base's parts, without its ASD-STE100 rule. APM cannot exclude one
+    # instruction from a dependency.
+    - git: tylerbutler/apm-base
+      path: .apm/skills/prose-banlist
+    - git: JuliusBrussee/caveman
+      path: skills/caveman-commit
+    # Pinned: later ponytail hooks need CLAUDE_PLUGIN_ROOT, which project
+    # hooks don't get.
+    - git: DietrichGebert/ponytail
+      ref: 2ed6c52c9d7e5e56942508591085fd45dea277d3
+    - git: hardikpandya/stop-slop
     - pbakaus/impeccable/plugin#skill-v4.1.2
   mcp: []
 includes: auto

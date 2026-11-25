@@ -217,10 +217,10 @@ returns state and actions, Elm Architecture style, and beryl applies the actions
 
 Notice that `channel.broadcast` doesn't take a topic. Alice's handler can't send her roll to the wrong document because
 of a typo. If I really wanted to broadcast somewhere else, I'd have to call `beryl.broadcast` and name the topic
-explicitly. (This is the restriction I said I came around to last time. Here's a concrete case for it.)
+explicitly. (This is the restriction I said I came around to last time.)
 
 The callback isn't pure, I'll admit. It verifies tokens and calls shared actors. But everything it wants to send to
-clients comes back as a list of actions I can read, and that's the part I care about.
+clients comes back as a list of actions I can read.
 
 One actor per document is also why, for now, Alice and Bob need to be on the same Floodgate instance. Each instance has
 its own actor registry and, by default, its own storage. If two instances both accepted rolls for the same die, they
@@ -262,8 +262,8 @@ also keeps each sender bound to the join that created it, so a stale sender can'
 same topic.
 
 From Bob's side, a roster update or signal arrives on the same connection as his ops. On the server, it goes through the
-same state-and-actions loop. That's what channels give me that a thin frame-sending wrapper couldn't: typed application
-messages and lifecycle callbacks, not just delivery.
+same state-and-actions loop. A thin frame-sending wrapper would only deliver frames. Channels also give me typed
+application messages and lifecycle callbacks.
 
 ## Bob closes the tab
 
@@ -274,8 +274,8 @@ Floodgate cleans up membership and presence in `channel.on_terminate`, which ber
 Bob's connection silently drops (thanks, hotel Wi-Fi), the server stops getting his heartbeats, evicts him, and ends up
 in the same callback.
 
-The socket library notices the loss; the application decides what it means. Floodgate removes Bob's membership and, if
-he was a writer, sequences a leave op. That's not just about the audience list. Every writer reports how far through the
+beryl detects the disconnect, and Floodgate decides what to do about it. It removes Bob's membership and, if he was a
+writer, sequences a leave op. That's not just about the audience list. Every writer reports how far through the
 op history it has read, and the lowest of those positions is the document's minimum sequence number. Every connected
 writer has seen every op up to that number, so clients can drop the extra bookkeeping they keep for older ops. If Bob's
 stale position stuck around, the minimum would stop moving, and that bookkeeping would pile up indefinitely.
@@ -310,15 +310,15 @@ That sends an op through Phoenix and waits for the Routerlicious client to recei
 direction. Same channel handler, same document state, two different codecs.
 
 There are Gleam tests for the channel lifecycle too, including heartbeat eviction and presence cleanup. But the
-cross-mode tests use the real drivers, and that's where a plausible-looking frame has to agree with someone else's idea
-of the protocol.
+cross-mode tests use the real Fluid drivers, so they catch frames that look right to me but don't match what the drivers
+expect.
 
 ## What's next
 
 The poll in the last post was a tidy little example of the state-transition loop. Floodgate gives the same loop a lot
 more to do -- two wire protocols, server-originated messages, cleanup that changes shared state -- and all of it fits
 through beryl's public API. That means I can keep chasing Fluid compatibility in Floodgate without turning beryl into a
-Fluid library, which is what I set out to prove.
+Fluid library.
 
 There's plenty left to do. Floodgate only sequences a document on one node today. If you want to poke at Floodgate, the
 [README](https://github.com/tylerbutler/floodgate#readme) covers running it locally or in Docker. And if you're building

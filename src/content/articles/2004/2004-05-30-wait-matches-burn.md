@@ -2,7 +2,7 @@
 
 title: Wait, Matches Burn?
 date: '2004-05-30T05:08:00-07:00'
-link: http://www.cpsc.gov/cpscpub/prerel/prhtml04/04138.html
+link: https://web.archive.org/web/20040530/http://www.cpsc.gov/cpscpub/prerel/prhtml04/04138.html
 slug: wait-matches-burn
 engineer:
   slug: wait-matches-burn

@@ -2,7 +2,7 @@
 
 title: Java Memory Allocation
 date: '2005-10-10T01:00:00-07:00'
-link: https://www-128.ibm.com/developerworks/java/library/j-jtp09275.html?ca=dgr-lnxw01JavaUrbanLegends
+link: https://web.archive.org/web/20051010/https://www-128.ibm.com/developerworks/java/library/j-jtp09275.html?ca=dgr-lnxw01JavaUrbanLegends
 via: Slashdot
 slug: java-memory-allocation
 tags:

@@ -2,7 +2,7 @@
 
 title: More Accessibility
 date: '2009-03-23T01:46:00-07:00'
-link: http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress
+link: https://web.archive.org/web/20090323/http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress
 via: Mark Pilgrim
 slug: more-accessibility
 engineer:

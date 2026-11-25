@@ -2,7 +2,7 @@
 
 title: Etymology Dictionary
 date: '2004-07-05T08:26:00-07:00'
-link: http://www.etymonline.com/index.html
+link: https://web.archive.org/web/20040705/http://www.etymonline.com/index.html
 slug: etymology-dictionary
 engineer:
   slug: etymology-dictionary

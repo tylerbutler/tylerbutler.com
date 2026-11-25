@@ -2,6 +2,7 @@
 title: 'Keeping ETS tables through a crash with Heirloom'
 date: '2026-11-24T16:05:19-08:00'
 slug: keeping-ets-tables-with-heirloom
+draft: true
 tags:
 - gleam
 - beryl

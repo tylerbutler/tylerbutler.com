@@ -286,10 +286,10 @@ a stored summary, and replay the ops that came after it.
 And there's no separate cleanup path for Socket.IO and Phoenix. Both transports go through beryl's lifecycle, so one
 callback handles the document work for both.
 
-## Checking the claim
+## Testing both protocols together
 
-Two endpoints answering connections would be a weak test of this design. They could still be maintaining separate
-document state, which would be an unfortunate discovery after publishing a post about sharing it.
+A Socket.IO client and a Phoenix client both connecting isn't enough. They need to see each other's ops, or they aren't
+really sharing a document.
 
 The [cross-mode
 tests](https://github.com/tylerbutler/floodgate/blob/main/client/test/conformance/floodgate-phoenix.test.ts) connect

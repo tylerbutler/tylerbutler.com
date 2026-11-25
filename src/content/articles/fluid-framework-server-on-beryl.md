@@ -129,7 +129,7 @@ takes more work. Floodgate handles the Socket.IO handshake and pings itself, and
 [Dewdrop](https://github.com/tylerbutler/dewdrop) to translate Fluid events to and from beryl's channel format.
 
 beryl's shared transport API does the rest. It enforces connection limits, registers the connection, and processes
-frames. (Keeping those limits honest when the limiter crashes turned into its own project. More on that in a future
+frames. (Keeping those limits in force when the limiter crashes turned into its own project. More on that in a future
 post.) Floodgate passes the Dewdrop codec when it registers the connection:
 
 ```gleam

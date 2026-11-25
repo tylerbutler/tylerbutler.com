@@ -43,7 +43,7 @@ better out of context.)
 
 [Fluid Framework](https://fluidframework.com/) is Microsoft's set of JavaScript and TypeScript libraries for building
 applications with shared, editable state. You work with distributed data structures -- maps, collaborative text, a
-structured tree -- and Fluid handles the operations that keep everyone's copy in sync (including the awkward case where
+structured tree -- and Fluid handles the operations that keep everyone's copy in sync (including the common case where
 people edit at the same time).
 
 The application code can look like an ordinary local mutation. Floodgate's simplest example is a shared die; clicking

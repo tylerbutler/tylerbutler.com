@@ -174,7 +174,7 @@ Alice: Socket.IO                 Bob: Phoenix Channels
 The drivers don't even connect the same way. Alice's Routerlicious driver sends the full document connection request as
 part of the join. Bob's Phoenix driver joins with just a token, then sends `connect_document` afterward.
 
-This is where beryl's private channel state earns its keep. I pick its Gleam type, and beryl keeps a separate value on
+This is where beryl's private channel state is useful. I pick its Gleam type, and beryl keeps a separate value on
 the server for each accepted join. Bob's state comes back to my handler with his next message. It never goes to Bob's
 browser, and Alice's channel can't see it, even though they're editing the same die.
 

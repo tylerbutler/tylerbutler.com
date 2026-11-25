@@ -216,7 +216,7 @@ There's no special case for Bob's protocol anywhere in the op handler, and the h
 returns state and actions, Elm Architecture style, and beryl applies the actions in order for that channel.
 
 Notice that `channel.broadcast` doesn't take a topic. Alice's handler can't send her roll to the wrong document because
-of a typo. If I really wanted to broadcast somewhere else, I'd have to reach for `beryl.broadcast` and name the topic
+of a typo. If I really wanted to broadcast somewhere else, I'd have to call `beryl.broadcast` and name the topic
 explicitly. (This is the restriction I said I came around to last time. Here's a concrete case for it.)
 
 The callback isn't pure, I'll admit. It verifies tokens and calls shared actors. But everything it wants to send to

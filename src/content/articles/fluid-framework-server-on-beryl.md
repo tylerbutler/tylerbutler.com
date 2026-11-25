@@ -60,8 +60,14 @@ function rollDice(diceMap: ISharedMap): void {
 If Alice rolls a five, Fluid sends an operation (an *op*) that means "set `diceValue` to 5." When Bob's client receives
 that op, it uses Alice's five. It doesn't roll the die again.
 
-The service's main job is **sequencing**: put incoming ops in order, broadcast them, and store them. Fluid calls this
-total order broadcast. Every client applies the ops in that one order, so their data structures end up agreeing.
+The service has three responsibilities:
+
+1. **Sequencing**: put incoming ops in one order.
+2. **Broadcasting**: send the ordered ops to every client.
+3. **Storing**: keep the ops so clients can catch up later.
+
+Fluid calls the first two together *total order broadcast*. Every client applies the ops in that one order, so their
+data structures end up agreeing.
 
 Suppose Bob rolls a two at about the same time. Each of them sees their own roll right away, before the server weighs
 in. If Alice's roll gets sequence number 41 and Bob's gets 42, both screens show two once they've processed both ops.

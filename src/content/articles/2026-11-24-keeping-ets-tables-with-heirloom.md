@@ -7,9 +7,10 @@ tags:
 - beryl
 ---
 
-I've been building [beryl][] in [Gleam][] for a while now, and it's turned into my crash course in OTP. One thing I keep
-running into is ETS. It stands for *Erlang Term Storage*, a name that tells you approximately nothing about why you'd
-want it. I think of it as a fast, in-memory key-value store that ships with the BEAM.
+I've been building [beryl][] in [Gleam][] for a while now -- it's the socket library behind [Floodgate][floodgate], my
+Fluid Framework server -- and it's turned into my crash course in OTP. One thing I keep running into is ETS. It stands
+for *Erlang Term Storage*, a name that tells you approximately nothing about why you'd want it. I think of it as a fast,
+in-memory key-value store that ships with the BEAM.
 
 <!--more-->
 
@@ -119,6 +120,7 @@ It doesn't depend on beryl, though. If you have a process that shouldn't lose it
 
 [Gleam]: https://gleam.run/
 [beryl]: https://beryl.tylerbutler.com/
+[floodgate]: /fluid-framework-server-on-beryl/
 [bravo]: https://hex.pm/packages/bravo
 [carpenter]: https://hex.pm/packages/carpenter
 [Heirloom]: https://github.com/tylerbutler/beryl/tree/main/packages/beryl_heirloom

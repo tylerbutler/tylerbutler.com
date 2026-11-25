@@ -18,7 +18,7 @@ A Fluid server lives on real-time sockets, though, and when I started, I couldn'
 
 That left me with something to prove. The live poll in that post was fine for explaining the API, but it couldn't show whether beryl could handle everything Floodgate needs without turning into a Fluid library. If beryl can't stay out of Floodgate's way, it probably won't stay out of yours either.
 
-Floodgate started out speaking only Socket.IO, the protocol Fluid's official drivers use. But beryl is modeled on Phoenix Channels -- Phoenix framing is its native wire format -- so adding a second endpoint for Phoenix clients, including Levee's driver, turned out to be mostly wiring. Now a Socket.IO client and a Phoenix Channels client can edit the same document on one Floodgate server.
+Floodgate started out speaking Phoenix Channels. Levee is built on Elixir and Phoenix, so its driver already spoke that protocol, and beryl is modeled on Phoenix Channels -- Phoenix framing is its native wire format. But I also wanted to explore compatibility with Fluid's official driver, and that one speaks Socket.IO. Now a Socket.IO client and a Phoenix Channels client can edit the same document on one Floodgate server.
 
 Floodgate does all of this through beryl's public API. I supply a channel handler, give each connection the right codec, and return actions for beryl to deliver. Sequencing and storage belong to Floodgate. The socket library never has to learn what a Fluid document is.
 

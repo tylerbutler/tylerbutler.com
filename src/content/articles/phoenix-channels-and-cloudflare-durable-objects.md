@@ -2,7 +2,7 @@
 
 You have a frontend that uses Phoenix Channels. It joins a topic, pushes commands, and handles replies through the Phoenix JavaScript client. To host that interaction on Cloudflare Durable Objects, you need a server that understands those channel messages, plus application code that fits the Durable Object runtime.
 
-Beryl’s `portable_channels` example provides that server for a small match application. You can connect the official Phoenix client, join `match:demo`, and increment a counter that the host stores in a Durable Object. The client keeps its channel API. On the server, Gleam code handles channel lifecycle transitions, Roost handles Phoenix framing, and a JavaScript worker handles Cloudflare I/O and application state.
+beryl’s `portable_channels` example provides that server for a small match application. You can connect the official Phoenix client, join `match:demo`, and increment a counter that the host stores in a Durable Object. The client keeps its channel API. On the server, Gleam code handles channel lifecycle transitions, Roost handles Phoenix framing, and a JavaScript worker handles Cloudflare I/O and application state.
 
 This demonstrates a compatible WebSocket endpoint for the example’s events. You still need to implement the events and policies that your own application expects. Cloudflare supplies the hosting platform; the example supplies the channel protocol integration.
 
@@ -19,7 +19,7 @@ The worker routes connections through a concrete path:
 
 The route accepts match codes with 1–32 letters, digits, underscores, or hyphens. The worker uses that code to select a named object. Inside the object, the host checks the channel topic against the match code. A connection to the `demo` object cannot join an unrelated match topic.
 
-Each object owns its match’s counter, revision, roster, and command records. It also keeps a separate protocol state for each WebSocket. The bridge permits one channel per connection. Multiple connections for the same match share the application storage, but each connection has its own joins, references, and deadlines.
+Each object owns its match’s counter, revision, roster, and command records, the same one-owner-per-room shape as the [document actor in Floodgate](/fluid-framework-server-on-beryl/#one-action-two-clients). It also keeps a separate protocol state for each WebSocket. The bridge permits one channel per connection. Multiple connections for the same match share the application storage, but each connection has its own joins, references, and deadlines.
 
 The Wrangler configuration binds `MATCHES` to the `Match` class and includes a migration for a SQLite-backed Durable Object. The example compiles Gleam to JavaScript and imports that output from `worker.mjs`. Its configuration describes a deployment target; the source does not establish a public deployment URL or measured capacity.
 
@@ -53,7 +53,7 @@ The browser example uses the client’s normal WebSocket transport. Integration 
 
 ## Separate the protocol from the host
 
-Beryl’s portable component is `beryl_protocol`, a pure Gleam state machine that supports Erlang and JavaScript. Beryl’s BEAM runtime imports the same core. A host supplies connection identity, time, decoded messages, and completion results. The core returns new state and ordered actions.
+beryl’s portable component is `beryl_protocol`, a pure Gleam state machine that supports Erlang and JavaScript. ([Bundling Gleam dependencies with trellis](/bundling-gleam-dependencies-with-trellis/) explains why it’s a separate package.) beryl’s BEAM runtime imports the same core. A host supplies connection identity, time, decoded messages, and completion results. The core returns new state and ordered actions.
 
 In this example, Roost decodes Phoenix text frames and binary client pushes. The bridge maps `phx_join`, `phx_leave`, application messages, and Phoenix heartbeats into protocol inputs. It converts the resulting actions into authorization requests, application delivery, cleanup, socket sends, and deadline scheduling. The worker executes those actions and returns completion results to the core.
 
@@ -69,7 +69,7 @@ It also does not broadcast counter updates to every connected client. The host s
 
 The worker uses Cloudflare’s hibernation WebSocket API. Cloudflare can remove an idle object from memory while keeping its WebSocket clients connected. An incoming event causes Cloudflare to construct the object again, so the host must restore connection state.
 
-Before executing protocol actions, the example checkpoints state in each socket’s attachment. On reconstruction, it restores membership, generations, and correlation state, then accounts for elapsed time. It excludes credentials and callbacks from attachments. Unrecoverable pending application work requires an authorized rejoin; invalid attachments require a reconnect.
+Before executing protocol actions, the example checkpoints state in each socket’s attachment. (beryl’s connection limiter uses the same checkpoint-and-restore pattern on the BEAM, with [an ETS heir](/keeping-ets-tables-with-heirloom/) in place of attachments.) On reconstruction, it restores membership, generations, and correlation state, then accounts for elapsed time. It excludes credentials and callbacks from attachments. Unrecoverable pending application work requires an authorized rejoin; invalid attachments require a reconnect.
 
 The host schedules one alarm for the earliest connection deadline. Heartbeats refresh a connection’s 60-second deadline. Application messages do not. Channel leave and disconnect do not remove the principal from the persistent roster, so that roster does not represent online presence.
 
@@ -81,11 +81,11 @@ This protects the counter against duplicate retries within the retained records.
 
 The source includes tests for join ordering, unauthorized joins, heartbeat references, eviction recovery, and retries after lost replies. Framing tests cover shared Phoenix fixtures and binary headers. That evidence supports the example’s protocol integration, not full Phoenix server feature parity or arbitrary serializers. The counter application exchanges JSON responses; binary codec coverage does not establish a binary application API.
 
-You can keep a Phoenix-speaking frontend and implement its server events in a Durable Object host. You also reuse Beryl’s channel lifecycle core across runtimes. Authentication, fan-out, presence, and storage policy still require application-specific work. Start with the example’s match boundary and check each event your frontend needs against the host you plan to build.
+You can keep a Phoenix-speaking frontend and implement its server events in a Durable Object host. You also reuse beryl’s channel lifecycle core across runtimes. Authentication, fan-out, presence, and storage policy still require application-specific work. Start with the example’s match boundary and check each event your frontend needs against the host you plan to build.
 
 ## Source notes
 
-Inspected read-only at Beryl revision [`5337faba77529c40361bc80e2167fc0c638d1a94`](https://github.com/tylerbutler/beryl/commit/5337faba77529c40361bc80e2167fc0c638d1a94), with a clean working tree. No scripts, builds, tests, or deployments ran for this draft. Test descriptions above report assertions present in source, not a fresh passing run.
+Inspected read-only at beryl revision [`5337faba77529c40361bc80e2167fc0c638d1a94`](https://github.com/tylerbutler/beryl/commit/5337faba77529c40361bc80e2167fc0c638d1a94), with a clean working tree. No scripts, builds, tests, or deployments ran for this draft. Test descriptions above report assertions present in source, not a fresh passing run.
 
 - [Example README and client setup](https://github.com/tylerbutler/beryl/blob/5337faba77529c40361bc80e2167fc0c638d1a94/examples/portable_channels/README.md). Code above adapts this setup using APIs also present in the host tests.
 - [Worker routing, application storage, and recovery](https://github.com/tylerbutler/beryl/blob/5337faba77529c40361bc80e2167fc0c638d1a94/examples/portable_channels/worker.mjs); configuration: `examples/portable_channels/wrangler.jsonc`.

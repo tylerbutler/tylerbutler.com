@@ -2,73 +2,114 @@
 title: 'Keeping ETS tables through a crash with Heirloom'
 date: '2026-11-24T16:05:19-08:00'
 slug: keeping-ets-tables-with-heirloom
+tags:
+- gleam
+- beryl
 ---
 
-I've been exploring OTP through [Gleam][], and one of the things I've found interesting is ETS. That stands for
-*Erlang Term Storage*, which doesn't tell me much about why I'd want to use it. I think of it as a fast, in-memory
-store for Erlang values.
+I've been building [beryl][] in [Gleam][] for a while now, and it's turned into my crash course in OTP. One thing I keep
+running into is ETS. It stands for *Erlang Term Storage*, a name that tells you approximately nothing about why you'd
+want it. I think of it as a fast, in-memory key-value store that ships with the BEAM.
 
 <!--more-->
 
-You store tuples in an ETS table, and those tuples can contain Erlang terms: numbers, strings, maps, or more complex
-values. With the default `set` table type, you get constant-time inserts and lookups. You can also let several
-processes access the same table, subject to its access settings.
+You put tuples in a table and get them back out by key. With the default `set` table type, inserts and lookups are
+constant-time, and lots of processes can read and write the same table at once. The catch is that a table stays on one
+node. If you want the data somewhere else, you have to send it there yourself.
 
-Those processes run inside the Erlang virtual machine, the BEAM. They're lightweight runtime processes, rather than
-OS processes. An Erlang node is an instance of that runtime, and you can only access an ETS table from processes on
-the same node. If you want data on another node, you need to arrange that communication yourself. ETS doesn't
-replicate it for you.
+I expected that part. The ownership part surprised me.
 
-So far, so useful. But there's an ownership detail that made me stop and think.
+## Every table has an owner
 
-## The process that owns the table
+The process that creates an ETS table owns it. When that process dies, the runtime deletes the table and everything in
+it. Other processes might still hold a reference and want to keep using it. Doesn't matter.
 
-When you create an ETS table, the calling process owns it. By default, when that process exits, the runtime deletes
-the table, including its data. Other processes might still want to use it, but that doesn't keep it around.
+Most of the time that's fine. In beryl, it was a problem.
 
-Suppose I have a process that owns a table, and I use a supervisor to restart that process if it crashes. The
-supervisor can start a replacement process, but by then I've lost the table. I have to create a new one and restore
-whatever data I need.
+## Why beryl cares
 
-I'd rather keep the existing table. The process crashed; that doesn't mean I want to throw away everything it
-stored.
+beryl has a connection limiter. It's a single actor that decides whether a new socket connection gets in, and it tracks
+three things:
 
-I wanted a second process that could take ownership while the supervisor restarted the first one, then give
-the table to the replacement. I wouldn't need to reload the data because I'd still have it in memory.
+- how many connections each IP has open,
+- how many connections the whole system has open, and
+- a token bucket per IP, so a client can't dodge the limits by disconnecting and reconnecting over and over.
 
-Erlang has a mechanism for this: **ETS heirs**.
+The limiter runs under a supervisor, so if it crashes, the supervisor starts a new one. That's OTP doing its job. But the
+new limiter starts with empty state. As far as it knows, nobody is connected and every IP has a full bucket.
 
-## Inheriting a table
+Meanwhile, every connection the old limiter let in is still open. The totals are wrong, the per-IP counts are wrong, and
+anyone who was being rate limited just got a fresh allowance. A crash in the limiter turns into a "no limits" window.
+That's... not what you want from the thing that protects you from too many connections.
 
-You can designate another local process as a table's heir. If the owner exits while the heir is alive, the runtime
-transfers ownership to the heir instead of deleting the table. With the `heir` option that includes transfer data,
-the heir also receives an `ETS-TRANSFER` message.
+I couldn't rebuild the state from anywhere else, either. The limiter *was* the source of truth. I needed that state to
+outlive the process.
 
-Then, when the supervisor starts a replacement worker, that worker can ask the heir for the table. The heir calls
-[`ets:give_away/3`][give_away] to transfer ownership to the new worker.
+## Enter the heir
 
-The runtime handles the inheritance, but I have to write the request and handback logic. The replacement worker is a
-new process with a new process ID; the runtime doesn't know that I intend it to take over the old worker's job.
+Erlang already has an answer for this: when you create a table, you can name an **heir**. If the owner dies and the heir
+is still alive, the runtime hands the table to the heir instead of deleting it. The heir also gets an `'ETS-TRANSFER'`
+message, so it knows it just inherited something.
 
-I also need to arrange supervision so the heir survives the worker's crash. If I restart both processes and lose the
-table along the way, I haven't gained much.
+Here's how beryl uses it:
 
-This protects the table through an owner-process crash. If the whole Erlang node stops, I still lose the in-memory
-data. For recovery across node restarts, I need disk storage or another copy elsewhere.
+1. The limiter creates an ETS table and names a small checkpoint process as the heir.
+2. Every time the limiter changes its state, it writes a copy to the table.
+3. If the limiter crashes, the heir inherits the table, and the data stays in memory.
+4. The supervisor starts a new limiter. It finds the existing table, reads the last checkpoint, and picks up where the
+   old one left off.
+
+This isn't the textbook version. Steve Vinoski describes that one in [Don't Lose Your ets Tables][vinoski], which (funny
+enough) starts with a crash in code that tracked how much video each subscriber was streaming. That's a close cousin of
+beryl's limiter. In his version, a manager process names itself as the heir and gives the table to the worker. When the
+worker dies, the manager inherits the table, waits for the supervisor to start a new worker, and gives the table back
+with [`ets:give_away/3`][give_away]. The worker always owns the table, so the table can stay protected or private.
+
+beryl skips the handback. The heir keeps the table, and beryl makes the table public so the new limiter can read and
+write it anyway. There's no handoff protocol to get wrong, and the new limiter never has to wait for the table to come
+back. The cost is that any process on the node with a reference to the table could write to it. The table isn't named,
+though, and Heirloom's handle is typed, so only beryl's code has one. After the first crash, beryl's setup looks a lot
+like Vinoski's other suggestion: a simple process whose only job is to own the table.
+
+The runtime only does the inheritance. The rest is up to you. The new limiter is just a new process with a new PID, and
+the runtime has no idea it's replacing the old one, so beryl keeps a small registry the new limiter uses to find the
+table. The heir also has to survive the crash it's supposed to protect against. beryl's heir isn't linked to the
+limiter, so it doesn't go down with it. It watches beryl's supervisor instead, and cleans up when beryl shuts down.
+
+And this is all in memory. If the node goes down, the table goes with it. For connection counts, I'm OK with that:
+the connections die with the node, too.
 
 ## Heirloom
 
-I created Heirloom to make these ETS operations easier to use from Gleam. In the [beryl][] workspace, the package and
-module name is [`beryl_heirloom`][Heirloom]. It provides typed table handles, heir configuration, and ownership
-transfers, including a way to receive transfer messages through a Gleam process selector.
+Gleam's standard library doesn't wrap ETS, and I didn't want beryl full of untyped FFI calls. So I wrote **Heirloom**
+(an heir inherits an heirloom, and yes, I am very proud of this name). It's a small Gleam package with typed table handles, heir
+configuration, ownership transfers, and a way to receive `'ETS-TRANSFER'` messages through a normal Gleam process
+selector.
 
-The distinction matters: Heirloom gives me the operations to implement recovery. It doesn't start an heir process or
-decide how my application should recover. I still own those decisions.
+Here's roughly how the limiter creates its table:
 
-That's the part of ETS I wanted to explore. I can let a supervisor replace a failed worker and keep the worker's
-table in memory while it does so. With Heirloom, I can work with that ownership model from Gleam.
+```gleam
+import beryl_heirloom as heirloom
+
+let spec =
+  heirloom.spec("beryl_connection_limit_state", heirloom.Set)
+  |> heirloom.with_access(heirloom.Public)
+  |> heirloom.with_heir(heir_pid, store_key)
+
+let assert Ok(table) = heirloom.create(spec)
+```
+
+The table's type is `heirloom.Table(String, State)`, so the compiler checks what goes in and what comes out. ETS itself
+doesn't care what you put in a table. Heirloom does.
+
+Heirloom gives you the pieces, but it doesn't decide how your app recovers. It won't start an heir for you or tell you
+what to do with a table after it moves. beryl owns those decisions, and I think that's the right split.
+
+Heirloom is in the beryl repo as [`beryl_heirloom`][Heirloom], and it ships bundled with beryl rather than on its own.
+It doesn't depend on beryl, though. If you have a process that shouldn't lose its table when it crashes, take a look.
 
 [Gleam]: https://gleam.run/
 [beryl]: https://beryl.tylerbutler.com/
 [Heirloom]: https://github.com/tylerbutler/beryl/tree/main/packages/beryl_heirloom
 [give_away]: https://www.erlang.org/doc/apps/stdlib/ets.html#give_away/3
+[vinoski]: https://steve.vinoski.net/blog/2011/03/23/dont-lose-your-ets-tables/

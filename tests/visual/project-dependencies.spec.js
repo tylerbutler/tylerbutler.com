@@ -77,10 +77,14 @@ test("project dependencies link in both directions without empty sections", asyn
   await expect(page.locator(".project-relationships")).toHaveCount(0);
 });
 
-test("related articles appear before project relationships", async ({ page }) => {
+test("related articles appear before project relationships", async ({
+  page,
+}) => {
   await page.goto("/projects/trellis/");
 
-  const relatedArticles = page.getByRole("region", { name: "Related Articles" });
+  const relatedArticles = page.getByRole("region", {
+    name: "Related Articles",
+  });
   await expect(relatedArticles).toBeVisible();
   await expect(page.getByRole("region", { name: "Powered by" })).toBeVisible();
   await expect(

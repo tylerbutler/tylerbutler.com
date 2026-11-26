@@ -91,11 +91,11 @@ connections die with the node, too.
 
 ## Heirloom
 
-Gleam's standard library doesn't wrap ETS. There are plenty of Gleam ETS packages ([bravo][], [carpenter][], and several
-others), but none that I found lets you name an heir, and none gives you a typed way to receive `'ETS-TRANSFER'`. I
-didn't want beryl full of untyped FFI calls, so I wrote **Heirloom** (an heir inherits an heirloom, and yes, I am very
-proud of this name). It's a small Gleam package with typed table handles, heir configuration, ownership transfers, and a
-way to receive `'ETS-TRANSFER'` messages through a normal Gleam process selector.
+Gleam's standard library doesn't wrap ETS. There are plenty of Gleam ETS packages ([bravo][] and several others), but
+none that I found lets you name an heir, and none gives you a typed way to receive `'ETS-TRANSFER'`. I didn't want
+beryl full of untyped FFI calls, so I wrote **Heirloom** (an heir inherits an heirloom, and yes, I am very proud of this
+name). It's a small Gleam package with typed table handles, heir configuration, ownership transfers, and a way to
+receive `'ETS-TRANSFER'` messages through a normal Gleam process selector.
 
 Here's roughly how the limiter creates its table:
 
@@ -125,7 +125,6 @@ Heirlooms are meant to be passed down, after all.
 [floodgate]: /fluid-framework-server-on-beryl/
 [bundling]: /bundling-gleam-dependencies-with-trellis/
 [bravo]: https://hex.pm/packages/bravo
-[carpenter]: https://hex.pm/packages/carpenter
 [Heirloom]: https://github.com/tylerbutler/beryl/tree/main/packages/beryl_heirloom
 [give_away]: https://www.erlang.org/doc/apps/stdlib/ets.html#give_away/3
 [vinoski]: https://steve.vinoski.net/blog/2011/03/23/dont-lose-your-ets-tables/

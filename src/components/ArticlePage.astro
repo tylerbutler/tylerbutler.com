@@ -86,6 +86,11 @@ const isLinkPost = article.data.articleType === "link";
 const kudosPath = getArticleUrl(article);
 const ogImage = article.data.ogImage ?? `/og/${getArticleSlug(article)}.png`;
 const articleTitle = getArticleDisplayTitle(article);
+// Links to tylerbutler.com (or a subdomain, or a relative path) aren't external.
+const isOwnSite = (url: string): boolean => {
+  const { host } = new URL(url, Astro.site);
+  return host === "tylerbutler.com" || host.endsWith(".tylerbutler.com");
+};
 ---
 
 <BaseLayout
@@ -113,7 +118,7 @@ const articleTitle = getArticleDisplayTitle(article);
             <span class="article-via">
               via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
                 {article.data.via}
-                <ExternalLink size={12} class="external-icon" />
+                {!isOwnSite(article.data.vialink) && <ExternalLink size={12} class="external-icon" />}
               </a>
             </span>
           )}
@@ -126,13 +131,13 @@ const articleTitle = getArticleDisplayTitle(article);
           <div class="link-wrapper">
             <a href={article.data.link} target="_blank" rel="noopener noreferrer" class="external-article-link">
               Read original
-              <ExternalLink size={16} class="external-icon" />
+              {!isOwnSite(article.data.link) && <ExternalLink size={16} class="external-icon" />}
             </a>
             {article.data.via && article.data.vialink && (
               <cite class="link-via">
                 via <a href={article.data.vialink} target="_blank" rel="noopener noreferrer" class="via-link">
                   {article.data.via}
-                  <ExternalLink size={12} class="external-icon" />
+                  {!isOwnSite(article.data.vialink) && <ExternalLink size={12} class="external-icon" />}
                 </a>
               </cite>
             )}

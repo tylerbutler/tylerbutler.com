@@ -9,8 +9,9 @@ tags:
 ---
 
 In my post about [bundling Gleam dependencies with trellis](/bundling-gleam-dependencies-with-trellis/), I mentioned
-that I'd split beryl's protocol state machine into its own package so I could find out whether something beryl-like
-could run on Cloudflare Durable Objects. Spoiler alert: it can, and this is that future post.
+that I'd split the protocol state machine out of [beryl][beryl], my library for type-safe channels over WebSockets, so I
+could find out whether something beryl-like could run on Cloudflare Durable Objects. Spoiler alert: it can, and this is
+that future post.
 
 I've been building an outdoor multiplayer game for phones that runs on Cloudflare. Each match is a Durable Object, and
 every phone in the match keeps a WebSocket open to it.
@@ -29,24 +30,25 @@ Speaking Phoenix Channels meant the phones could use the official Phoenix JavaSc
 rejoins, and reconnect backoff for me, and the server could use beryl's rules. The catch is that beryl is built out of
 OTP actors and supervisors, and a Cloudflare Worker has neither.
 
-So I pulled out the part that doesn't need them. `beryl_protocol` is beryl's channel lifecycle with the I/O taken out,
-and it compiles to both Erlang and JavaScript. To try it, I built [`portable_channels`][example], a small example in the
+So I pulled out the part that doesn't need them. beryl is written in [Gleam][gleam], a typed functional language that
+compiles to either Erlang or JavaScript. `beryl_protocol` is beryl's channel lifecycle with the I/O taken out, and
+unlike the rest of beryl, it compiles to both. To try it, I built [`portable_channels`][example], a small example in the
 beryl repo that hosts it in a Durable Object. It's a counter instead of a game, which makes it easier to talk about.
 
 (I've trimmed the code below from the example, mostly by dropping error handling and a few branches.)
 
 ## Durable Objects 101
 
-A Durable Object is an instance of a JavaScript class that Cloudflare runs for you. You address it by name, and every
-request for that name reaches the same instance, wherever Cloudflare decided to put it. Each instance gets its own
+A [Durable Object][do] is an instance of a JavaScript class that Cloudflare runs for you. You address it by name, and
+every request for that name reaches the same instance, wherever Cloudflare decided to put it. Each instance gets its own
 storage, which in this example is SQLite-backed. If you read the [Floodgate post][floodgate], it's the same idea as one
 actor per document: one owner for each piece of shared state. In the example, each match gets its own object, named by
 the match code in the URL.
 
-Durable Objects get interesting for sockets because of hibernation. If a match goes quiet, Cloudflare can evict the
-object from memory but keep its WebSockets connected, so you aren't paying for an idle object to sit around. The next
-message makes Cloudflare construct a brand-new instance and hand it the sockets. Anything you kept in an instance field
-is gone.
+Durable Objects get interesting for sockets because of [hibernation][hibernation]. If a match goes quiet, Cloudflare can
+evict the object from memory but keep its WebSockets connected, so you aren't paying for an idle object to sit around.
+The next message makes Cloudflare construct a brand-new instance and hand it the sockets. Anything you kept in an
+instance field is gone.
 
 In the [Heirloom post][heirloom], losing in-memory state was something that happened when beryl's connection limiter
 crashed. On Cloudflare, it happens every time a match gets quiet.
@@ -161,8 +163,8 @@ Heartbeat deadlines take a little more work. Each connection has to send a heart
 records how much time each connection had left, and the worker records when it saved. On restore, the core subtracts the
 time since the save -- that's the `now - attachment.savedAt` in the constructor -- so a phone that had 40 seconds left
 and slept for 30 wakes up with 10, and one that slept longer than its time left wakes up with none and gets dropped. The
-object also sets a Durable Object alarm for the earliest deadline. If a phone stops sending heartbeats while the match
-is hibernating, the alarm wakes the object up and the phone gets dropped on time.
+object also sets a [Durable Object alarm][alarms] for the earliest deadline. If a phone stops sending heartbeats while
+the match is hibernating, the alarm wakes the object up and the phone gets dropped on time.
 
 Some things can't come back. If the old instance had work in flight that the new one can't finish, the core asks the
 client to rejoin, which means authorizing again and getting a fresh snapshot. If an attachment doesn't validate, the
@@ -192,14 +194,15 @@ increment(principal, commandId) {
 ```
 
 A retry with the same ID gets the recorded answer back, whether it comes after a timeout, a reconnect, or a nap. If you
-retry, reuse the original ID. A new ID counts as a new command.
+retry, reuse the original ID. A new ID counts as a new command. This is the same idea as an [idempotency
+key][idempotency].
 
 That still isn't exactly-once delivery. The worker can commit a command and then lose the reply, and it's up to the
 client to ask again. The example also keeps only 256 command records per match. Once it's full, it rejects new commands
 rather than forget old ones. A real app needs its own retention policy.
 
-If all you need is a counter, a grow-only counter CRDT makes retries harmless without the command log, but most game
-commands aren't that tidy.
+If all you need is a counter, a [grow-only counter CRDT][gcounter] makes retries harmless without the command log, but
+most game commands aren't that tidy.
 
 ## What the counter leaves out
 
@@ -224,6 +227,13 @@ curious about Cloudflare, the [example][example] is a decent place to start. Let
 
 [example]: https://github.com/tylerbutler/beryl/tree/main/examples/portable_channels
 [channels]: https://hexdocs.pm/phoenix/channels.html
+[beryl]: https://beryl.tylerbutler.com/
+[gleam]: https://gleam.run/
+[do]: https://developers.cloudflare.com/durable-objects/
+[hibernation]: https://developers.cloudflare.com/durable-objects/best-practices/websockets/
+[alarms]: https://developers.cloudflare.com/durable-objects/api/alarms/
+[idempotency]: https://stripe.com/blog/idempotency
+[gcounter]: https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type#G-Counter_(Grow-only_Counter)
 [floodgate]: /fluid-framework-server-on-beryl/#one-action-two-clients
 [heirloom]: /keeping-ets-tables-with-heirloom/
 [elm]: /what-if-we-applied-the-elm-architecture-to-sockets/

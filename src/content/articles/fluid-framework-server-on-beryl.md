@@ -257,9 +257,7 @@ channel.accept(channel_state)
 ```
 
 The presence worker sends a plain Floodgate value and doesn't care how Bob connected. The compiler checks every message
-this callback handles. (Incoming JSON from clients still needs runtime validation -- types only get you so far.) beryl
-also keeps each sender bound to the join that created it, so a stale sender can't start talking to a later join of the
-same topic.
+this callback handles. (Incoming JSON from clients still needs runtime validation -- types only get you so far.)
 
 From Bob's side, a roster update or signal arrives on the same connection as his ops. On the server, it goes through the
 same state-and-actions loop. A thin frame-sending wrapper would only deliver frames. Channels also give me typed

@@ -260,8 +260,8 @@ The presence worker sends a plain Floodgate value and doesn't care how Bob conne
 this callback handles. (Incoming JSON from clients still needs runtime validation -- types only get you so far.)
 
 From Bob's side, a roster update or signal arrives on the same connection as his ops. On the server, it goes through the
-same state-and-actions loop. A thin frame-sending wrapper would only deliver frames. Channels also give me typed
-application messages and lifecycle callbacks.
+same state-and-actions loop as a reply. If beryl only gave me a socket to write frames to, I'd have to build that loop
+myself, along with typed messages and lifecycle callbacks. Channels come with all three.
 
 ## Bob closes the tab
 

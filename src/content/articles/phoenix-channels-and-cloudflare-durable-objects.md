@@ -19,9 +19,15 @@ The game's connections used my own protocol. It authenticated, reconnected, and 
 heartbeat, so the server couldn't tell a quiet phone from one that had silently dropped off the network. Meanwhile,
 beryl already did all of this, and did it better.
 
-I wanted the game to speak Phoenix Channels instead. Then the phones could use the official Phoenix JavaScript client,
-which handles refs, rejoins, and reconnect backoff for me, and the server could use beryl's rules. The catch is that
-beryl is built out of OTP actors and supervisors, and a Cloudflare Worker has neither.
+I wanted the game to speak [Phoenix Channels][channels] instead. It's the real-time messaging layer from Elixir's
+Phoenix framework, and beryl is modeled on it. One WebSocket carries many channels, each named by a topic like
+`match:demo`. A client joins a topic, pushes events and gets replies, and the server can push events back. Each message
+carries a `ref` that matches a reply to its request and a `join_ref` that says which join it belongs to, and the client
+sends a heartbeat on the special `phoenix` topic so the server knows it's still there.
+
+Speaking Phoenix Channels meant the phones could use the official Phoenix JavaScript client, which handles refs,
+rejoins, and reconnect backoff for me, and the server could use beryl's rules. The catch is that beryl is built out of
+OTP actors and supervisors, and a Cloudflare Worker has neither.
 
 So I pulled out the part that doesn't need them. `beryl_protocol` is beryl's channel lifecycle with the I/O taken out,
 and it compiles to both Erlang and JavaScript. To try it, I built [`portable_channels`][example], a small example in the
@@ -217,6 +223,7 @@ JavaScript and run in the same Durable Object. If you have a frontend that alrea
 curious about Cloudflare, the [example][example] is a decent place to start. Let me know how it goes.
 
 [example]: https://github.com/tylerbutler/beryl/tree/main/examples/portable_channels
+[channels]: https://hexdocs.pm/phoenix/channels.html
 [floodgate]: /fluid-framework-server-on-beryl/#one-action-two-clients
 [heirloom]: /keeping-ets-tables-with-heirloom/
 [elm]: /what-if-we-applied-the-elm-architecture-to-sockets/

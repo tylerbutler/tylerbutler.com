@@ -1,6 +1,6 @@
 ---
 title: 'A Fluid Framework server in Gleam with beryl'
-date: '2026-11-25T13:07:31-08:00'
+date: '2026-11-25T18:25:04-08:00'
 slug: fluid-framework-server-on-beryl
 tags:
 - gleam

@@ -220,8 +220,7 @@ It's a counter, so it skips a lot:
 - You get one channel per connection and no long-polling fallback.
 - beryl's PubSub, presence, and supervision still exist only on the BEAM.
 
-My game handles its own broadcasts and rules in its worker code. `beryl_protocol` handles the channel lifecycle and
-nothing else.
+My game handles its own broadcasts and rules. `beryl_protocol` handles the channel lifecycle and nothing else.
 
 ## Testing it
 
@@ -231,8 +230,9 @@ refs, lost replies, and heartbeats that expire mid-nap. You don't need a Cloudfl
 checked against a shared set of Phoenix fixtures, and the protocol core's own tests run on both Erlang and JavaScript.
 
 The game's matches run on this same setup now: Roost and `beryl_protocol` in the Durable Object, the stock Phoenix
-client on the phones, and none of my homemade protocol. If you have a frontend that already speaks Phoenix Channels and
-you're curious about Cloudflare, the [example][example] is a decent place to start. Let me know how it goes.
+client on the phones, and none of my homemade protocol. The game's rules are written in Gleam too, and they compile to
+JavaScript and run in the same Durable Object. If you have a frontend that already speaks Phoenix Channels and you're
+curious about Cloudflare, the [example][example] is a decent place to start. Let me know how it goes.
 
 [example]: https://github.com/tylerbutler/beryl/tree/main/examples/portable_channels
 [floodgate]: /fluid-framework-server-on-beryl/#one-action-two-clients

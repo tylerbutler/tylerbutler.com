@@ -12,22 +12,20 @@ In my post about [bundling Gleam dependencies with trellis](/bundling-gleam-depe
 that I'd split beryl's protocol state machine into its own package so I could find out whether something beryl-like
 could run on Cloudflare Durable Objects. Spoiler alert: it can, and this is that future post.
 
-I had a specific reason to want that. I've been building an outdoor multiplayer game for phones, and it runs on
-Cloudflare. Each match is a Durable Object, and every phone in the match keeps a WebSocket open to it.
+I've been building an outdoor multiplayer game for phones that runs on Cloudflare. Each match is a Durable Object, and
+every phone in the match keeps a WebSocket open to it.
 
-The game's connections used my own protocol. The first frame authenticated, the client backed off and reconnected when
-the socket dropped, and it retried commands that never got an answer. There was no heartbeat, so the server couldn't
-tell a quiet phone from one that had silently dropped off the network. And all of it was a second copy of rules beryl
-already handled: joins, replies, heartbeats, and what to do with stale messages after a reconnect.
+The game's connections used my own protocol. It authenticated, reconnected, and retried commands, but it had no
+heartbeat, so the server couldn't tell a quiet phone from one that had silently dropped off the network. Meanwhile,
+beryl already did all of this, and did it better.
 
 I wanted the game to speak Phoenix Channels instead. Then the phones could use the official Phoenix JavaScript client,
 which handles refs, rejoins, and reconnect backoff for me, and the server could use beryl's rules. The catch is that
 beryl is built out of OTP actors and supervisors, and a Cloudflare Worker has neither.
 
 So I pulled out the part that doesn't need them. `beryl_protocol` is beryl's channel lifecycle with the I/O taken out,
-and it compiles to both Erlang and JavaScript. Before wiring it into the game, I built a small example in the beryl repo
-that hosts it in a Durable Object: [`portable_channels`][example]. It's a counter instead of a game, which makes it a
-lot easier to talk about.
+and it compiles to both Erlang and JavaScript. To try it, I built [`portable_channels`][example], a small example in the
+beryl repo that hosts it in a Durable Object. It's a counter instead of a game, which makes it easier to talk about.
 
 (I've trimmed the code below from the example, mostly by dropping error handling and a few branches.)
 
@@ -36,19 +34,8 @@ lot easier to talk about.
 A Durable Object is an instance of a JavaScript class that Cloudflare runs for you. You address it by name, and every
 request for that name reaches the same instance, wherever Cloudflare decided to put it. Each instance gets its own
 storage, which in this example is SQLite-backed. If you read the [Floodgate post][floodgate], it's the same idea as one
-actor per document: one owner for each piece of shared state.
-
-In the example, the match code in the URL picks the object:
-
-```text
-/matches/demo/socket/websocket
-        → MATCHES.getByName("demo")
-        → Match Durable Object
-        → channel topic "match:demo"
-```
-
-The object only lets a socket join the topic for its own match, so a connection to `demo` can't wander into
-`match:other`.
+actor per document: one owner for each piece of shared state. In the example, each match gets its own object, named by
+the match code in the URL.
 
 Durable Objects get interesting for sockets because of hibernation. If a match goes quiet, Cloudflare can evict the
 object from memory but keep its WebSockets connected, so you aren't paying for an idle object to sit around. The next
@@ -130,9 +117,6 @@ channel
   .push("increment", { command_id: crypto.randomUUID() })
   .receive("ok", (game) => console.log(game));
 ```
-
-`Socket` takes the endpoint ending in `/socket`, and Phoenix adds `/websocket` when it connects. If you connect with a
-raw WebSocket, use the full path.
 
 Credentials go in the join payload, and the worker refuses the connection if you put a token in the URL. The token check
 itself is a placeholder. It compares against one shared `JOIN_TOKEN` and makes everyone the same principal, `demo`. A
@@ -225,9 +209,7 @@ My game handles its own broadcasts and rules. `beryl_protocol` handles the chann
 ## Testing it
 
 The example's tests run in Cloudflare's local runtime with real hibernatable WebSockets and the official Phoenix client.
-They force the object out of memory so the restore path runs, and they cover join ordering, rejected joins, heartbeat
-refs, lost replies, and heartbeats that expire mid-nap. You don't need a Cloudflare account. Roost's framing gets
-checked against a shared set of Phoenix fixtures, and the protocol core's own tests run on both Erlang and JavaScript.
+They force the object out of memory so the restore path runs, and you don't need a Cloudflare account.
 
 The game's matches run on this same setup now: Roost and `beryl_protocol` in the Durable Object, the stock Phoenix
 client on the phones, and none of my homemade protocol. The game's rules are written in Gleam too, and they compile to

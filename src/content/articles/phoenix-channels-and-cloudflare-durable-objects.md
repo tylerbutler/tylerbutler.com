@@ -208,6 +208,9 @@ That still isn't exactly-once delivery. The worker can commit a command and then
 client to ask again. The example also keeps only 256 command records per match. Once it's full, it rejects new commands
 rather than forget old ones. A real app needs its own retention policy.
 
+If all you need is a counter, a grow-only counter CRDT makes retries harmless without the command log, but most game
+commands aren't that tidy.
+
 ## What the counter leaves out
 
 It's a counter, so it skips a lot:

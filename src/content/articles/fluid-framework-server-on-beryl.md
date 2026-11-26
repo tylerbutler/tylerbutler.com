@@ -180,8 +180,8 @@ browser, and Alice's channel can't see it, even though they're editing the same 
 
 Once Floodgate checks Bob's token, his channel state records that his document connection is still pending, and
 Floodgate rejects his ops until `connect_document` succeeds. Alice reaches the same connected state during her join.
-Both paths go through the same document connection function, so the codec doesn't have to keep track of where either
-driver is.
+Because the channel state tracks where each connection is in the handshake, the codec stays a pure translator: it
+converts frames and never needs to know whether a driver has finished connecting.
 
 ## One action, two clients
 

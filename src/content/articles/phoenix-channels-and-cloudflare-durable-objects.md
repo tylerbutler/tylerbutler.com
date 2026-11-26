@@ -164,11 +164,15 @@ for (const socket of ctx.getWebSockets()) {
 }
 ```
 
-That brings back channel membership, channel generations, and the bookkeeping that matches replies to requests. The
-elapsed time matters too. A heartbeat deadline keeps counting while the object sleeps, and `restore` moves the deadlines
-onto the new instance's clock rather than comparing timestamps from two different runtimes. The object keeps one alarm
-set for its earliest deadline. A heartbeat pushes its connection's deadline 60 seconds out -- application messages
-don't. So if a phone stops sending heartbeats while the match is hibernating, it still gets dropped on time.
+That brings back channel membership, channel generations, and the bookkeeping that matches replies to requests.
+
+Heartbeat deadlines take a little more work. Each connection has to send a heartbeat at least every 60 seconds
+(application messages don't count), and that countdown has to keep going while the object sleeps. The saved state
+records how much time each connection had left, and the worker records when it saved. On restore, the core subtracts the
+time since the save -- that's the `now - attachment.savedAt` in the constructor -- so a phone that had 40 seconds left
+and slept for 30 wakes up with 10, and one that slept longer than its time left wakes up with none and gets dropped. The
+object also sets a Durable Object alarm for the earliest deadline. If a phone stops sending heartbeats while the match
+is hibernating, the alarm wakes the object up and the phone gets dropped on time.
 
 Some things can't come back. If the old instance had work in flight that the new one can't finish, the core asks the
 client to rejoin, which means authorizing again and getting a fresh snapshot. If an attachment doesn't validate, the

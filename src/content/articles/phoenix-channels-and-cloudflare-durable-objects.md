@@ -178,7 +178,7 @@ Some things can't come back. If the old instance had work in flight that the new
 client to rejoin, which means authorizing again and getting a fresh snapshot. If an attachment doesn't validate, the
 worker closes the socket and lets the Phoenix client reconnect.
 
-## Counting to one
+## Retries without double counting
 
 Phones lose replies. The app sends `increment`, the worker bumps the counter and replies, and the reply goes nowhere
 because the player just walked behind a building. The client retries, and without some care, the counter goes up twice.

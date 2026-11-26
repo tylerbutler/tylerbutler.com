@@ -18,8 +18,8 @@ in-memory key-value store that ships with the BEAM.
 You put tuples in a table and get them back out by key. Those tuples can hold any Erlang *term*, which is Erlang's word
 for a value of any kind: a number, a string, a list, a map, even a process ID. With the default `set` table type,
 inserts and lookups are constant-time, and lots of processes can read the same table at once. They can write to it too,
-if you make the table public. The catch is that a table stays on one node. If you want the data somewhere else, you have
-to send it there yourself.
+if you make the table public. A table never leaves the node it's on, though. If you want the data somewhere else, you
+have to send it there yourself.
 
 ## Every table has an owner
 
@@ -28,8 +28,6 @@ VM manages them.) When that process dies, the runtime deletes the table and ever
 still hold a reference and want to keep using it. Doesn't matter.
 
 That's usually fine, but in beryl, it presented a problem.
-
-## Why beryl cares
 
 beryl has a connection limiter. It's a single actor that decides whether a new socket connection gets in, and it tracks
 three things:
@@ -73,15 +71,17 @@ private.
 beryl skips the handback. The heir keeps the table, and beryl makes the table public so the new limiter can read and
 write it anyway. There's no handoff protocol to get wrong, and the new limiter never has to wait for the table to come
 back. The cost is that any process on the node with a reference to the table could write to it. The table isn't named,
-though, and Heirloom's handle is typed, so nothing outside beryl gets one by accident. (Code that goes looking could
-still find it with `ets:all()`.) After the first crash, beryl's setup looks a lot like Vinoski's other suggestion, the
-one he likes less: a simple process whose only job is to own the table.
+though, and Heirloom's handle is typed, so nothing outside beryl gets one by accident. After the first crash, beryl's
+setup looks a lot like Vinoski's other suggestion, the one he likes less: a simple process whose only job is to own the
+table.
 
-The runtime only does the inheritance. The rest is up to you. The new limiter is just a new process with a new PID, and
-the runtime has no idea it's replacing the old one, so beryl keeps a small registry the new limiter uses to find the
-table. That registry is a `persistent_term` entry, which is a global variable by another name. Vinoski's complaint about
-the simple-owner approach is that the table's name becomes a global variable, so I haven't really escaped that. I've
-just made it harder to trip over.
+## The rest is up to you
+
+The runtime only does the inheritance. The new limiter is just a new process with a new PID, and the runtime has no idea
+it's replacing the old one, so beryl keeps a small registry the new limiter uses to find the table. That registry is a
+`persistent_term` entry, which is a global variable by another name. Vinoski's complaint about the simple-owner approach
+is that the table's name becomes a global variable, so I haven't really escaped that. I've just made it harder to trip
+over.
 
 The heir also has to survive the crash it's supposed to protect against. beryl's heir isn't linked to the limiter, so it
 doesn't go down with it. It watches beryl's supervisor instead, and cleans up when beryl shuts down.
@@ -110,18 +110,20 @@ let spec =
 let assert Ok(table) = heirloom.create(spec)
 ```
 
-The table's type is `heirloom.Table(String, State)`, so the compiler checks what goes in and what comes out. ETS itself
-doesn't care what you put in a table. Heirloom does.
+The table's type is `heirloom.Table(String, State)`, so the compiler checks what goes in and what comes out, which ETS
+never does.
 
 Heirloom gives you the pieces, but it doesn't decide how your app recovers. It won't start an heir for you or tell you
 what to do with a table after it moves. beryl owns those decisions, and I think that's the right split.
 
-Heirloom is in the beryl repo as [`beryl_heirloom`][Heirloom], and it ships bundled with beryl rather than on its own.
-It doesn't depend on beryl, though. If you have a process that shouldn't lose its table when it crashes, take a look.
+Heirloom is in the beryl repo as [`beryl_heirloom`][Heirloom], and [trellis bundles it into beryl][bundling] instead of
+releasing it on its own. Heirloom doesn't depend on beryl, though, so any project can use it as a Git dependency.
+Heirlooms are meant to be passed down, after all.
 
 [Gleam]: https://gleam.run/
 [beryl]: https://beryl.tylerbutler.com/
 [floodgate]: /fluid-framework-server-on-beryl/
+[bundling]: /bundling-gleam-dependencies-with-trellis/
 [bravo]: https://hex.pm/packages/bravo
 [carpenter]: https://hex.pm/packages/carpenter
 [Heirloom]: https://github.com/tylerbutler/beryl/tree/main/packages/beryl_heirloom

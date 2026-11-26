@@ -10,7 +10,7 @@ tags:
 
 In my post about [bundling Gleam dependencies with trellis](/bundling-gleam-dependencies-with-trellis/), I mentioned
 that I'd split beryl's protocol state machine into its own package so I could find out whether something beryl-like
-could run on Cloudflare Durable Objects. The spoiler was that it can.
+could run on Cloudflare Durable Objects. Spoiler alert: it can, and this is that future post.
 
 I had a specific reason to want that. I've been building an outdoor multiplayer game for phones, and it runs on
 Cloudflare. Each match is a Durable Object, and every phone in the match keeps a WebSocket open to it.
@@ -21,17 +21,17 @@ tell a quiet phone from one that had silently dropped off the network. And all o
 already handled: joins, replies, heartbeats, and what to do with stale messages after a reconnect.
 
 I wanted the game to speak Phoenix Channels instead. Then the phones could use the official Phoenix JavaScript client,
-which handles refs, rejoins, and reconnect backoff for me, and the server could use beryl's rules. The catch is that beryl is
-built out of OTP actors and supervisors, and a Cloudflare Worker has neither.
+which handles refs, rejoins, and reconnect backoff for me, and the server could use beryl's rules. The catch is that
+beryl is built out of OTP actors and supervisors, and a Cloudflare Worker has neither.
 
 So I pulled out the part that doesn't need them. `beryl_protocol` is beryl's channel lifecycle with the I/O taken out,
 and it compiles to both Erlang and JavaScript. Before wiring it into the game, I built a small example in the beryl repo
 that hosts it in a Durable Object: [`portable_channels`][example]. It's a counter instead of a game, which makes it a
 lot easier to talk about.
 
-(The code below is trimmed from the example. I've dropped error handling and a few branches.)
+(I've trimmed the code below from the example, mostly by dropping error handling and a few branches.)
 
-## A little Durable Objects background
+## Durable Objects 101
 
 A Durable Object is an instance of a JavaScript class that Cloudflare runs for you. You address it by name, and every
 request for that name reaches the same instance, wherever Cloudflare decided to put it. Each instance gets its own
@@ -107,11 +107,13 @@ async apply(socket, result) {
 The worker makes the application decisions, and the core keeps track of whose turn it is. An `Authorize` action comes
 with an operation handle, and the worker hands that handle back with its answer, `join_accepted` or `join_rejected`.
 Replies work the same way. Each handle's type says what kind of operation it's for, so the compiler won't let me answer
-a join with a reply handle. If a handle is stale because its channel has been replaced, using it does nothing. The
-client's `ref` and `join_ref` only match replies to requests, so a client that reuses one can't complete an operation
-that isn't its own.
+a join with a reply handle.
 
-## Nothing changes on the client
+Each join also starts a new channel *generation*. When a rejoin replaces a channel, handles from the old generation go
+stale, and using one does nothing. Only the handle completes an operation. The client's `ref` and `join_ref` just label
+the reply, so a client that reuses one can't finish someone else's operation.
+
+## Joining a match
 
 On the client, it's the stock `phoenix` package:
 
@@ -132,14 +134,13 @@ channel
 `Socket` takes the endpoint ending in `/socket`, and Phoenix adds `/websocket` when it connects. If you connect with a
 raw WebSocket, use the full path.
 
-Credentials go in the join payload. The worker turns away any query parameter other than Phoenix's `vsn`, so a token in
-the URL gets you a 400 instead of a socket. (A `vsn` that isn't 2.x gets a 403.) The token check itself is a
-placeholder. It compares against one shared `JOIN_TOKEN` and makes everyone the same principal, `demo`. A real app
-needs to validate a real credential and work out who the user is.
+Credentials go in the join payload, and the worker refuses the connection if you put a token in the URL. The token check
+itself is a placeholder. It compares against one shared `JOIN_TOKEN` and makes everyone the same principal, `demo`. A
+real app needs to validate a real credential and work out who the user is.
 
-A successful join adds the player to the stored roster. The core sends the join reply, with a snapshot of the game,
-before the worker's `snapshot` push. Heartbeats get answered on the `phoenix` topic with the client's original `ref`.
-That matters, because the Phoenix client closes the socket and reconnects if a heartbeat goes unanswered.
+A successful join adds the player to the stored roster and replies with a snapshot of the game. Heartbeats get answered
+on the `phoenix` topic with the client's original `ref`. That matters, because the Phoenix client closes the socket and
+reconnects if a heartbeat goes unanswered.
 
 ## Waking up with amnesia
 
@@ -166,23 +167,20 @@ for (const socket of ctx.getWebSockets()) {
 That brings back channel membership, channel generations, and the bookkeeping that matches replies to requests. The
 elapsed time matters too. A heartbeat deadline keeps counting while the object sleeps, and `restore` moves the deadlines
 onto the new instance's clock rather than comparing timestamps from two different runtimes. The object keeps one alarm
-set for its earliest deadline. A heartbeat pushes its connection's deadline 60 seconds out -- application messages don't.
-So if a phone stops sending heartbeats while the match is hibernating, it still gets dropped on time.
+set for its earliest deadline. A heartbeat pushes its connection's deadline 60 seconds out -- application messages
+don't. So if a phone stops sending heartbeats while the match is hibernating, it still gets dropped on time.
 
 Some things can't come back. If the old instance had work in flight that the new one can't finish, the core asks the
 client to rejoin, which means authorizing again and getting a fresh snapshot. If an attachment doesn't validate, the
 worker closes the socket and lets the Phoenix client reconnect.
 
-This is the same checkpoint-and-restore idea as beryl's connection limiter, with socket attachments in place of an ETS
-heir.
-
 ## Counting to one
 
 Phones lose replies. The app sends `increment`, the worker bumps the counter and replies, and the reply goes nowhere
-because the phone just walked into an elevator. The client retries, and without some care, the counter goes up twice.
+because the player just walked behind a building. The client retries, and without some care, the counter goes up twice.
 
-Phoenix refs can't help with that -- they only match a reply to a request on one connection. So each command includes its own
-`command_id`, and the worker stores the new counter and a record of the command in one transaction:
+Phoenix refs can't help with that -- they only match a reply to a request on one connection. So each command includes
+its own `command_id`, and the worker stores the new counter and a record of the command in one transaction:
 
 ```js
 increment(principal, commandId) {
@@ -208,11 +206,15 @@ rather than forget old ones. A real app needs its own retention policy.
 
 ## What the counter leaves out
 
-It's a counter, so it skips a lot. Increments go back to the sender only, and nobody else in the match hears about them.
-Leaving the channel doesn't take you off the roster, which means the roster isn't presence. You get one channel per
-connection and no long-polling fallback. beryl's PubSub, presence, and supervision still exist only on the BEAM. My
-game handles its own broadcasts and rules in its worker code. `beryl_protocol` handles the
-channel lifecycle and nothing else.
+It's a counter, so it skips a lot:
+
+- Increments go back to the sender only. Nobody else in the match hears about them.
+- Leaving the channel doesn't take you off the roster, so the roster isn't presence.
+- You get one channel per connection and no long-polling fallback.
+- beryl's PubSub, presence, and supervision still exist only on the BEAM.
+
+My game handles its own broadcasts and rules in its worker code. `beryl_protocol` handles the channel lifecycle and
+nothing else.
 
 ## Testing it
 
@@ -221,9 +223,9 @@ They force the object out of memory so the restore path runs, and they cover joi
 refs, lost replies, and heartbeats that expire mid-nap. You don't need a Cloudflare account. Roost's framing gets
 checked against a shared set of Phoenix fixtures, and the protocol core's own tests run on both Erlang and JavaScript.
 
-The game's matches run on this same setup now: Roost and `beryl_protocol` in the Durable Object, the stock Phoenix client
-on the phones, and none of my homemade protocol. If you have a frontend that already speaks Phoenix Channels and you're
-curious about Cloudflare, the [example][example] is a decent place to start. Let me know how it goes.
+The game's matches run on this same setup now: Roost and `beryl_protocol` in the Durable Object, the stock Phoenix
+client on the phones, and none of my homemade protocol. If you have a frontend that already speaks Phoenix Channels and
+you're curious about Cloudflare, the [example][example] is a decent place to start. Let me know how it goes.
 
 [example]: https://github.com/tylerbutler/beryl/tree/main/examples/portable_channels
 [floodgate]: /fluid-framework-server-on-beryl/#one-action-two-clients

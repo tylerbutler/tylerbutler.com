@@ -104,10 +104,10 @@ async apply(socket, result) {
 }
 ```
 
-The worker makes the application decisions, and the core keeps track of whose turn it is. An `Authorize` action comes
-with an operation handle, and the worker hands that handle back with its answer, `join_accepted` or `join_rejected`.
-Replies work the same way. Each handle's type says what kind of operation it's for, so the compiler won't let me answer
-a join with a reply handle.
+The worker makes the application decisions, and the core keeps track of which ones it's still waiting on. An `Authorize`
+action comes with an operation handle, and the worker hands that handle back with its answer, `join_accepted` or
+`join_rejected`. Replies work the same way. Each handle's type says what kind of operation it's for, so the compiler
+won't let me answer a join with a reply handle.
 
 Each join also starts a new channel *generation*. When a rejoin replaces a channel, handles from the old generation go
 stale, and using one does nothing. Only the handle completes an operation. The client's `ref` and `join_ref` just label

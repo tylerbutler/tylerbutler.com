@@ -29,8 +29,8 @@ of Floodgate's way, it probably won't stay out of yours either.
 
 Floodgate started out speaking Phoenix Channels. Levee is built on Elixir and Phoenix, so its driver already spoke that
 protocol, and beryl is modeled on Phoenix Channels -- Phoenix framing is its native wire format. But I also wanted to
-explore compatibility with Fluid's official driver, and that one speaks Socket.IO. Now a Socket.IO client and a Phoenix
-Channels client can edit the same document on one Floodgate server.
+explore compatibility with Fluid's official driver, and that one speaks Socket.IO. So I added Socket.IO support, and now
+a Socket.IO client and a Phoenix Channels client can edit the same document on one Floodgate server.
 
 Floodgate does all of this through beryl's public API. I supply a channel handler, give each connection the right codec,
 and return actions for beryl to deliver. Sequencing and storage belong to Floodgate. The socket library never has to
@@ -89,6 +89,11 @@ join `document:fluid:shared-die`.
 Once the document session and presence handles exist, the setup looks like this:
 
 ```gleam
+import beryl
+import beryl/channel
+import beryl/wire
+import floodgate/document_channel
+
 let socket_configuration =
   beryl.config(wire.phoenix_codec())
   |> beryl.with_pubsub(publish_subscribe_handle)
@@ -105,7 +110,7 @@ let assert Ok(#(sockets, socket_child_specification)) =
   ])
 ```
 
-`document_channel.new` is Floodgate code; it returns a handler built with beryl's channel API. `channel.child_spec`
+`document_channel.new` returns a handler built with beryl's channel API. `channel.child_spec`
 hands back a socket handle and a child spec that slots into Floodgate's OTP supervision tree. beryl's processes are
 supervised like the rest of the application -- there's no separate server to babysit.
 
@@ -133,6 +138,9 @@ frames. (Keeping those limits in force when the limiter crashes turned into its 
 post.) Floodgate passes the Dewdrop codec when it registers the connection:
 
 ```gleam
+import beryl/transport/server as transport_server
+import dewdrop/server as fluid_server_codec
+
 let #(connection_state, message_selector) =
   transport_server.init_connection(
     sockets: sockets,

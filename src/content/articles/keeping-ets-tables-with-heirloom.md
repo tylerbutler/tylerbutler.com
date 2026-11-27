@@ -54,37 +54,29 @@ message, so it knows it just inherited something.
 
 Here's how beryl uses it:
 
-1. The limiter creates an ETS table and names a small checkpoint process as the heir.
+1. A small checkpoint manager creates an ETS table, names itself as the heir, and gives the table to the limiter.
 2. Every time the limiter lets a connection in, it writes a copy of its state to the table.
-3. If the limiter crashes, the heir inherits the table, and the data stays in memory.
-4. The supervisor starts a new limiter. It finds the existing table and reads the last checkpoint. Connections that
-   closed in the meantime give their slots back, and the new limiter monitors the ones that are still open, so it picks
-   up where the old one left off.
+3. If the limiter crashes, the manager inherits the table, and the data stays in memory.
+4. The supervisor starts a new limiter, which asks the manager for the table. The manager gives it back, and the new
+   limiter reads the last checkpoint. Connections that closed in the meantime give their slots back, and the new limiter
+   monitors the ones that are still open, so it picks up where the old one left off.
 
-This isn't the textbook version. Steve Vinoski describes that one in [Don't Lose Your ets Tables][vinoski], which (funny
-enough) starts with a crash in code that tracked how much video each subscriber was streaming. That's a close cousin of
-beryl's limiter. In his version, a manager process names itself as the heir and gives the table to the worker. When the
-worker dies, the manager inherits the table, waits for the supervisor to start a new worker, and gives the table back
-with [`ets:give_away/3`][give_away]. The worker owns the table whenever it's running, so the table can stay protected or
-private.
-
-beryl skips the handback. The heir keeps the table, and beryl makes the table public so the new limiter can read and
-write it anyway. There's no handoff protocol to get wrong, and the new limiter never has to wait for the table to come
-back. The cost is that any process on the node with a reference to the table could write to it. The table isn't named,
-though, and Heirloom's handle is typed, so nothing outside beryl gets one by accident. After the first crash, beryl's
-setup looks a lot like Vinoski's other suggestion, the one he likes less: a simple process whose only job is to own the
-table.
+This is the textbook version. Steve Vinoski describes it in [Don't Lose Your ets Tables][vinoski], which (funny enough)
+starts with a crash in code that tracked how much video each subscriber was streaming. That's a close cousin of beryl's
+limiter. The manager hands the table back with [`ets:give_away/3`][give_away], so the limiter owns the table whenever
+it's running, and the table can stay private: no other process can read or write it.
 
 ## The rest is up to you
 
 The runtime only does the inheritance. The new limiter is just a new process with a new PID, and the runtime has no idea
-it's replacing the old one, so beryl keeps a small registry the new limiter uses to find the table. That registry is a
-`persistent_term` entry, which is a global variable by another name. Vinoski's complaint about the simple-owner approach
-is that the table's name becomes a global variable, so I haven't really escaped that. I've just made it harder to trip
-over.
+it's replacing the old one. So the new limiter finds the manager by its registered name and asks for the table. If the
+old limiter still has it, the manager waits until the table comes back before handing it over.
 
-The heir also has to survive the crash it's supposed to protect against. beryl's heir isn't linked to the limiter, so it
-doesn't go down with it. It watches beryl's supervisor instead, and cleans up when beryl shuts down.
+The manager also has to survive the crash it's supposed to protect against. It runs under the same supervisor as the
+limiter, which starts the manager first and uses a `RestForOne` strategy: if the limiter crashes, only the limiter
+restarts, but if the manager crashes, the supervisor restarts both. A manager crash does lose the counts and brings back
+the "no limits" window. The manager only creates the table and passes it back and forth, though, so it has far less code
+that can crash than the limiter does.
 
 And this is all in memory. If the node goes down, the table goes with it. For connection counts, I'm OK with that: the
 connections die with the node, too.
@@ -97,18 +89,21 @@ beryl full of untyped FFI calls, so I wrote **Heirloom** (an heir inherits an he
 name). It's a small Gleam package with typed table handles, heir configuration, ownership transfers, and a way to
 receive `'ETS-TRANSFER'` messages through a normal Gleam process selector.
 
-Here's roughly how the limiter creates its table:
+Here's roughly how the manager creates the table:
 
 ```gleam
 import beryl_heirloom as heirloom
 
 let spec =
   heirloom.spec("beryl_connection_limit_state", heirloom.Set)
-  |> heirloom.with_access(heirloom.Public)
-  |> heirloom.with_heir(heir_pid, store_key)
+  |> heirloom.with_access(heirloom.Private)
+  |> heirloom.with_heir(process.self(), False)
 
 let assert Ok(table) = heirloom.create(spec)
 ```
+
+The manager names itself as the heir with `process.self()`. The `False` is data the heir gets back along with the
+table, and beryl uses it to tell a fresh table from one that already holds a checkpoint.
 
 The table's type is `heirloom.Table(String, State)`, so the compiler checks what goes in and what comes out, which ETS
 never does.

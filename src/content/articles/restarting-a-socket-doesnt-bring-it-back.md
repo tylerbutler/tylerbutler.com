@@ -64,9 +64,10 @@ I wrote down four options:
 I ruled out option 4 first. It would copy state into a short-lived process for every event and wait for the answer,
 which drags in timeouts and cancellation, and the runtime would still have to decide whether a late answer counted.
 
-beryl ended up with both 2 and 3, because it has two APIs. [Raw dispatch][dispatch] gives you one model for the whole
-socket, so one process per socket matches the code you already wrote. [Channels][channels] give each joined topic its
-own state and callbacks, so each joined topic gets a process, the way Phoenix does it.
+beryl ended up with both 2 and 3, because it has two APIs, and each one puts state in a different place. With [raw
+dispatch][dispatch], your state is one model for the whole socket, so each socket gets a process that holds its model
+and runs the callbacks that change it. With [channels][channels], each joined topic has its own state and callbacks, so
+each joined topic gets its own process too, the way Phoenix does it.
 
 The poll uses channels, so Alice's connection now involves three processes:
 
